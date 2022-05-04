@@ -590,7 +590,7 @@ static void do_file(const char *filename)
 	  break;
 	}
 	if (invalid_input_char(c))
-	  error("invalid input character code %1", int(c));
+	  error("invalid input character code %1", c);
 	else {
 	  line += c;
 	  at_start_of_line = ('\n' == c);

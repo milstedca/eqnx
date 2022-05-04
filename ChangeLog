@@ -1,5 +1,15 @@
 2022-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[refer]: Trivially refactor.
+
+	* src/preproc/refer/command.cpp (input_stack::push_file):
+	* src/preproc/refer/refer.cpp (do_file): Drop unnecessary
+	construction of integer from integer (return type of `getc()`)
+	in argument to error diagnostic functions; parallelizes with
+	other diagnostic function calls.
+
+2022-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/refer/command.cpp: Refactor to simplify.
 	(get_location): Demote return type from `int` to `void`.  The
 	function only ever returned a `1` literal.

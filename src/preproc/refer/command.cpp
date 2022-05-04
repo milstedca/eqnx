@@ -160,11 +160,11 @@ void input_stack::push_file(const char *fn)
     }
   }
   string buf;
-  int bol = 1;
+  bool is_at_beginning_of_line = true;
   int lineno = 1;
   for (;;) {
     int c = getc(fp);
-    if (bol && c == '.') {
+    if (is_at_beginning_of_line && c == '.') {
       // replace lines beginning with .R1 or .R2 with a blank line
       c = getc(fp);
       if (c == 'R') {
@@ -198,11 +198,11 @@ void input_stack::push_file(const char *fn)
     else {
       buf += c;
       if (c == '\n') {
-	bol = 1;
+	is_at_beginning_of_line = true;
 	lineno++;
       }
       else
-	bol = 0;
+	is_at_beginning_of_line = false;
     }
   }
   if (fp != stdin)

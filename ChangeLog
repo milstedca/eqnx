@@ -1,5 +1,14 @@
 2022-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[refer]: Trivially refactor: boolify.
+
+	* src/preproc/refer/command.cpp (input_stack::push_file): Demote
+	and rename local variable from `int` to `bool`.
+	(bol): Renamed from this...
+	(is_at_beginning_of_line): ...to this.
+
+2022-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[refer]: Trivially refactor.
 
 	* src/preproc/refer/command.cpp (input_stack::push_file):

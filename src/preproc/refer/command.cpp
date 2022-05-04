@@ -1,4 +1,3 @@
-// -*- C++ -*-
 /* Copyright (C) 1989-2020 Free Software Foundation, Inc.
      Written by James Clark (jjc@jclark.com)
 
@@ -37,7 +36,7 @@ public:
   int get_char();
   int peek_char();
   void skip_char();
-  int get_location(const char **, int *);
+  void get_location(const char **, int *);
 
   friend class input_stack;
 };
@@ -76,7 +75,7 @@ inline void input_item::skip_char()
   ptr++;
 }
 
-int input_item::get_location(const char **filenamep, int *linenop)
+void input_item::get_location(const char **filenamep, int *linenop)
 {
   *filenamep = filename;
   if (ptr == buffer.contents())
@@ -90,7 +89,7 @@ int input_item::get_location(const char **filenamep, int *linenop)
     ln--; // Back up to identify line number _before_ last seen newline.
     *linenop = ln;
   }
-  return 1;
+  return;
 }
 
 class input_stack {
@@ -227,11 +226,11 @@ void input_stack::error(const char *format, const errarg &arg1,
 {
   const char *filename;
   int lineno;
-  for (input_item *it = top; it; it = it->next)
-    if (it->get_location(&filename, &lineno)) {
-      error_with_file_and_line(filename, lineno, format, arg1, arg2, arg3);
-      return;
-    }
+  for (input_item *it = top; it; it = it->next) {
+    it->get_location(&filename, &lineno);
+    error_with_file_and_line(filename, lineno, format, arg1, arg2, arg3);
+    return;
+  }
   ::error(format, arg1, arg2, arg3);
 }
 
@@ -807,3 +806,9 @@ void process_commands(string &s, const char *file, int lineno)
   input_stack::push_string(s, file, lineno);
   command_loop();
 }
+
+// Local Variables:
+// fill-column: 72
+// mode: C++
+// End:
+// vim: set cindent noexpandtab shiftwidth=2 textwidth=72:

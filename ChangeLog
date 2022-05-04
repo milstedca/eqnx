@@ -1,3 +1,11 @@
+2022-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/refer/command.cpp: Refactor to simplify.
+	(get_location): Demote return type from `int` to `void`.  The
+	function only ever returned a `1` literal.
+	(input_stack::error): Update call site to stop uselessly testing
+	return value of `get_location()`.
+
 2022-05-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (dist-info-bits, install_infodoc, dist-gnueps): Fix

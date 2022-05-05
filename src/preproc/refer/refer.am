@@ -51,7 +51,7 @@ refer_TESTS = \
 TESTS += $(refer_TESTS)
 EXTRA_DIST += \
   $(refer_TESTS) \
-  src/preproc/refer/tests/artifacts/62124.ref
+  src/preproc/refer/tests/artifacts/62124.bib
 
 
 # Local Variables:

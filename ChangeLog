@@ -1,5 +1,16 @@
 2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[refer]: Rename a test artifact; it's a bibliographic database
+	file, not a refer(1) command file.
+
+	* src/preproc/refer/tests/artifacts/62124.ref: Rename this...
+	* src/preproc/refer/tests/artifacts/62124.bib: ...to this.
+	* src/preproc/refer/refer.am (EXTRA_DIST):
+	* src/preproc/refer/tests/report-correct-line-numbers.sh: Use
+	new name.
+
+2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/refer/command.cpp (process_commands): Begin
 	migration to use existing global variables for location reports
 	in diagnostic messages.  Save current file name and line number

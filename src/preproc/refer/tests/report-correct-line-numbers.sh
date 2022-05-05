@@ -48,17 +48,17 @@ test -z "$artifact_dir" && exit 77 # skip
 
 input=".
 .R1
-bibliography $artifact_dir/62124.ref
+bibliography $artifact_dir/62124.bib
 cattywumpus
 .R2
 .
 .R1
-bibliography $artifact_dir/62124.ref
+bibliography $artifact_dir/62124.bib
 cattywumpus
 .R2"
 
 # We want standard error _only_.
-output=$(echo "$input" | "$refer" -e -p "$artifact_dir"/62124.ref \
+output=$(echo "$input" | "$refer" -e -p "$artifact_dir"/62124.bib \
     2>&1 >/dev/null)
 
 # We should get every complaint about the bibliography twice because it
@@ -70,27 +70,27 @@ output=$(echo "$input" | "$refer" -e -p "$artifact_dir"/62124.ref \
 # text hasn't changed before assuming a deeper logic problem.
 
 echo "checking line number of invalid character on bibliography line 1"
-count=$(echo "$output" | grep -c "refer:.*/62124.ref:1:.*code 129")
+count=$(echo "$output" | grep -c "refer:.*/62124.bib:1:.*code 129")
 test $count -eq 2 || wail
 
 echo "checking line number of first invalid character on bibliography" \
   "line 2"
-count=$(echo "$output" | grep -c "refer:.*/62124.ref:2:.*code 136")
+count=$(echo "$output" | grep -c "refer:.*/62124.bib:2:.*code 136")
 test $count -eq 2 || wail
 
 echo "checking line number of second invalid character on" \
   "bibliography line 2"
-count=$(echo "$output" | grep -c "refer:.*/62124.ref:2:.*code 137")
+count=$(echo "$output" | grep -c "refer:.*/62124.bib:2:.*code 137")
 test $count -eq 2 || wail
 
 echo "checking line number of first invalid character on" \
   "bibliography line 3"
-count=$(echo "$output" | grep -c "refer:.*/62124.ref:3:.*code 136")
+count=$(echo "$output" | grep -c "refer:.*/62124.bib:3:.*code 136")
 test $count -eq 2 || wail
 
 echo "checking line number of second invalid character on" \
   "bibliography line 3"
-count=$(echo "$output" | grep -c "refer:.*/62124.ref:3:.*code 137")
+count=$(echo "$output" | grep -c "refer:.*/62124.bib:3:.*code 137")
 test $count -eq 2 || wail
 
 # Problems with the input file should also be accurately located.
@@ -125,11 +125,11 @@ echo "checking line number of attempt to load nonexistent database"
 echo "$output" | grep -q "refer:.*:2:.*can't open 'nonexistent\.bib':" \
   || wail
 
-output=$(printf '.R1\ninclude nonexistent.ref\n.R2\n' | "$refer" 2>&1 \
+output=$(printf '.R1\ninclude nonexistent.bib\n.R2\n' | "$refer" 2>&1 \
   >/dev/null)
 
 echo "checking line number of attempt to load nonexistent inclusion"
-echo "$output" | grep -q "refer:.*:2:.*can't open 'nonexistent\.ref':" \
+echo "$output" | grep -q "refer:.*:2:.*can't open 'nonexistent\.bib':" \
   || wail
 test -z "$fail" || exit 1
 

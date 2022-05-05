@@ -1,5 +1,15 @@
 2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/refer/command.cpp (process_commands): Begin
+	migration to use existing global variables for location reports
+	in diagnostic messages.  Save current file name and line number
+	before calling `command_loop()` and restore them afterward.
+	Also decrement line counter before entering that loop because it
+	would be too far advanced by one due to the final newline on a
+	parsed input line.
+
+2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/refer/refer.cpp (main): Report system error on
 	`fflush()` failure.  POSIX Issue 2 a.k.a. SUSv2 (1997) specifies
 	several possible `errno` values this C standard library function

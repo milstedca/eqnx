@@ -795,9 +795,16 @@ static void command_loop()
 
 void process_commands(string &s, const char *file, int lineno)
 {
+  const char *saved_filename = current_filename;
+  int saved_lineno = current_lineno;
   input_stack::init();
+  current_filename = file;
+  // Report diagnostics with respect to line _before_ last newline seen.
+  current_lineno = lineno - 1;
   input_stack::push_string(s, file, lineno);
   command_loop();
+  current_filename = saved_filename;
+  current_lineno = saved_lineno;
 }
 
 // Local Variables:

@@ -1,5 +1,10 @@
 2022-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/refer/tests/report-correct-line-numbers.sh: Add
+	more regression tests.
+
+2022-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[refer]: Trivially refactor: boolify.
 
 	* src/preproc/refer/command.cpp (input_stack::push_file): Demote

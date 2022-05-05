@@ -111,6 +111,26 @@ echo "checking line number of invalid input character on input line 1"
 echo "$output" | grep -q "refer:.*:1:.*invalid input character" \
   || wail
 
+output=$(printf '.R1\nbogus \0200\n.R2\n' | "$refer" 2>&1 >/dev/null)
+
+echo "checking line number of invalid input character after refer(1)" \
+  "command on input line 2"
+echo "$output" | grep -q "refer:.*:2:.*invalid input character" \
+  || wail
+
+output=$(printf '.R1\ndatabase nonexistent.bib\n.R2\n' | "$refer" 2>&1 \
+  >/dev/null)
+
+echo "checking line number of attempt to load nonexistent database"
+echo "$output" | grep -q "refer:.*:2:.*can't open 'nonexistent\.bib':" \
+  || wail
+
+output=$(printf '.R1\ninclude nonexistent.ref\n.R2\n' | "$refer" 2>&1 \
+  >/dev/null)
+
+echo "checking line number of attempt to load nonexistent inclusion"
+echo "$output" | grep -q "refer:.*:2:.*can't open 'nonexistent\.ref':" \
+  || wail
 test -z "$fail" || exit 1
 
 # vim:set ai et sw=4 ts=4 tw=72:

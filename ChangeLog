@@ -1,5 +1,13 @@
 2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/refer/refer.cpp (main): Report system error on
+	`fflush()` failure.  POSIX Issue 2 a.k.a. SUSv2 (1997) specifies
+	several possible `errno` values this C standard library function
+	can set; see
+	<https://pubs.opengroup.org/onlinepubs/007908799/xsh/fflush.html>.
+
+2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[refer]: Refactor: drop unused function.
 
 	* src/preproc/refer/command.cpp (process_commands): Drop

@@ -386,7 +386,7 @@ int main(int argc, char **argv)
   if (accumulate)
     output_references();
   if (fflush(stdout) < 0)
-    fatal("output error");
+    fatal("output error: %1", strerror(errno));
   return 0;
 }
 

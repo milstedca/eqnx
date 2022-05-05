@@ -793,13 +793,6 @@ static void command_loop()
   }
 }
 
-void process_commands(const char *file)
-{
-  input_stack::init();
-  input_stack::push_file(file);
-  command_loop();
-}
-
 void process_commands(string &s, const char *file, int lineno)
 {
   input_stack::init();

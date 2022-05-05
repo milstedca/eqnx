@@ -1,3 +1,12 @@
+2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[refer]: Refactor: drop unused function.
+
+	* src/preproc/refer/command.cpp (process_commands): Drop
+	definition.
+	* src/preproc/refer/command.h (process_commands): Drop
+	declaration.
+
 2022-05-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/refer/refer.cpp (do_file): Fix another off-by-one

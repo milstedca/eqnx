@@ -69,40 +69,45 @@ output=$(echo "$input" | "$refer" -e -p "$artifact_dir"/62124.ref \
 # thing to do.  If a test failure occurs, ensure the diagnostic message
 # text hasn't changed before assuming a deeper logic problem.
 
-echo "checking detection of invalid character on line 1"
+echo "checking line number of invalid character on bibliography line 1"
 count=$(echo "$output" | grep -c "refer:.*/62124.ref:1:.*code 129")
 test $count -eq 2 || wail
 
-echo "checking detection of first invalid character on line 2"
+echo "checking line number of first invalid character on bibliography" \
+  "line 2"
 count=$(echo "$output" | grep -c "refer:.*/62124.ref:2:.*code 136")
 test $count -eq 2 || wail
 
-echo "checking detection of second invalid character on line 2"
+echo "checking line number of second invalid character on" \
+  "bibliography line 2"
 count=$(echo "$output" | grep -c "refer:.*/62124.ref:2:.*code 137")
 test $count -eq 2 || wail
 
-echo "checking detection of first invalid character on line 3"
+echo "checking line number of first invalid character on" \
+  "bibliography line 3"
 count=$(echo "$output" | grep -c "refer:.*/62124.ref:3:.*code 136")
 test $count -eq 2 || wail
 
-echo "checking detection of second invalid character on line 3"
+echo "checking line number of second invalid character on" \
+  "bibliography line 3"
 count=$(echo "$output" | grep -c "refer:.*/62124.ref:3:.*code 137")
 test $count -eq 2 || wail
 
 # Problems with the input file should also be accurately located.
 
-echo "checking detection of 1st invalid refer(1) command in input file"
+echo "checking line number of invalid refer(1) command on input line 4"
+echo "$output"
 echo "$output" | grep -q "refer:.*:4:.*unknown command" || wail
 
-echo "checking detection of 2nd invalid refer(1) command in input file"
+echo "checking line number of invalid refer(1) command on input line 9"
+echo "$output"
 echo "$output" | grep -q "refer:.*:9:.*unknown command" || wail
 
 # Regression-test Savannah #62391.
 
 output=$(printf '\0201\n' | "$refer" 2>&1 >/dev/null)
 
-echo "checking detection of invalid input character on first line of" \
-  "input file"
+echo "checking line number of invalid input character on input line 1"
 echo "$output" | grep -q "refer:.*:1:.*invalid input character" \
   || wail
 

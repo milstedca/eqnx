@@ -260,7 +260,7 @@
 
 	* src/roff/troff/input.cpp (string_iterator::backtrace): Fix
 	spurious output when `mac.filename` is empty.  Provoked by:
-	  $ printf '\\(' | troff
+	  $ printf '\\(' | troff -b
 
 2022-05-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 

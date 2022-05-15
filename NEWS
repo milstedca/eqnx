@@ -106,6 +106,10 @@ o The -I option now implies -g (run the grn(1) preprocessor), and
 Macro packages
 --------------
 
+o mom version 2.5 is distributed with this release.  New features
+  include shaded backgrounds, frames, and colored pages.  Thanks to
+  Peter Schaffter.
+
 o English localization has been split into a dedicated macro file,
   `en.tmac`, for better parallelism with other localization files and to
   improve support for multilingual documents.  Those who want a
@@ -398,12 +402,26 @@ o groff's Texinfo manual is included in the distribution archive in
 o A compilation of all of groff's man pages in PDF and UTF-8-encoded
   plain text is produced by the build.  Many of the documents in this
   380+-page document have been heavily revised or rewritten, including
-  tbl(1), groff_font(5), groff(7), and roff(7).  The PDF version uses
-  pdfmark extensions to produce an internal bookmark for every man page
-  document, section heading, and subsection heading.
+  tbl(1), groff(1), groff_font(5), groff(7), groff_char(7), and roff(7).
+  The PDF version uses pdfmark extensions to produce an internal
+  bookmark for every man page document, section heading, and subsection
+  heading.
+
+o Larry Kollar's "Using groff with the ms Macro Package", has been
+  resurrected after 20+ years, revised, and updated.
+
+o Eric Allman's "me Reference Manual" has been revised in detail.
 
 Miscellaneous
 -------------
+
+o Because all generated forms of groff's Texinfo manual are now included
+  in the distribution archive, building from that archive no longer
+  depends on GNU Texinfo or a TeX installation (the latter was only
+  required for the "doc" target, which had to be explicitly given).
+
+o Building groff from its distribution archive no longer requires byacc
+  (or GNU Bison) to be installed.
 
 o New 'configure' options --{en,dis}able-groff-allocator control whether
   groff uses its own malloc/free-wrapping allocator to implement all C++

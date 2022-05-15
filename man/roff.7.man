@@ -130,12 +130,7 @@ spaces,
 tabs,
 or newlines.
 .
-Words are separated by
-spaces,
-tabs,
-newlines,
-or
-file boundaries.
+The exceptions separate words.
 .
 .
 .P
@@ -299,7 +294,7 @@ Trailing spaces on
 (see below)
 are ignored.
 .
-The end of an input file causes a break.
+The end of input causes a break.
 .
 .
 .P

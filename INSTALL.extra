@@ -8,16 +8,16 @@ This file contains information that supplements the generic
 installation instructions in file 'INSTALL'.
 
 
-Normal Installation
-===================
+Building and Installing from within the Source Tree
+===================================================
 
 A simple method of building and installing groff is as follows.
 
   1. 'cd' to the directory containing groff's source code and type
      './configure' to configure groff for your system.  If you are
-     using 'csh' on an old version of System V, you might need to type
-     'sh ./configure' instead to prevent 'csh' from trying to execute
-     'configure' itself.
+     using 'csh' on an old version of AT&T Unix System V, you might need
+     to type 'sh ./configure' instead to prevent 'csh' from trying to
+     execute 'configure' itself.
 
      While 'configure' runs, it reports properties of the host system
      that determine how the build is to be performed.
@@ -25,19 +25,22 @@ A simple method of building and installing groff is as follows.
   2. Type 'make' to compile groff.  You may wish to add the '-j' option
      to accelerate the build on multicore systems.
 
-  3. Type 'sudo make install' to install groff's programs, data files,
+  3. Optionally, check the build for sound operation as described under
+     "Evaluation" below.
+
+  4. Type 'sudo make install' to install groff's programs, data files,
      and documentation.  'make install' is the only step for which you
      need 'root' access; 'sudo' obtains this access.
 
-  4. You can remove the groff executables and other generated files from
+  5. You can remove the groff executables and other generated files from
      the source code directory by typing 'make clean'.  To also remove
      the files that 'configure' created (so you can compile groff for a
      different kind of computer or with different options to
      'configure'), type 'make distclean'.
 
 
-External Installation
-=====================
+Building and Installing from outside the Source Tree
+====================================================
 
 It is also possible to perform the build and installation procedure
 outside the source code directory.  In this case an external build
@@ -51,22 +54,27 @@ As an example, we will imagine that groff's source code is in
 directory '/home/my/groff-build'.  You can choose your own name for the
 build directory.
 
-  0. Create '/home/my/groff-build' and change to that directory.
+  0. Create '/home/my/groff-build' and 'cd' to that directory.
 
-  1. Call '/usr/local/src/groff/configure' in that directory to
-     configure groff for your system.  If you are using 'csh' on an old
-     version of AT&T System V Unix, you might need to type 'sh
-     /usr/local/src/groff/configure' instead.
+  1. Type './configure' to configure groff for your system.  If you are
+     using 'csh' on an old version of AT&T System V Unix, you might need
+     to type 'sh ./configure' instead.
 
-  2. Type 'make' to compile groff in that directory.
+  2. Type 'make' to compile groff.  You may wish to add the '-j' option
+     to accelerate the build on multicore systems.
 
-  3. Type 'sudo make install' to install the groff programs and any
-     data files and documentation.
+  3. Optionally, check the build for sound operation as described under
+     "Evaluation" below.
 
-  4. You can remove the groff binaries and object files from the
-     build directory by typing 'make clean'.  To also remove the
-     files that 'configure' created (so you can compile the package for
-     a different kind of computer), type 'make distclean'.
+  4. Type 'sudo make install' to install groff's programs, data files,
+     and documentation.  'make install' is the only step for which you
+     need 'root' access; 'sudo' obtains this access.
+
+  5. You can remove the groff executables and other generated files from
+     the source code directory by typing 'make clean'.  To also remove
+     the files that 'configure' created (so you can compile groff for a
+     different kind of computer or with different options to
+     'configure'), type 'make distclean'.
 
 
 Unprivileged Installation
@@ -76,7 +84,7 @@ The use of 'sudo' is only necessary if one or more destination
 directories used by the 'make install' command are in locations that
 require administrative access for writing.  You can 'configure' groff
 with options like '--prefix' that select an alternative directory that
-is writable by the user conducting the build.  type './configure --help'
+is writable by the user conducting the build.  Type './configure --help'
 from the groff source tree for documentation of relevant options.
 Running groff commands from such a directory may require you to set the
 'GROFF_FONT_PATH' and 'GROFF_TMAC_PATH' environment variables.  See the
@@ -117,11 +125,11 @@ you alter the source, for example), see section "Evaluation" below.
 
 The 'uchardet' library is an optional dependency of the 'preconv'
 program: if this library is found by 'configure', it will be
-automatically used by 'preconv'.  In order to discover the presence of
-the 'uchardet' library, you will also need to have the 'pkg-config'
-program installed on your system, and the library's C header files will
-need to be present on the system--on a package-based host system, this
-can mean installing uchardet's '-dev' or '-devel' package.
+automatically used by 'preconv'.  Discovery of the presence of the
+'uchardet' library requires the 'pkg-config' program to be installed on
+your system, as well as the library's C header files--on a package-based
+host system, this can mean installing uchardet's '-dev' or '-devel'
+package.
 
 
 Miscellaneous

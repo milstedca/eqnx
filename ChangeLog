@@ -1,3 +1,9 @@
+2022-05-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (read_color_draw_node): Tweak
+	diagnostic message to better distinguish drawing commands and
+	device control commands.
+
 2022-05-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[grohtml]: Mitigate double-free problem exposed by malformed

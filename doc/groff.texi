@@ -14973,68 +14973,69 @@ line emitted in the environment.
 @node Suppressing Output, Colors, Environments, gtroff Reference
 @section Suppressing Output
 
-@Defesc {\\O, , num, }
+@Defesc {\\O, [, num, ]}
 @cindex suppressing output (@code{\O})
 @cindex output, suppressing (@code{\O})
-Disable or enable output depending on the value of @var{num}:
+Suppress GNU @code{troff} output of glyphs and geometric primitives.
+The sequences @code{\O2}, @code{\O3}, @code{\O4}, and @code{\O5} are
+intended for internal use by @code{grohtml}.
 
 @table @samp
 @item \O0
-Disable any glyphs from being emitted to the device driver, provided
-that the escape occurs at the outer level (see @code{\O[3]} and
-@code{\O[4]}).  Motion is not suppressed so effectively @code{\O[0]}
-means @emph{pen up}.
+Disable the emission of glyphs and geometric primitives to the output
+driver, provided that this sequence occurs at the outermost level
+(see @code{\O3} and @code{\04} below).  Horizontal motions corresponding
+to non-overstruck glyph widths still occur.
 
 @item \O1
-Enable output of glyphs, provided that the escape occurs at the outer
-level.
+Enable the emission of glyphs and geometric primitives to the output
+driver, provided that this sequence occurs at the outermost level.
 @end table
 
 @vindex opminx
 @vindex opminy
 @vindex opmaxx
 @vindex opmaxy
-@code{\O0} and @code{\O1} also reset the four registers @samp{opminx},
-@samp{opminy}, @samp{opmaxx}, and @samp{opmaxy} to @minus{}1.
-@xref{Register Index}.  These four registers mark the top left and
-bottom right hand corners of a box that encompasses all written glyphs.
-
-For example the input text:
-
-@Example
-Hello \O[0]world \O[1]this is a test.
-@endExample
-
-@noindent
-produces the following output:
-
-@Example
-Hello       this is a test.
-@endExample
+@code{\O0} and @code{\O1} also reset the four registers @code{opminx},
+@code{opminy}, @code{opmaxx}, and @code{opmaxy} to @minus{}1.  These
+four registers mark the top left and bottom right hand corners of a box
+encompassing all written glyphs.
 
 @table @samp
 @item \O2
-Provided that the escape occurs at the outer level, enable output of
-glyphs and also write out to @code{stderr} the page number and four
-registers encompassing the glyphs previously written since the last call
-to @code{\O}.
+Provided that this sequence occurs at the outermost level, enable
+emission of glyphs and geometric primitives, and write to the standard
+error stream the page number and values of the four aforementioned
+registers encompassing glyphs written since the last interpolation of a
+@code{\O} sequence, as well as the page offset, line length, image file
+name (if any), horizontal and vertical device motion quanta, and input
+file name.  Numeric values are in basic units.
 
 @item \O3
-Begin a nesting level.  At startup, @code{gtroff} is at outer level.
-The current level is contained within the read-only register @code{.O}.
-@xref{Built-in Registers}.
+Begin a nesting level.  This is an internal mechanism for @code{grohtml}
+while producing images.  At startup, @code{gtroff} is at the outermost
+level.  These sequences are generated when processing the source
+document with @command{pre-grohtml}, which uses @command{gtroff} with
+the @code{ps} output device, Ghostscript, and the PNM tools to produce
+images in PNG format.  They start a new page if the device is not
+@code{html} or @code{xhtml}, to reduce the possibility of images
+crossing a page boundary.
 
 @item \O4
-End a nesting level.  The current level is contained within the
-read-only register @code{.O}.  @xref{Built-in Registers}.
+End a nesting level.
+@end table
 
-@item \O[5@var{P}@var{filename}]
-This escape is @code{grohtml} specific.  Provided that this escape
-occurs at the outer nesting level write the @code{filename} to
-@code{stderr}.  The position of the image, @var{P}, must be specified
-and must be one of @code{l}, @code{r}, @code{c}, or@tie{}@code{i} (left,
-right, centered, inline).  @var{filename} is associated with the
-production of the next inline image.
+The current nesting level is accessible via the read-only register
+@code{.O}.  @xref{Built-in Registers}.
+
+@table @samp
+@item \O[5@var{P}@var{file}]
+Provided that this sequence occurs at the outermost level, write the
+name @code{file} to the standard error stream at position @var{P}, which
+must be one of @code{l}, @code{r}, @code{c}, or@tie{}@code{i},
+corresponding to left, right, centered, and inline alignments within the
+document, respectively.  @var{file} is a name associated with the
+production of the next image.
 @end table
 @endDefesc
 

@@ -4148,23 +4148,30 @@ and so on.
 .TP
 .ESC O0
 At the outermost suppression level,
-disable glyph emission to the output driver.
+disable emission of glyphs and geometric primitives to the output
+driver.
 .
 .
 .TP
 .ESC O1
 At the outermost suppression level,
-enable glyph emission to the output driver.
+enable emission of glyphs and geometric primitives to the output driver.
 .
 .
 .TP
 .ESC O2
 At the outermost suppression level,
-enable glyph emission to the output driver and write to the standard
-error stream the page number and four bounding box registers enclosing
-glyphs written since the previous
+enable glyph and geometric primitive emission to the output driver and
+write to the standard error stream the page number,
+four bounding box registers enclosing glyphs written since the previous
 .B \[rs]O
-escape sequence.
+escape sequence,
+the page offset,
+line length,
+image file name
+(if any),
+horizontal and vertical device motion quanta,
+and input file name.
 .
 .
 .TP
@@ -4178,22 +4185,19 @@ End a nested suppression level.
 .
 .
 .TP
-.ESC[] O "\f[CB]5\f[]Pfilename"
+.ESC[] O "\f[CB]5\f[]Pfile"
 At the outermost suppression level,
-write
-.I filename
-to the standard error stream;
+write the name
+.I file
+to the standard error stream at
+.RI position\~ P ,
 .IR P \~indicates
-the position of an image and must be one of
+which must be one of
 .BR l ,
 .BR r ,
 .BR c ,
 or
-.B i
-(left,
-right,
-centered,
-inline).
+.BR i .
 .
 .
 .TP

@@ -716,6 +716,49 @@ To get PostScript output from `man -t', you also need to create a
 Compilation Problems
 ====================
 
+* I get warnings about special characters in the groff_char(7) man page.
+
+troff:man/groff_char.7:1000: warning: can't find special character '.j'
+troff:man/groff_char.7:1407: warning: can't find special character 'vA'
+troff:man/groff_char.7:1531: warning: can't find special character 'bs'
+troff:man/groff_char.7:1697: warning: can't find special character '-+'
+troff:man/groff_char.7:1746: warning: can't find special character 'coproduct'
+troff:man/groff_char.7:1839: warning: can't find special character '+e'
+
+You can ignore these.  groff defines a handful of special characters for
+which historical PostScript fonts usually did not possess glyphs.
+Except for 'bs' (the Bell System logo), we hope to provide fallbacks or
+a supplementary PostScript font in groff in the future (as was done for
+the Euro glyph).
+
+----------------------------------------------------------------------
+
+* I get a warning, "afmtodit: both Upsilon and Upsilon1 map to *U
+  at...".
+
+This is a known issue with the font mapping groff uses for PostScript
+fonts.  The Adobe Type 1 Symbol font has two different code points for a
+Greek capital upsilon; one looks like a Latin capital Y ("Upsilon"), and
+the other has a curly right arm ("Upsilon1").  In troff systems, only
+one form of Greek capital upsilon is supported; a Latin capital Y is
+used for its Greek homoglyph, whereas the special character '\[*Y]'
+accesses the curly form of the Greek capital upsilon.  We plan to
+resolve this (minor) issue in a future release.
+
+----------------------------------------------------------------------
+
+* I get warnings about the "vasnprintf" function.
+
+lib/vasnprintf.c: In function 'vasnprintf':
+lib/vasnprintf.c:5268:27: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+(and similar)
+
+The groff source tree includes gnulib, the GNU portability library
+<https://www.gnu.org/software/gnulib/>.  These warnings are about its
+source code and that project's responsibility to resolve.  We expect a
+future release of gnulib to do so.
+
+----------------------------------------------------------------------
 
 
 * Compilation dies with

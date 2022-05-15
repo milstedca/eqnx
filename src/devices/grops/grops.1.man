@@ -1198,7 +1198,7 @@ has been defined via a
 .RB \[lq] "ps: def" \[rq]
 or
 .RB \[lq] "ps: mdef" \[rq]
-device command,
+device control command,
 it is executed at the beginning of every page
 (before anything is drawn or written by
 .IR groff ).

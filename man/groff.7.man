@@ -1839,7 +1839,7 @@ Close the
 .
 .TPx
 .REQ .color
-Enable output of color-related device commands.
+Enable output of color-related device-independent output commands.
 .
 .
 .TPx
@@ -1847,7 +1847,7 @@ Enable output of color-related device commands.
 If
 .I N
 is zero,
-disable output of color-related device commands;
+disable output of color-related device-independent output commands;
 otherwise,
 enable them.
 .

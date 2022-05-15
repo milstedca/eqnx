@@ -1,3 +1,26 @@
+2022-05-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[grohtml]: Mitigate double-free problem exposed by malformed
+	input.
+
+	* src/roff/troff/mtsm.h (struct statem): Place member variable
+	`issue_no` behind `DEBUGGING` preprocessor symbol, omitting it
+	from production and ordinary development builds.
+	* src/roff/troff/mtsm.cpp (no_of_statems): Place global variable
+	behind `DEBUGGING` preprocessor symbol, omitting it from
+	production and ordinary development builds.
+	(statem::statem): Make constructor trivial if `DEBUGGING` not
+	defined in preprocessor; it manipulates only `issue_no` and
+	`no_of_statems`, which are synchronized.
+	(statem::statem {copy}): Gate assignment of `issue_no` member
+	variable from copy constructor behind `DEBUGGING` preprocessor
+	symbol.
+	(statem::flush, mtsm::inherit): Gate debugging output, already
+	runtime-gated on `debug_state` symbol, of `issue_no` member
+	variable, so that we don't reference it when it is not declared.
+
+	See <https://savannah.gnu.org/bugs/?62040>.
+
 2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[refer]: Rename a test artifact; it's a bibliographic database

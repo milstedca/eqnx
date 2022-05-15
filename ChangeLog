@@ -51,14 +51,15 @@
 2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/refer/refer.cpp (main): Report system error on
-	`fflush()` failure.  POSIX Issue 2 a.k.a. SUSv2 (1997) specifies
+	`fflush()` failure.  POSIX Issue 5 a.k.a. SUSv2 (1997) specifies
 	several possible `errno` values this C standard library function
 	can set; see
 	<https://pubs.opengroup.org/onlinepubs/007908799/xsh/fflush.html>.
 
 2022-05-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[refer]: Refactor: drop unused function.
+	[refer]: Refactor: drop unused version of function (taking only
+	a `const char *` parameter).
 
 	* src/preproc/refer/command.cpp (process_commands): Drop
 	definition.
@@ -4567,7 +4568,7 @@
 
 	* arch/misc/misc.am:
 	(arch_shdeps_sh): Pull file name into a new variable.
-	(EXTRA_DIST, shdeps.sed): Ue it.
+	(EXTRA_DIST, shdeps.sed): Use it.
 	(shdeps.sed): Build more quietly; prefix with `$(AM_GEN_V)`.
 
 2021-10-20  G. Branden Robinson <g.branden.robinson@gmail.com>

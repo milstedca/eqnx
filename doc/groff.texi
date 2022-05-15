@@ -5001,11 +5001,11 @@ methods of producing indented paragraphs.  Trailing spaces on text lines
 are ignored.@footnote{``Text lines'' are defined in @ref{Requests and
 Macros}.}
 
-What if there is no next input word?  Or the file ends before enough
-words have been collected to fill an output line?  The end of the file
-causes a break, resolving both of these cases.  Certain requests also
-cause breaks, implicitly or explicitly.  This is discussed in
-@ref{Manipulating Filling and Adjustment}.
+What if the file ends before enough words have been collected to fill an
+output line?  Or the output line is exactly full but not yet broken, and
+there is no more input?  GNU @code{troff} interprets the end of input as
+a break.  Certain requests also cause breaks, implicitly or explicitly.
+This is discussed in @ref{Manipulating Filling and Adjustment}.
 
 @c ---------------------------------------------------------------------
 
@@ -5194,15 +5194,15 @@ Insert tedious liability disclaimer paragraph here.
 @endExample
 
 @noindent
-The above document started with a series of lines beginning with the
-control character.  Three macros were defined, with a @code{de} request
-declaring each macro's name, and the ``body'' of the macro starting on
-the next line and continuing until a line with two dots @samp{@code{..}}
-marked its end.  The text proper began only after the macros were
-defined; this is a common pattern.  Only the @code{NOTICE} macro was
-called ``directly'' by the document; @code{DATE} and @code{BOSS} were
-called only by @code{NOTICE} itself.  Escape sequences were used in
-@code{BOSS}, two levels of macro interpolation deep.
+The above document started with a series of control lines.  Three macros
+were defined, with a @code{de} request declaring each macro's name, and
+the ``body'' of the macro starting on the next line and continuing until
+a line with two dots @samp{@code{..}} marked its end.  The text proper
+began only after the macros were defined; this is a common pattern.
+Only the @code{NOTICE} macro was called ``directly'' by the document;
+@code{DATE} and @code{BOSS} were called only by @code{NOTICE} itself.
+Escape sequences were used in @code{BOSS}, two levels of macro
+interpolation deep.
 
 The advantage in typing and maintenance economy may not be obvious from
 such a short example, but imagine a much longer document with dozens of
@@ -5245,10 +5245,9 @@ its purpose distinguishes it.  When a macro file is installed at a
 standard location and suitable for use by a general audience, it is
 often termed a @dfn{macro package}.@footnote{Macro files and packages
 frequently define registers and strings as well.}  Macro packages can be
-loaded by supplying the @option{-m} option to @command{groff} or
-@command{troff}.  Alternatively, a @code{groff} document wishing to use
-a macro package can load it with the @code{mso} (``macro source'')
-request.
+loaded by supplying the @option{-m} option to GNU @command{troff} or a
+@code{groff} front end.  A document wishing to use a macro package can
+load it with the @code{mso} (``macro source'') request.
 
 @c ---------------------------------------------------------------------
 
@@ -7055,8 +7054,8 @@ considered an ``auto-decrement''.}
 @Defreq {nr, ident value incr}
 @cindex @code{\R}, difference to @code{nr}
 Set register @var{ident} to @var{value} and its auto-incrementation
-amount to to @var{incr}.  The @code{\R} escape doesn't support this
-notation.
+amount to to @var{incr}.  The @code{\R} escape sequence doesn't support
+an @var{incr} argument.
 @endDefreq
 
 Auto-incrementation is not @emph{completely} automatic; the @code{\n}
@@ -7215,7 +7214,7 @@ its format.
 .af % i \" front matter
 @r{@dots{}}
 .de header-trap
-.  \" To test the page number, we need it in decimal.
+.  \" To test the page number, we need it in Arabic.
 .  ds saved-page-number-format \\g%\"
 .  af % 0
 .  nr page-number-in-decimal \\n%
@@ -14466,8 +14465,8 @@ end-of-input macro using the @code{am} request.
 In @code{roff} systems it is possible to format text as if for output,
 but instead of writing it immediately, one can @dfn{divert} the
 formatted text into a named storage area.  The same name space is used
-for such @emph{diversions} as for strings and macros;
-@xref{Identifiers}.  Such text is sometimes said to be ``stored in a
+for such @emph{diversions} as for strings and macros; see
+@ref{Identifiers}.  Such text is sometimes said to be ``stored in a
 macro'', but this coinage obscures the important distinction between
 macros and strings on one hand and diversions on the other; the former
 store @emph{unformatted} input text, and the latter capture
@@ -14597,7 +14596,7 @@ This is a test.
 @cindex @code{.h} register, difference to @code{nl}
 @cindex @code{nl} register, difference to @code{.h}
 @noindent
-As implied by the example, vertical spacing does not produce text
+As implied by the example, vertical motion does not produce text
 baselines and thus does not increase the value interpolated by
 @samp{\n[.h]}.
 @endDefreg
@@ -14609,12 +14608,11 @@ baselines and thus does not increase the value interpolated by
 @cindex @code{da} request, and @code{dn} (@code{dl})
 @cindex @code{boxa} request, and @code{dn} (@code{dl})
 After completing a diversion, the writable registers @code{dn} and
-@code{dl} contain the vertical and horizontal size of the diversion.
-Only the lines just processed are counted: for the computation of
-@code{dn} and @code{dl}, the requests @code{da} and @code{boxa} are
-handled as if @code{di} and @code{box} had been used,
-respectively---lines that have been already stored in the diversion
-(box) are not taken into account.
+@code{dl} contain its vertical and horizontal sizes.  Only the lines
+just processed are counted: for the computation of @code{dn} and
+@code{dl}, the requests @code{da} and @code{boxa} are handled as if
+@code{di} and @code{box} had been used, respectively---lines that have
+been already stored in the diversion (box) are not taken into account.
 
 @Example
 .\" Center text both horizontally and vertically.
@@ -15106,7 +15104,7 @@ Identical to the @code{so} and @code{soquiet} requests, respectively,
 except that @code{gtroff} searches for the specified @var{file} in the
 same directories as macro files for the @option{-m} command-line option.
 If the file name to be included has the form @file{@var{name}.tmac} and
-it isn't found, @code{mso} tries to include @file{tmac.@var{name}} and
+it isn't found, these requests try to include @file{tmac.@var{name}} and
 vice versa.
 @endDefreq
 

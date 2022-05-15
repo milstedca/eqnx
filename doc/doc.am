@@ -476,17 +476,18 @@ endif
 
 # groff Texinfo manual
 #
-# We can produce some formats of the manual using only 'makeinfo': GNU
-# info, plain text, and HTML.  Produce all of these by default and ship
-# them in the distribution archive ('make dist') so that people don't
-# need to have 'makeinfo' available.
+# We produce all possible formats by by default and ship them in the
+# distribution archive ('make dist') so that people don't need to have
+# 'makeinfo' or TeX available.
 #
-# Other formats are suitable for hard copy and require a working TeX
-# installation.  We can't use Automake's facilities for PDF production
-# because the 'dist' target attempts to generate 'groff.pdf' by invoking
-# 'texi2dvi' without the '-E' option (use 'makeinfo' to expand macros),
-# which is needed to build this file.  'texi2dvi' honors the 'MAKEINFO'
-# environment variable.
+# The GNU info, plain text, and HTML formats require only 'makeinfo'.
+#
+# DVI and PDF require a working TeX installation.  We can't use
+# Automake's facilities for PDF production because its 'dist' target
+# attempts to generate 'groff.pdf' by invoking 'texi2dvi' without the
+# '-E' option (use 'makeinfo' to expand macros), which is needed to
+# build this file.  'texi2dvi' honors the 'MAKEINFO' environment
+# variable.
 #
 # Were the foregoing not true, we would simply say this:
 #info_TEXINFOS = doc/groff.texi
@@ -495,7 +496,7 @@ endif
 all: doc/groff.info doc/groff.txt doc/groff.html doc/groff.dvi \
   doc/groff.pdf
 
-# Provide the manual in source form.
+# Distribute the manual in source form as well.
 EXTRA_DIST += doc/groff.texi doc/fdl.texi
 
 EXTRA_DIST += doc/groff.info
@@ -543,13 +544,11 @@ MAINTAINERCLEANFILES += doc/groff.html doc/groff.html.node
 	$(MAKEINFO) --html -I $(doc_srcdir) --no-split \
 	  -o $@ $<
 
-# The distribution archive gets these formats too; TeX is required.
 EXTRA_DIST += doc/groff.dvi doc/groff.pdf
 
 # Define pattern rules to make our Texinfo manual in DVI and PDF
-# formats.  These are not built by default.  'pdf' and 'dvi' and their
-# installation counterparts 'install-pdf' and 'install-dvi' are standard
-# Automake targets.
+# formats.  'pdf' and 'dvi' and their installation counterparts
+# 'install-pdf' and 'install-dvi' are standard Automake targets.
 .texi.dvi:
 if HAVE_TEXI2DVI
 	$(AM_V_at)$(MKDIR_P) $(doc_builddir)
@@ -629,8 +628,8 @@ uninstall-html:
 	$(RM) $(DESTDIR)$(htmldocdir)/groff.html.*
 
 # An image of a gnu in enscapsulated PostScript is generated during the
-# build process if necessary.  We assume pnmdepth is available if
-# xpmtoppm is.
+# build process if necessary.  Our configure script assumes pnmdepth is
+# available if xpmtoppm is (see macro "GROFF_PROG_XPMTOPPM").
 EXTRA_DIST += $(DOC_GNU_EPS) doc/gnu.xpm
 $(DOC_GNU_EPS): doc/gnu.xpm
 	$(AM_V_GEN)if test "$(XPMTOPPM)" != found; then \

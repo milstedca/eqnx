@@ -4191,7 +4191,6 @@ write the name
 .I file
 to the standard error stream at
 .RI position\~ P ,
-.IR P \~indicates
 which must be one of
 .BR l ,
 .BR r ,

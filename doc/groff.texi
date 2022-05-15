@@ -3976,7 +3976,7 @@ correspondence.  You may wish to use @code{\*@{} and @code{\*@}} to
 superscript the marker at the anchor point, in the footnote text, or
 both.
 
-@code{groff} @file{fs} provides a hook macro, @code{FS-MARK}, for
+@code{groff} @file{ms} provides a hook macro, @code{FS-MARK}, for
 user-determined operations to be performed when the @code{FS} macro is
 called.  It is passed the same arguments as @code{FS} itself.  An
 application of @code{FS-MARK} is anchor placement for a hyperlink
@@ -4276,8 +4276,6 @@ great deal of time in the long run if you use @file{ms} regularly.
 for your own purposes, or redefine to adapt the macro package to
 languages other than English.  It is already localized for
 @c cs, de, fr, it, sv
-Czech, German, French, Italian, and Swedish.  You can load an
-appropriate localization macro package after @file{ms}; see the
 Czech, German, French, Italian, and Swedish.  Load the desired
 localization macro package after @file{ms}; see the
 @cite{groff_tmac@r{(5)}} man page.
@@ -4499,13 +4497,6 @@ decrementing it, but by setting it absolutely.  This can cause problems
 for documents that define additional macros of their own that try to
 manipulate indentation.  The solution is to use, not the @code{in}
 request, but the @file{ms} @code{RS} and @code{RE} macros.
-
-@item
-To make @code{groff} @file{ms} use the default page offset (which also
-specifies the left margin), the @code{PO} register must stay undefined
-until the first @file{ms} macro is called.  This implies that the
-@code{PO} register should not be used early in the document unless it is
-changed also: accessing an undefined register automatically defines it.
 
 @item
 Right-aligned displays are available.  The @acronym{AT&T} @file{ms}

@@ -233,7 +233,7 @@ This option does
 .I not
 suppress messages sent to the standard error stream by documents or
 macro packages using
-.B .tm
+.B tm
 or related requests.
 .
 .
@@ -270,10 +270,10 @@ Search
 for input files
 (those on the command line,
 those named in
-.BR .psbb ,
-.BR .so ,
+.BR psbb ,
+.BR so ,
 and
-.B .soquiet
+.B soquiet
 requests,
 and
 those named in
@@ -419,18 +419,16 @@ see
 .B \-U
 Operate in
 .IR "unsafe mode" ,
-which enables the
-.BR .open ,
-.BR .opena ,
-.BR .pi ,
-.BR .pso ,
+enableing the
+.BR open ,
+.BR opena ,
+.BR pi ,
+.BR pso ,
 and
-.B .sy
-requests.
-.
-These requests are disabled by default because they allow an untrusted
-input document to write to arbitrary file names and run arbitrary
-commands.
+.B sy
+requests,
+which are disabled by default because they allow an untrusted input
+document to write to arbitrary file names and run arbitrary commands.
 .
 This option also adds the current directory to the macro package search
 path;

@@ -5596,8 +5596,9 @@ footers, or at least bear vertical margins larger than one vee.
 @cindex basic unit (@code{u})
 @cindex machine unit (@code{u})
 @cindex measurement unit
-@cindex @code{u} unit
-@cindex unit, @code{u}
+@cindex @code{u} scaling unit
+@cindex unit, scaling, @code{u}
+@cindex scaling unit @code{u}
 @code{gtroff} (like many other programs) requires numeric parameters to
 specify various measurements.  Most numeric parameters@footnote{those
 that specify vertical or horizontal motion or a type size} may have a
@@ -5622,44 +5623,42 @@ register @code{.V} specifies this value vertically.
 
 @table @code
 @item i
-@cindex inch unit (@code{i})
-@cindex @code{i} unit
-@cindex unit, @code{i}
+@cindex inch scaling unit (@code{i})
+@cindex @code{i} scaling unit
+@cindex unit, scaling, @code{i}
+@cindex scaling unit @code{i}
 Inches.  An antiquated measurement unit still in use in certain
 backward countries with incredibly low-cost computer equipment.  One
 inch is defined to be 2.54@tie{}cm (worldwide since 1964).
 
 @item c
-@cindex centimeter unit (@code{c})
-@cindex @code{c} unit
-@cindex unit, @code{c}
+@cindex centimeter scaling unit (@code{c})
+@cindex @code{c} scaling unit
+@cindex unit, scaling, @code{c}
+@cindex scaling unit @code{c}
 Centimeters.  One centimeter is about 0.3937@tie{}in.
 
 @item p
-@cindex point unit (@code{p})
-@cindex @code{p} unit
-@cindex unit, @code{p}
+@cindex point scaling unit (@code{p})
+@cindex @code{p} scaling unit
+@cindex unit, scaling, @code{p}
+@cindex scaling unit @code{p}
 Points.  This is a typesetter's measurement used for measure type size.
 It is 72@tie{}points to an inch.
 
 @item P
-@cindex pica unit (@code{P})
-@cindex @code{P} unit
-@cindex unit, @code{P}
+@cindex pica scaling unit (@code{P})
+@cindex @code{P} scaling unit
+@cindex unit, scaling, @code{P}
+@cindex scaling unit @code{P}
 Pica.  Another typesetting measurement.  6@tie{}picas to an inch (and
 12@tie{}points to a pica).
 
 @item s
 @itemx z
-@cindex @code{s} unit
-@cindex unit, @code{s}
-@cindex @code{z} unit
-@cindex unit, @code{z}
 @xref{Fractional Type Sizes}, for a discussion of these units.
 
 @item f
-@cindex @code{f} unit
-@cindex unit, @code{f}
 Multiply by 65,536.
 @xref{Colors}, for usage.
 @end table
@@ -5670,29 +5669,34 @@ specifying measurements that should look proper with any size of text.
 
 @table @code
 @item m
-@cindex em unit (@code{m})
-@cindex @code{m} unit
-@cindex unit, @code{m}
+@cindex em scaling unit (@code{m})
+@cindex @code{m} scaling unit
+@cindex unit, scaling, @code{m}
+@cindex scaling unit @code{m}
 Ems.  This unit is equal to the current font size in points.  So called
 because it is @emph{approximately} the width of the letter@tie{}@samp{m}
 in the current font.
 
 @item n
-@cindex en unit (@code{n})
-@cindex @code{n} unit
-@cindex unit, @code{n}
+@cindex en scaling unit (@code{n})
+@cindex @code{n} scaling unit
+@cindex unit, scaling, @code{n}
+@cindex scaling unit @code{n}
 Ens.  In @code{groff}, this is half of an em.
 
 @item v
 @cindex vertical space unit (@code{v})
 @cindex space, vertical, unit (@code{v})
-@cindex @code{v} unit
-@cindex unit, @code{v}
+@cindex vee scaling unit (@code{v})
+@cindex @code{v} scaling unit
+@cindex unit, scaling, @code{v}
+@cindex scaling unit @code{v}
 Vees.  @xref{Page Geometry}.
 
 @item M
-@cindex @code{M} unit
-@cindex unit, @code{M}
+@cindex @code{M} scaling unit
+@cindex unit, scaling, @code{M}
+@cindex scaling unit @code{M}
 100ths of an em.
 @end table
 
@@ -11430,10 +11434,12 @@ spacing; it is associated with the environment (@pxref{Environments}).
 @cindex point sizes, fractional
 @cindex sizes, fractional
 
-@cindex @code{s} unit
-@cindex unit, @code{s}
-@cindex @code{z} unit
-@cindex unit, @code{z}
+@cindex @code{s} scaling unit
+@cindex unit, scaling, @code{s}
+@cindex scaling unit @code{s}
+@cindex @code{z} scaling unit
+@cindex unit, scaling, @code{z}
+@cindex scaling unit @code{z}
 @cindex @code{ps} request, with fractional type sizes
 @cindex @code{cs} request, with fractional type sizes
 @cindex @code{tkf} request, with fractional type sizes
@@ -11573,8 +11579,9 @@ or @samp{##}.  The former indicates that each component is in the range
 .defcolor magenta rgb  ##ffff0000ffff
 @endExample
 
-@cindex @code{f} unit, and colors
-@cindex unit, @code{f}, and colors
+@cindex @code{f} scaling unit
+@cindex unit, scaling, @code{f}
+@cindex scaling unit @code{f}
 Alternatively, each color component can be specified as a decimal
 fraction in the range 0--1, interpreted using a default scaling
 indicator of@tie{}@code{f}, which multiplies its value by 65,536 (but

@@ -1,5 +1,16 @@
 2022-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[grotty]: Do more input validation.
+
+	* src/devices/grotty/tty.cpp (tty_printer::draw): Throw warning
+	if an unsupported geometric primitive is encountered.
+	(tty_printer::line): Throw warning if a line is diagonal.  Die
+	if length of a horizontal or vertical line is not a multiple of
+	the appropriate motion quantum of the device (troff should never
+	emit such nonsense, and currently doesn't appear to).
+
+2022-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/tbl.1.man (Miscellaneous): Document GNU tbl's
 	use of `#T` and `T.` registers.
 

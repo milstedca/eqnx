@@ -537,8 +537,10 @@ void tty_printer::draw(int code, int *p, int np, const environment *env)
     return;
   if (code == 'l')
     draw_line(p, np, env);
-  if (code == 'p')
+  else if (code == 'p')
     draw_polygon(p, np, env);
+  else
+    warning("ignoring unsupported drawing command '%1'", char(code));
 }
 
 void tty_printer::draw_polygon(int *p, int np, const environment *env)
@@ -588,6 +590,23 @@ void tty_printer::draw_line(int *p, int np, const environment *env)
 void tty_printer::line(int hpos, int vpos, int dx, int dy,
 		       color *col, color *fill)
 {
+  // XXX: zero-length lines get drawn as '+' crossings in nroff, even
+  // when there is no crossing, but they nevertheless occur frequently
+  // in input.  Does tbl produce them?
+#if 0
+  if (0 == dx)
+    fatal("cannot draw zero-length horizontal line");
+  if (0 == dy)
+    fatal("cannot draw zero-length vertical line");
+#endif
+  if ((dx != 0) && (dy != 0))
+    warning("cannot draw diagonal line");
+  if (dx % font::hor != 0)
+    fatal("length of horizontal line %1 is not a multiple of horizontal"
+	" motion quantum %2", dx, font::hor);
+  if (dy % font::vert != 0)
+    fatal("length of vertical line %1 is not a multiple of vertical"
+	" motion quantum %2", dy, font::vert);
   if (dx == 0) {
     // vertical line
     int v = vpos;

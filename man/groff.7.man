@@ -4473,13 +4473,12 @@ is necessary as a continuation byte in a UTF-8 sequence.)
 .
 .
 .IP
-Invalid characters are removed during parsing;
+Invalid characters are removed during interpretation;
 an identifier
 .RB \[lq] foo \[rq],
-followed by an invalid character,
-followed by
+followed by an invalid character and then
 .RB \[lq] bar \[rq]
-is interpreted as
+is processed as
 .RB \[lq] foobar \[rq] .
 .
 .

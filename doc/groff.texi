@@ -6117,8 +6117,8 @@ Invalid input characters are a subset of control characters (from the
 sets ``C0 Controls'' and ``C1 Controls'' as Unicode describes them).
 When GNU @code{troff} encounters one in an identifier, it produces a
 warning in category @samp{input} (@pxref{Debugging}).  They are removed
-during parsing; an identifier @samp{foo}, followed by an invalid
-character, followed by @samp{bar}, is interpreted as @samp{foobar}.
+during intepretation; an identifier @samp{foo}, followed by an invalid
+character and then @samp{bar} is processed as @samp{foobar}.
 
 On a machine using the ISO 646, 8859, or 10646 character encodings,
 invalid input characters are @code{0x00}, @code{0x08}, @code{0x0B},

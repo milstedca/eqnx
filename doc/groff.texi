@@ -5903,15 +5903,18 @@ We can operate on truth values with the the logical operators @code{&}
 @cindex logical not, limitation in expression
 @cindex expression, limitation of logical not in
 A logical complementation (``not'') operator, @code{!}, works only
-within @code{if}, @code{ie}, and @code{while} requests.  Furthermore,
-@code{!} is recognized only at the beginning of a numeric expression not
-contained by another numeric expression.  In other words, it must be the
-``outermost'' operator.  Attempting to include it elsewhere in the
-expression produces a warning in the @samp{number} category
-(@pxref{Debugging}), and its expression evaluates false.  This
+within @code{if}, @code{ie}, and @code{while} requests.
+@c This is worded to avoid implying that the operator doesn't apply
+@c to conditional expressions in general, albeit without mentioning them
+@c because they're out of scope.
+Furthermore, @code{!} is recognized only at the beginning of a numeric
+expression not contained by another numeric expression.  In other words,
+it must be the ``outermost'' operator.  Attempting to include it
+elsewhere in the expression produces a warning in the @samp{number}
+category (@pxref{Debugging}), and its expression evaluates false.  This
 unfortunate limitation maintains compatibility with @acronym{AT&T}
-@code{troff}.  You can work around it by comparing numeric expressions
-to the canonical truth values @samp{0} and @samp{1}.
+@code{troff}.  You can test a numeric expression for falsity by
+comparing it to a false value.
 
 @Example
 .nr X 1
@@ -5920,7 +5923,7 @@ to the canonical truth values @samp{0} and @samp{1}.
 .if (\n[X])&(!\n[Y]) .nop A: X is true, Y is false
 .
 .\" Use this construct instead.
-.if (\n[X])&(\n[Y]=0) .nop B: X is true, Y is false
+.if (\n[X])&(\n[Y]<=0) .nop B: X is true, Y is false
     @error{} warning: expected numeric expression, got '!'
     @result{} B: X is true, Y is false
 @endExample

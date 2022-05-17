@@ -1,3 +1,15 @@
+2022-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Add unit tests, including one XFAIL for bad behavior.
+
+	* src/preproc/tbl/tests/check-horizontal-line-length.sh:
+	* src/preproc/tbl/tests/check-line-intersections.sh:
+	* src/preproc/tbl/tests/check-vertical-line-length.sh:
+	* src/preproc/tbl/tests/table-lacks-spurious-top-border.sh: Do
+	it.
+	* src/preproc/tbl/tbl.am (tbl_TESTS): Run tests.
+	(tbl_XFAIL_TESTS, XFAIL_TESTS): Expect one test failure.
+
 2022-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grotty/tty.cpp (tty_printer::add_char): Modify

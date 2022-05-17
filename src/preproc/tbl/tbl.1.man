@@ -1264,6 +1264,16 @@ macro named
 .B TE
 can make use of it.
 .
+.B T.\&
+is a Boolean-valued register indicating whether the bottom of the table
+is being processed.
+.
+The
+.B #T
+register marks the top of the table.
+.
+Avoid using these names for any other purpose.
+.
 .
 .P
 .I @g@tbl

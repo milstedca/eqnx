@@ -1,3 +1,8 @@
+2022-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/tbl/tbl.1.man (Miscellaneous): Document GNU tbl's
+	use of `#T` and `T.` registers.
+
 2022-05-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (read_color_draw_node): Tweak

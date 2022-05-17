@@ -1466,7 +1466,9 @@ not an algebraic sign.
 .
 To assign a register a negative value or the negated value of another
 register,
-enclose the assigned expression in parentheses or subtract it from zero.
+enclose
+.squoted_char \-
+with its operand(s) in parentheses.
 .
 If a prior value does not exist
 (the register was undefined),
@@ -4464,8 +4466,8 @@ and
 Some of these code points are used by
 .I @g@troff
 internally,
-making it non-trivial to extend the program to cover Unicode or other
-character encodings that use characters from these ranges.
+making it non-trivial to extend the program to accept UTF-8 or other
+encodings that use characters from these ranges.
 .
 (Consider what happens when a C1 control
 .BR 0x80 \[en] 0x9F

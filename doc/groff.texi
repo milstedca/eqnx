@@ -6136,8 +6136,8 @@ expedient; in GNU @code{troff} it is unnecessary (outside of
 compatibility mode) because delimited arguments are parsed at a different
 input level than the surrounding context.  @xref{Implementation
 Differences}.}  Some of these code points are used by GNU @code{troff}
-internally, making it non-trivial to extend the program to cover Unicode
-or other character encodings that use characters from these
+internally, making it non-trivial to extend the program to accept UTF-8
+or other encodings that use characters from these
 ranges.@footnote{Consider what happens when a C1 control
 @code{0x80}--@code{0x9F} is necessary as a continuation byte in a UTF-8
 sequence.}
@@ -6944,9 +6944,9 @@ Increment (decrement) register @var{ident} by @var{value}.
 A leading minus sign in @var{value} is always interpreted as a
 decrementation operator, not an algebraic sign.  To assign a register a
 negative value or the negated value of another register, you can use
-either of two techniques to to force GNU @code{troff} to interpret the
-assigned value as a numeric expression: enclose it in parentheses or
-subtract it from zero.
+either of two techniques to to force GNU @code{troff} to interpret
+@code{-} as a negation or minus, rather than decrementation, operator:
+enclose it with its operand(s) in parentheses.
 
 @Example
 .nr a 7

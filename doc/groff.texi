@@ -5373,7 +5373,7 @@ traditions have accrued in service of these goals.
 
 @itemize @bullet
 @item
-Break input lines after sentence-ending punctuation to ease their
+Follow sentence endings in input with newlines to ease their
 recognition (@pxref{Sentences}).  It is frequently convenient to break
 after colons and semicolons as well, as these typically precede
 independent clauses.  Consider breaking after commas; they often occur
@@ -5556,12 +5556,11 @@ start a new one, and reset the drawing position to one vee below the
 page top again; this is a @dfn{page break}.
 
 When the last line of input text is also the last output line that can
-fit on the page, the break caused by the end of the input file will also
-break the page, producing a useless blank one.  Macro packages keep
-users from having to confront this difficulty by setting ``traps''
-(@pxref{Traps}); moreover, all but the simplest page layouts tend to
-have headers and footers, or at least bear vertical margins larger than
-one vee.
+fit on the page, the break caused by the end of input will also break
+the page, producing a useless blank one.  Macro packages keep users from
+having to confront this difficulty by setting ``traps'' (@pxref{Traps});
+moreover, all but the simplest page layouts tend to have headers and
+footers, or at least bear vertical margins larger than one vee.
 
 
 @codequotebacktick off

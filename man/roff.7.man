@@ -489,8 +489,7 @@ this is a
 .P
 When the last line of input text is also the last output line that can
 fit on the page,
-the break caused by the end of the input file
-will also break the page,
+the break caused by the end of input will also break the page,
 producing a useless blank one.
 .
 Macro packages keep users from having
@@ -2028,7 +2027,7 @@ Several traditions have accrued in service of these goals.
 .
 .
 .IP \[bu] 2n
-Break input lines after sentence-ending punctuation to ease their
+Follow sentence endings in input with newlines to ease their
 recognition.
 .\" Texinfo: (@pxref{Sentences}).
 It is frequently convenient to break after colons and semicolons as

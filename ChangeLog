@@ -1,5 +1,10 @@
 2022-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/s.tmac (PT): Unclutter name space; remove
+	`pg*saved-page-number-format` string when we're done with it.
+
+2022-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Add unit tests, including one XFAIL for bad behavior.
 
 	* src/preproc/tbl/tests/check-horizontal-line-length.sh:

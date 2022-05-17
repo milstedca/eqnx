@@ -164,38 +164,38 @@ developing GNU and promoting software freedom.''
 @c definition of escape sequences
 
 @macro Defesc{name, delimI, arg, delimII}
-@deffn Escape @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
+@deffn Escape@tie{}sequence @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
 @esindex \name\
 @c
 @end macro
 
 @macro DefescList{name, delimI, arg, delimII}
-@deffn Escape @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
+@deffn Escape@tie{}sequence @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
 @defdummy
 @esindex \name\
 @c
 @end macro
 
 @macro DefescItem{name, delimI, arg, delimII}
-@deffnx Escape @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
+@deffnx Escape@tie{}sequence @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
 @defdummy
 @c
 @end macro
 
 @macro DefescItemx{name, delimI, arg, delimII}
-@deffnx Escape @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
+@deffnx Escape@tie{}sequence @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
 @defdummy
 @esindex \name\
 @c
 @end macro
 
 @macro DefescListEnd{name, delimI, arg, delimII}
-@deffnx Escape @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
+@deffnx Escape@tie{}sequence @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
 @c
 @end macro
 
 @macro DefescListEndx{name, delimI, arg, delimII}
-@deffnx Escape @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
+@deffnx Escape@tie{}sequence @t{\name\\delimI\}@Var{\arg\}@t{\delimII\}
 @esindex \name\
 @c
 @end macro

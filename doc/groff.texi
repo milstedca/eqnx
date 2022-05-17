@@ -6265,8 +6265,6 @@ As the previous example shows, GNU @code{troff} reuses the identifier
 @samp{xxx}, changing it from a macro to a diversion.  No warning is
 emitted!  The contents of the first macro definition are lost.
 
-@xref{Interpolating Registers}, and @ref{Strings}.
-
 
 @c =====================================================================
 
@@ -7230,6 +7228,7 @@ its format.
 .    ie o .do-odd-numbered-page-stuff
 .    el   .do-even-numbered-page-stuff
 .  \@}
+.  rm saved-page-number-format
 ..
 .wh 0 header-trap
 @endExample
@@ -7857,7 +7856,7 @@ below).
 
 Hyphenation exceptions specified with the @code{hw} request are
 associated with the hyphenation language (see the @code{hla} request
-below) and environment (@pxref{Environments}); calling the @code{hw}
+below) and environment (@pxref{Environments}); invoking the @code{hw}
 request in the absence of a hyphenation language is an error.
 
 The request is ignored if there are no parameters.

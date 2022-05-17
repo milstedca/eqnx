@@ -1391,17 +1391,15 @@ Numeric and alphabetic entries may span horizontally.
 GNU
 .I tbl \" GNU
 .\" AT&T tbl used all kinds of registers.
-uses only register,
+internally employs register,
 string,
 macro,
-and diversion names beginning with the
+and diversions having names beginning with the
 .RB digit\~ 3 .
 .
-When using
-GNU
-.IR tbl , \" GNU
-you should avoid defining any identifiers that start with
-.RB \[lq] 3 \[rq].
+A document to be preproccessed with GNU
+.I tbl \" GNU
+should not use any such identifiers.
 .\" XXX: Why are they not named starting with "gtbl*" or something?  GNU
 .\" tbl turns AT&T troff compatibility mode off anyway.
 .

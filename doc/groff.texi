@@ -5985,8 +5985,8 @@ for examples.
 
 @opindex |
 @cindex @code{|}, and page motion
-@cindex ``absolute'' position operator (@code{|})
-@cindex position, ``absolute'', operator (@code{|})
+@cindex absolute @slanted{(sic)} position operator (@code{|})
+@cindex position, absolute @slanted{(sic)} operator (@code{|})
 @cindex boundary-relative motion operator (@code{|})
 @c "motion" and "operators" already indexed above
 A leading @code{|} operator indicates a motion relative not to the

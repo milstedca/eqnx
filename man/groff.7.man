@@ -5688,8 +5688,9 @@ interpolating the escape sequences
 .BR \[rs]g ,
 .BR \[rs]$ ,
 .BR \[rs]* ,
+.BR \[rs]V ,
 and
-.B \[rs]V
+.B \[rs]?\&
 normally;
 interpreting
 .BI \[rs] newline
@@ -5730,8 +5731,9 @@ This enables you to control whether a given
 .BR \[rs]g ,
 .BR \[rs]$ ,
 .BR \[rs]* ,
+.BR \[rs]V ,
 or
-.B \[rs]V
+.B \[rs]?\&
 escape sequence is interpreted at the time the macro containing it is
 defined,
 or later when the macro is called.
@@ -5810,8 +5812,9 @@ characters required to delay interpolation of
 .BR \[rs]g ,
 .BR \[rs]$ ,
 .BR \[rs]* ,
+.BR \[rs]V ,
 and
-.B \[rs]V
+.B \[rs]?\&
 at each nesting level.
 .
 An alternative is to use

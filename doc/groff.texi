@@ -12984,7 +12984,7 @@ When GNU @code{troff} processes certain requests, most importantly those
 which define or append to a macro or string, it does so in @dfn{copy
 mode}: it copies the characters of the definition into a dedicated
 storage region, interpolating the escape sequences @code{\n}, @code{\g},
-@code{\$}, @code{\*}, and @code{\V} normally; interpreting
+@code{\$}, @code{\*}, @code{\V}, and @code{\?} normally; interpreting
 @code{\@key{RET}} immediately; discarding comments @code{\"} and
 @code{\#}; interpolating the current leader, escape, or tab character
 with @code{\a}, @code{\e}, and @code{\t}, respectively; and storing all
@@ -13001,8 +13001,8 @@ processed immediately upon recognition, can be termed
 @Defesc {\\\\, , , }
 The escape character, @code{\} by default, can escape a backslash.  This
 enables you to control whether a given @code{\n}, @code{\g}, @code{\$},
-@code{\*}, or @code{\V} escape sequence is interpreted at the time the
-macro containing it is defined, or later when the macro is
+@code{\*}, @code{\V}, or @code{\?}  escape sequence is interpreted at
+the time the macro containing it is defined, or later when the macro is
 called.@footnote{Compare this to the @code{\def} and @code{\edef}
 commands in @TeX{}.}
 
@@ -13084,8 +13084,9 @@ Each escape character is interpreted twice---once in copy mode, when the
 macro is defined, and once outside of it, when the macro is called.  As
 seen above, this fact leads to exponential growth in the quantity of
 escape characters required to delay interpolation of @code{\n},
-@code{\g}, @code{\$}, @code{\*}, and @code{\V} at each nesting level,
-which can be daunting.  GNU @code{troff} offers a solution.
+@code{\g}, @code{\$}, @code{\*}, @code{\V}, and @code{\?} at each
+nesting level, which can be daunting.  GNU @code{troff} offers a
+solution.
 
 @Defesc {\\E, , , }
 @code{\E} represents an escape character that is not interpreted in copy

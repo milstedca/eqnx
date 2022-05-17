@@ -1,5 +1,11 @@
 2022-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/groff.texi (Copy Mode):
+	* man/groff.7.man (Copy mode): Fix omission; `\?` is interpreted
+	in copy mode.
+
+2022-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/s.tmac (PT): Unclutter name space; remove
 	`pg*saved-page-number-format` string when we're done with it.
 

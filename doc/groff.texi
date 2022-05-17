@@ -5819,7 +5819,7 @@ The sign of the modulo of operands of mixed signs is determined by the
 sign of the first.  Division and modulo operators satisfy the following
 property:@: given a dividend@tie{}@var{a} and a divisor@tie{}@var{b}, a
 quotient@tie{}@var{q} formed by @samp{(a / b)} and a
-remainder@tie{}@var{r} by @samp{(a % b)}, then @samp{q * b + r = a}.
+remainder@tie{}@var{r} by @samp{(a % b)}, then @math{qb + r = a}.
 
 @cindex scaling operator
 @cindex operator, scaling

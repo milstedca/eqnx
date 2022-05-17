@@ -893,7 +893,7 @@ and a
 by
 .RB \[lq] "(a % b)" \[rq],
 then
-.IR q \~*\~ b \~+\~ r \~=\~ a .
+.IR qb \~+\~ r \~=\~ a .
 .
 .
 .P

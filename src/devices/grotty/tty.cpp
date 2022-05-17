@@ -382,7 +382,7 @@ void tty_printer::add_char(output_character c, int w,
     // Note that the first output line corresponds to groff
     // position font::vert.
     if (vpos <= 0) {
-      error("character above first line discarded");
+      error("output above first line discarded");
       return;
     }
     cached_v = v;

@@ -1,5 +1,13 @@
 2022-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp (tty_printer::add_char): Modify
+	diagnostic message: what gets written "above [the] first line"
+	might not be a character (glyph) per se, but a line (rule) from
+	a drawing command, and in fact the occurrence of these from
+	boxed tables is the most common cause of this message I've seen.
+
+2022-05-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grotty]: Do more input validation.
 
 	* src/devices/grotty/tty.cpp (tty_printer::draw): Throw warning

@@ -1808,8 +1808,8 @@ GNU @code{troff} reads an input file prepared by the user and outputs a
 formatted document suitable for publication or framing.  The input
 consists of text, or words to be printed, and embedded commands
 (@dfn{requests} and @dfn{escape sequences}), which tell GNU @code{troff}
-how to format the output.  For more detail on this, see @ref{Embedded
-Commands}.
+how to format the output.  For more detail on this, see @ref{Formatter
+Instructions}.
 
 The word @dfn{argument} is used in this chapter to mean a word or number
 that appears on the same line as a request, and which modifies the
@@ -4682,7 +4682,7 @@ not interested in details.
 * Measurements::
 * Numeric Expressions::
 * Identifiers::
-* Embedded Commands::
+* Formatter Instructions::
 * Registers::
 * Manipulating Filling and Adjustment::
 * Manipulating Hyphenation::
@@ -6092,7 +6092,7 @@ not qualify, so our first attempt got a warning.
 
 @c =====================================================================
 
-@node Identifiers, Embedded Commands, Numeric Expressions, gtroff Reference
+@node Identifiers, Formatter Instructions, Numeric Expressions, gtroff Reference
 @section Identifiers
 @cindex identifiers
 
@@ -6264,10 +6264,10 @@ emitted!  The contents of the first macro definition are lost.
 
 @c =====================================================================
 
-@node Embedded Commands, Registers, Identifiers, gtroff Reference
-@section Embedded Commands
-@cindex embedded commands
-@cindex commands, embedded
+@node Formatter Instructions, Registers, Identifiers, gtroff Reference
+@section Formatter Instructions
+@cindex formatter instructions
+@cindex instructing the formatter
 
 To support documents that require more than filling, automatic line
 breaking and hyphenation, adjustment, and supplemental inter-sentence
@@ -6295,7 +6295,7 @@ such as font selection and type size alteration.
 
 @c ---------------------------------------------------------------------
 
-@node Requests, Escape Sequences, Embedded Commands, Embedded Commands
+@node Requests, Escape Sequences, Formatter Instructions, Formatter Instructions
 @subsection Requests
 @cindex requests
 
@@ -6526,7 +6526,7 @@ Double quotes in the @code{ds} request are handled differently.
 
 @c ---------------------------------------------------------------------
 
-@node Escape Sequences,  , Requests, Embedded Commands
+@node Escape Sequences,  , Requests, Formatter Instructions
 @subsection Escape Sequences
 @cindex escape sequences
 
@@ -6830,7 +6830,7 @@ the call of its end macro.
 
 @c =====================================================================
 
-@node Registers, Manipulating Filling and Adjustment, Embedded Commands, gtroff Reference
+@node Registers, Manipulating Filling and Adjustment, Formatter Instructions, gtroff Reference
 @section Registers
 @cindex registers
 

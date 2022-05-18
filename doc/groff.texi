@@ -6534,6 +6534,7 @@ Double quotes in the @code{ds} request are handled differently.
 @subsection Escape Sequences
 @cindex escape sequences
 
+@esindex \
 Escape sequences may occur anywhere in the input to GNU @code{troff}.
 They always begin with the @dfn{escape character}, a backslash by
 default, and are followed by a character that indicates the function to
@@ -9360,6 +9361,7 @@ continuation.
 @cindex input line continuation (@code{\@key{RET}})
 @cindex line, input, continuation (@code{\@key{RET}})
 @cindex continuation, input line (@code{\@key{RET}})
+@esindex \@slanted{newline}
 @code{\@key{RET}} (a backslash immediately followed by a newline)
 suppresses the effects of that newline in the input.  The next input
 line thus retains the classification of its predecessor as a control or
@@ -10081,7 +10083,7 @@ register @samp{.fp}.  This is useful when mounting a new font, like so:
 .fp \n[.fp] NEATOFONT
 @endExample
 
-@pindex DESC@r{, and font mounting}
+@cindex @file{DESC} file, and font mounting
 Fonts not listed in the @file{DESC} file are automatically mounted on
 the next available font position when they are referenced.  If a font is
 to be mounted explicitly with the @code{fp} request on an unused font
@@ -10330,6 +10332,8 @@ example, @code{^E_u0301} is invalid.
 @DefescList {\\, (, nm, }
 @DefescItem {\\, [, name, ]}
 @DefescListEnd {\\, [, component1 component2 @dots{}, ]}
+@esindex \(
+@esindex \[
 Insert a symbol @var{name} (two-character name @var{nm}) or a composite
 glyph with component glyphs @var{component1}, @var{component2},
 @enddots{}  There is no special syntax for one-character names---the
@@ -13344,6 +13348,7 @@ motion.
 @Defesc {\\@key{SP}, , , }
 @cindex space, unbreakable
 @cindex unbreakable space
+@esindex \@slanted{space}
 An unbreakable, non-adjustable space.  (This is a backslash followed by
 a space.)  Usually you want one of the following escape sequences
 instead, often @code{\~}.
@@ -15422,7 +15427,7 @@ in copy mode (@pxref{Copy Mode}).
 @node Postprocessor Access, Miscellaneous, I/O, gtroff Reference
 @section Postprocessor Access
 @cindex postprocessor access
-@cindex access of postprocessor
+@cindex access to postprocessor
 
 There are two escape sequences that give information directly to the
 postprocessor.  This is particularly useful for embedding PostScript
@@ -18464,10 +18469,9 @@ consistent interpretation.
 
 @node DESC File Format, Font Description File Format, Device and Font Description Files, Device and Font Description Files
 @subsection @file{DESC} File Format
-@cindex @file{DESC} file, format
-@cindex font description file, format
+@cindex @file{DESC} file format
+@cindex font description file format
 @cindex format of font description file
-@pindex DESC@r{ file format}
 
 The @file{DESC} file contains a series of directives; each begins a
 line.  Their order is not important, with two exceptions: (1) the
@@ -18947,8 +18951,9 @@ for@tie{}@var{n}.
 @node Request Index, Escape Sequence Index, Copying This Manual, Top
 @appendix Request Index
 
-Requests appear without the leading control character (normally either
-@samp{.} or @samp{'}).
+Request names appear without a leading control character; the defaults
+are @code{.} for the regular control character and @code{'} for the
+no-break control character.
 
 @printindex rq
 
@@ -18960,8 +18965,13 @@ Requests appear without the leading control character (normally either
 @node Escape Sequence Index, Operator Index, Request Index, Top
 @appendix Escape Sequence Index
 
-Any token @code{\@var{X}} with @var{X} not in the list below emits a
-warning and interpolates glyph @var{X}.
+The escape character, @code{\} by default, is always followed by at
+least one more input character, making an escape @emph{sequence}.  Any
+input token @code{\@var{X}} with @var{X} not in the list below emits a
+warning and interpolates glyph @var{X}.  Note the entries for @code{\.},
+which may be obscured by the leader dots, and for
+@code{\@slanted{newline}} and @code{\@slanted{space}}, which are sorted
+alphabetically, not by code point order.
 
 @printindex es
 

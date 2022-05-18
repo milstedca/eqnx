@@ -8493,10 +8493,10 @@ header).
 @cindex tabs, and fields
 @cindex fields, and tabs
 
-@cindex @acronym{EBCDIC} encoding of a tab
-A tab character (@acronym{ASCII} char@tie{}9, @acronym{EBCDIC}
-char@tie{}5) causes a horizontal movement to the next tab stop (much
-like it did on a typewriter).
+@cindex tab character encoding
+A tab character (@acronym{ISO} code point@tie{}9, @acronym{EBCDIC}
+code point@tie{}5) causes a horizontal movement to the next tab stop, if
+any.
 
 @Defesc {\\t, , , }
 @cindex tab character, non-interpreted (@code{\t})
@@ -8504,7 +8504,7 @@ like it did on a typewriter).
 @cindex @code{\t}, and copy mode
 @cindex copy mode, and @code{\t}
 @cindex mode, copy, and @code{\t}
-This escape is a non-interpreted tab character.  In copy mode
+This escape sequence is a non-interpreted tab character.  In copy mode
 (@pxref{Copy Mode}), @code{\t} is the same as a real tab character.
 @endDefesc
 
@@ -8514,12 +8514,14 @@ This escape is a non-interpreted tab character.  In copy mode
 Change tab stop positions.  This request takes a series of tab
 specifiers as arguments (optionally divided into two groups with the
 letter @samp{T}) that indicate where each tab stop is to be, overriding
-any previous settings.  Calling @code{ta} without an argument removes
-all tab stops.
+any previous settings.  The default scaling unit is @samp{m}.  Invoking
+@code{ta} without an argument removes all tab stops.
+@cindex default tab stops
+@cindex tab stops, default
+GNU @code{troff}'s startup value is @w{@samp{T 0.5i}}.
 
-Tab stops can be specified absolutely, i.e., as distances from the left
-margin.  For example, the following sets 6@tie{}tab stops every one
-inch.
+Tab stops can be specified absolutely---as distances from the left
+margin.  The following example sets six tab stops, one every inch.
 
 @Example
 .ta 1i 2i 3i 4i 5i 6i
@@ -8533,12 +8535,13 @@ For example, the following is equivalent to the previous example.
 .ta 1i +1i +1i +1i +1i +1i
 @endExample
 
-@code{groff} supports an extended syntax to specify repeating tab stops
-after the @samp{T} mark.  These values are always taken as relative
-distances from the previous tab stop.  This is the idiomatic way to
-specify tab stops at equal intervals in @code{groff}.  The following is,
-yet again, the same as the previous examples.  It does more, in fact,
-since it defines an infinite number of tab stops at one-inch intervals.
+GNU @code{troff} supports an extended syntax to specify repeating tab
+stops.  These stops appear after a @samp{T} argument.  Their values are
+always taken as distances relative to the previous tab stop.  This is
+the idiomatic way to specify tab stops at equal intervals in
+@code{groff}.  The following is, yet again, the same as the previous
+examples.  It does more, in fact, since it defines an infinite number of
+tab stops at one-inch intervals.
 
 @Example
 .ta T 1i
@@ -8556,57 +8559,59 @@ For example, @samp{4c +6c T 3c 5c 2c} is equivalent to @samp{4c 10c 13c
 
 Text written to a tab column (i.e., between two tab stops, or between a
 tab stop and an output line boundary) may be aligned to the right or
-left, or centered in the column.  This is specified by appending
-@samp{R}, @samp{L}, or @samp{C} to the tab specifier.  The default
-justification is @samp{L}.
+left, or centered in the column.  This alignment is determined by
+appending @samp{R}, @samp{L}, or @samp{C} to the tab specifier.  The
+default is @samp{L}.
 
 @Example
 .ta 1i 2iC 3iR
 @endExample
 
-Some notes:
+The beginning of an output line is not a tab stop; the text that begins
+an output line is placed according to the configured alignment and
+indentation; see @ref{Manipulating Filling and Adjustment} and @ref{Line
+Layout}.
 
-@itemize @bullet
-@item
-The default unit of the @code{ta} request is @samp{m}.
-
-@item
 A tab stop is converted into a non-breakable horizontal movement that
-cannot be adjusted.  For example,
+cannot be adjusted.
 
 @Example
+.ll 2i
 .ds foo a\tb\tc
-.ta T 5i
+.ta T 1i
 \*[foo]
+    @error{} warning: cannot break line
+    @result{} a         b         c
 @endExample
 
 @noindent
-creates a single line, which is a bit longer than 10@tie{}inches (a
-string is used to show exactly where the tab characters are).  Now
-consider the following:
+The above creates a single output line that is a bit longer than two
+inches (we use a string to show exactly where the tab stops are).
+Now consider the following.
 
 @Example
-.ds bar a\tb b\tc
-.ta T 5i
+.ll 2i
+.ds bar a\tb c\td
+.ta T 1i
 \*[bar]
+    @error{} warning: cannot adjust line
+    @result{} a         b
+    @result{} c       d
 @endExample
 
 @noindent
-@code{gtroff} first converts the tab stops of the line into unbreakable
-horizontal movements, then splits the line after the second @samp{b}
-(assuming a sufficiently short line length).  Usually, this isn't what
-the user wants.
+GNU @code{troff} first converts the line's tab stops into unbreakable
+horizontal movements, then breaks after @samp{b}.  This usually isn't
+what you want.
 
-@item
-Superfluous tabs (i.e., tab characters that do not correspond to a tab
-stop) are ignored except the first one, which delimits the characters
-belonging to the last tab stop for right-justifying or centering.
-Consider the following example
+Superfluous tab characters---those that do not correspond to a tab
+stop---are ignored except for the first, which delimits the characters
+belonging to the last tab stop for right-alignment or centering.
 
 @Example
-.ds Z   foo\tbar\tfoo
-.ds ZZ  foo\tbar\tfoobar
-.ds ZZZ foo\tbar\tfoo\tbar
+.ds Z   foo\tbar\tbaz
+.ds ZZ  foo\tbar\tbazqux
+.ds ZZZ foo\tbar\tbaz\tqux
 .ta 2i 4iR
 \*[Z]
 .br
@@ -8614,47 +8619,32 @@ Consider the following example
 .br
 \*[ZZZ]
 .br
+    @result{} foo                 bar              baz
+    @result{} foo                 bar           bazqux
+    @result{} foo                 bar              bazqux
 @endExample
 
 @noindent
-which produces the following output:
+The first line right-aligns ``baz'' within the second tab stop.  The
+second line right-aligns ``bazqux'' within it.  The third line
+right-aligns only ``baz'' because of the additional tab character, which
+marks the end of the text occupying the last tab stop defined.
 
-@Example
-foo                 bar              foo
-foo                 bar           foobar
-foo                 bar              foobar
-@endExample
-
-@noindent
-The first line right-justifies the second `foo' relative to the tab
-stop.  The second line right-justifies `foobar'.  The third line finally
-right-justifies only `foo' because of the additional tab character,
-which marks the end of the string belonging to the last defined tab
-stop.
-
-@item
 Tab stops are associated with the environment (@pxref{Environments}).
 
-@item
-@cindex tab stops, for TTY output devices
-The startup value of @code{gtroff} is @w{@samp{T 0.5i}}.
-@end itemize
-
-@cindex tab settings register (@code{.tabs})
+@cindex tab stop settings register (@code{.tabs})
+@cindex @code{.S} register, Plan@tie{}9 alias for @code{.tabs}
+@cindex @code{.tabs} register, Plan@tie{}9 alias (@code{.S})
 The read-only register @code{.tabs} contains a string
 representation of the current tab settings suitable for use as an
-argument to the @code{ta} request.
+argument to the @code{ta} request.@footnote{Plan@tie{}9 @code{troff}
+uses the register @code{.S} for this purpose.}
 
 @Example
 .ds tab-string \n[.tabs]
 \*[tab-string]
     @result{} T120u
 @endExample
-
-@cindex @code{.S} register, Plan@tie{}9 alias for @code{.tabs}
-@cindex @code{.tabs} register, Plan@tie{}9 alias (@code{.S})
-The @code{troff} version of the Plan@tie{}9 operating system uses
-register @code{.S} for the same purpose.
 @endDefreq
 
 @Defreq {tc, [@Var{fill-glyph}]}
@@ -8679,40 +8669,32 @@ is recognized; any excess is ignored.
 @cindex tab, line-tabs mode
 @cindex line-tabs mode
 @cindex mode, line-tabs
-If @var{n} is missing or not zero, enable @dfn{line-tabs} mode, or
-disable it otherwise (the default).  In line-tabs mode, @code{gtroff}
-computes tab distances relative to the (current) output line instead of
-the input line.
-
-For example, the following code:
+If @var{n} is missing or nonzero, activate @dfn{line-tabs}; deactivate
+it otherwise (the default).  Active line-tabs cause GNU @code{troff}
+to compute tab distances relative to the start of the output line
+instead of the input line.
 
 @Example
-.ds x a\t\c
-.ds y b\t\c
-.ds z c
-.ta 1i 3i
-\*x
-\*y
-\*z
+.de Tabs
+.  ds x a\t\c
+.  ds y b\t\c
+.  ds z c
+.  ta 1i 3i
+\\*x
+\\*y
+\\*z
+..
+.Tabs
+.br
+.linetabs
+.Tabs
+    @result{} a         b         c
+    @result{} a         b                   c
 @endExample
 
-@noindent
-in normal mode, results in the output
-
-@Example
-a         b         c
-@endExample
-
-@noindent
-in line-tabs mode, the same code outputs
-
-@Example
-a         b                   c
-@endExample
-
-Line-tabs mode is associated with the environment
-(@pxref{Environments}).  The read-only register @code{.linetabs} is
-set to@tie{}1 if in line-tabs mode, and 0 in normal mode.
+Line-tabs activation is associated with the environment
+(@pxref{Environments}).  The read-only register @code{.linetabs}
+interpolates@tie{}1 if line-tabs are active, and 0 otherwise.
 @endDefreq
 
 @menu
@@ -8726,19 +8708,21 @@ set to@tie{}1 if in line-tabs mode, and 0 in normal mode.
 @subsection Leaders
 @cindex leaders
 
-Sometimes it may be desirable to use the @code{tc} request to fill a
-particular tab stop with a given glyph (for example dots in a table of
-contents), but also normal tab stops on the rest of the line.
-For this GNU @code{troff} provides an alternate tab mechanism, called
-@dfn{leaders}, which does just that.@footnote{This is pronounced to
-rhyme with ``feeder'', and refers to how the glyphs ``lead'' the eye
-across the page to the corresponding page number or other datum.}
+Sometimes it is desirable to fill a tab stop with a given glyph,
+but also use tab stops normally on the same output line.  An example is
+a table of contents entry that uses dots to bridge the entry name with
+its page number, which is itself aligned within a tab stop.  The
+@code{roff} language provides @dfn{leaders} for this
+purpose.@footnote{This is pronounced to rhyme with ``feeder'', and
+refers to how the glyphs ``lead'' the eye across the page to the
+corresponding page number or other datum.}
 
 @cindex leader character
-A leader character (character code@tie{}1) behaves similarly to a tab
-character: It moves to the next tab stop.  The only difference is that
-for this movement, the fill glyph defaults to a period character and not
-to space.
+A leader character (@acronym{ISO} and @acronym{EBCDIC} code
+point@tie{}1, also known as @acronym{SOH} or ``start of heading''),
+behaves similarly to a tab character:@: it moves to the next tab stop.
+The difference is that for this movement, the default fill glyph is a
+period @samp{.}.
 
 @Defesc {\\a, , , }
 @cindex leader character, non-interpreted (@code{\a})
@@ -8746,8 +8730,8 @@ to space.
 @cindex @code{\a}, and copy mode
 @cindex copy mode, and @code{\a}
 @cindex mode, copy, and @code{\a}
-This escape is a non-interpreted leader character.  In copy mode
-(@pxref{Copy Mode}), @code{\a} is the same as a real leader
+This escape sequence is a non-interpreted leader character.  In copy
+mode (@pxref{Copy Mode}), @code{\a} is the same as a real leader
 character.
 @endDefesc
 
@@ -8775,17 +8759,11 @@ the remaining space being filled with a line of dots, and then the page
 number slightly separated from the dots.
 
 @Example
-.ds entry 1.1\tFoo\a\t12
+.ds entry 1.1\tBackground\a\t12
 .lc .
 .ta 1i 5i +.25i
 \*[entry]
-@endExample
-
-@noindent
-This produces
-
-@Example
-1.1  Foo..........................................  12
+    @result{} 1.1  Foo..........................................  12
 @endExample
 
 @c ---------------------------------------------------------------------

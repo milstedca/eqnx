@@ -4970,7 +4970,7 @@ regular output is omitted below.
 
 @Example
 $ perl -e 'print "#" x 80, "\n";' | nroff
-    @error{} warning: can't break line
+    @error{} warning: cannot break line
 @endExample
 
 The remedy for these cases is to tell GNU @code{troff} where the line

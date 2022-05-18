@@ -1,3 +1,9 @@
+2022-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.cpp (environment::choose_breakpoint): Tweak
+	diagnostic message ("can't" -> "cannot").
+	* doc/groff.texi (Breaking): Update example.
+
 2022-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/groff.texi (Copy Mode):

@@ -1971,7 +1971,7 @@ breakpoint *environment::choose_breakpoint()
   }
   if (best_bp) {
     if (!best_bp_fits)
-      output_warning(WARN_BREAK, "can't break line");
+      output_warning(WARN_BREAK, "cannot break line");
     return best_bp;
   }
   return 0;

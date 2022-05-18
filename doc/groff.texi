@@ -10309,21 +10309,23 @@ example, @code{^E_u0301} is invalid.
 
 @DefescList {\\, (, nm, }
 @DefescItem {\\, [, name, ]}
-@DefescListEnd {\\, [, component1 component2 @dots{}, ]}
+@DefescListEnd {\\, [, base-glyph combining-component @dots{}, ]}
 @esindex \(
 @esindex \[
-Insert a symbol @var{name} (two-character name @var{nm}) or a composite
-glyph with component glyphs @var{component1}, @var{component2},
-@enddots{}  There is no special syntax for one-character names---the
-natural form @samp{\@var{n}} would collide with other escape
-sequences.@footnote{A one-character symbol is not the same as an input
-character, i.e., the character @code{a} is not the same as @code{\[a]}.
-By default, @code{groff} defines only a single one-character symbol,
-@code{\[-]}; it is usually accessed as @code{\-}.  On the other hand,
-GNU @code{troff} has the special feature that @code{\[char@var{XXX}]} is
-the same as the input character with character code @var{XXX}.  For
-example, @code{\[char97]} is identical to the letter @code{a} if
-@acronym{ASCII} encoding is active.}
+Typeset a special character @var{name} (two-character name @var{nm}) or
+a composite glyph consisting of @var{base-glyph} overlaid with one or
+more @var{combining-component}s.  For example, @samp{\[A ho]} is a
+capital letter ``A'' with a ``hook accent'' (ogonek).
+
+There is no special syntax for one-character names---the analogous form
+@samp{\@var{n}} would collide with other escape sequences.  However, the
+four escape sequences @code{\'}, @code{\-}, @code{\_}, and @code{\`},
+are translated on input to the special character escape sequences
+@code{\[aa]}, @code{\[-]}, @code{\[ul]}, and @code{\[ga]}, respectively.
+
+A special character name of length one is not the same thing as an
+ordinary input character: that is, the character @code{a} is not the
+same as @code{\[a]}.
 
 If @var{name} is undefined, a warning in category @samp{char} is
 produced and the escape is ignored.  @xref{Debugging}, for information

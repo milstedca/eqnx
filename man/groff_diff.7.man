@@ -990,16 +990,20 @@ prints\~\c
 .
 .TP
 .BI \[rs][ xxx ]
-Print the special character (glyph) called
+Typeset the special character (glyph)
 .IR xxx .
 .
 .TP
-.BI \[rs][ "comp1 comp2\~"\c
+.BI \[rs][ "base-glyph combining-component\~"\c
 \&.\|.\|.]
-Print composite glyph consisting of multiple components.
+Typeset a composite glyph consisting of
+.I base-glyph
+overlaid with one or more
+.IR combining-component s.
 .
-Example: \[oq]\[rs][A\~ho]\[cq] is capital letter A with ogonek which
-finally maps to glyph name \[oq]u0041_0328\[cq].
+For example,
+.RB \[lq] \[rs][A\~ho] \[rq]
+is a capital letter \[lq]A\[rq] with a \[lq]hook accent\[rq] (ogonek).
 .
 See
 .IR "Groff: The GNU Implementation of troff" ,

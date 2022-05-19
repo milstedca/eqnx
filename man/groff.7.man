@@ -2483,12 +2483,12 @@ Change indentation according to
 .
 .TPx
 .REQ .it "n name"
-Set an input line trap,
+Set an input trap,
 calling macro
 .IR name ,
 after the next
 .IR n\~ lines
-lines of input have been read.
+lines of input that directly produce formatted output have been read.
 .
 .
 .TPx

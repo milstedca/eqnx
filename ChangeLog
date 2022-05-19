@@ -1,3 +1,15 @@
+2022-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/groff.texi (Input Line Traps):  Expand discussion.  The
+	`it` and `itc` requests count neither input lines (strictly) nor
+	text lines.  Instead, they count input lines that _directly
+	produce fotmatted output_ (and, in the case of `itc`, are not
+	"interrupted" or continued with the `\c` escape sequence).  This
+	is useful--empty requests and requests that don't put nodes on
+	the output don't break things--but does demand some explanation.
+	Clarify and provide example.
+	* man/groff.7.man (Escape sequence short reference) <it>: Sync.
+
 2022-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp (environment::choose_breakpoint): Tweak

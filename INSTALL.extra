@@ -189,10 +189,32 @@ groff's Texinfo manual if you make changes.  A working TeX installation
 In Case of Trouble
 ==================
 
-If you have problems, read the PROBLEMS file.  If this doesn't help
-and you need support, please contact the groff mailing list at
-groff@gnu.org.  If you think that you have found a bug, please submit a
-report to our bug tracker.
+If a test fails, gather its log file from the build directory.  For
+instance, the test "tmac/tests/localization-works.sh" (in the source
+directory) will have a log file called
+"tmac/tests/localization-works.sh.log" in the build directory.
+
+To re-run a test, change to the top of the build directory (if
+necessary) and run the test by name from the shell prompt.
+
+For example, to rerun the test mentioned above from a "build" directory
+I created as a subdirectory in the source tree, I would do this.
+
+  (cd build && ../tmac/tests/localization-works.sh)
+
+I can view the test log as follows.
+
+  cat build/tmac/tests/localization-works.sh.log
+
+Many known issues are documented in the PROBLEMS file; some apply to
+historical systems.  You can browse groff bug reports via the GNU
+Savannah issue tracker.
+
+  https://savannah.gnu.org/bugs/?group=groff
+
+If that doesn't help and you need support, please contact the groff
+mailing list at groff@gnu.org.  If you think that you have found a bug,
+please submit a ticket.
 
   https://savannah.gnu.org/bugs/?group=groff&func=additem
 

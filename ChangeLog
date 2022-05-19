@@ -1,5 +1,12 @@
 2022-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* INSTALL.extra (In Case of Trouble): Add advice on using the
+	test suite, particularly if it fails.
+
+	Fixes <https://savannah.gnu.org/bugs/?62478> (one hopes).
+
+2022-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/groff.texi (Input Line Traps):  Expand discussion.  The
 	`it` and `itc` requests count neither input lines (strictly) nor
 	text lines.  Instead, they count input lines that _directly

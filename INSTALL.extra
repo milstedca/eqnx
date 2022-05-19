@@ -91,8 +91,8 @@ Running groff commands from such a directory may require you to set the
 groff(1) man page.
 
 
-Special Platforms
-=================
+Non-POSIX Platforms
+===================
 
 For instructions how to build groff with DJGPP tools for MS-DOS and
 MS-Windows, see the file arch/djgpp/README.
@@ -119,17 +119,16 @@ variable-length arrays) are not used.
 Several programs distributed with GNU roff are written in the Perl
 language.  Version 5.6.1 (1 April 2001) or later is required.
 
-groff's Texinfo manual is distributed in source, GNU info, HTML, TeX
+groff's Texinfo manual is distributed in source, GNU Info, HTML, TeX
 DVI, PDF, and plain text formats.  To regenerate the latter formats (if
 you alter the source, for example), see section "Evaluation" below.
 
 The 'uchardet' library is an optional dependency of the 'preconv'
 program: if this library is found by 'configure', it will be
-automatically used by 'preconv'.  Discovery of the presence of the
-'uchardet' library requires the 'pkg-config' program to be installed on
-your system, as well as the library's C header files--on a package-based
-host system, this can mean installing uchardet's '-dev' or '-devel'
-package.
+automatically used by 'preconv'.  Discovery of the 'uchardet' library
+requires the 'pkg-config' program to be installed on your system, as
+well as the library's C header files--on a package-based host system,
+this can mean installing uchardet's '-dev' or '-devel' package.
 
 
 Miscellaneous

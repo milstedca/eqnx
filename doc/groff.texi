@@ -15072,6 +15072,11 @@ production of the next image.
 
 @c =====================================================================
 
+@codequotebacktick on
+@codequoteundirected on
+
+@c TODO: Rename this node to "Operating Environment Access" or similar,
+@c and move the date/time, process ID, etc., read-only registers here.
 @node I/O, Postprocessor Access, Suppressing Output, gtroff Reference
 @section I/O
 @cindex i/o
@@ -15103,6 +15108,8 @@ newline or not.  Assume that file @file{xxx} contains only the word
 @samp{foo} without a trailing newline.
 
 @Example
+$ printf 'foo' > xxx
+
 The situation is
 .so xxx
 bar.
@@ -15121,9 +15128,9 @@ it in place of the @code{pso} request.
 @cindex mode, safer
 @cindex unsafe mode
 @cindex mode, unsafe
-This request causes an error if used in safer mode (which is the
-default).  Use @code{groff}'s or @code{troff}'s @option{-U} option to
-activate unsafe mode.
+It is an error to use this request in safer mode, which is the
+default.  Invoke GNU @code{troff} or a front end with the @option{-U}
+option to enable unsafe mode.
 
 The comment regarding a final newline for the @code{so} request is valid
 for @code{pso} also.
@@ -15277,9 +15284,9 @@ to print anything.
 @cindex mode, safer
 @cindex unsafe mode
 @cindex mode, unsafe
-@code{pi} causes an error if used in safer mode (which is the default).
-Use @code{groff}'s or @code{troff}'s @option{-U} option to activate
-unsafe mode.
+It is an error to use this request in safer mode, which is the
+default.  Invoke GNU @code{troff} or a front end with the @option{-U}
+option to enable unsafe mode.
 
 Multiple calls to @code{pi} are allowed, acting as a chain.  For
 example,
@@ -15299,6 +15306,8 @@ specified commands.  Consequently, calling @code{groff} without the
 @option{-Z} option normally causes a fatal error.
 @endDefreq
 
+@cindex system commands, running
+@cindex running system commands
 @DefreqList {sy, cmds}
 @DefregListEndx {systat}
 Execute the shell command(s) specified by @var{cmds}.  The output is not
@@ -15308,15 +15317,12 @@ saved anywhere, so it is up to the user to do so.
 @cindex mode, safer
 @cindex unsafe mode
 @cindex mode, unsafe
-This request causes an error if used in safer mode (which is the
-default).  Use @code{groff}'s or @code{troff}'s @option{-U} option to
-activate unsafe mode.
+It is an error to use this request in safer mode; this is the default.
+Give GNU @code{troff} or a front end program the @option{-U} option to
+enable unsafe mode.
 
-For example, the following code fragment introduces the current time
-into a document:
+The following code fragment introduces the current time into a document.
 
-@cindex time, current
-@cindex current time
 @pindex perl
 @Example
 .sy perl -e 'printf ".nr H %d\\n.nr M %d\\n.nr S %d\\n",\
@@ -15327,20 +15333,24 @@ into a document:
 @endExample
 
 @noindent
-This works by having the Perl script (run by @code{sy}) print out the
+This works by having the Perl script (run by @code{sy}) write
 @code{nr} requests that set the registers @code{H}, @code{M}, and
-@code{S}, and then reading those commands in with the @code{so} request.
+@code{S} to a temporary file.  The @code{roff} document then reads the
+temporary file using the @code{so} request.
 
-For most practical purposes, the registers @code{seconds},
-@code{minutes}, and @code{hours}, which are initialized at startup of
-GNU @code{troff}, should be sufficient.  Use the @code{af} request to
-format their values for output.
+@cindex time, formating
+@cindex formatting the time
+The registers @code{seconds}, @code{minutes}, and @code{hours},
+initialized at startup of GNU @code{troff}, should satisfy most
+requirements.  Use the @code{af} request to format their values for
+output.
 
 @Example
 .af hours 00
 .af minutes 00
 .af seconds 00
 \n[hours]:\n[minutes]:\n[seconds]
+    @result{} 02:17:54
 @endExample
 
 @cindex @code{system()} return value register (@code{systat})
@@ -15364,9 +15374,9 @@ append to it instead of truncating it.
 @cindex mode, safer
 @cindex unsafe mode
 @cindex mode, unsafe
-Both @code{open} and @code{opena} cause an error if used in safer mode
-(which is the default).  Use @code{groff}'s or @code{troff}'s
-@option{-U} option to activate unsafe mode.
+It is an error to use these requests in safer mode; this is the default.
+Give GNU @code{troff} or a front end program the @option{-U} option to
+enable unsafe mode.
 @endDefreq
 
 @DefreqList {write, stream data}
@@ -15435,6 +15445,9 @@ Interpolate the contents of the specified environment variable @var{env}
 returned by the function @code{getenv}.  @code{\V} is interpreted even
 in copy mode (@pxref{Copy Mode}).
 @endDefesc
+
+@codequotebacktick off
+@codequoteundirected off
 
 
 @c =====================================================================

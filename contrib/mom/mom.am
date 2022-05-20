@@ -87,7 +87,7 @@ MOMEXAMPLEFILES=\
 momexampledir = $(exampledir)/mom
 dist_momexample_DATA = $(MOMEXAMPLEFILES)
 
-if BUILD_PDFDOC
+if USE_GROPDF
 MOMPROCESSEDEXAMPLEFILES = \
   contrib/mom/examples/letter.pdf \
   contrib/mom/examples/mom-pdf.pdf \
@@ -152,7 +152,7 @@ penguin.pdf:
 
 install-data-hook: install_mom
 install_mom:
-if BUILD_PDFDOC
+if USE_GROPDF
 	for f in $(PDFDOCFILE); do \
 	  $(RM) $(DESTDIR)$(pdfdocdir)/$$f; \
 	  ln -s $(exampledir)/mom/$$f $(DESTDIR)$(pdfdocdir)/$$f; \

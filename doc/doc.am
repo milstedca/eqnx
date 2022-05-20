@@ -61,9 +61,11 @@ if USE_GROHTML
 PROCESSEDDOCFILES_HTML = \
   doc/pic.html
 endif
+if USE_GROPDF
 PROCESSEDDOCFILES_PDF = \
   doc/automake.pdf \
   doc/groff-man-pages.pdf
+endif
 PROCESSEDDOCFILES_PS = \
   doc/meref.ps \
   doc/meintro.ps \
@@ -89,7 +91,9 @@ if USE_GROHTML
 $(PROCESSEDDOCFILES_HTML): $(PROCESSEDFILES_DEPS_HTML)
 endif
 $(PROCESSEDDOCFILES_PS): $(PROCESSEDFILES_DEPS_PS)
+if USE_GROPDF
 $(PROCESSEDDOCFILES_PDF): $(PROCESSEDFILES_DEPS_PDF)
+endif
 $(PROCESSEDDOCFILES_TXT): $(PROCESSEDFILES_DEPS_TXT)
 
 otherdocdir = $(docdir)
@@ -101,7 +105,7 @@ EXTRA_DIST += $(DOCFILES_NOINST)
 # pdf doc, written in mom and therefore using contrib/mom/mom.am
 # definitions
 EXTRA_DIST += doc/automake.mom
-if BUILD_PDFDOC
+if USE_GROPDF
 docpdfdocdir = $(pdfdocdir)
 nodist_docpdfdoc_DATA = doc/automake.pdf
 endif

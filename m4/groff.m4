@@ -196,42 +196,48 @@ AC_DEFUN([GROFF_GROHTML_PROGRAM_NOTICE], [
   fi
 ])
 
-# To produce PDF docs, we need both awk and ghostscript.
+# gropdf needs awk and Ghostscript to have produced its font description
+# files.
 
-AC_DEFUN([GROFF_PDFDOC_PROGRAMS],
-  [make_pdfdoc=
-   make_install_pdfdoc=
-   make_uninstall_pdfdoc=
-   AC_REQUIRE([GROFF_AWK_PATH])
-   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
+AC_DEFUN([GROFF_CHECK_GROPDF_PROGRAMS], [
+  use_gropdf=no
+  AC_REQUIRE([GROFF_AWK_PATH])
+  AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
 
-   missing=""
-   test "$AWK" = missing && missing="'awk'"
-   test "$GHOSTSCRIPT" = missing && missing="$missing 'gs'"
-   if test -z "$missing"; then
-       make_pdfdoc=pdfdoc
-       make_install_pdfdoc=install_pdfdoc
-       make_uninstall_pdfdoc=uninstall_pdfdoc
-   else
-     plural=`set $missing; test $[#] -eq 2 && echo s`
-     test "$plural" = s \
-       && missing=`set $missing; echo "$[1] and $[2]"` \
-       || missing=`echo $missing`
+  missing=
+  test "$AWK" = missing && missing="'awk'"
+  test "$GHOSTSCRIPT" = missing && missing="$missing 'gs'"
+  if test -z "$missing"
+  then
+    use_gropdf=yes
+  else
+    plural=`set $missing; test $[#] -eq 2 && echo s`
+    if test "$plural" = s
+    then
+      missing=`set $missing; echo "$[1] and $[2]"`
+      verb=were
+    else
+      missing=`echo $missing`
+      verb=was
+    fi
 
-     docnote=';
-  therefore, it will neither be possible to prepare, nor to install,
-  documentation and most of the examples in PDF format.'
+  gropdf_notice="The program$plural $missing $verb not found in \
+\$PATH.
 
-     AC_MSG_WARN([missing program$plural:
+  Consequently, groff's PDF output driver, 'gropdf', will not work
+  properly.  It will not be possible to prepare or install
+  groff-generated documentation in PDF.
+"
+  fi
+  AC_SUBST([use_gropdf])
+])
 
-  The program$plural $missing cannot be found in the PATH.
-
-  Consequently, groff's PDF formatter (pdfroff) will not work properly$docnote
-     ])
-   fi
-   AC_SUBST([make_pdfdoc])
-   AC_SUBST([make_install_pdfdoc])
-   AC_SUBST([make_uninstall_pdfdoc])])
+AC_DEFUN([GROFF_GROPDF_PROGRAM_NOTICE], [
+  if test "$use_gropdf" = no
+  then
+    AC_MSG_NOTICE([$gropdf_notice])
+  fi
+])
 
 # Option to configure path to URW fonts
 AC_DEFUN([GROFF_URW_FONTS_PATH],

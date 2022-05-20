@@ -1,3 +1,7 @@
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* sboxes.am: Rename `BUILD_PDFDOC` to `USE_GROPDF`.
+
 2022-05-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* sboxes.am ($(sboxes_builddir)/msboxes.pdf): Depend on new name

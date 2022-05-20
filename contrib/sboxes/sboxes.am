@@ -33,7 +33,7 @@ SBOXES_EXAMPLEFILES = $(sboxes_srcdir)/msboxes.ms.in
 sboxesotherdocdir = $(docdir)
 nodist_sboxesotherdoc_DATA = $(sboxes_builddir)/msboxes.ms
 
-if BUILD_PDFDOC
+if USE_GROPDF
 sboxespdfdocdir = $(pdfdocdir)
 nodist_sboxespdfdoc_DATA = $(sboxes_builddir)/msboxes.pdf
 endif

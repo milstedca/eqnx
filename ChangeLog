@@ -1,5 +1,37 @@
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Handle missing programs required to construct files needed at
+	runtime by gropdf more gracefully.  Rename and refactor
+	configuration-time logic to be more understandable.
+
+	* configure.ac:
+	* m4/groff.m4: Rename `GROFF_PDFDOC_PROGRAMS` macro to
+	`GROFF_CHECK_GROPDF_PROGRAMS`.  Rename shell variable
+	`make_pdfdoc` to `use_gropdf`.  Set it explicitly to "no" or
+	"yes" instead of null or not null.
+
+	* configure.ac:
+	* m4/groff.m4:
+	* doc/doc.am: Rename `BUILD_PDFDOC` to `USE_GROPDF`.
+
+	* configure.ac: Call `GROFF_GROPDF_PROGRAM_NOTICE`.
+
+	* doc/doc.am: Bracket definition of `PROCESSEDDOCFILES_PDF`
+	macro and `$(PROCESSEDDOCFILES_PDF)` dependency declaration in
+	Automake `if USE_GROPDF` conditional.  This prevents attempts
+	to build PDF documents using groff that are doomed to fail.
+
+	* m4/groff.m4: Refactor gropdf runtime-dependency program check.
+	Split into two macros: one (`GROFF_CHECK_GROPDF_PROGRAMS`)
+	performs the check, the other (`GROFF_GROPDF_PROGRAM_NOTICE`)
+	issues a notice at the end of the configuration process if at
+	least one program was not found.  Rename `docnote` shell
+	variable to `gropdf_notice`.  Tighten wording of notice.  Drop
+	unused `make_install_pdfdoc` and `make_uninstall_pdfdoc` shell
+	variables.
+
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Handle missing programs required at runtime by grohtml more
 	gracefully.  Rename and refactor configuration-time logic to be
 	more understandable.

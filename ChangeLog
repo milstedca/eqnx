@@ -1,5 +1,16 @@
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Check for m4 program at configuration time.
+
+	* m4/groff.m4 (GROFF_PROG_M4): Define new macro to perform the
+	check and error out if the program is missing.
+	* configure.ac: Call the new macro.
+	* tmac/tmac.am (tmac/groff_man.7.man,
+	tmac/groff_man_style.7.man): Use the new implicitly AC_SUBST-ed
+	variable `M4` to run the program.
+
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_PROG_YACC): Update wording of error
 	message: we search for "yacc", so report it as missing if it is
 	not found (along with "byacc" and "bison").

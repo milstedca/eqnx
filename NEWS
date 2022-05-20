@@ -423,6 +423,10 @@ o Because all generated forms of groff's Texinfo manual are now included
 o Building groff from its distribution archive no longer requires byacc
   (or GNU Bison) to be installed.
 
+o m4 is now required to build.  Any m4 that implements the features
+  documented in the Version 7 Unix m4(1) man page, and the `-D` option,
+  should suffice.
+
 o New 'configure' options --{en,dis}able-groff-allocator control whether
   groff uses its own malloc/free-wrapping allocator to implement all C++
   new/delete operations.  groff has used this allocator for over 30

@@ -73,6 +73,15 @@ AC_DEFUN([GROFF_PERL],
    AX_PROG_PERL_VERSION([$PERLVERSION], true, \
      AC_MSG_ERROR([perl version is too old], 1))])
 
+# We need m4 to generate some man pages.
+
+AC_DEFUN([GROFF_PROG_M4], [
+  AC_CHECK_PROGS([M4], [m4], [missing])
+  if test "$M4" = missing
+  then
+    AC_MSG_ERROR([could not find 'm4'], 1)
+  fi
+])
 
 # We need makeinfo from Texinfo 5.0 or newer, for @codequoteundirected.
 # The minor version checking logic is present for future needs.

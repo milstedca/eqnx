@@ -768,7 +768,7 @@ abbreviates
 .BR m ,\~ M
 Call a
 .I groff
-macro before typesetting a text block table entry
+macro before typesetting a text block
 (see subsection \[lq]Text blocks\[rq] below).
 .
 This is a GNU extension.
@@ -848,7 +848,7 @@ This is a GNU extension.
 .
 .TP
 .BR v ,\~ V
-Set the vertical spacing to be used in a text block table entry.
+Set the vertical spacing to be used in a text block.
 .
 (This parameter corresponds to that accepted by the
 .I troff \" generic

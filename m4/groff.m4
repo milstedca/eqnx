@@ -1,5 +1,5 @@
 # Autoconf macros for groff.
-# Copyright (C) 1989-2020 Free Software Foundation, Inc.
+# Copyright (C) 1989-2022 Free Software Foundation, Inc.
 #
 # This file is part of groff.
 #
@@ -135,58 +135,66 @@ AC_DEFUN([GROFF_TEXI2DVI],
       groff_have_texi2dvi=yes
    fi])
 
-# The following programs are needed for grohtml.
+# grohtml needs the following programs to produce images from tbl(1)
+# tables and eqn(1) equations.
 
-AC_DEFUN([GROFF_HTML_PROGRAMS],
-  [make_htmldoc=
-   make_install_htmldoc=
-   make_uninstall_htmldoc=
-   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
+AC_DEFUN([GROFF_CHECK_GROHTML_PROGRAMS], [
+  make_htmldoc=no
+  AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
+  missing=
+  AC_FOREACH([groff_prog],
+    [pnmcrop pnmcut pnmtopng pnmtops psselect],
+    [AC_CHECK_PROG(groff_prog, groff_prog, [found], [missing])
+     if test $[]groff_prog = missing
+     then
+       missing="$missing 'groff_prog'"
+     fi;])
 
-   missing=
-   AC_FOREACH([groff_prog],
-     [pnmcut pnmcrop pnmtopng psselect pnmtops],
-     [AC_CHECK_PROG(groff_prog, groff_prog, [found], [missing])
-      if test $[]groff_prog = missing; then
-	missing="$missing 'groff_prog'"
-      fi;])
+  test "$GHOSTSCRIPT" = "missing" && missing="'gs' $missing"
 
-   test "$GHOSTSCRIPT" = "missing" && missing="$missing 'gs'"
+  if test -z "$missing"
+  then
+      make_htmldoc=yes
+  else
+    plural=`set $missing; test $[#] -gt 1 && echo s`
+    oxford=`set $missing; test $[#] -gt 2 && echo ,`
+    missing=`set $missing
+      missing=""
+      while test $[#] -gt 0
+      do
+        case $[#] in
+          1) missing="$missing$[1]" ;;
+          2) missing="$missing$[1]$oxford and " ;;
+          *) missing="$missing$[1], " ;;
+        esac
+        shift
+      done
+      echo $missing`
+    if test $[#] -gt 1
+    then
+      verb=were
+    else
+      verb=was
+    fi
 
-   if test -z "$missing"; then
-       make_htmldoc=htmldoc
-       make_install_htmldoc=install_htmldoc
-       make_uninstall_htmldoc=uninstall_htmldoc
-   else
-     plural=`set $missing; test $[#] -gt 1 && echo s`
-     missing=`set $missing
-       missing=""
-       while test $[#] -gt 0
-	 do
-	   case $[#] in
-	     1) missing="$missing$[1]" ;;
-	     2) missing="$missing$[1] and " ;;
-	     *) missing="$missing$[1], " ;;
-	   esac
-	   shift
-	 done
-	 echo $missing`
+    grohtml_notice="The program$plural $missing $verb not found in \
+\$PATH.
 
-     docnote=';
-  therefore, it will be possible neither to prepare, nor to install,
-  groff-generated documentation in HTML format.'
+  Consequently, groff's HTML output driver, 'grohtml', will not work
+  properly.  It will not be possible to prepare or install
+  groff-generated documentation in HTML format.
+"
 
-     AC_MSG_WARN([missing program$plural:
-
-  The program$plural $missing cannot be found in the PATH.
-
-  Consequently, groff's HTML backend (grohtml) will not work properly$docnote
-     ])
    fi
    AC_SUBST([make_htmldoc])
-   AC_SUBST([make_install_htmldoc])
-   AC_SUBST([make_uninstall_htmldoc])])
+])
 
+AC_DEFUN([GROFF_GROHTML_PROGRAM_NOTICE], [
+  if test "$make_htmldoc" = no
+  then
+    AC_MSG_NOTICE([$grohtml_notice])
+  fi
+])
 
 # To produce PDF docs, we need both awk and ghostscript.
 

@@ -57,8 +57,10 @@ GENERATEDDOCFILES = \
   doc/meintro_fr.me \
   doc/meref.me
 # Files generated in the build tree
+if USE_GROHTML
 PROCESSEDDOCFILES_HTML = \
   doc/pic.html
+endif
 PROCESSEDDOCFILES_PDF = \
   doc/automake.pdf \
   doc/groff-man-pages.pdf
@@ -83,7 +85,9 @@ PROCESSEDFILES_DEPS_PS = groff troff grops font/devps/stamp
 PROCESSEDFILES_DEPS_PDF = groff troff gropdf font/devpdf/stamp
 PROCESSEDFILES_DEPS_TXT = groff troff grotty font/devutf8/stamp
 
+if USE_GROHTML
 $(PROCESSEDDOCFILES_HTML): $(PROCESSEDFILES_DEPS_HTML)
+endif
 $(PROCESSEDDOCFILES_PS): $(PROCESSEDFILES_DEPS_PS)
 $(PROCESSEDDOCFILES_PDF): $(PROCESSEDFILES_DEPS_PDF)
 $(PROCESSEDDOCFILES_TXT): $(PROCESSEDFILES_DEPS_TXT)
@@ -105,7 +109,7 @@ doc/automake.pdf: doc/automake.mom pdfmom contrib/mom/om.tmac
 
 # GNU PIC html documentation, installed in $(htmldocdir)
 # Other pic*.html files are installed by the local rule
-if BUILD_HTML
+if USE_GROHTML
 htmlpicdir = $(htmldocdir)
 htmlpic_DATA = $(PROCESSEDDOCFILES_HTML)
 HTMLDOCFILESALL = pic*.html
@@ -122,7 +126,7 @@ EXAMPLEFILES = \
   doc/grnexmpl.me
 
 # Generated in the build tree
-if BUILD_HTML
+if USE_GROHTML
 PROCESSEDEXAMPLEFILES_HTML = doc/webpage.html
 else
 PROCESSEDEXAMPLEFILES_HTML =
@@ -142,7 +146,7 @@ dist_docexamples_DATA = $(EXAMPLEFILES)
 nodist_docexamples_DATA = $(PROCESSEDEXAMPLEFILES)
 MOSTLYCLEANFILES += $(PROCESSEDEXAMPLEFILES)
 
-if BUILD_HTML
+if USE_GROHTML
 # webpage.html is generated; webpage*.html files are installed by the
 # local rule.
 HTMLEXAMPLEFILESALL = webpage*.html
@@ -363,7 +367,7 @@ doc/webpage.html: $(doc_srcdir)/webpage.ms
 # We remove groff.css only from an out-of-source build tree.
 mostlyclean-local: mostlyclean_doc
 mostlyclean_doc:
-if BUILD_HTML
+if USE_GROHTML
 	if test -d $(doc_builddir); then \
 	  cd $(doc_builddir) \
 	  && for f in $(HTMLDOCFILESALL); do \
@@ -381,7 +385,7 @@ endif
 	if test $(top_builddir) != $(top_srcdir); then \
 	  $(RM) $(top_builddir)/doc/groff.css; \
 	fi
-if BUILD_HTML
+if USE_GROHTML
 	if test -d $(doc_builddir); then \
 	  cd $(doc_builddir) \
 	  && for f in $(HTMLEXAMPLEFILESALL); do \
@@ -399,7 +403,7 @@ endif
 
 install-data-hook: install_doc_htmldoc
 install_doc_htmldoc:
-if BUILD_HTML
+if USE_GROHTML
 	cd $(doc_builddir) \
 	&& for f in `ls $(HTMLDOCFILESALL)`; do \
 	  $(RM) $(DESTDIR)$(htmldocdir)/$$f; \
@@ -425,7 +429,7 @@ install_doc_gnu_eps: $(DOC_GNU_EPS)
 	done
 
 install_doc_examples: $(DOC_GNU_EPS)
-if BUILD_HTML
+if USE_GROHTML
 	cd $(doc_builddir) \
 	&& for f in `ls $(HTMLEXAMPLEFILESALL)`; do \
 	  $(RM) $(DESTDIR)$(exampledir)/$$f; \
@@ -443,7 +447,7 @@ uninstall-hook: \
   uninstall_doc_examples uninstall_doc_htmldoc uninstall_mom
 uninstall_doc_examples:
 	$(RM) $(DESTDIR)$(exampledir)/gnu.eps
-if BUILD_HTML
+if USE_GROHTML
 	-test -d $(DESTDIR)$(docexamplesdir) \
 	&& cd $(DESTDIR)$(docexamplesdir) \
 	&& for f in $(HTMLEXAMPLEFILESALL); do \
@@ -459,7 +463,7 @@ if BUILD_HTML
 endif
 
 uninstall_doc_htmldoc:
-if BUILD_HTML
+if USE_GROHTML
 	-test -d $(DESTDIR)$(htmldocdir) \
 	&& cd $(DESTDIR)$(htmldocdir) \
 	&& for f in $(HTMLDOCFILESALL); do \

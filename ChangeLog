@@ -1,5 +1,38 @@
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Handle missing programs required at runtime by grohtml more
+	gracefully.  Rename and refactor configuration-time logic to be
+	more understandable.
+
+	* configure.ac:
+	* m4/groff.m4: Rename `GROFF_HTML_PROGRAMS` macro to
+	`GROFF_CHECK_GROHTML_PROGRAMS`.  Rename shell variable
+	`make_htmldoc` to `use_grohtml`.  Set it explicitly to "no" or
+	"yes" instead of null or not null.
+
+	* configure.ac:
+	* m4/groff.m4:
+	* doc/doc.am: Rename `BUILD_HTML` to `USE_GROHTML`.
+
+	* configure.ac: Call `GROFF_GROHTML_PROGRAM_NOTICE`.
+
+	* doc/doc.am: Bracket definition of `PROCESSEDDOCFILES_HTML`
+	macro and `$(PROCESSEDDOCFILES_HTML)` dependency declaration
+	in Automake `if USE_GROHTML` conditional.  This prevents an
+	attempt to build an HTML version of the "pic.ms" document that
+	is doomed to fail (noisily).
+
+	* m4/groff.m4: Refactor grohtml runtime-dependency program
+	check.  Split into two macros: one
+	{`GROFF_CHECK_GROHTML_PROGRAMS`} performs the check, the other
+	{`GROFF_GROHTML_PROGRAM_NOTICE`} issues a notice at the end of
+	the configuration process if at least one program was not found.
+	Rename `html_docnote` shell variable to `grohtml_notice`.
+	Tighten wording of notice.  Drop unused `make_install_htmldoc`
+	and `make_uninstall_htmldoc` shell variables.
+
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_GHOSTSCRIPT_VERSION_NOTICE): Add newline at
 	end of buggy Ghostscript notification, so that the multiple
 	possible lengthy notices after the configuration report have

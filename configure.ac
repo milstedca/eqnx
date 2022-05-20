@@ -163,7 +163,7 @@ GROFF_G
 GROFF_TMAC
 GROFF_WITH_COMPATIBILITY_WRAPPERS
 GROFF_TARGET_PATH_SEPARATOR
-GROFF_HTML_PROGRAMS
+GROFF_CHECK_GROHTML_PROGRAMS
 GROFF_PDFDOC_PROGRAMS
 GROFF_PNMTOOLS_CAN_BE_QUIET
 GROFF_PNMTOPS_NOSETPAGE
@@ -175,8 +175,8 @@ GROFF_GHOSTSCRIPT_VERSION_CHECK
 gl_GLIBC21
 gl_LOCALCHARSET
 
-# checks for presence of URW fonts (requires ghostscript, which is
-# checked in GROFF_HTML_PROGRAMS
+# Check for presence of URW fonts (these require Ghostscript, which is
+# checked for by GROFF_CHECK_GROHTML_PROGRAMS).
 GROFF_URW_FONTS
 
 AM_CONDITIONAL([BUILD_WINSCRIPTS], [test -n "$make_winscripts"])
@@ -197,7 +197,7 @@ AM_CONDITIONAL([MAKE_DONT_HAVE_RM], [test "$groff_is_rm_defined" = no])
 # Some programs have a "g" prefix if an existing groff installation is detected
 AM_CONDITIONAL([USEPROGRAMPREFIX], [test "$g" = g])
 
-AM_CONDITIONAL([BUILD_HTML], [test -n "$make_htmldoc"])
+AM_CONDITIONAL([USE_GROHTML], [test "$use_grohtml" = yes])
 AM_CONDITIONAL([BUILD_PDFDOC], [test -n "$make_pdfdoc"])
 AM_CONDITIONAL([USE_GROFF_ALLOCATOR], [test "$groff_use_own_allocator" = yes])
 AM_CONDITIONAL([HAVE_PDFTOOLS], [test "$groff_have_pdftools" = yes ])
@@ -235,3 +235,4 @@ GROFF_APPRESDIR_CHECK
 GROFF_URW_FONTS_CHECK
 GROFF_UCHARDET_CHECK
 GROFF_GHOSTSCRIPT_VERSION_NOTICE
+GROFF_GROHTML_PROGRAM_NOTICE

@@ -1,5 +1,11 @@
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_PROG_YACC): Update wording of error
+	message: we search for "yacc", so report it as missing if it is
+	not found (along with "byacc" and "bison").
+
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: Fix shell style nits.  Get rid of string
 	{non-}nullity tests and comparisons involving concatenation with
 	garbage (usually "x").  See 13 November entry regarding m4.  Use

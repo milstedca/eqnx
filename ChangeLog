@@ -1,3 +1,16 @@
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grotty/tests/basic_latin_glyphs_map_correctly.sh:
+	Fix portability problem: POSIX says that "od -c" (and "od -t c")
+	are supposed to emit printing characters as defined by the
+	underlying locale, but GNU coreutils od doesn't do this and
+	macOS od does.  Set `LC_ALL` to "C" when running it to force
+	3-digit octal reporting of characters with their eighth bit set.
+
+	Fixes <https://savannah.gnu.org/bugs/?62357>.  Thanks to John
+	Gardner for the report.  Also see <https://pubs.opengroup.org/\
+	onlinepubs/9699919799/utilities/od.html>.
+
 2022-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* INSTALL.extra (In Case of Trouble): Add advice on using the

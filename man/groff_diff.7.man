@@ -759,6 +759,69 @@ is interpreted even in copy mode.
 .
 .
 .TP
+.BI \[rs]X\[aq] anything \[aq]
+Within
+.B \[rs]X
+arguments,
+the escape sequences
+.BR \[rs]& ,
+.BR \[rs]) ,
+.BR \[rs]% ,
+and
+.B \[rs]:
+are ignored;
+.BI \[rs] space
+and
+.B \[rs]\[ti]
+are converted to single space characters;
+and
+.B \[rs]\[rs]
+has its escape character stripped.
+.
+So that the basic Latin subset of the Unicode character set
+(that is,
+ISO\~646:1991-IRV or,
+popularly,
+\[lq]US-ASCII\[rq])
+can be reliably encoded in device control commands,
+seven special character escape sequences
+.RB ( \[rs]\- ,
+.BR \[rs][aq] ,
+.BR \[rs][dq] ,
+.BR \[rs][ga] ,
+.BR \[rs][ha] ,
+.BR \[rs][rs] ,
+and
+.BR \[rs][ti] )
+are mapped to basic Latin glyphs;
+see
+.MR groff_char @MAN7EXT@ .
+.
+The use of any other escape sequence in
+.B \[rs]X
+arguments is normally an error.
+.
+.
+.IP
+If the
+.B use_charnames_in_special
+directive appears in the output device's
+.I DESC
+file,
+the use of special character escape sequences is
+.I not
+an error;
+they are simply output verbatim
+(with the exception of the seven mapped to Unicode basic Latin
+characters,
+discussed above).
+.
+.B use_charnames_in_special
+is currently employed only by
+.MR grohtml @MAN1EXT@ .
+.
+.
+.TP
 .BI \[rs]Y x
 .TQ
 .BI \[rs]Y( xx
@@ -1895,20 +1958,29 @@ is executed.
 .
 .TP
 .BI .device\~ anything
-This is (almost) the same as the
+This request performs (almost) the same operation as the
 .B \[rs]X
 escape sequence.
+.
 .I anything
-is read in copy mode; a leading\~\c
-.B \[dq]
-is stripped.
+is read in copy mode.
+.
+A
+.RB leading\~ \[dq]
+is stripped;
+this enables
+.I anything
+to contain leading spaces.
+.
 .
 .TP
-.BI .devicem\~ xx
-This is the same as the
+.BI .devicem\~ name
+This request performs the same operation as the
 .B \[rs]Y
-escape (to embed the contents of a macro into the intermediate
-output preceded with \[oq]x\~X\[cq]).
+escape sequence,
+embedding the contents of a macro in the intermediate output as a
+.RB \[lq] "x X" \[rq]
+device control command.
 .
 .
 .TP

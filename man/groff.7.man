@@ -2023,14 +2023,15 @@ but disable compatibility mode during macro expansion.
 .TPx
 .REQ .device "anything"
 Write
-.I anything
-to the intermediate output as a device control function.
+.IR anything ,
+read in copy mode,
+to the intermediate output as a device control command.
 .
 .TPx
 .REQ .devicem "name"
 Write contents of macro or string
 .I name
-uninterpreted to the intermediate output as a device control function.
+to the intermediate output as a device control command.
 .
 .
 .TPx
@@ -4350,32 +4351,31 @@ positive after).
 .
 .TP
 .ESCq X anything
-Send
-.I anything
-to the output device as a control command;
-see
-.MR groff_out @MAN5EXT@ .
+Write
+.IR anything ,
+read in copy mode,
+to the intermediate output as a device control command.
 .
 .
 .TP
 .ESC Y n
-Send interpolation of string or macro with one-character
-.RI name\~ n
-to the output device as a control command.
+Write contents of macro or string
+.I n
+to the intermediate output as a device control command.
 .
 .
 .TP
 .ESC Y( nm
-Send interpolation of string or macro with two-character
-.RI name\~ nm
-to the output device as a control command.
+Write contents of macro or string
+.I nm
+to the intermediate output as a device control command.
 .
 .
 .TP
 .ESC[] Y name
-Send interpolation of string or macro with arbitrarily long
-.RI name\~ name
-to the output device as a control command.
+Write contents of macro or string
+.I name
+to the intermediate output as a device control command.
 .
 .
 .TP

@@ -15446,9 +15446,6 @@ returned by the function @code{getenv}.  @code{\V} is interpreted even
 in copy mode (@pxref{Copy Mode}).
 @endDefesc
 
-@codequotebacktick off
-@codequoteundirected off
-
 
 @c =====================================================================
 
@@ -15457,9 +15454,13 @@ in copy mode (@pxref{Copy Mode}).
 @cindex postprocessor access
 @cindex access to postprocessor
 
-There are two escape sequences that give information directly to the
-postprocessor.  This is particularly useful for embedding PostScript
-into the final document.
+Two escape sequences and two requests enable documents to pass
+information directly to a postprocessor.  These are useful for
+exercising device-specific capabilities that the @code{groff} language
+does not abstract or generalize; examples include the embedding of
+hyperlinks and image files.  Device-specific functions are documented in
+each output driver's man page, such as @cite{gropdf@r{(1)}},
+@cite{grops@r{(1)}}, or @cite{grotty@r{(1)}}.  @xref{Output Devices}.
 
 @DefreqList {device, xxx @r{@dots{}}}
 @DefescListEndx {\\X, @code{'}, xxx @r{@dots{}}, @code{'}}
@@ -15472,7 +15473,8 @@ other postprocessor.
 @cindex copy mode, and @code{device} request
 @cindex mode, copy, and @code{device} request
 The @code{device} request processes its arguments in copy mode
-(@pxref{Copy Mode}).
+(@pxref{Copy Mode}).  A leading @code{"} is stripped; this enables
+@var{xxx} to contain leading spaces.
 @cindex @code{\&}, in @code{\X}
 @cindex @code{\)}, in @code{\X}
 @cindex @code{\%}, in @code{\X}
@@ -15483,8 +15485,8 @@ The @code{device} request processes its arguments in copy mode
 @cindex @code{\@r{<colon>}}, in @code{\X}
 @end ifinfo
 By contrast, within @code{\X} arguments, the escape sequences @code{\&},
-@code{\)}, @code{\%}, and @code{\:} are ignored, @code{\SP} and
-@code{\~} are converted to single space characters, and @code{\\} has
+@code{\)}, @code{\%}, and @code{\:} are ignored; @code{\SP} and
+@code{\~} are converted to single space characters; and @code{\\} has
 its escape character stripped.  So that the basic Latin subset of the
 Unicode character set@footnote{that is, ISO@tie{}646:1991-IRV or,
 popularly, ``US-ASCII''} can be reliably encoded in device control
@@ -15495,18 +15497,17 @@ commands, seven special character escape sequences (@samp{\-},
 in @code{\X} arguments is normally an error.
 
 @kindex use_charnames_in_special
-@pindex DESC@r{, and @code{use_charnames_in_special}}
+@cindex @file{DESC} file, and @code{use_charnames_in_special} keyword
 @cindex @code{\X}, and special characters
 If the @code{use_charnames_in_special} directive appears in the output
 device's @file{DESC} file, the use of special character escape sequences
 is @emph{not} an error; they are simply output verbatim (with the
 exception of the seven mapped to Unicode basic Latin characters,
-discussed above).  For convenience, the backslash can be represented as
-@samp{\\}.  @code{use_charnames_in_special} is currently used only by
-@code{grohtml}.
+discussed above).  @code{use_charnames_in_special} is currently employed
+only by @code{grohtml}.
 @endDefesc
 
-@DefreqList {devicem, xx}
+@DefreqList {devicem, name}
 @DefescItemx {\\Y, , n, }
 @DefescItem {\\Y, (, nm, }
 @DefescListEnd {\\Y, [, name, ]}
@@ -15521,7 +15522,8 @@ confuses drivers that do not know about this extension (@pxref{Device
 Control Commands}).
 @endDefesc
 
-@xref{Output Devices}.
+@codequotebacktick off
+@codequoteundirected off
 
 
 @c =====================================================================

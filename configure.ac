@@ -181,26 +181,26 @@ GROFF_URW_FONTS
 AM_CONDITIONAL([BUILD_WINSCRIPTS], [test -n "$make_winscripts"])
 
 # If X11 is not available, don't build:
-# font/devX75 
+# font/devX75
 # font/devX75-12
 # font/devX100
 # font/devX100-12
-# src/devices/xditview 
+# src/devices/xditview
 # src/utils/xtotroff
 # src/libs/libxutil
-AM_CONDITIONAL([WITHOUT_X11], [test "x$groff_no_x" = "xyes"])
+AM_CONDITIONAL([WITHOUT_X11], [test "$groff_no_x" = yes])
 
 # make builtin variable RM
-AM_CONDITIONAL([MAKE_DONT_HAVE_RM], [test "x$groff_is_rm_defined" = "xno"])
+AM_CONDITIONAL([MAKE_DONT_HAVE_RM], [test "$groff_is_rm_defined" = no])
 
 # Some programs have a "g" prefix if an existing groff installation is detected
-AM_CONDITIONAL([USEPROGRAMPREFIX], [test x$g = xg])
+AM_CONDITIONAL([USEPROGRAMPREFIX], [test "$g" = g])
 
 AM_CONDITIONAL([BUILD_HTML], [test -n "$make_htmldoc"])
 AM_CONDITIONAL([BUILD_PDFDOC], [test -n "$make_pdfdoc"])
-AM_CONDITIONAL([USE_GROFF_ALLOCATOR], [test "x$groff_use_own_allocator" = "xyes"])
-AM_CONDITIONAL([HAVE_PDFTOOLS], [test "x$groff_have_pdftools" = "xyes" ])
-AM_CONDITIONAL([HAVE_TEXI2DVI], [test "x$groff_have_texi2dvi" = "xyes" ])
+AM_CONDITIONAL([USE_GROFF_ALLOCATOR], [test "$groff_use_own_allocator" = yes])
+AM_CONDITIONAL([HAVE_PDFTOOLS], [test "$groff_have_pdftools" = yes ])
+AM_CONDITIONAL([HAVE_TEXI2DVI], [test "$groff_have_texi2dvi" = yes ])
 
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([test-groff], [chmod +x test-groff])
@@ -214,11 +214,12 @@ ${PACKAGE_NAME} version ${PACKAGE_VERSION}
  use libgroff's memory allocator  : $groff_use_own_allocator
  C compiler                       : ${CC} ${CFLAGS} ${CPPFLAGS}
  Perl interpreter version         : $perl_version"
-if test "x$groff_no_x" = "xyes"; then
-echo "\
+if test "x$groff_no_x" = "xyes"
+then
+  echo "\
  X11 support                      : disabled"
 else
-echo "\
+  echo "\
  X11 support                      : enabled
  X11 app defaults directory       : $appresdir"
 fi

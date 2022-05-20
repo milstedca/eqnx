@@ -209,27 +209,30 @@ AC_OUTPUT
 echo "
 ${PACKAGE_NAME} version ${PACKAGE_VERSION}
 ----------------------------------------------------------------------
- Prefix                          : ${prefix}
- Compiler                        : ${CC} ${CFLAGS} ${CPPFLAGS}"
+ installation prefix              : ${prefix}
+ C++ compiler                     : ${CXX} ${CXXFLAGS} ${CPPFLAGS}"
 if test "x$use_groff_allocator" = "xyes"; then
 echo "\
- Use groff allocator             : yes"
+ use libgroff's memory allocator  : yes"
 else
 echo "\
- Use groff allocator             : no"
+ use libgroff's memory allocator  : no"
 fi
+echo "\
+ C compiler                       : ${CC} ${CFLAGS} ${CPPFLAGS}
+ Perl interpreter version         : $perl_version"
 if test "x$groff_no_x" = "xyes"; then
 echo "\
- X11 support                     : no"
+ X11 support                      : disabled"
 else
 echo "\
- X11 support                     : yes
- X11 resources dir               : $appresdir"
+ X11 support                      : enabled
+ X11 app defaults directory       : $appresdir"
 fi
 echo "\
- URW fonts for pdf               : $groff_have_urw_fonts
- Use uchardet library for preconv: $groff_have_uchardet
- pdftools for distcheck          : $groff_have_pdftools"
+ use URW fonts for PDF output     : $groff_have_urw_fonts
+ preconv can use uchardet library : $groff_have_uchardet
+ tests can use PDF tools          : $groff_have_pdftools"
 echo "\
 ----------------------------------------------------------------------"
 

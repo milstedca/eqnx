@@ -1,5 +1,12 @@
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_GHOSTSCRIPT_VERSION_NOTICE): Add newline at
+	end of buggy Ghostscript notification, so that the multiple
+	possible lengthy notices after the configuration report have
+	blank lines separating them.
+
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Check for m4 program at configuration time.
 
 	* m4/groff.m4 (GROFF_PROG_M4): Define new macro to perform the

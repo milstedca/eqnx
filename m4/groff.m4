@@ -422,16 +422,18 @@ AC_DEFUN([GROFF_GHOSTSCRIPT_VERSION_CHECK], [
 
 AC_DEFUN([GROFF_GHOSTSCRIPT_VERSION_NOTICE], [
   if test -n "$ghostscript_notice"
-    then
-     AC_MSG_NOTICE([$ghostscript_notice
+  then
+    AC_MSG_NOTICE([$ghostscript_notice
 
   Ghostscript versions 9.00 <= x < 9.54 suffer from a rendering glitch
-  that affects the AT&T troff (and groff) special character \(lh; see
+  that affects the AT&T troff (and groff) special character '\(lh'; see
   <https://bugs.ghostscript.com/show_bug.cgi?id=703187>.  If your
   version of Ghostscript has not been patched to fix this problem, you
   may need to work around it in groff documents you render for the
-  PostScript (and, for tbl(1) tables, HTML) output devices.])
-  fi])
+  PostScript (and, for tbl(1) tables, HTML) output devices.
+  ])
+  fi
+])
 
 # Check location of 'awk'; allow '--with-awk=PROG' option to override.
 

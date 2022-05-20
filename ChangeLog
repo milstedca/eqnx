@@ -1,5 +1,10 @@
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* Makefile.am (EXTRA_DIST): Ship "ChangeLog.122" in distribution
+	archive.  Overlooked in commit c11995df16, 19 Feburary 2021.
+
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tests/basic_latin_glyphs_map_correctly.sh:
 	Fix portability problem: POSIX says that "od -c" (and "od -t c")
 	are supposed to emit printing characters as defined by the

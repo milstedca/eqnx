@@ -802,6 +802,7 @@ EXTRA_DIST += \
   ChangeLog.119 \
   ChangeLog.120 \
   ChangeLog.121 \
+  ChangeLog.122 \
   FDL \
   FOR-RELEASE \
   gendef.sh \

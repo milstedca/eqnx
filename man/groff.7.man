@@ -2139,7 +2139,7 @@ after the end of input.
 .TPx
 .REQ .eo
 Unset escape character,
-turning off escape interpretation.
+turning off escape sequence interpretation.
 .
 .
 .TPx
@@ -3556,7 +3556,7 @@ and the following character is processed normally.
 .
 .
 .\" ====================================================================
-.SS "Escape short reference"
+.SS "Escape sequence short reference"
 .\" ====================================================================
 .
 The escape sequences
@@ -4509,7 +4509,7 @@ The
 request creates a string with a specified name and contents
 and the
 .esc *
-escape dereferences its name,
+escape sequence dereferences its name,
 retrieving the contents.
 .
 Dereferencing an undefined string name defines it as empty.
@@ -6082,7 +6082,7 @@ into some 2-letter word, like
 .BR Ul .
 .
 Moreover,
-change the form of the font escape from
+change the form of the font selection escape sequence from
 .B \[rs]f[P]
 to
 .BR \[rs]fP .

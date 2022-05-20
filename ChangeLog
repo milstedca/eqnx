@@ -1,5 +1,17 @@
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Trivially refactor libgroff allocator configuration.
+
+	* m4/groff.m4 (GROFF_USE_GROFF_ALLOCATOR): Update description of
+	configuration flag to clarify that it's implemented in a
+	library.  Rename shell variable to prefix it with "groff_",
+	putting it in an ad hoc name space as with other variables.  If
+	feature disabled, set variable to literal "no".
+	* configure.ac: Use renamed variable and interpolate it directly
+	into configuration report, simplifying shell logic.
+
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: Revise configuration report for intelligibility.
 	Add report of C++ compiler and flags used: we compile much more
 	C++ than C code so this seems appropriate.  Report Perl

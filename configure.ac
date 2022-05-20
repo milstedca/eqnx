@@ -198,7 +198,7 @@ AM_CONDITIONAL([USEPROGRAMPREFIX], [test x$g = xg])
 
 AM_CONDITIONAL([BUILD_HTML], [test -n "$make_htmldoc"])
 AM_CONDITIONAL([BUILD_PDFDOC], [test -n "$make_pdfdoc"])
-AM_CONDITIONAL([USE_GROFF_ALLOCATOR], [test "x$use_groff_allocator" = "xyes"])
+AM_CONDITIONAL([USE_GROFF_ALLOCATOR], [test "x$groff_use_own_allocator" = "xyes"])
 AM_CONDITIONAL([HAVE_PDFTOOLS], [test "x$groff_have_pdftools" = "xyes" ])
 AM_CONDITIONAL([HAVE_TEXI2DVI], [test "x$groff_have_texi2dvi" = "xyes" ])
 
@@ -210,15 +210,8 @@ echo "
 ${PACKAGE_NAME} version ${PACKAGE_VERSION}
 ----------------------------------------------------------------------
  installation prefix              : ${prefix}
- C++ compiler                     : ${CXX} ${CXXFLAGS} ${CPPFLAGS}"
-if test "x$use_groff_allocator" = "xyes"; then
-echo "\
- use libgroff's memory allocator  : yes"
-else
-echo "\
- use libgroff's memory allocator  : no"
-fi
-echo "\
+ C++ compiler                     : ${CXX} ${CXXFLAGS} ${CPPFLAGS}
+ use libgroff's memory allocator  : $groff_use_own_allocator
  C compiler                       : ${CC} ${CFLAGS} ${CPPFLAGS}
  Perl interpreter version         : $perl_version"
 if test "x$groff_no_x" = "xyes"; then

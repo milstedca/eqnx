@@ -1658,10 +1658,10 @@ AC_DEFUN([GROFF_PDFTOOLS],
    fi
    ])
 
-AC_DEFUN([GROFF_USE_GROFF_ALLOCATOR],
-  [AC_ARG_ENABLE([groff-allocator],
-   [AS_HELP_STRING([--enable-groff-allocator], [enable groff's own \
+AC_DEFUN([GROFF_USE_GROFF_ALLOCATOR], [
+  AC_ARG_ENABLE([groff-allocator],
+    [AS_HELP_STRING([--enable-groff-allocator], [enable libgroff's \
 allocator for C++ new/delete])],
-   [test "$enableval" = yes && use_groff_allocator=yes],
-   [use_groff_allocator=]
-)])
+    [test "$enableval" = yes && groff_use_own_allocator=yes],
+    [groff_use_own_allocator=no])
+])

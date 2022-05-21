@@ -1,5 +1,20 @@
 2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_PDFTOOLS): Rename this...
+	(GROFF_POPPLER): ...to this.
+	* configure.ac: Update call site.
+
+2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m4/groff.m4 (GROFF_UCHARDET_CHECK): Rename this...
+	(GROFF_UCHARDET_NOTICE): ...to this.
+	* configure.ac: Update call site.
+
+	* m4/groff.m4 (GROFF_UCHARDET_NOTICE): Tighten wording of
+	message reported to user.
+
+2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_PNMTOOLS_CAN_BE_QUIET,
 	GROFF_PNMTOPS_NOSETPAGE): Skip check if prerequisite not met.
 

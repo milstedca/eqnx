@@ -1651,52 +1651,56 @@ AC_DEFUN([GROFF_BASH],
   fi
   AC_SUBST([BASH_PROG])])
 
-# Looking for uchardet library, used by preconv.
-AC_DEFUN([GROFF_UCHARDET],
-  [AC_ARG_WITH([uchardet],
-               AS_HELP_STRING([--with-uchardet],
-                              [Build 'preconv' with uchardet library for file \
-                               encoding automatic detection [=auto|no|yes]]))
-   AS_IF([test "$with_uchardet" != no],
-         [PKG_CHECK_MODULES([UCHARDET],
-                            [uchardet >= 0.0.1],
-                            [AC_DEFINE([HAVE_UCHARDET],
-                                       [1],
-                                       [uchardet library availability])
-                             groff_have_uchardet=yes],
-                            [if test "$with_uchardet" = yes; then
-                               AC_MSG_FAILURE([Could not found uchardet library])
-                             else
-                               AC_MSG_WARN([uchardet library not found, preconv \
-might not work properly])
-                             fi
-                             groff_have_uchardet=no])],
-          [groff_have_uchardet=no]
-          )])
+# Search for uchardet library used by preconv.
 
-# Warning if uchardet library was not found
-AC_DEFUN([GROFF_UCHARDET_CHECK],
-  [if test "$groff_have_uchardet" = no -a "$with_uchardet" != no; then
-  AC_MSG_WARN([
-  uchardet library was not found; preprocessor 'preconv' will skip
-  this method of attempting to determine the input encoding.  (To
-  check how and in what order 'preconv' tries to determine the
-  encoding, see its man page.)
+AC_DEFUN([GROFF_UCHARDET], [
+  AC_ARG_WITH([uchardet],
+    AS_HELP_STRING([--with-uchardet],
+      [Build 'preconv' with uchardet library to automatically detect \
+file encoding [=auto|no|yes]]))
+    AS_IF([test "$with_uchardet" != no],
+      [PKG_CHECK_MODULES([UCHARDET],
+        [uchardet >= 0.0.1],
+        [AC_DEFINE([HAVE_UCHARDET], [1],
+          [uchardet library availability])
+        groff_have_uchardet=yes], [
+          if test "$with_uchardet" = yes
+          then
+            AC_MSG_FAILURE([Could not found uchardet library])
+          else
+            AC_MSG_WARN([uchardet library not found; preconv will be \
+less functional])
+          fi
+          groff_have_uchardet=no])],
+      [groff_have_uchardet=no])
+])
+
+AC_DEFUN([GROFF_UCHARDET_NOTICE], [
+  if test "$groff_have_uchardet" = no -a "$with_uchardet" != no
+  then
+    AC_MSG_NOTICE([The uchardet library was not found.
+
+  The 'preconv' preprocessor program will be unable to attempt automatic
+  inference of an input file's character encoding.  See the preconv(1)
+  man page.
   ])
   fi
-  ])
+])
 
-# pdftools needed for sanity checks
-AC_DEFUN([GROFF_PDFTOOLS],
-  [AC_CHECK_PROG([PDFINFO], [pdfinfo], [found], [missing])
-   AC_CHECK_PROG([PDFFONTS], [pdffonts], [found], [missing])
-   AC_CHECK_PROG([PDFIMAGES], [pdfimages], [found], [missing])
-   if test "$PDFINFO" = found -a "$PDFFONTS" = found -a "$PDFIMAGES" = found; then
-      groff_have_pdftools=yes;
-   else
-      groff_have_pdftools=no;
-   fi
-   ])
+# Some automated tests use Poppler PDF tools for sanity checks.
+
+AC_DEFUN([GROFF_POPPLER], [
+  groff_have_pdftools=no
+  AC_CHECK_PROG([PDFINFO], [pdfinfo], [found], [missing])
+  AC_CHECK_PROG([PDFFONTS], [pdffonts], [found], [missing])
+  AC_CHECK_PROG([PDFIMAGES], [pdfimages], [found], [missing])
+  if test "$PDFINFO" = found \
+    -a "$PDFFONTS" = found \
+    -a "$PDFIMAGES" = found
+  then
+    groff_have_pdftools=yes
+  fi
+])
 
 AC_DEFUN([GROFF_USE_GROFF_ALLOCATOR], [
   AC_ARG_ENABLE([groff-allocator],

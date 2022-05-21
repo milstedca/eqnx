@@ -255,7 +255,7 @@ AC_DEFUN([GROFF_URW_FONTS_PATH], [
 # (where font/devpdf/Foundry.in expects them), or in the custom
 # directory passed to 'configure'.
 
-AC_DEFUN([GROFF_URW_FONTS], [
+AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   AC_REQUIRE([GROFF_AWK_PATH])
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
   groff_have_urw_fonts=no
@@ -293,13 +293,13 @@ AC_DEFUN([GROFF_URW_FONTS], [
   AC_SUBST([groff_have_urw_fonts])
 ])
 
-AC_DEFUN([GROFF_URW_FONTS_CHECK], [
+AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
   if test "$groff_have_urw_fonts" = no
   then
-    AC_MSG_NOTICE([
-  No URW fonts in Type 1/PFB format were found on your system; URW font
-  generation for groff's 'gropdf' output driver will not work properly.
-  You can obtain the URW base 35 fonts from their GitHub project.
+    AC_MSG_NOTICE([URW fonts in Type 1/PFB format were not found.
+  URW font generation for groff's 'gropdf' output driver will not work
+  properly.  You can obtain the URW base 35 fonts from their GitHub
+  project.
 
   As of this writing (2021-05-15), you can find them in the 'fonts'
   directory of the following archives (choose one).

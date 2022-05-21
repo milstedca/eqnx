@@ -177,7 +177,7 @@ gl_LOCALCHARSET
 
 # Check for presence of URW fonts (these require Ghostscript, which is
 # checked for by GROFF_CHECK_GROHTML_PROGRAMS).
-GROFF_URW_FONTS
+GROFF_URW_FONTS_CHECK
 
 AM_CONDITIONAL([BUILD_WINSCRIPTS], [test -n "$make_winscripts"])
 
@@ -232,7 +232,7 @@ echo "\
 ----------------------------------------------------------------------"
 
 GROFF_APPRESDIR_CHECK
-GROFF_URW_FONTS_CHECK
+GROFF_URW_FONTS_NOTICE
 GROFF_UCHARDET_CHECK
 GROFF_GHOSTSCRIPT_VERSION_NOTICE
 GROFF_GROHTML_PROGRAM_NOTICE

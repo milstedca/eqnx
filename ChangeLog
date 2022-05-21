@@ -1,5 +1,15 @@
 2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_URW_FONTS_CHECK): Rename this...
+	(GROFF_URW_FONTS_NOTICE): ...to this.
+	(GROFF_URW_FONTS): ...and this...
+	(GROFF_URW_FONTS_CHECK): ...to this.
+	(GROFF_URW_FONTS_NOTICE): Give lengthy notice message a one-line
+	summary.
+	* configure.ac: Update call sites.
+
+2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_URW_FONTS): Refactor.  If our prerequisites
 	are not met (availability of 'awk' and 'gs'), don't even run the
 	check logic or print a "checking" message.

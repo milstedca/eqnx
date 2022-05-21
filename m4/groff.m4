@@ -239,57 +239,64 @@ AC_DEFUN([GROFF_GROPDF_PROGRAM_NOTICE], [
   fi
 ])
 
-# Option to configure path to URW fonts
-AC_DEFUN([GROFF_URW_FONTS_PATH],
-   [AC_ARG_WITH([urw-fonts-dir],
-     [AS_HELP_STRING([--with-urw-fonts-dir=DIR],
-       [Search for URW fonts in this directory])],
-     [urwfontsdir="$withval"])
-   AC_SUBST(urwfontsdir)])
+# Make URW font directory configurable.
+
+AC_DEFUN([GROFF_URW_FONTS_PATH], [
+  AC_ARG_WITH([urw-fonts-dir],
+    [AS_HELP_STRING([--with-urw-fonts-dir=DIR],
+      [Search for URW fonts in this directory])],
+    [urwfontsdir="$withval"])
+  AC_SUBST(urwfontsdir)])
+])
 
 # Check availability of URW fonts in the search path given by 'gs -h'
 # supplemented with
 # /usr/share/fonts/type1/gsfonts/:/opt/local/share/fonts/urw-fonts
 # (where font/devpdf/Foundry.in expects them), or in the custom
 # directory passed to 'configure'.
-AC_DEFUN([GROFF_URW_FONTS],
-  [AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
-   AC_REQUIRE([GROFF_AWK_PATH])
-   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
-   groff_have_urw_fonts=no
-   if test "$AWK" = "missing" -o "$GHOSTSCRIPT" = "missing"; then
-     AC_MSG_WARN([awk and gs are required; can't look for URW fonts])
-   else
-     _list_paths=`$GHOSTSCRIPT -h | $AWK 'BEGIN { found = 0 } /Search path:/ { found = 1 } /^[ ]*\// { print $'0' }'| tr : ' '`
-     _list_paths="$_list_paths /usr/share/fonts/type1/gsfonts/ \
-               /opt/local/share/fonts/urw-fonts/"
-     if test -n "$urwfontsdir"; then
-       _list_paths="$ _list_paths $urwfontsdir"
-     fi
-     for k in $_list_paths; do
-       for _font_file in \
-         URWGothic-Book.t1 \
-         URWGothic-Book.pfb \
-         URWGothicL-Book.pfb \
-         a010013l.pfb; do
-         if test -f $k/$_font_file; then
-           AC_MSG_RESULT([found in $k])
-           groff_have_urw_fonts=yes
-           break 2
-         fi
-       done
-     done
-   fi
-   if test $groff_have_urw_fonts = no; then
-     AC_MSG_RESULT([no])
-   fi
-   AC_SUBST([groff_have_urw_fonts])
-   ])
 
-# Warning if URW fonts were not found
-AC_DEFUN([GROFF_URW_FONTS_CHECK],
-  [if test "$groff_have_urw_fonts" = no; then
-  AC_MSG_NOTICE([
+AC_DEFUN([GROFF_URW_FONTS], [
+  AC_REQUIRE([GROFF_AWK_PATH])
+  AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
+  groff_have_urw_fonts=no
+  if test "$AWK" != missing -a "$GHOSTSCRIPT" != missing
+  then
+    AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
+    _list_paths=`$GHOSTSCRIPT -h | $AWK 'BEGIN { found = 0 } /Search path:/ { found = 1 } /^[ ]*\// { print $'0' }'| tr : ' '`
+    _list_paths="$_list_paths /usr/share/fonts/type1/gsfonts/ \
+      /opt/local/share/fonts/urw-fonts/"
+    if test -n "$urwfontsdir"
+    then
+      _list_paths="$ _list_paths $urwfontsdir"
+    fi
+    for k in $_list_paths
+    do
+      for _font_file in \
+        URWGothic-Book.t1 \
+        URWGothic-Book.pfb \
+        URWGothicL-Book.pfb \
+        a010013l.pfb
+      do
+        if test -f $k/$_font_file
+        then
+          AC_MSG_RESULT([found in $k])
+          groff_have_urw_fonts=yes
+          break 2
+        fi
+      done
+    done
+    if test $groff_have_urw_fonts = no
+    then
+      AC_MSG_RESULT([none found])
+    fi
+  fi
+  AC_SUBST([groff_have_urw_fonts])
+])
+
+AC_DEFUN([GROFF_URW_FONTS_CHECK], [
+  if test "$groff_have_urw_fonts" = no
+  then
+    AC_MSG_NOTICE([
   No URW fonts in Type 1/PFB format were found on your system; URW font
   generation for groff's 'gropdf' output driver will not work properly.
   You can obtain the URW base 35 fonts from their GitHub project.
@@ -318,7 +325,7 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK],
   to 'configure' to look for them in the directory DIR you specify.
   ])
   fi
-  ])
+])
 
 
 # Check whether the pnm tools accept the -quiet option.

@@ -1,3 +1,9 @@
+2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m4/groff.m4 (GROFF_URW_FONTS): Refactor.  If our prerequisites
+	are not met (availability of 'awk' and 'gs'), don't even run the
+	check logic or print a "checking" message.
+
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Handle missing programs required to construct files needed at

@@ -1,5 +1,10 @@
 2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/preconv/tests/do-not-seek-the-unseekable.sh: Skip
+	a check if /dev/stdin is not a character special device.
+
+2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_PDFTOOLS): Rename this...
 	(GROFF_POPPLER): ...to this.
 	* configure.ac: Update call site.

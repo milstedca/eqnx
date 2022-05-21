@@ -326,9 +326,10 @@ SUFFIXES += .me.in .me
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
 	&& $(DOC_GROFF) -Tps -me $< >$@
 
+# Use '-K utf8', not '-k', in case 'configure' didn't find uchardet.
 doc/meintro_fr.ps: doc/meintro_fr.me preconv
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
-	&& $(DOC_GROFF) -k -Tps -me -mfr $< >$@
+	&& $(DOC_GROFF) -K utf8 -Tps -me -mfr $< >$@
 
 doc/ms.ps: $(doc_srcdir)/ms.ms
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \

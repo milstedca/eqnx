@@ -1,5 +1,11 @@
 2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/doc.am (doc/meintro_fr.ps): Call groff with `-K utf8`
+	instead of `-k`, in case the "configure" script didn't find
+	uchardet (and preconv(1) thus can't auto-detect an encoding).
+
+2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/preconv/tests/do-not-seek-the-unseekable.sh: Skip
 	a check if /dev/stdin is not a character special device.
 

@@ -1,5 +1,11 @@
 2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_MAKEINFO, GROFF_TEXI2DVI): Check for
+	makeinfo(1) and texi2dvi(1) programs only if building from Git,
+	not a distribution archive.
+
+2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am (doc/meintro_fr.ps): Call groff with `-K utf8`
 	instead of `-k`, in case the "configure" script didn't find
 	uchardet (and preconv(1) thus can't auto-detect an encoding).

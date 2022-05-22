@@ -1,3 +1,8 @@
+2022-05-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* man/groff.7.man: Rename "pilot" list macros for man(7) from
+	`BL`/`EL` to `LS`/`LE`, per suggestion from Alejandro Colomar.
+
 2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m4/groff.m4 (GROFF_MAKEINFO, GROFF_TEXI2DVI): Check for

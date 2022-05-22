@@ -223,13 +223,13 @@ groff \- GNU roff language reference
 ..
 .
 .\" begin list [piloting a possible extension to man(7)]
-.de BL
+.de LS
 .  nr saved-PD \\n[PD]
 .  nr PD 0
 ..
 .
 .\" end list [piloting a possible extension to man(7)]
-.de EL
+.de LE
 .  nr PD \\n[saved-PD]
 ..
 .
@@ -711,7 +711,7 @@ language defines the following scaling units.
 .
 .
 .P
-.BL
+.LS
 .RS
 .
 .TPx
@@ -761,7 +761,7 @@ font \f[I]DESC\f[] file)
 multiply by 65,536
 (used with color components)
 .RE
-.EL
+.LE
 .
 .
 .\" ====================================================================
@@ -1397,7 +1397,7 @@ A few denotations may require introduction.
 .
 .
 .P
-.BL
+.LS
 .RS
 .
 .TPx
@@ -1435,7 +1435,7 @@ has three meanings,
 depending on its sign.
 .
 .RE
-.EL
+.LE
 .
 .
 .P
@@ -1513,7 +1513,7 @@ Texinfo manual or
 .SS "Request short reference"
 .\" ====================================================================
 .
-.BL
+.LS
 .
 .TPx
 .REQ .ab "\f[R][\f[]message\f[R]]"
@@ -3415,7 +3415,7 @@ Write contents of macro or string
 to the stream named
 .IR stream .
 .
-.EL
+.LE
 .
 .
 .P
@@ -3576,7 +3576,7 @@ are interpreted even in copy mode.
 .
 .
 .P
-.BL
+.LS
 .
 .\" ========= comments =========
 .
@@ -4394,7 +4394,7 @@ and then restore the horizontal and vertical position;
 .I anything
 must not contain tabs or leaders.
 .
-.EL
+.LE
 .
 .
 .\" ====================================================================
@@ -4698,7 +4698,7 @@ results from request calls.
 .
 .
 .P
-.BL
+.LS
 .
 .TPx
 .REG $$
@@ -5160,7 +5160,7 @@ Name of current diversion.
 .REG .zoom
 Zoom factor for current font (in multiples of 1/1000th; zero if no
 magnification).
-.EL
+.LE
 .
 .
 .\" ====================================================================
@@ -5173,7 +5173,7 @@ customizing a document.
 .
 .
 .P
-.BL
+.LS
 .TPx
 .REG %
 Current page number.
@@ -5358,7 +5358,7 @@ The current year.
 .REG yr
 The current year minus 1900.
 .
-.EL
+.LE
 .
 .
 .\" ====================================================================

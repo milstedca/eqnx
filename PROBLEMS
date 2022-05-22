@@ -431,18 +431,18 @@ available in the devps directory.
   that the length of a page (as returned by `\n(.p') is 11 inches.
 
 This is intentional.  The PAGE option during configuration is used
-only by grops.  For compatibility with ditroff, the default page
-length in gtroff is always 11 inches.  The page length can be changed
+only by grops.  For compatibility with AT&T troff, the default page
+length in GNU troff is always 11 inches.  The page length can be changed
 with the `pl' request.
 
 A convenient way to set paper dimensions is to use the -dpaper option
 of groff, together with proper -P options for the postprocessor
-(overriding the default).  For example, use the following for PS
-output on A4 paper in landscape orientation:
+(overriding the default).  For example, use the following command for
+PostScript output on A4 paper in landscape orientation.
 
   groff -Tps -dpaper=a4l -P-pa4 -P-l -ms foo.ms > foo.ps
 
-See groff_tmac(5) for more information.
+See groff(1) and groff_tmac(5) for more information.
 
 ----------------------------------------------------------------------
 
@@ -463,7 +463,7 @@ passed a good `--appresdir=<DIR>' argument to groff's configure
 script.
 
 See the X(7) man page for information how and where application
-resource files have to be located.  Look for the XAPPLRESDIR and
+defaults files have to be located.  Look for the XAPPLRESDIR and
 XUSERFILESEARCHPATH environment variables.
 
 ----------------------------------------------------------------------
@@ -715,6 +715,8 @@ To get PostScript output from `man -t', you also need to create a
 
 Compilation Problems
 ====================
+
+
 
 * I get warnings about special characters in the groff_char(7) man page.
 
@@ -1055,4 +1057,4 @@ Local Variables:
 fill-column: 72
 mode: text
 End:
-vim: set textwidth=72:
+vim: set autoindent textwidth=72:

@@ -15,6 +15,8 @@
 	instead of `-k`, in case the "configure" script didn't find
 	uchardet (and preconv(1) thus can't auto-detect an encoding).
 
+	Fixes <https://savannah.gnu.org/bugs/?59463>.
+
 2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/preconv/tests/do-not-seek-the-unseekable.sh: Skip

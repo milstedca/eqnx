@@ -760,6 +760,19 @@ future release of gnulib to do so.
 
 ----------------------------------------------------------------------
 
+* I am building from the Git repository, using 'autoreconf' from a GNU
+  Autoconf release earlier than 2.69, and I get this.
+
+  /usr/share/aclocal/gtkglextmm-1.2.m4:225:
+    warning: underquoted definition of AC_GTKGLEXTMM_SUPPORTS_MULTIHEAD
+  /usr/share/aclocal/gtkglextmm-1.2.m4:225:
+    run info '(automake)Extending aclocal'
+  /usr/share/aclocal/gtkglextmm-1.2.m4:225:
+    or see http://www.gnu.org/software/automake/manual/automake.html#Extending-aclocal
+
+Ignore this.  It doesn't occur in more recent versions of 'autoreconf'.
+
+----------------------------------------------------------------------
 
 * Compilation dies with
 

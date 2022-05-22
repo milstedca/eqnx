@@ -72,21 +72,6 @@ When the build is finished you can install the groff build artifacts.
 
     $ make install # run with 'sudo' if necessary
 
-Notes:
-
-If you use an old 'autoreconf' version < 2.69, you might observe some
-diagnostic output like the following.
-
-  /usr/share/aclocal/gtkglextmm-1.2.m4:225:
-    warning: underquoted definition of AC_GTKGLEXTMM_SUPPORTS_MULTIHEAD
-  /usr/share/aclocal/gtkglextmm-1.2.m4:225:
-    run info '(automake)Extending aclocal'
-  /usr/share/aclocal/gtkglextmm-1.2.m4:225:
-    or see http://www.gnu.org/software/automake/manual/automake.html#Extending-aclocal
-
-Just ignore this.  It doesn't occur in more recent versions of
-'autoreconf'.
-
 Several dozen sanity checks can be performed within the build tree.
 
     $ make check # run with -j option if desired

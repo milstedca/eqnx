@@ -41,8 +41,10 @@ echo "$output" | grep -q "stream is not seekable" || wail
 
 # /dev/stdin might not exist in a chroot.  Or, if it's not (a symbolic
 # link to) a character special device, the next test will not be valid.
+# Similarly, we must have a controlling terminal.
 test -z "$fail"
 test -c /dev/stdin || exit 77 # skip
+test "$(tty)" != "not a tty" || exit 77 # skip
 
 echo "testing seekability of standard input stream" >&2
 output=$(printf '' | "$preconv" -d /dev/stdin 2>&1)

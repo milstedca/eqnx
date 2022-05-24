@@ -1,5 +1,14 @@
 2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/preconv/tests/do-not-seek-the-unseekable.sh: Skip
+	seekability check of the standard input stream if there is no
+	controlling terminal.
+
+	Fixes <https://savannah.gnu.org/bugs/?62506>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
+2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_CHECK_GROHTML_PROGRAMS): Migrate from
 	`AC_FOREACH` to `m4_foreach` to avoid obsolescence warning from
 	GNU Autoconf 2.70 or later.

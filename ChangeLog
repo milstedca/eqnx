@@ -1,5 +1,13 @@
 2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_GHOSTSCRIPT_VERSION_CHECK): Fix code style
+	nits.  Use lowercase for shell variables we define.  Don't quote
+	literal operands to test(1) that don't contain syntactically
+	shell-significant characters.  Update indentation to match
+	recent practice.
+
+2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_URW_FONTS_NOTICE): Don't emit the notice if
 	Ghostscript isn't available, since it was a prerequisite for
 	the `GROFF_URW_FONTS_CHECK` macro in the first place.

@@ -426,59 +426,60 @@ AC_DEFUN([GROFF_GHOSTSCRIPT_PREFS],
 #   <https://bugs.ghostscript.com/show_bug.cgi?id=703187>.
 
 AC_DEFUN([GROFF_GHOSTSCRIPT_VERSION_CHECK], [
-  if test "$GHOSTSCRIPT" != "missing"
+  if test "$GHOSTSCRIPT" != missing
   then
     AC_MSG_CHECKING([for gs version with good left sidebearing handling])
     ghostscript_notice=
-    GHOSTSCRIPT_VERSION_GOOD=
-    GHOSTSCRIPT_V_STRING=`"$GHOSTSCRIPT" -v | sed 1q`
+    ghostscript_version_good=
+    ghostscript_v_string=`"$GHOSTSCRIPT" -v | sed 1q`
     # Get first word.
-    GHOSTSCRIPT_WORDS=`echo "$GHOSTSCRIPT_V_STRING" | cut -d\  -f1-`
+    ghostscript_words=`echo "$ghostscript_v_string" | cut -d\  -f1-`
 
     # If the first word is "GPL", discard it.
-    if expr "$GHOSTSCRIPT_WORDS" : "GPL" > /dev/null
+    if expr "$ghostscript_words" : "GPL" > /dev/null
     then
-      GHOSTSCRIPT_WORDS=`echo "$GHOSTSCRIPT_WORDS" | cut -d\  -f2-`
+      ghostscript_words=`echo "$ghostscript_words" | cut -d\  -f2-`
     fi
 
     # Only do a version check if the program calls itself Ghostscript.
-    if expr "$GHOSTSCRIPT_WORDS" : "Ghostscript" > /dev/null
+    if expr "$ghostscript_words" : "Ghostscript" > /dev/null
     then
-      GHOSTSCRIPT_VERSION_GOOD=no
-      GHOSTSCRIPT_VERSION=`echo "$GHOSTSCRIPT_WORDS" | cut -d\  -f2`
-      GHOSTSCRIPT_MAJOR=`echo "$GHOSTSCRIPT_VERSION" | cut -d. -f1`
-      GHOSTSCRIPT_MINOR=`echo "$GHOSTSCRIPT_VERSION" | cut -d. -f2`
+      ghostscript_version_good=no
+      ghostscript_version=`echo "$ghostscript_words" | cut -d\  -f2`
+      ghostscript_major=`echo "$ghostscript_version" | cut -d. -f1`
+      ghostscript_minor=`echo "$ghostscript_version" | cut -d. -f2`
 
-      if test "$GHOSTSCRIPT_MAJOR" -lt 9
+      if test "$ghostscript_major" -lt 9
       then
-        GHOSTSCRIPT_VERSION_GOOD=yes
-      elif test "$GHOSTSCRIPT_MAJOR" -ge 10
+        ghostscript_version_good=yes
+      elif test "$ghostscript_major" -ge 10
       then
-        GHOSTSCRIPT_VERSION_GOOD=yes
-      elif test "$GHOSTSCRIPT_MINOR" -ge 54
+        ghostscript_version_good=yes
+      elif test "$ghostscript_minor" -ge 54
       then
-        GHOSTSCRIPT_VERSION_GOOD=yes
+        ghostscript_version_good=yes
       fi
     fi
 
-    if test "$GHOSTSCRIPT_VERSION_GOOD" = "yes"
+    if test "$ghostscript_version_good" = yes
     then
-      GHOSTSCRIPT_VERSION="$GHOSTSCRIPT_VERSION (good)"
-    elif test "$GHOSTSCRIPT_VERSION_GOOD" = "no"
+      ghostscript_version="$ghostscript_version (good)"
+    elif test "$ghostscript_version_good" = no
     then
-      GHOSTSCRIPT_VERSION="$GHOSTSCRIPT_VERSION (buggy)"
+      ghostscript_version="$ghostscript_version (buggy)"
       ghostscript_notice="Buggy version of Ghostscript detected."
     else
       ghostscript_notice="Unable to determine version of Ghostscript."
     fi
 
-    if test -n "$GHOSTSCRIPT_VERSION"
+    if test -n "$ghostscript_version"
     then
-      AC_MSG_RESULT([got $GHOSTSCRIPT_VERSION])
+      AC_MSG_RESULT([got $ghostscript_version])
     else
       AC_MSG_RESULT([unable to determine])
     fi
-  fi])
+  fi
+])
 
 AC_DEFUN([GROFF_GHOSTSCRIPT_VERSION_NOTICE], [
   if test -n "$ghostscript_notice"

@@ -88,7 +88,8 @@ is writable by the user conducting the build.  Type './configure --help'
 from the groff source tree for documentation of relevant options.
 Running groff commands from such a directory may require you to set the
 'GROFF_FONT_PATH' and 'GROFF_TMAC_PATH' environment variables.  See the
-groff(1) man page.
+groff(1) man page.  See "Evaluation" below for instructions on viewing
+this man page without having groff installed.
 
 
 Non-POSIX Platforms
@@ -118,10 +119,6 @@ variable-length arrays) are not used.
 
 Several programs distributed with GNU roff are written in the Perl
 language.  Version 5.6.1 (1 April 2001) or later is required.
-
-groff's Texinfo manual is distributed in source, GNU Info, HTML, TeX
-DVI, PDF, and plain text formats.  To regenerate the latter formats (if
-you alter the source, for example), see section "Evaluation" below.
 
 The 'uchardet' library is an optional dependency of the 'preconv'
 program: if this library is found by 'configure', it will be
@@ -164,6 +161,10 @@ displays the groff(1) man page with the 'less' pager.  (You might prefer
 either the '-Tlatin1' or '-Tutf8' option to '-Tascii' depending on the
 character set you're using.)
 
+
+Documentation
+=============
+
 The groff Texinfo manual can be viewed in several formats.  Versions
 corresponding to the source document 'doc/groff.texi' are supplied with
 the source distribution archive.  You can browse it in GNU info format.
@@ -181,9 +182,11 @@ Renderings in HTML, TeX DVI, and PDF are also available.
   xdvi doc/groff.dvi
   evince doc/groff.pdf
 
-Texinfo version 5.0 or later is a prerequisite for regeneration of
-groff's Texinfo manual if you make changes.  A working TeX installation
-(such as TeX Live) is furthermore required to render it in DVI or PDF.
+A compilation of groff's man pages is available in text (with ISO 6429
+escape sequences) and PDF.
+
+  less -R doc/groff-man-pages.utf8.txt
+  evince doc/groff-man-pages.pdf
 
 
 In Case of Trouble
@@ -207,8 +210,8 @@ I can view the test log as follows.
   cat build/tmac/tests/localization-works.sh.log
 
 Many known issues are documented in the PROBLEMS file; some apply to
-historical systems.  You can browse groff bug reports via the GNU
-Savannah issue tracker.
+historical systems.  You can also browse groff bug reports via the GNU
+Savannah issue tracker to see if your issue has already been reported.
 
   https://savannah.gnu.org/bugs/?group=groff
 

@@ -155,13 +155,14 @@ AC_DEFUN([GROFF_CHECK_GROHTML_PROGRAMS], [
   make_htmldoc=no
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
   missing=
-  AC_FOREACH([groff_prog],
-    [pnmcrop pnmcut pnmtopng pnmtops psselect],
-    [AC_CHECK_PROG(groff_prog, groff_prog, [found], [missing])
-     if test $[]groff_prog = missing
-     then
-       missing="$missing 'groff_prog'"
-     fi;])
+  m4_foreach([groff_prog],
+    [[pnmcrop], [pnmcut], [pnmtopng], [pnmtops], [psselect]], [
+      AC_CHECK_PROG(groff_prog, groff_prog, [found], [missing])
+      if test $[]groff_prog = missing
+      then
+        missing="$missing 'groff_prog'"
+      fi
+    ])
 
   test "$GHOSTSCRIPT" = "missing" && missing="'gs' $missing"
 

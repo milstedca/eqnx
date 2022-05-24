@@ -129,7 +129,7 @@ o The hyphenation patterns for English have been updated using the
   new patterns likely _will_ change the automatic hyphenation break
   points of your English documents.
 
-o The `PDPFPIC` macro (provided by the `pdfpic` package), no longer
+o The `PDPFPIC` macro (provided by the `pdfpic` package) no longer
   aborts upon encountering trouble.  Instead, it reports an error and
   abandons processing of its argument(s).  It is also more sensitive to
   other kinds of problems and handles them the same way, by issuing a
@@ -407,7 +407,7 @@ o A compilation of all of groff's man pages in PDF and UTF-8-encoded
   bookmark for every man page document, section heading, and subsection
   heading.
 
-o Larry Kollar's "Using groff with the ms Macro Package", has been
+o Larry Kollar's "Using groff with the ms Macro Package" has been
   resurrected after 20+ years, revised, and updated.
 
 o Eric Allman's "me Reference Manual" has been revised in detail.

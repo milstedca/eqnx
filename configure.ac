@@ -225,6 +225,7 @@ else
  X11 app defaults directory       : $appresdir"
 fi
 echo "\
+ 'groff -l' uses print spooler    : $groff_have_spooler
  use URW fonts for PDF output     : $groff_have_urw_fonts
  preconv can use uchardet library : $groff_have_uchardet
  tests can use PDF tools          : $groff_have_pdftools"

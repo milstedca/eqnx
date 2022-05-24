@@ -16,38 +16,54 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_DEFUN([GROFF_PRINT],
-  [if test -z "$PSPRINT"; then
-     AC_CHECK_PROGS([LPR], [lpr])
-     AC_CHECK_PROGS([LP], [lp])
-     if test -n "$LPR" && test -n "$LP"; then
-       # HP-UX provides an lpr command that emulates lpr using lp,
-       # but it doesn't have lpq; in this case we want to use lp
-       # rather than lpr.
-       AC_CHECK_PROGS([LPQ], [lpq])
-       test -n "$LPQ" || LPR=
-     fi
-     if test -n "$LPR"; then
-       PSPRINT="$LPR"
-     elif test -n "$LP"; then
-       PSPRINT="$LP"
-     fi
-   fi
-   AC_SUBST([PSPRINT])
-   AC_MSG_CHECKING([for command to use for printing PostScript files])
-   AC_MSG_RESULT([$PSPRINT])
+# Locate a print spooler for certain output formats.
 
-   # Figure out DVIPRINT from PSPRINT.
-   AC_MSG_CHECKING([for command to use for printing dvi files])
-   if test -n "$PSPRINT" && test -z "$DVIPRINT"; then
-     if test "$PSPRINT" = lpr; then
-       DVIPRINT="lpr -d"
-     else
-       DVIPRINT="$PSPRINT"
-     fi
-   fi
-   AC_SUBST([DVIPRINT])
-   AC_MSG_RESULT([$DVIPRINT])])
+AC_DEFUN([GROFF_PRINT], [
+  groff_have_spooler=no
+  if test -z "$PSPRINT"
+  then
+    AC_CHECK_PROGS([LPR], [lpr])
+    AC_CHECK_PROGS([LP], [lp])
+    if test -n "$LPR" && test -n "$LP"
+     then
+      # HP-UX provides an lpr command that emulates lpr using lp,
+      # but it doesn't have lpq; in this case we want to use lp
+      # rather than lpr.
+      AC_CHECK_PROGS([LPQ], [lpq])
+      test -n "$LPQ" || LPR=
+    fi
+    if test -n "$LPR"
+    then
+      PSPRINT="$LPR"
+    elif test -n "$LP"
+    then
+      PSPRINT="$LP"
+    fi
+  fi
+
+  if test -n "$PSPRINT"
+  then
+    groff_have_spooler="$PSPRINT"
+  fi
+
+  AC_SUBST([PSPRINT])
+  AC_MSG_CHECKING([for command to use for spooling PostScript files])
+  AC_MSG_RESULT([$PSPRINT])
+
+  # Figure out DVIPRINT from PSPRINT.
+  AC_MSG_CHECKING([for command to use for spooling DVI files])
+  if test -n "$PSPRINT" && test -z "$DVIPRINT"
+  then
+    if test "$PSPRINT" = lpr
+    then
+      DVIPRINT="lpr -d"
+    else
+      DVIPRINT="$PSPRINT"
+    fi
+  fi
+  AC_SUBST([DVIPRINT])
+  AC_MSG_RESULT([$DVIPRINT])
+])
 
 # Bison-generated parsers have problems with C++ compilers other than
 # g++.  Thus, byacc is preferred over bison.  If no yacc program is

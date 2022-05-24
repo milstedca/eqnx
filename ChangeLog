@@ -1,5 +1,15 @@
 2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Add print spooler determination to configuration
+	report.
+
+	* m4/groff.m4 (GROFF_PRINT): Add shell variable
+	`groff_have_spooler` to house the name of the print spooler
+	{"lp" or "lpr"} or the word "no".
+	* configure.ac: Report determined spooler, or its absence.
+
+2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/preconv/tests/do-not-seek-the-unseekable.sh: Skip
 	seekability check of the standard input stream if there is no
 	controlling terminal.

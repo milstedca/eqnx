@@ -1,5 +1,11 @@
 2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_URW_FONTS_NOTICE): Don't emit the notice if
+	Ghostscript isn't available, since it was a prerequisite for
+	the `GROFF_URW_FONTS_CHECK` macro in the first place.
+
+2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Add print spooler determination to configuration
 	report.
 

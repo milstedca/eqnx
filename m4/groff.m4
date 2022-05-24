@@ -324,7 +324,7 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
 ])
 
 AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
-  if test "$groff_have_urw_fonts" = no
+  if test "$GHOSTSCRIPT" != missing && test "$groff_have_urw_fonts" = no
   then
     AC_MSG_NOTICE([URW fonts in Type 1/PFB format were not found.
   URW font generation for groff's 'gropdf' output driver will not work

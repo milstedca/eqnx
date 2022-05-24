@@ -1932,10 +1932,12 @@ On this installation,
 the following locations are used.
 .
 .
+.if !'@APPRESDIR@'' \{\
 .TP
 .I @APPRESDIR@
 Application defaults directory for
 .MR gxditview @MAN1EXT@ .
+.\}
 .
 .
 .TP

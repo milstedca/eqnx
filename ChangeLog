@@ -1,5 +1,12 @@
 2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.1.man (Installation directories): Don't
+	output a tagged paragraph for the X11 application defaults
+	directory if the build symbol '@APPRESDIR@' is not defined (that
+	is, we didn't build with X11 support).
+
+2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_GHOSTSCRIPT_VERSION_CHECK): Fix code style
 	nits.  Use lowercase for shell variables we define.  Don't quote
 	literal operands to test(1) that don't contain syntactically

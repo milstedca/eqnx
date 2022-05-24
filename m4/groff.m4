@@ -72,7 +72,7 @@ AC_DEFUN([GROFF_PRINT], [
 
 AC_DEFUN([GROFF_PROG_YACC], [
   AC_CHECK_PROGS([YACC], [byacc 'bison -y' yacc], [missing])
-  if test "$YACC" = missing -a -d "$srcdir"/.git
+  if test "$YACC" = missing && test -d "$srcdir"/.git
   then
     AC_MSG_ERROR([could not find 'byacc', 'bison', or 'yacc'], 1)
   fi
@@ -289,7 +289,7 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   AC_REQUIRE([GROFF_AWK_PATH])
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
   groff_have_urw_fonts=no
-  if test "$AWK" != missing -a "$GHOSTSCRIPT" != missing
+  if test "$AWK" != missing && test "$GHOSTSCRIPT" != missing
   then
     AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
     _list_paths=`$GHOSTSCRIPT -h | $AWK 'BEGIN { found = 0 } /Search path:/ { found = 1 } /^[ ]*\// { print $'0' }'| tr : ' '`
@@ -1177,10 +1177,10 @@ AC_DEFUN([GROFF_WITH_COMPATIBILITY_WRAPPERS],
     [compatibility_wrappers="$withval"],
     [compatibility_wrappers="check"])
 
-    if test "$compatibility_wrappers" != check  -a \
-            "$compatibility_wrappers" != yes    -a \
-            "$compatibility_wrappers" != no     -a \
-            "$compatibility_wrappers" != manual
+    if    test "$compatibility_wrappers" != check \
+       && test "$compatibility_wrappers" != yes   \
+       && test "$compatibility_wrappers" != no    \
+       && test "$compatibility_wrappers" != manual
     then
          AC_MSG_WARN([Invalid '--with-compatibility-wrappers' argument: '$compatibility_wrappers' - assuming 'check' requested.])
          compatibility_wrappers="check"
@@ -1707,7 +1707,7 @@ less functional])
 ])
 
 AC_DEFUN([GROFF_UCHARDET_NOTICE], [
-  if test "$groff_have_uchardet" = no -a "$with_uchardet" != no
+  if test "$groff_have_uchardet" = no && test "$with_uchardet" != no
   then
     AC_MSG_NOTICE([The uchardet library was not found.
 

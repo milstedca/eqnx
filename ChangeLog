@@ -1,5 +1,16 @@
 2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_PROG_YACC, GROFF_URW_FONTS_CHECK,
+	GROFF_WITH_COMPATIBILITY_WRAPPERS, GROFF_UCHARDET_NOTICE):
+	Improve shell code portability.  Per the GNU Autoconf manual,
+	"The -a, -o, '(', and ')' operands are not present in all
+	implementations, and have been marked obsolete by Posix 2008.
+	...portable uses of test should never have more than four
+	arguments, and scripts should use shell constructs like '&&' and
+	'||' instead."
+
+2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/groff.1.man (Installation directories): Don't
 	output a tagged paragraph for the X11 application defaults
 	directory if the build symbol '@APPRESDIR@' is not defined (that

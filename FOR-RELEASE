@@ -4,7 +4,7 @@
     are permitted in any medium without royalty provided the copyright
     notice and this notice are preserved.
 
-This file describes how to prepare `groff' for a new release.
+This file describes how to prepare 'groff' for a new release.
 
 
 ########################################################################
@@ -33,7 +33,8 @@ This file describes how to prepare `groff' for a new release.
   [2] <https://github.com/adobe-type-tools/agl-aglfn/blob/master/\
       glyphlist.txt>
 
-* Update the 'gnulib' sub-module to the latest version.
+* Update the 'gnulib' sub-module to the latest version and the
+  corresponding required commit hash identifier in 'INSTALL.REPO'.
 
 * Update the release version number where it is hard-coded.
   + NEWS

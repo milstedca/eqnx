@@ -1,3 +1,12 @@
+2022-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Fix insensitivity of groff(1) man page to configured spooler.
+
+	* Makefile.am (.man): Replace `@PSPRINT@` in man page sources
+	with name of configured print spooler command.
+	* src/roff/groff/groff.1.man (Options) <-l>: Use configured
+	print spooler command instead of literal 'lpr'.
+
 2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m4/groff.m4 (GROFF_UCHARDET_CHECK): Fix grammar nit in failure

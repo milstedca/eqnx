@@ -267,7 +267,7 @@ see
 .
 If no such directive is present for the output device,
 output is piped to
-.MR lpr 1 .
+.MR @PSPRINT@ 1 .
 .
 See options
 .B \-L

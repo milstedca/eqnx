@@ -189,7 +189,7 @@ AC_DEFUN([GROFF_CHECK_GROHTML_PROGRAMS], [
     plural=`set $missing; test $[#] -gt 1 && echo s`
     oxford=`set $missing; test $[#] -gt 2 && echo ,`
     missing=`set $missing
-      missing=""
+      missing=
       while test $[#] -gt 0
       do
         case $[#] in
@@ -200,12 +200,13 @@ AC_DEFUN([GROFF_CHECK_GROHTML_PROGRAMS], [
         shift
       done
       echo $missing`
-    if test $[#] -gt 1
-    then
-      verb=were
-    else
-      verb=was
-    fi
+    verb=`set $missing
+      if test $[#] -gt 1
+      then
+        echo were
+      else
+        echo was
+      fi`
 
     grohtml_notice="The program$plural $missing $verb not found in \
 \$PATH.

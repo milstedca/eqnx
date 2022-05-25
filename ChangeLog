@@ -1,5 +1,10 @@
 2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_CHECK_GROHTML_PROGRAMS): Fix logic error in
+	computation of verb to be used in notice message.
+
+2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_PROG_YACC, GROFF_URW_FONTS_CHECK,
 	GROFF_WITH_COMPATIBILITY_WRAPPERS, GROFF_UCHARDET_NOTICE):
 	Improve shell code portability.  Per the GNU Autoconf manual,

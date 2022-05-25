@@ -1,5 +1,11 @@
 2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_UCHARDET_CHECK): Fix grammar nit in failure
+	message when user demands uchardet support but the library
+	cannot be located.
+
+2022-05-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_CHECK_GROHTML_PROGRAMS): Fix logic error in
 	computation of verb to be used in notice message.
 

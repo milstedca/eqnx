@@ -1698,7 +1698,7 @@ file encoding [=auto|no|yes]]))
         groff_have_uchardet=yes], [
           if test "$with_uchardet" = yes
           then
-            AC_MSG_FAILURE([Could not found uchardet library])
+            AC_MSG_FAILURE([could not find uchardet library])
           else
             AC_MSG_WARN([uchardet library not found; preconv will be \
 less functional])

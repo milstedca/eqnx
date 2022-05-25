@@ -15,9 +15,9 @@ contains a copy of the GPL that was downloaded from the GNU web site
 <http://www.gnu.org/copyleft/gpl.txt> on 3 January 2009.
 
 All files in the groff source distribution are distributed under the
-terms of this version of the GPL.  Some are distributed under additional
-terms as well.  You are free to choose version 3 or any subsequent
-version of the GPL.
+terms of this version of the GPL.  You are free to choose version 3 or
+any subsequent version of the GPL.  Some are distributed under
+alternative terms as well.
 
 The text of the GPL contains a postal address from which you can obtain
 the current version of the license.  Further information is available on
@@ -36,11 +36,12 @@ may bear licenses other than the GPL or the FSF does not administer
 their copyrights.  To determine their copyright status and licensing,
 see the "COPYRIGHT" file in the appropriate subdirectory of contrib/.
 
-Some files are part of groff but bear licenses in addition to the GPL.
-This is because they originated elsewhere; often, the groff project has
-modified them, sometimes extensively.  These multi-licensed groff
-components are as follows.  Their file names are not always identical to
-those in their original distributions, but we have kept them similar.
+Some files are part of groff but bear licenses in addition to the GPL,
+or have been placed into the public domain.  This is because they
+originated elsewhere; often, the groff project has modified them,
+sometimes extensively.  These multi-licensed groff components are as
+follows.  Their file names are not always identical to those in their
+original distributions, but we have kept them similar.
 
 grn preprocessor
 ================
@@ -125,6 +126,7 @@ advertising clause rescission.
 
 Hyphenation patterns
 ====================
+
 groff's hyphenation pattern files are adapted from those used by various
 TeX-related projects.
 

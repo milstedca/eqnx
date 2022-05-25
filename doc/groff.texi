@@ -5225,8 +5225,8 @@ stored instead (@pxref{Copy Mode}).  While a macro is being defined (or
 appended to), requests are not interpreted and macros not interpolated,
 whereas some commonly used escape sequences @emph{are} interpolated.
 @code{roff} systems also support recursive macros---as long as you have
-a way to break the recursion (@pxref{Conditionals and Loops}).  For
-maintainable @code{roff} documents, arrange your macro definitions to
+a way to break the recursion (@pxref{Conditionals and Loops}).
+Maintainable @code{roff} documents tend to arrange macro definitions to
 minimize forward references.
 
 @c ---------------------------------------------------------------------

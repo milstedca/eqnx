@@ -1,5 +1,15 @@
 2022-05-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_PROG_YACC, GROFF_MAKEINFO, GROFF_TEXI2DVI):
+	Fix logic error in detection of build scenario: the presence of
+	a ".git" directory is not an indicator that we're not building
+	from a distribution archive, because we might be building from a
+	snapshot archive (which also lacks it).  Instead, perform checks
+	required only by builds from Git checkouts and snapshot archives
+	if the ".tarball-version" file is not present.
+
+2022-05-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* Makefile.am (EXTRA_DIST): Ship "HACKING" file.
 
 2022-05-26  G. Branden Robinson <g.branden.robinson@gmail.com>

@@ -1,3 +1,10 @@
+2022-05-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* bootstrap.conf: Add "pkg-config" to `buildreq`.  Not having it
+	causes pretty horrible macro expansion problems and diagnostics
+	when 'autoreconf' is run; they're still pretty bad even if you
+	use `AC_REQUIRE` and `m4_pattern_forbid`.  So just demand it.
+
 2022-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* font/devps/S:

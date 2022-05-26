@@ -1,5 +1,19 @@
 2022-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/afmtodit/make-afmtodit-tables: Refactor.  Drop
+	unused variable `prog`.  Use value of `CPP` from environment (if
+	defined) and use parameter expansion to apply a default if null
+	or not set.  Use for loop to eliminate duplicative if statement.
+	Test input files for readability, not just existence.  Use more
+	portable test(1) and shell syntax.  Swap usage error and fatal
+	error exit statuses; using "1" for failure and "2" for usage
+	errors is more common in shell scripts I've seen.  Update usage
+	message to put non-literal parameter in full caps, and clarify
+	its name.  Update comment blocks written to generated files to
+	further clarify data provenance.
+
+2022-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_PRINT): Refactor.  Stop performing checks
 	for spooler options if none is available.  Stop redundantly
 	reporting command name used for spooling PostScript files.  If

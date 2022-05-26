@@ -806,6 +806,7 @@ EXTRA_DIST += \
   FDL \
   FOR-RELEASE \
   gendef.sh \
+  HACKING \
   INSTALL.REPO \
   INSTALL.extra \
   LICENSES \

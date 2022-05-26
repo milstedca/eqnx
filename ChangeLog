@@ -1,5 +1,9 @@
 2022-05-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* Makefile.am (EXTRA_DIST): Ship "HACKING" file.
+
+2022-05-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* bootstrap.conf: Add "pkg-config" to `buildreq`.  Not having it
 	causes pretty horrible macro expansion problems and diagnostics
 	when 'autoreconf' is run; they're still pretty bad even if you

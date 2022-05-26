@@ -1,5 +1,10 @@
 2022-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/afmtodit/afmtodit.tables: Regenerate using Unicode
+	14.0.  No substantive changes.
+
+2022-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/afmtodit/make-afmtodit-tables: Refactor.  Drop
 	unused variable `prog`.  Use value of `CPP` from environment (if
 	defined) and use parameter expansion to apply a default if null

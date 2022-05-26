@@ -44,25 +44,23 @@ AC_DEFUN([GROFF_PRINT], [
   if test -n "$PSPRINT"
   then
     groff_have_spooler="$PSPRINT"
-  fi
-
-  AC_SUBST([PSPRINT])
-  AC_MSG_CHECKING([for command to use for spooling PostScript files])
-  AC_MSG_RESULT([$PSPRINT])
-
-  # Figure out DVIPRINT from PSPRINT.
-  AC_MSG_CHECKING([for command to use for spooling DVI files])
-  if test -n "$PSPRINT" && test -z "$DVIPRINT"
-  then
-    if test "$PSPRINT" = lpr
+    AC_SUBST([PSPRINT])
+    # Figure out DVIPRINT from PSPRINT.
+    AC_MSG_CHECKING([option to use when spooling DVI files])
+    spooler_option=none
+    if test -n "$PSPRINT" && test -z "$DVIPRINT"
     then
-      DVIPRINT="lpr -d"
-    else
-      DVIPRINT="$PSPRINT"
+      if test "$PSPRINT" = lpr
+      then
+        spooler_option=-d
+        DVIPRINT="$PSPRINT $spooler_option"
+      else
+        DVIPRINT="$PSPRINT"
+      fi
     fi
+    AC_SUBST([DVIPRINT])
+    AC_MSG_RESULT([$spooler_option])
   fi
-  AC_SUBST([DVIPRINT])
-  AC_MSG_RESULT([$DVIPRINT])
 ])
 
 # Bison-generated parsers have problems with C++ compilers other than

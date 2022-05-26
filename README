@@ -7,19 +7,21 @@
 This is the 'groff' document formatting system, a reimplementation and
 extension of the AT&T Unix 'troff' system.  The version number is given
 in the file '.tarball-version' if you are building from a distribution
-archive, or the file '.version' if you are building directly from its
-Git repository.
+archive; otherwise, building from its Git repository or a snapshot
+archive will store it in the file '.version'.
 
-This release includes implementations of the 'troff', 'nroff', 'pic',
-'eqn', 'tbl', 'grn', 'refer' programs; the 'man', 'mdoc', and 'ms' macro
-packages; and output drivers for for PostScript, PDF, and TeX DVI file
-formats, HP LaserJet 4- and Canon CaPSL-compatible printers, HTML and
-XHTML (in beta status), and typewriter/terminal devices.
+This release includes original implementations (not derived from AT&T
+Unix code) of the 'troff', 'nroff', 'pic', 'eqn', 'tbl', 'refer'
+programs; the 'man' and 'ms' macro packages; and output drivers for for
+PostScript, PDF, and TeX DVI file formats, HP LaserJet 4- and Canon
+CaPSL-compatible printers, HTML and XHTML (in beta status), and
+typewriter/terminal devices.
 
-It also provides a modified version of the Berkeley 'me' macro packages;
-'gxditview', an enhanced version of the X11 'xditview' previewer for
-'troff' device-independent output, and an implementation of the 'mm'
-macro package contributed by Joergen Haegg.
+It also provides modified versions of BSD Unix additions to Unix troff:
+the 'grn' preprocessor and 'me' macro package; 'gxditview', an enhanced
+version of the X11 'xditview' previewer for 'troff' device-independent
+output, and an original reimplementation and extension of the 'mm' macro
+package (not derived from DWB 'troff') contributed by Joergen Haegg.
 
 Peter Schaffter's 'mom' macro package is also featured.
 
@@ -81,17 +83,17 @@ headers for the 'uchardet', 'Xaw', and 'Xmu' libraries (and their
 dependencies) assumes that their runtime counterparts will remain
 installed to support the 'groff' that is built.
 
-The GNU project's web page for 'groff' includes a link to its issue
-tracker.
+You can view or add to to groff's bug database via its issue tracker on
+the Savannah site (also linked from the groff home page).
 
-  https://savannah.gnu.org/projects/groff
+  http://savannah.gnu.org/bugs/?group=groff
 
-You may use the form in the file 'BUG-REPORT'; its purpose is to
-make sure that FSF has all the information it needs to fix the bug.
-At the very least, read the 'BUG-REPORT' form and make sure that you
-supply all the information that it asks for.  Even if you are not sure
-that something is a bug, report it: this enables us to determine whether
-it is a software defect, or an omission from our documentation.
+To report a problem, you may use the form in the file 'BUG-REPORT'; its
+purpose is to make sure that FSF has all the information it needs to fix
+the bug.  At the very least, read the 'BUG-REPORT' form and make sure
+that you supply all the information that it asks for.  Even if you are
+not sure that something is a bug, please report it so we can determine
+whether it is a software defect, or an omission from our documentation.
 
 Three mailing lists are available.
 

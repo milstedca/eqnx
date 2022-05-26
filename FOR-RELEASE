@@ -44,7 +44,7 @@ This file describes how to prepare 'groff' for a new release.
   + doc/webpage.ms
 
 * If the major or minor version number is being incremented, split off
-  a historical ChangeLog file.
+  a historical ChangeLog file and add it to `EXTRA_DIST` in Makefile.am.
 
 * Update in 'src/roff/groff/groff.cpp' the 'printf' that displays the
   copyright.

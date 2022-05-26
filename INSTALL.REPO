@@ -49,8 +49,8 @@ Invoke the bootstrap script.
 Bootstrapping from a snapshot archive
 -------------------------------------
 
-Obtain groff's supported revision of gnulib and place it in the empty
-"gnulib" directory.
+Obtain groff's supported revision of gnulib and instruct the bootstrap
+script where to find it.
 
 Here is the output of "git submodule" for this groff release.
 

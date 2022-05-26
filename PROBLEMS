@@ -735,20 +735,6 @@ the Euro glyph).
 
 ----------------------------------------------------------------------
 
-* I get a warning, "afmtodit: both Upsilon and Upsilon1 map to *U
-  at...".
-
-This is a known issue with the font mapping groff uses for PostScript
-fonts.  The Adobe Type 1 Symbol font has two different code points for a
-Greek capital upsilon; one looks like a Latin capital Y ("Upsilon"), and
-the other has a curly right arm ("Upsilon1").  In troff systems, only
-one form of Greek capital upsilon is supported; a Latin capital Y is
-used for its Greek homoglyph, whereas the special character '\[*Y]'
-accesses the curly form of the Greek capital upsilon.  We plan to
-resolve this (minor) issue in a future release.
-
-----------------------------------------------------------------------
-
 * I get warnings about the "vasnprintf" function.
 
 lib/vasnprintf.c: In function 'vasnprintf':

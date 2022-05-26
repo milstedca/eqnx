@@ -1,5 +1,14 @@
 2022-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devps/S:
+	* font/devps/symbolmap: Drop excess mapping of `*U` special
+	character.  groff maps it to the Adobe Glyph List name
+	'Upsilon1'.  (The AGL 'Upsilon' is a homoglyph of the Latin
+	capital 'Y'.)
+	* PROBLEMS: De-document build-time warning, now resolved.
+
+2022-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/afmtodit/afmtodit.tables: Regenerate using Unicode
 	14.0.  No substantive changes.
 

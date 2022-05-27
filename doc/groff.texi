@@ -6942,10 +6942,10 @@ Increment (decrement) register @var{ident} by @var{value}.
 @cindex negating register values
 A leading minus sign in @var{value} is always interpreted as a
 decrementation operator, not an algebraic sign.  To assign a register a
-negative value or the negated value of another register, you can use
-either of two techniques to to force GNU @code{troff} to interpret
-@code{-} as a negation or minus, rather than decrementation, operator:
-enclose it with its operand(s) in parentheses.
+negative value or the negated value of another register, you can
+force GNU @code{troff} to interpret @code{-} as a negation or minus,
+rather than decrementation, operator: enclose it with its operand(s) in
+parentheses.
 
 @Example
 .nr a 7

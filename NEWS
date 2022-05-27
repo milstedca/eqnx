@@ -380,6 +380,21 @@ o A new device control command, "background", enables boxes to be drawn
 grotty
 ------
 
+o The "utf8" output device now maps the input characters '^' (caret,
+  circumflex accent, or "hat") and '~' (tilde) to U+02C6 (modifier
+  letter circumflex accent) and U+02DC (small tilde), respectively, for
+  consistency with groff's other output devices.  This change is
+  expected to expose glyph usage errors in man pages.  See the
+  "PROBLEMS" file for a recipe that will conceal these errors.  A better
+  long-term approach is for man pages to adopt correct input practices;
+  the man pages groff_man_style(7), groff_char(7), and man-pages(7)
+  (subsection "Generating optimal glyphs"; from the Linux man-pages
+  project) contain such instructions.
+
+  If you maintain a generator of man(7) or mdoc(7) documents (such as a
+  tool that converts other formats to them), and need assistance, please
+  contact the groff@gnu.org mailing list and describe your situation.
+
 o A new device control command, "link", generates OSC 8 hyperlinks.
   This means that groff documents can produce clickable links in the
   terminal window for emulators that support such escape sequences.

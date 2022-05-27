@@ -97,20 +97,40 @@ and pager to versions which can handle SGR.
 
 ----------------------------------------------------------------------
 
-* The UTF-8 output of grotty has strange characters for the minus, the
-  hyphen, and the right quote.  Why?
+* When viewing man pages, some characters on my UTF-8 terminal emulator
+  look funny or copy-and-paste wrong.  Why?
 
-The used Unicode characters (U+2212 for the minus sign and U+2010 for
-the hyphen) are the correct ones, but many programs can't search them
-properly.  The same is true for the right quote (U+201D).  To map
-those characters back to the ASCII characters, insert the following
-code snippet into the `troffrc' configuration file:
+Some Unicode Basic Latin ("ASCII") input characters are mapped to
+non-Basic Latin code points in output for consistency with other output
+devices, like PDF.  See groff_man_style(7) and groff_char(7) for correct
+input conventions and background.  If you use the correct groff special
+character escape sequences to input them, you will get correct output no
+matter what device the input is formatted for.
 
+However, many man pages are written in ignorance of the correct special
+characters to obtain the desired glyphs.  You can conceal these errors
+by adding the following to your site-local man(7) configuration.  The
+file is called "man.local"; its installation directory depends on how
+groff was configured when it was built.
+
+--- start ---
 .if '\*[.T]'utf8' \{\
-.  char \- \N'45'
-.  char  - \N'45'
-.  char  ' \N'39'
+.  char ' \[aq]
+.  char - \-
+.  char ^ \[ha]
+.  char ` \[ga]
+.  char ~ \[ti]
 .\}
+--- end ---
+
+You may also wish to do the same for "mdoc.local".
+
+In man pages (only), groff maps the minus sign special character '\-' to
+the Basic Latin hyphen-minus (U+002D) because man pages require this
+glyph and there is no historically established *roff input character,
+ordinary or special, for obtaining it when a hyphen and minus sign are
+both separately available.  To obtain a true minus sign, use the special
+character escape sequences '\(mi' or '\[mi]'.
 
 ----------------------------------------------------------------------
 

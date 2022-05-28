@@ -266,8 +266,13 @@ see
 .MR groff_font @MAN5EXT@ .
 .
 If no such directive is present for the output device,
+.ie '@PSPRINT@'' \{\
+this option is ignored.
+.\}
+.el \{\
 output is piped to
 .MR @PSPRINT@ 1 .
+.\}
 .
 See options
 .B \-L

@@ -882,7 +882,7 @@ SUFFIXES += .man
 	     -e "s|[@]OLDFONTDIR[@]|`echo $(oldfontdir) | sed -f $(makevarescape)`|g" \
 	     -e "s|[@]PAGE[@]|\\\\%$(PAGE)|g" \
 	     -e "s|[@]PDFDOCDIR[@]|`echo $(pdfdocdir) | sed -f $(makevarescape)`|g" \
-	     -e "s|[@]PSPRINT[@]|\\\\%$(PSPRINT)|g" \
+	     -e "s|[@]PSPRINT[@]|`echo $(PSPRINT) | sed -f $(makevarescape)`|g" \
 	     -e "s|[@]SYSTEMMACRODIR[@]|`echo $(systemtmacdir) | sed -f $(makevarescape)`|g" \
 	     -e "s|[@]TMAC_AN_PREFIX[@]|\\\\%$(tmac_an_prefix)|g" \
 	     -e "s|[@]TMAC_M_PREFIX[@]|\\\\%$(tmac_m_prefix)|g" \

@@ -4539,14 +4539,6 @@ The
 request defines a string such that compatibility mode is off when the
 string is later interpolated.
 .
-To be more precise,
-a
-.I compatibility save
-input token is inserted at the beginning of the string,
-and a
-.I compatibility restore
-input token at the end.
-.
 Likewise,
 the
 .request .as1

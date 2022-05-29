@@ -1050,7 +1050,8 @@ operators,
 respectively.
 .
 To negate an expression,
-include the unary minus in parentheses with its argument.
+subtract it from zero
+or include the unary minus in parentheses with its argument.
 .\" @xref{Setting Registers}, for examples.
 .
 .
@@ -4411,7 +4412,9 @@ or diversion),
 an environment,
 a font,
 a style,
-or a glyph,
+a character class,
+a glyph,
+or a stream,
 comprising a sequence of one or more characters with the following
 exceptions.
 .
@@ -4480,7 +4483,7 @@ Invalid characters are removed during interpretation;
 an identifier
 .RB \[lq] foo \[rq],
 followed by an invalid character and then
-.RB \[lq] bar \[rq]
+.RB \[lq] bar \[rq],
 is processed as
 .RB \[lq] foobar \[rq] .
 .

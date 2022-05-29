@@ -5980,8 +5980,8 @@ requests and escape sequences:@: @code{bp}, @code{in}, @code{ll},
 @code{ps}, @code{pvs}, @code{rt}, @code{ti}, @code{\H}, @code{\R}, and
 @code{\s}.  Here, leading plus and minus signs serve as incrementation
 and decrementation operators, respectively.  To negate an expression,
-include the unary minus in parentheses with its argument.  @xref{Setting
-Registers}, for examples.
+subtract it from zero or include the unary minus in parentheses with its
+argument.  @xref{Setting Registers}, for examples.
 
 @opindex |
 @cindex @code{|}, and page motion
@@ -6105,9 +6105,9 @@ not qualify, so our first attempt got a warning.
 GNU @code{troff} has rules for properly formed
 @dfn{identifiers}---labels for objects with syntactical importance, like
 registers, names (macros, strings, or diversions), environments, fonts,
-styles, colors, and glyphs.  An identifier consists of one or more
-characters with the exception of spaces, tabs, newlines, and invalid
-input characters.
+styles, colors, character classes, glyphs, and streams.  An identifier
+consists of one or more characters with the exception of spaces, tabs,
+newlines, and invalid input characters.
 
 @cindex invalid input characters
 @cindex input characters, invalid
@@ -6118,7 +6118,7 @@ sets ``C0 Controls'' and ``C1 Controls'' as Unicode describes them).
 When GNU @code{troff} encounters one in an identifier, it produces a
 warning in category @samp{input} (@pxref{Debugging}).  They are removed
 during intepretation; an identifier @samp{foo}, followed by an invalid
-character and then @samp{bar} is processed as @samp{foobar}.
+character and then @samp{bar}, is processed as @samp{foobar}.
 
 On a machine using the ISO 646, 8859, or 10646 character encodings,
 invalid input characters are @code{0x00}, @code{0x08}, @code{0x0B},
@@ -13264,7 +13264,7 @@ indicate continuation of a footnote or something similar.
 
 A few escape sequences that produce vertical motion are unusual.  They
 are thought to originate early in AT&T @code{nroff} history to achieve
-super- and sub-scripting by half-line motions on line printers and
+super- and subscripting by half-line motions on line printers and
 teletypewriters before the phototypesetter made more precise positioning
 available.  They are reckoned in ems---not vees---to maintain continuity
 with their original purpose of moving relative to the size of the type

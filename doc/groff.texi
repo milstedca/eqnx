@@ -5979,9 +5979,9 @@ requests and escape sequences:@: @code{bp}, @code{in}, @code{ll},
 @code{lt}, @code{nm}, @code{nr}, @code{pl}, @code{pn}, @code{po},
 @code{ps}, @code{pvs}, @code{rt}, @code{ti}, @code{\H}, @code{\R}, and
 @code{\s}.  Here, leading plus and minus signs serve as incrementation
-and decrementation operators.  To negate an expression, include the
-unary minus in parentheses with its argument.  @xref{Setting Registers},
-for examples.
+and decrementation operators, respectively.  To negate an expression,
+include the unary minus in parentheses with its argument.  @xref{Setting
+Registers}, for examples.
 
 @opindex |
 @cindex @code{|}, and page motion

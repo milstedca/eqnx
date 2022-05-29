@@ -1046,7 +1046,8 @@ and
 .
 Here,
 leading plus and minus signs serve as incrementation and decrementation
-operators.
+operators,
+respectively.
 .
 To negate an expression,
 include the unary minus in parentheses with its argument.

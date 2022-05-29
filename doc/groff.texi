@@ -12877,9 +12877,9 @@ sequences is interpreted even in copy mode.@footnote{If they were not,
 parameter interpolations would be similar to command-line
 parameters---fixed for the entire duration of a @code{roff} program's
 run.  The advantage of interpolating @code{\$} escape sequences even in
-copy mode is that they can change from one interpolation to the next,
-like function parameters.  The additional escape character is the price
-of this power.}
+copy mode is that they can interpolate different contents from one call
+to the next, like function parameters in a procedural language.  The
+additional escape character is the price of this power.}
 
 @DefescList {\\$*, , , }
 @DefescItemx {\\$@@, , , }

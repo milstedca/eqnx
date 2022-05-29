@@ -890,7 +890,7 @@ present output written to the standard output and standard error
 streams, respectively.  Diagnostic messages from the GNU @code{troff}
 formatter and other programs are examples of the latter, but the
 formatter can also be directed to write user-specified messages to the
-standard error stream.  The notation then serves to distinguish the
+standard error stream.  The notation then serves to identify the
 output stream and does not necessarily mean that an error has
 occurred.@footnote{Unix and related operating systems distinguish
 standard output and standard error streams @emph{because} of
@@ -5078,8 +5078,8 @@ suppresses the break that is implied by some requests.  The default
 control characters are the dot (@code{.}) and the neutral apostrophe
 (@code{'}), the latter being the no-break control character.  These
 characters were chosen because it is uncommon for lines of text in
-natural languages to begin them.  If you require a formatted period or
-apostrophe (closing single quotation mark) where GNU @code{troff} is
+natural languages to begin with them.  If you require a formatted period
+or apostrophe (closing single quotation mark) where GNU @code{troff} is
 expecting a control character, prefix the dot or neutral apostrophe with
 the non-printing input break escape sequence, @samp{\&}.
 
@@ -13887,8 +13887,8 @@ when reached or fulfilled, cause a specified macro to be called.  These
 traps can occur at a given location on the page, at a given location in
 the current diversion (together, these are known as @emph{vertical
 position traps}), at a blank line, at a line with leading space
-characters, after a given quantity of input lines, or at the end of
-input.  Macros called by traps have no arguments.
+characters, after a quantity of input lines, or at the end of input.
+Macros called by traps have no arguments.
 @cindex planting a trap
 @cindex trap, planting
 Setting a trap is also called @dfn{planting}.

@@ -13042,11 +13042,11 @@ is interpreted when macro @code{m1} is called.
 @endDefesc
 
 @code{roff} documents should not use the @code{\\} or @code{\.}
-tokens outside of copy mode; they serve only to obfuscate the input.
-Use @code{\e} to represent the escape character, @code{\[rs]} to obtain
-a backslash glyph, and @code{\&} before @samp{.} and @samp{'} where GNU
-@code{troff} expects them as control characters if you mean to use them
-literally (recall @ref{Requests and Macros}).
+character sequences outside of copy mode; they serve only to obfuscate
+the input.  Use @code{\e} to represent the escape character,
+@code{\[rs]} to obtain a backslash glyph, and @code{\&} before @samp{.}
+and @samp{'} where GNU @code{troff} expects them as control characters
+if you mean to use them literally (recall @ref{Requests and Macros}).
 
 Macro definitions can be nested to arbitrary depth.  The mechanics of
 parsing the escape character have significant consequences for this

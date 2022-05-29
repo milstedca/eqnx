@@ -5773,7 +5773,7 @@ documents should not use the
 .B \[rs]\[rs]
 or
 .B \[rs].\&
-tokens outside of copy mode;
+character sequences outside of copy mode;
 they serve only to obfuscate the input.
 .
 Use

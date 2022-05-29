@@ -6526,6 +6526,30 @@ define the @code{dq} special character.
 Double quotes in the @code{ds} request are handled differently.
 @xref{Strings}.
 
+@cindex control character, changing (@code{cc})
+@cindex character, control, changing (@code{cc})
+@cindex no-break control character, changing (@code{c2})
+@cindex character, no-break control, changing (@code{c2})
+@cindex control character, no-break, changing (@code{c2})
+The control character (@samp{.}) and the no-break control character
+(@samp{'}) can be changed with the @code{cc} and @code{c2} requests,
+respectively.
+
+@Defreq {cc, [@Var{c}]}
+Set the control character to@tie{}@var{c}.  With no argument the default
+control character @samp{.} is restored.  The value of the control
+character is associated with the environment (@pxref{Environments}).
+@endDefreq
+
+@Defreq {c2, [@Var{c}]}
+Set the no-break control character to@tie{}@var{c}.  With no argument
+the default control character @samp{'} is restored.  The value of the
+no-break control character is associated with the environment
+(@pxref{Environments}).
+@endDefreq
+
+@xref{Requests}.
+
 @c ---------------------------------------------------------------------
 
 @node Escape Sequences,  , Requests, Formatter Instructions
@@ -6728,6 +6752,64 @@ the output several escape sequences are defined: @code{\\}, @code{\e} or
 @code{\E}.  These are very similar, and only differ with respect to
 being used in macros or diversions.  @xref{Character Translations}, for
 an exact description of those escape sequences.
+
+@Defreq {eo, }
+@cindex disabling @code{\} (@code{eo})
+@cindex @code{\}, disabling (@code{eo})
+Disable the escape mechanism completely.  After executing this request,
+the backslash character @samp{\} no longer starts an escape sequence.
+
+This request can be very helpful in writing macros since it is not
+necessary then to double the escape character.  Here an example:
+
+@Example
+.\" This is a simplified version of the
+.\" .BR request from the man macro package
+.eo
+.de BR
+.  ds result \&
+.  while (\n[.$] >= 2) \@{\
+.    as result \fB\$1\fR\$2
+.    shift 2
+.  \@}
+.  if \n[.$] .as result \fB\$1
+\*[result]
+.  ft R
+..
+.ec
+@endExample
+@endDefreq
+
+@Defreq {ec, [@Var{c}]}
+@cindex escape character, changing (@code{ec})
+@cindex character, escape, changing (@code{ec})
+Set the escape character to@tie{}@var{c}.  With no argument the default
+escape character @samp{\} is restored.  It can be also used to re-enable
+the escape mechanism after an @code{eo} request.
+
+Changing the escape character globally likely breaks macro packages,
+since GNU @code{troff} has no mechanism to `intern' macros, i.e., to
+convert a macro definition into an internal form that is independent of
+its representation (@TeX{} has such a mechanism).  If a macro is called,
+it is executed literally.
+@endDefreq
+
+@DefreqList {ecs, }
+@DefreqListEndx {ecr, }
+The @code{ecs} request saves the current escape character.  Use this
+request in combination with the @code{ec} request to temporarily change
+the escape character.
+
+The @code{ecr} request restores the escape character saved with
+@code{ecs}, or sets the escape character to @samp{\} if none has been
+saved.
+@endDefreq
+
+@Defesc {\\e, , , }
+Interpolate the current escape character, which is the backslash
+@samp{\} by default.
+@endDefesc
+
 
 @xref{Implementation Differences}, @ref{Copy Mode}, @ref{Diversions},
 and @ref{Identifiers}.
@@ -8816,87 +8898,6 @@ environment (@pxref{Environments}).
 @section Character Translations
 @cindex character translations
 @cindex translations of characters
-
-@cindex control character, changing (@code{cc})
-@cindex character, control, changing (@code{cc})
-@cindex no-break control character, changing (@code{c2})
-@cindex character, no-break control, changing (@code{c2})
-@cindex control character, no-break, changing (@code{c2})
-The control character (@samp{.}) and the no-break control character
-(@samp{'}) can be changed with the @code{cc} and @code{c2} requests,
-respectively.
-
-@Defreq {cc, [@Var{c}]}
-Set the control character to@tie{}@var{c}.  With no argument the default
-control character @samp{.} is restored.  The value of the control
-character is associated with the environment (@pxref{Environments}).
-@endDefreq
-
-@Defreq {c2, [@Var{c}]}
-Set the no-break control character to@tie{}@var{c}.  With no argument
-the default control character @samp{'} is restored.  The value of the
-no-break control character is associated with the environment
-(@pxref{Environments}).
-@endDefreq
-
-@xref{Requests}.
-
-@Defreq {eo, }
-@cindex disabling @code{\} (@code{eo})
-@cindex @code{\}, disabling (@code{eo})
-Disable the escape mechanism completely.  After executing this request,
-the backslash character @samp{\} no longer starts an escape sequence.
-
-This request can be very helpful in writing macros since it is not
-necessary then to double the escape character.  Here an example:
-
-@Example
-.\" This is a simplified version of the
-.\" .BR request from the man macro package
-.eo
-.de BR
-.  ds result \&
-.  while (\n[.$] >= 2) \@{\
-.    as result \fB\$1\fR\$2
-.    shift 2
-.  \@}
-.  if \n[.$] .as result \fB\$1
-\*[result]
-.  ft R
-..
-.ec
-@endExample
-@endDefreq
-
-@Defreq {ec, [@Var{c}]}
-@cindex escape character, changing (@code{ec})
-@cindex character, escape, changing (@code{ec})
-Set the escape character to@tie{}@var{c}.  With no argument the default
-escape character @samp{\} is restored.  It can be also used to re-enable
-the escape mechanism after an @code{eo} request.
-
-Changing the escape character globally likely breaks macro packages,
-since GNU @code{troff} has no mechanism to `intern' macros, i.e., to
-convert a macro definition into an internal form that is independent of
-its representation (@TeX{} has such a mechanism).  If a macro is called,
-it is executed literally.
-@endDefreq
-
-@DefreqList {ecs, }
-@DefreqListEndx {ecr, }
-The @code{ecs} request saves the current escape character.  Use this
-request in combination with the @code{ec} request to temporarily change
-the escape character.
-
-The @code{ecr} request restores the escape character saved with
-@code{ecs}, or sets the escape character to @samp{\} if none has been
-saved.
-@endDefreq
-
-@Defesc {\\e, , , }
-Interpolate the current escape character, which is the backslash
-@samp{\} by default.
-@endDefesc
 
 A @dfn{translation} is a mapping of an input character to an output
 glyph.  The mapping occurs at output time, i.e., the input character

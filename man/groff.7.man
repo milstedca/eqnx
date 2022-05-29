@@ -5866,14 +5866,15 @@ after a certain number of input lines
 or at the end of input
 .RB ( .em ).
 .
-Macros called by traps have no arguments.
+Macros called by traps are passed no arguments.
 .
 Setting a trap is also called
-.IR planting .
+.I planting
+one.
 .
 It is said that a trap is
 .I sprung
-if the associated macro is called.
+if its condition is fulfilled.
 .
 .
 .P

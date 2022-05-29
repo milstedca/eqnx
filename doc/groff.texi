@@ -13887,14 +13887,13 @@ traps can occur at a given location on the page, at a given location in
 the current diversion (together, these are known as @emph{vertical
 position traps}), at a blank line, at a line with leading space
 characters, after a quantity of input lines, or at the end of input.
-Macros called by traps have no arguments.
+Macros called by traps are passed no arguments.
 @cindex planting a trap
 @cindex trap, planting
-Setting a trap is also called @dfn{planting}.
+Setting a trap is also called @dfn{planting} one.
 @cindex trap, springing
 @cindex springing a trap
-It is said that a trap is @dfn{sprung} if the associated macro is
-called.
+It is said that a trap is @dfn{sprung} if its condition is fulfilled.
 
 @menu
 * Vertical Position Traps::

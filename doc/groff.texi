@@ -520,13 +520,13 @@ developing GNU and promoting software freedom.''
 @chapter Introduction
 @cindex introduction
 
-GNU @code{troff} (or @code{groff}) is a system for typesetting
-documents.  @code{troff} is very flexible and has been used extensively
-for some thirty years.  It is well entrenched in the Unix community.
+GNU @code{roff} (or @code{groff}) is a programming system for
+typesetting documents.  It is highly flexible and has been used
+extensively for over thirty years.
 
 @menu
-* What Is groff?::
-* History::
+* Background::
+* What Is @code{groff}?::
 * @code{groff} Capabilities::
 * Macro Package Intro::
 * Preprocessor Intro::
@@ -539,7 +539,44 @@ for some thirty years.  It is well entrenched in the Unix community.
 
 @c =====================================================================
 
-@node What Is groff?, History, Introduction, Introduction
+@node Background, What Is @code{groff}?, Introduction, Introduction
+@section Background
+@cindex background
+
+M.@: Douglas McIlroy, formerly of AT&T Bell Laboratories and present at
+the creation of the Unix operating system, offers an authoritative
+historical summary.
+
+@quotation
+The prime reason for Unix was the desire of Ken [Thompson], Dennis
+[Ritchie], and Joe Ossanna to have a pleasant environment for software
+development.  The fig leaf that got the nod from Multics-burned
+management was that an early use would be to develop a ``stand-alone''
+word-processing system for use in typing pools and secretarial offices.
+Perhaps they had in mind ``dedicated'', as distinct from
+``stand-alone''; that's what eventuated in various cases, most notably
+in the legal/patent department and in the AT&T CEO's office.
+
+Both those systems were targets of opportunity, not foreseen from the
+start.  When Unix was up and running on the PDP-11, Joe got wind of
+the legal department having installed a commercial word processor.
+He went to pitch Unix as an alternative and clinched a trial by
+promising to make @code{roff} able to number lines by tomorrow in order
+to fulfill a patent-office requirement that the commercial system did
+not support.
+
+Modems were installed so legal-department secretaries could try the
+Research machine.  They liked it and Joe's superb customer service.
+Soon the legal department got a system of their own.  Joe went on to
+create @code{nroff} and @code{troff}.  Document preparation became a
+widespread use of Unix, but no stand-alone word-processing system was
+ever undertaken.
+@end quotation
+@c https://minnie.tuhs.org/pipermail/tuhs/2022-March/025535.html
+
+@c =====================================================================
+
+@node What Is @code{groff}?, @code{groff} Capabilities, Introduction, Introduction
 @section What Is @code{groff}?
 @cindex what is @code{groff}?
 @cindex @code{groff}---what is it?
@@ -588,147 +625,7 @@ impossible to accomplish complex actions.''  --Doug Gwyn (22/Jun/91 in
 
 @c =====================================================================
 
-@node History, @code{groff} Capabilities, What Is groff?, Introduction
-@section History
-@cindex history
-
-@cindex @code{RUNOFF}, the program
-@cindex @code{rf}, the program
-@code{troff} can trace its origins back to a formatting program called
-@code{RUNOFF}, written by Jerry Saltzer, which ran on the @acronym{CTSS}
-(@emph{Compatible Time Sharing System}, a project of MIT, the
-Massachusetts Institute of Technology) in the
-mid-sixties.@footnote{Jerome H.@: Saltzer, a grad student then, later a
-Professor of Electrical Engineering, now retired.  Saltzer's PhD thesis
-was the first application for @code{RUNOFF} and is available from the
-MIT Libraries.}  The name came from the use of the phrase ``run off a
-document'', meaning to print it out.
-@c
-@c Tom Van Vleck <thvv@multicians.org> writes about the following:
-@c
-@c I am not sure about this.. I think the BCPL runoff was the port to
-@c the 635 architecture, and that the order of events is
-@c 1. CTSS runoff
-@c 2. BCPL runoff on Multics
-@c 3. BCPL runoff on 635
-@c 4. rf on PDP-7
-@c
-Bob Morris ported it to the 635 architecture and called the program
-@code{roff} (an abbreviation of @code{runoff}).  It was rewritten as
-@code{rf} for the @w{PDP-7} (before having Unix), and at the
-same time (1969), Doug McIlroy rewrote an extended and simplified
-version of @code{roff} in the @acronym{BCPL} programming language.
-
-@cindex @code{roff}, the program
-In 1971, the Unix developers wanted to get a @w{PDP-11}, and to justify
-the cost, proposed the development of a document formatting system for
-the @acronym{AT&T} patents division.  This first formatting program was
-a reimplementation of McIlroy's @code{roff}, written by J.@tie{}F.@:
-Ossanna.
-
-@cindex @code{nroff}, the program
-When they needed a more flexible language, a new version of @code{roff}
-called @code{nroff} (after ``new @code{roff}'', pronounced
-@w{``en-roff''}) was written.  It had a much more complicated syntax,
-but provided the basis for all future versions.  When they got a Graphic
-Systems CAT Phototypesetter, Ossanna wrote a version of @code{nroff}
-that would drive it.  It was dubbed @code{troff}, for ``typesetter
-@code{roff}'', although many people have speculated that it actually
-means ``Times @code{roff}'' because of the use of the Times font family
-in @code{troff} by default.  As such, the name @code{troff} is
-pronounced ``@w{tee-roff}'' rather than ``trough''.
-
-With @code{troff} came @code{nroff} (by 1974, they were actually the
-same program except for some @samp{#ifdef}s), which was for producing
-output for line printers and character terminals.  It understood
-everything @code{troff} did, and ignored the commands that were not
-applicable (e.g., font changes).
-
-Since there are several things that cannot be done easily in
-@code{troff}, work on several preprocessors began.  These programs would
-transform certain parts of a document into @code{troff}, which made a
-very natural use of pipes in Unix.
-
-The @code{eqn} preprocessor allowed mathematical formulae to be
-specified in a much simpler and more intuitive manner.  @code{tbl} is a
-preprocessor for formatting tables.  The @code{refer} preprocessor (and
-the similar program, @code{bib}) processes citations in a document
-according to a bibliographic database.
-
-Unfortunately, Ossanna's @code{troff} was written in @w{PDP-11} assembly
-language and produced output specifically for the CAT phototypesetter.
-He rewrote it in C, although it was now 7000@tie{}lines of uncommented
-code and still dependent on the CAT@.  As the CAT became less common,
-and was no longer supported by the manufacturer, the need to make it
-support other devices became a priority.  However, before this could be
-done, Ossanna died from a severe heart attack in a hospital while
-recovering from a previous one.
-
-@pindex ditroff
-@cindex @code{ditroff}, the program
-Brian Kernighan took on the task of rewriting @code{troff}.  The result
-produced device-independent code that was easy for postprocessors to
-read and translate to appropriate printer commands.  This new
-``device-independent @code{troff}'', called @code{ditroff} by some, had
-several extensions, including drawing commands for lines, circles,
-ellipses, arcs, and B-splines.@footnote{Short for ``basis splines''; ask
-your local numerical analyst.  The rest of us can just think of them as
-``curves''.}
-
-Due to the additional abilities of the new version of @code{troff},
-several new preprocessors appeared.  The @code{pic} preprocessor
-provides a wide range of drawing functions.  Likewise the @code{ideal}
-preprocessor did the same, although via a much different paradigm.  The
-@code{grap} preprocessor took specifications for graphs, but, unlike
-other preprocessors, produced @code{pic} code.
-
-James Clark began work on a GNU implementation of device-independent
-@code{troff} in early@tie{}1989.  The first version,
-@code{groff}@tie{}0.3.1, was released June@tie{}1990.  @code{groff}
-included:
-
-@itemize @bullet
-@item
-A replacement for @acronym{AT&T} device-independent @code{troff} with
-many extensions.
-
-@item
-The @code{soelim}, @code{pic}, @code{tbl}, and @code{eqn} preprocessors.
-
-@item
-@cindex X Window System (X11)
-@cindex @TeX{} Device-Independent (DVI) format
-Postprocessors for character devices, PostScript, @TeX{}'s
-device-independent format (DVI), and the X@tie{}Window System (X11).
-GNU @code{troff} also eliminated the need for a separate @command{nroff}
-program with a postprocessor to produce output for @acronym{ASCII}
-terminals.
-
-@item
-A version of the @file{me} macros and an implementation of the
-@file{man} macros.
-@end itemize
-
-Also, a front end was included that could construct the---sometimes
-painfully long---pipelines required for all the pre- and postprocessors.
-
-Development of GNU @code{troff} progressed rapidly, and saw the
-additions of a replacement for @code{refer}, an implementation of the
-@file{ms} and @file{mm} macros, and a program to deduce how to format a
-document (@code{grog}).
-
-It was declared a stable (i.e., non-beta) package with the release of
-version@tie{}1.04 around November@tie{}1991.
-
-Beginning in@tie{}1999, @code{groff} has new maintainers (the package
-was an orphan for a few years).  As a result, new features and programs
-like @code{grn}, a preprocessor for gremlin images, and an output device
-to produce @acronym{HTML} and @acronym{XHTML} have been added.
-
-
-@c =====================================================================
-
-@node @code{groff} Capabilities, Macro Package Intro, History, Introduction
+@node @code{groff} Capabilities, Macro Package Intro, What Is @code{groff}?, Introduction
 @section @code{groff} Capabilities
 @cindex @code{groff} capabilities
 @cindex capabilities of @code{groff}

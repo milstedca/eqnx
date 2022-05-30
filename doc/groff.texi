@@ -493,7 +493,7 @@ developing GNU and promoting software freedom.''
 * gtroff Reference::
 * Preprocessors::
 * Output Devices::
-* File formats::
+* File Formats::
 * Copying This Manual::
 * Request Index::
 * Escape Sequence Index::
@@ -16876,7 +16876,7 @@ is available as an extra package from the following address:
 @c =====================================================================
 @c =====================================================================
 
-@node Output Devices, File formats, Preprocessors, Top
+@node Output Devices, File Formats, Preprocessors, Top
 @chapter Output Devices
 @cindex output devices
 @cindex devices for output
@@ -17567,8 +17567,8 @@ template name or the default name.
 @c =====================================================================
 @c =====================================================================
 
-@node File formats, Copying This Manual, Output Devices, Top
-@chapter File formats
+@node File Formats, Copying This Manual, Output Devices, Top
+@chapter File Formats
 @cindex file formats
 @cindex formats, file
 
@@ -17584,7 +17584,7 @@ following two sections describe their format.
 @c =====================================================================
 
 @c BEGIN TODO: Make parallel with groff_out(5).
-@node gtroff Output, Device and Font Description Files, File formats, File formats
+@node gtroff Output, Device and Font Description Files, File Formats, File Formats
 @section @code{gtroff} Output
 @cindex @code{gtroff}, output
 @cindex output, @code{gtroff}
@@ -18479,7 +18479,7 @@ follow quite naturally.
 @codequoteundirected on
 
 @c BEGIN Keep parallel with groff_font(5).
-@node Device and Font Description Files,  , gtroff Output, File formats
+@node Device and Font Description Files,  , gtroff Output, File Formats
 @section Device and Font Description Files
 @cindex font files
 @cindex files, font

@@ -494,7 +494,6 @@ developing GNU and promoting software freedom.''
 * Preprocessors::
 * Output Devices::
 * File formats::
-* Installation::
 * Copying This Manual::
 * Request Index::
 * Escape Sequence Index::
@@ -535,6 +534,7 @@ for some thirty years.  It is well entrenched in the Unix community.
 * Preprocessor Intro::
 * Output Device Intro::
 * Conventions Used in This Manual::
+* Installation::
 * Credits::
 @end menu
 
@@ -859,7 +859,7 @@ pictures (@code{ideal}).
 
 @c =====================================================================
 
-@node Output Device Intro, Credits, Preprocessor Intro, Introduction
+@node Output Device Intro, Installation, Preprocessor Intro, Introduction
 @section Output Devices
 @cindex postprocessors
 @cindex output devices
@@ -875,7 +875,18 @@ and @acronym{PDF}.
 
 @c =====================================================================
 
-@node Conventions Used in This Manual, Credits, Output Device Intro, Introduction
+@node Installation, Conventions Used in This Manual, Output Device Intro, Introduction
+@section Installation
+@cindex installation
+
+Installation procedures are documented by the files @file{INSTALL},
+@file{INSTALL.extra}, and file @file{INSTALL.REPO} in the @code{groff}
+source distribution.
+
+
+@c =====================================================================
+
+@node Conventions Used in This Manual, Credits, Installation, Introduction
 @section Conventions Used in This Manual
 
 We apply the term ``groff'' to the language documented here, the GNU
@@ -17547,7 +17558,7 @@ template name or the default name.
 @c =====================================================================
 @c =====================================================================
 
-@node File formats, Installation, Output Devices, Top
+@node File formats, Copying This Manual, Output Devices, Top
 @chapter File formats
 @cindex file formats
 @cindex formats, file
@@ -18946,21 +18957,11 @@ for@tie{}@var{n}.
 @codequoteundirected off
 
 
-@c =====================================================================
-@c =====================================================================
-
-@node Installation, Copying This Manual, File formats, Top
-@chapter Installation
-@cindex installation
-
-@c XXX
-
-
 
 @c =====================================================================
 @c =====================================================================
 
-@node Copying This Manual, Request Index, Installation, Top
+@node Copying This Manual, Request Index, Font Description File Format, Top
 @appendix Copying This Manual
 
 @include fdl.texi

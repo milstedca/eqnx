@@ -1,5 +1,20 @@
 2022-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/libs/libgroff/fontfile.cpp (font::open_file): Refactor.
+	Move more logic, including memory allocation, inside conditional
+	that accepts only file names without '/' characters, skipping
+	unnecessary work in the alternative.  Annotate use of zero
+	literals as null pointers to ease any future migration to ISO
+	C++11.  Add 'const' qualifier to variable that doesn't require
+	modification (and which is used in the LHS of an equality
+	comparison, so that clumsy operator misuse will provoke a
+	compiler warning).
+
+	Fixes <https://savannah.gnu.org/bugs/?62532>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
+2022-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: In configuration report, say that we're
 	reporting compiler options along with the compiler executable.
 	Fix leftover test(1) comparison with garbage, overlooked in

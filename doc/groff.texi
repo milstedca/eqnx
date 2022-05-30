@@ -550,7 +550,7 @@ historical summary.
 @quotation
 The prime reason for Unix was the desire of Ken [Thompson], Dennis
 [Ritchie], and Joe Ossanna to have a pleasant environment for software
-development.  The fig leaf that got the nod from Multics-burned
+development.  The fig leaf that got the nod from @dots{}
 management was that an early use would be to develop a ``stand-alone''
 word-processing system for use in typing pools and secretarial offices.
 Perhaps they had in mind ``dedicated'', as distinct from

@@ -574,6 +574,11 @@ ever undertaken.
 @end quotation
 @c https://minnie.tuhs.org/pipermail/tuhs/2022-March/025535.html
 
+A history relating @code{groff} to its predecessors @code{roff},
+@code{nroff}, and @code{troff} is available in the @cite{roff@r{(7)}}
+man page.
+
+
 @c =====================================================================
 
 @node What Is @code{groff}?, @code{groff} Capabilities, Introduction, Introduction
@@ -788,8 +793,7 @@ We apply the term ``groff'' to the language documented here, the GNU
 implementation of the overall system, the project that develops that
 system, and the command of that name.  In the first sense, @code{groff}
 is an extended dialect of the @code{roff} language, for which many
-similar implementations exist; see the @cite{roff@r{(7)}} man page for a
-history.
+similar implementations exist.
 
 We use Texinfo's ``result'' (@result{}) and @error{} notations to
 present output written to the standard output and standard error

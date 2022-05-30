@@ -815,6 +815,10 @@ omitting the name of the program issuing them, the input file name, and
 line number or other positional information when such data do not serve
 to illuminate the topic under discussion.
 
+Most examples are of @code{roff} language input that would be placed in
+a text file.  Occasionally, we start an example with a @samp{$}
+character to indicate a shell prompt, as seen above.
+
 You are encouraged to try the examples yourself, and to alter them to
 better learn @code{groff}'s behavior.  Our examples frequently need to
 direct the formatter to set a line length (with @samp{.ll}) that will
@@ -829,11 +833,10 @@ formally.@footnote{@xref{Line Layout}.}
 @section Credits
 @cindex credits
 
-Large portions of this manual were taken from existing documents, most
+Large portions of this manual were taken from existing documents---most
 notably, the manual pages for the @code{groff} package by James Clark,
-and Eric Allman's papers on the @file{me} macro package.
-
-Larry Kollar contributed the section on the @file{ms} macro package.
+and Eric Allman's papers on the @file{me} macro package.  Larry Kollar
+contributed much of the material on the @file{ms} macro package.
 
 
 @c =====================================================================

@@ -1,5 +1,12 @@
 2022-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* configure.ac: In configuration report, say that we're
+	reporting compiler options along with the compiler executable.
+	Fix leftover test(1) comparison with garbage, overlooked in
+	commit faa22d89d2, 20 May.
+
+2022-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am (doc/meintro_fr.ps): Build with '-t' option.
 
 	Fixes <https://savannah.gnu.org/bugs/?62542>.  Thanks to Bjarni

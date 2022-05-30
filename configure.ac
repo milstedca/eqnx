@@ -211,11 +211,11 @@ echo "
 ${PACKAGE_NAME} version ${PACKAGE_VERSION}
 ----------------------------------------------------------------------
  installation prefix              : ${prefix}
- C++ compiler                     : ${CXX} ${CXXFLAGS} ${CPPFLAGS}
+ C++ compiler and options         : ${CXX} ${CXXFLAGS} ${CPPFLAGS}
  use libgroff's memory allocator  : $groff_use_own_allocator
- C compiler                       : ${CC} ${CFLAGS} ${CPPFLAGS}
+ C compiler and options           : ${CC} ${CFLAGS} ${CPPFLAGS}
  Perl interpreter version         : $perl_version"
-if test "x$groff_no_x" = "xyes"
+if test "$groff_no_x" = yes
 then
   echo "\
  X11 support                      : disabled"

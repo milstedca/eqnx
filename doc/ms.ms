@@ -741,6 +741,49 @@ This is a Tenth Edition Research Unix extension.
 .
 .KS
 .NH 2
+Typographical symbols
+.XS
+	Typographical symbols
+.XE
+.
+.
+.LP
+.I ms
+provides a handful of strings to obtain typographical symbols not easily
+entered with the keyboard.
+.
+Many others are available as special character escape sequences\*[-]see
+the
+.I groff_char (7)
+man page.
+.
+.TS
+box center;
+cb lb
+Lf(CR) Lx.
+String	Description
+_
+\[rs]*[\-]	Interpolate an em dash.
+_
+\[rs]*[Q]	T{
+Interpolate typographer's quotation marks where available,
+and neutral quotes otherwise.
+.
+.CW \[rs]*[Q]
+is the left quote and
+.CW \[rs]*[U]
+the right.
+.
+(As a mnemonic,
+think of \*[Q]quote\*[U] and \*[Q]unquote\*[U].)
+T}
+\[rs]*[U]	\^
+.TE
+.KE
+.
+.
+.KS
+.NH 2
 Paragraphs
 .XS
 	Paragraphs

@@ -643,6 +643,39 @@ This is a Tenth Edition Research Unix extension.
 .
 .
 .\" ====================================================================
+.SS "Typographical symbols"
+.\" ====================================================================
+.
+.I ms
+provides a handful of strings to obtain typographical symbols not easily
+entered with the keyboard.
+.
+Many others are available as special character escape sequences\[em]see
+.MR groff_char 7 .
+.
+.
+.TP
+.B \[rs]*[\-]
+Interpolate an em dash.
+.
+.
+.TP
+.B \[rs]*[Q]
+.TQ
+.B \[rs]*[U]
+Interpolate typographer's quotation marks where available,
+and neutral quotes otherwise.
+.
+.B \[rs]*[Q]
+is the left quote and
+.B \[rs]*[U]
+the right.
+.
+(As a mnemonic,
+think of \[lq]quote\[rq] and \[lq]unquote\[rq].)
+.
+.
+.\" ====================================================================
 .SS Paragraphs
 .\" ====================================================================
 .

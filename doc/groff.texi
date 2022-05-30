@@ -3181,6 +3181,7 @@ The hyphenation mode (as used by the @code{hy} request) is set from the
 @code{HY} register.
 
 @menu
+* Typographical Symbols in ms::
 * Paragraphs in ms::
 * Headings in ms::
 * Highlighting in ms::
@@ -3194,7 +3195,29 @@ The hyphenation mode (as used by the @code{hy} request) is set from the
 
 @c ---------------------------------------------------------------------
 
-@node Paragraphs in ms, Headings in ms, ms Body Text, ms Body Text
+@node Typographical Symbols in ms, Paragraphs in ms, ms Body Text, ms Body Text
+@subsubsection Typographical Symbols
+@cindex @file{ms} macros, obtaining typographical symbols
+
+@file{ms} provides a handful of strings to obtain typographical symbols
+not easily entered with the keyboard.  Many others are available as
+special character escape sequences---see the @cite{groff_char@r{(7)}}
+man page.
+
+@Defmpstr {-, ms}
+Interpolate an em dash.
+@endDefmpstr
+
+@DefmpstrList {Q, ms}
+@DefmpstrListEndx {U, ms}
+Interpolate typographer's quotation marks where available, and neutral
+quotes otherwise.  @code{\*Q} is the left quote and @code{\*U} the
+right.  (As a mnemonic, think of ``quote'' and ``unquote''.)
+@endDefmpstr
+
+@c ---------------------------------------------------------------------
+
+@node Paragraphs in ms, Headings in ms, Typographical Symbols in ms, ms Body Text
 @subsubsection Paragraphs
 @cindex @file{ms} macros, paragraph handling
 
@@ -4329,20 +4352,6 @@ The default is @samp{Table of Contents}.
 @DefmpstrListEndx {MONTH12, ms}
 Contain the full names of the calendar months.  The defaults are in
 English: @samp{January}, @samp{February}, and so on.
-@endDefmpstr
-
-The following special characters are available.@footnote{For an
-explanation of what special characters are @ref{Special Characters}.}
-
-@Defmpstr {-, ms}
-Interpolates an em dash.
-@endDefmpstr
-
-@DefmpstrList {Q, ms}
-@DefmpstrListEndx {U, ms}
-Interpolates typographer's quotes where available, and neutral quotes
-otherwise.  @code{\*Q} is the left quote and @code{\*U} is the right
-quote.
 @endDefmpstr
 
 Improved accent marks are available in the @file{ms} macros.

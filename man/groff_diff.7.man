@@ -5002,8 +5002,8 @@ At the same time,
 a modular design of a document or macro package may lead you to multiple
 layers of inclusion.
 .
-You cannot use the same register name everywhere or you risk
-\[lq]clobbering\[rq] the value from a preceding or enclosing context.
+You cannot use the same register name everywhere lest you
+\[lq]clobber\[rq] the value from a preceding or enclosing context.
 .
 The two-character register name space of
 .RI AT&T\~ troff

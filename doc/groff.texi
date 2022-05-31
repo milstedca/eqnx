@@ -16197,49 +16197,51 @@ targeting @code{groff} are encouraged to use this setting.
 @codequotebacktick on
 @codequoteundirected on
 
-@node Implementation Differences,  , Debugging, gtroff Reference
+@node Implementation Differences, Safer Mode, Debugging, gtroff Reference
 @section Implementation Differences
 @cindex implementation differences
 @cindex differences in implementation
 @cindex incompatibilities with @acronym{AT&T} @code{troff}
-@cindex compatibility mode
-@cindex mode, compatibility
 
 GNU @code{troff} has a number of features that cause incompatibilities
-with documents written using old versions of @code{troff}.  Some GNU
+with documents written for other versions of @code{troff}.  Some GNU
 extensions to @code{troff} have become supported by other
 implementations.
+
+@menu
+* Safer Mode::
+* Compatibility Mode::
+* Other Differences::
+@end menu
+
+@c ---------------------------------------------------------------------
+
+@node Safer Mode, Compatibility Mode, Implementation Differences, Implementation Differences
+@subsection Safer Mode
+@cindex safer mode
+@cindex mode, safer
 
 @cindex @code{pi} request, disabled by default
 @cindex @code{sy} request, disabled by default
 The formatter operates in ``safer'' mode by default; to mitigate risks
 from untrusted input documents, the @code{pi} and @code{sy} requests are
 disabled.  GNU @code{troff}'s @option{-U} option enables ``unsafe
-mode'', restoring their function (and enabling additional @code{groff}
-extension requests, @code{open}, @code{opena}, and @code{pso}).
+mode'', restoring their function and enabling additional @code{groff}
+extension requests, @code{open}, @code{opena}, and @code{pso}.
+@xref{I/O}.
 
-@cindex adjustment to both margins, difference from @acronym{AT&T} @code{troff}
-@cindex rivers
-When adjusting to both margins, @acronym{AT&T} @code{troff} at first
-adjusts spaces starting from the right; GNU @code{troff} begins from
-the left.  Both implementations adjust spaces from opposite ends on
-alternating output lines in this adjustment mode to prevent ``rivers''
-in the text.
+@c ---------------------------------------------------------------------
 
-@cindex hyphenation, incompatibilities with @acronym{AT&T} @code{troff}
-GNU @code{troff} does not always hyphenate words as @acronym{AT&T}
-@code{troff} does.  The @acronym{AT&T} implementation uses a set of
-hard-coded rules specific to English, while GNU @code{troff} uses
-language-specific hyphenation pattern files derived from @TeX{}.
-Furthermore, in old versions of @code{troff} there was a limited amount
-of space to store hyphenation exceptions (arguments to the @code{hw}
-request); GNU @code{troff} has no such restriction.
+@node Compatibility Mode, Safer Mode, Other Differences, Implementation Differences
+@subsection Compatibility Mode
+@cindex compatibility mode
+@cindex mode, compatibility
 
 @cindex long names
 @cindex names, long
 @cindex @code{\*}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\n}, incompatibilities with @acronym{AT&T} @code{troff}
-Long names may be GNU @code{troff}'s most obvious innovation.
+Long identifier names may be GNU @code{troff}'s most obvious innovation.
 @acronym{AT&T} @code{troff} interprets @samp{.dsabcd} as defining a
 string @samp{ab} with contents @samp{cd}.  Normally, GNU @code{troff}
 interprets this as a call of a macro named @code{dsabcd}.
@@ -16247,8 +16249,8 @@ interprets this as a call of a macro named @code{dsabcd}.
 an interpolation of a string or register, respectively, named @samp{[}.
 In GNU @code{troff}, however, the @samp{[} is normally interpreted as
 delimiting a long name.  In compatibility mode, GNU @code{troff}
-interprets names in the traditional way, which means that they are
-limited to one or two characters.
+interprets names in the traditional way; they thus can be two characters
+long at most.
 
 @DefreqList {cp, [@Var{n}]}
 @DefregListEndx {.C}
@@ -16313,8 +16315,8 @@ register, say, @samp{_C}, at the beginning of your file, turn
 compatibility mode off with @samp{.cp 0}, then restore it from that
 register at the end with @samp{.cp \n(_C}.  At the same time, a modular
 design of a document or macro package may lead you to multiple layers of
-inclusion.  You cannot use the same register name everywhere or you risk
-``clobbering'' the value from a preceding or enclosing context.  The
+inclusion.  You cannot use the same register name everywhere lest you
+``clobber'' the value from a preceding or enclosing context.  The
 two-character register name space of @acronym{AT&T} @code{troff} is
 confining and mnemonically challenging; you may wish to use the more
 capacious name space of GNU @code{troff}.  However, attempting @samp{.nr
@@ -16343,33 +16345,6 @@ at the end.  As in the C language, we all have to share one big
 name space, so choose a register name that is unlikely to collide with
 other uses.
 @endDefreq
-
-@cindex output device name string (@code{.T}), in other implementations
-GNU @code{troff} predefines a string @code{.T} containing the argument
-given to the @option{-T} command-line option, namely the current output
-device (for example, @samp{pdf} or @samp{utf8}).  The existence of this
-string is a common feature of post-CSTR@tie{}#54
-@code{troff}s@footnote{DWB@tie{}3.3, Solaris, Heirloom Doctools, and
-Plan@tie{}9 @code{troff} all support it.} but valid values are specific
-to each implementation.
-
-@cindex output device usage register (@code{.T}), incompatibility with @acronym{AT&T} @code{troff}
-The (read-only) register @code{.T} interpolates@tie{}1 if GNU
-@code{troff} is called with the @option{-T} command-line option, and
-0@tie{}otherwise.  This behavior differs from AT&T @code{troff}, which
-interpolated@tie{}1 only if @code{nroff} was the formatter and was
-called with @option{-T}.
-
-@cindex @code{lf} request, incompatibilities with @acronym{AT&T} @code{troff}
-@acronym{AT&T} @code{troff} and other implementations handle the
-@code{lf} request differently.  For them, its @var{line} argument
-changes the line number of the @emph{current} line.
-
-@cindex environment availability and naming, incompatibilities with
-@acronym{AT&T} @code{troff} had only environments named @samp{0},
-@samp{1}, and @samp{2}.  In GNU @code{troff}, any number of environments
-may exist, using any valid identifiers for their names
-(@pxref{Identifiers}.)
 
 @cindex input level in delimited arguments
 @cindex interpolation depth in delimited arguments
@@ -16403,6 +16378,26 @@ Hello!
     @result{} Hello! @r{(compatibility mode)}
 @endExample
 
+@cindex @code{\s}, incompatibilities with @acronym{AT&T} @code{troff}
+Normally, the syntax form @code{\s}@var{n} accepts only a single
+character (a digit) for @var{n}, consistently with other forms that
+originated in @acronym{AT&T} @code{troff}, like @code{\*}, @code{\$},
+@code{\f}, @code{\g}, @code{\k}, @code{\n}, and @code{\z}.  In
+compatibility mode only, a non-zero@tie{}@var{n} must be in the range
+4--39.  Legacy documents relying upon this quirk of parsing@footnote{The
+Graphic Systems C/A/T phototypesetter (the original device target for
+@acronym{AT&T} @code{troff}) supported only a few discrete type sizes
+in the range 6--36 points, so Ossanna contrived a special case in the
+parser to do what the user must have meant.  Kernighan warned of this in
+the 1992 revision of CSTR@tie{}#54 (§2.3), and more recently, McIlroy
+referred to it as a ``living fossil''.} should be migrated to another
+@code{\s} form.
+
+@c ---------------------------------------------------------------------
+
+@node Other Differences, , Compatibility Mode, Implementation Differences
+@subsection Other Differences
+
 @cindex @code{\A}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\|}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\^}, incompatibilities with @acronym{AT&T} @code{troff}
@@ -16425,20 +16420,49 @@ registers, fonts, or environments; @acronym{AT&T} @code{troff} does.
 The @code{\A} escape sequence (@pxref{Identifiers}) may be helpful in
 avoiding use of these escape sequences in names.
 
-@cindex @code{\s}, incompatibilities with @acronym{AT&T} @code{troff}
-Normally, the syntax form @code{\s}@var{n} accepts only a single
-character (a digit) for @var{n}, consistently with other forms that
-originated in @acronym{AT&T} @code{troff}, like @code{\*}, @code{\$},
-@code{\f}, @code{\g}, @code{\k}, @code{\n}, and @code{\z}.  In
-compatibility mode only, a non-zero@tie{}@var{n} must be in the range
-4--39.  Legacy documents relying upon this quirk of parsing@footnote{The
-Graphic Systems C/A/T phototypesetter (the original device target for
-@acronym{AT&T} @code{troff}) supported only a few discrete type sizes
-in the range 6--36 points, so Ossanna contrived a special case in the
-parser to do what the user must have meant.  Kernighan warned of this in
-the 1992 revision of CSTR@tie{}#54 (§2.3), and more recently, McIlroy
-referred to it as a ``living fossil''.} should be migrated to another
-@code{\s} form.
+@cindex adjustment to both margins, difference from @acronym{AT&T} @code{troff}
+@cindex rivers
+When adjusting to both margins, @acronym{AT&T} @code{troff} at first
+adjusts spaces starting from the right; GNU @code{troff} begins from
+the left.  Both implementations adjust spaces from opposite ends on
+alternating output lines in this adjustment mode to prevent ``rivers''
+in the text.
+
+@cindex hyphenation, incompatibilities with @acronym{AT&T} @code{troff}
+GNU @code{troff} does not always hyphenate words as @acronym{AT&T}
+@code{troff} does.  The @acronym{AT&T} implementation uses a set of
+hard-coded rules specific to English, while GNU @code{troff} uses
+language-specific hyphenation pattern files derived from @TeX{}.
+Furthermore, in old versions of @code{troff} there was a limited amount
+of space to store hyphenation exceptions (arguments to the @code{hw}
+request); GNU @code{troff} has no such restriction.
+
+@cindex output device name string (@code{.T}), in other implementations
+GNU @code{troff} predefines a string @code{.T} containing the argument
+given to the @option{-T} command-line option, namely the current output
+device (for example, @samp{pdf} or @samp{utf8}).  The existence of this
+string is a common feature of post-CSTR@tie{}#54
+@code{troff}s@footnote{DWB@tie{}3.3, Solaris, Heirloom Doctools, and
+Plan@tie{}9 @code{troff} all support it.} but valid values are specific
+to each implementation.
+
+@cindex output device usage register (@code{.T}), incompatibility with @acronym{AT&T} @code{troff}
+The (read-only) register @code{.T} interpolates@tie{}1 if GNU
+@code{troff} is called with the @option{-T} command-line option, and
+0@tie{}otherwise.  This behavior differs from AT&T @code{troff}, which
+interpolated@tie{}1 only if @code{nroff} was the formatter and was
+called with @option{-T}.
+
+@cindex @code{lf} request, incompatibilities with @acronym{AT&T} @code{troff}
+@acronym{AT&T} @code{troff} and other implementations handle the
+@code{lf} request differently.  For them, its @var{line} argument
+changes the line number of the @emph{current} line.
+
+@cindex environment availability and naming, incompatibilities with
+@acronym{AT&T} @code{troff} had only environments named @samp{0},
+@samp{1}, and @samp{2}.  In GNU @code{troff}, any number of environments
+may exist, using any valid identifiers for their names
+(@pxref{Identifiers}.)
 
 @cindex fractional point sizes
 @cindex fractional type sizes

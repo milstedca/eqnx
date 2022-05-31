@@ -9,9 +9,6 @@ This file describes how to prepare 'groff' for a new release.
 
 ########################################################################
 
-* Increment the version number.  groff requires an explicit three-part
-  version, major.minor.revision, due to the .Y register.
-
 * Update font description files that we generate from external data and
   provide with our source distribution.
 
@@ -27,7 +24,7 @@ This file describes how to prepare 'groff' for a new release.
   src/utils/afmtodit/make-afmtodit-tables to update
   src/utils/afmtodit/afmtodit.tables.
 
-  [1] E.g., <https://www.unicode.org/Public/13.0.0/ucd/UnicodeData.txt>.
+  [1] E.g., <https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt>.
       Check for the latest _released_ version of Unicode at the time.
       Data for the forthcoming release may be available.
   [2] <https://github.com/adobe-type-tools/agl-aglfn/blob/master/\
@@ -50,3 +47,9 @@ This file describes how to prepare 'groff' for a new release.
   copyright.
 
 * Update the copyright year with 'update-copyright.sh'.
+
+* Increment the version number by tagging the release, beta, or release
+  candidate.  groff requires an explicit three-part version,
+  major.minor.revision, due to the .Y register.
+
+    $ git tag 1.23.0.rc1

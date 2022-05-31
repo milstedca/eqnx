@@ -5445,7 +5445,7 @@ whether, like ``g'', it features a decender below the baseline.
 Such a situation is nearly always undesirable.  It is furthermore
 conventional not to write or draw at the extreme edges of the page.
 Therefore the initial drawing position of a @code{roff} formatter is not
-at the origin, but down and to the right of it.  This rightward shift
+at the origin, but below and to the right of it.  This rightward shift
 from the left edge is known as the @dfn{page
 offset}.@footnote{@code{groff}'s terminal output devices have page
 offsets of zero.}  The downward shift leaves room for a text output

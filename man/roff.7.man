@@ -436,7 +436,7 @@ of the page.
 Therefore the initial drawing position of a
 .I roff
 formatter is not at the origin,
-but down and to the right of it.
+but below and to the right of it.
 .
 This rightward shift
 from the left edge is known as the

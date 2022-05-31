@@ -469,7 +469,7 @@ developing GNU and promoting software freedom.''
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
 @subtitle May 2022
-@author Trent A.@tie{}Fisher
+@author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
 
@@ -1345,10 +1345,10 @@ used, none otherwise.
 
 @item GROFF_ENCODING
 @tindex GROFF_ENCODING@r{, environment variable}
-The value of this environment value is passed to the @code{preconv}
-preprocessor to select the encoding of input files.  Setting this option
-implies @code{groff}'s command-line option @option{-k} (that is,
-@code{groff} always calls @code{preconv}).  If set without a value,
+The value of this environment variable is passed to the @code{preconv}
+preprocessor to select the encoding of input files.  Setting this
+variable implies @code{groff}'s command-line option @option{-k} (that
+is, @code{groff} always calls @code{preconv}).  If set without a value,
 @code{groff} calls @code{preconv} without arguments.  An explicit
 @option{-K} command-line option overrides the value of
 @env{GROFF_ENCODING}.  See the @cite{preconv@r{(7)}} man page; type
@@ -1713,7 +1713,7 @@ macro package.
 
 This section covers some of the basic concepts necessary to understand
 how to use a macro package.@footnote{This section is derived from
-@cite{Writing Papers with nroff using -me} by Eric P.@tie{}Allman.}
+@cite{Writing Papers with nroff using -me} by Eric@tie{}P.@: Allman.}
 References are made throughout to more detailed information, if desired.
 
 GNU @code{troff} reads an input file prepared by the user and outputs a
@@ -2173,7 +2173,7 @@ groff -m man -m ms foo.man bar.doc
 @pindex an.tmac
 @pindex man.tmac
 
-The @code{man} macro package is the most widely-used and probably the
+The @code{man} macro package is the most widely used and probably the
 most important ever developed for @code{troff}.  It is easy to use, and
 a vast majority of manual pages (``man pages'') are written in it.
 
@@ -4386,7 +4386,7 @@ details of @acronym{AT&T} @file{ms} may not format properly with
 @code{groff} @file{ms}.  Such details include macros whose function was
 not documented in the @acronym{AT&T} @file{ms}
 manual.@footnote{@cite{Typing Documents on the UNIX System: Using the
--ms Macros with Troff and Nroff}, M.@: E.@: Lesk, Bell Laboratories,
+-ms Macros with Troff and Nroff}, M.@tie{}E.@: Lesk, Bell Laboratories,
 1978}
 @c XXX: We support RT anyway; maybe we should stop?
 
@@ -5262,7 +5262,7 @@ Due to the importance of the Euro glyph in Europe, @code{groff} is
 distributed with a PostScript font called @file{freeeuro.pfa}, which
 provides various glyph shapes for the Euro.  Thus, the
 @w{Latin-9} encoding is supported for the @option{ps} and @option{pdf}
-drivers out of the box, while @w{Latin-2} is is not.
+drivers out of the box, while @w{Latin-2} is not.
 
 Unicode supports characters from all other input encodings; the
 @option{utf8} output driver for terminals therefore does as well.  The
@@ -5826,9 +5826,9 @@ within @code{if}, @code{ie}, and @code{while} requests.
 @c because they're out of scope.
 Furthermore, @code{!} is recognized only at the beginning of a numeric
 expression not contained by another numeric expression.  In other words,
-it must be the ``outermost'' operator.  Attempting to include it
-elsewhere in the expression produces a warning in the @samp{number}
-category (@pxref{Debugging}), and its expression evaluates false.  This
+it must be the ``outermost'' operator.  Including it elsewhere in the
+expression produces a warning in the @samp{number} category
+(@pxref{Debugging}), and its expression evaluates false.  This
 unfortunate limitation maintains compatibility with @acronym{AT&T}
 @code{troff}.  You can test a numeric expression for falsity by
 comparing it to a false value.
@@ -6367,11 +6367,10 @@ Consider calls to a hypothetical macro @code{uh}:
 The first line is the @code{uh} macro being called with three arguments,
 @samp{The}, @samp{Mouse}, and @samp{Problem}.  The remainder call the
 @code{uh} macro with one argument, @samp{The Mouse Problem}.  The last
-solution, using escaped spaces, is ``classical'' in the sense that it
-can be found in documents prepared for @acronym{AT&T} @code{troff}.
-Nevertheless, it is not optimal in most situations, since @w{@samp{\ }}
-inserts a fixed-width, non-breaking space that can't be adjusted.  GNU
-@code{troff} provides a different command @code{\~} to insert a
+solution, using escaped spaces, can be found in documents prepared for
+@acronym{AT&T} @code{troff}.  Nevertheless, it is not optimal in most
+situations, since @w{@samp{\ }} inserts a fixed-width, non-breaking space.
+GNU @code{troff} provides a different command @code{\~} to insert an
 adjustable, non-breaking space.@footnote{@code{\~} is also supported by
 Heirloom Doctools @code{troff} 050915 (September 2005), @code{neatroff}
 (since commit 1c6ab0f6e, 2016-09-13), and @code{mandoc} 1.14.5 (March
@@ -6681,7 +6680,7 @@ Disable the escape mechanism completely.  After executing this request,
 the backslash character @samp{\} no longer starts an escape sequence.
 
 This request can be very helpful in writing macros since it is not
-necessary then to double the escape character.  Here an example:
+necessary then to double the escape character.  Here is an example:
 
 @Example
 .\" This is a simplified version of the
@@ -9107,13 +9106,13 @@ A simple demonstration:
 @Example
 .ll 3i
 This is text without indentation.
-The line length has been set to 3\~inch.
+The line length has been set to 3\~inches.
 .in +.5i
 .ll -.5i
 Now the left and right margins are both increased.
 .in
 .ll
-Calling .in and .ll without parameters restore
+Calling .in and .ll without parameters restores
 the previous values.
 @endExample
 
@@ -9122,12 +9121,12 @@ Result:
 @Example
 This  is text without indenta-
 tion.   The  line  length  has
-been set to 3 inch.
+been set to 3 inches.
      Now   the  left  and
      right  margins   are
      both increased.
 Calling  .in  and  .ll without
-parameters restore the  previ-
+parameters restores the previ-
 ous values.
 @endExample
 
@@ -9716,7 +9715,7 @@ single character as an argument) to change the font on the fly:
 The current style name is available in the read-only string-valued
 register @samp{.sty}; it is associated with the environment
 (@pxref{Environments}).  If the current font isn't a style,
-interpolating @samp{.sty}  produces nothing.
+interpolating @samp{.sty} produces nothing.
 
 @xref{Font Positions}, for an alternative syntax.
 @endDefreq
@@ -10551,7 +10550,7 @@ provided by the output device.  In particular, other characters can be
 translated to it with the @code{tr} or @code{trin} requests; it can be
 made the leader character with the @code{lc} request; repeated patterns
 can be drawn with it using the @code{\l} and @code{\L} escape sequences;
-and words containing@tie{}@var{g}  can be hyphenated correctly if the
+and words containing@tie{}@var{g} can be hyphenated correctly if the
 @code{hcode} request is used to give the object a hyphenation code.
 
 There is a special anti-recursion feature: use of the object within its
@@ -12911,7 +12910,7 @@ processed immediately upon recognition, can be termed
 @Defesc {\\\\, , , }
 The escape character, @code{\} by default, can escape a backslash.  This
 enables you to control whether a given @code{\n}, @code{\g}, @code{\$},
-@code{\*}, @code{\V}, or @code{\?}  escape sequence is interpreted at
+@code{\*}, @code{\V}, or @code{\?} escape sequence is interpreted at
 the time the macro containing it is defined, or later when the macro is
 called.@footnote{Compare this to the @code{\def} and @code{\edef}
 commands in @TeX{}.}
@@ -13714,7 +13713,7 @@ Examples:
 @dfn{Pile} a sequence of glyphs vertically, and center it vertically on
 the current line.  Use it to build large brackets and braces.
 
-Here an example how to create a large opening brace:
+Here is an example of how to create a large opening brace:
 
 @Example
 \b'\[lt]\[bv]\[lk]\[bv]\[lb]'

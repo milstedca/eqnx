@@ -2230,16 +2230,16 @@ Flush output buffer.
 .REQ .fp "n font"
 Mount
 .I font
-on position
+at position
 .IR n .
 .
 .TPx
 .REQ .fp "n internal external"
-Mount font with long
+Mount font with description file
 .I external
-name to short
+under the name
 .I internal
-name on position
+at position
 .IR n .
 .
 .TPx
@@ -2269,15 +2269,17 @@ are special.
 .
 .TPx
 .REQ .ft
-Return to previous font.
-Same as
+Select previous style or font;
+same as
 .esc f[]
 or
 .esc fP .
 .
 .TPx
 .REQ .ft "font"
-Change to font name or number
+Select style,
+font name,
+or mounting position
 .IR font ;
 same as
 .esc[] f font

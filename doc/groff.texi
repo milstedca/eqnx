@@ -9940,66 +9940,73 @@ A solution to this problem is to use a dummy font like the following:
 
 @c ---------------------------------------------------------------------
 
+@codequotebacktick on
+@codequoteundirected on
+
 @node Font Positions, Using Symbols, Font Families, Fonts and Symbols
 @subsection Font Positions
 @cindex font positions
 @cindex positions, font
 
-For compatibility with @acronym{AT&T} @code{troff}, GNU @code{troff}
-has the concept of font @dfn{positions} at which various fonts are
-@dfn{mounted}.
+To support typeface indirection through styles, and for compatibility
+with @acronym{AT&T} @code{troff}, GNU @code{troff} has the concept of
+font @dfn{positions}, at which various fonts are @dfn{mounted}.
 
 @DefreqList {fp, pos font [@Var{external-name}]}
 @DefregItemx {.f}
 @DefregListEndx {.fp}
 @cindex mounting font (@code{fp})
 @cindex font, mounting (@code{fp})
-Mount font @var{font} at position @var{pos} (which must be a
-non-negative integer).  This numeric index can then be referred to with
-font-changing commands.  When GNU @code{troff} starts, it uses font
-position@tie{}1 (which must exist; position@tie{}0 is unused at
-startup.@footnote{Usually.})
+Mount the font named @var{font} at position @var{pos}, a non-negative
+integer.  This numeric index can then be referred to with font selection
+instructions.  When the formatter starts up, it reads the output
+device's description to mount an initial set of faces, and selects font
+position@tie{}1.  Position@tie{}0 is unused by default.  Unless the
+@var{external-name} argument is given, the name @var{font} should be
+that of a font description file stored in a directory corresponding to
+the selected output device.@footnote{In other words, the font
+description file must be located in the same directory as the output
+device's @file{DESC} file; see @ref{Device and Font Description Files}.}
 
 @cindex font position register (@code{.f})
-The current font in use, as a font position, is available in the
-read-only register @samp{.f}.  This can be useful to save the current
-font for later recall.  It is associated with the environment
+The position of the currently selected font (or style) is available in
+the read-only register @samp{.f}.  It is associated with the environment
 (@pxref{Environments}).
 
+The value of @code{.f} can be copied to another register to save the
+current font or style for later recall.
+
 @Example
-.nr save-font \n[.f]
+.nr saved-font \n[.f]
 .ft B
-... text text text ...
-.ft \n[save-font]
+@r{@dots{}} text text text @r{@dots{}}
+.ft \n[saved-font]
 @endExample
 
 @cindex next free font position register (@code{.fp})
-The index of the next free font position is available in the read-only
-register @samp{.fp}.  This is useful when mounting a new font, like so:
-
-@Example
-.fp \n[.fp] NEATOFONT
-@endExample
-
+The index of the next (nonzero) free font position is available in the
+read-only register @samp{.fp}.
 @cindex @file{DESC} file, and font mounting
-Fonts not listed in the @file{DESC} file are automatically mounted on
-the next available font position when they are referenced.  If a font is
-to be mounted explicitly with the @code{fp} request on an unused font
-position, it should be mounted on the first unused font position, which
-can be found in the @code{.fp} register, although GNU @code{troff} does
-not enforce this strictly.
+Fonts not listed in the @file{DESC} file are automatically mounted at
+position @samp{\n[.fp]} when selected.  When mounting a font at a
+position explicitly with the @code{fp} request, this same practice
+should be followed, although GNU @code{troff} does not enforce this
+strictly.
 
-The @code{fp} request has an optional third argument.  This argument
-gives the external name of the font, which is used for finding the font
-description file.  The second argument gives the internal name of the
-font, which is used to refer to the font in @code{gtroff} after it has
-been mounted.  If there is no third argument then the internal name is
-used as the external name.  This feature makes it possible to use fonts
-with long names in compatibility mode.
+The optional third argument @var{external-name} is the name of a font
+description file in the operating environment.  GNU @code{troff} refuses
+to traverse directories to locate the font description.  The second
+argument @var{font} is then the internal name of the font, which
+identifies it to GNU @code{troff} once it has been mounted.  If there is
+no third argument, the font description is sought in the file system
+under its internal name.  This feature enables font names to be aliased,
+which can be necessary in compatibility mode since AT&T @code{troff}
+syntax affords no means of loading fonts with names longer than two
+characters, like @samp{TBI} or @samp{ZCMI}.  @xref{Compatibility Mode}.
 @endDefreq
 
-Both the @code{ft} request and the @code{\f} escape have alternative
-syntax forms to access font positions.
+The @code{ft} request and @code{\f} escape sequence accept mounting
+positions in the place of font or style names.
 
 @DefreqList {ft, nnn}
 @DefescItemx {\\f, , n, }
@@ -10013,14 +10020,12 @@ syntax forms to access font positions.
 @kindex styles
 @kindex family
 @pindex DESC
-Change the current font position to @var{nnn} (one-digit
-position@tie{}@var{n}, two-digit position @var{nn}), which must be a
-non-negative integer.
-
-If @var{nnn} is associated with a style (as set with the @code{sty}
-request or with the @code{styles} command in the @file{DESC} file), use
-it within the current font family (as set with the @code{fam} request,
-the @code{\F} escape, or the @code{family} command in the
+Select font position @var{nnn} (one-digit position@tie{}@var{n},
+two-digit position @var{nn}), which must be a non-negative integer.  If
+@var{nnn} is associated with a style (as set with the @code{sty} request
+or with the @code{styles} command in the @file{DESC} file), use it
+within the current font family (as set with the @code{fam} request, the
+@code{\F} escape sequence, or the @code{family} command in the
 @file{DESC} file).
 
 @Example
@@ -10034,13 +10039,10 @@ this is font 3
 this is font 1 again
 @endExample
 
-@xref{Changing Fonts}, for the standard syntax form.
+@xref{Changing Fonts}, for font selection by name.
 @endDefreq
 
 @c ---------------------------------------------------------------------
-
-@codequotebacktick on
-@codequoteundirected on
 
 @node Using Symbols, Character Classes, Font Positions, Fonts and Symbols
 @subsection Using Symbols

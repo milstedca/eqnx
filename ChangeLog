@@ -1,5 +1,13 @@
 2022-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (font_position): If mounting a font
+	fails and a third argument was given (to the `fp` request),
+	report its value in the diagnostic message.  This could reveal a
+	prohibited attempt at directory traversal.  See commit
+	a891161bc9, 7 November.
+
+2022-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/libs/libgroff/fontfile.cpp (font::open_file): Refactor.
 	Move more logic, including memory allocation, inside conditional
 	that accepts only file names without '/' characters, skipping

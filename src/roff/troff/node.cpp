@@ -6049,9 +6049,15 @@ void font_position()
       symbol internal_name = get_name(true /* required */);
       if (!internal_name.is_null()) {
 	symbol external_name = get_long_name();
-	if (!mount_font(n, internal_name, external_name))
-	  error("cannot load font '%1' for mounting",
-		internal_name.contents());
+	if (!mount_font(n, internal_name, external_name)) {
+	  string msg;
+	  if (external_name != 0 /* nullptr */)
+	    msg += string(" from file '") + external_name.contents()
+	      + string("'");
+	  msg += '\0';
+	  error("cannot load font '%1'%2 for mounting",
+		internal_name.contents(), msg.contents());
+	}
       }
     }
   }

@@ -1672,7 +1672,7 @@ The value of this variable is passed to the
 .IR preconv (@MAN1EXT@)
 preprocessor's
 .B \-e
-option to set the encoding of input files.
+option to select the character encoding of input files.
 .
 This variable's existence implies
 the

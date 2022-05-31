@@ -1345,14 +1345,13 @@ used, none otherwise.
 
 @item GROFF_ENCODING
 @tindex GROFF_ENCODING@r{, environment variable}
-The value of this environment variable is passed to the @code{preconv}
-preprocessor to select the encoding of input files.  Setting this
-variable implies @code{groff}'s command-line option @option{-k} (that
-is, @code{groff} always calls @code{preconv}).  If set without a value,
-@code{groff} calls @code{preconv} without arguments.  An explicit
-@option{-K} command-line option overrides the value of
-@env{GROFF_ENCODING}.  See the @cite{preconv@r{(7)}} man page; type
-@samp{man preconv} at the command line to view it.
+The value of this variable is passed to the @code{preconv}
+preprocessor's @option{-e} option to select the character encoding of
+input files.  This variable's existence implies the @code{groff} option
+@option{-k}.  If set but empty, @code{groff} calls @code{preconv}
+without an @option{-e} option.  @code{groff}'s @option{-K} option
+overrides @env{GROFF_ENCODING}.  See the @cite{preconv@r{(7)}} man page;
+type @samp{man preconv} at the command line to view it.
 
 @item GROFF_FONT_PATH
 @tindex GROFF_FONT_PATH@r{, environment variable}

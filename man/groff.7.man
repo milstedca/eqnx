@@ -3886,16 +3886,13 @@ environment,
 or font,
 and\~0 otherwise.
 .
-.
 .TP
-.ESCq b abc\fR\&.\|.\|.\&\fP
+.ESCq b string
 Build bracket:
-stack glyphs
-.IR a ,
-.IR b ,
-.IR c .\|.\|.\&
-vertically.
-.
+pile a sequence of glyphs corresponding to each character in
+.I string
+vertically,
+and center it vertically on the output line.
 .
 .TP
 .ESCq B anything

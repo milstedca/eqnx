@@ -13706,38 +13706,41 @@ Examples:
 
 @xref{Graphics Commands}.
 
+@codequotebacktick on
+@codequoteundirected on
+
 @Defesc {\\b, @code{'}, string, @code{'}}
 @cindex pile, glyph (@code{\b})
 @cindex glyph pile (@code{\b})
 @cindex stacking glyphs (@code{\b})
-@dfn{Pile} a sequence of glyphs vertically, and center it vertically on
-the current line.  Use it to build large brackets and braces.
+Pile and center a sequence of glyphs vertically on the output line.
+@dfn{Piling} vertically stacks glyphs corresponding to each character in
+the argument @var{string}, read from left to right, and placed from top
+to bottom.  GNU @code{troff} separates the glyphs vertically by
+1@dmn{m}, and the pile itself is centered 0.5@dmn{m} above the text
+baseline.  The horizontal drawing position is then advanced by the width
+of the widest glyph in the pile.
 
-Here is an example of how to create a large opening brace:
+@cindex @code{\b}, limitations of
+@cindex limitations of @code{\b} escape sequence
+This rather inflexible positioning algorithm doesn't work with the
+@code{dvi} output device since its bracket pieces vary in height.
+Instead, use the @code{geqn} preprocessor.
+
+@xref{Manipulating Spacing}, to see how to adjust the vertical spacing
+of the output line with the @code{\x} escape sequence.
+
+The idiomatic use of @code{\b} is for building large brackets and
+braces, hence its name.  We might construct a large opening brace as
+follows.
 
 @Example
 \b'\[lt]\[bv]\[lk]\[bv]\[lb]'
 @endExample
-
-@cindex @code{\b}, limitations
-@cindex limitations of @code{\b} escape
-The first glyph is on the top, the last glyph in @var{string} is at the
-bottom.  GNU @code{troff} separates the glyphs vertically by 1@dmn{m},
-and the whole object is centered 0.5@dmn{m} above the current baseline;
-the largest glyph width is used as the width for the whole object.
-This rather inflexible positioning algorithm doesn't work with
-@option{-Tdvi} since the bracket pieces vary in height for this device.
-Instead, use the @code{eqn} preprocessor.
-
-@xref{Manipulating Spacing}, how to adjust the vertical spacing with the
-@code{\x} escape sequence.
 @endDefesc
 
 
 @c =====================================================================
-
-@codequotebacktick on
-@codequoteundirected on
 
 @node Deferring Output, Traps, Drawing Requests, gtroff Reference
 @section Deferring Output

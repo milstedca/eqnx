@@ -1,5 +1,10 @@
 2022-05-31  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* configure.ac (AC_INIT): Add `--fallback` argument to
+	`git-version-gen` to facilitate snapshot builds.
+
+2022-05-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: Report use of "g" prefix for commands and macro
 	package compatibility wrappers.
 	* m4/groff.m4 (GROFF_G): Fix code style nits.  Update

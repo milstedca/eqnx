@@ -6588,6 +6588,9 @@
 	* src/preproc/grn/main.cpp:
 	* src/preproc/grn/hdb.cpp: Drop use of `register` storage class.
 
+	Fixes <https://savannah.gnu.org/bugs/?57733>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
 	* src/preproc/grn/hgraph.cpp (len, HGPrintElt, picurve):
 	* src/preproc/grn/hdb.cpp (DBRead): Wrap long lines.
 

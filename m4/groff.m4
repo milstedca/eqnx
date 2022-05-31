@@ -1052,16 +1052,20 @@ AC_DEFUN([GROFF_TMAC],
 
 # Searching if a non-GNU Troff is installed.  The built-in register
 # \n[.g] is always 1 in GNU Troff.
-AC_DEFUN([GROFF_G],
-  [AC_MSG_CHECKING([for existing troff installation])
-   if test "`(echo .tm '|n(.g' | tr '|' '\\\\' | troff -z -i 2>&1) 2>/dev/null`" = 0; then
-     AC_MSG_RESULT([yes])
-     g=g
-   else
-     AC_MSG_RESULT([no])
-     g=
-   fi
-   AC_SUBST([g])])
+AC_DEFUN([GROFF_G], [
+  g=
+  AC_MSG_CHECKING([for existing troff installation])
+  if test "`(echo .tm '|n(.g' | tr '|' '\\\\' | troff -z -i 2>&1) \
+    2>/dev/null`" = 0
+  then
+    AC_MSG_RESULT([yes])
+    g=g
+  else
+    AC_MSG_RESULT([no])
+  fi
+  AC_SUBST([g])
+])
+
 
 # Controllable groff compatibility wrappers for vendor-provided macro sets
 #

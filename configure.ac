@@ -194,7 +194,8 @@ AM_CONDITIONAL([WITHOUT_X11], [test "$groff_no_x" = yes])
 # make builtin variable RM
 AM_CONDITIONAL([MAKE_DONT_HAVE_RM], [test "$groff_is_rm_defined" = no])
 
-# Some programs have a "g" prefix if an existing groff installation is detected
+# Some programs have a "g" prefix if an existing troff installation is
+# detected.
 AM_CONDITIONAL([USEPROGRAMPREFIX], [test "$g" = g])
 
 AM_CONDITIONAL([USE_GROHTML], [test "$use_grohtml" = yes])
@@ -210,7 +211,18 @@ AC_OUTPUT
 echo "
 $PACKAGE_NAME version $PACKAGE_VERSION
 ----------------------------------------------------------------------
- installation directory prefix    : $prefix
+ installation directory prefix    : $prefix"
+if test -n "$g"
+then
+  echo "\
+ command name prefix              : $g"
+  if test -n "$tmac_wrap"
+  then
+  echo "\
+ prefix used for macro packages   : $tmac_wrap"
+  fi
+fi
+echo "\
  C++ compiler and options         : $CXX $CXXFLAGS $CPPFLAGS
  use libgroff's memory allocator  : $groff_use_own_allocator
  C compiler and options           : $CC $CFLAGS $CPPFLAGS

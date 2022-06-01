@@ -260,6 +260,9 @@
 	* m4/groff.m4 (GROFF_UCHARDET_NOTICE): Tighten wording of
 	message reported to user.
 
+	Fixes <https://savannah.gnu.org/bugs/?59481>.  Thanks to Dave
+	Kemper for the report.
+
 2022-05-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m4/groff.m4 (GROFF_PNMTOOLS_CAN_BE_QUIET,
@@ -1040,6 +1043,8 @@
 	instead.  Helps compilers determine that we're not implicitly
 	falling through our cases.  Addresses "-Wimplicit-fallthrough"
 	warnings from GCC.
+
+	Fixes https://savannah.gnu.org/bugs/?54702>.
 
 2022-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -5203,6 +5208,13 @@
 	its sense; rename `unknown_color` to `is_known_color`.
 	(tty_printer::color_to_idx): Invert sense of test at
 	`tty_color()` call site.
+
+2021-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[ms]: Finish documenting new `TC-MARGIN` register and
+	`TC-LEADER` special character.
+
+	Fixes <https://savannah.gnu.org/bugs/?61157>.
 
 2021-10-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 

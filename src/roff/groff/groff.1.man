@@ -1937,9 +1937,9 @@ On this installation,
 the following locations are used.
 .
 .
-.if !'@APPRESDIR@'' \{\
+.if !'@APPDEFDIR@'' \{\
 .TP
-.I @APPRESDIR@
+.I @APPDEFDIR@
 Application defaults directory for
 .MR gxditview @MAN1EXT@ .
 .\}

@@ -195,8 +195,8 @@ systemtmacdir=$(libprogramdir)/site-tmac
 # `localtmacdir' says where local files will be installed.
 localtmacdir=$(dataprogramdir)/site-tmac
 
-# appresdir
-# `appresdir' says where to install the application resource file for
+# appdefdir
+# `appdefdir' says where to install the application defaults file for
 # gxditview.
 
 # glilypond_dir
@@ -858,7 +858,7 @@ SUFFIXES += .man
 	$(AM_V_GEN)rm -f $@ \
 	&& $(MKDIR_P) `dirname $@` \
 	&& LC_ALL=C \
-	 sed -e "s|[@]APPRESDIR[@]|`echo $(appresdir) | sed -f $(makevarescape)`|g" \
+	 sed -e "s|[@]APPDEFDIR[@]|`echo $(appdefdir) | sed -f $(makevarescape)`|g" \
 	     -e "s|[@]BINDIR[@]|`echo $(bindir) | sed -f $(makevarescape)`|g" \
 	     -e "s|[@]COMMON_WORDS_FILE[@]|`echo $(common_words_file) | sed -f $(makevarescape)`|g" \
 	     -e "s|[@]DATASUBDIR[@]|`echo $(datasubdir) | sed -f $(makevarescape)`|g" \

@@ -96,16 +96,16 @@ install_xditview: \
 	$(MKDIR_P) $(DESTDIR)$(fontdir)
 	$(INSTALL_DATA) $(xditview_srcdir)/FontMap-X11 \
 	  $(DESTDIR)$(fontdir)/FontMap-X11
-	-test -d $(DESTDIR)$(appresdir) \
-	  || $(mkinstalldirs) $(DESTDIR)$(appresdir)
+	-test -d $(DESTDIR)$(appdefdir) \
+	  || $(mkinstalldirs) $(DESTDIR)$(appdefdir)
 	$(INSTALL_DATA) $(xditview_srcdir)/GXditview.ad \
-	  $(DESTDIR)$(appresdir)/GXditview
+	  $(DESTDIR)$(appdefdir)/GXditview
 	$(INSTALL_DATA) $(xditview_srcdir)/GXditview-color.ad \
-	  $(DESTDIR)$(appresdir)/GXditview-color
+	  $(DESTDIR)$(appdefdir)/GXditview-color
 
 uninstall_xditview:
-	rm -f $(DESTDIR)$(appresdir)/GXditview
-	rm -f $(DESTDIR)$(appresdir)/GXditview-color
+	rm -f $(DESTDIR)$(appdefdir)/GXditview
+	rm -f $(DESTDIR)$(appdefdir)/GXditview-color
 	rm -f $(DESTDIR)$(fontdir)/FontMap-X11
 	-rmdir $(DESTDIR)$(fontdir) 2>/dev/null
 

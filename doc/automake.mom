@@ -730,15 +730,15 @@ uninstall-local: uninstall_xditview
 .SP
 [...]
 install_xditview: $(xditview_srcdir)/GXditview.ad
-        -test -d $(DESTDIR)$(appresdir) \\
-          || $(mkinstalldirs) $(DESTDIR)$(appresdir)
-        if test -f $(DESTDIR)$(appresdir)/GXditview; then \\
-          mv $(DESTDIR)$(appresdir)/GXditview \\
-            $(DESTDIR)$(appresdir)/GXditview.old; \\
+        -test -d $(DESTDIR)$(appdefdir) \\
+          || $(mkinstalldirs) $(DESTDIR)$(appdefdir)
+        if test -f $(DESTDIR)$(appdefdir)/GXditview; then \\
+          mv $(DESTDIR)$(appdefdir)/GXditview \\
+            $(DESTDIR)$(appdefdir)/GXditview.old; \\
         fi
         [...]
         $(INSTALL_DATA) $(xditview_srcdir)/GXditview.ad \\
-          $(DESTDIR)$(appresdir)/GXditview
+          $(DESTDIR)$(appdefdir)/GXditview
 .CODE OFF
 .QUOTE OFF
 .PP

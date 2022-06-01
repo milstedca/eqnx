@@ -55,8 +55,8 @@ GROFF_EBCDIC
 GROFF_OS390
 GROFF_CMD_FILES
 GROFF_X11
-GROFF_APPRESDIR_OPTION
-GROFF_APPRESDIR_DEFAULT
+GROFF_APPDEFDIR_OPTION
+GROFF_APPDEFDIR_DEFAULT
 GROFF_LIBPROGRAMDIR_DEFAULT
 GROFF_GLILYPONDDIR_DEFAULT
 GROFF_GPINYINDIR_DEFAULT
@@ -235,7 +235,7 @@ then
 else
   echo "\
  X11 support                      : enabled
- X11 app defaults directory       : $appresdir"
+ X11 app defaults directory       : $appdefdir"
 fi
 echo "\
  'groff -l' uses print spooler    : $groff_have_spooler
@@ -245,7 +245,7 @@ echo "\
 echo "\
 ----------------------------------------------------------------------"
 
-GROFF_APPRESDIR_CHECK
+GROFF_APPDEFDIR_NOTICE
 GROFF_URW_FONTS_NOTICE
 GROFF_UCHARDET_NOTICE
 GROFF_GHOSTSCRIPT_VERSION_NOTICE

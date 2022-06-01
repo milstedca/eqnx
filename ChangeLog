@@ -1,5 +1,30 @@
 2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* configure.ac:
+	* m4/groff.m4 (GROFF_APPDEFDIR_OPTION, GROFF_APPDEFDIR_DEFAULT,
+	GROFF_APPDEFDIR_CHECK): Rename m4 macros and shell variable from
+	"*appres*" to "*appdef*.  Update interpolation sites.
+
+	* configure.ac:
+	* m4/groff.m4 (GROFF_APPDEFDIR_CHECK): Further rename this...
+	(GROFF_APPDEFDIR_NOTICE): ...to this, for consistency with other
+	post-report output macros.
+
+	* Makefile.am:
+	* PROBLEMS:
+	* doc/automake.mom:
+	* src/devices/xditview/xditview.am: Update interpolation sites
+	of `appresdir`.
+
+	* Makefile.am:
+	* src/devices/xditview/gxditview.1.man:
+	* src/roff/groff/groff.1.man: Update interpolation sites of
+	`APPRESDIR`.
+
+	* NEWS: Add item.
+
+2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_X11, GROFF_UCHARDET): Drop redundant
 	messages (which are easily overlooked amid the torrent of
 	"checking" output anyway).  Discovery failures of X11 and the

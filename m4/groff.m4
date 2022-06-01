@@ -1550,12 +1550,12 @@ AC_DEFUN([GROFF_X11], [
 ])
 
 
-# Set up the '--with-appresdir' command-line option.
+# Set up the '--with-appdefdir' command-line option.
 
 # Don't quote AS_HELP_STRING!
-AC_DEFUN([GROFF_APPRESDIR_OPTION],
-  [AC_ARG_WITH([appresdir],
-     AS_HELP_STRING([--with-appresdir=DIR],
+AC_DEFUN([GROFF_APPDEFDIR_OPTION],
+  [AC_ARG_WITH([appdefdir],
+     AS_HELP_STRING([--with-appdefdir=DIR],
 		    [X11 application defaults files]))])
 
 
@@ -1564,41 +1564,41 @@ AC_DEFUN([GROFF_APPRESDIR_OPTION],
 # We ignore the 'XAPPLRES' and 'XUSERFILESEARCHPATH' environment
 # variables.
 #
-# By default if --with-appresdir is not used, we will install the
+# By default if --with-appdefdir is not used, we will install the
 # gxditview application defaults in $prefix/lib/X11/app-defaults.
 #
-# Note that if --with-appresdir was passed to 'configure', no prefix is
-# added to 'appresdir'.
+# Note that if --with-appdefdir was passed to 'configure', no prefix is
+# added to 'appdefdir'.
 
-AC_DEFUN([GROFF_APPRESDIR_DEFAULT],
+AC_DEFUN([GROFF_APPDEFDIR_DEFAULT],
   [if test -z "$groff_no_x"; then
-     if test -z "$with_appresdir"; then
+     if test -z "$with_appdefdir"; then
        if test "$prefix" = NONE; then
-         appresdir=$ac_default_prefix/lib/X11/app-defaults
+         appdefdir=$ac_default_prefix/lib/X11/app-defaults
        else
-         appresdir=$prefix/lib/X11/app-defaults
+         appdefdir=$prefix/lib/X11/app-defaults
        fi
      else
-       appresdir=$with_appresdir
+       appdefdir=$with_appdefdir
      fi
    fi
-   AC_SUBST([appresdir])])
+   AC_SUBST([appdefdir])])
 
-# Emit warning if --with-appresdir hasn't been used.
+# Emit warning if --with-appdefdir hasn't been used.
 
-AC_DEFUN([GROFF_APPRESDIR_CHECK],
+AC_DEFUN([GROFF_APPDEFDIR_NOTICE],
   [if test -z "$groff_no_x"; then
-     if test -z "$with_appresdir"; then
+     if test -z "$with_appdefdir"; then
        AC_MSG_NOTICE([
   The application defaults files for gxditview (GXditview and
   GXditview-color) will be installed in the following directory.
 
-    $appresdir
+    $appdefdir
 
   To install elsewhere, say, '/etc/X11/app-defaults', add
-  '--with-appresdir=/etc/X11/app-defaults' to the configure script
+  '--with-appdefdir=/etc/X11/app-defaults' to the configure script
   command-line options and rerun it (the 'prefix' value has no effect on
-  a --with-appresdir option).
+  a --with-appdefdir option).
 
   If the gxditview app-defaults are installed in a directory that is not
   one of the default X11 directories for this purpose (common defaults

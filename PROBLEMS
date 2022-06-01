@@ -479,7 +479,7 @@ Make sure that the paper size is `letter'.  See groff_tmac(5).
 This error means you haven't correctly installed the application
 defaults file, GXditview.ad; `make install' does this for you
 automatically, so either you didn't do `make install', or you haven't
-passed a good `--appresdir=<DIR>' argument to groff's configure
+passed a good `--appdefdir=<DIR>' argument to groff's configure
 script.
 
 See the X(7) man page for information how and where application

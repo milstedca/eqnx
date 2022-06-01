@@ -451,6 +451,9 @@ o New 'configure' options --{en,dis}able-groff-allocator control whether
     configure --enable-groff-allocator
   to re-enable groff's traditional allocator.
 
+o The 'configure' option '--with-appresdir' has been renamed to
+  '--with-appdefdir'.
+
 o Italian language input documents are now supported, including
   hyphenation patterns from the hyph-utf8 project and localized strings
   for the ms, me, mm, and mom packages.  Thanks to Edmond Orignac.

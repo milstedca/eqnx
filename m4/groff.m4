@@ -1490,61 +1490,64 @@ make an error "Path separator is ';'"
 
 # Check for X11.
 
-AC_DEFUN([GROFF_X11],
-  [AC_REQUIRE([AC_PATH_XTRA])
-   groff_no_x=$no_x
-   if test -z "$groff_no_x"; then
-     OLDCFLAGS=$CFLAGS
-     OLDLDFLAGS=$LDFLAGS
-     OLDLIBS=$LIBS
-     CFLAGS="$CFLAGS $X_CFLAGS"
-     LDFLAGS="$LDFLAGS $X_LIBS"
-     LIBS="$LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
+AC_DEFUN([GROFF_X11], [
+  AC_REQUIRE([AC_PATH_XTRA])
+  groff_no_x=$no_x
+  if test -z "$groff_no_x"
+  then
+    OLDCFLAGS=$CFLAGS
+    OLDLDFLAGS=$LDFLAGS
+    OLDLIBS=$LIBS
+    CFLAGS="$CFLAGS $X_CFLAGS"
+    LDFLAGS="$LDFLAGS $X_LIBS"
+    LIBS="$LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
 
-     LIBS="$LIBS -lXaw"
-     AC_MSG_CHECKING([for Xaw library and header files])
-     AC_LINK_IFELSE([
-	 AC_LANG_PROGRAM([[
+    LIBS="$LIBS -lXaw"
+    AC_MSG_CHECKING([for Xaw library and header files])
+    AC_LINK_IFELSE([
+      AC_LANG_PROGRAM([[
 
 #include <X11/Intrinsic.h>
 #include <X11/Xaw/Simple.h>
 
-	 ]],
-	 [])
-       ],
-       [AC_MSG_RESULT([yes])],
-       [AC_MSG_RESULT([no])
-	groff_no_x="yes"])
+        ]],
+        [])
+      ],
+      [AC_MSG_RESULT([yes])],
+      [AC_MSG_RESULT([no])
+      groff_no_x=yes])
 
-     LIBS="$LIBS -lXmu"
-     AC_MSG_CHECKING([for Xmu library and header files])
-     AC_LINK_IFELSE([
-	 AC_LANG_PROGRAM([[
+    LIBS="$LIBS -lXmu"
+    AC_MSG_CHECKING([for Xmu library and header files])
+    AC_LINK_IFELSE([
+      AC_LANG_PROGRAM([[
 
 #include <X11/Intrinsic.h>
 #include <X11/Xmu/Converters.h>
 
-	 ]],
-	 [])
-       ],
-       [AC_MSG_RESULT([yes])],
-       [AC_MSG_RESULT([no])
-	groff_no_x="yes"])
+        ]],
+        [])
+      ],
+      [AC_MSG_RESULT([yes])],
+      [AC_MSG_RESULT([no])
+      groff_no_x=yes])
 
-     CFLAGS=$OLDCFLAGS
-     LDFLAGS=$OLDLDFLAGS
-     LIBS=$OLDLIBS
-   fi
+    CFLAGS=$OLDCFLAGS
+    LDFLAGS=$OLDLDFLAGS
+    LIBS=$OLDLIBS
+  fi
 
-  if ! test "$groff_no_x" = yes; then
+  if ! test "$groff_no_x" = yes
+  then
     XDEVDIRS="font/devX75 font/devX75-12 font/devX100 font/devX100-12"
     XPROGDIRS="src/devices/xditview src/utils/xtotroff"
     XLIBDIRS="src/libs/libxutil"
   fi
 
-   AC_SUBST([XDEVDIRS])
-   AC_SUBST([XPROGDIRS])
-   AC_SUBST([XLIBDIRS])])
+  AC_SUBST([XDEVDIRS])
+  AC_SUBST([XPROGDIRS])
+  AC_SUBST([XLIBDIRS])
+])
 
 
 # Set up the '--with-appresdir' command-line option.

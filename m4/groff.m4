@@ -1645,8 +1645,8 @@ AC_DEFUN([GROFF_PROG_XPMTOPPM],
 
 # Check for make built-in variable RM.
 
-AC_DEFUN([GROFF_MAKE_RM], [
-  AC_MSG_CHECKING(whether make has built-in variable 'RM')
+AC_DEFUN([GROFF_MAKE_DEFINES_RM], [
+  AC_MSG_CHECKING(whether make defines 'RM')
   cat <<EOF > test_make_rm.mk
 all:
 	@if test -n "\$(RM)"; \
@@ -1656,8 +1656,8 @@ all:
 	   echo no; \
 	fi
 EOF
-  groff_is_rm_defined=`make -sf test_make_rm.mk`
-  AC_MSG_RESULT([$groff_is_rm_defined])
+  groff_make_defines_rm=`make -sf test_make_rm.mk`
+  AC_MSG_RESULT([$groff_make_defines_rm])
   rm -f test_make_rm.mk
 ])
 

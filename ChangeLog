@@ -1,5 +1,24 @@
 2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Rename shell variables and Autoconf/Automake macros of
+	Boolean sense to have names more like logical predicates and
+	avoid doofy "DONT" nomenclature.
+
+	* m4/groff.m4 (GROFF_MAKE_RM): Rename shell variable
+	`groff_is_rm_defined` to `groff_make_defines_rm` (purely for
+	clarity; it already had a good name).
+	(GROFF_MAKE_RM): Rename this...
+	(GROFF_MAKE_DEFINES_RM): to this, to make parallelism obvious,
+	and enabling...
+	* configure.ac: ...rename of `MAKE_DONT_HAVE_RM` to
+	`MAKE_DEFINES_RM` with sense of test reversed.  Also interpolate
+	`GROFF_MAKE_DEFINES_RM` instead of `GROFF_MAKE_RM`.  This in
+	turn enables...
+	* Makefile.am: ...revision of conditional from
+	`MAKE_DONT_HAVE_RM` to "!`MAKE_DEFINES_RM`".
+
+2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_URW_FONTS_PATH,
 	GROFF_WITH_COMPATIBILITY_WRAPPERS, GROFF_APPDEFDIR_OPTION,
 	GROFF_UCHARDET): Recast help strings to more closely parallel

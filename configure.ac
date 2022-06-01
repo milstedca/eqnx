@@ -168,7 +168,7 @@ GROFF_CHECK_GROHTML_PROGRAMS
 GROFF_CHECK_GROPDF_PROGRAMS
 GROFF_PNMTOOLS_CAN_BE_QUIET
 GROFF_PNMTOPS_NOSETPAGE
-GROFF_MAKE_RM
+GROFF_MAKE_DEFINES_RM
 GROFF_DIFF_D
 GROFF_HAVE_TEST_EF_OPTION
 GROFF_BASH
@@ -192,8 +192,7 @@ AM_CONDITIONAL([BUILD_WINSCRIPTS], [test -n "$make_winscripts"])
 # src/libs/libxutil
 AM_CONDITIONAL([WITHOUT_X11], [test "$groff_no_x" = yes])
 
-# make builtin variable RM
-AM_CONDITIONAL([MAKE_DONT_HAVE_RM], [test "$groff_is_rm_defined" = no])
+AM_CONDITIONAL([MAKE_DEFINES_RM], [test "$groff_make_defines_rm" = yes])
 
 # Some programs have a "g" prefix if an existing troff installation is
 # detected.

@@ -1,5 +1,13 @@
 2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_URW_FONTS_PATH,
+	GROFF_WITH_COMPATIBILITY_WRAPPERS, GROFF_APPDEFDIR_OPTION,
+	GROFF_UCHARDET): Recast help strings to more closely parallel
+	structure any style of Autoconf's own help strings.
+	(GROFF_WITH_COMPATIBILITY_WRAPPERS): Recast to tighten wording.
+
+2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac:
 	* m4/groff.m4 (GROFF_APPDEFDIR_OPTION, GROFF_APPDEFDIR_DEFAULT,
 	GROFF_APPDEFDIR_CHECK): Rename m4 macros and shell variable from

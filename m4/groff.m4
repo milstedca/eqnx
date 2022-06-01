@@ -276,7 +276,7 @@ AC_DEFUN([GROFF_GROPDF_PROGRAM_NOTICE], [
 AC_DEFUN([GROFF_URW_FONTS_PATH], [
   AC_ARG_WITH([urw-fonts-dir],
     [AS_HELP_STRING([--with-urw-fonts-dir=DIR],
-      [Search for URW fonts in this directory])],
+      [search for URW PostScript Type 1 fonts in DIR])],
     [urwfontsdir="$withval"])
   AC_SUBST(urwfontsdir)])
 ])
@@ -1162,23 +1162,22 @@ AC_DEFUN([GROFF_G], [
 
 AC_DEFUN([GROFF_WITH_COMPATIBILITY_WRAPPERS],
   [AC_ARG_WITH([compatibility-wrappers],
-    [AS_HELP_STRING([--with-compatibility-wrappers[[=VALUE]]],
+    [AS_HELP_STRING([--with-compatibility-wrappers[={check|manual|no|yes}]],
       [choose whether and how groff compatibility wrappers for \
-       vendor-provided non-GNU macro sets are installed. VALUE can be \
-       'check', 'yes', 'no' or 'manual'. \
-       'check' (the default) checks for the existence of vendor-provided \
-       non-GNU macro sets, and implements the 'yes' or 'no' option \
-       accordingly. \
-       'yes' generates compatibility wrappers for vendor-provided non-GNU \
-       macro sets to allow their use with groff-based tools. The \
-       compatibility wrappers are installed with the original macro set name, \
-       while groff implementation of these macro sets are installed with a \
-       'g' prefix. Thus use of the groff implementation of these macro sets \
-       requires use of the '-mg<macro>' option (example: -mgan). \
-       'no' only installs the groff implementation of macro sets. \
-       'manual' generates compatibility wrappers for vendor-provided non-GNU \
-       macro sets as '<macro>-os'. Use of these groff compatibility wrappers \
-       (for vendor-provided non-GNU macro sets) requires the use of the \
+       vendor-provided non-GNU macro packages are installed. \
+       'check' searches for such packages, and behaves as if 'yes' or \
+       'no' were given, accordingly. \
+       'yes' generates compatibility wrappers for the vendor-provided \
+       packages to allow their use with groff and related tools. \
+       The compatibility wrappers are installed using the
+       vendor-provided names, while their groff implementations are \
+       installed with a 'g' prefix. \
+       Use of the latter thus requires options of the form
+       '-mg<package>' (example: -mgan). \
+       'no' installs only the groff implementations.
+       'manual' generates compatibility wrappers for the \
+       vendor-provided packages as '<macro>-os'. \
+       Use of the latter thus requires options of the form
        '-m<macro>-os' option (example: -man-os).])],
     [compatibility_wrappers="$withval"],
     [compatibility_wrappers="check"])
@@ -1556,7 +1555,7 @@ AC_DEFUN([GROFF_X11], [
 AC_DEFUN([GROFF_APPDEFDIR_OPTION],
   [AC_ARG_WITH([appdefdir],
      AS_HELP_STRING([--with-appdefdir=DIR],
-		    [X11 application defaults files]))])
+		    [place X11 application defaults files in DIR]))
 
 
 # Get a default value for the application defaults directory.
@@ -1693,9 +1692,9 @@ AC_DEFUN([GROFF_BASH],
 
 AC_DEFUN([GROFF_UCHARDET], [
   AC_ARG_WITH([uchardet],
-    AS_HELP_STRING([--with-uchardet],
-      [Build 'preconv' with uchardet library to automatically detect \
-file encoding [=auto|no|yes]]))
+    AS_HELP_STRING([--with-uchardet={auto|no|yes}],
+      [build 'preconv' against uchardet library to automatically \
+detect input file encoding]))
     AS_IF([test "$with_uchardet" != no],
       [PKG_CHECK_MODULES([UCHARDET],
         [uchardet >= 0.0.1],

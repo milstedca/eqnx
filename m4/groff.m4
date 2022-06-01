@@ -81,14 +81,16 @@ AC_DEFUN([GROFF_PROG_YACC], [
 
 # We need Perl 5.6.1 or newer.
 
-AC_DEFUN([GROFF_PERL],
-  [PERLVERSION=v5.6.1
-   AC_PATH_PROG([PERL], [perl], [no])
-   if test "$PERL" = no; then
-     AC_MSG_ERROR([perl binary not found], 1)
-   fi
-   AX_PROG_PERL_VERSION([$PERLVERSION], true, \
-     AC_MSG_ERROR([perl version is too old], 1))])
+AC_DEFUN([GROFF_PERL], [
+  PERLVERSION=v5.6.1
+  AC_PATH_PROG([PERL], [perl], [no])
+  if test "$PERL" = no
+  then
+    AC_MSG_ERROR([perl binary not found], 1)
+  fi
+  AX_PROG_PERL_VERSION([$PERLVERSION], true,
+    AC_MSG_ERROR([perl version is too old], 1))
+])
 
 # We need m4 to generate some man pages.
 
@@ -329,6 +331,7 @@ AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
   if test "$GHOSTSCRIPT" != missing && test "$groff_have_urw_fonts" = no
   then
     AC_MSG_NOTICE([URW fonts in Type 1/PFB format were not found.
+
   URW font generation for groff's 'gropdf' output driver will not work
   properly.  You can obtain the URW base 35 fonts from their GitHub
   project.
@@ -1549,13 +1552,16 @@ AC_DEFUN([GROFF_X11], [
 ])
 
 
-# Set up the '--with-appdefdir' command-line option.
+# Interpret the '--with-appdefdir' command-line option.
 
-# Don't quote AS_HELP_STRING!
-AC_DEFUN([GROFF_APPDEFDIR_OPTION],
-  [AC_ARG_WITH([appdefdir],
-     AS_HELP_STRING([--with-appdefdir=DIR],
-		    [place X11 application defaults files in DIR]))
+dnl Don't quote AS_HELP_STRING!
+dnl
+dnl TODO: Include the computed default in the RHS of the help string.
+AC_DEFUN([GROFF_APPDEFDIR_OPTION], [
+  AC_ARG_WITH([appdefdir],
+    AS_HELP_STRING([--with-appdefdir=DIR],
+      [place X11 application defaults files in DIR]))
+])
 
 
 # Get a default value for the application defaults directory.
@@ -1588,7 +1594,9 @@ AC_DEFUN([GROFF_APPDEFDIR_DEFAULT],
 AC_DEFUN([GROFF_APPDEFDIR_NOTICE],
   [if test -z "$groff_no_x"; then
      if test -z "$with_appdefdir"; then
-       AC_MSG_NOTICE([
+       AC_MSG_NOTICE([Default X11 application defaults directory \
+assumed.
+
   The application defaults files for gxditview (GXditview and
   GXditview-color) will be installed in the following directory.
 
@@ -1630,30 +1638,35 @@ AC_DEFUN([GROFF_REFERDIR_DEFAULT],
   referdir=$libprogramdir/refer
   AC_SUBST([referdir]))
 
-# Check for xpmtoppm, for gnu.eps generation
+# Generation of doc/gnu.eps requires xpmtoppm.
+
 AC_DEFUN([GROFF_PROG_XPMTOPPM],
   [AC_CHECK_PROG([XPMTOPPM], [xpmtoppm], [found], [missing])])
 
-# Check for make built-in variable RM
-AC_DEFUN([GROFF_MAKE_RM],
-  [AC_MSG_CHECKING(whether make has builtin variable RM)
-cat <<EOF > test_make_rm.mk
+# Check for make built-in variable RM.
+
+AC_DEFUN([GROFF_MAKE_RM], [
+  AC_MSG_CHECKING(whether make has built-in variable 'RM')
+  cat <<EOF > test_make_rm.mk
 all:
-	@if test -n "\$(RM)"; then \
-	   echo "yes"; \
+	@if test -n "\$(RM)"; \
+	then \
+	   echo yes; \
 	else \
-	   echo "no"; \
+	   echo no; \
 	fi
 EOF
   groff_is_rm_defined=`make -sf test_make_rm.mk`
   AC_MSG_RESULT([$groff_is_rm_defined])
-  rm -f test_make_rm.mk])
+  rm -f test_make_rm.mk
+])
 
 # Check if diff has option -D, for gdiffmk. If not, check if gdiff is
 # available on the system and make the same test. If either diff or
 # gdiff is working, it is set to DIFF_PROG.  If -D option is not
 # available, DIFF_PROG is left to diff (gdiffmk will report a
 # problem).
+
 AC_DEFUN([GROFF_DIFF_D],
   [AC_MSG_CHECKING(for a diff program that supports option -D)
   groff_has_diff_d_option=no
@@ -1672,6 +1685,7 @@ AC_DEFUN([GROFF_DIFF_D],
   AC_SUBST([DIFF_PROG])])
 
 # Check if 'test' supports the option -ef.
+
 AC_DEFUN([GROFF_HAVE_TEST_EF_OPTION],
   [AC_MSG_CHECKING(whether test supports option -ef)
   HAVE_TEST_EF_OPTION=no
@@ -1681,6 +1695,7 @@ AC_DEFUN([GROFF_HAVE_TEST_EF_OPTION],
 
 # gdiffmk will attempt to use bash (for option -ef of 'test'). If bash
 # is not available it will use /bin/sh.
+
 AC_DEFUN([GROFF_BASH],
   [AC_PATH_PROGS([BASH_PROG], [bash], [no])
   if test "$BASH_PROG" = no; then

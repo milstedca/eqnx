@@ -1,5 +1,10 @@
 2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_PNMTOPS_NOSETPAGE): Partially revert change
+	from 21 May and document why in a comment.
+
+2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/troffrc: Skip loading of "papersize.tmac" if not in troff
 	mode.
 

@@ -381,20 +381,20 @@ AC_DEFUN([GROFF_PNMTOOLS_CAN_BE_QUIET], [
 
 
 # Check whether pnmtops can handle the -nosetpage option.
+#
+# We require this both for grohtml operation and generation of
+# doc/gnu.eps from repository/snapshot archive builds.
 
 AC_DEFUN([GROFF_PNMTOPS_NOSETPAGE], [
   pnmtops_nosetpage="pnmtops $pnmtools_quiet"
-  AC_REQUIRE([GROFF_CHECK_GROHTML_PROGRAMS])
-  if test "$make_htmldoc" = yes
+  AC_REQUIRE([GROFF_PNMTOOLS_CAN_BE_QUIET])
+  AC_MSG_CHECKING([whether pnmtops accepts the '-nosetpage' option])
+  if echo P2 2 2 255 0 1 2 0 | pnmtops -nosetpage > /dev/null 2>&1
   then
-    AC_MSG_CHECKING([whether pnmtops accepts the '-nosetpage' option])
-    if echo P2 2 2 255 0 1 2 0 | pnmtops -nosetpage > /dev/null 2>&1
-    then
-      AC_MSG_RESULT([yes])
-      pnmtops_nosetpage="pnmtops $pnmtools_quiet -nosetpage"
-    else
-      AC_MSG_RESULT([no])
-    fi
+    AC_MSG_RESULT([yes])
+    pnmtops_nosetpage="pnmtops $pnmtools_quiet -nosetpage"
+  else
+    AC_MSG_RESULT([no])
   fi
   AC_SUBST([pnmtops_nosetpage])
 ])

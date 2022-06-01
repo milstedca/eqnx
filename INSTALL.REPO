@@ -37,6 +37,9 @@ are several others.
   'makeinfo' from GNU Texinfo 5.0 or later.  The latter two additionally
   require a TeX installation, such as TeX Live.
 
+* You will need the 'xpmtoppm', 'pnmdepth', and 'pnmtops' programs from
+  the Netpbm distribution.
+
 
 Bootstrapping from a Git checkout
 ---------------------------------

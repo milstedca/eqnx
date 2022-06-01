@@ -1,5 +1,13 @@
 2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_X11, GROFF_UCHARDET): Drop redundant
+	messages (which are easily overlooked amid the torrent of
+	"checking" output anyway).  Discovery failures of X11 and the
+	unchardet library are already parts of the configuration report
+	at or near the end of output.
+
+2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_PNMTOPS_NOSETPAGE): Partially revert change
 	from 21 May and document why in a comment.
 

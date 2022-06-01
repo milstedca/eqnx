@@ -1536,13 +1536,11 @@ AC_DEFUN([GROFF_X11],
      LIBS=$OLDLIBS
    fi
 
-   if test "$groff_no_x" = yes; then
-     AC_MSG_NOTICE([gxditview and xtotroff won't be built])
-   else
-     XDEVDIRS="font/devX75 font/devX75-12 font/devX100 font/devX100-12"
-     XPROGDIRS="src/devices/xditview src/utils/xtotroff"
-     XLIBDIRS="src/libs/libxutil"
-   fi
+  if ! test "$groff_no_x" = yes; then
+    XDEVDIRS="font/devX75 font/devX75-12 font/devX100 font/devX100-12"
+    XPROGDIRS="src/devices/xditview src/utils/xtotroff"
+    XLIBDIRS="src/libs/libxutil"
+  fi
 
    AC_SUBST([XDEVDIRS])
    AC_SUBST([XPROGDIRS])
@@ -1704,9 +1702,6 @@ file encoding [=auto|no|yes]]))
           if test "$with_uchardet" = yes
           then
             AC_MSG_FAILURE([could not find uchardet library])
-          else
-            AC_MSG_WARN([uchardet library not found; preconv will be \
-less functional])
           fi
           groff_have_uchardet=no])],
       [groff_have_uchardet=no])

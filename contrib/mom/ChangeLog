@@ -1,5 +1,10 @@
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* mom.am (MOMPROCESSEDEXAMPLEFILES): Include "typesetting.pdf"
+	only if `HAVE_URW_FONTS`, since the document demands them.
+
+2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* mom.am: Rename `BUILD_PDFDOC` to `USE_GROPDF`.
 
 2022-05-01  G. Branden Robinson <g.branden.robinson@gmail.com>

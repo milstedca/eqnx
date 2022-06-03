@@ -93,10 +93,12 @@ MOMPROCESSEDEXAMPLEFILES = \
   contrib/mom/examples/mom-pdf.pdf \
   contrib/mom/examples/mon_premier_doc.pdf \
   contrib/mom/examples/sample_docs.pdf \
-  contrib/mom/examples/typesetting.pdf \
   contrib/mom/examples/slide-demo.pdf \
   contrib/mom/examples/copyright-default.pdf \
   contrib/mom/examples/copyright-chapter.pdf
+if HAVE_URW_FONTS
+MOMPROCESSEDEXAMPLEFILES += contrib/mom/examples/typesetting.pdf
+endif
 momprocessedexampledir = $(exampledir)/mom
 nodist_momprocessedexample_DATA = $(MOMPROCESSEDEXAMPLEFILES)
 

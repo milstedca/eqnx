@@ -101,8 +101,13 @@ font/devpdf/DESC: $(devpdf_srcdir)/DESC.in
 
 font/devpdf/Foundry: $(devpdf_srcdir)/Foundry.in
 	$(AM_V_at)$(MKDIR_P) $(top_builddir)/font/devpdf/
+if HAVE_URW_FONTS
 	$(AM_V_GEN)sed "s|[@]urwfontsdir[@]|$(urwfontsdir)|" \
-	       $(devpdf_srcdir)/Foundry.in >$@
+	  $(devpdf_srcdir)/Foundry.in >$@
+else
+	$(AM_V_GEN)sed "/BEGIN URW/,/END URW/d" \
+	  $(devpdf_srcdir)/Foundry.in >$@
+endif
 
 font/devpdf/download: $(DEVPDFFONTMAP_1) $(DEVPDFFONTMAP_2) \
   font/devpdf/DESC font/devpdf/Foundry font/devpdf/enc/text.enc \

@@ -204,6 +204,7 @@ AM_CONDITIONAL([USE_GROHTML], [test "$use_grohtml" = yes])
 AM_CONDITIONAL([USE_GROPDF], [test "$use_gropdf" = yes])
 AM_CONDITIONAL([USE_GROFF_ALLOCATOR],
                [test "$groff_use_own_allocator" = yes])
+AM_CONDITIONAL([HAVE_URW_FONTS], [test "$groff_have_urw_fonts" = yes ])
 AM_CONDITIONAL([HAVE_PDFTOOLS], [test "$groff_have_pdftools" = yes ])
 AM_CONDITIONAL([HAVE_TEXI2DVI], [test "$groff_have_texi2dvi" = yes ])
 

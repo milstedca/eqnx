@@ -1,5 +1,18 @@
 2022-06-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* configure.ac: Add `AM_CONDITIONAL`: `HAVE_URW_FONTS`, so our
+	Automake files can more easily cope with their absence.
+	* font/devpdf/Foundry.in: Add easily matched phrases to
+	comments, to clearly delimit the URW foundry portion of the file
+	so it can be omitted if those fonts are absent.
+	* font/devpdf/devpdf.am (font/devpdf/Foundry): Generate file
+	differently depending on `HAVE_URW_FONTS`; keep the existing
+	procedure if true, and delete the URW section from the generated
+	file otherwise, avoiding diagnostic messages from afmtodit(1)
+	and our BuildFoundries script.
+
+2022-06-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/devpdf.am (font/devpdf/util/BuildFoundries):
 	Generate script using the `PATH_SEPARATOR` Automake macro.
 	* font/devpdf/util/BuildFoundries.pl: Add `pathsep` scalar to

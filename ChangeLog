@@ -1,3 +1,24 @@
+2022-06-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devpdf/util/BuildFoundries.pl: Alter script to write to
+	the standard output stream instead of (re)writing a file named
+	"download" in the current working directory.  This recovers from
+	a problem I introduced in commit 6e62be835d, 2 May, as an
+	unforeseen side effect of improving build parallelism so that
+	the "download" file wouldn't be read until it was fully
+	populated.  As a side benefit, this approach is more Unixy, and
+	less dependent on $PWD.
+	(top level): Stop calling `WriteDownload` with an argument.
+	(LoadFoundry): Close only the file handle of interest when done,
+	not all of them (including `STDOUT`, which we now need).
+	(CheckFoundry): Same--just for cleanliness, since at present
+	running the script in 'check' mode doesn't write to any streams.
+	(WriteDownload): Stop taking an argument and manipulating file
+	handles.  Write download file to standard output.
+	(LoadDownload, WriteDownload): Drop `top` scalar, used as a
+	mutex to serialize read and write access to "download" file; it
+	is no longer needed since the "download" file is now only read.
+
 2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: Rename shell variables and Autoconf/Automake macros of

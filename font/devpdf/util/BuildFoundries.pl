@@ -13,8 +13,8 @@
 # Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# groff is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# groff is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # for more details.
 #
@@ -49,7 +49,7 @@ else
 {
     LoadDownload("download"); # not required
     LoadFoundry("Foundry");
-    WriteDownload("download");
+    WriteDownload();
 }
 exit 0;
 
@@ -157,7 +157,7 @@ sub LoadFoundry
 	}
     }
 
-    close();
+    close(F);
     Warn("\nThe path(s) used for searching:\n$foundrypath\n") if $notFoundFont;
 }
 
@@ -406,7 +406,6 @@ sub PutDownload
 sub LoadDownload
 {
     my $fn=shift;
-    my $top=1;
 
     return if !open(F,"<$fn");
 
@@ -415,7 +414,7 @@ sub LoadDownload
 	chomp;
 	s/\r$//;	# in case edited in windows
 
-	if ($top and substr($_,0,1) eq '#' or $_ eq '')
+	if (substr($_,0,1) eq '#' or $_ eq '')
 	{
 	    # Preserve comments at top of download file
 
@@ -423,7 +422,6 @@ sub LoadDownload
 	    next;
 	}
 
-	$top=0;
 	s/\s*#.*?$//;	# remove comments
 
 	next if $_ eq '';
@@ -439,20 +437,13 @@ sub LoadDownload
 
 sub WriteDownload
 {
-    my $fn=shift;
-    my $top=1;
-
-    open(F,">$fn") or Die("can't create new file '$fn'");
-
-    print F join("\n",@downloadpreamble),"\n";
+    print join("\n",@downloadpreamble),"\n";
 
     foreach my $k (sort keys %download)
     {
 	my ($f,$ps)=split(/ /,$k);
-	print F "$f\t$ps\t$download{$k}\n";
+	print "$f\t$ps\t$download{$k}\n";
     }
-
-    close(F);
 }
 
 sub Notice {
@@ -545,5 +536,5 @@ sub CheckFoundry
 	}
     }
 
-    close();
+    close(F);
 }

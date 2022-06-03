@@ -65,6 +65,26 @@ We therefore do the following.
   $ wget -O gnulib.tar.gz https://git.savannah.gnu.org/cgit/gnulib.git/\
 snapshot/gnulib-$hash.tar.gz
   $ tar xf gnulib.tar.gz
+
+Before we can proceed, we need to patch a bug in gnulib's
+"git-version-gen" script.
+
+--- build-aux/git-version-gen~  2022-06-03 18:34:08.175890973 +0000
++++ build-aux/git-version-gen   2022-06-03 17:51:02.221945195 +0000
+@@ -189,7 +189,7 @@
+     # Remove the "g" to save a byte.
+     v=`echo "$v" | sed 's/-\([^-]*\)-g\([^-]*\)$/.\1-\2/'`;
+     v_from_git=1
+-elif test "x$fallback" = x || git --version >/dev/null 2>&1; then
++elif test "x$fallback" = x && ! git --version >/dev/null 2>&1; then
+     v=UNKNOWN
+ else
+     v=$fallback
+
+Place the foregoing in a file called "../git-version-gen.patch", apply
+it, then run the bootstrap script.
+
+  $ patch -d gnulib-$hash -p0 < ../git-version-gen.patch
   $ ./bootstrap --gnulib-srcdir=gnulib-$hash
 
 

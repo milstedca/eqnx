@@ -11,6 +11,8 @@
 	file otherwise, avoiding diagnostic messages from afmtodit(1)
 	and our BuildFoundries script.
 
+	Fixes <https://savannah.gnu.org/bugs/?62570>.
+
 2022-06-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* font/devpdf/devpdf.am (font/devpdf/util/BuildFoundries):

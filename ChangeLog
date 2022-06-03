@@ -1,5 +1,24 @@
 2022-06-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Parameterize X11-related man pages, so they don't get
+	spuriously generated (and not cleaned) when building with X11
+	support disabled.
+
+	* Makefile.am (.man): Fix logic nit: drop unnecessary removal of
+	target before clobbering it with sed.
+	* src/devices/xditview/xditview.am (GXDITVIEW_MAN1): Add new
+	macro, expanding to nothing if `WITHOUT_X11` and to the target
+	name otherwise.
+	(man1_MANS): Append `GXDITVIEW_MAN1` expansion, not a literal.
+	* src/devices/xditview/xditview.am (XTOTROFF_MAN1): Add new
+	macro, expanding to nothing if `WITHOUT_X11` and to the target
+	name otherwise.
+	(man1_MANS): Append `XTOTROFF_MAN1` expansion, not a literal.
+	* doc/doc.am (GROFF_MAN_PAGES1): Append foregoing expansions
+	instead of literals.
+
+2022-06-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: Add `AM_CONDITIONAL`: `HAVE_URW_FONTS`, so our
 	Automake files can more easily cope with their absence.
 	* font/devpdf/Foundry.in: Add easily matched phrases to

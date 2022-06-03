@@ -194,7 +194,7 @@ GROFF_MAN_PAGES1 = \
   src/devices/gropdf/gropdf.1 \
   src/devices/grops/grops.1 \
   src/devices/grotty/grotty.1 \
-  src/devices/xditview/gxditview.1 \
+  $(GXDITVIEW_MAN1) \
   src/utils/hpftodit/hpftodit.1 \
   src/utils/indxbib/indxbib.1 \
   src/utils/lkbib/lkbib.1 \
@@ -213,7 +213,7 @@ GROFF_MAN_PAGES1 = \
   src/preproc/tbl/tbl.1 \
   src/utils/tfmtodit/tfmtodit.1 \
   src/roff/troff/troff.1 \
-  src/utils/xtotroff/xtotroff.1 \
+  $(XTOTROFF_MAN1) \
   contrib/groff_filenames/groff_filenames.5 \
   man/groff_font.5 \
   man/groff_out.5 \

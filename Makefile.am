@@ -854,8 +854,7 @@ makevarescape=$(top_srcdir)/makevarescape.sed
 
 SUFFIXES += .man
 .man:
-	$(AM_V_GEN)rm -f $@ \
-	&& $(MKDIR_P) `dirname $@` \
+	$(AM_V_GEN)$(MKDIR_P) `dirname $@` \
 	&& LC_ALL=C \
 	 sed -e "s|[@]APPDEFDIR[@]|`echo $(appdefdir) | sed -f $(makevarescape)`|g" \
 	     -e "s|[@]BINDIR[@]|`echo $(bindir) | sed -f $(makevarescape)`|g" \

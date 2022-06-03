@@ -8,8 +8,8 @@
 # Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# groff is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# groff is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # for more details.
 #
@@ -26,14 +26,15 @@ AC_INIT([GNU roff],
 
 AC_PREREQ([2.64])
 
-# SHORT_VERSION contains only the number of REVISION before the first '.',
-# e.g. if REVISION is '3.real.434-5aafd' then SHORT_VERSION is 'x.yy.3',
-# where x and yy are MAJOR_VERSION and MINOR_VERSION, respectively.
+# SHORT_VERSION contains only the number of REVISION before the first
+# '.'; e.g., if REVISION is '3.real.434-5aafd' then SHORT_VERSION is
+# 'x.yy.3', where x and yy are MAJOR_VERSION and MINOR_VERSION,
+# respectively.
 AC_SUBST([SHORT_VERSION],
 	m4_bregexp(AC_PACKAGE_VERSION,[^\(\w+\.\w+\.\w+\).*$],[\1]))
 
-# Directories where the helper scripts should be found. This must be consistent
-# with the variable build_aux in bootstrap.conf
+# Directories where the helper scripts should be found. This must be
+# consistent with the variable build_aux in bootstrap.conf.
 AC_CONFIG_AUX_DIR([build-aux])
 
 AC_CONFIG_HEADERS([src/include/config.h:src/include/config.hin])
@@ -82,7 +83,8 @@ GROFF_POPPLER
 
 # use a dummy substitution if no csh hack is necessary to avoid errors
 # with non-GNU sed programs
-GROFF_CSH_HACK([SH_SCRIPT_SED_CMD='1s/.*/:/'], [SH_SCRIPT_SED_CMD='1s/a/a/'])
+GROFF_CSH_HACK([SH_SCRIPT_SED_CMD='1s/.*/:/'],
+               [SH_SCRIPT_SED_CMD='1s/a/a/'])
 AC_SUBST([SH_SCRIPT_SED_CMD])
 
 # checks for headers
@@ -200,7 +202,8 @@ AM_CONDITIONAL([USEPROGRAMPREFIX], [test "$g" = g])
 
 AM_CONDITIONAL([USE_GROHTML], [test "$use_grohtml" = yes])
 AM_CONDITIONAL([USE_GROPDF], [test "$use_gropdf" = yes])
-AM_CONDITIONAL([USE_GROFF_ALLOCATOR], [test "$groff_use_own_allocator" = yes])
+AM_CONDITIONAL([USE_GROFF_ALLOCATOR],
+               [test "$groff_use_own_allocator" = yes])
 AM_CONDITIONAL([HAVE_PDFTOOLS], [test "$groff_have_pdftools" = yes ])
 AM_CONDITIONAL([HAVE_TEXI2DVI], [test "$groff_have_texi2dvi" = yes ])
 
@@ -240,8 +243,7 @@ echo "\
  'groff -l' uses print spooler    : $groff_have_spooler
  use URW fonts for PDF output     : $groff_have_urw_fonts
  preconv can use uchardet library : $groff_have_uchardet
- tests can use PDF tools          : $groff_have_pdftools"
-echo "\
+ tests can use poppler PDF tools  : $groff_have_pdftools
 ----------------------------------------------------------------------"
 
 GROFF_APPDEFDIR_NOTICE

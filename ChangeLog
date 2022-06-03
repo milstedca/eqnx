@@ -1,5 +1,9 @@
 2022-06-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* configure.ac: Explicitly identify poppler tools in report.
+
+2022-06-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/util/BuildFoundries.pl: Trivially refactor.  Drop
 	unused hash `foundry`.  Drop scalar `warn` that was set and
 	updated but never tested.

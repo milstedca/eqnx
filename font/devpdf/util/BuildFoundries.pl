@@ -24,6 +24,8 @@
 use strict;
 use Getopt::Long;
 
+my $pathsep='@PATH_SEPARATOR@';
+
 my $check=0;
 my $dirURW='';
 
@@ -85,10 +87,10 @@ sub LoadFoundry
 	{
 	    Warn("\nThe path(s) used for searching:\n$foundrypath\n") if $notFoundFont;
 	    $foundry=uc($r[1]);
-            $foundrypath='';
-            $foundrypath.="$dirURW : " if $dirURW;
-	    $foundrypath.=$r[2].' : '.$devps;
-	    $foundrypath=~s/\(gs\)/$GSpath /;
+	    $foundrypath='';
+	    $foundrypath.="$dirURW:" if $dirURW;
+	    $foundrypath.=$r[2].':'.$devps;
+	    $foundrypath=~s/\(gs\)/$GSpath/;
 	    $notFoundFont=0;
 	}
 	else
@@ -275,7 +277,7 @@ sub LocateFile
 	return($res);
     }
 
-	my (@paths)=split(/ (:|;)/,$path);
+	my (@paths)=split(/$pathsep/,$path);
 
     foreach my $p (@paths)
     {
@@ -493,10 +495,10 @@ sub CheckFoundry
 	if (lc($r[0]) eq 'foundry')
 	{
 	    $foundry=uc($r[1]);
-            $foundrypath='';
-            $foundrypath.="$dirURW : " if $dirURW;
-	    $foundrypath.=$r[2].' : '.$devps;
-	    $foundrypath=~s/\(gs\)/$GSpath /;
+	    $foundrypath='';
+	    $foundrypath.="$dirURW:" if $dirURW;
+	    $foundrypath.=$r[2].':'.$devps;
+	    $foundrypath=~s/\(gs\)/$GSpath/;
 	}
 	else
 	{
@@ -536,3 +538,9 @@ sub CheckFoundry
 
     close(F);
 }
+
+# Local Variables:
+# fill-column: 72
+# mode: CPerl
+# End:
+# vim: set cindent noexpandtab shiftwidth=4 softtabstop=4 textwidth=72:

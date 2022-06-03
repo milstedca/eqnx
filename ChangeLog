@@ -1,3 +1,13 @@
+2022-06-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devpdf/devpdf.am (font/devpdf/util/BuildFoundries):
+	Generate script using the `PATH_SEPARATOR` Automake macro.
+	* font/devpdf/util/BuildFoundries.pl: Add `pathsep` scalar to
+	house the build-time path separator.
+	(LocateFile): Use it.
+	(LoadFoundry, CheckFoundry): Stop using spaces as part of the
+	path separation delimiter.  It is not idiomatic.
+
 2022-06-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* configure.ac: Explicitly identify poppler tools in report.

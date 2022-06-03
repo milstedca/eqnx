@@ -1,5 +1,11 @@
 2022-06-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/util/BuildFoundries.pl: Trivially refactor.  Drop
+	unused hash `foundry`.  Drop scalar `warn` that was set and
+	updated but never tested.
+
+2022-06-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/util/BuildFoundries.pl: Alter script to write to
 	the standard output stream instead of (re)writing a file named
 	"download" in the current working directory.  This recovers from

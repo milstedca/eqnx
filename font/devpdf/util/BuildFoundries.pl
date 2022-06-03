@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 #
-#   BuildFoundries   : Given a Foundry file generate groff and download files
-#   Deri James       : Monday 07 Feb 2011
-
+# BuildFoundries: Given a Foundry file, generate groff font description
+# files and a "download" file so gropdf can embed fonts in PDF output.
+#
 # Copyright (C) 2011-2020 Free Software Foundation, Inc.
 #      Written by Deri James <deri@chuzzlewit.myzen.co.uk>
 #
@@ -33,9 +33,8 @@ GetOptions("check" => \$check, "dirURW=s" => \$dirURW);
 my $where=shift||'';
 my $devps=shift||'../devps';
 chdir $where if $where ne '';
-my (%foundry,%flg,@downloadpreamble,%download);
+my (%flg,@downloadpreamble,%download);
 my $GSpath=FindGSpath();
-my $warn=0;
 my $lct=0;
 my $foundry='';	# the default foundry
 my $notFoundFont=0;
@@ -454,7 +453,6 @@ sub Notice {
 sub Warn {
     my $msg=shift;
     Msg("warning: line $lct: $msg");
-    $warn=1;
 }
 
 sub Die {

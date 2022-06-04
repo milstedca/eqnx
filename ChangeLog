@@ -1,5 +1,27 @@
 2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/gropdf/gropdf.pl: Revise diagnostic message
+	handling.
+	(top level): Add new scalar `progname` to house executable name.
+	(Msg): Output messages in format recommended by GNU Coding
+	Standards manual.  Identify who's talking (Savannah #52463).
+	Rename `lev` scalar to `fatal` since it is used only as a
+	Boolean for immediately exiting with failure status.  Report
+	diagnostic severity as part of message.
+	(Warn, Die): Add new subroutines through which all diagnostics
+	are now emitted.
+	(top level): Migrate a use of Perl `die` builtin to our `Die`.
+	(top level, ToPoints, LoadDownload, LoadDesc, do_x, GetPoints,
+	LoadSWF, LoadPDF, LoadStream, BuildStream, ParsePDFHash,
+	LoadFont, GetType1, GetChunk, RemapChr, do_N): Migrate `Msg(0,
+	...)` calls to `Warn` and `Msg(1, ...)` to `Die`.  Begin
+	messages in lowercase (GNU Coding Standards).  Recast a few
+	messages for clarity.
+
+	Continues the long process of fixing Savannah #52463.
+
+2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/gropdf/gropdf.pl (Load_Config): Drop unused
 	subroutine and its commented-out call site, which came in that
 	way in July 2011.

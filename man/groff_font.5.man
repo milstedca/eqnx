@@ -95,7 +95,7 @@ Device and font description files are read both by the formatter,
 .IR @g@troff ,
 and by output drivers.
 .
-The programs delegate these files' processing to an internal
+The programs typically delegate these files' processing to an internal
 library,
 .IR libgroff ,
 ensuring their consistent interpretation.

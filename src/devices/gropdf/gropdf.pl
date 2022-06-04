@@ -2459,6 +2459,8 @@ sub LoadFont
     }
     else
     {
+	Msg(0, "unable to embed font file for '$fnt{internalname}'"
+	    . " ($ofontnm) (corrupt 'download' file?)") if $embedall;
 	$fno=++$objct;
 	$fontlst{$fontno}->{OBJ}=BuildObj($objct,
 			{'Type' => '/Font',

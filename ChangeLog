@@ -1,5 +1,13 @@
 2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/gropdf/gropdf.pl (LoadFont): Warn if a font to be
+	embedded in PDF output cannot be located in the "download" file.
+
+	Fixes <https://savannah.gnu.org/bugs/?62572>.  Thanks to Deri
+	James.
+
+2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/a4.tmac: Drop file from distribution.  It has been
 	superseded by papersize.tmac for nearly 20 years.
 	* tmac/tmac.am (TMACNORMALFILES): Delete reference.

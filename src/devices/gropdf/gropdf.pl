@@ -209,8 +209,6 @@ my $stats=0;
 my $unicodemap;
 my @idirs;
 
-#Load_Config();
-
 GetOptions("F=s" => \$fd, 'I=s' => \@idirs, 'l' => \$frot, 'p=s' => \$fpsz, 'd!' => \$debug, 'v' => \$version, 'version' => \$version, 'e' => \$embedall, 'y=s' => \$Foundry, 's' => \$stats, 'u:s' => \$unicodemap);
 
 unshift(@idirs,'.');
@@ -607,21 +605,6 @@ sub ToPoints
     {
 	Msg(1,"Unknown scaling factor '$unit'");
     }
-}
-
-sub Load_Config
-{
-    open(CFG,"<gropdf_config") or die "Can't open config file: $!";
-
-    while (<CFG>)
-    {
-	chomp;
-	my ($key,$val)=split(/ ?= ?/);
-
-	$cfg{$key}=$val;
-    }
-
-    close(CFG);
 }
 
 sub LoadDownload

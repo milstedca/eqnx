@@ -1,5 +1,11 @@
 2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/gropdf/gropdf.pl (Load_Config): Drop unused
+	subroutine and its commented-out call site, which came in that
+	way in July 2011.
+
+2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/gropdf/gropdf.pl (LoadFont): Warn if a font to be
 	embedded in PDF output cannot be located in the "download" file.
 

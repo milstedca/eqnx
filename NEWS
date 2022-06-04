@@ -342,6 +342,10 @@ o The s (ms) macro package has added a hook macro, `FS-MARK`, which is
   distributed with groff as `pdfmark.ms`, uses this technique.  Thanks
   to Keith Marshall.
 
+o The "a4.tmac" file has been dropped from the distribution.  Its
+  successor, "papersize.tmac", has been present and documented for
+  nearly 20 years.  See subsection "Paper size" of groff(1).
+
 o The "safer.tmac" file has been dropped from the distribution.  It was
   present only to support man(1) programs that unconditionally passed
   the formatter the "-msafer" option, and has contained only comments

@@ -683,6 +683,12 @@ sub LoadDesc
     }
 
     close($f);
+
+    foreach my $directive ('unitwidth', 'res', 'sizescale')
+    {
+	Die("device description file 'DESC' missing mandatory directive"
+	    . " '$directive'") if !exists($desc{$directive});
+    }
 }
 
 sub rad  { $_[0]*3.14159/180 }

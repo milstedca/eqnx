@@ -1,5 +1,13 @@
 2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/gropdf/gropdf.pl: Do more "DESC" file validation.
+	(LoadDesc): Bomb out gracefully if any of "unitwidth", "res", or
+	"sizescale" missing from "DESC" file.  This prevents Perl
+	warnings about use of unintialized values, and undoubtedly
+	mangled output.
+
+2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/gropdf/gropdf.pl: Revise diagnostic message
 	handling.
 	(top level): Add new scalar `progname` to house executable name.

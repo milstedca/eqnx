@@ -1348,7 +1348,7 @@ void line_length()
   if (has_arg() && get_hunits(&temp, 'm', curenv->line_length)) {
     if (temp < minimum_length) {
       warning(WARN_RANGE, "invalid line length %1u rounded to device"
-			  " horizontal resolution", temp.to_units());
+			  " horizontal motion quantum", temp.to_units());
       temp = minimum_length;
     }
   }
@@ -1367,7 +1367,7 @@ void title_length()
   if (has_arg() && get_hunits(&temp, 'm', curenv->title_length)) {
     if (temp < minimum_length) {
       warning(WARN_RANGE, "invalid title length %1u rounded to device"
-			  " horizontal resolution", temp.to_units());
+			  " horizontal motion quantum", temp.to_units());
       temp = minimum_length;
     }
   }

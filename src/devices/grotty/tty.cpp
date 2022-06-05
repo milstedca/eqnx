@@ -341,7 +341,7 @@ void tty_printer::set_char(glyph *g, font *f, const environment *env,
 			   int w, const char *)
 {
   if (w % font::hor != 0)
-    fatal("width of character not a multiple of horizontal resolution");
+    fatal("glyph width is not a multiple of horizontal motion quantum");
   add_char(f->get_code(g), w,
 	   env->hpos, env->vpos,
 	   env->col, env->fill,
@@ -356,7 +356,7 @@ void tty_printer::add_char(output_character c, int w,
 #if 0
   // This is too expensive.
   if (h % font::hor != 0)
-    fatal("horizontal position not a multiple of horizontal resolution");
+    fatal("horizontal position not a multiple of horizontal motion quantum");
 #endif
   int hpos = h / font::hor;
   if (hpos < SHRT_MIN || hpos > SHRT_MAX) {
@@ -368,7 +368,8 @@ void tty_printer::add_char(output_character c, int w,
     vpos = cached_vpos;
   else {
     if (v % font::vert != 0)
-      fatal("vertical position not a multiple of vertical resolution");
+      fatal("vertical position not a multiple of vertical motion"
+	    " quantum");
     vpos = v / font::vert;
     if (vpos > nlines) {
       tty_glyph **old_lines = lines;
@@ -735,7 +736,8 @@ static output_character crossings[4*4] = {
 void tty_printer::end_page(int page_length)
 {
   if (page_length % font::vert != 0)
-    error("vertical position at end of page not multiple of vertical resolution");
+    error("vertical position at end of page not multiple of vertical"
+	  " motion quantum");
   int lines_per_page = page_length / font::vert;
   int last_line;
   for (last_line = nlines; last_line > 0; last_line--)

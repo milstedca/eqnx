@@ -1,5 +1,18 @@
 2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff, grohtml, grops, grotty]: Update wording of diagnostic
+	messages to refer to "motion quantum" rather than "resolution"
+	where appropriate.
+
+	* src/devices/grohtml/post-html.cpp
+	(html_printer::html_printer):
+	* src/devices/grops/ps.cpp (ps_printer::ps_printer):
+	* src/devices/grotty/tty.cpp (tty_printer::set_char,
+	tty_printer::add_char, tty_printer::end_page):
+	* src/roff/troff/env.cpp (line_length, title_length): Do it.
+
+2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/gropdf/gropdf.pl: Do more "DESC" file validation.
 	(LoadDesc): Bomb out gracefully if any of "unitwidth", "res", or
 	"sizescale" missing from "DESC" file.  This prevents Perl

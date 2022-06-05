@@ -97,7 +97,7 @@
 	* m4/groff.m4 (GROFF_URW_FONTS_PATH,
 	GROFF_WITH_COMPATIBILITY_WRAPPERS, GROFF_APPDEFDIR_OPTION,
 	GROFF_UCHARDET): Recast help strings to more closely parallel
-	structure any style of Autoconf's own help strings.
+	structure and style of Autoconf's own help strings.
 	(GROFF_WITH_COMPATIBILITY_WRAPPERS): Recast to tighten wording.
 
 2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
@@ -1248,7 +1248,7 @@
 	(presumably ASCII/ISO 8859/Unicode) systems.
 
 	* src/roff/troff/input.cpp (token::next): Translate the input
-	character codes for input NBSP to \~ and input SHY to \%.
+	character codes for NBSP to \~ and SHY to \%.
 
 	Fixes <https://savannah.gnu.org/bugs/?58962>.  Thanks to Dave
 	Kemper for the report, code review, and his suggestion to push
@@ -2136,7 +2136,7 @@
 	Clark put it there in 1992.)  Recast and tighten wording.  Drop
 	the word "horizontal"; there is no vertical page offset (as
 	such) in *roff.  Replace hand-waving about unexpected results
-	with a description of the formatter's behavior.  Dcoument
+	with a description of the formatter's behavior.  Document
 	request behavior without an argument before getting into the
 	weeds (and CSTR #54 errata).  Migrate terminology from "scaling
 	indicator" to "scaling unit".

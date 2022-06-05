@@ -1330,7 +1330,7 @@ but not necessarily the requests and/or escape sequences used to obtain
 them.
 .
 Motions must match in orientation and magnitude to within the applicable
-horizontal or vertical resolution of the device,
+horizontal or vertical motion quantum of the device,
 after rounding.
 .
 .\" TODO: Uncomment and add forward reference when we add a "GNU troff

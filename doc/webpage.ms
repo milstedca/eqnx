@@ -1568,9 +1568,9 @@ compatibility.
 Consequently, the intermediate output command `Df' also moves the
 position horizontally again.
 
-\eD'f\~.\|.\|.\&' is deprecated since it depends on the horizontal resolution
-of the output device (given with the `hor' parameter in the DESC file).
-Use the new \eD'Fg\~.\|.\|.\&' escape instead.
+\eD'f\~.\|.\|.\&' is deprecated since it depends on the horizontal
+motion quanum of the output device (given with the `hor' parameter in
+the DESC file).  Use the new \eD'Fg\~.\|.\|.\&' escape instead.
 
 .LI
 For orthogonality, new \eD subcommands to change the fill color are

@@ -7255,10 +7255,12 @@ This read-only string-valued register stores the name of the file being
 formatted.
 
 @item \n[.H]
+@cindex horizontal motion quantum register (@code{.H})
+@cindex motion quantum, horizontal, register (@code{.H})
 @cindex horizontal resolution register (@code{.H})
 @cindex resolution, horizontal, register (@code{.H})
 @vindex .H
-Number of basic units in a unit of horizontal resolution of the output
+Number of basic units in the horizontal motion quantum of the output
 device.  @xref{Measurements}.
 
 @item \n[.R]
@@ -7279,10 +7281,12 @@ as many registers as required.} it exists for backward compatibility.
 to activate unsafe mode, and zero otherwise.  @xref{Groff Options}.
 
 @item \n[.V]
+@cindex vertical motion quantum register (@code{.V})
+@cindex motion quantum, vertical, register (@code{.V})
 @cindex vertical resolution register (@code{.V})
 @cindex resolution, vertical, register (@code{.V})
 @vindex .V
-Number of basic units in a unit of vertical resolution of the output
+Number of basic units in the vertical motion quantum of the output
 device.  @xref{Measurements}.
 
 @item \n[seconds]
@@ -11257,7 +11261,7 @@ reset to the previous value before the last call to @code{vs}.
 @cindex @code{.V} register, and @code{vs}
 @code{gtroff} creates a warning in category @samp{range} if @var{space}
 is negative; the vertical spacing is then set to smallest positive
-value, the vertical resolution (as given in the @code{.V} register).
+value, the vertical motion quantum (as given in the @code{.V} register).
 
 @w{@samp{.vs 0}} isn't saved in a diversion since it doesn't result in
 a vertical motion.  You explicitly have to repeat this command before
@@ -12168,7 +12172,7 @@ same positions, so the comparands are equal.  If @samp{.ft@tie{}I} had
 been added before the @samp{.ie}, they would differ: the first @samp{|}
 would produce an italic @samp{|}, not a roman one.  Motions must match
 in orientation and magnitude to within the applicable horizontal or
-vertical resolution of the device, after rounding.  @samp{.if
+vertical motion quantum of the device, after rounding.  @samp{.if
 "\u\d"\v'0'"} is false even though both comparands result in zero net
 motion, because motions are not interpreted or optimized but sent as-is
 to the output.@footnote{Because formatting of the comparands takes place
@@ -13611,11 +13615,11 @@ default, a level of 1000 is used.
 Nonintuitively, the current point is moved horizontally to the
 right by@tie{}@var{n}.
 
-@cindex @samp{\D'f @dots{}'} and horizontal resolution
+@cindex @samp{\D'f @dots{}'} and horizontal motion quantum
 Don't use this command!  It has the serious drawback that it is always
-rounded to the next integer multiple of the horizontal resolution (the
-value of the @code{hor} keyword in the @file{DESC} file).  Use @code{\M}
-(@pxref{Colors}) or @samp{\D'Fg @dots{}'} instead.
+rounded to the next integer multiple of the horizontal motion quantum
+(the value of the @code{hor} keyword in the @file{DESC} file).  Use
+@code{\M} (@pxref{Colors}) or @samp{\D'Fg @dots{}'} instead.
 
 @item \D'p @var{dx1} @var{dy1} @var{dx2} @var{dy2} @dots{}'
 @cindex drawing a polygon (@samp{\D'p @dots{}'})
@@ -13840,7 +13844,7 @@ body text in multiple columns, and footnotes.
 @noindent
 The location parameter used in vertical position traps has a default
 scaling unit of @samp{v}, and its value is rounded to a multiple of the
-vertical resolution (found in the register @code{.V}).
+vertical motion quantum (found in the register @code{.V}).
 
 @DefreqList {vpt, [@Var{flag}]}
 @DefregListEndx {.vpt}
@@ -16931,11 +16935,11 @@ arguments).  The first glyph should be printed at the current position,
 the current horizontal position should then be increased by the width of
 the first glyph, and so on for each glyph.  The widths of the glyphs are
 read from the font file, scaled for the current type size, and rounded
-to a multiple of the horizontal resolution.  Special characters cannot
-be printed using this command (use the @samp{C} command for special
-characters).  This command is a @code{gtroff} extension; it is only used
-for devices whose @file{DESC} file contains the @code{tcommand} keyword
-(@pxref{DESC File Format}).
+to a multiple of the horizontal motion quantum.  Special characters
+cannot be printed using this command (use the @samp{C} command for
+special characters).  This command is a @code{gtroff} extension; it is
+only used for devices whose @file{DESC} file contains the
+@code{tcommand} keyword (@pxref{DESC File Format}).
 
 @item u @var{n} @var{xxx}@angles{whitespace}
 Print word with track kerning.  This is the same as the @samp{t} command
@@ -17565,10 +17569,13 @@ corresponding position.
 
 @item hor @var{n}
 @kindex hor
+@cindex horizontal motion quantum
+@cindex motion quantum, horizontal
+@cindex quantum, horizontal motion
 @cindex horizontal resolution
 @cindex resolution, horizontal
-The horizontal resolution is @var{n}@tie{}basic units.  All horizontal
-quantities are rounded to multiples of@tie{}@var{n}.
+The horizontal motion quantum is @var{n}@tie{}basic units.  All
+horizontal quantities are rounded to multiples of@tie{}@var{n}.
 
 @item image_generator @var{program}
 @kindex image_generator
@@ -17699,9 +17706,12 @@ uses this directive.
 
 @item vert @var{n}
 @kindex vert
+@cindex vertical motion quantum
+@cindex motion quantum, vertical
+@cindex quantum, vertical motion
 @cindex vertical resolution
 @cindex resolution, vertical
-The vertical resolution is @var{n}@tie{}basic units.  All vertical
+The vertical motion quantum is @var{n}@tie{}basic units.  All vertical
 quantities are rounded to multiples of@tie{}@var{n}.
 
 @item charset

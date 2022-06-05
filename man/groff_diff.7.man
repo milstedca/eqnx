@@ -4517,7 +4517,7 @@ and so on for each character.
 .
 The width of the glyph is that given in the font file,
 appropriately scaled for the current type size,
-and rounded so that it is a multiple of the horizontal resolution.
+and rounded so that it is a multiple of the horizontal motion quantum.
 .
 Special characters cannot be printed using this command.
 .
@@ -4628,8 +4628,8 @@ changing this.
 The corresponding
 .BR \[rs]D\[aq]f .\|.\|.\& \[aq]
 command shouldn't be used since its argument is always rounded to an
-integer multiple of the horizontal resolution which can lead to
-surprising results.
+integer multiple of the horizontal motion quantum,
+which can lead to surprising results.
 .
 .TP
 \f[B]DC \f[I]\/d\f[R]\*[ic]\[rs]n

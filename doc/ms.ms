@@ -402,8 +402,8 @@ The
 .CW PD
 and
 .CW DD
-registers use the larger value if the vertical resolution of the output
-device is too coarse for the smaller one;
+registers use the larger value if the vertical motion quantum of the
+output device is too coarse for the smaller one;
 usually,
 this is the case only for output to terminals and emulators thereof.
 .

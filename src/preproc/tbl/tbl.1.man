@@ -1227,7 +1227,7 @@ the default length of the text block
 the line length used to process the text block diversion)
 is computed as
 .IR L \[tmu] C /( N +1),
-.\" ...and rounded to the horizontal resolution of the output device
+.\" ...and rounded to the horizontal motion quantum of the output device
 where
 .I L
 is the current line length,

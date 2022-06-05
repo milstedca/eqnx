@@ -1437,9 +1437,9 @@ o In groff versions 1.18 and 1.18.1, \D'f ...' didn't move the current
   reverted for backwards compatibility.  Consequently, the intermediate
   output command `Df' also moves the position horizontally again.
 
-  \D'f ...' is deprecated since it depends on the horizontal resolution
-  of the output device (given with the `hor' parameter in the DESC
-  file).  Use the new \D'Fg ...' escape instead.
+  \D'f ...' is deprecated since it depends on the horizontal motion
+  quantum of the output device (given with the `hor' parameter in the
+  DESC file).  Use the new \D'Fg ...' escape instead.
 
 o For orthogonality, new \D subcommands to change the fill color are
   available:

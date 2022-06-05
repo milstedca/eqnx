@@ -168,7 +168,7 @@ causes no font to be mounted at the corresponding position.
 .
 .TP
 .BI hor\~ n
-The horizontal resolution is
+The horizontal motion quantum is
 .IR n \~basic
 units.
 .
@@ -468,7 +468,7 @@ driver uses this directive.
 .
 .TP
 .BI vert\~ n
-The vertical resolution is
+The vertical motion quantum is
 .IR n \~basic
 units.
 .

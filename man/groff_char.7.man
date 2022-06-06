@@ -1940,13 +1940,6 @@ A representation of the coverage of the C/A/T's text fonts follows.
 The glyph resembling an underscore is a baseline rule,
 and that resembling a vertical line is a box rule.
 .
-In bold,
-according to some sources,
-the square became filled.
-.\" In the Holt, Reinhart, Winston edition of the _Unix Programmer's
-.\" Manual_, Revised and Expanded Version, Volume 2 (1983), the square
-.\" in Times bold is _not_ shown as filled on page 226.  -- GBR
-.
 In italics,
 the box rule was not slanted.
 .
@@ -2033,6 +2026,29 @@ brace vertical extension
 and \[lq]or\[rq] operator
 .B \[rs][or]
 were used as contextually appropriate.
+.
+.
+.P
+.\" In the Holt, Reinhart, Winston edition of the _Unix Programmer's
+.\" Manual_, Revised and Expanded Version, Volume 2 (1983), the square
+.\" \(sq in Times bold is _not_ shown as filled on page 226.
+.\"
+.\" ...but in the AT&T USG Unix 4.0 manual (ca. 1981), typeset on the
+.\" Autologic APS-5, the Times bold \(sq _is_ filled.
+.\"
+.\" https://www.tuhs.org/Archive/Documentation/Manuals/Unix_4.0/
+.\"   Volume_1/00_Annotated_Table_of_Contents.pdf
+.\"   Volume_1/C.1.2_NROFF_TROFF_Users_Manual.pdf
+.\" -- GBR
+Devices supported by AT&T device-independent
+.I troff
+exhibited some differences in glyph detail.
+.
+For example,
+on the Autologic APS-5 phototypesetter,
+the square
+.B \[rs](sq
+became filled in the Times bold face.
 .
 .
 .\" ====================================================================

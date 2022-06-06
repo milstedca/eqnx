@@ -1,3 +1,9 @@
+2022-06-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/gropdf/gropdf.pl (LoadDesc): Validate device
+	description file for essential directives and acceptable values
+	as grops(1) does.
+
 2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff, grohtml, grops, grotty]: Update wording of diagnostic

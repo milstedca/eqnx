@@ -689,6 +689,32 @@ sub LoadDesc
 	Die("device description file 'DESC' missing mandatory directive"
 	    . " '$directive'") if !exists($desc{$directive});
     }
+
+    foreach my $directive ('unitwidth', 'res', 'sizescale')
+    {
+	my $val=$desc{$directive};
+	Die("device description file 'DESC' directive '$directive'"
+	    . " value must be positive; got '$val'")
+	    if ($val !~ m/^\d+$/ or $val <= 0);
+    }
+
+    if (exists($desc{'hor'}))
+    {
+	my $hor=$desc{'hor'};
+	Die("device horizontal motion quantum must be 1, got '$hor'")
+	    if ($hor != 1);
+    }
+
+    if (exists($desc{'vert'}))
+    {
+	my $vert=$desc{'vert'};
+	Die("device vertical motion quantum must be 1, got '$vert'")
+	    if ($vert != 1);
+    }
+
+    my ($res,$ss)=($desc{'res'},$desc{'sizescale'});
+    Die("device resolution must be a multiple of 72*sizescale, got"
+	. " '$res' ('sizescale'=$ss)") if (($res % ($ss * 72)) != 0);
 }
 
 sub rad  { $_[0]*3.14159/180 }

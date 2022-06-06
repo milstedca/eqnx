@@ -3569,6 +3569,7 @@ The escape sequences
 .esc # ,
 .esc $ ,
 .esc * ,
+.esc ? ,
 .esc a ,
 .esc e ,
 .esc n ,

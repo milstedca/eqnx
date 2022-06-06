@@ -622,8 +622,9 @@ contains unsupported escape sequence
 .  rr an-tag-fits
 ..
 .
-.\" Handle macros that may take an "argument" on the next input line;
-.\" .SH, .SS, .B, .I, .SM, .SB--and .TP, which does so mandatorily.
+.\" Handle macros that may take an "argument" on the next input line
+.\" producing written or drawn output: .SH, .SS, .B, .I, .SM, .SB--and
+.\" .TP, which does so mandatorily.
 .de1 an-input-trap
 .  if \\n[an-devtag-needs-end-of-heading] .DEVTAG-EO-H
 .  nr an-devtag-needs-end-of-heading 0
@@ -652,7 +653,8 @@ contains unsupported escape sequence
 .  ns
 ..
 .
-.\" Set arguments (or next input line if none) as a section heading.
+.\" Set arguments (or next input line producing written or drawn output
+.\" if none) as a section heading.
 .de1 SH
 .  fam \\*[an*body-family]
 .  an-break-paragraph
@@ -678,7 +680,8 @@ contains unsupported escape sequence
 .  if \\n[an-remap-I-style-in-headings] .ftr I I
 ..
 .
-.\" Set arguments (or next input line if none) as a subsection heading.
+.\" Set arguments (or next input line producing written or drawn output
+.\" if none) as a subsection heading.
 .de1 SS
 .  fam \\*[an*body-family]
 .  an-break-paragraph
@@ -703,28 +706,32 @@ contains unsupported escape sequence
 .  if \\n[an-remap-I-style-in-headings] .ftr I I
 ..
 .
-.\" Set arguments (or next input line if none) in bold style.
+.\" Set arguments (or next input line producing written or drawn output
+.\" if none) in bold style.
 .de1 B
 .  itc 1 an-input-trap
 .  ft B
 .  if \\n[.$] \&\\$*
 ..
 .
-.\" Set arguments (or next input line if none) in italic style.
+.\" Set arguments (or next input line producing written or drawn output
+.\" if none) in italic style.
 .de1 I
 .  itc 1 an-input-trap
 .  ft I
 .  if \\n[.$] \,\\$*\/
 ..
 .
-.\" Set arguments (or next input line if none) at smaller type size.
+.\" Set arguments (or next input line producing written or drawn output
+.\" if none) at smaller type size.
 .de1 SM
 .  itc 1 an-input-trap
 .  ps -1
 .  if \\n[.$] \&\\$*
 ..
 .
-.\" Set arguments (or next input line if none) in bold style at smaller
+.\" Set arguments (or next input line producing written or drawn output
+.\" if none) in bold style at smaller
 .\" type size.
 .de1 SB
 .  itc 1 an-input-trap
@@ -744,7 +751,8 @@ contains unsupported escape sequence
 .als LP P
 .als PP P
 .
-.\" Set a tagged paragraph.  The tag must be on the next input line.
+.\" Set a tagged paragraph.  The tag must be on the next input line
+.\" producing written or drawn output.
 .\" .TP [indent]
 .de1 TP
 .  an-break-paragraph

@@ -1983,8 +1983,8 @@ developed.
 .
 .
 .P
-We note that AT&T took the opportunity to de-unify the apostrophe
-and acute accent
+We note that AT&T took the opportunity to de-unify the apostrophe/right
+single quotation mark from the acute accent
 (a choice ISO later duplicated in its 8859 series of standards).
 .
 A slash intended to be mirror-symmetric with the backslash was also

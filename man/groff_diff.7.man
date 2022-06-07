@@ -2668,9 +2668,9 @@ zero, emitting a warning in category \[lq]range\[rq].
 .BI .itc\~ n\~name
 As
 .BR .it ,
-but text lines interrupted with the
+but lines interrupted with the
 .B \[rs]c
-escape are not applied to the line count.
+escape sequence are not applied to the line count.
 .
 .
 .TP

@@ -2500,8 +2500,9 @@ lines of input that directly produce formatted output have been read.
 .REQ .itc "n name"
 As
 .request .it ,
-but don't count lines interrupted with
-.esc c .
+but lines interrupted with the
+.B \[rs]c
+escape sequence are not applied to the line count.
 .
 .
 .TPx

@@ -14146,9 +14146,10 @@ error to invoke @code{dt} in the top-level diversion.
 @cindex input line trap, setting (@code{it})
 @cindex trap, input line, setting (@code{it})
 Set an input line trap, calling macro @var{name} after processing the
-next @var{n}@tie{}lines of input that directly produce formatted output.
-Only text lines and (some) requests produce output directly; macro calls
-do not.
+next @var{n}@tie{}lines of input that directly produce written output.
+Only text lines and (some) requests produce output directly.  Macro
+calls of themselves do not---requests or text lines they interpolate
+can.
 
 Consider a macro @samp{.ST @var{s n}} which sets the next
 @var{n}@tie{}input lines in the font style@tie{}@var{s}.
@@ -14161,43 +14162,37 @@ Consider a macro @samp{.ST @var{s n}} which sets the next
 .de ES \" end ST
 .  ft R
 ..
+.ST I 1
+oblique
+face
+.ST I 1
+oblique\c
+face
+    @result{} @i{oblique} face @i{oblique}face @
+@r{(second ``face'' upright)}
 @endExample
 
 @cindex input line traps and interrupted lines (@code{itc})
 @cindex interrupted lines and input line traps (@code{itc})
 @cindex traps, input line, and interrupted lines (@code{itc})
 @cindex lines, interrupted, and input line traps (@code{itc})
-With @code{itc}, text lines interrupted with the @code{\c} escape
-sequence are not applied to the line count.
+The @code{itc} request is similar, except that lines interrupted with
+the @code{\c} escape sequence are not applied to the line count.
+@xref{Line Continuation}.  To see the difference, let's change the
+previous example to use @code{itc} instead.
 
 @Example
-.de Monospace
-.  itc \\$1 End-Monospace
-.  fam C
-..
-.de End-Monospace
-.  fam T
-..
-Syntax:
-.Monospace 1
-.ST B 1 \" from previous example
-mycommand \c
-[\c
-.ST I 1
-operand\c
-]
+@r{@dots{}}
+.  itc \\$2 ES
+@r{@dots{}}
+    @result{} @i{oblique} face @i{obliqueface} @
+@r{(second ``face'' oblique)}
 @endExample
 
-In the above, the Courier font family is used to render input on the
-next four text lines because all but the last are interrupted with
-@code{\c}, while the style macros apply only to the next input line.
-@xref{Line Continuation}.
-
-Text lines are easily understood as input lines that produce formatted
-output, but spacing requests and escape sequences like @code{\D},
-@code{\h}, @code{\l}, @code{\L}, and @code{\v} do as well; they thus
-increment the internal line counter tested for fulfillment of the input
-trap line count.
+Text lines are easily understood as input lines that produce written
+output, but escape sequences like @code{\D}, @code{\l}, and @code{\L},
+do as well; they thus increment the internal line counter tested for
+fulfillment of the input trap line count.  @xref{Drawing Requests}.
 
 @Example
 .de Trap
@@ -14212,25 +14207,41 @@ foo
 .Mac
 bar
 baz
+.it 1 Trap
+.sp \" moves, but does not write or draw
+qux
+.itc 1 Trap
+\h'5n'\c \" moves, but does not write or draw
+jat
 @endExample
 
 @noindent
-The timing of the input trap call above is dependent on whether the
-@samp{a} register is defined; the control line with the @code{if}
-request may or may not produce formatted output.
+When @samp{Trap} gets called depends on whether the @samp{a} register is
+defined; the control line with the @code{if} request may or may not
+produce written output.  We also see that the spacing request @code{sp},
+while certainly affecting the output, does not spring the input trap.
+Similarly, the horizontal motion escape sequence @code{\h} also affected
+the output, but was not ``written''.  Observe that we had to follow it
+with @code{\c} and use @code{itc} to prevent the newline at the end of
+the text line from causing a word break, which, like an ordinary space
+character, counts as written output.
 
 @Example
 $ groff -Tascii input-trap-example.groff
     @result{} foo bar TRAP SPRUNG baz
+    @result{}
+    @result{} qux TRAP SPRUNG      jat TRAP SPRUNG
 $ groff -Tascii -ra1 input-trap-example.groff
     @result{} foo _____ TRAP SPRUNG bar baz
+    @result{}
+    @result{} qux TRAP SPRUNG      jat TRAP SPRUNG
 @endExample
 @endDefreq
 
 Input traps are associated with the environment (@pxref{Environments});
 switching to another environment disables the current input trap, and
-going back reactivates it, restoring the count of lines already
-processed.
+going back reactivates it, restoring the count of qualifying lines
+enumerated in that environment.
 
 @c ---------------------------------------------------------------------
 

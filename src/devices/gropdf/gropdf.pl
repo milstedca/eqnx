@@ -1231,7 +1231,7 @@ sub do_x
 					    }
 					    else
 					    {
-						# XXX: identation wince
+						# XXX: indentation wince
 						Warn(
 "expected 'switchtopage' parameter to be one of"
 . "'top|bottom|before|after', got '$ba'");

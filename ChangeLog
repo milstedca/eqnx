@@ -1,3 +1,10 @@
+2022-06-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Regression-test use of input traps.
+
+	* tmac/tests/an_use-input-traps-correctly.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
 2022-06-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/gropdf/gropdf.pl (LoadDesc): Validate device

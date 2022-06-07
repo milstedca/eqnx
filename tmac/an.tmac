@@ -664,7 +664,7 @@ contains unsupported escape sequence
 .  ti 0
 .  nr an-devtag-needs-end-of-heading 1
 .  DEVTAG-SH 1
-.  itc 1 an-input-trap
+.  it 1 an-input-trap
 .  nr an-need-no-space-mode 1
 .  nr an-need-break 1
 .  ps \\n[PS-SH]u
@@ -691,7 +691,7 @@ contains unsupported escape sequence
 .  ti \\n[SN]u
 .  nr an-devtag-needs-end-of-heading 1
 .  DEVTAG-SH 2
-.  itc 1 an-input-trap
+.  it 1 an-input-trap
 .  nr an-need-no-space-mode 1
 .  nr an-need-break 1
 .  ps \\n[PS-SS]u
@@ -709,7 +709,7 @@ contains unsupported escape sequence
 .\" Set arguments (or next input line producing written or drawn output
 .\" if none) in bold style.
 .de1 B
-.  itc 1 an-input-trap
+.  it 1 an-input-trap
 .  ft B
 .  if \\n[.$] \&\\$*
 ..
@@ -717,7 +717,7 @@ contains unsupported escape sequence
 .\" Set arguments (or next input line producing written or drawn output
 .\" if none) in italic style.
 .de1 I
-.  itc 1 an-input-trap
+.  it 1 an-input-trap
 .  ft I
 .  if \\n[.$] \,\\$*\/
 ..
@@ -725,7 +725,7 @@ contains unsupported escape sequence
 .\" Set arguments (or next input line producing written or drawn output
 .\" if none) at smaller type size.
 .de1 SM
-.  itc 1 an-input-trap
+.  it 1 an-input-trap
 .  ps -1
 .  if \\n[.$] \&\\$*
 ..
@@ -734,7 +734,7 @@ contains unsupported escape sequence
 .\" if none) in bold style at smaller
 .\" type size.
 .de1 SB
-.  itc 1 an-input-trap
+.  it 1 an-input-trap
 .  ps -1
 .  ft B
 .  if \\n[.$] \&\\$*

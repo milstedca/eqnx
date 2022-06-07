@@ -1,5 +1,15 @@
 2022-06-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (SH, SS, B, I, SM, SB): Set input trap with `it`
+	instead of `itc` for better Unix Version 7 man(7) compatibility.
+
+	Fixes <https://savannah.gnu.org/bugs/?51468>.  Also see
+	discussion at
+	https://lists.gnu.org/archive/html/groff/2022-06/msg00020.html
+	et sequentia (amid a vigorous bikeshedding of `\&`'s name).
+
+2022-06-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Regression-test use of input traps.
 
 	* tmac/tests/an_use-input-traps-correctly.sh: Do it.

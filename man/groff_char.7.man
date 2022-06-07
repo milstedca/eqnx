@@ -302,15 +302,22 @@ they replace.
 The first,
 the neutral double quote,
 is a partial exception because it does represent itself,
-but since it is also used by
+but since the
 .I roff
-systems to quote macro arguments,
+language also uses it to quote macro arguments,
 .I groff
 supports a special character escape sequence as an alternative form so
 that the glyph can be easily included in macro arguments without
 requiring the user to master the quoting rules that AT&T
 .I troff
 required in that context.
+.
+(Some requests,
+like
+.BR ds ,
+also treat
+.B \[dq]
+non-literally.)
 .
 Furthermore,
 not all of the special character escape sequences are portable to AT&T

@@ -163,7 +163,7 @@ using position zero
 may produce unexpected results
 in a font selection escape sequence such as
 .b \ef0 ,
-because those are interpeted directly by \*T.
+because those are interpreted directly by \*T.
 \*(ME's type size registers support only integral values in points.
 Changes to parameters
 that affect the layout of the page

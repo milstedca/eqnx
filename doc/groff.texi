@@ -2748,7 +2748,7 @@ Default: 5@dmn{n}.
 
 @Defmpreg {PORPHANS, ms}
 Defines the minimum number of initial lines of any paragraph that must
-be kept together to avoid orphaned lines at the bottom of a page.  If a
+be kept together to avoid isolated lines at the bottom of a page.  If a
 new paragraph is started close to the bottom of a page, and there is
 insufficient space to accommodate @code{PORPHANS} lines before an
 automatic page break, then a page break is forced before the start of
@@ -3129,7 +3129,7 @@ paragraphing macro calls cause the insertion of vertical space in the
 amount stored in the @code{PD} register, except at page or column
 breaks.  The @code{PORPHANS} register (@pxref{ms Document Control
 Settings}) operates in conjunction with each of these macros to inhibit
-the printing of orphaned lines at the bottom of any page.
+the printing of isolated lines at the bottom of any page.
 
 @Defmac {LP, , ms}
 Set a paragraph without any (additional) indentation.
@@ -3337,14 +3337,15 @@ specified by the @code{PS} register.  ``Machairodontinae'' is printed at
 11.5 points, since it corresponds to heading level@tie{}2.
 
 The @code{HORPHANS} register operates in conjunction with the @code{NH}
-and @code{SH} macros to inhibit the printing of orphaned headings at the
+and @code{SH} macros to inhibit the printing of isolated headings at the
 bottom of a page; it specifies the minimum number of lines of an
 immediately subsequent paragraph that must be kept on the same page as
 the heading.  If insufficient space remains on the current page to
 accommodate the heading and this number of lines of paragraph text, a
 page break is forced before the heading is printed.  Any display macro
 or @code{tbl}, @code{pic}, or @code{eqn} region between the heading and
-the subsequent paragraph suppresses this grouping.
+the subsequent paragraph suppresses this grouping.  @xref{ms keeps and
+displays} and @ref{ms Insertions}.
 
 @c ---------------------------------------------------------------------
 
@@ -3428,8 +3429,8 @@ Set all text following at the normal type size (that is, the value of
 the @code{PS} register).
 @endDefmac
 
-@code{groff} @file{ms} also supports strings to begin and end super- and
-subscripting.  These are all GNU extensions.
+@code{groff} @file{ms} also offers strings to begin and end super- and
+subscripting.  These are GNU extensions.
 
 @DefmpstrList {@lbracechar{}, ms}
 @DefmpstrListEndx {@rbracechar{}, ms}
@@ -3602,8 +3603,8 @@ You may need to indent a region of text while otherwise formatting it
 normally.
 
 @Defmac {RS, , ms}
-Begin a region where headings, paragraphs, and displays are indented by
-the amount stored in the @code{PI} register.
+Begin a region where headings, paragraphs, and displays are indented
+(further) by the amount stored in the @code{PI} register.
 @endDefmac
 
 @Defmac {RE, , ms}
@@ -3667,14 +3668,14 @@ two paragraphs together, or a paragraph that refers to a table, list, or
 figure adjacent to the item it discusses.  @file{ms} provides the
 @code{KS} and @code{KE} macros for this purpose.
 
-You can alternatively specify a @dfn{floating keep}; if a keep cannot
+You can alternatively specify a @dfn{floating keep}:@: if a keep cannot
 fit on the current page, @file{ms} holds its contents and
 allows material following the keep (in the source document) to fill the
-remainder of the current page.  When the page breaks, whether by an
-explicit @code{bp} request or by reaching the end of the page, @file{ms}
-puts the floating keep at the beginning of the next page.  This is
-useful for placing large graphics or tables that do not need to appear
-exactly where they occur in the source document.
+remainder of the current page.  When the page breaks, whether by
+reaching the end or @code{bp} request, @file{ms} puts the floating keep
+at the beginning of the next page.  This is useful for placing large
+graphics or tables that do not need to appear exactly where they occur
+in the source document.
 
 @DefmacList {KS, , ms}
 @DefmacItemx {KF, , ms}
@@ -3936,7 +3937,8 @@ corresponding @code{FS} call as long as each @code{FS} call occurs
 Footnote text is formatted as paragraphs are, using analogous
 parameters.  The registers @code{FI}, @code{FPD}, @code{FPS}, and
 @code{FVS} correspond to @code{PI}, @code{PD}, @code{PS}, and @code{CS},
-respectively.
+respectively. The @code{FPD}, @code{FPS}, and @code{FVS} registers are
+GNU extensions.
 
 The @code{FF} register controls the formatting of automatically numbered
 footnote paragraphs and those for which @code{FS} is given a marker
@@ -4070,9 +4072,9 @@ Berkeley extensions.
 @DefmacItemx {EH, @code{'}@Var{left}@code{'}@Var{center}@code{'}@Var{right}@code{'}, ms}
 @DefmacItemx {OF, @code{'}@Var{left}@code{'}@Var{center}@code{'}@Var{right}@code{'}, ms}
 @DefmacListEndx {EF, @code{'}@Var{left}@code{'}@Var{center}@code{'}@Var{right}@code{'}, ms}
-The @code{OH} and @code{EH} macros define headers for the odd and even
-pages; the @code{OF} and @code{EF} macros define footers for the odd and
-even pages.
+The @code{OH} and @code{EH} macros define headers for odd- (recto)
+and even-numbered (verso) pages, respectively; the @code{OF} and
+@code{EF} macros define footers for them.
 @endDefmac
 
 By default, @file{ms} places no header on any page numbered ``1''
@@ -4178,8 +4180,8 @@ it requires multiple output lines, whether because a heading is too long
 to fit or because style dictates that page numbers not be repeated.  You
 may wish to indent the text thus wrapped to correspond to its heading
 depth; this can be done in the entry text by prefixing it with tabs or
-horizontally spacing escape sequences, or by providing a second argument
-to the @code{XA} macro.
+horizontal motion escape sequences, or by providing a second argument to
+the @code{XA} macro.
 
 @code{XS} and @code{XA} automatically associate the page number where
 they are called with the text following them, but they accept arguments

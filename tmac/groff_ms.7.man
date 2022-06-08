@@ -700,7 +700,7 @@ except at page or column breaks.
 The
 .B PORPHANS
 register defines the minimum number of initial lines of any paragraph
-that must be kept together to avoid orphaned lines at the bottom of a
+that must be kept together to avoid isolated lines at the bottom of a
 page.
 .
 If a new paragraph is started close to the bottom of a page,
@@ -985,7 +985,7 @@ register operates in conjunction with the
 .B NH
 and
 .B SH
-macros to inhibit the printing of orphaned headings at the bottom of a
+macros to inhibit the printing of isolated headings at the bottom of a
 page;
 it specifies the minimum number of lines of the subsequent paragraph
 that must be kept on the same page as the heading.
@@ -1155,9 +1155,9 @@ register).
 .
 .P
 .I groff ms
-also supports strings to begin and end super- and subscripting.
+also offers strings to begin and end super- and subscripting.
 .
-These are all GNU extensions.
+These are GNU extensions.
 .
 .
 .TP
@@ -1188,7 +1188,7 @@ normally.
 .B .RS
 Begin a region where headings,
 paragraphs,
-and displays are indented by
+and displays are indented (further) by
 .BR \[rs]n[PI] .
 .
 .
@@ -1214,7 +1214,7 @@ This can cause a page break to occur earlier than it normally would.
 .
 .P
 You can alternatively specify a
-.I floating keep;
+.I floating keep:
 if a keep cannot fit on the current page,
 .I ms
 holds its contents and allows text following the keep
@@ -1222,9 +1222,9 @@ holds its contents and allows text following the keep
 to fill in the remainder of the current page.
 .
 When the page breaks,
-whether by an explicit
+whether by reaching the end or
 .B bp
-request or by reaching the end of the page,
+request,
 .I ms
 puts the floating keep at the beginning of the next page.
 .
@@ -1527,7 +1527,7 @@ option is used.
 .\" ====================================================================
 .
 A footnote is typically anchored to a place in the text with a
-.IR marker ,
+.I marker,
 which is a small integer,
 a symbol,
 or arbitrary user-specified text.
@@ -1623,6 +1623,13 @@ correspond to
 and
 .BR VS ,
 respectively.
+.
+The
+.BR FPD ,
+.BR FPS ,
+and
+.B FVS
+registers are GNU extensions.
 .
 .
 .P
@@ -1786,6 +1793,8 @@ appearing in the header or footer text.
 These macros are Berkeley extensions.
 .
 .
+.br
+.ne 5v
 .TP
 .BR .OH \~\[aq]\c
 .IR left \[aq] center \[aq] right \[aq]
@@ -1802,12 +1811,13 @@ The
 .B OH
 and
 .B EH
-macros define headers for the odd and even pages;
+macros define headers for odd- (recto) and even-numbered (verso) pages,
+respectively;
 the
 .B OF
 and
 .B EF
-macros define footers for the odd and even pages.
+macros define footers for them.
 .
 .
 .P
@@ -1978,7 +1988,7 @@ that page numbers not be repeated.
 You may wish to indent the text thus wrapped to correspond to its
 heading depth;
 this can be done in the entry text by prefixing it with tabs or
-horizontally spacing escape sequences,
+horizontal motion escape sequences,
 or by providing a second argument to the
 .B XA
 macro.

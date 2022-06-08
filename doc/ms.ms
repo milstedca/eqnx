@@ -813,7 +813,7 @@ except at page or column breaks.
 The
 .CW PORPHANS
 register defines the minimum number of initial lines of any paragraph
-that must be kept together to avoid orphaned lines at the bottom of a
+that must be kept together to avoid isolated lines at the bottom of a
 page.
 .
 If a new paragraph is started close to the bottom of a page,
@@ -1264,7 +1264,7 @@ register operates in conjunction with the
 .CW NH
 and
 .CW SH
-macros to inhibit the printing of orphaned headings at the bottom of a
+macros to inhibit the printing of isolated headings at the bottom of a
 page;
 it specifies the minimum number of lines of the subsequent paragraph
 that must be kept on the same page as the heading.
@@ -1278,7 +1278,9 @@ Any display macro or
 .I pic ,
 or
 .I eqn
-region between the heading and the subsequent paragraph suppresses this
+region
+(see subsequent sections)
+between the heading and the subsequent paragraph suppresses this
 grouping.
 .
 .
@@ -1504,11 +1506,12 @@ and
 .I groff .
 .
 .
+.KS
 .PP
 .I "groff ms"
-also supports strings to begin and end super- and subscripting.
+also offers strings to begin and end super- and subscripting.
 .
-These are all GNU extensions.
+These are GNU extensions.
 .
 .
 .TS
@@ -1523,6 +1526,7 @@ _
 \[rs]*<	Begin subscripting.
 \[rs]*>	End subscripting.
 .TE
+.KE
 .
 .
 .nr PS -2
@@ -1778,7 +1782,7 @@ _
 \&.RS	T{
 Begin a region where headings,
 paragraphs,
-and displays are indented by
+and displays are indented (further) by
 .CW \[rs]n[PI] .
 T}
 \&.RE	T{
@@ -1878,7 +1882,7 @@ macros for this purpose.
 .
 .PP
 You can alternatively specify a
-.I "floating keep;"
+.I "floating keep:"
 if a keep cannot fit on the current page,
 .I ms
 holds its contents and allows material following the keep
@@ -1886,9 +1890,9 @@ holds its contents and allows material following the keep
 to fill the remainder of the current page.
 .
 When the page breaks,
-whether by an explicit
+whether by reaching the end or
 .CW bp
-request or by reaching the end of the page,
+request,
 .I ms
 puts the floating keep at the beginning of the next page.
 .
@@ -2259,7 +2263,7 @@ Footnotes
 .\" The following sentence is used below as an example as well.  Keep it
 .\" in sync.
 A footnote is typically anchored to a place in the text with a
-.I marker ,
+.I marker,
 which is a small integer\**,
 .FS
 like this numeric footnote
@@ -2280,8 +2284,8 @@ String	Description
 _
 \[rs]**	T{
 Place an
-.I automatic number,
-an automatically generated numeric footnote marker,
+.I "automatic number,"
+an automatically updated numeric footnote marker,
 in the text.
 .
 Each time this string is interpolated,
@@ -2407,7 +2411,7 @@ section.
 box center;
 lfCR.
 A footnote is anchored to a place in the text with a
-\&.I marker ,
+\&.I marker,
 which is a small integer\[rs]**,
 \&.FS
 like this numeric footnote
@@ -2460,6 +2464,13 @@ correspond to
 and
 .CW VS ,
 respectively.
+.
+The
+.CW FPD ,
+.CW FPS ,
+and
+.CW FVS
+registers are GNU extensions.
 .
 .
 .KS
@@ -2743,19 +2754,19 @@ Macro	Description
 _
 \&.OH \[aq]\f[I]left\f[]\[aq]\f[I]center\f[]\[aq]\f[I]right\f[]\[aq]\
 	T{
-Set the left, center, and right headers on odd-numbered pages.
+Set the left, center, and right headers on odd-numbered (recto) pages.
 T}
 \&.OF \[aq]\f[I]left\f[]\[aq]\f[I]center\f[]\[aq]\f[I]right\f[]\[aq]\
 	T{
-Set the left, center, and right footers on odd-numbered pages.
+Set the left, center, and right footers on odd-numbered (recto) pages.
 T}
 \&.EH \[aq]\f[I]left\f[]\[aq]\f[I]center\f[]\[aq]\f[I]right\f[]\[aq]\
 	T{
-Set the left, center, and right headers on even-numbered pages.
+Set the left, center, and right headers on even-numbered (verso) pages.
 T}
 \&.EF \[aq]\f[I]left\f[]\[aq]\f[I]center\f[]\[aq]\f[I]right\f[]\[aq]\
 	T{
-Set the left, center, and right footers on even-numbered pages.
+Set the left, center, and right footers on even-numbered (verso) pages.
 T}
 .TE
 .
@@ -3000,7 +3011,7 @@ that page numbers not be repeated.
 You may wish to indent the text thus wrapped to correspond to its
 heading depth;
 this can be done in the entry text by prefixing it with tabs or
-horizontally spacing escape sequences,
+horizontal motion escape sequences,
 or by providing a second argument to the
 .CW XA
 macro.

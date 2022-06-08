@@ -1,3 +1,16 @@
+2022-06-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[build]: Rename some groff Autoconf macros to better match
+	Autoconf's own naming conventions.
+
+	* m4/groff.m4 (GROFF_MAKEINFO): Rename to...
+	(GROFF_PROG_MAKEINFO): ...this.
+	(GROFF_TEXI2DVI): Rename to...
+	(GROFF_PROG_TEXI2DVI): ...this.
+
+	* configure.ac:
+	* m4/groff.m4 (GROFF_TEXI2DVI): Update call sites.
+
 2022-06-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (SH, SS, B, I, SM, SB): Set input trap with `it`

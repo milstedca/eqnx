@@ -105,7 +105,7 @@ AC_DEFUN([GROFF_PROG_M4], [
 # We need makeinfo from Texinfo 5.0 or newer, for @codequoteundirected.
 # The minor version checking logic is present for future needs.
 
-AC_DEFUN([GROFF_MAKEINFO], [
+AC_DEFUN([GROFF_PROG_MAKEINFO], [
   if ! test -f "$srcdir"/.tarball-version
   then
   # By default automake will set MAKEINFO to MAKEINFO = ${SHELL} <top
@@ -154,10 +154,10 @@ AC_DEFUN([GROFF_MAKEINFO], [
 # 'makeinfo' and 'texi2dvi' are distributed together, so if the former
 # is too old, the latter is too.
 
-AC_DEFUN([GROFF_TEXI2DVI], [
+AC_DEFUN([GROFF_PROG_TEXI2DVI], [
   if ! test -f "$srcdir"/.tarball-version
   then
-    AC_REQUIRE([GROFF_MAKEINFO])
+    AC_REQUIRE([GROFF_PROG_MAKEINFO])
     AC_CHECK_PROG([PROG_TEXI2DVI], [texi2dvi], [texi2dvi], [missing])
     groff_have_texi2dvi=no
     if test "$PROG_TEXI2DVI" != missing && test -n "$MAKEINFO"

@@ -3852,15 +3852,14 @@ across two or more pages.
 
 @CartoucheExample
 .TS H
-allbox expand;
-cb | cb .
-Text      ...of heading...
+allbox;
+Cb | Cb .
+Part@arrow{}Description
 _
 .TH
 .T&
-l | l .
-... the rest of the table follows...
-.CW
+GH-1978@arrow{}Fribulating gonkulator
+@r{@dots{}the rest of the table follows@dots{}}
 .TE
 @endCartoucheExample
 

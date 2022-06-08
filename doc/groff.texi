@@ -3081,7 +3081,7 @@ The hyphenation mode (as used by the @code{hy} request) is set from the
 @code{HY} register.
 
 @menu
-* Typographical Symbols in ms::
+* Typographical symbols in ms::
 * Paragraphs in ms::
 * Headings in ms::
 * Highlighting in ms::
@@ -3096,8 +3096,8 @@ The hyphenation mode (as used by the @code{hy} request) is set from the
 
 @c ---------------------------------------------------------------------
 
-@node Typographical Symbols in ms, Paragraphs in ms, ms Body Text, ms Body Text
-@subsubsection Typographical Symbols
+@node Typographical symbols in ms, Paragraphs in ms, ms Body Text, ms Body Text
+@subsubsection Typographical symbols
 @cindex @file{ms} macros, obtaining typographical symbols
 
 @file{ms} provides a handful of strings to obtain typographical symbols
@@ -3118,7 +3118,7 @@ right.  (As a mnemonic, think of ``quote'' and ``unquote''.)
 
 @c ---------------------------------------------------------------------
 
-@node Paragraphs in ms, Headings in ms, Typographical Symbols in ms, ms Body Text
+@node Paragraphs in ms, Headings in ms, Typographical symbols in ms, ms Body Text
 @subsubsection Paragraphs
 @cindex @file{ms} macros, paragraph handling
 

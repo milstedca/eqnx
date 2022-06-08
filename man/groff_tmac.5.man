@@ -786,15 +786,10 @@ documents can draw colored rectangles beneath any output.
 .
 .RS
 .TP
-.B \%.BOXSTART \c
-.B \%SHADED \c
-.I color \c
-.B \%OUTLINED \c
-.I color \c
-.B \%INDENT \c
-.I size \c
-.B \%WEIGHT \c
-.I size
+.BI \%.BOXSTART\~SHADED\~ color\~\c
+.BI \%OUTLINED\~ color\~\c
+.BI \%INDENT\~ size\~\c
+.BI \%WEIGHT\~ size
 begins a box,
 where the argument after
 .B \%SHADED

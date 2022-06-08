@@ -785,9 +785,9 @@ on ISO Latin-1 systems.)
 .
 .TP
 .BI \[rs][u base-glyph\c
-.RB [ _\c
-.I combining-component\c
-.RB ].\|.\|. ]
+[\c
+.BI _ combining-component\c
+].\|.\|.]
 constructs a composite glyph from Unicode numeric special character
 escape sequences.
 .

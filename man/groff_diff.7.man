@@ -1876,8 +1876,8 @@ incompatibilities caused by long names do not arise.
 .
 .
 .TP
-.B .defcolor\~\c
-.IR "ident scheme color-component\~" .\|.\|.
+.BI .defcolor\~ "ident scheme color-component\~\c"
+\&.\|.\|.
 Define a color named
 .I ident.
 .
@@ -3150,8 +3150,8 @@ are special and are searched for glyphs not in the current font.
 Without arguments, reset the list of special fonts to be empty.
 .
 .TP
-.B .spreadwarn\c
-.RI " [" limit ]
+.BR .spreadwarn\~ [\c
+.IR limit ]
 Emit a
 .B break
 warning if the additional space inserted for each space between words in
@@ -3514,8 +3514,8 @@ vertical position traps are enabled.
 .
 .
 .TP
-.B .warn\~\c
-.RI [ n ]
+.BR .warn\~ [\c
+.IR n ]
 Select the categories,
 or \[lq]types\[rq],
 of reported warnings.
@@ -3742,7 +3742,7 @@ and default to\~12.
 .TP
 .BR .ta\~ [[\c
 .IR "n1 n2\~" .\|.\|.\~ nn \~]\c
-.B T\~\c
+.BR T \~\c \" space in roman because we must use 2-font macro with \c
 .IR "r1 r2\~" .\|.\|.\~ rn ]
 .I groff
 supports an extended syntax to specify repeating tab stops after

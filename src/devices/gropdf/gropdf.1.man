@@ -204,8 +204,8 @@ complains about this line if it is included, but works anyway.
 .
 .
 .TP
-.B \-u\c
-.RI " [" cmapfile ]
+.BR \-u \~[\c
+.IR cmapfile ]
 .B Gropdf
 normally includes a ToUnicode CMap with any font created using
 .I text.enc
@@ -822,8 +822,8 @@ tags.
 The following tags are supported:
 .
 .TP
-.B \[rs]X\[aq]pdf: pdfpic\~\c
-.IR "file alignment width height line-length" \[aq]
+.BI "\[rs]X\[aq]pdf: pdfpic\~" file\~\c
+.IR "alignment width height line-length" \[aq]
 Place an image of the specified
 .I width
 containing the PDF drawing from file
@@ -952,8 +952,8 @@ document,
 but more esoteric uses are possible.
 .
 .TP
-.B \[rs]X\[aq]pdf: transition\~\c
-.IB "feature mode duration dimension motion direction scale bool" \[aq]
+.BI \[rs]X\[aq]pdf:\~transition\~ feature\~\c
+.IB "mode duration dimension motion direction scale bool" \[aq]
 where
 .IP
 .I feature

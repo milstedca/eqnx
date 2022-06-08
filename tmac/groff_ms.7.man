@@ -547,8 +547,8 @@ or heading or paragraphing macro call.
 .
 .
 .TP
-.B .DA\c
-.RI "\~[" x "\~.\|.\|.]"
+.BR .DA \~[\c
+.IR x \~.\|.\|.]
 Typeset the current date,
 or any
 .RI arguments\~ x ,
@@ -562,8 +562,8 @@ page.
 .
 .
 .TP
-.B .ND\c
-.RI "\~[" x "\~.\|.\|.]"
+.BR .ND \~[\c
+.IR x \~.\|.\|.]
 Typeset the current date,
 or any
 .RI arguments\~ x ,
@@ -726,8 +726,8 @@ register.
 .
 .
 .TP
-.B .IP\c
-.RI \~[ marker \~[ width ]]
+.BR .IP \~[\c
+.IR marker \~[ width ]]
 Set a paragraph with a left indentation.
 .
 The optional
@@ -806,8 +806,8 @@ rendered on the same output line in the same style.
 .
 .
 .TP
-.B .NH\c
-.RI \~[ depth ]
+.BR .NH \~[\c
+.IR depth ]
 Set an automatically numbered heading.
 .
 .I ms
@@ -905,8 +905,8 @@ table of contents entries.
 .
 .
 .TP
-.B .SH\c
-.RI \~[ depth ]
+.BR .SH \~[\c
+.IR depth ]
 Set an unnumbered heading.
 .
 The optional
@@ -1467,8 +1467,8 @@ preprocessor.
 .
 .
 .TP
-.B .EQ\c
-.RI " [" align ]
+.BR .EQ \~[\c
+.IR align ]
 .TQ
 .B .EN
 Demarcate an equation to be processed by the
@@ -1559,8 +1559,8 @@ of a text column or page.
 .
 .
 .TP
-.B .FS\c
-.RI \~[ marker ]
+.BR .FS \~[\c
+.IR marker ]
 Begin a footnote.
 .
 The
@@ -1735,17 +1735,17 @@ These macros are Berkeley extensions.
 .
 .
 .TP
-.B .OH \c
-.RI \[aq] left \[aq] center \[aq] right \[aq]
+.BR .OH \~\[aq]\c
+.IR left \[aq] center \[aq] right \[aq]
 .TQ
-.B .OF \c
-.RI \[aq] left \[aq] center \[aq] right \[aq]
+.BR .OF \~\[aq]\c
+.IR left \[aq] center \[aq] right \[aq]
 .TQ
-.B .EH \c
-.RI \[aq] left \[aq] center \[aq] right \[aq]
+.BR .EH \~\[aq]\c
+.IR left \[aq] center \[aq] right \[aq]
 .TQ
-.B .EF \c
-.RI \[aq] left \[aq] center \[aq] right \[aq]
+.BR .EF \~\[aq]\c
+.IR left \[aq] center \[aq] right \[aq]
 The
 .B OH
 and
@@ -1875,8 +1875,8 @@ Arrange page text in two columns.
 .
 .
 .TP
-.B .MC\c
-.RI " [" column-width " [" gutter-width ]]
+.BR .MC \~[\c
+.IR column-width " [" gutter-width ]]
 Arrange page text in multiple columns.
 .
 If you specify no arguments,
@@ -1953,11 +1953,11 @@ and then calls
 .
 .
 .TP
-.B .XS\c
-.RI \~[ page-number ]
+.BR .XS \~[\c
+.IR page-number ]
 .TQ
-.B .XA\c
-.RI \~[ page-number \~[ indentation ]]
+.BR .XA \~[\c
+.IR page-number \~[ indentation ]]
 .TQ
 .B .XE
 Begin,

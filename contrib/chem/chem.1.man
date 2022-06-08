@@ -635,9 +635,7 @@ only letters and numbers is valid:
 The specific construction
 .RS
 .TP
-.B bond\~\c
-\&.\|.\|.\&\~\c
-.B ; moiety
+.BR bond \~.\|.\|.\&\~ "; moiety"
 .RE
 .P
 is equivalent to

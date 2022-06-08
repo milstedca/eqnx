@@ -22,8 +22,8 @@
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ie t .nr PI 3.5n
 .el   .nr PI 4n
-.ND March 2022
-.EH '%''March 2022'
+.ND June 2022
+.EH '%''June 2022'
 .EF ''''
 .OH 'Using \f[I]groff\f[] with the \f[I]ms\f[] macros''%'
 .OF ''''
@@ -1290,16 +1290,42 @@ grouping.
 .br
 .ne (\n[.p]u / 2u)
 .NH 2
-Highlighting
+Typeface and decoration
 .XS
-	Highlighting
+	Typeface and decoration
 .XE
 .
 .
 .LP
 The
 .I ms
-macros provide a variety of methods to highlight or emphasize text.
+macros provide a variety of ways to style text.
+.
+Attend closely to the ordering of arguments labeled
+.I pre
+and
+.I post,
+which is not intuitive.
+.
+Support for
+.I pre
+arguments is a GNU extension.\**
+.FS
+This idiosyncrasy arose through feature accretion;
+for example,
+the
+.CW B
+macro in Version\~6 Unix
+.I ms
+(1975) accepted only one argument,
+the text to be set in boldface.
+.
+By Version\~7 (1979) it recognized a second argument;
+in 1990,
+.I "groff ms"
+added a \*[Q]pre\*[U] argument,
+placing it third to avoid breaking support for older documents.
+.FE
 .
 .
 .TS H
@@ -1309,92 +1335,70 @@ lf(CR) lx.
 Macro	Description
 _
 .TH
-\&.B [txt [post [pre]]]	T{
-Sets its first argument in
-.B "bold type" .
+\&.B \f[R][\f[I]text\f[] [\f[I]post\f[] [\f[I]pre\f[]]]]	T{
+Style
+.I text
+in
+.B bold ,
+followed by
+.I post
+in the previous font style without intervening space,
+and preceded by
+.I pre
+similarly.
 .
-If you specify a second argument,
-.I groff
-prints it in the previous font after the bold text,
-with no intervening space
-(this allows you to set punctuation after the highlighted text without
-highlighting the punctuation).
-.
-Similarly,
-it prints the third argument
-(if any)
-in the previous font
-.B before
-the first argument.
-.
-For example,
-.
-.
-.sp \n[PD]u
-.ti +3n
-\&.B foo ) (
-.
-.
-.sp \n[PD]u
-prints
-.B foo ). (
-.
-.
-.sp \n[PD]u
-If you give this macro no arguments,
-.I groff
-prints all text following in bold until the next highlighting,
+Without arguments,
+.I ms
+styles subsequent text in bold
+until the next highlighting,
 paragraphing,
-or heading macro.
+or heading macro call.
 T}
 _
-\&.R [txt [post [pre]]]	T{
-Sets its first argument in roman
-(or regular)
-type.
+\&.R \f[R][\f[I]text\f[] [\f[I]post\f[] [\f[I]pre\f[]]]]	T{
+As
+.CW .B ,
+but use the roman style
+(upright text of normal weight)
+instead of bold.
 .
-It operates similarly to the
-.CW .B
-macro otherwise.
+Arguments are recognized only by
+.I "groff ms."
 T}
 _
-\&.I [txt [post [pre]]]	T{
-Sets its first argument in
-.I "italic type" .
-.
-It operates similarly to the
-.CW .B
-macro otherwise.
+\&.I \f[R][\f[I]text\f[] [\f[I]post\f[] [\f[I]pre\f[]]]]	T{
+As
+.CW .B ,
+but use an
+.I italic
+or oblique style instead of bold.
 T}
 _
-\&.BI [txt [post [pre]]]	T{
-Sets its first argument in
-.BI "bold italic type" .
-.
-It operates similarly to the
-.CW .B
-macro otherwise.
+\&.BI \f[R][\f[I]text\f[] [\f[I]post\f[] [\f[I]pre\f[]]]]	T{
+As
+.CW .B ,
+but use a
+.BI "bold italic"
+or bold oblique style instead of upright bold.
 .
 This is a Tenth Edition Research Unix extension.
 .\" possibly 9th, but definitely not Berkeley
 T}
 _
-\&.CW [txt [post [pre]]]	T{
-Sets its first argument in a
+\&.CW \f[R][\f[I]text\f[] [\f[I]post\f[] [\f[I]pre\f[]]]]	T{
+As
+.CW .B ,
+but use a
 .CW constant-width
-(monospaced) roman typeface.
-.
-It operates similarly to the
-.CW .B
-macro otherwise.
+(monospaced) roman typeface instead of bold.
 .
 This is a Tenth Edition Research Unix extension.
 .\" possibly 9th, but definitely not Berkeley
 T}
 _
-\&.BX [txt]	T{
+\&.BX \f[R][\f[I]text\f[]]	T{
 Typeset
-.I txt
+.I text
 and draw a
 .BX box
 around it.
@@ -1403,31 +1407,34 @@ On terminal devices,
 reverse video is used instead
 (see the implementation note below).
 .
-If you want the argument to contain space,
-use non-breaking space escape sequences of appropriate width
+If you want
+.I text
+to contain space,
+use horizontal motion escape sequences of appropriate width
 .CW \[rs]\[ti] , (
 .CW \[rs]\[ha] ,
 .CW \[rs]| ,
-.CW \[rs]0 ),
+.CW \[rs]0 ,
 or
-.CW \[rs]h .
+.CW \[rs]h ).
 T}
 _
-\&.UL [txt [post]]	T{
+\&.UL \f[R][\f[I]text\f[] [\f[I]post\f[]]]	T{
 Typeset
-.I txt
+.I text
 with an
 .UL underline .
 .
-If you specify
-.I post ,
-.I ms
-sets it after the underlined text,
+Set
+.I post,
+if present,
+after
+.I text
 with no intervening space.
 T}
 _
 \&.LG	T{
-Set all subsequent text in
+Set subsequent text in
 .LG
 larger type
 .NL
@@ -1436,7 +1443,7 @@ until
 the next font size,
 highlighting,
 paragraphing,
-or heading macro.
+or heading macro call.
 .
 You can
 .LG
@@ -1448,7 +1455,7 @@ to enlarge the type size as needed.
 T}
 _
 \&.SM	T{
-Set all subsequent text in
+Set subsequent text in
 .SM
 smaller type
 .NL
@@ -1457,7 +1464,7 @@ until
 the next type size,
 highlighting,
 paragraphing,
-or heading macro.
+or heading macro call.
 .
 You can
 .SM
@@ -1469,13 +1476,81 @@ to reduce the type size as needed.
 T}
 _
 \&.NL	T{
-Set all subsequent text at the normal type size
-(that is,
-the value of the
-.CW PS
-register).
+Set subsequent text at the normal type size
+.CW \[rs]n[PS] ). (
 T}
 .TE
+.
+.
+.PP
+.I pre
+and
+.I post
+arguments
+are typically used to simplify the attachment of punctuation to styled
+words.
+When
+.I pre
+is used,
+a hyphenation control escape sequence
+.CW \[rs]%
+that would ordinarily start
+.I text
+must start
+.I pre
+instead to have the desired effect.
+.
+.TS
+box center;
+Cb Cb
+Lf(CR) L.
+Input	Result
+T{
+The course\[aq]s students found one C language keyword
+.br
+\&.CW static ) \[rs]%(
+.br
+most troublesome.
+T}	T{
+The course's students found one C language keyword
+.CW static ) \%(
+most troublesome.
+T}
+.TE
+.
+.KS
+You might prefer to use the output line continuation escape sequence
+.CW \[rs]c
+to achieve the same result.
+.
+It is also portable to older
+.I ms
+implementations.
+.
+.TS
+box center;
+Cb Cb
+Lf(CR) L.
+Input	Result
+T{
+The course\[aq]s students found one C language keyword
+.br
+(\[rs]c
+.br
+\&.CW \[rs]%static\[rs]c
+.br
+\&.R
+.br
+) most troublesome.
+T}	T{
+The course's students found one C language keyword
+(\c
+.CW \%static\c
+.R
+) most troublesome.
+T}
+.TE
+.KE
 .
 .
 .PP
@@ -1949,7 +2024,7 @@ Box macros cause breaks;
 if you need to box a word or phrase within a line,
 see the
 .CW BX
-macro in section \[lq]Highlighting\[rq] above.
+macro in section \[lq]Typeface and decoration\[rq] above.
 .
 Box lines are drawn as close as possible to the text they enclose so
 that they are usable within paragraphs.

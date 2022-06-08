@@ -468,7 +468,7 @@ developing GNU and promoting software freedom.''
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle May 2022
+@subtitle June 2022
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -3084,7 +3084,7 @@ The hyphenation mode (as used by the @code{hy} request) is set from the
 * Typographical symbols in ms::
 * Paragraphs in ms::
 * Headings in ms::
-* Highlighting in ms::
+* Typeface and decoration::
 * Lists in ms::
 * Indented regions in ms::
 * ms keeps and displays::
@@ -3204,7 +3204,7 @@ software.
 
 @c ---------------------------------------------------------------------
 
-@node Headings in ms, Highlighting in ms, Paragraphs in ms, ms Body Text
+@node Headings in ms, Typeface and decoration, Paragraphs in ms, ms Body Text
 @subsubsection Headings
 @cindex @file{ms} macros, headings
 
@@ -3349,85 +3349,110 @@ displays} and @ref{ms Insertions}.
 
 @c ---------------------------------------------------------------------
 
-@node Highlighting in ms, Lists in ms, Headings in ms, ms Body Text
-@subsubsection Highlighting
+@node Typeface and decoration, Lists in ms, Headings in ms, ms Body Text
+@subsubsection Typeface and decoration
 @cindex @file{ms} macros, highlighting
 
-The @file{ms} macros provide a variety of methods to highlight or
-emphasize text.
+The @file{ms} macros provide a variety of ways to style text.
+Attend closely to the ordering of arguments labeled @var{pre} and
+@var{post}, which is not intuitive.  Support for @var{pre}
+arguments is a GNU extension.@footnote{This idiosyncrasy arose through
+feature accretion; for example, the @code{B} macro in Version@tie{}6
+Unix @file{ms} (1975) accepted only one argument, the text to be set in
+boldface.  By Version@tie{}7 (1979) it recognized a second argument; in
+1990, @code{groff} @file{ms} added a ``pre'' argument, placing it third
+to avoid breaking support for older documents.}
 
-@Defmac {B, [@Var{txt} [@Var{post} [@Var{pre}]]], ms}
-Sets its first argument in @strong{bold type}.  If you specify a second
-argument, @code{groff} @file{ms} prints it in the previous font after
-the bold text, with no intervening space (this allows you to set
-punctuation after the highlighted text without highlighting the
-punctuation).  Similarly, it prints the third argument (if any) in the
-previous font @emph{before} the first argument.  For example,
-
-@Example
-.B foo ) (
-@endExample
-
-prints @samp{(@strong{foo})}.
-
-If you give this macro no arguments, @code{groff} @file{ms} prints all
-text following in bold until the next highlighting, paragraphing, or
-heading macro.
+@Defmac {B, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
+Style @var{text} in @b{bold}, followed by @var{post} in the previous
+font style without intervening space, and preceded by @var{pre}
+similarly.  Without arguments, @file{ms} styles subsequent text in bold
+until the next highlighting, paragraphing, or heading macro call.
 @endDefmac
 
-@Defmac {R, [@Var{txt} [@Var{post} [@Var{pre}]]], ms}
-Sets its first argument in roman (or regular) type.  It operates
-similarly to the @code{B}@tie{}macro otherwise.
+@Defmac {R, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
+As @code{B}, but use the roman style (upright text of normal weight)
+instead of bold.
 @endDefmac
 
-@Defmac {I, [@Var{txt} [@Var{post} [@Var{pre}]]], ms}
-Sets its first argument in @emph{italic type}.  It operates similarly
-to the @code{B}@tie{}macro otherwise.
+@Defmac {I, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
+As @code{B}, but use an @i{italic} or oblique style instead of bold.
 @endDefmac
 
-@Defmac {BI, [@Var{txt} [@Var{post} [@Var{pre}]]], ms}
-Sets its first argument in bold italic type.  It operates similarly to
-the @code{B}@tie{}macro otherwise.  This is a Tenth Edition Research
-Unix extension.
-@endDefmac
-
-@Defmac {CW, [@Var{txt} [@Var{post} [@Var{pre}]]], ms}
-Sets its first argument in a @code{constant-width} (monospaced)
-roman typeface.  It operates similarly to the @code{B}@tie{}macro
-otherwise.  This is a Tenth Edition Research Unix extension.
+@Defmac {BI, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
+As @code{B}, but use a bold italic or bold oblique style instead of
+upright bold.  This is a Tenth Edition Research Unix extension.
 @c possibly 9th, but definitely not Berkeley
 @endDefmac
 
-@Defmac {BX, [@Var{txt}], ms}
-Typeset @var{txt} and draw a box around it.  On terminal devices,
-reverse video is used instead.  If you want the argument to contain
-space, use non-breaking space escape sequences of appropriate width
-(@code{\~}, @code{\^}, @code{\|}, @code{\0}) or @code{\h}.
+@Defmac {CW, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
+As @code{B}, but use a @t{constant-width} (monospaced) roman typeface
+instead of bold.  This is a Tenth Edition Research Unix extension.
+@c possibly 9th, but definitely not Berkeley
 @endDefmac
 
-@Defmac {UL, [@Var{txt} [@Var{post}]], ms}
-Typeset @var{txt} with an underline.  If you specify @var{post},
-@file{ms} sets it after the underlined text, with no intervening space.
+@Defmac {BX, [@Var{text}], ms}
+Typeset @var{text} and draw a box around it.  On terminal devices,
+reverse video is used instead (see the implementation note below).
+If you want @var{text} to contain space, use horizontal motion escape
+sequences of appropriate width (@code{\~}, @code{\^}, @code{\|},
+@code{\0} or @code{\h}).
+@endDefmac
+
+@Defmac {UL, [@Var{text} [@Var{post}]], ms}
+Typeset @var{text} with an underline.  Set @var{post}, if present, after
+@var{text} with no intervening space.
 @endDefmac
 
 @Defmac {LG, , ms}
-Set all subsequent text in larger type (two points larger than the
+Set subsequent text in larger type (two points larger than the
 current size) until the next font size, highlighting, paragraphing, or
-heading macro.  You can specify this macro multiple times to enlarge the
-type size as needed.
+heading macro call.  You can specify this macro multiple times to
+enlarge the type size as needed.
 @endDefmac
 
 @Defmac {SM, , ms}
-Set all subsequent text in smaller type (two points smaller than the
-current size) until the next type size, highlighting, paragraphing, or
-heading macro.  You can specify this macro multiple times to reduce the
+Set subsequent text in smaller type (two points smaller than the current
+size) until the next type size, highlighting, paragraphing, or heading
+macro call.  You can specify this macro multiple times to reduce the
 type size as needed.
 @endDefmac
 
 @Defmac {NL, , ms}
-Set all text following at the normal type size (that is, the value of
-the @code{PS} register).
+Set subsequent text at the normal type size (the amount in the @code{PS}
+register).
 @endDefmac
+
+@var{pre} and @var{post} arguments are typically used to simplify the
+attachment of punctuation to styled words.  When @var{pre} is used,
+a hyphenation control escape sequence @code{\%} that would ordinarily
+start @var{text} must start @var{pre} instead to have the desired
+effect.
+
+@CartoucheExample
+The course's students found one C language keyword
+.CW static ) \%(
+most troublesome.
+@endCartoucheExample
+
+The foregoing example produces output as follows.
+
+@CartoucheExample
+@r{The course's students found one C language keyword (@t{static}) most
+troublesome.}
+@endCartoucheExample
+
+You might prefer to use the output line continuation escape sequence
+@code{\c} to achieve the same result (@pxref{Line Continuation}).  It is
+also portable to older @file{ms} implementations.
+
+@CartoucheExample
+The course's students found one C language keyword
+(\c
+.CW \%static\c
+.R
+) most troublesome.
+@endCartoucheExample
 
 @code{groff} @file{ms} also offers strings to begin and end super- and
 subscripting.  These are GNU extensions.
@@ -3453,7 +3478,7 @@ syntactical elements of @file{ms} and @code{groff}.
 
 @c ---------------------------------------------------------------------
 
-@node Lists in ms, Indented regions in ms, Highlighting in ms, ms Body Text
+@node Lists in ms, Indented regions in ms, Typeface and decoration, ms Body Text
 @subsubsection Lists
 @cindex @file{ms} macros, lists
 
@@ -3701,12 +3726,12 @@ boxed keep.
 @endDefmac
 
 Box macros cause breaks; if you need to box a word or phrase within a
-line, see the @code{BX} macro in @ref{Highlighting in ms}.  Box lines
-are drawn as close as possible to the text they enclose so that they are
-usable within paragraphs.  If you wish to box one or more paragraphs,
-you may improve the appearance by calling @code{B1} after the first
-paragraphing macro, and by adding a small amount of vertical space
-before calling @code{B2}.
+line, see the @code{BX} macro in @ref{Typeface and decoration}.  Box
+lines are drawn as close as possible to the text they enclose so that
+they are usable within paragraphs.  If you wish to box one or more
+paragraphs, you may improve the appearance by calling @code{B1} after
+the first paragraphing macro, and by adding a small amount of vertical
+space before calling @code{B2}.
 
 @c Wrap example at 56 columns.
 @CartoucheExample

@@ -1004,153 +1004,170 @@ grouping.
 .
 .
 .\" ====================================================================
-.SS Highlighting
+.SS "Typeface and decoration"
 .\" ====================================================================
 .
+.
+.P
 The
 .I ms
-macros provide a variety of methods to highlight
-or emphasize text:
+macros provide a variety of ways to style text.
 .
-.TP
-.B .B\c
-.RI " [" txt " [" post " [" pre ]]]
-Sets its first argument in
-.BR "bold type" .
+Attend closely to the ordering of arguments labeled
+.I pre
+and
+.I post,
+which is not intuitive.
 .
-If you specify a second argument,
-.I groff
-prints it in the previous font after
-the bold text, with no intervening space
-(this allows you to set punctuation after
-the highlighted text without highlighting
-the punctuation).
-.
-Similarly, it prints the third argument (if any)
-in the previous font
-.B before
-the first argument.
-.
-If you give this macro no arguments,
-.I groff
-prints all text following in bold until
-the next highlighting, paragraphing, or heading macro.
-.
-.TP
-.B .R\c
-.RI " [" txt " [" post " [" pre ]]]
-Sets its first argument in
-roman
-(or regular)
-type.
-.
-It operates similarly to the
-.B B
-macro otherwise.
-.
-.TP
-.B .I\c
-.RI " [" txt " [" post " [" pre ]]]
-Sets its first argument in
-.IR "italic type" .
-It operates similarly to the
-.B B
-macro otherwise.
+Support for
+.I pre
+arguments is a GNU extension.
 .
 .
 .TP
-.B .BI\c
-.RI " [" txt " [" post " [" pre ]]]
-Sets its first argument in bold italic type.
+.BR .B \~[\c
+.IR text \~[ post \~[ pre ]]]
+Style
+.I text
+in bold,
+followed by
+.I post
+in the previous font style without intervening space,
+and preceded by
+.I pre
+similarly.
 .
-It operates similarly to the
-.B B
-macro otherwise.
+Without arguments,
+.I ms
+styles subsequent text in bold
+until the next highlighting,
+paragraphing,
+or heading macro call.
+.
+.
+.TP
+.BR .R \~[\c
+.IR text \~[ post \~[ pre ]]]
+As
+.BR .B ,
+but use the roman style
+(upright text of normal weight)
+instead of bold.
+.
+Arguments are recognized only by
+.I groff ms.
+.
+.
+.TP
+.BR .I \~[\c
+.IR text \~[ post \~[ pre ]]]
+As
+.BR .B ,
+but use an italic or oblique style instead of bold.
+.
+.
+.TP
+.BR .BI \~[\c
+.IR text \~[ post \~[ pre ]]]
+As
+.BR .B ,
+but use a bold italic or bold oblique style instead of upright bold.
 .
 This is a Tenth Edition Research Unix extension.
 .\" possibly 9th, but definitely not Berkeley
 .
 .
 .TP
-.B .CW\c
-.RI " [" txt " [" post " [" pre ]]]
-Sets its first argument in a \[lq]constant-width\[rq] (monospaced) roman
-typeface.
-.
-It operates similarly to the
-.B B
-macro otherwise.
+.BR .CW \~[\c
+.IR text \~[ post \~[ pre ]]]
+As
+.BR .B ,
+but use a constant-width (monospaced) roman typeface instead of bold.
 .
 This is a Tenth Edition Research Unix extension.
 .\" possibly 9th, but definitely not Berkeley
 .
 .
 .TP
-.B .BX\c
-.RI " [" txt ]
+.BR .BX \~[\c
+.IR text ]
 Typeset
-.I txt
+.I text
 and draw a box around it.
 .
 On terminal devices,
 reverse video is used instead.
 .
-If you want the argument to contain space,
-use non-breaking space escape sequences of appropriate width
+If you want
+.I text
+to contain space,
+use horizontal motion escape sequences of appropriate width
 .RB ( \[rs]\[ti] ,
 .BR \[rs]\[ha] ,
 .BR \[rs]| ,
-.BR \[rs]0 ),
+.BR \[rs]0 ,
 or
-.BR \[rs]h .
+.BR \[rs]h ).
 .
 .
 .TP
-.B .UL\c
-.RI " [" txt " [" post ]]
+.BR .UL \~[\c
+.IR text \~[ post ]]
 Typeset
-.I txt
+.I text
 with an underline.
 .
-If you specify
-.IR post ,
-.I ms
-sets it after the underlined text,
+Set
+.I post,
+if present,
+after
+.I text
 with no intervening space.
 .
 .
 .TP
 .B .LG
-Set all subsequent text in larger type
-(2\~points larger than the current size) until
-the next font size,
+Set subsequent text in larger type
+(2\~points larger than the current size)
+until the next font size,
 highlighting,
 paragraphing,
-or heading macro.
+or heading macro call.
 .
 You can specify this macro multiple times to enlarge the type size as
 needed.
 .
+.
 .TP
 .B .SM
-Set all subsequent text in
-smaller type
-(2\~points smaller than the current size) until
-the next type size,
+Set subsequent text in smaller type
+(2\~points smaller than the current size)
+until the next type size,
 highlighting,
 paragraphing,
-or heading macro.
+or heading macro call.
 .
 You can specify this macro multiple times to reduce the type size as
 needed.
 .
+.
 .TP
 .B .NL
-Set all subsequent text at the normal type size
-(that is,
-the value of the
-.B PS
-register).
+Set subsequent text at the normal type size
+.RB ( \[rs]n[PS] ).
+.
+.
+.P
+When
+.I pre
+is used,
+a hyphenation control escape sequence
+.B \[rs]%
+that would ordinarily start
+.I text
+must start
+.I pre
+instead.
 .
 .
 .P

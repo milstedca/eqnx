@@ -1691,6 +1691,58 @@ but set the footnote paragraph with the marker hanging
 .
 .
 .\" ====================================================================
+.SS "Language and localization"
+.\" ====================================================================
+.
+.I groff ms
+provides several strings that you can customize for your own purposes,
+or redefine to adapt the macro package to languages other than English.
+.
+It is already localized for
+.\" cs, de, fr, it, sv
+Czech,
+German,
+French,
+Italian,
+and
+Swedish.
+.
+Load the desired localization macro package after
+.IR ms ;
+see
+.MR groff_tmac @MAN5EXT@ .
+.
+.RS
+.TS
+cb   cb
+lf(CR) lf(CR).
+String	Default
+_
+\[rs]*[REFERENCES]	References
+\[rs]*[ABSTRACT]	\[rs]f[I]ABSTRACT\[rs]f[]
+\[rs]*[TOC]	Table of Contents
+\[rs]*[MONTH1]	January
+\[rs]*[MONTH2]	February
+\[rs]*[MONTH3]	March
+\[rs]*[MONTH4]	April
+\[rs]*[MONTH5]	May
+\[rs]*[MONTH6]	June
+\[rs]*[MONTH7]	July
+\[rs]*[MONTH8]	August
+\[rs]*[MONTH9]	September
+\[rs]*[MONTH10]	October
+\[rs]*[MONTH11]	November
+\[rs]*[MONTH12]	December
+_
+.TE
+.RE
+.
+The default for
+.B ABSTRACT
+includes font selection escape sequences to set the word in italics.
+.
+.
+.\" ====================================================================
 .SS "Headers and footers"
 .\" ====================================================================
 .
@@ -2443,58 +2495,6 @@ package.
 Documents that need to determine whether they are being formatted with
 .I groff ms
 or another implementation should test this register.
-.
-.
-.\" ====================================================================
-.SS "Localization strings"
-.\" ====================================================================
-.
-.I groff ms
-provides several strings that you can customize for your own purposes,
-or redefine to adapt the macro package to languages other than English.
-.
-It is already localized for
-.\" cs, de, fr, it, sv
-Czech,
-German,
-French,
-Italian,
-and
-Swedish.
-.
-Load the desired localization macro package after
-.IR ms ;
-see
-.MR groff_tmac @MAN5EXT@ .
-.
-.RS
-.TS
-cb   cb
-lf(CR) lf(CR).
-String	Default
-_
-\[rs]*[REFERENCES]	References
-\[rs]*[ABSTRACT]	\[rs]f[I]ABSTRACT\[rs]f[]
-\[rs]*[TOC]	Table of Contents
-\[rs]*[MONTH1]	January
-\[rs]*[MONTH2]	February
-\[rs]*[MONTH3]	March
-\[rs]*[MONTH4]	April
-\[rs]*[MONTH5]	May
-\[rs]*[MONTH6]	June
-\[rs]*[MONTH7]	July
-\[rs]*[MONTH8]	August
-\[rs]*[MONTH9]	September
-\[rs]*[MONTH10]	October
-\[rs]*[MONTH11]	November
-\[rs]*[MONTH12]	December
-_
-.TE
-.RE
-.
-The default for
-.B ABSTRACT
-includes font selection escape sequences to set the word in italics.
 .
 .
 .\" TODO: Put this in a legacy feature support section, alongside AT&T

@@ -2596,6 +2596,76 @@ but on the next page in multiple-column contexts.
 .
 .
 .\" ------------------------
+.KS
+.NH 2
+Language and localization
+.XS
+	Language and localization
+.XE
+.
+.
+.LP
+.I "groff ms"
+provides several strings that you can customize for your own purposes,
+or redefine to adapt the macro package to languages other than English.
+.
+It is already localized for
+.\" cs, de, fr, it, sv
+Czech,
+German,
+French,
+Italian,
+and
+Swedish.
+.
+Load the desired localization macro package after
+.I ms ;
+see the
+.I groff_tmac (5)
+man page.
+.
+.TS
+box center;
+lf(CR).
+$ \f[CB]groff \-ms \-mfr bienvenue.ms
+.TE
+.
+.
+.PP
+The following strings are available.
+.
+.TS
+box center;
+cb lb
+lf(CR) lf(CR) .
+String	Default
+_
+\[rs]*[REFERENCES]	References
+\[rs]*[ABSTRACT]	\[rs]f[I]ABSTRACT\[rs]f[]
+\[rs]*[TOC]	Table of Contents
+\[rs]*[MONTH1]	January
+\[rs]*[MONTH2]	February
+\[rs]*[MONTH3]	March
+\[rs]*[MONTH4]	April
+\[rs]*[MONTH5]	May
+\[rs]*[MONTH6]	June
+\[rs]*[MONTH7]	July
+\[rs]*[MONTH8]	August
+\[rs]*[MONTH9]	September
+\[rs]*[MONTH10]	October
+\[rs]*[MONTH11]	November
+\[rs]*[MONTH12]	December
+.TE
+.
+.
+.PP
+The default for
+.CW \[rs]*[ABSTRACT]
+includes font selection escape sequences to set the word in italics.
+.KE
+.
+.
+.\" ------------------------
 .if t .bp
 .NH 1
 Page layout
@@ -3452,76 +3522,6 @@ Improved accent marks.
 .IP \&.IX
 Indexing term
 (printed on standard error).
-.
-.
-.\" ------------------------
-.KS
-.NH 2
-Localization strings
-.XS
-	Localization strings
-.XE
-.
-.
-.LP
-.I "groff ms"
-provides several strings that you can customize for your own purposes,
-or redefine to adapt the macro package to languages other than English.
-.
-It is already localized for
-.\" cs, de, fr, it, sv
-Czech,
-German,
-French,
-Italian,
-and
-Swedish.
-.
-Load the desired localization macro package after
-.I ms ;
-see the
-.I groff_tmac (5)
-man page.
-.
-.TS
-box center;
-lf(CR).
-$ \f[CB]groff \-ms \-mfr bienvenue.ms
-.TE
-.
-.
-.PP
-The following strings are available.
-.
-.TS
-box center;
-cb lb
-lf(CR) lf(CR) .
-String	Default
-_
-\[rs]*[REFERENCES]	References
-\[rs]*[ABSTRACT]	\[rs]f[I]ABSTRACT\[rs]f[]
-\[rs]*[TOC]	Table of Contents
-\[rs]*[MONTH1]	January
-\[rs]*[MONTH2]	February
-\[rs]*[MONTH3]	March
-\[rs]*[MONTH4]	April
-\[rs]*[MONTH5]	May
-\[rs]*[MONTH6]	June
-\[rs]*[MONTH7]	July
-\[rs]*[MONTH8]	August
-\[rs]*[MONTH9]	September
-\[rs]*[MONTH10]	October
-\[rs]*[MONTH11]	November
-\[rs]*[MONTH12]	December
-.TE
-.
-.
-.PP
-The default for
-.CW \[rs]*[ABSTRACT]
-includes font selection escape sequences to set the word in italics.
-.KE
 .
 .
 .\" ------------------------

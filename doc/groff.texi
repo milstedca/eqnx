@@ -3091,6 +3091,7 @@ The hyphenation mode (as used by the @code{hy} request) is set from the
 * ms Insertions::
 * Example multi-page table::
 * ms Footnotes::
+* ms language and localization::
 @end menu
 
 @c ---------------------------------------------------------------------
@@ -3965,6 +3966,63 @@ operator precedence (parentheses are honored).
 
 @c ---------------------------------------------------------------------
 
+@node ms language and localization, ms Page Layout, ms Footnotes, ms Body Text
+@subsubsection Language and localization
+@cindex @file{ms} macros, language
+@cindex @file{ms} macros, localization
+@cindex language [@file{ms}]
+@cindex localization [@file{ms}]
+
+@code{groff} @file{ms} provides several strings that you can customize
+for your own purposes, or redefine to adapt the macro package to
+languages other than English.  It is already localized for
+@c cs, de, fr, it, sv
+Czech, German, French, Italian, and Swedish.  Load the desired
+localization macro package after @file{ms}; see the
+@cite{groff_tmac@r{(5)}} man page.
+
+@CartoucheExample
+$ groff -ms -mfr bienvenue.ms
+@endCartoucheExample
+
+The following strings are available.
+
+@Defmpstr {REFERENCES, ms}
+Contains the string printed at the beginning of a references
+(bibliography) page produced with GNU @cite{refer@r{(1)}}.  The default
+is @samp{References}.
+@c XXX: Use of refer(1) with ms is insufficiently documented.
+@endDefmpstr
+
+@Defmpstr {ABSTRACT, ms}
+Contains the string printed at the beginning of the abstract.  The
+default is @samp{\f[I]ABSTRACT\f[]}; it includes font selection escape
+sequences to set the word in italics.
+@endDefmpstr
+
+@Defmpstr {TOC, ms}
+Contains the string printed at the beginning of the table of contents.
+The default is @samp{Table of Contents}.
+@endDefmpstr
+
+@DefmpstrList {MONTH1, ms}
+@DefmpstrItemx {MONTH2, ms}
+@DefmpstrItemx {MONTH3, ms}
+@DefmpstrItemx {MONTH4, ms}
+@DefmpstrItemx {MONTH5, ms}
+@DefmpstrItemx {MONTH6, ms}
+@DefmpstrItemx {MONTH7, ms}
+@DefmpstrItemx {MONTH8, ms}
+@DefmpstrItemx {MONTH9, ms}
+@DefmpstrItemx {MONTH10, ms}
+@DefmpstrItemx {MONTH11, ms}
+@DefmpstrListEndx {MONTH12, ms}
+Contain the full names of the calendar months.  The defaults are in
+English: @samp{January}, @samp{February}, and so on.
+@endDefmpstr
+
+@c ---------------------------------------------------------------------
+
 @node ms Page Layout, Differences from AT&T ms, ms Body Text, ms
 @subsection Page layout
 @cindex @file{ms} macros, page layout
@@ -4205,54 +4263,6 @@ great deal of time in the long run if you use @file{ms} regularly.
 @cindex accent marks [@file{ms}]
 @cindex special characters [@file{ms}]
 @cindex strings [@file{ms}]
-
-@code{groff} @file{ms} provides several strings that you can customize
-for your own purposes, or redefine to adapt the macro package to
-languages other than English.  It is already localized for
-@c cs, de, fr, it, sv
-Czech, German, French, Italian, and Swedish.  Load the desired
-localization macro package after @file{ms}; see the
-@cite{groff_tmac@r{(5)}} man page.
-
-@CartoucheExample
-$ groff -ms -mfr bienvenue.ms
-@endCartoucheExample
-
-The following strings are available.
-
-@Defmpstr {REFERENCES, ms}
-Contains the string printed at the beginning of a references
-(bibliography) page produced with GNU @cite{refer@r{(1)}}.  The default
-is @samp{References}.
-@c XXX: Use of refer(1) with ms is insufficiently documented.
-@endDefmpstr
-
-@Defmpstr {ABSTRACT, ms}
-Contains the string printed at the beginning of the abstract.  The
-default is @samp{\f[I]ABSTRACT\f[]}; it includes font selection escape
-sequences to set the word in italics.
-@endDefmpstr
-
-@Defmpstr {TOC, ms}
-Contains the string printed at the beginning of the table of contents.
-The default is @samp{Table of Contents}.
-@endDefmpstr
-
-@DefmpstrList {MONTH1, ms}
-@DefmpstrItemx {MONTH2, ms}
-@DefmpstrItemx {MONTH3, ms}
-@DefmpstrItemx {MONTH4, ms}
-@DefmpstrItemx {MONTH5, ms}
-@DefmpstrItemx {MONTH6, ms}
-@DefmpstrItemx {MONTH7, ms}
-@DefmpstrItemx {MONTH8, ms}
-@DefmpstrItemx {MONTH9, ms}
-@DefmpstrItemx {MONTH10, ms}
-@DefmpstrItemx {MONTH11, ms}
-@DefmpstrListEndx {MONTH12, ms}
-Contain the full names of the calendar months.  The defaults are in
-English: @samp{January}, @samp{February}, and so on.
-@endDefmpstr
 
 Improved accent marks are available in the @file{ms} macros.
 

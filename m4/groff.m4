@@ -106,64 +106,58 @@ AC_DEFUN([GROFF_PROG_M4], [
 # The minor version checking logic is present for future needs.
 
 AC_DEFUN([GROFF_PROG_MAKEINFO], [
-  if ! test -f "$srcdir"/.tarball-version
-  then
   # By default automake will set MAKEINFO to MAKEINFO = ${SHELL} <top
   # src dir>/build-aux/missing makeinfo.  As we need a more precise
   # check of makeinfo version, we don't use it.
-    MAKEINFO=
-    missing=
-    AC_CHECK_PROG([MAKEINFO], [makeinfo], [makeinfo])
-    if test -z "$MAKEINFO"
+  MAKEINFO=
+  missing=
+  AC_CHECK_PROG([MAKEINFO], [makeinfo], [makeinfo])
+  if test -z "$MAKEINFO"
+  then
+    missing="missing 'makeinfo'"
+  else
+    AC_MSG_CHECKING([for makeinfo version])
+    # We need an additional level of quoting to make sed's regexps
+    # work.
+    [makeinfo_version=`$MAKEINFO --version 2>&1 \
+     | sed -e 's/^.* \([^ ][^ ]*\)$/\1/' -e '1q'`]
+    AC_MSG_RESULT([$makeinfo_version])
+    # Consider only the first two numbers in version number string.
+    makeinfo_version_major=`IFS=.; set x $makeinfo_version; echo ${2}`
+    makeinfo_version_minor=`IFS=.; set x $makeinfo_version; echo ${3}`
+    makeinfo_version_numeric=`
+      expr ${makeinfo_version_major}000 + $makeinfo_version_minor`
+    if test $makeinfo_version_numeric -lt 5000
     then
-      missing="missing 'makeinfo'"
-    else
-      AC_MSG_CHECKING([for makeinfo version])
-      # We need an additional level of quoting to make sed's regexps
-      # work.
-      [makeinfo_version=`$MAKEINFO --version 2>&1 \
-       | sed -e 's/^.* \([^ ][^ ]*\)$/\1/' -e '1q'`]
-      AC_MSG_RESULT([$makeinfo_version])
-      # Consider only the first two numbers in version number string.
-      makeinfo_version_major=`IFS=.; set x $makeinfo_version; echo ${2}`
-      makeinfo_version_minor=`IFS=.; set x $makeinfo_version; echo ${3}`
-      makeinfo_version_numeric=`
-        expr ${makeinfo_version_major}000 + $makeinfo_version_minor`
-      if test $makeinfo_version_numeric -lt 5000
-      then
-        missing="'makeinfo' is too old."
-        MAKEINFO=
-      fi
+      missing="'makeinfo' is too old."
+      MAKEINFO=
     fi
-
-    if test -n "$missing"
-    then
-      infofile=doc/groff.info
-      test -f $infofile || infofile="$srcdir"/$infofile
-      if test ! -f $infofile \
-       || test "$srcdir"/doc/groff.texi -nt $infofile
-      then
-        AC_MSG_ERROR($missing
-[Get the 'texinfo' package version 5.0 or newer.])
-      fi
-    fi
-  AC_SUBST([MAKEINFO])
   fi
+
+  if test -n "$missing"
+  then
+    infofile=doc/groff.info
+    test -f $infofile || infofile="$srcdir"/$infofile
+    if test ! -f $infofile \
+     || test "$srcdir"/doc/groff.texi -nt $infofile
+    then
+      AC_MSG_ERROR($missing
+[Get the 'texinfo' package version 5.0 or newer.])
+    fi
+  fi
+  AC_SUBST([MAKEINFO])
 ])
 
 # 'makeinfo' and 'texi2dvi' are distributed together, so if the former
 # is too old, the latter is too.
 
 AC_DEFUN([GROFF_PROG_TEXI2DVI], [
-  if ! test -f "$srcdir"/.tarball-version
+  AC_REQUIRE([GROFF_PROG_MAKEINFO])
+  AC_CHECK_PROG([PROG_TEXI2DVI], [texi2dvi], [texi2dvi], [missing])
+  groff_have_texi2dvi=no
+  if test "$PROG_TEXI2DVI" != missing && test -n "$MAKEINFO"
   then
-    AC_REQUIRE([GROFF_PROG_MAKEINFO])
-    AC_CHECK_PROG([PROG_TEXI2DVI], [texi2dvi], [texi2dvi], [missing])
-    groff_have_texi2dvi=no
-    if test "$PROG_TEXI2DVI" != missing && test -n "$MAKEINFO"
-    then
-      groff_have_texi2dvi=yes
-    fi
+    groff_have_texi2dvi=yes
   fi
 ])
 

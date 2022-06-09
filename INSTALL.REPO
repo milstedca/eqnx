@@ -35,7 +35,11 @@ are several others.
 * groff's Texinfo manual is generated in several formats: GNU Info,
   HTML, plain text, TeX DVI, and PDF.  The former three require
   'makeinfo' from GNU Texinfo 5.0 or later.  The latter two additionally
-  require a TeX installation, such as TeX Live.
+  require a TeX installation, such as TeX Live.  If TeX is not
+  installed, the DVI and PDF formats of the manual cannot be generated.
+  This will cause a build failure only if the Texinfo source file
+  "groff.texi" is updated and the make(1) "dist" or relevant file
+  targets are manually specified.
 
 * You will need the 'xpmtoppm', 'pnmdepth', and 'pnmtops' programs from
   the Netpbm distribution.

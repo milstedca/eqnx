@@ -1,5 +1,37 @@
 2022-06-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Weaken dependency on TeX, instead using it (to generate
+	the DVI and PDF forms of our Texinfo manual) only if it is
+	available.
+
+	* m4/groff.m4 (GROFF_USE_TEX_CHECK): Check for presence of 'tex'
+	executable in path.  Set shell variable `groff_use_tex` to "yes"
+	if present, and "no" otherwise.  This check runs only if the
+	'makeinfo' and 'texi2dvi' version checks have already passed.
+
+	* configure.ac: Run the new check.  Set Automake conditional
+	`USE_TEX` only if shell variable `groff_use_tex` is "yes".
+	Report whether "groff.dvi" and "groff.pdf" are (re-)buildable.
+
+	* doc/doc.am: Parameterize names of groff.{dvi,pdf} targets as
+	Make macros `GROFF_DVI` and `GROFF_PDF`.  Define them only if
+	`USE_TEX`.  Do _not_ update `EXTRA_DIST` macro; leave the
+	literal file names there because we require that distribution
+	archives contain these files.
+	(.texi.dvi, .texi.pdf): Update suffix rules to check `USE_TEX`
+	and fail, complaining of missing 'tex' program, if these targets
+	are attempted without it being true.  Only manually specifying
+	the file names as targets to 'make' or attempting to generate a
+	distribution archive without TeX present should cause these
+	errors.
+
+	* INSTALL.REPO: Update dependency information.
+
+	Fixes <https://savannah.gnu.org/bugs/?62592>.  Thanks to Deri
+	James for the report.
+
+2022-06-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am (.texi.dvi, .texi.pdf, $(DOC_GNU_EPS)): Quote names
 	of programs when aborting because they're missing.
 

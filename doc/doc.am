@@ -503,8 +503,13 @@ endif
 #info_TEXINFOS = doc/groff.texi
 #doc_groff_TEXINFOS = doc/fdl.texi
 
-all: doc/groff.info doc/groff.txt doc/groff.html doc/groff.dvi \
-  doc/groff.pdf
+if USE_TEX
+GROFF_DVI = doc/groff.dvi
+GROFF_PDF = doc/groff.pdf
+endif
+
+all: doc/groff.info doc/groff.txt doc/groff.html $(GROFF_DVI) \
+  $(GROFF_PDF)
 
 # Distribute the manual in source form as well.
 EXTRA_DIST += doc/groff.texi doc/fdl.texi
@@ -561,6 +566,7 @@ EXTRA_DIST += doc/groff.dvi doc/groff.pdf
 # 'install-pdf' and 'install-dvi' are standard Automake targets.
 .texi.dvi:
 if HAVE_TEXI2DVI
+if USE_TEX
 	$(AM_V_at)$(MKDIR_P) $(doc_builddir)
 	$(AM_V_GEN)LANG=C \
 	LC_ALL=C \
@@ -570,13 +576,18 @@ if HAVE_TEXI2DVI
 	$(PROG_TEXI2DVI) -e --batch --build-dir=doc/`basename $@`.t2d \
 	  -o $@ $<
 else
+	@echo "program 'tex' is missing; cannot generate $@" >&2; \
+	exit 1
+endif # USE_TEX
+else
 	@echo "program 'texi2dvi' is missing or too old;" \
 	  "cannot generate $@" >&2; \
 	exit 1
-endif
+endif # HAVE_TEXI2DVI
 
 .texi.pdf:
 if HAVE_TEXI2DVI
+if USE_TEX
 	$(AM_V_at)$(MKDIR_P) $(doc_builddir)
 	$(AM_V_GEN)LANG=C \
 	LC_ALL=C \
@@ -585,10 +596,14 @@ if HAVE_TEXI2DVI
 	$(PROG_TEXI2DVI) -e --batch --pdf \
 	  --build-dir=doc/`basename $@`.t2p -o $@ $<
 else
+	@echo "program 'tex' is missing; cannot generate $@" >&2; \
+	exit 1
+endif # USE_TEX
+else
 	@echo "program 'texi2dvi' is missing or too old;" \
 	  "cannot generate $@" >&2; \
 	exit 1
-endif
+endif # HAVE_TEXI2DVI
 
 install-doc: install-pdf install-html
 

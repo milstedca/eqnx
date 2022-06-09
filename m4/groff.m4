@@ -161,6 +161,16 @@ AC_DEFUN([GROFF_PROG_TEXI2DVI], [
   fi
 ])
 
+# 'texi2dvi' can be installed without TeX itself, so check for a 'tex'
+# executable independently.
+
+AC_DEFUN([GROFF_USE_TEX_CHECK], [
+  AC_REQUIRE([GROFF_PROG_TEXI2DVI])
+  AC_CHECK_PROG([PROG_TEX], [tex], [found], [missing])
+  groff_use_tex=no
+  test "$PROG_TEX" = found && groff_use_tex=yes
+])
+
 # grohtml needs the following programs to produce images from tbl(1)
 # tables and eqn(1) equations.
 

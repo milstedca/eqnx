@@ -70,6 +70,7 @@ GROFF_PROG_YACC
 GROFF_PROG_M4
 GROFF_PROG_MAKEINFO
 GROFF_PROG_TEXI2DVI
+GROFF_USE_TEX_CHECK
 AC_PROG_RANLIB
 GROFF_INSTALL_SH
 GROFF_INSTALL_INFO
@@ -207,6 +208,7 @@ AM_CONDITIONAL([USE_GROFF_ALLOCATOR],
 AM_CONDITIONAL([HAVE_URW_FONTS], [test "$groff_have_urw_fonts" = yes ])
 AM_CONDITIONAL([HAVE_PDFTOOLS], [test "$groff_have_pdftools" = yes ])
 AM_CONDITIONAL([HAVE_TEXI2DVI], [test "$groff_have_texi2dvi" = yes ])
+AM_CONDITIONAL([USE_TEX], [test "$groff_use_tex" = yes ])
 
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([test-groff], [chmod +x test-groff])
@@ -244,6 +246,7 @@ echo "\
  'groff -l' uses print spooler    : $groff_have_spooler
  use URW fonts for PDF output     : $groff_have_urw_fonts
  preconv can use uchardet library : $groff_have_uchardet
+ can build groff.dvi, groff.pdf   : $groff_use_tex
  tests can use poppler PDF tools  : $groff_have_pdftools
 ----------------------------------------------------------------------"
 

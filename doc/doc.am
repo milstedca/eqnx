@@ -570,7 +570,7 @@ if HAVE_TEXI2DVI
 	$(PROG_TEXI2DVI) -e --batch --build-dir=doc/`basename $@`.t2d \
 	  -o $@ $<
 else
-	@echo "program texi2dvi is missing or too old;" \
+	@echo "program 'texi2dvi' is missing or too old;" \
 	  "cannot generate $@" >&2; \
 	exit 1
 endif
@@ -585,7 +585,7 @@ if HAVE_TEXI2DVI
 	$(PROG_TEXI2DVI) -e --batch --pdf \
 	  --build-dir=doc/`basename $@`.t2p -o $@ $<
 else
-	@echo "program texi2dvi is missing or too old;" \
+	@echo "program 'texi2dvi' is missing or too old;" \
 	  "cannot generate $@" >&2; \
 	exit 1
 endif
@@ -643,16 +643,16 @@ uninstall-html:
 EXTRA_DIST += $(DOC_GNU_EPS) doc/gnu.xpm
 $(DOC_GNU_EPS): doc/gnu.xpm
 	$(AM_V_GEN)if test "$(XPMTOPPM)" != found; then \
-	  echo "program xpmtoppm is missing; can't generate $@" >&2;\
+	  echo "program 'xpmtoppm' is missing; can't generate $@" >&2; \
 	  exit 1; \
 	fi; \
 	if test "$(pnmtops)" != found; then \
-	  echo "program pnmtops is missing; can't generate $@" >&2;\
+	  echo "program 'pnmtops' is missing; can't generate $@" >&2; \
 	  exit 1; \
 	fi; \
 	if ! echo "$(pnmtops_nosetpage)" | grep -q nosetpage; then \
-	  echo "program pnmtops can't handle -nosetpage option;" \
-	    "can't generate $@" >&2;\
+	  echo "program 'pnmtops' can't handle -nosetpage option;" \
+	    "can't generate $@" >&2; \
 	  exit 1; \
 	fi; \
 	xpmtoppm $(top_srcdir)/doc/gnu.xpm | pnmdepth 15 \

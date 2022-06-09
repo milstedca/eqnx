@@ -1,5 +1,10 @@
 2022-06-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/doc.am (.texi.dvi, .texi.pdf, $(DOC_GNU_EPS)): Quote names
+	of programs when aborting because they're missing.
+
+2022-06-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_PROG_MAKEINFO, GROFF_PROG_TEXI2DVI):
 	Largely revert commit d5013ededc, 21 May: run checks for
 	'makeinfo' and 'texi2dvi' programs regardless of presence of

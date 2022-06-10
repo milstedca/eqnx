@@ -717,11 +717,11 @@ spaces or tabs and organized as follows.
 identifies the glyph:
 if
 .I name
-is a single printable
+is a printable
 .RI character\~ c ,
 it corresponds to the
 .I troff \" generic
-input
+ordinary
 .RI character\~ c .
 .
 If
@@ -738,7 +738,7 @@ special character escape sequence
 A name consisting of three minus signs,
 .RB \[lq] \-\-\- \[rq],
 indicates that the glyph is unnamed:
-such glyphs can only be accessed by the
+such glyphs can be accessed only by the
 .B \[rs]N
 escape sequence in
 .IR troff . \" generic; \N is portable
@@ -798,11 +798,12 @@ it may be broken here for readability).
 .P
 There must not be any spaces,
 tabs,
-or newlines between these subfields.
+or newlines between these
+.I subfields,
 .
-The subfields are in basic units expressed as decimal integers.
+which are in basic units expressed as decimal integers.
 .
-Missing subfields are assumed to
+Unspecified subfields default to
 .RB be\~ 0 .
 .
 Since there is no associated binary format,

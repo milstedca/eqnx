@@ -480,8 +480,8 @@ respectively.
 .P
 The row definition with the most column descriptors determines the
 number of columns in the table;
-any row definition with fewer column descriptors is implicitly extended
-on the right-hand side with
+any row definition with fewer is implicitly extended on the right-hand
+side with
 .B L
 classifiers as many times as necessary to make the table rectangular.
 .
@@ -738,9 +738,9 @@ This modifier sets the default line length used in a text block.
 .
 .TP
 .BR f ,\~ F
-Select the font used for the table entry.
+Select the typeface for the table entry.
 .
-This modifier must be followed by a font name
+This modifier must be followed by a font or style name
 (one or two characters not starting with a digit),
 font mounting position
 (a single digit),
@@ -753,8 +753,8 @@ The last form is a GNU extension.
 .B ft
 request.)
 .
-A one-character font name or mounting position not in parentheses must
-be separated by one or more spaces or tabs from whatever follows.
+A one-character argument not in parentheses must be separated by one or
+more spaces or tabs from what follows.
 .
 .
 .TP
@@ -777,7 +777,7 @@ This modifier must be followed by a macro name of one or two characters
 or a name of any length in parentheses.
 .
 A one-character macro name not in parentheses must be separated by one
-or more spaces or tabs from whatever follows.
+or more spaces or tabs from what follows.
 .
 The named macro must be defined before the table region containing this
 column modifier is encountered.
@@ -802,7 +802,7 @@ it can thus override other column modifiers.
 .
 .TP
 .BR p ,\~ P
-Set the type size used for the table entry.
+Set the type size for the table entry.
 .
 This modifier must be followed by an
 .RI integer\~ n

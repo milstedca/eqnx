@@ -17898,13 +17898,13 @@ follows.
 @c glyphs, is not clearly separated in the terminology of @code{groff};
 @c for example, the @code{char} request should be called @code{glyph}
 @c since it defines an output entity.}
-if @var{name} is a single printable character@tie{}@var{c}, it
-corresponds to the @code{troff} input character@tie{}@var{c}.  If
-@var{name} is a multi-character sequence not beginning with @code{\}, it
-corresponds to the GNU @code{troff} special character escape sequence
+if @var{name} is a printable character@tie{}@var{c}, it corresponds to
+the @code{troff} ordinary character@tie{}@var{c}.  If @var{name} is a
+multi-character sequence not beginning with @code{\}, it corresponds to
+the GNU @code{troff} special character escape sequence
 @samp{\[@var{name}]}.  A name consisting of three minus signs,
 @samp{---}, is special and indicates that the glyph is unnamed: such
-glyphs can only be accessed by the @code{\N} escape sequence in
+glyphs can be accessed only by the @code{\N} escape sequence in
 @code{troff}.  A special character named @samp{---} can still be defined
 using @code{char} and similar requests.  The @var{name} @samp{\-}
 defines the minus sign glyph.  Finally, @var{name} can be the
@@ -17944,13 +17944,13 @@ The form of the @var{metrics} field is as follows.
 @end display
 
 @noindent
-There must not be any spaces, tabs, or newlines between these subfields
-(it has been split here into two lines only for better legibility).  The
-subfields are in basic units expressed as decimal integers.  Missing
-subfields are assumed to be@tie{}@code{0}.  Since there is no associated
-binary format, these values are not required to fit into the C language
-data type @samp{char} as they are in @acronym{AT&T} device-independent
-@code{troff}.
+There must not be any spaces, tabs, or newlines between these
+@dfn{subfields} (which have been split here into two lines only for
+better legibility).  The subfields are in basic units expressed as
+decimal integers.  Unspecified subfields default to be@tie{}@code{0}.
+Since there is no associated binary format, these values are not
+required to fit into the C language data type @samp{char} as they are in
+@acronym{AT&T} device-independent @code{troff}.
 
 The @var{width} subfield gives the width of the glyph.  The @var{height}
 subfield gives the height of the glyph (upward is positive); if a glyph

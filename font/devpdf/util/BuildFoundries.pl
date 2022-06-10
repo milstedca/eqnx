@@ -33,7 +33,8 @@ GetOptions("check" => \$check, "dirURW=s" => \$dirURW);
 
 (my $progname = $0) =~s @.*/@@;
 my $where=shift||'';
-my $devps=shift||'../devps';
+my @d=(split(':',shift||'../devps'));
+my $devps=\@d;
 chdir $where if $where ne '';
 my (%flg,@downloadpreamble,%download);
 my $GSpath=FindGSpath();
@@ -59,7 +60,7 @@ exit 0;
 sub LoadFoundry
 {
     my $fn=shift;
-    my $foundrypath='';
+    my $foundrypath;
     $notFoundFont=0;
 
     open(F,"<$fn") or Die("file '$fn' not found or not readable");
@@ -85,12 +86,18 @@ sub LoadFoundry
 
 	if (lc($r[0]) eq 'foundry')
 	{
-	    Warn("\nThe path(s) used for searching:\n$foundrypath\n") if $notFoundFont;
+	    Warn("\nThe path(s) used for searching:\n".join(':',$foundrypath)."\n") if $notFoundFont;
 	    $foundry=uc($r[1]);
-	    $foundrypath='';
-	    $foundrypath.="$dirURW:" if $dirURW;
-	    $foundrypath.=$r[2].':'.$devps;
-	    $foundrypath=~s/\(gs\)/$GSpath/;
+	    $foundrypath=[];
+	    push(@{$foundrypath},$dirURW) if $dirURW;
+	    push(@{$foundrypath},(split(':',$r[2])),@{$devps});
+	    foreach my $j (0..$#{$foundrypath})
+	    {
+		if ($foundrypath->[$j]=~m'\s*\(gs\)')
+		{
+		    splice(@{$foundrypath},$j,1,@{$GSpath});
+		}
+	    }
 	    $notFoundFont=0;
 	}
 	else
@@ -159,7 +166,7 @@ sub LoadFoundry
     }
 
     close(F);
-    Warn("\nThe path(s) used for searching:\n$foundrypath\n") if $notFoundFont;
+    Warn("\nThe path(s) used for searching:\n".join(':',$foundrypath)."\n") if $notFoundFont;
 }
 
 sub RunAfmtodit
@@ -238,68 +245,66 @@ sub LocateFile
     my $tryafm=shift;
     return(substr($files,1)) if substr($files,0,1) eq '*';
 
-    foreach my $file (split('!',$files))
+    foreach my $p (@{$path})
     {
-        if ($tryafm)
+        next if !defined($p) or $p eq ';' or $p eq ':';
+        $p=~s/^\s+//;
+        $p=~s/\s+$//;
+
+        next if $p=~m/^\%rom\%/;	# exclude %rom% paths (from (gs))
+
+        foreach my $file (reverse(split('!',$files)))
         {
-            if (!($file=~s/\..+$/.afm/))
+            if ($tryafm)
             {
-                # no extenaion
-                $file.='.afm';
+                if (!($file=~s/\..+$/.afm/))
+                {
+                    # no extenaion
+                    $file.='.afm';
+                }
+            }
+
+            if ($file=~m'/')
+            {
+                # path given with file name so no need to search the paths
+
+                if (-r $file)
+                {
+                    return($file);
+                }
+
+                if ($tryafm and $file=~s'type1/'afm/'i)
+                {
+                    if (-r "$file")
+                    {
+                        return($file);
+                    }
+                }
+
+                return('');
+            }
+
+            if ($path eq '(tex)')
+            {
+                my $res=`kpsewhich $file`;
+                return '' if $?;
+                chomp($res);
+                return($res);
+            }
+
+            if (-r "$p/$file")
+            {
+                return("$p/$file");
+            }
+
+            if ($tryafm and $p=~s'type1/'afm/'i)
+            {
+                if (-r "$p/$file")
+                {
+                    return("$p/$file");
+                }
             }
         }
-
-    if ($file=~m'/')
-    {
-	# path given with file name so no need to search the paths
-
-	if (-r $file)
-	{
-	    return($file);
-	}
-
-	if ($tryafm and $file=~s'type1/'afm/'i)
-	{
-	    if (-r "$file")
-	    {
-		return($file);
-	    }
-	}
-
-	return('');
-    }
-
-	if ($path eq '(tex)')
-    {
-	my $res=`kpsewhich $file`;
-	return '' if $?;
-	chomp($res);
-	return($res);
-    }
-
-	my (@paths)=split(/$pathsep/,$path);
-
-    foreach my $p (@paths)
-    {
-	    next if !defined($p) or $p eq ';' or $p eq ':';
-	$p=~s/^\s+//;
-	$p=~s/\s+$//;
-
-	next if $p=~m/^\%rom\%/;	# exclude %rom% paths (from (gs))
-
-	if (-r "$p/$file")
-	{
-	    return("$p/$file");
-	}
-
-	if ($tryafm and $p=~s'type1/'afm/'i)
-	{
-	    if (-r "$p/$file")
-	    {
-		return("$p/$file");
-	    }
-	}
-    }
     }
 
     return('');
@@ -309,7 +314,7 @@ sub FindGSpath
 {
     my (@res)=`@GROFF_GHOSTSCRIPT_INTERPRETERS@ -h 2>/dev/null`;
     return '' if $?;
-    my $buildpath='';
+    my $buildpath=[];
     my $stg=1;
 
     foreach my $l (@res)
@@ -329,7 +334,8 @@ sub FindGSpath
 	    else
 	    {
 		$l=~s/^\s+//;
-		$buildpath.=$l;
+                $pathsep=';' if substr($l,-1) eq ';';
+                push(@{$buildpath},(split("$pathsep",$l)));
 	    }
 	}
     }
@@ -471,7 +477,7 @@ sub Msg {
 sub CheckFoundry
 {
     my $fn=shift;
-    my $foundrypath='';
+    my $foundrypath=[];
     $notFoundFont=0;
 
     open(F,"<$fn") or Die("file '$fn' not found or not readable");
@@ -495,10 +501,17 @@ sub CheckFoundry
 	if (lc($r[0]) eq 'foundry')
 	{
 	    $foundry=uc($r[1]);
-	    $foundrypath='';
-	    $foundrypath.="$dirURW:" if $dirURW;
-	    $foundrypath.=$r[2].':'.$devps;
-	    $foundrypath=~s/\(gs\)/$GSpath/;
+	    $foundrypath=[];
+	    push(@{$foundrypath},$dirURW) if $dirURW;
+	    push(@{$foundrypath},(split(':',$r[2])),$devps);
+	    foreach my $j (0..$#{$foundrypath})
+	    {
+		if ($foundrypath->[$j]=~m'\s*\(gs\)')
+		{
+		    splice(@{$foundrypath},$j,1,@{$GSpath});
+		}
+	    }
+	    $notFoundFont=0;
 	}
 	else
 	{
@@ -516,7 +529,7 @@ sub CheckFoundry
 		# Don't run afmtodit, just copy the grops font file
 
 		my $gotf=1;
-		my $gropsfnt=LocateFile($devps,$r[0],0);
+		my $gropsfnt=LocateFile([$devps],$r[0],0);
 
 		if ($gropsfnt ne '' and -r "$gropsfnt")
 		{

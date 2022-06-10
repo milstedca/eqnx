@@ -72,7 +72,7 @@ EURO|N||||*../devps/freeeuro.pfa
 # URW fonts are typically shipped with Ghostscript, but can be replaced.
 
 #Foundry|Name|Search path
-foundry|U|(gs):@urwfontsdir@:/usr/share/fonts/type1/gsfonts:/opt/local/share/fonts/urw-fonts
+foundry|U|@urwfontsdir@:/usr/share/fonts/type1/gsfonts:/usr/share/fonts/default/Type1:/usr/share/fonts/default/Type1/adobestd35:/usr/share/fonts/type1/urw-base35:/opt/local/share/fonts/urw-fonts:(gs)
 
 # Define flags for afmtodit.
 

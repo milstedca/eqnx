@@ -1,3 +1,17 @@
+2022-06-10  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	[gropdf]: Changes to BuildFoundries.
+
+	* font/devpdf/util/BuildFoundries.pl: Collect search paths into
+	an array rather than a colon delimited string, this allows
+	the @PATH_SEPARATOR@ character (':' or ';') to be used to
+	delimit paths yielded by the command 'gs -h' but still use ':'
+	to delimit paths in the Foundry file. This means the same
+	Foundry file can be used on all systems.
+
+	* font/devpdf/Foundry.in: Add more likely paths to find the URW
+	fonts.
+
 2022-06-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: Weaken dependency on TeX, instead using it (to generate

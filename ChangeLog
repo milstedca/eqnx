@@ -294,7 +294,7 @@
 	* m4/groff.m4 (GROFF_X11, GROFF_UCHARDET): Drop redundant
 	messages (which are easily overlooked amid the torrent of
 	"checking" output anyway).  Discovery failures of X11 and the
-	unchardet library are already parts of the configuration report
+	uchardet library are already parts of the configuration report
 	at or near the end of output.
 
 2022-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
@@ -12151,10 +12151,10 @@
 2020-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/groff_man.7.man.in (Description/{Document structure
-	macros/.TH, Horizontal and vertical spacing}): Fix erroneous use
-	of "flush left".  The current uses were introduced by me, but
-	the page has borne incorrect uses of it as far back as 1999 (in
-	the description of .TP).  Simply say "with no indentation"
+	macros <.TH>, Horizontal and vertical spacing}): Fix erroneous
+	use of "flush left".  The current uses were introduced by me,
+	but the page has borne incorrect uses of it as far back as 1999
+	{in the description of .TP}.  Simply say "with no indentation"
 	instead.
 
 2020-08-13  G. Branden Robinson <g.branden.robinson@gmail.com>

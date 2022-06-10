@@ -2026,7 +2026,7 @@ Finally,
 we have ended the relative inset by using
 .BR .RE ,
 which
-(because we only used one
+(because we used only one
 .BR .RS / .RE
 pair)
 has reset the left margin to the default.
@@ -2263,8 +2263,9 @@ The macros we have described as extensions
 .BR .SY / .YS ,
 .BR .TQ ,
 .BR .UR / .UE ,
+.BR .MT / .ME ,
 and
-.BR .MT / .ME )
+.BR .MR )
 should be used with caution,
 as they may not yet be built in to some viewer that is important to your
 audience.

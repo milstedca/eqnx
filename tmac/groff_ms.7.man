@@ -1348,7 +1348,7 @@ left-aligned display.
 .RB [ I \~\c
 .RI [ indent ]]
 .TQ
-.B .ID \c
+.BR .ID \~\c
 .RI [ indent ]
 Begin
 .RB ( DS ": kept)"

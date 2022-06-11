@@ -2457,7 +2457,7 @@ and Tenth Edition Research Unix have been recreated.
 @c ---------------------------------------------------------------------
 
 @node ms Introduction, ms Document Structure, ms, ms
-@subsection Introduction to @file{ms}
+@subsection Introduction
 
 The @file{ms} macros are the oldest surviving package for @code{roff}
 systems.@footnote{Although manual pages are even older, the @file{man}
@@ -2498,7 +2498,7 @@ We have used an arrow @arrow{} in the above to indicate a tab character.
 @c ---------------------------------------------------------------------
 
 @node ms Document Structure, ms Document Control Settings, ms Introduction, ms
-@subsection General structure of an @file{ms} document
+@subsection Document Structure
 @cindex @file{ms} macros, general structure
 
 The @file{ms} macro package expects a certain amount of structure:
@@ -2551,7 +2551,7 @@ separate processing.
 @c ---------------------------------------------------------------------
 
 @node ms Document Control Settings, ms Document Description Macros, ms Document Structure, ms
-@subsection Document control settings
+@subsection Document Control Settings
 @cindex @file{ms} macros, document control settings
 
 @file{ms} exposes many aspects of document layout to user control via
@@ -2573,7 +2573,7 @@ presented in the syntax used to interpolate them.  For any parameter
 whose default is unsatisfactory, define its register or string before
 calling any @file{ms} macro other than @code{RP}.
 
-@unnumberedsubsubsec Margin Settings
+@unnumberedsubsubsec Margin settings
 
 @Defmpreg {PO, ms}
 Defines the page offset (i.e., the left margin).
@@ -2669,7 +2669,7 @@ Effective: next footer.
 Default: empty.
 @endDefmpstr
 
-@unnumberedsubsubsec Text Settings
+@unnumberedsubsubsec Text settings
 
 @Defmpreg {PS, ms}
 Defines the type size of the body text in points.  If the value is
@@ -2716,7 +2716,7 @@ Effective: next paragraph.
 Default: as defined in the output device.
 @endDefmpstr
 
-@unnumberedsubsubsec Paragraph Settings
+@unnumberedsubsubsec Paragraph settings
 
 @Defmpreg {PI, ms}
 Defines the indentation amount used by the @code{PP}, @code{IP} (unless
@@ -2759,7 +2759,7 @@ Effective: next paragraph.
 Default: 1.
 @endDefmpreg
 
-@unnumberedsubsubsec Heading Settings
+@unnumberedsubsubsec Heading settings
 
 @Defmpreg {PSINCR, ms}
 Defines an increment in type size to be applied to a heading at a
@@ -2809,7 +2809,7 @@ Effective: next heading.
 Default: alias of @code{SN-DOT}
 @endDefmpstr
 
-@unnumberedsubsubsec Footnote Settings
+@unnumberedsubsubsec Footnote settings
 
 @Defmpreg {FI, ms}
 Defines the footnote indentation.  This is a Berkeley extension.
@@ -2888,7 +2888,7 @@ otherwise.
 Default: @math{11/12}.
 @endDefmpstr
 
-@unnumberedsubsubsec Display Settings
+@unnumberedsubsubsec Display settings
 
 @Defmpreg {DD, ms}
 Sets the display distance---the vertical spacing before and after a
@@ -2911,7 +2911,7 @@ Effective: next indented display.
 Default: 0.5@dmn{i}.
 @endDefmpreg
 
-@unnumberedsubsubsec Other Settings
+@unnumberedsubsubsec Other settings
 
 @Defmpreg {MINGW, ms}
 Defines the default minimum width between columns in a multi-column
@@ -3064,7 +3064,7 @@ added features are more in line with user demand.
 @c ---------------------------------------------------------------------
 
 @node ms Body Text, ms Page Layout, ms Document Description Macros, ms
-@subsection Body text
+@subsection Body Text
 @cindex @file{ms} macros, body text
 
 A variety of macros, registers, and strings can be used to structure and

@@ -321,7 +321,7 @@ macro other than
 .CW RP .
 .
 The \[lq]Next\[rq] heading indicates that changes to the parameter are
-effective as of the the next listed element encountered.
+effective as of the next listed element encountered.
 .
 For entries marked
 .I special ,
@@ -408,7 +408,6 @@ usually,
 this is the case only for output to terminals and emulators thereof.
 .
 .
-.\" ------------------------
 .NH 2
 Fractional type sizes
 .XS
@@ -2136,7 +2135,6 @@ and to equations set with
 Changes to either register take effect at the next display boundary.
 .
 .
-.\" ----------------------------
 .KS
 .NH 2
 Tables, figures, equations, and references
@@ -2681,7 +2679,6 @@ arrangements,
 but on the next page in multiple-column contexts.
 .
 .
-.\" ------------------------
 .KS
 .NH 2
 Language and localization
@@ -2919,7 +2916,6 @@ even-,
 or first-numbered pages.
 .
 .
-.\" ------------------------
 .KS
 .NH 2
 Tab stops
@@ -2952,7 +2948,6 @@ T}
 .KE
 .
 .
-.\" ------------------------
 .KS
 .NH 2
 Margins
@@ -3338,15 +3333,15 @@ they cannot be used with AT&T
 .I troff .
 .
 .I "groff ms"
-supports several features described above as Berkeley and Tenth Edition
-Research Unix extensions,
+supports features described above as Berkeley and Tenth Edition Research
+Unix extensions,
 and adds several of its own.
 .
 .
 .PP
 The internals of
 .I "groff ms"
-differ from the internals of AT&T
+differ from those of AT&T
 .I ms .
 .
 Documents that depend upon implementation details of AT&T
@@ -3529,7 +3524,6 @@ Documents that need to determine whether they are being formatted with
 or another implementation should test this register.
 .
 .
-.\" ------------------------
 .NH 2
 AT&T
 .BI ms

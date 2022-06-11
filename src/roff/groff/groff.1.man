@@ -1490,7 +1490,7 @@ which can then be interpreted by
 .
 .TP
 .MR hpftodit @MAN1EXT@
-creates font description files for the the HP LaserJet\~4 family of
+creates font description files for the HP LaserJet\~4 family of
 printers.
 .
 .

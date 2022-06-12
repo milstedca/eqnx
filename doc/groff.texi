@@ -2451,6 +2451,7 @@ and Tenth Edition Research Unix have been recreated.
 * ms Body Text::
 * ms Page Layout::
 * Differences from AT&T ms::
+* ms Legacy Features::
 * ms Naming Conventions::
 @end menu
 
@@ -4065,7 +4066,6 @@ arrangement extensively.
 * ms Margins::
 * ms Multiple Columns::
 * ms TOC::
-* ms Strings and Special Characters::
 @end menu
 
 @c ---------------------------------------------------------------------
@@ -4178,7 +4178,7 @@ gutter width; it is a GNU extension.
 
 @c ---------------------------------------------------------------------
 
-@node ms TOC, ms Strings and Special Characters, ms Multiple Columns, ms Page Layout
+@node ms TOC, Differences from AT&T ms, ms Multiple Columns, ms Page Layout
 @subsubsection Creating a table of contents
 @cindex @file{ms} macros, creating table of contents
 @cindex table of contents, creating [@file{ms}]
@@ -4278,126 +4278,6 @@ character by using the @code{char} request.  A typical leader combines
 the dot glyph @samp{.} with a horizontal space escape sequence to spread
 the dots.  The width of the page number field is stored in the
 @code{TC-MARGIN} register.
-
-@c ---------------------------------------------------------------------
-
-@node ms Strings and Special Characters,  , ms TOC, ms Page Layout
-@subsubsection Strings and Special Characters
-@cindex @file{ms} macros, strings
-@cindex @file{ms} macros, special characters
-@cindex @file{ms} macros, accent marks
-@cindex accent marks [@file{ms}]
-@cindex special characters [@file{ms}]
-@cindex strings [@file{ms}]
-
-Improved accent marks are available in the @file{ms} macros.
-
-@Defmac {AM, , ms}
-Specify this macro at the beginning of your document to enable extended
-accent marks and special characters.  This is a Berkeley extension.
-
-To use the accent marks, place them @emph{after} the character being
-accented.
-
-Note that @code{groff}'s native support for accents is superior to the
-following definitions.
-@endDefmac
-
-The following accent marks are available after invoking the @code{AM}
-macro:
-
-@Defmpstr {@code{'}, ms}
-Acute accent.
-@endDefmpstr
-
-@Defmpstr {@code{`}, ms}
-Grave accent.
-@endDefmpstr
-
-@Defmpstr {^, ms}
-Circumflex.
-@endDefmpstr
-
-@Defmpstr {\,, ms}
-Cedilla.
-@endDefmpstr
-
-@Defmpstr {~, ms}
-Tilde.
-@endDefmpstr
-
-@deffn String @t{\*[:]}
-@ifnotinfo
-@stindex : @r{[}ms@r{]}
-@end ifnotinfo
-@ifinfo
-@stindex \*[@r{<colon>}] @r{[}ms@r{]}
-@end ifinfo
-Umlaut.
-@end deffn
-
-@Defmpstr {v, ms}
-Hacek.
-@endDefmpstr
-
-@Defmpstr {_, ms}
-Macron (overbar).
-@endDefmpstr
-
-@Defmpstr {., ms}
-Underdot.
-@endDefmpstr
-
-@Defmpstr {o, ms}
-Ring above.
-@endDefmpstr
-
-The following are standalone characters available after invoking the
-@code{AM} macro:
-
-@Defmpstr {?, ms}
-Upside-down question mark.
-@endDefmpstr
-
-@Defmpstr {!, ms}
-Upside-down exclamation point.
-@endDefmpstr
-
-@Defmpstr {8, ms}
-German ß ligature.
-@endDefmpstr
-
-@Defmpstr {3, ms}
-Yogh.
-@endDefmpstr
-
-@Defmpstr {Th, ms}
-Uppercase thorn.
-@endDefmpstr
-
-@Defmpstr {th, ms}
-Lowercase thorn.
-@endDefmpstr
-
-@Defmpstr {D-, ms}
-Uppercase eth.
-@endDefmpstr
-
-@Defmpstr {d-, ms}
-Lowercase eth.
-@endDefmpstr
-
-@Defmpstr {q, ms}
-Hooked o.
-@endDefmpstr
-
-@Defmpstr {ae, ms}
-Lowercase æ ligature.
-@endDefmpstr
-
-@Defmpstr {Ae, ms}
-Uppercase Æ ligature.
-@endDefmpstr
 
 @c ---------------------------------------------------------------------
 
@@ -4550,11 +4430,6 @@ setting code examples; @code{groff} @file{ms} does not.
 The @code{groff} @file{ms} macros have a few minor extensions to the
 @acronym{AT&T} @file{ms} macros.
 
-@Defmac {AM, , ms}
-Use improved accent marks.  @xref{ms Strings and Special Characters},
-for details.  This is a Berkeley extension.
-@endDefmac
-
 @Defmac {CW, , ms}
 Set text in a @code{constant-width} (monospaced) typeface.  This is a
 Tenth Edition Research Unix extension.
@@ -4566,13 +4441,167 @@ script to capture and process an index generated in this manner.
 @endDefmac
 
 Several new strings are available as well.  You can change these to
-handle (for example) the local language.  @xref{ms Strings and Special
-Characters}.
+handle (for example) the local language.  @xref{ms Legacy Features}.
 
 @c ---------------------------------------------------------------------
 
-@node ms Naming Conventions,  , Differences from AT&T ms, ms
-@subsection @file{ms} Naming Conventions
+@node ms Legacy Features, ms Naming Conventions, Differences from AT&T ms, ms
+@subsection Legacy Features
+@cindex @file{ms} macros, strings
+@cindex @file{ms} macros, special characters
+@cindex @file{ms} macros, accent marks
+@cindex accent marks [@file{ms}]
+@cindex special characters [@file{ms}]
+@cindex strings [@file{ms}]
+
+@code{groff} @file{ms} retains support for some legacy features solely
+to support rendering of historical documents; contemporary ones should
+not use them because they can render poorly.  See the
+@cite{groff_char@r{(7)}} man page.
+
+@unnumberedsubsubsec AT&T accent mark strings
+
+AT&T @file{ms} defined accent mark strings as follows.
+
+@Defmpstr {@code{'}, ms}
+Apply acute accent to subsequent glyph.
+@endDefmpstr
+
+@Defmpstr {@code{`}, ms}
+Apply grave accent to subsequent glyph.
+@endDefmpstr
+
+@Defmpstr {:, ms}
+Apply dieresis (umlaut) to subsequent glyph.
+@endDefmpstr
+
+@Defmpstr {^, ms}
+Apply circumflex accent to subsequent glyph.
+@endDefmpstr
+
+@Defmpstr {~, ms}
+Apply tilde accent to subsequent glyph.
+@endDefmpstr
+
+@Defmpstr {C, ms}
+Apply caron to subsequent glyph.
+@endDefmpstr
+
+@Defmpstr {\,, ms}
+Apply cedilla to subsequent glyph.
+@endDefmpstr
+
+@unnumberedsubsubsec Berkeley accent mark and glyph strings
+
+Berkeley @file{ms} offered an @code{AM} macro; calling it redefined the
+AT&T accent mark strings (except for @samp{\*C}), applied them to the
+@emph{preceding} glyph, and defined additional strings, some for spacing
+glyphs.
+
+@Defmac {AM, , ms}
+Enable alternative accent mark and glyph-producing strings.
+@endDefmac
+
+@Defmpstr {@code{'}, ms}
+Apply acute accent to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {@code{`}, ms}
+Apply grave accent to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {:, ms}
+Apply dieresis (umlaut) to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {^, ms}
+Apply circumflex accent to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {~, ms}
+Apply tilde accent to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {\,, ms}
+Apply cedilla to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {/, ms}
+Apply stroke (slash) to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {v, ms}
+Apply caron to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {_, ms}
+Apply macron to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {., ms}
+Apply underdot to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {o, ms}
+Apply ring accent to preceding glyph.
+@endDefmpstr
+
+@Defmpstr {?, ms}
+Interpolate inverted question mark.
+@endDefmpstr
+
+@Defmpstr {!, ms}
+Interpolate inverted exclamation mark.
+@endDefmpstr
+
+@Defmpstr {8, ms}
+Interpolate small letter sharp s.
+@endDefmpstr
+
+@Defmpstr {q, ms}
+Interpolate small letter o with hook accent (ogonek).
+@endDefmpstr
+
+@Defmpstr {3, ms}
+Interpolate small letter yogh.
+@endDefmpstr
+
+@Defmpstr {d-, ms}
+Interpolate small letter eth.
+@endDefmpstr
+
+@Defmpstr {D-, ms}
+Interpolate capital letter eth.
+@endDefmpstr
+
+@Defmpstr {th, ms}
+Interpolate small letter thorn.
+@endDefmpstr
+
+@Defmpstr {Th, ms}
+Interpolate capital letter thorn.
+@endDefmpstr
+
+@Defmpstr {ae, ms}
+Interpolate small æ ligature.
+@endDefmpstr
+
+@Defmpstr {Ae, ms}
+Interpolate capital Æ ligature.
+@endDefmpstr
+
+@Defmpstr {oe, ms}
+Interpolate small oe ligature.
+@endDefmpstr
+
+@Defmpstr {OE, ms}
+Interpolate capital OE ligature.
+@endDefmpstr
+
+@c ---------------------------------------------------------------------
+
+@node ms Naming Conventions,  , ms Legacy Features, ms
+@subsection Naming Conventions
 @cindex @file{ms} macros, naming conventions
 @cindex naming conventions, @file{ms} macros
 

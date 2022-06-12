@@ -3572,31 +3572,126 @@ macros for setting code examples;
 does not.
 .
 .
-.NH 2
-.BI "groff ms"
-macros not appearing in
-AT&T
-.BI ms
+.\" ------------------------
+.if t .bp
+.NH 1
+Legacy features
 .XS
-	\c
-.I "groff ms"
-macros not appearing in
-AT&T
-.I ms
+Legacy features
 .XE
 .
 .
 .LP
-The
 .I "groff ms"
-macros have some minor extensions,
-not already discussed above,
-compared to the AT&T
-.I ms
-macros.
+retains support for some legacy features solely to support rendering of
+historical documents;
+contemporary ones should not use them because they can render poorly.
 .
-.IP \&.AM 0.5i
-Improved accent marks.
+See
+.I groff_char (7)
+instead.
+.
+.
+.NH 2
+AT&T
+.I ms
+accent mark strings
+.XS
+	AT&T
+.I ms
+accent mark strings
+.XE
+.LP
+AT&T
+.I ms
+defined
+accent mark strings as follows.
+.
+.
+.TS
+box center;
+Cb Lb
+Lf(CR) Lx.
+String	Description
+_
+\[rs]*[\[aq]]	Apply acute accent to subsequent glyph.
+\[rs]*[\[ga]]	Apply grave accent to subsequent glyph.
+\[rs]*[:]	Apply dieresis (umlaut) to subsequent glyph.
+\[rs]*[\[ha]]	Apply circumflex accent to subsequent glyph.
+\[rs]*[\[ti]]	Apply tilde accent to subsequent glyph.
+\[rs]*[C]	Apply caron to subsequent glyph.
+.\" \*v was an undocumented (in Lesk 1978-11-13) synonym for \*C.
+\[rs]*[,]	Apply cedilla to subsequent glyph.
+.TE
+.
+.
+.NH 2
+Berkeley
+.I ms
+accent mark and glyph strings
+.XS
+	Berkeley
+.I ms
+accent mark and glyph strings
+.XE
+.LP
+Berkeley
+.I ms
+offered an
+.CW AM
+macro;
+calling it redefined the AT&T accent mark strings
+(except for
+.CW \[rs]*C ),
+applied them to the
+.I preceding
+glyph,
+and defined additional strings,
+some for spacing glyphs.
+.
+.
+.TS
+box;
+cb cb
+lf(CR) lx .
+Macro	Description
+_
+\&.AM	Enable alternative accent mark and glyph-producing strings.
+.TE
+.
+.
+.TS
+box center;
+Cb Lb
+Lf(CR) Lx.
+String	Description
+_
+\[rs]*[\[aq]]	Apply acute accent to preceding glyph.
+\[rs]*[\[ga]]	Apply grave accent to preceding glyph.
+\[rs]*[:]	Apply dieresis (umlaut) to preceding glyph.
+\[rs]*[\[ha]]	Apply circumflex accent to preceding glyph.
+\[rs]*[\[ti]]	Apply tilde accent to preceding glyph.
+\[rs]*[,]	Apply cedilla to preceding glyph.
+\[rs]*[/]	Apply stroke (slash) to preceding glyph.
+\[rs]*[v]	Apply caron to preceding glyph.
+\[rs]*[_]	Apply macron to preceding glyph.
+\[rs]*[.]	Apply underdot to preceding glyph.
+\[rs]*[o]	Apply ring accent to preceding glyph.
+_
+\[rs]*[?]	Interpolate inverted question mark.
+\[rs]*[!]	Interpolate inverted exclamation mark.
+\[rs]*[8]	Interpolate small letter sharp s.
+\[rs]*[q]	Interpolate small letter o with hook accent (ogonek).
+\[rs]*[3]	Interpolate small letter yogh.
+\[rs]*[d-]	Interpolate small letter eth.
+\[rs]*[D-]	Interpolate capital letter eth.
+\[rs]*[th]	Interpolate small letter thorn.
+\[rs]*[TH]	Interpolate capital letter thorn.
+\[rs]*[ae]	Interpolate small ae ligature.
+\[rs]*[AE]	Interpolate capital ae ligature.
+\[rs]*[oe]	Interpolate small oe ligature.
+\[rs]*[OE]	Interpolate capital oe ligature.
+.TE
 .
 .
 .\" ------------------------

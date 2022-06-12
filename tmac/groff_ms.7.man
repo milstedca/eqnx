@@ -651,7 +651,7 @@ provides a handful of strings to obtain typographical symbols not easily
 entered with the keyboard.
 .
 Many others are available as special character escape sequences\[em]see
-.MR groff_char 7 .
+.MR groff_char @MAN7EXT@ .
 .
 .
 .TP
@@ -2524,39 +2524,102 @@ Documents that need to determine whether they are being formatted with
 or another implementation should test this register.
 .
 .
-.\" TODO: Put this in a legacy feature support section, alongside AT&T
-.\" accent marks and .AM.
-.\".PP
-.\"The
-.\".B \[rs]*\-
-.\"string produces an em dash\[em]like this.
-.\".
-.\".
-.\".PP
-.\"Use
-.\".B \[rs]*Q
-.\"and
-.\".B \[rs]*U
-.\"to get a left and right typographer's quote,
-.\"respectively, in
-.\".I troff
-.\"(and plain quotes in
-.\".IR nroff ).
+.\" ====================================================================
+.SH "Legacy features"
+.\" ====================================================================
+.
+.I "groff ms"
+retains support for some legacy features solely to support rendering of
+historical documents;
+contemporary ones should not use them because they can render poorly.
+.
+See
+.MR groff_char @MAN7EXT@
+instead.
 .
 .
-.\" TODO: Put this in a legacy feature support section, alongside AT&T
-.\" accent marks and the \*-, \*Q, \*U strings.
-.\".PP
-.\"Improved accent marks
-.\"(as originally defined in Berkeley's
-.\".I ms
-.\"version)
-.\"are available by specifying the
-.\".B AM
-.\"macro at the beginning of your document.
-.\".
-.\"You can place an accent over most characters by specifying the string
-.\"defining the accent directly after the character.
+.\" ====================================================================
+.SS "AT&T \f[I]ms\f[] accent mark strings"
+.\" ====================================================================
+.
+AT&T
+.I ms
+defined
+accent mark strings as follows.
+.
+.
+.TS
+Cb Lb
+Lf(CR) Lx.
+String	Description
+_
+\[rs]*[\[aq]]	Apply acute accent to subsequent glyph.
+\[rs]*[\[ga]]	Apply grave accent to subsequent glyph.
+\[rs]*[:]	Apply dieresis (umlaut) to subsequent glyph.
+\[rs]*[\[ha]]	Apply circumflex accent to subsequent glyph.
+\[rs]*[\[ti]]	Apply tilde accent to subsequent glyph.
+\[rs]*[C]	Apply caron to subsequent glyph.
+.\" \*v was an undocumented (in Lesk 1978-11-13) synonym for \*C.
+\[rs]*[,]	Apply cedilla to subsequent glyph.
+.TE
+.
+.
+.\" ====================================================================
+.SS "Berkeley \f[I]ms\f[] accent mark and glyph strings"
+.\" ====================================================================
+.
+Berkeley
+.I ms
+offered an
+.B AM
+macro;
+calling it redefined the AT&T accent mark strings
+(except for
+.BR \[rs]*C ),
+applied them to the
+.I preceding
+glyph,
+and defined additional strings,
+some for spacing glyphs.
+.
+.
+.TP
+.B .AM
+Enable alternative accent mark and glyph-producing strings.
+.
+.
+.P
+.TS
+Cb Lb
+Lf(CR) Lx.
+String	Description
+_
+\[rs]*[\[aq]]	Apply acute accent to preceding glyph.
+\[rs]*[\[ga]]	Apply grave accent to preceding glyph.
+\[rs]*[:]	Apply dieresis (umlaut) to preceding glyph.
+\[rs]*[\[ha]]	Apply circumflex accent to preceding glyph.
+\[rs]*[\[ti]]	Apply tilde accent to preceding glyph.
+\[rs]*[,]	Apply cedilla to preceding glyph.
+\[rs]*[/]	Apply stroke (slash) to preceding glyph.
+\[rs]*[v]	Apply caron to preceding glyph.
+\[rs]*[_]	Apply macron to preceding glyph.
+\[rs]*[.]	Apply underdot to preceding glyph.
+\[rs]*[o]	Apply ring accent to preceding glyph.
+_
+\[rs]*[?]	Interpolate inverted question mark.
+\[rs]*[!]	Interpolate inverted exclamation mark.
+\[rs]*[8]	Interpolate small letter sharp s.
+\[rs]*[q]	Interpolate small letter o with hook accent (ogonek).
+\[rs]*[3]	Interpolate small letter yogh.
+\[rs]*[d-]	Interpolate small letter eth.
+\[rs]*[D-]	Interpolate capital letter eth.
+\[rs]*[th]	Interpolate small letter thorn.
+\[rs]*[TH]	Interpolate capital letter thorn.
+\[rs]*[ae]	Interpolate small ae ligature.
+\[rs]*[AE]	Interpolate capital ae ligature.
+\[rs]*[oe]	Interpolate small oe ligature.
+\[rs]*[OE]	Interpolate capital oe ligature.
+.TE
 .
 .
 .\" ====================================================================

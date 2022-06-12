@@ -3599,11 +3599,6 @@ macros.
 Improved accent marks.
 .
 .
-.IP \&.IX
-Indexing term
-(printed on standard error).
-.
-.
 .\" ------------------------
 .if t .bp
 .NH 1

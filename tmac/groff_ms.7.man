@@ -2100,24 +2100,6 @@ if present).
 .
 .
 .P
-You can customize the style of the leader that bridges each table of
-contents entry with its page number;
-define the
-.B TC\-LEADER
-special character by using the
-.B char
-request.
-.
-A typical leader combines the dot glyph
-.RB \[lq] .\& \[rq]
-with a horizontal space escape sequence to spread the dots.
-.
-The width of the page number field is stored in the
-.B TC\-MARGIN
-register.
-.
-.
-.P
 When creating a table of contents,
 incorporating content derived from headings specified by
 .B .NH
@@ -2272,6 +2254,24 @@ may be used in any context,
 in which use of
 .BR \%.XS ... XE
 is permitted.
+.
+.
+.P
+You can customize the style of the leader that bridges each table of
+contents entry with its page number;
+define the
+.B TC\-LEADER
+special character by using the
+.B char
+request.
+.
+A typical leader combines the dot glyph
+.RB \[lq] .\& \[rq]
+with a horizontal space escape sequence to spread the dots.
+.
+The width of the page number field is stored in the
+.B TC\-MARGIN
+register.
 .
 .
 .\" ====================================================================

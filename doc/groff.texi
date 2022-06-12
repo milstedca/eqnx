@@ -4239,13 +4239,6 @@ Set the page number to@tie{}1, the page number format to lowercase Roman
 numerals, and call @code{PX} (with a @code{no} argument, if present).
 @endDefmac
 
-You can customize the style of the leader that bridges each table of
-contents entry with its page number; define the @code{TC-LEADER} special
-character by using the @code{char} request.  A typical leader combines
-the dot glyph @samp{.} with a horizontal space escape sequence to spread
-the dots.  The width of the page number field is stored in the
-@code{TC-MARGIN} register.
-
 Here's an example of typical @file{ms} table of contents preparation.
 
 @CartoucheExample
@@ -4278,6 +4271,13 @@ automatically inserts @code{XS} and @code{XE} entries after each heading
 in a document.  Altering the @code{NH} macro to automatically build the
 table of contents is perhaps initially more difficult, but could save a
 great deal of time in the long run if you use @file{ms} regularly.
+
+You can customize the style of the leader that bridges each table of
+contents entry with its page number; define the @code{TC-LEADER} special
+character by using the @code{char} request.  A typical leader combines
+the dot glyph @samp{.} with a horizontal space escape sequence to spread
+the dots.  The width of the page number field is stored in the
+@code{TC-MARGIN} register.
 
 @c ---------------------------------------------------------------------
 

@@ -3180,24 +3180,6 @@ T}
 .TE
 .
 .
-.PP
-You can customize the style of the leader that bridges each table of
-contents entry with its page number;
-define the
-.CW TC\-LEADER
-special character by using the
-.CW char
-request.
-.
-A typical leader combines the dot glyph
-.CW .\& \[rq] \[lq]
-with a horizontal space escape sequence to spread the dots.
-.
-The width of the page number field is stored in the
-.CW TC\-MARGIN
-register.
-.
-.
 .KS
 .PP
 Here's an example of typical
@@ -3310,6 +3292,24 @@ more difficult,
 but could save a great deal of time in the long run if you use
 .I ms
 regularly.
+.
+.
+.PP
+You can customize the style of the leader that bridges each table of
+contents entry with its page number;
+define the
+.CW TC\-LEADER
+special character by using the
+.CW char
+request.
+.
+A typical leader combines the dot glyph
+.CW .\& \[rq] \[lq]
+with a horizontal space escape sequence to spread the dots.
+.
+The width of the page number field is stored in the
+.CW TC\-MARGIN
+register.
 .
 .
 .\" ------------------------

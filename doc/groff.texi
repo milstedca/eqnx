@@ -2446,7 +2446,6 @@ and Tenth Edition Research Unix have been recreated.
 * ms Introduction::
 * ms Document Structure::
 * ms Document Control Settings::
-* Fractional type sizes in ms::
 * ms Document Description Macros::
 * ms Body Text::
 * ms Page Layout::
@@ -2941,21 +2940,7 @@ Default: @code{\w'000'}
 
 @c ---------------------------------------------------------------------
 
-@node Fractional type sizes in ms, ms Document Description Macros, ms Document Control Settings, ms
-@subsection Fractional type sizes
-@cindex fractional type sizes in @file{ms} macros
-@cindex @file{ms} macros, fractional type sizes in
-
-@acronym{AT&T} @file{ms} supported only integer values for the type size
-and vertical spacing.  To overcome this restriction, for the registers
-@code{PS}, @code{VS}, @code{FPS}, and @code{FVS}, @code{groff} @file{ms}
-interprets values equal to or larger than 1000 as decimal fractions
-multiplied by 1000.  See the @code{PS} register in @ref{ms Document
-Control Settings}.
-
-@c ---------------------------------------------------------------------
-
-@node ms Document Description Macros, ms Body Text, Fractional type sizes in ms, ms
+@node ms Document Description Macros, ms Body Text, ms Document Control Settings, ms
 @subsection Document Description Macros
 @cindex @file{ms} macros, document description
 @cindex document description macros, [@file{ms}]
@@ -4333,6 +4318,16 @@ decrementing it, but by setting it absolutely.  This can cause problems
 for documents that define additional macros of their own that try to
 manipulate indentation.  The solution is to use, not the @code{in}
 request, but the @file{ms} @code{RS} and @code{RE} macros.
+
+@item
+@cindex fractional type sizes in @file{ms} macros
+@cindex @file{ms} macros, fractional type sizes in
+@acronym{AT&T} @file{ms} supported only integer values for the type size
+and vertical spacing.  To overcome this restriction, for the registers
+@code{PS}, @code{VS}, @code{FPS}, and @code{FVS}, @code{groff} @file{ms}
+interprets values equal to or larger than 1000 as decimal fractions
+multiplied by 1000.  See the @code{PS} register in @ref{ms Document
+Control Settings}.
 
 @item
 Right-aligned displays are available.  The @acronym{AT&T} @file{ms}

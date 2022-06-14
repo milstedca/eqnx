@@ -412,34 +412,6 @@ macros.
 .
 .
 .\" ====================================================================
-.SS "Fractional type sizes"
-.\" ====================================================================
-.
-AT&T
-.I ms
-supported only integer values for the type size and vertical spacing.
-.
-To overcome this restriction,
-for the registers
-.BR PS ,
-.BR VS ,
-.BR FPS ,
-and
-.BR FVS ,
-.I groff ms
-interprets values equal to or larger than\~1000 as decimal fractions
-multiplied by\~1000.
-.
-In
-.I ms
-documents that don't need to be portable to other implementations,
-use of a scaling indicator,
-as in
-.RB \[lq] ".nr PS 10.5p" \[rq],
-is preferable.
-.
-.
-.\" ====================================================================
 .SS "Document description macros"
 .\" ====================================================================
 .
@@ -2398,6 +2370,31 @@ but
 .B .RS
 and
 .BR .RE .
+.
+.
+.IP \[bu]
+AT&T
+.I ms
+supported only integer values for the type size and vertical spacing.
+.
+To overcome this restriction,
+for the registers
+.BR PS ,
+.BR VS ,
+.BR FPS ,
+and
+.BR FVS ,
+.I groff ms
+interprets values equal to or larger than\~1000 as decimal fractions
+multiplied by\~1000.
+.
+In
+.I ms
+documents that don't need to be portable to other implementations,
+use of a scaling indicator,
+as in
+.RB \[lq] ".nr PS 10.5p" \[rq],
+is preferable.
 .
 .
 .IP \[bu]

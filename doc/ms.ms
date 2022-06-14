@@ -408,42 +408,6 @@ usually,
 this is the case only for output to terminals and emulators thereof.
 .
 .
-.NH 2
-Fractional type sizes
-.XS
-	Fractional type sizes
-.XE
-.
-.
-.LP
-AT&T
-.I ms
-supported only integer values for the type size and vertical spacing.
-.
-To overcome this restriction,
-for the registers
-.CW PS ,
-.CW VS ,
-.CW FPS ,
-and
-.CW FVS ,
-.I "groff ms"
-interprets values equal to or larger than\~1000 as decimal fractions
-multiplied by\~1000.
-.
-For example,
-.CW ".nr PS 10500" \[rq] \[lq]
-sets the document's type size to 10.5\~points.
-.
-In
-.I ms
-documents that don't need to be portable to other implementations,
-using a scaling indicator,
-as in
-.CW ".nr PS 10.5p" \[rq], \[lq]
-is preferable.
-.
-.
 .\" ------------------------
 .if t .bp
 .NH 1
@@ -3414,6 +3378,35 @@ but
 .CW .RS
 and
 .CW .RE .
+.
+.
+.PP
+AT&T
+.I ms
+supported only integer values for the type size and vertical spacing.
+.
+To overcome this restriction,
+for the registers
+.CW PS ,
+.CW VS ,
+.CW FPS ,
+and
+.CW FVS ,
+.I "groff ms"
+interprets values equal to or larger than\~1000 as decimal fractions
+multiplied by\~1000.
+.
+For example,
+.CW ".nr PS 10500" \[rq] \[lq]
+sets the document's type size to 10.5\~points.
+.
+In
+.I ms
+documents that don't need to be portable to other implementations,
+using a scaling indicator,
+as in
+.CW ".nr PS 10.5p" \[rq], \[lq]
+is preferable.
 .
 .
 .PP

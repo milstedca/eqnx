@@ -2713,7 +2713,8 @@ extension.
 
 Effective: next paragraph.
 
-Default: as defined in the output device.
+Default: defined by the output device; often @samp{T} (@pxref{ms Body
+Text})
 @endDefmpstr
 
 @unnumberedsubsubsec Paragraph settings
@@ -3057,16 +3058,8 @@ A variety of macros, registers, and strings can be used to structure and
 style the body of your document.  Examples include paragraphs, headings,
 footnotes, and inclusions of material such as tables and figures.
 
-The @code{FAM} string sets the font family for body text.  If this
-string is undefined at initialization, it is set to @samp{T} (Times).
-Setting the @code{FAM} string before the first call of a heading,
-paragraphing, or (non-date) document description macro also applies it
-to headers, footers, and footnotes.
-
-The hyphenation mode (as used by the @code{hy} request) is set from the
-@code{HY} register.
-
 @menu
+* Text settings in ms::
 * Typographical symbols in ms::
 * Paragraphs in ms::
 * Headings in ms::
@@ -3082,7 +3075,22 @@ The hyphenation mode (as used by the @code{hy} request) is set from the
 
 @c ---------------------------------------------------------------------
 
-@node Typographical symbols in ms, Paragraphs in ms, ms Body Text, ms Body Text
+@node Text settings in ms, Typographical symbols in ms, ms Body Text, ms Body Text
+@subsubsection Text settings
+@cindex @file{ms} macros, text settings
+
+The @code{FAM} string sets the font family for body text; the default is
+@samp{T} (Times).  The font family setting is ignored on terminal
+devices.  Setting the @code{FAM} string before the first call of a
+heading, paragraphing, or (non-date) document description macro also
+applies it to headers, footers, and (for @code{FAM}) footnotes.
+
+The hyphenation mode (as used by the @code{hy} request) is set from the
+@code{HY} register.
+
+@c ---------------------------------------------------------------------
+
+@node Typographical symbols in ms, Paragraphs in ms, Text settings in ms, ms Body Text
 @subsubsection Typographical symbols
 @cindex @file{ms} macros, obtaining typographical symbols
 

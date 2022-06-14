@@ -581,20 +581,29 @@ End the abstract.
 .
 The
 .B FAM
-string sets the font family for body text.
-.
-If this string is undefined at initialization,
-it is set to
+string sets the font family for body text;
+the default is
 .RB \[lq] T \[rq]
 (Times).
 .
-Setting
-.B \[rs]*[FAM]
-before the first call of a heading,
+The font family setting is ignored on terminal devices.
+.
+The
+.B PS
+and
+.B VS
+registers set the type size and vertical spacing
+(distance between text baselines),
+respectively.
+.
+Setting these parameters before the first call of a heading,
 paragraphing,
-or (non-date) document description macro also applies it to headers,
+or (non-date) document description macro also applies them to headers,
 footers,
-and footnotes.
+and
+(for
+.BR FAM )
+footnotes.
 .
 .
 .P

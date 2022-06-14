@@ -668,20 +668,29 @@ Text settings
 .LP
 The
 .CW FAM
-string sets the font family for body text.
-.
-If this string is undefined at initialization,
-it is set to
+string sets the font family for body text;
+the default is
 .CW T \[rq] \[lq]
 (Times).
 .
-Setting
-.CW \[rs]*[FAM]
-before the first call of a heading,
+The font family setting is ignored on terminal devices.
+.
+The
+.CW PS
+and
+.CW VS
+registers set the type size and vertical spacing
+(distance between text baselines),
+respectively.
+.
+Setting these parameters before the first call of a heading,
 paragraphing,
-or (non-date) document description macro also applies it to headers,
+or (non-date) document description macro also applies them to headers,
 footers,
-and footnotes.
+and
+(for
+.CW FAM )
+footnotes.
 .
 .
 .PP

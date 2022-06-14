@@ -122,6 +122,7 @@ In this document,
 a right arrow (\[->]) is used to indicate a tab character in the input.
 .
 .
+.KS
 .NH 2
 Basic information
 .XS
@@ -131,25 +132,97 @@ Basic information
 .
 .LP
 .I ms
+documents are plain text files;
+prepare them with your preferred text editor.
+.
+If you're in a hurry to get started,
+be advised that
+.I ms
+needs one of its macros called at the beginning of a document so that it
+can initialize.
+.
+Put a macro call on a line by itself.
+.
+Use
+.CW .PP
+if you want your paragraph's first line to be indented,
+or
+.CW .LP
+if you don't.
+.KE
+.
+.
+.PP
+After that,
+start typing normally.
+.
+It is a good practice to start each sentence on a new line,
+or to put two spaces after sentence-ending puncutation,
+so that the formatter knows where the sentence boundaries are.
+.
+You can separate paragraphs with further paragraphing macro calls,
+or with blank lines,
+and you can indent with tabs.
+.
+When you need one of the features mentioned earlier,
+return to this manual.
+.
+.
+.PP
+Format the document with the
+.I groff (1)
+command.
+.
+.I nroff (1)
+can be useful for previewing.
+.
+.
+.TS
+box center;
+lf(CB).
+\f[CR]$\f[] vi radical.ms
+\f[CR]$\f[] nroff \-ms radical.ms | less \-R
+\f[CR]$\f[] groff \-ms radical.ms > radical.ps
+\f[CR]$\f[] see radical.ps
+.TE
+.
+.
+.PP
+Our
+.CW radical.ms
+document might look like this.
+.
+.
+.TS
+box center;
+Lf(CR).
+\&.LP
+Radical novelties are so disturbing that they tend to be
+suppressed or ignored, to the extent that even the
+possibility of their existence in general is more often
+denied than admitted.
+.sp
+\[->]That\[aq]s what Dijkstra said, anyway.
+.TE
+.
+.
+.LP
+.I ms
 exposes many aspects of document layout to user control via
 .I groff
 registers and strings.
 .
-Most
-.I registers
-have a default unit of measurement.
-.
-Specifying a unit explicitly does not cause problems,
-and can avoid them in complex situations.
-.
-The following table summarizes typical units.
+Measurements in
+.I groff
+are expressed with a suffix called a
+.I "scaling unit."
 .
 .
 .TS
 box center;
 cb cb
 cf(CR) l .
-Unit	Description
+Scaling unit	Description
 _
 i	inches (\[sd])
 c	centimeters
@@ -163,18 +236,118 @@ m	\[lq]ems\[rq]; width of an \[lq]M\[rq] using the current font
 .
 .PP
 Set registers with the
-.CW .nr
+.CW nr
 request
 and strings with the
-.CW .ds
+.CW ds
 request.
+.
+Requests are like macro calls;
+they go on lines by themselves and start with the control character,
+a dot
+.CW . ). (
+.
+The difference is that they directly instruct the formatter program,
+rather than the macro package.
+.
+It is wise to specify a scaling unit when setting any register that
+represents a length,
+size,
+or distance.
 .
 .
 .TS
 box center;
 lf(CR).
-\&.nr PS 12 \[rs]" Use 12-point type.
-\&.ds FAM P \[rs]" Use Palatino font family.
+\&.nr PS 10.5p \[rs]" Use 10.5\-point type.
+\&.ds FAM P    \[rs]" Use Palatino font family.
+.TE
+.
+.
+.LP
+In the foregoing,
+we see that
+.CW \[rs]"
+begins a comment.
+.
+This is an example of an escape sequence,
+the other kind of formatting instruction.
+.
+Escape sequences can appear anywhere.
+.
+They begin with the escape character
+.CW \[rs] ) (
+and are followed by at least one more character.
+.
+.I ms
+documents like this one tend to use only a few of
+.I groff 's
+many requests and escape sequences;
+see the
+.I groff (7)
+man page for complete lists.
+.
+.
+.TS
+box center;
+Cb Cb
+Lf(CR) Lx .
+Escape sequence	Description
+_
+\[rs]"	Begin comment; ignore remainder of line.
+\[rs]n[\f[I]reg\f[]]	T{
+Interpolate value of register
+.I reg .
+T}
+\[rs]*[\f[I]str\f[]]	T{
+Interpolate contents of string
+.I str .
+T}
+\[rs]*\f[I]s	T{
+abbreviation of
+.CW \[rs]*[\f[I]s\f[]];
+the name
+.I s
+must be only one character
+T}
+\[rs][\f[I]char\f[]]	T{
+Interpolate glyph of special character named
+.I char .
+T}
+\[rs]&	non-printing, zero-width dummy character
+\[rs]\[ti]	T{
+Move horizontally by the current font's space width
+(\[lq]non-breaking space\[rq]).
+T}
+\[rs]|	T{
+Move horizontally by one-sixth em
+(\[lq]thin space\[rq]).
+T}
+.TE
+.
+.
+.PP
+.CW \[rs]&
+has two important uses:
+put it before a word starting with a dot
+.CW .\& ) (
+if that word is at the beginning of an input line
+(or might become that way in editing)
+to prevent the dot from being interpreted as the control character,
+and after
+.CW . ,
+.CW ? ,
+and
+.CW !\&
+when needed to cancel end-of-sentence detection.
+.
+.
+.TS
+box center;
+lf(CR).
+After the criticality accident, Dr.\[rs]&
+Wallace said my exposure had been
+\[rs]&.5 to \[rs]&.6 Sv of neutrons.
 .TE
 .
 .

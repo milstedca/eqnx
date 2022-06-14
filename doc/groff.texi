@@ -2826,11 +2826,11 @@ and those for which the @code{FS} request is given a marker argument, at
 the bottom of a column or page.  This is a Berkeley extension.
 @table @code
 @item 0
-Set an automatic number@footnote{defined in @ref{ms Footnotes}) below}
-as a superscript (on typesetter devices) or surrounded by square
-brackets (on terminals).  The footnote paragraph is indented as with
-@code{PP} if there is an @code{FS} argument or an automatic number, and
-as with @code{LP} otherwise.  This is the default.
+Set an automatic number@footnote{defined in @ref{ms Footnotes}} as a
+superscript (on typesetter devices) or surrounded by square brackets (on
+terminals).  The footnote paragraph is indented as with @code{PP} if
+there is an @code{FS} argument or an automatic number, and as with
+@code{LP} otherwise.  This is the default.
 
 @item 1
 As @code{0}, but set the marker as regular text and follow an

@@ -2891,6 +2891,46 @@ includes font selection escape sequences to set the word in italics.
 .KE
 .
 .
+.KS
+.NH 2
+Glyphs for special characters
+.XS
+	Glyphs for special characters
+.XE
+.
+.
+.LP
+Some of the special character escape sequences used in this document
+are listed below.
+.
+The minus sign glyph can also be accessed by the shorthand
+.CW \[rs]\[mi] .
+.
+These and many others are documented in the
+.I groff_char (7)
+man page.
+.
+.
+.TS
+box center;
+Cb Lb Lb
+Lf(CR) L L .
+Input	Appearance	Description
+_
+\[rs][\-]	\[mi]	minus sign
+\[rs][\->]	\[->]	right arrow
+\[rs][bu]	\[bu]	bullet
+\[rs][dg]	\[dg]	dagger
+\[rs][em]	\[em]	em dash
+\[rs][ha]	\[ha]	circumflex accent (caret)
+\[rs][lg]	\[lq]	left double quotation mark
+\[rs][rq]	\[rq]	right double quotation mark
+\[rs][rs]	\[rs]	reverse solidus (backslash)
+\[rs][sd]	\[sd]	seconds (double prime) mark
+\[rs][ti]	\[ti]	tilde
+.TE
+.KE
+.
 .\" ------------------------
 .if t .bp
 .NH 1

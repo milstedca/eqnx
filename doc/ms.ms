@@ -980,10 +980,8 @@ _
 \&.LP	Set a paragraph without any (additional) indentation.
 _
 \&.PP	T{
-Set a paragraph with a first-line left indentation in the amount stored
-in the
-.CW PI
-register.
+Set a paragraph with a first-line left indentation of
+.CW \[rs]n[PI] .
 T}
 _
 \&.IP \f[R][\f[I]marker\f[] [\f[I]width\f[]]]	T{
@@ -2483,16 +2481,15 @@ Footnotes
 .\" in sync.
 A footnote is typically anchored to a place in the text with a
 .I marker,
-which is a small integer\**,
+which is a small integer,\**
 .FS
 like this numeric footnote
 .FE
-a symbol\[dg],
+a symbol,\*{\[dg]\*}
 .FS \[dg]
 like this symbolic footnote
 .FE
 or arbitrary user-specified text.
-.KE
 .
 .
 .TS
@@ -2515,6 +2512,7 @@ Automatic numbers start at 1.
 This is a Berkeley extension.
 T}
 .TE
+.KE
 .
 .
 .PP
@@ -2631,11 +2629,11 @@ box center;
 lfCR.
 A footnote is anchored to a place in the text with a
 \&.I marker,
-which is a small integer\[rs]**,
+which is a small integer,\[rs]**
 \&.FS
 like this numeric footnote
 \&.FE
-a symbol\[rs][dg],
+a symbol,\[rs]*{\[rs][dg]\[rs]*}
 \&.FS \[rs][dg]
 like this symbolic footnote
 \&.FE
@@ -2770,11 +2768,9 @@ Unix
 Version\~7
 .I ms ,
 its descendants,
-and GNU
-.I ms
-prior to
-.I groff
-version 1.23.0
+and
+.I "groff ms"
+prior to version 1.23.0
 .FE
 an
 .CW FL
@@ -2852,6 +2848,7 @@ Load the desired localization macro package after
 see the
 .I groff_tmac (5)
 man page.
+.
 .
 .TS
 box center;

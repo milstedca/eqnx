@@ -4440,9 +4440,9 @@ Example:
 .ne 5v+\n(.Vu
 .EX
 \&.if t \[rs]{\[rs]
-\&.  de bar
-\&.    nop Hello, I\[aq]m \[aq]bar\[aq].
-\&.  .
+\&.\&  de bar
+\&.\&    nop Hello, I\[aq]m \[aq]bar\[aq].
+\&.\&  .
 \&.\[rs]}
 .EE
 .

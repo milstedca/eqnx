@@ -1280,24 +1280,24 @@ macro:
 \&.\e" The pile is returned in string \[aq]pile\[aq].
 \&.eo
 \&.de pile\-make
-\&.  nr pile\-wd 0
-\&.  nr pile\-ht 0
-\&.  ds pile\-args
-\&.
-\&.  nr pile\-# \en[.$]
-\&.  while \en[pile\-#] \e{\e
-\&.    nr pile\-wd (\en[pile\-wd] >? \ew\[aq]\e$[\en[pile\-#]]\[aq])
-\&.    nr pile\-ht +(\en[rst] \- \en[rsb])
-\&.    as pile\-args \ev\[aq]\en[rsb]u\[aq]\e"
-\&.    as pile\-args \eZ\[aq]\e$[\en[pile\-#]]\[aq]\e"
-\&.    as pile\-args \ev\[aq]\-\en[rst]u\[aq]\e"
-\&.    nr pile\-# \-1
-\&.  \e}
-\&.
-\&.  ds pile \ev\[aq](\-0.5m + (\en[pile\-ht]u / 2u))\[aq]\e"
-\&.  as pile \e*[pile\-args]\e"
-\&.  as pile \ev\[aq]((\en[pile\-ht]u / 2u) + 0.5m)\[aq]\e"
-\&.  as pile \eh\[aq]\en[pile\-wd]u\[aq]\e"
+\&.\&  nr pile\-wd 0
+\&.\&  nr pile\-ht 0
+\&.\&  ds pile\-args
+\&.\&
+\&.\&  nr pile\-# \en[.$]
+\&.\&  while \en[pile\-#] \e{\e
+\&.\&    nr pile\-wd (\en[pile\-wd] >? \ew\[aq]\e$[\en[pile\-#]]\[aq])
+\&.\&    nr pile\-ht +(\en[rst] \- \en[rsb])
+\&.\&    as pile\-args \ev\[aq]\en[rsb]u\[aq]\e"
+\&.\&    as pile\-args \eZ\[aq]\e$[\en[pile\-#]]\[aq]\e"
+\&.\&    as pile\-args \ev\[aq]\-\en[rst]u\[aq]\e"
+\&.\&    nr pile\-# \-1
+\&.\&  \e}
+\&.\&
+\&.\&  ds pile \ev\[aq](\-0.5m + (\en[pile\-ht]u / 2u))\[aq]\e"
+\&.\&  as pile \e*[pile\-args]\e"
+\&.\&  as pile \ev\[aq]((\en[pile\-ht]u / 2u) + 0.5m)\[aq]\e"
+\&.\&  as pile \eh\[aq]\en[pile\-wd]u\[aq]\e"
 \&..
 \&.ec
 .EE

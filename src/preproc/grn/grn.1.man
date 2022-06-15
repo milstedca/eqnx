@@ -558,7 +558,7 @@ POLYGON@@6
 .TE
 .
 .
-.IP \[bu]
+.IP \[bu] 2n
 The first line of each
 .I gremlin
 file contains either the string
@@ -625,7 +625,7 @@ Lines longer than 127 characters are truncated to that length.
 .SS "Element specifications"
 .\" ====================================================================
 .
-.IP \[bu]
+.IP \[bu] 2n
 The first line of each element contains a single decimal number giving
 the type of the element (AED) or its name (Sun/X11).
 .

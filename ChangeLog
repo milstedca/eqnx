@@ -1,3 +1,17 @@
+2022-06-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[docs]: Revise discussion of end-of-sentence detection.
+
+	* doc/groff.texi (Filling):
+	* man/roff.7.man (Concepts): Do it.  "Spaces" is a now a term
+	with a much more restricted usage.  Emphasize the input context,
+	now explicitly identified as plain text files with Unix line
+	endings.
+
+	Fixes (one hopes) <https://savannah.gnu.org/bugs/?62593>.
+	Thanks to Ingo Schwarze for the report and Dave Kemper for the
+	discussion.
+
 2022-06-10  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[gropdf]: Changes to BuildFoundries.

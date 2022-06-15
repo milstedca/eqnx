@@ -114,7 +114,23 @@ and can be controlled at the input document's discretion.
 .
 .
 .P
-The formatter reads its input character by character,
+When a device-independent
+.I roff
+formatter starts up,
+it obtains information about the device for which it is preparing
+output from it description file
+(see
+.MR groff_font @MAN5EXT@ ).
+.
+An essential property is the length of the output line,
+such as \[lq]6.5 inches\[rq].
+.
+.
+.P
+The formatter interprets plain text files employing the Unix line-ending
+convention.
+.
+It reads input a character at a time,
 collecting words as it goes,
 and fits as many words together on an output line as it can\[em]this
 is known as

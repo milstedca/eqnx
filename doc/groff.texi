@@ -4862,21 +4862,22 @@ inter-sentence space.
 
 When GNU @code{troff} starts up, it obtains information about the device
 for which it is preparing output.@footnote{@xref{Device and Font
-Description Files}.}  A crucial example is the length of the output
+Description Files}.}  An essential property is the length of the output
 line, such as ``6.5 inches''.
 
 @cindex word, definition of
 @cindex filling
-GNU @code{troff} reads its input character by character, collecting
-words as it goes, and fits as many words together on an output line as
-it can---this is known as @dfn{filling}.  To GNU @code{troff}, a
-@dfn{word} is any sequence of one or more characters that aren't spaces,
-tabs, or newlines.  The exceptions separate words.@footnote{There are
-also @emph{escape sequences} which can function as word characters, word
-separators, or neither---the last simply have no effect on GNU
-@code{troff}'s idea of whether an input character is within a word or
-not.}  To disable filling, see @ref{Manipulating Filling and
-Adjustment}.
+GNU @code{troff} interprets plain text files employing the Unix
+line-ending convention.  It reads input a character at a time,
+collecting words as it goes, and fits as many words together on an
+output line as it can---this is known as @dfn{filling}.  To GNU
+@code{troff}, a @dfn{word} is any sequence of one or more characters
+that aren't spaces, tabs, or newlines.  The exceptions separate
+words.@footnote{There are also @emph{escape sequences} which can
+function as word characters, word separators, or neither---the last
+simply have no effect on GNU @code{troff}'s idea of whether an input
+character is within a word or not.}  To disable filling, see
+@ref{Manipulating Filling and Adjustment}.
 
 @Example
 It is a truth universally acknowledged

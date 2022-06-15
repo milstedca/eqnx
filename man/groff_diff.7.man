@@ -1078,10 +1078,12 @@ and
 .MR groff_char @MAN7EXT@
 for a list of glyph name components used in composite glyph names.
 .
+.
 .TP
 .B \[rs]\[ti]
-This produces an unbreakable space that stretches like a normal
-inter-word space when a line is adjusted.
+Insert an unbreakable space that is adjustable like an ordinary space.
+.
+It is discarded from the end of an output line if a break is forced.
 .
 .
 .\" ====================================================================

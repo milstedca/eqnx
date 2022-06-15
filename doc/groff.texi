@@ -7699,6 +7699,22 @@ qux
 @endExample
 @endDefreq
 
+Sometimes you want to prevent a break within a phrase or between a
+quantity and its units.
+
+@Defesc {\\~, , , }
+@cindex unbreakable space (@code{\~})
+@cindex space, unbreakable (@code{\~})
+Insert an unbreakable space that is adjustable like an ordinary space.
+It is discarded from the end of an output line if a break is forced.
+
+@Example
+Set the output speed to\~1.
+There are 1,024\~bytes in 1\~KiB.
+J.\~F.\~Ossanna wrote the original CSTR\~#54.
+@endExample
+@endDefesc
+
 By default, GNU @code{troff} fills text and adjusts it to both margins.
 Filling can be disabled via the @code{nf} request and re-enabled with
 the @code{fi} request.
@@ -13346,17 +13362,18 @@ Several escape sequences enable fine control of movement about the page.
 @Defesc {\\v, @code{'}, expr, @code{'}}
 @cindex vertical motion (@code{\v})
 @cindex motion, vertical (@code{\v})
-Move vertically relative to the drawing position.@footnote{unless the
-boundary-relative motion operator @samp{|} is used---see @ref{Numeric
-Expressions})}  @var{expr} indicates the magnitude of motion: positive
-is downward and and negative upward.  The default scaling unit is
-@samp{v}.  Beware, however, that GNU @code{troff} continues text
-processing at the point where the motion ends, so you should always
-balance motions to avoid interference with text processing.
+Vertically move the drawing position.  @var{expr} indicates the
+magnitude of motion: positive is downward and and negative upward.  The
+default scaling unit is @samp{v}.  The motion is relative to the current
+drawing position unless @var{expr} begins with the boundary-relative
+motion operator @samp{|}.  @xref{Numeric Expressions}.
 
-@code{\v} doesn't trigger a trap.  This can be useful; for example,
-consider a page bottom trap macro that prints a marker in the margin to
-indicate continuation of a footnote or something similar.
+Text processing continues at the new drawing position; usually, vertical
+motions should be in balanced pairs to avoid a confusing page layout.
+
+@code{\v} will not spring a vertical position trap.  This can be useful;
+for example, consider a page bottom trap macro that prints a marker in
+the margin to indicate continuation of a footnote.  @xref{Traps}.
 @endDefesc
 
 A few escape sequences that produce vertical motion are unusual.  They
@@ -13384,12 +13401,12 @@ Let us see these escape sequences in use.
 Obtain 100 cm\u3\d of \ka\d\092\h'|\nau'\r233\dU.
 @endExample
 
-In the foregoing we have paired @code{\u} and @code{\d} to place a
-subscript, then used a full em negative (``reverse'') motion to place a
-superscript above a subscript.  An unbreakable digit-width space escape
-sequence aligns the proton and nucleon numbers, while @code{\k} marks a
-horizontal position to which @code{\h} returns so that we could stack
-them.  (We shall discuss these horizontal motion escape sequences
+In the foregoing we have paired @code{\u} and @code{\d} to typeset a
+superscript, and later a full em negative (``reverse'') motion to place
+a superscript above a subscript.  A numeral-width horizontal motion
+escape sequence aligns the proton and nucleon numbers, while @code{\k}
+marks a horizontal position to which @code{\h} returns so that we could
+stack them.  (We shall discuss these horizontal motion escape sequences
 presently.)  In serious applications, we often want to alter the type
 size of the -scripts and to fine-tune the vertical motions, as the
 @code{groff} @file{ms} package does with its super- and subscripting
@@ -13401,14 +13418,11 @@ string definitions.
 @cindex space, horizontal (@code{\h})
 @cindex horizontal motion (@code{\h})
 @cindex motion, horizontal (@code{\h})
-Move horizontally relative to the drawing postition.@footnote{unless the
-boundary-relative motion operator @samp{|} is used---see @ref{Numeric
-Expressions})}  @var{expr} indicates the magnitude of motion: positive
-is rightward and negative leftward.  The default scaling unit is
-@samp{m}.
-
-This horizontal space is not discarded at the end of a line.  To insert
-discardable space of a certain length, use the @code{ss} request.
+Horizontally move the drawing position.  @var{expr} indicates the
+magnitude of motion: positive is rightward and negative leftward.  The
+default scaling unit is @samp{m}.  The motion is relative to the current
+drawing position unless @var{expr} begins with the boundary-relative
+motion operator @samp{|}.  @xref{Numeric Expressions}.
 @endDefesc
 
 The following string definition sets the @TeX{}
@@ -13423,42 +13437,43 @@ There are a number of special-case escape sequences for horizontal
 motion.
 
 @Defesc {\\@key{SP}, , , }
-@cindex space, unbreakable
-@cindex unbreakable space
+@cindex space, unbreakable and unadjustable (@code{\SP})
+@cindex unbreakable and unadjustable space (@code{\SP})
+@cindex unadjustable and unbreakable space (@code{\SP})
 @esindex \@slanted{space}
-An unbreakable, non-adjustable space.  (This is a backslash followed by
-a space.)  Usually you want one of the following escape sequences
-instead, often @code{\~}.
+Move right one word space.  (The input is a backslash followed by a
+space.)  This escape sequence can be thought of as a non-adjustable,
+unbreakable space.  Usually you want @code{\~} instead; see
+@ref{Manipulating Filling and Adjustment}.
 @endDefesc
 
-@Defesc {\\~, , , }
-An unbreakable space that is adjustable like a normal inter-word space.
-@endDefesc
-
-@cindex thin space
-@cindex space, thin
+@cindex thin space (@code{\|})
+@cindex space, thin (@code{\|})
 @Defesc {\\|, , , }
-An unbreakable one-sixth @dmn{em} (``thin'') space.  Ignored (rounded to
-zero width) on terminal output devices.  However, if there is a glyph
-defined in the current font with name @code{\|} (note the leading
-backslash), the width of this glyph is used instead (even on terminals).
+Move one-sixth @dmn{em} to the right on typesetting output devices.  If
+a glyph named @samp{\|} is defined in the current font, its width is
+used instead, even on terminal output devices.
 @endDefesc
 
-@cindex hair space
-@cindex space, hair
+@cindex hair space (@code{\^})
+@cindex space, hair (@code{\^})
 @Defesc {\\^, , , }
-An unbreakable one-twelfth @dmn{em} (``hair'') space.  Ignored (rounded
-to zero width) on terminal output devices.  However, if there is a glyph
-defined in the current font with name @code{\^} (note the leading
-backslash), the width of this glyph is used instead (even on terminals).
+Move one-twelfth @dmn{em} to the right on typesetting output devices.
+If a glyph named @samp{\^} is defined in the current font, its width is
+used instead, even on terminal output devices.
 @endDefesc
 
 @Defesc {\\0, , , }
 @cindex space, width of a digit (numeral) (@code{\0})
 @cindex digit-width space (@code{\0})
+@cindex figure space (@code{\0})
 @cindex numeral-width space (@code{\0})
-An unbreakable space the width of a numeral in the current font.
+Move right by the width of a numeral in the current font.
 @endDefesc
+
+Horizontal motions are not discarded at the end of an output line as
+word and supplementary inter-sentence spaces are.  @xref{Manipulating
+Filling and Adjustment}.
 
 @DefescList {\\w, @code{'}, text, @code{'}}
 @DefregItemx {st}

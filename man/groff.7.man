@@ -3736,37 +3736,31 @@ read in copy mode,
 in a diversion.
 .
 .
-.\" ========= spacing [sic; \& and \) don't really space] =========
+.\" ========= spaces and fixed-width horizontal motions =========
 .
 .TP
-.ESC \& space
-Unbreakable,
-non-adjustable word space.
+.ESC \f[I]space
+Move right one word space.
 .
 .
 .TP
 .ESC \[ti]
-Unbreakable,
-adjustable space.
+Insert an unbreakable, adjustable space.
 .
 .
 .TP
 .ESC 0
-Unbreakable digit-width space.
+Move right by the width of a numeral in the current font.
 .
 .
 .TP
 .ESC |
-Unbreakable 1/6\~em (\[lq]thin\[rq]) space glyph;
-zero-width in
-.IR nroff .
+Move one-sixth em to the right on typesetters.
 .
 .
 .TP
 .ESC \[ha]
-Unbreakable 1/12\~em (\[lq]hair\[rq]) space glyph;
-zero-width in
-.IR nroff .
+Move one-twelfth em to the right on typesetters.
 .
 .
 .TP
@@ -3920,10 +3914,12 @@ implementations.
 .
 .TP
 .ESC d
-Move downward \[12]\~em
-(\[12]\~line in
-.I nroff
-contingent on device support).
+Move downward \[12]\~em on typesetters.
+.\" XXX: No current groff nroff-mode output driver supports half-line
+.\" motions.
+.\" (\[12]\~line in
+.\" .I nroff
+.\" contingent on device support).
 .
 .
 .TP
@@ -4018,7 +4014,7 @@ Interpolate format of register with arbitrarily long name
 .
 .TP
 .ESCq h N
-Move drawing postition horizontally by
+Horizontally move the drawing position by
 .IR N \~ems
 (or specified units);
 .B \[or]
@@ -4212,9 +4208,7 @@ adjust if applicable.
 .
 .TP
 .ESC r
-Move \[lq]in reverse\[rq] (upward) 1\~em
-(reverse linefeed in
-.IR nroff ).
+Move \[lq]in reverse\[rq] (upward) 1\~em.
 .
 .
 .TP
@@ -4301,15 +4295,17 @@ interpolate tab character.
 .
 .TP
 .ESC u
-Move upward \[12]\~em
-(\[12]\~line in
-.I nroff
-contingent on device support).
+Move upward \[12]\~em on typesetters.
+.\" XXX: No current groff nroff-mode output driver supports half-line
+.\" motions.
+.\" (\[12]\~line in
+.\" .I nroff
+.\" contingent on device support).
 .
 .
 .TP
 .ESCq v N
-Move drawing position vertically by
+Vertically move the drawing position by
 .IR N \~vees
 (or specified units);
 .B \[or]

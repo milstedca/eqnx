@@ -754,14 +754,16 @@ The
 .RB \[lq] \[rs]\- \[rq]
 defines the minus sign glyph.
 .
+.\" TODO: Withdraw support for this.  No one seems to use it.
 Finally,
 .I name
-can be the unbreakable one-sixth and one-twelfth space escape
-sequences,
-\[rs]| and \[rs]\[ha]
+can be the horizontal motion escape sequences,
+.B \[rs]|
+and
+.B \[rs]\[ha]
 (\[lq]thin\[rq] and \[lq]hair\[rq] spaces,
 respectively),
-in which case only the width metric described below is interpreted;
+in which case only the width metric described below is applied;
 a font can thus customize the widths of these spaces.
 .\" XXX: For exhaustivity purposes...you can define "\whatever", which
 .\" has to be accessed with \C'\\whatever' or \[\\whatever], but the

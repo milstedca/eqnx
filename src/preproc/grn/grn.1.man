@@ -408,11 +408,13 @@ line.
 Since
 .I @g@grn
 is a preprocessor,
-it doesn't know about current indentation,
-point sizes,
-margins,
-registers,
-and so on.
+it has no access to elements of formatter state,
+such as
+indentation,
+line length,
+type size,
+or
+register values.
 .
 Consequently,
 no
@@ -425,7 +427,7 @@ macros.
 .
 However,
 .I gremlin
-text is now processed by
+text elements are subsequently processed by
 .IR @g@troff ,
 so anything valid in a single line of
 .I @g@troff
@@ -463,6 +465,9 @@ to avoid overworking
 .
 .MR @g@eqn @MAN1EXT@
 should always be run last.
+.
+.MR groff @MAN1EXT@
+will automatically run preprocessors in the correct order.
 .
 .
 .PP

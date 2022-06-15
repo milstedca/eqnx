@@ -780,8 +780,8 @@ and @acronym{PDF}.
 @cindex installation
 
 Installation procedures are documented by the files @file{INSTALL},
-@file{INSTALL.extra}, and file @file{INSTALL.REPO} in the @code{groff}
-source distribution.
+@file{INSTALL.extra}, and @file{INSTALL.REPO} in the @code{groff} source
+distribution.
 
 
 @c =====================================================================
@@ -5110,8 +5110,8 @@ This is discussed in @ref{Manipulating Filling and Adjustment}.
 @subsection Adjustment
 
 @cindex extra spaces between words
-After GNU @code{troff} performs an automatic line break, it then tries
-to @dfn{adjust} the line: inter-word spaces are widened until the text
+After GNU @code{troff} performs an automatic break, it then tries to
+@dfn{adjust} the line: inter-word spaces are widened until the text
 reaches the right margin.  Extra spaces between words are preserved.
 Leading and trailing spaces are handled as noted above.  Text can be
 aligned to the left or right margins or centered; see @ref{Manipulating
@@ -5466,25 +5466,24 @@ traditions have accrued in service of these goals.
 
 @itemize @bullet
 @item
-Follow sentence endings in input with newlines to ease their
-recognition (@pxref{Sentences}).  It is frequently convenient to break
-after colons and semicolons as well, as these typically precede
-independent clauses.  Consider breaking after commas; they often occur
-in lists that become easy to scan when itemized by line, or constitute
-supplements to the sentence that are added, deleted, or updated to
-clarify it.  Parenthetical and quoted phrases are also good candidates
-for placement on input lines by themselves.  In filled text, spaces and
-newlines are interchangeable; place breaks where it aids your purpose.
+Follow sentence endings in the input with newlines to ease their
+recognition (@pxref{Sentences}).  It is frequently convenient to end
+input lines after colons and semicolons as well, as these typically
+precede independent clauses.  Consider doing so after commas; they often
+occur in lists that become easy to scan when itemized by line, or
+constitute supplements to the sentence that are added, deleted, or
+updated to clarify it.  Parenthetical and quoted phrases are also good
+candidates for placement on input lines by themselves.
 
 @item
 Set your text editor's line length to 72 characters or
 fewer.@footnote{Emacs: @code{fill-column: 72}; Vim: @code{textwidth=72}}
-This limit, combined with the previous advice regarding breaking around
-punctuation, makes it less common that an input line will wrap in your
-text editor, and thus will help you perceive excessively long
-constructions in your text.  Recall that natural languages originate in
-speech, not writing, and that punctuation is correlated with pauses for
-breathing and changes in prosody.
+This limit, combined with the previous item of advice, makes it less
+common that an input line will wrap in your text editor, and thus will
+help you perceive excessively long constructions in your text.  Recall
+that natural languages originate in speech, not writing, and that
+punctuation is correlated with pauses for breathing and changes in
+prosody.
 
 @item
 Use @code{\&} after @samp{!}, @samp{?}, and @samp{.} if they are
@@ -7552,9 +7551,9 @@ This document was formatted in \n(y4.
 @vindex c.
 @cindex input line number register (@code{.c}, @code{c.})
 @cindex line number, input, register (@code{.c}, @code{c.})
-The current @emph{input} line number.  @samp{c.} (a @code{groff}
-extension) is also writable, affecting subsequent interpolations of both
-@samp{.c} and @samp{c.}.
+The current @emph{input} line number.  @samp{c.} is a writable synonym,
+@c introduced in AT&T device-independent troff (CSTR #54, 1981-01)
+affecting subsequent interpolations of both @samp{.c} and @samp{c.}.
 
 @item \n[ln]
 @vindex ln
@@ -11685,7 +11684,7 @@ necessarily the same.  For the @code{dvi}, @code{html}, @code{pdf},
 automatically loads a macro file defining many color names at startup.
 By the same mechanism, the devices supported by @code{grotty} recognize
 the eight standard ISO@tie{}6429/EMCA-48 color names.@footnote{also
-known vulgarly as ``ANSI colors''.}
+known vulgarly as ``ANSI colors''}
 
 @DefreqList {gcolor, [@Var{color}]}
 @DefescItemx {\\m, , c, }
@@ -12735,8 +12734,8 @@ definition ends with the control line @samp{..} (two dots).
 Alternatively, @var{end} identifies a macro whose call syntax at the
 start of a control line ends the definition of @var{name}; @var{end} is
 then called normally.  A macro definition must end in the same
-conditional block (if any) in which it began.@footnote{@xref{Conditional
-Blocks}}  Spaces or tabs are permitted after the control character in
+conditional block (if any) in which it began (@pxref{Conditional
+Blocks}).  Spaces or tabs are permitted after the control character in
 the line containing this ending token (either @samp{.} or
 @samp{@var{end}}), but a tab immediately after the token prevents its
 recognition as the end of a macro definition.  The macro @var{end} can
@@ -12776,10 +12775,10 @@ unique end macro.
 
 An end macro need not be defined until it is called.  This fact enables
 a nested macro definition to begin inside one macro and end inside
-another.  Consider the following example.@footnote{The structure of this
-example is adapted from, and isomorphic to, part of a solution by Tadziu
-Hoffman to the problem of reflowing text multiple times to find an
-optimal configuration for it.
+another.  Consider the following example.@footnote{Its structure is
+adapted from, and isomorphic to, part of a solution by Tadziu Hoffman to
+the problem of reflowing text multiple times to find an optimal
+configuration for it.
 @uref{https://lists.gnu.org/archive/html/groff/2008-12/msg00006.html}}
 
 @Example

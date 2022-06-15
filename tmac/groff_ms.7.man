@@ -145,7 +145,7 @@ you can change your document's typeface,
 margins,
 spacing,
 headers and footers,
-and footnotes arrangement.
+and footnote arrangement.
 .
 See subsection \[lq]Document control settings\[rq] below.
 .

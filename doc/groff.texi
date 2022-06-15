@@ -2786,7 +2786,7 @@ larger than or equal to 1000, it is divided by 1000 to get a fractional
 type size.  For example, @samp{.nr PS 10500} sets the document's type
 size to 10.5@dmn{points}.  This rescaling of large type sizes is a GNU
 extension.  In @file{ms} documents that don't need to be portable to
-other implementations, using a scaling indicator, as in @samp{.nr PS
+other implementations, using a scaling unit, as in @samp{.nr PS
 10.5p}, is preferable.
 
 Effective: next paragraph.
@@ -2875,9 +2875,9 @@ Default: 1.
 Defines an increment in type size to be applied to a heading at a
 lesser depth than that specified in @code{GROWPS}.  The value of
 @code{PSINCR} should be specified in points with the @dmn{p} scaling
-indicator and may include a fractional component; for example,
-@w{@samp{.nr PSINCR 1.5p}} sets a type size increment of 1.5@dmn{p}.
-This is a GNU extension.
+unit and may include a fractional component; for example, @w{@samp{.nr
+PSINCR 1.5p}} sets a type size increment of 1.5@dmn{p}.  This is a GNU
+extension.
 
 Effective: next heading.
 
@@ -3414,7 +3414,7 @@ If the @code{GROWPS} register is set to a value greater than the
 heading produced by these macros increases by @code{PSINCR} units over
 the size specified by @code{PS} multiplied by the difference of
 @code{GROWPS} and @var{level}.  The value stored in @code{PSINCR} is
-interpreted in @code{groff} basic units; the @code{p} scaling indicator
+interpreted in @code{groff} basic units; the @code{p} scaling unit
 should be employed when assigning a value specified in points.  For
 example, the sequence
 

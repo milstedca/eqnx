@@ -917,7 +917,7 @@ The value of
 .B \[rs]n[PSINCR]
 should be specified in points with the
 .RB \[lq] p \[rq]
-scaling indicator and may include a fractional component.
+scaling unit and may include a fractional component.
 .
 .
 .P
@@ -2400,7 +2400,7 @@ multiplied by\~1000.
 In
 .I ms
 documents that don't need to be portable to other implementations,
-use of a scaling indicator,
+use of a scaling unit,
 as in
 .RB \[lq] ".nr PS 10.5p" \[rq],
 is preferable.

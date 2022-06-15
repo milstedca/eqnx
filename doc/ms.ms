@@ -1314,7 +1314,7 @@ The value of
 .CW \[rs]n[PSINCR]
 should be specified in points with the
 .CW p
-scaling indicator and may include a fractional component;
+scaling unit and may include a fractional component;
 for example,
 .
 .
@@ -3622,7 +3622,7 @@ sets the document's type size to 10.5\~points.
 In
 .I ms
 documents that don't need to be portable to other implementations,
-using a scaling indicator,
+using a scaling unit,
 as in
 .CW ".nr PS 10.5p" \[rq], \[lq]
 is preferable.

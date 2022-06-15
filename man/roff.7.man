@@ -471,8 +471,7 @@ the top to the bottom of the page.
 .I Vertical spacing
 is the distance between adjacent text baselines.
 .
-In ordinary circumstances,
-this quantity is 120% of the type size.
+Typographic tradition sets this quantity to 120% of the type size.
 .
 The initial vertical drawing position is one unit of vertical spacing
 below the page top.

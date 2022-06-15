@@ -1,5 +1,14 @@
 2022-06-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[docs]: Revise introduction of vertical spacing context to avoid
+	render inference that the formatter will compute a vertical
+	spacing appropriate to the type size automagically--it will not.
+
+	Fixes <https://savannah.gnu.org/bugs/?62617>.  Thanks to Dave
+	Kemper for the report.
+
+2022-06-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[docs]: Revise discussion of end-of-sentence detection.
 
 	* doc/groff.texi (Filling):

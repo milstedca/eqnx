@@ -118,7 +118,7 @@ When a device-independent
 .I roff
 formatter starts up,
 it obtains information about the device for which it is preparing
-output from it description file
+output from the latter's description file
 (see
 .MR groff_font @MAN5EXT@ ).
 .

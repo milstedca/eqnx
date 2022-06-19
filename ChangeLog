@@ -1,3 +1,25 @@
+2022-06-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[libgroff]: Update return type of `font::load_desc` function to
+	enable more informative diagnostics from callers.
+
+	* src/include/font.h (font::load_desc): Change return type from
+	`bool` to `const char` pointer.
+	* src/libs/libgroff/font.cpp (font::load_desc): Return null
+	pointer literal on failed `open()` or validation failures.
+	Return filespec on success.
+
+	* src/libs/libdriver/input.cpp (do_file):
+	* src/preproc/grn/main.cpp (getres):
+	* src/roff/groff/groff.cpp (main):
+	* src/roff/troff/input.cpp (main): Compare `font::load_desc()`
+	return value to null pointer literal instead of treating it as a
+	Boolean.
+
+	* src/roff/groff/groff.cpp (main): Report full filespec of
+	troublesome "DESC" file when complainiing of missing "postpro"
+	directive.
+
 2022-06-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/groff.cpp: Add new Boolean global,

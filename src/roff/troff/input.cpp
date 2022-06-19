@@ -8160,7 +8160,7 @@ int main(int argc, char **argv)
   set_string(".T", device);
   init_charset_table();
   init_hpf_code_table();
-  if (!font::load_desc())
+  if (0 /* nullptr */ == font::load_desc())
     fatal("cannot load 'DESC' description file for device '%1'",
 	  device);
   units_per_inch = font::res;

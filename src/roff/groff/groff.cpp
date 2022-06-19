@@ -348,12 +348,13 @@ int main(int argc, char **argv)
     commands[PIC_INDEX].append_arg("-U");
   }
   font::set_unknown_desc_command_handler(handle_unknown_desc_command);
-  if (!font::load_desc())
+  const char *desc = font::load_desc();
+  if (0 /* nullptr */ == desc)
     fatal("cannot load 'DESC' description file for device '%1'",
 	  device);
   if (need_postdriver && (0 /* nullptr */ == postdriver))
-    fatal("no 'postpro' directive in 'DESC' file for device '%1'",
-          device);
+    fatal_with_file_and_line(desc, 0, "device description file missing"
+			     " 'postpro' directive");
   if (predriver && !zflag) {
     commands[TROFF_INDEX].insert_arg(commands[TROFF_INDEX].get_name());
     commands[TROFF_INDEX].set_name(predriver);

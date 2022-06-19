@@ -5096,7 +5096,7 @@ are output at the beginning of the next line without being
 @emph{adjusted} (see below); however, this behavior can be modified
 (@pxref{Leading Space Traps}).  Again, macro packages may provide other
 methods of producing indented paragraphs.  Trailing spaces on text lines
-are ignored.@footnote{``Text lines'' are defined in @ref{Requests and
+are discarded.@footnote{``Text lines'' are defined in @ref{Requests and
 Macros}.}
 
 What if the file ends before enough words have been collected to fill an

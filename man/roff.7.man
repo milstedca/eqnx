@@ -308,7 +308,7 @@ Again, macro packages may provide other methods of producing indented paragraphs
 Trailing spaces on
 .I text lines
 (see below)
-are ignored.
+are discarded.
 .
 The end of input causes a break.
 .

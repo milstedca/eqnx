@@ -1,3 +1,15 @@
+2022-06-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/groff.cpp: Add new Boolean global,
+	`need_postdriver`, and initialize it true.
+	(main): Make `need_postdriver` false if the `-X` or `-Z` options
+	are given.  Test it later.  This prevents groff from exiting
+	with a fatal error if an output driver is not available, but
+	also not required.  Also reorder null pointer equality
+	comparison to avoid inadvertent lvalue assignment.
+
+	Fixes <https://savannah.gnu.org/bugs/?62640>.
+
 2022-06-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/groff.cpp (help): Revise usage message for

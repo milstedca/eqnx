@@ -1,4 +1,3 @@
-// -*- C++ -*-
 /* Copyright (C) 1989-2020 Free Software Foundation, Inc.
      Written by James Clark (jjc@jclark.com)
 
@@ -96,6 +95,7 @@ int lflag = 0;
 char *spooler = 0;
 char *postdriver = 0;
 char *predriver = 0;
+bool need_postdriver = true;
 
 possible_command commands[NCOMMANDS];
 
@@ -211,6 +211,7 @@ int main(int argc, char **argv)
       // fall through
     case 'Z':
       zflag++;
+      need_postdriver = false;
       break;
     case 'l':
       lflag++;
@@ -324,6 +325,7 @@ int main(int argc, char **argv)
       break;
     case 'X':
       Xflag++;
+      need_postdriver = false;
       break;
     case '?':
       usage(stderr);
@@ -349,7 +351,7 @@ int main(int argc, char **argv)
   if (!font::load_desc())
     fatal("cannot load 'DESC' description file for device '%1'",
 	  device);
-  if (!postdriver)
+  if (need_postdriver && (0 /* nullptr */ == postdriver))
     fatal("no 'postpro' directive in 'DESC' file for device '%1'",
           device);
   if (predriver && !zflag) {
@@ -868,3 +870,9 @@ void c_fatal(const char *format, const char *arg1, const char *arg2,
 }
 
 }
+
+// Local Variables:
+// fill-column: 72
+// mode: C++
+// End:
+// vim: set cindent noexpandtab shiftwidth=2 textwidth=72:

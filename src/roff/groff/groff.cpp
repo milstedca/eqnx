@@ -81,7 +81,7 @@ public:
   void set_name(const char *);
   void set_name(const char *, const char *);
   const char *get_name();
-  void append_arg(const char *, const char * = 0);
+  void append_arg(const char *, const char * = 0 /* nullptr */);
   void insert_arg(const char *);
   void insert_args(string s);
   void clear_args();
@@ -92,9 +92,9 @@ public:
 extern "C" const char *Version_string;
 
 int lflag = 0;
-char *spooler = 0;
-char *postdriver = 0;
-char *predriver = 0;
+char *spooler = 0 /* nullptr */;
+char *postdriver = 0 /* nullptr */;
+char *predriver = 0 /* nullptr */;
 bool need_postdriver = true;
 
 possible_command commands[NCOMMANDS];
@@ -364,7 +364,7 @@ int main(int argc, char **argv)
     if (vflag)
       commands[TROFF_INDEX].insert_arg("-v");
   }
-  const char *real_driver = 0;
+  const char *real_driver = 0 /* nullptr */;
   if (Xflag) {
     real_driver = postdriver;
     postdriver = (char *)GXDITVIEW;
@@ -415,8 +415,8 @@ int main(int argc, char **argv)
     commands[SPOOL_INDEX].append_arg(Largs.contents());
   }
   if (zflag) {
-    commands[POST_INDEX].set_name(0);
-    commands[SPOOL_INDEX].set_name(0);
+    commands[POST_INDEX].set_name(0 /* nullptr */);
+    commands[SPOOL_INDEX].set_name(0 /* nullptr */);
   }
   commands[TROFF_INDEX].append_arg("-T", device);
   if (strcmp(device, "html") == 0) {
@@ -442,7 +442,7 @@ int main(int argc, char **argv)
 
   int first_index;
   for (first_index = 0; first_index < TROFF_INDEX; first_index++)
-    if (commands[first_index].get_name() != 0)
+    if (commands[first_index].get_name() != 0 /* nullptr */)
       break;
   if (optind < argc) {
     if (argv[optind][0] == '-' && argv[optind][1] != '\0')
@@ -503,9 +503,9 @@ int main(int argc, char **argv)
 const char *xbasename(const char *s)
 {
   if (!s)
-    return 0;
-  // DIR_SEPS[] are possible directory separator characters, see nonposix.h
-  // We want the rightmost separator of all possible ones.
+    return 0 /* nullptr */;
+  // DIR_SEPS[] are possible directory separator characters; see
+  // nonposix.h.  We want the rightmost separator of all possible ones.
   // Example: d:/foo\\bar.
   const char *p = strrchr(s, DIR_SEPS[0]), *p1;
   const char *sep = &DIR_SEPS[1];
@@ -524,14 +524,14 @@ void handle_unknown_desc_command(const char *command, const char *arg,
 				 const char *filename, int lineno)
 {
   if (strcmp(command, "print") == 0) {
-    if (arg == 0)
+    if (arg == 0 /* nullptr */)
       error_with_file_and_line(filename, lineno,
 			       "'print' command requires an argument");
     else
       spooler = strsave(arg);
   }
   if (strcmp(command, "prepro") == 0) {
-    if (arg == 0)
+    if (arg == 0 /* nullptr */)
       error_with_file_and_line(filename, lineno,
 			       "'prepro' command requires an argument");
     else {
@@ -546,7 +546,7 @@ void handle_unknown_desc_command(const char *command, const char *arg,
     }
   }
   if (strcmp(command, "postpro") == 0) {
-    if (arg == 0)
+    if (arg == 0 /* nullptr */)
       error_with_file_and_line(filename, lineno,
 			       "'postpro' command requires an argument");
     else {
@@ -566,10 +566,10 @@ void print_commands(FILE *fp)
 {
   int last;
   for (last = SPOOL_INDEX; last >= 0; last--)
-    if (commands[last].get_name() != 0)
+    if (commands[last].get_name() != 0 /* nullptr */)
       break;
   for (int i = 0; i <= last; i++)
-    if (commands[i].get_name() != 0)
+    if (commands[i].get_name() != 0 /* nullptr */)
       commands[i].print(i == last, fp);
 }
 
@@ -580,7 +580,7 @@ int run_commands(int no_pipe)
   char **v[NCOMMANDS];
   int j = 0;
   for (int i = 0; i < NCOMMANDS; i++)
-    if (commands[i].get_name() != 0)
+    if (commands[i].get_name() != 0 /* nullptr */)
       v[j++] = commands[i].get_argv();
   return run_pipeline(j, v, no_pipe);
 }
@@ -672,7 +672,7 @@ void possible_command::build_argv()
   // Count the number of arguments.
   int len = args.length();
   int argc = 1;
-  char *p = 0;
+  char *p = 0 /* nullptr */;
   if (len > 0) {
     p = &args[0];
     for (int i = 0; i < len; i++)
@@ -686,20 +686,21 @@ void possible_command::build_argv()
     argv[i] = p;
     p = strchr(p, '\0') + 1;
   }
-  argv[argc] = 0;
+  argv[argc] = 0 /* nullptr */;
 }
 
 void possible_command::print(int is_last, FILE *fp)
 {
   build_argv();
   if (IS_BSHELL(argv[0])
-      && argv[1] != 0 && strcmp(argv[1], BSHELL_DASH_C) == 0
-      && argv[2] != 0 && argv[3] == 0)
+      && argv[1] != 0 /* nullptr */
+      && strcmp(argv[1], BSHELL_DASH_C) == 0
+      && argv[2] != 0 /* nullptr */ && argv[3] == 0 /* nullptr */)
     fputs(argv[2], fp);
   else {
     fputs(argv[0], fp);
     string str;
-    for (int i = 1; argv[i] != 0; i++) {
+    for (int i = 1; argv[i] != 0 /* nullptr */; i++) {
       str.clear();
       append_arg_to_string(argv[i], str);
       put_string(str, fp);

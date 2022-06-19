@@ -1,5 +1,12 @@
 2022-06-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.cpp: Slightly refactor to indirect
+	`putenv` calls through an error-checking wrapper.
+	(xputenv): Add new function to die if `putenv()` fails.
+	(main): Update call sites to use it.
+
+2022-06-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Add information to diagnostic messages.
 
 	* src/roff/groff/groff.cpp (main): Report underlying system

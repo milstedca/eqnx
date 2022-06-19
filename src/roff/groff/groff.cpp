@@ -110,6 +110,12 @@ const char *xbasename(const char *);
 void usage(FILE *stream);
 void help();
 
+static void xputenv(const char *s) {
+  if (putenv(const_cast<char *>(s)) != 0)
+    fatal("unable to write to environment: %1", strerror(errno));
+  return;
+}
+
 int main(int argc, char **argv)
 {
   program_name = argv[0];
@@ -465,8 +471,7 @@ int main(int argc, char **argv)
       e += fontpath;
     }
     e += '\0';
-    if (putenv(strsave(e.contents())))
-      fatal("putenv failed: %1", strerror(errno));
+    xputenv(strsave(e.contents()));
   }
   {
     // we save the original path in GROFF_PATH__ and put it into the
@@ -477,8 +482,7 @@ int main(int argc, char **argv)
     if (path && *path)
       e += path;
     e += '\0';
-    if (putenv(strsave(e.contents())))
-      fatal("putenv failed: %1", strerror(errno));
+    xputenv(strsave(e.contents()));
     char *binpath = getenv("GROFF_BIN_PATH");
     string f = "PATH";
     f += '=';
@@ -493,8 +497,7 @@ int main(int argc, char **argv)
       f += path;
     }
     f += '\0';
-    if (putenv(strsave(f.contents())))
-      fatal("putenv failed: %1", strerror(errno));
+    xputenv(strsave(f.contents()));
   }
   if (Vflag)
     print_commands(Vflag == 1 ? stdout : stderr);

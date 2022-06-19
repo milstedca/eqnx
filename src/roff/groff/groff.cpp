@@ -477,12 +477,12 @@ int main(int argc, char **argv)
     // we save the original path in GROFF_PATH__ and put it into the
     // environment -- troff will pick it up later.
     char *path = getenv("PATH");
-    string e = "GROFF_PATH__";
-    e += '=';
+    string g = "GROFF_PATH__";
+    g += '=';
     if (path && *path)
-      e += path;
-    e += '\0';
-    xputenv(strsave(e.contents()));
+      g += path;
+    g += '\0';
+    xputenv(strsave(g.contents()));
     char *binpath = getenv("GROFF_BIN_PATH");
     string f = "PATH";
     f += '=';

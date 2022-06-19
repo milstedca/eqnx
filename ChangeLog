@@ -1,5 +1,11 @@
 2022-06-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.cpp (main): Rename temporary variable to
+	avoid shadowing one in enclosing scope, which can lead to
+	cut-and-paste errors (ask me how I know).
+
+2022-06-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/groff.cpp: Slightly refactor to indirect
 	`putenv` calls through an error-checking wrapper.
 	(xputenv): Add new function to die if `putenv()` fails.

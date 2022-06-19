@@ -51,6 +51,8 @@ EXTRA_DIST += \
   font/devpdf/Foundry.in \
   font/devpdf/util/BuildFoundries.pl
 
+all: font/devpdf/stamp
+
 font/devpdf/enc/text.enc:
 	$(AM_V_at)$(MKDIR_P) $(top_builddir)/font/devpdf/enc
 	$(AM_V_at)cp -f $(top_srcdir)/font/devps/text.enc \

@@ -1,3 +1,16 @@
+2022-06-19  Ingo Schwarze <schwarze@openbsd.org>
+
+	* font/devpdf/devpdf.am: Always build PDF font description files.
+
+	Build font/devpdf/download and the various TR, TB, CR etc.
+	files in the same directory even when they are not required
+	by the build because USE_GROPDF is unset, usually because
+	ghostscript is either unavailable or deliberately disabled
+	by the person running the build.  These files need to be
+	built and installed anyway, and can be used on the target
+	sytem when the required infrastructure is available at run
+	time.
+
 2022-06-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[docs]: Revise introduction of vertical spacing context to avoid

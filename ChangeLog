@@ -1,5 +1,16 @@
 2022-06-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Add information to diagnostic messages.
+
+	* src/roff/groff/groff.cpp (main): Report underlying system
+	error if `putenv()` fails.
+	(handle_unknown_desc_command): Set globals `current_filename`
+	and `current_lineno` from `filename` and `lineno` arguments
+	passed to us to we can use the simpler interface of `error()`
+	rather than `error_with_file_and_line()`.
+
+2022-06-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[libgroff]: Update return type of `font::load_desc` function to
 	enable more informative diagnostics from callers.
 

@@ -48,7 +48,8 @@ extern "C" {
 }
 #endif /* NEED_DECLARATION_PUTENV */
 
-// The number of commands must be in sync with MAX_COMMANDS in pipeline.h
+// The number of commands must be in sync with MAX_COMMANDS in
+// pipeline.h.
 
 // grap, chem, and ideal must come before pic;
 // tbl must come before eqn
@@ -140,7 +141,8 @@ int main(int argc, char **argv)
   };
   while ((opt = getopt_long(
 		  argc, argv,
-		  "abcCd:D:eEf:F:gGhiI:jJkK:lL:m:M:n:No:pP:r:RsStT:UvVw:W:XzZ",
+		  "abcCd:D:eEf:F:gGhiI:jJkK:lL:m:M:"
+		  "n:No:pP:r:RsStT:UvVw:W:XzZ",
 		  long_options, NULL))
 	 != EOF) {
     char buf[3];
@@ -464,7 +466,7 @@ int main(int argc, char **argv)
     }
     e += '\0';
     if (putenv(strsave(e.contents())))
-      fatal("putenv failed");
+      fatal("putenv failed: %1", strerror(errno));
   }
   {
     // we save the original path in GROFF_PATH__ and put it into the
@@ -476,7 +478,7 @@ int main(int argc, char **argv)
       e += path;
     e += '\0';
     if (putenv(strsave(e.contents())))
-      fatal("putenv failed");
+      fatal("putenv failed: %1", strerror(errno));
     char *binpath = getenv("GROFF_BIN_PATH");
     string f = "PATH";
     f += '=';
@@ -492,7 +494,7 @@ int main(int argc, char **argv)
     }
     f += '\0';
     if (putenv(strsave(f.contents())))
-      fatal("putenv failed");
+      fatal("putenv failed: %1", strerror(errno));
   }
   if (Vflag)
     print_commands(Vflag == 1 ? stdout : stderr);
@@ -524,23 +526,22 @@ const char *xbasename(const char *s)
 void handle_unknown_desc_command(const char *command, const char *arg,
 				 const char *filename, int lineno)
 {
+  current_filename = filename;
+  current_lineno = lineno;
   if (strcmp(command, "print") == 0) {
     if (arg == 0 /* nullptr */)
-      error_with_file_and_line(filename, lineno,
-			       "'print' command requires an argument");
+      error("'print' directive requires an argument");
     else
       spooler = strsave(arg);
   }
   if (strcmp(command, "prepro") == 0) {
     if (arg == 0 /* nullptr */)
-      error_with_file_and_line(filename, lineno,
-			       "'prepro' command requires an argument");
+      error("'prepro' directive requires an argument");
     else {
       for (const char *p = arg; *p; p++)
 	if (csspace(*p)) {
-	  error_with_file_and_line(filename, lineno,
-				   "invalid 'prepro' argument '%1'"
-				   ": program name required", arg);
+	  error("invalid 'prepro' directive argument '%1':"
+		" program name required", arg);
 	  return;
 	}
       predriver = strsave(arg);
@@ -548,14 +549,12 @@ void handle_unknown_desc_command(const char *command, const char *arg,
   }
   if (strcmp(command, "postpro") == 0) {
     if (arg == 0 /* nullptr */)
-      error_with_file_and_line(filename, lineno,
-			       "'postpro' command requires an argument");
+      error("'postpro' directive requires an argument");
     else {
       for (const char *p = arg; *p; p++)
 	if (csspace(*p)) {
-	  error_with_file_and_line(filename, lineno,
-				   "invalid 'postpro' argument '%1'"
-				   ": program name required", arg);
+	  error("invalid 'postpro' directive argument '%1':"
+		" program name required", arg);
 	  return;
 	}
       postdriver = strsave(arg);

@@ -49,7 +49,7 @@
 .RB [ \-Crt ]
 .RB [ \-I
 .IR dir ]
-.RI [ file\~ .\|.\|.]
+.RI [ input-file\~ .\|.\|.]
 .YS
 .
 .
@@ -83,11 +83,11 @@ input files;
 that is,
 it replaces lines of the form
 .RB \[lq] .so
-.IR macro-file \[rq]
+.IR included-file \[rq]
 within each text
 .I input-file
 with the contents of
-.IR macro-file ,
+.IR included-file ,
 recursively.
 .
 By default,
@@ -96,7 +96,7 @@ it writes
 requests as well to record the name and line number of each
 .I input-file
 and
-.IR macro-file ,
+.IR included-file ,
 so that any diagnostics produced by later processing can be accurately
 traced to the original input.
 .

@@ -3489,7 +3489,7 @@ request).
 .
 The next character identifies the escape's function.
 .
-Escapes vary in length.
+Escape sequences vary in length.
 .
 Some take an argument,
 and of those,
@@ -3515,9 +3515,10 @@ the neutral apostrophe
 is a popular choice and shown in this document.
 .
 Some characters cannot be used as delimiters;
-see section \[lq]Escapes\[rq] in the
+see subsection \[lq]Escape Sequences\[rq] in the
 .I groff
 Texinfo manual for details.
+.\" TODO: Reproduce that material here, as tersely as possible.
 .
 A few escape sequences are idiosyncratic,
 and support both of the foregoing conventions

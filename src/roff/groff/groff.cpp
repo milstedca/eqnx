@@ -128,6 +128,16 @@ static void xputenv(const char *s) {
   return;
 }
 
+static void xexit(int status) {
+  free(spooler);
+  free(predriver);
+  free(postdriver);
+  free(saved_path);
+  free(groff_bin_path);
+  free(groff_font_path);
+  exit(status);
+}
+
 int main(int argc, char **argv)
 {
   program_name = argv[0];
@@ -349,7 +359,7 @@ int main(int argc, char **argv)
       break;
     case '?':
       usage(stderr);
-      exit(EXIT_FAILURE);
+      xexit(EXIT_FAILURE);
       break;
     default:
       assert(0 == "no case to handle option character");
@@ -517,15 +527,8 @@ int main(int argc, char **argv)
   if (Vflag)
     print_commands(Vflag == 1 ? stdout : stderr);
   if (Vflag == 1)
-    exit(EXIT_SUCCESS);
-  int status = run_commands(vflag);
-  free(spooler);
-  free(predriver);
-  free(postdriver);
-  free(saved_path);
-  free(groff_bin_path);
-  free(groff_font_path);
-  exit(status);
+    xexit(EXIT_SUCCESS);
+  xexit(run_commands(vflag));
 }
 
 const char *xbasename(const char *s)

@@ -1,5 +1,12 @@
 2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.cpp: Use single exit path, freeing
+	memory allocated for strings.
+	(xexit): Add `exit()` wrapper; free allocated memory.
+	(main): Use it in all three exit paths.
+
+2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/groff.cpp: Refactor to be more meticulous with
 	memory.  Add globals `saved_path`, `groff_bin_path`, and
 	`groff_font` to store pointers into the process environment

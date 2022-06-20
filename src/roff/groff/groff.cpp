@@ -97,6 +97,9 @@ char *spooler = 0 /* nullptr */;
 char *postdriver = 0 /* nullptr */;
 char *predriver = 0 /* nullptr */;
 bool need_postdriver = true;
+char *saved_path = 0 /* nullptr */;
+char *groff_bin_path = 0 /* nullptr */;
+char *groff_font_path = 0 /* nullptr */;
 
 possible_command commands[NCOMMANDS];
 
@@ -109,6 +112,15 @@ const char *xbasename(const char *);
 
 void usage(FILE *stream);
 void help();
+
+static char *xstrdup(const char *s) {
+  if (0 /* nullptr */ == s)
+    return const_cast<char *>(s);
+  char *str = strdup(s);
+  if (0 /* nullptr */ == str)
+    fatal("unable to copy string: %1", strerror(errno));
+  return str;
+}
 
 static void xputenv(const char *s) {
   if (putenv(const_cast<char *>(s)) != 0)
@@ -471,7 +483,8 @@ int main(int argc, char **argv)
       e += fontpath;
     }
     e += '\0';
-    xputenv(strsave(e.contents()));
+    groff_font_path = xstrdup(e.contents());
+    xputenv(groff_font_path);
   }
   {
     // we save the original path in GROFF_PATH__ and put it into the
@@ -482,7 +495,8 @@ int main(int argc, char **argv)
     if (path && *path)
       g += path;
     g += '\0';
-    xputenv(strsave(g.contents()));
+    saved_path = xstrdup(g.contents());
+    xputenv(saved_path);
     char *binpath = getenv("GROFF_BIN_PATH");
     string f = "PATH";
     f += '=';
@@ -497,13 +511,21 @@ int main(int argc, char **argv)
       f += path;
     }
     f += '\0';
-    xputenv(strsave(f.contents()));
+    groff_bin_path = xstrdup(f.contents());
+    xputenv(groff_bin_path);
   }
   if (Vflag)
     print_commands(Vflag == 1 ? stdout : stderr);
   if (Vflag == 1)
     exit(EXIT_SUCCESS);
-  return run_commands(vflag);
+  int status = run_commands(vflag);
+  free(spooler);
+  free(predriver);
+  free(postdriver);
+  free(saved_path);
+  free(groff_bin_path);
+  free(groff_font_path);
+  exit(status);
 }
 
 const char *xbasename(const char *s)
@@ -535,7 +557,7 @@ void handle_unknown_desc_command(const char *command, const char *arg,
     if (arg == 0 /* nullptr */)
       error("'print' directive requires an argument");
     else
-      spooler = strsave(arg);
+      spooler = xstrdup(arg);
   }
   if (strcmp(command, "prepro") == 0) {
     if (arg == 0 /* nullptr */)
@@ -547,7 +569,7 @@ void handle_unknown_desc_command(const char *command, const char *arg,
 		" program name required", arg);
 	  return;
 	}
-      predriver = strsave(arg);
+      predriver = xstrdup(arg);
     }
   }
   if (strcmp(command, "postpro") == 0) {
@@ -560,7 +582,7 @@ void handle_unknown_desc_command(const char *command, const char *arg,
 		" program name required", arg);
 	  return;
 	}
-      postdriver = strsave(arg);
+      postdriver = xstrdup(arg);
     }
   }
 }
@@ -602,7 +624,7 @@ possible_command::~possible_command()
 void possible_command::set_name(const char *s)
 {
   free(name);
-  name = strsave(s);
+  name = xstrdup(s);
 }
 
 void possible_command::clear_name()

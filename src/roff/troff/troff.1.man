@@ -579,7 +579,10 @@ This category is enabled by default.
 .
 .TP
 .BR font "\t131072"
-A non-existent font was selected.
+A non-existent font was selected,
+or the selection was ignored because a font selection escape sequence
+was used after the output line continuation escape sequence on an input
+line.
 .
 This category is enabled by default.
 .

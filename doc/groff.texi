@@ -16366,7 +16366,10 @@ occurs in compatibility mode.
 
 @item font
 @itemx 131072
-A non-existent font was selected.  This category is enabled by default.
+A non-existent font was selected, or the selection was ignored because a
+font selection escape sequence was used after the output line
+continuation escape sequence on an input line.  This category is enabled
+by default.
 
 @item ig
 @itemx 262144

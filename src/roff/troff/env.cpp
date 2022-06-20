@@ -498,8 +498,10 @@ static node *do_underline_special(bool do_underline_spaces)
 
 bool environment::set_font(symbol nm)
 {
-  if (interrupted)
+  if (interrupted) {
+    warning(WARN_FONT, "ignoring font selection on interrupted line");
     return true; // "no operation" is successful
+  }
   if (nm == symbol("P") || nm.is_empty()) {
     if (family->make_definite(prev_fontno) < 0)
       return false;

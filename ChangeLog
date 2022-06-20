@@ -1,5 +1,16 @@
 2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Throw warning in font category when a font selection
+	escape sequence is used after the output line continuation
+	escape sequence on an input line, because it is ignored.
+
+	* src/roff/troff/env.cpp (environment::set_font): Do it.
+
+	* doc/groff.texi (Warnings):
+	* src/roff/troff/troff.1.man (Warnings): Document it.
+
+2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (font_change): Boolify.
 
 2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>

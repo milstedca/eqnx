@@ -1,5 +1,12 @@
 2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (font_change): Warn upon selection of a
+	nonexistent font name.
+
+	Fixes <https://savannah.gnu.org/bugs/?62656>.
+
+2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Revise `environment::set_font` to return Boolean value
 	indicating success of font selection operation.
 

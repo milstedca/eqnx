@@ -2052,10 +2052,16 @@ void token::next()
 	  for (p = s.contents(); *p != '\0'; p++)
 	    if (!csdigit(*p))
 	      break;
-	  if (*p || s.is_empty())
-	    curenv->set_font(s);
+	  // environment::set_font warns if a bogus mounting position is
+	  // requested.  We must warn here if a bogus font name is
+	  // selected.
+	  if (*p != 0 /* nullptr */ || s.is_empty()) {
+	    if (!curenv->set_font(s))
+	      warning(WARN_FONT, "cannot select font '%1'",
+		      s.contents());
+	  }
 	  else
-	    curenv->set_font(atoi(s.contents()));
+	    (void) curenv->set_font(atoi(s.contents()));
 	  if (!compatible_flag)
 	    have_input = 1;
 	  break;

@@ -1202,10 +1202,13 @@ void font_change()
 	break;
       }
   }
+  // environment::set_font warns if a bogus mounting position is
+  // requested.  We must warn here if a bogus font name is selected.
   if (is_number)
-    curenv->set_font(atoi(s.contents()));
+    (void) curenv->set_font(atoi(s.contents()));
   else
-    curenv->set_font(s);
+    if (!curenv->set_font(s))
+      warning(WARN_FONT, "cannot select font '%1'", s.contents());
   skip_line();
 }
 

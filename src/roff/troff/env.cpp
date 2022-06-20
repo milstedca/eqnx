@@ -496,13 +496,13 @@ static node *do_underline_special(bool do_underline_spaces)
   return new special_node(m, 1);
 }
 
-void environment::set_font(symbol nm)
+bool environment::set_font(symbol nm)
 {
   if (interrupted)
-    return;
+    return true; // "no operation" is successful
   if (nm == symbol("P") || nm.is_empty()) {
     if (family->make_definite(prev_fontno) < 0)
-      return;
+      return false;
     int tem = fontno;
     fontno = prev_fontno;
     prev_fontno = tem;
@@ -513,10 +513,10 @@ void environment::set_font(symbol nm)
     if (n < 0) {
       n = next_available_font_position();
       if (!mount_font(n, nm))
-	return;
+	return false;
     }
     if (family->make_definite(n) < 0)
-      return;
+      return false;
     fontno = n;
   }
   if (underline_spaces && fontno != prev_fontno) {
@@ -525,18 +525,22 @@ void environment::set_font(symbol nm)
     if (prev_fontno == get_underline_fontno())
       add_node(do_underline_special(false));
   }
+  return true;
 }
 
-void environment::set_font(int n)
+bool environment::set_font(int n)
 {
   if (interrupted)
-    return;
+    return false;
   if (is_good_fontno(n)) {
     prev_fontno = fontno;
     fontno = n;
   }
-  else
+  else {
     warning(WARN_FONT, "no font mounted at position %1", n);
+    return false;
+  }
+  return true;
 }
 
 void environment::set_family(symbol fam)

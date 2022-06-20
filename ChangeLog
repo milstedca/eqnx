@@ -1,5 +1,15 @@
 2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Revise `environment::set_font` to return Boolean value
+	indicating success of font selection operation.
+
+	* src/roff/troff/env.cpp (environment::set_font):
+	* src/roff/troff/env.h (environment::set_font): Do it.
+
+	This prepares the way for a fix for Savannah #62656.
+
+2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/groff.cpp: Use single exit path, freeing
 	memory allocated for strings.
 	(xexit): Add `exit()` wrapper; free allocated memory.

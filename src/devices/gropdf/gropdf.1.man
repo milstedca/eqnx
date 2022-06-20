@@ -1285,51 +1285,59 @@ see
 .\" ====================================================================
 .
 .I gropdf
-only supports importing other PDF files as graphics.
+supports only the inclusion of other PDF files for inline images.
 .
-But that PDF file may contain any of the graphic formats supported by
-the PDF standard (such as JPEG, PNG, GIF, etc.).
+Such a PDF file may,
+however,
+contain any of the graphic formats supported by
+the PDF standard,
+such as JPEG/JFIF,
+PNG,
+and GIF.
 .
-So any application which outputs PDF can be used as an embedded file
-in
+Any application that outputs PDF can thus be used to prepare files for
+embedding in documents processed by
+.I groff
+and
 .IR gropdf .
 .
+.
+.P
 The PDF file you wish to insert must be a single page and the drawing
 must just fit inside the media size of the PDF file.
 .
-So, in
+In
 .MR inkscape 1
 or
-.MR gimp 1
-(for example) make sure the canvas size just fits the image.
+.MR gimp 1 ,
+for example,
+make sure the canvas size just fits the image.
 .
 .
-.LP
-The PDF parser used in
+.P
+The PDF parser
 .I gropdf
-has not been rigorously tested with all possible applications which
-produce PDFs.
+implements has not been rigorously tested with all applications that
+produce PDF.
 .
-If you find a single page PDF which fails to import properly, it is
-worth running it through the
-.
+If you find a single-page PDF which fails to import properly,
+try processing it with the
 .MR pdftk 1
-program by issuing the command:
+program.
 .
 .
 .RS
-.LP
-.B pdftk
-.I oldfile.pdf
-.B output
-.I newfile.pdf
+.EX
+pdftk\~\c
+.I existing-file\~\c
+output\~\c
+.I new-file
+.EE
 .RE
 .
-.
-.LP
 You may find that
-.I newfile.pdf
-will now load successfully.
+.I new-file
+imports successfully.
 .
 .
 .\" ====================================================================

@@ -7120,9 +7120,9 @@ Increment (decrement) register @var{ident} by @var{value}.
 A leading minus sign in @var{value} is always interpreted as a
 decrementation operator, not an algebraic sign.  To assign a register a
 negative value or the negated value of another register, you can
-force GNU @code{troff} to interpret @code{-} as a negation or minus,
-rather than decrementation, operator: enclose it with its operand(s) in
-parentheses.
+force GNU @code{troff} to interpret @samp{-} as a negation or minus,
+rather than decrementation, operator: enclose it with its operand in
+parentheses or subtract it from zero.
 
 @Example
 .nr a 7

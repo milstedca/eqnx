@@ -1470,7 +1470,8 @@ To assign a register a negative value or the negated value of another
 register,
 enclose
 .squoted_char \-
-with its operand(s) in parentheses.
+enclose it with its operand in
+parentheses or subtract it from zero.
 .
 If a prior value does not exist
 (the register was undefined),

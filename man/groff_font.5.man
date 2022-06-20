@@ -91,7 +91,7 @@ respectively).
 .
 .
 .P
-Device and font description files are read both by the formatter,
+Device and font description files are read by the formatter,
 .IR @g@troff ,
 and by output drivers.
 .
@@ -172,7 +172,7 @@ The horizontal motion quantum is
 .IR n \~basic
 units.
 .
-All horizontal quantities are rounded to multiples
+Horizontal quantities are rounded to multiples
 .RI of\~ n.
 .
 .
@@ -196,7 +196,7 @@ driver uses this directive.
 .
 .TP
 .BI paperlength\~ n
-The vertical dimension of the physical output medium is
+The vertical dimension of the output medium is
 .IR n \~basic
 units
 (deprecated:
@@ -208,7 +208,7 @@ instead).
 .TP
 .BI papersize\~ format-or-dimension-pair-or-file-name\c
 \~.\|.\|.
-The dimensions of the physical output medium are as according to the
+The dimensions of the output medium are as according to the
 argument,
 which is either
 a standard paper format,
@@ -274,8 +274,7 @@ the argument can be a file name
 (e.g.,
 .IR /etc/papersize );
 if the file can be opened,
-the first line is read and a match attempted against each of the other
-forms.
+the first line is read and a match attempted against each other form.
 .
 No comment syntax is supported.
 .
@@ -287,7 +286,7 @@ each is scanned in turn and the first valid paper specification used.
 .
 .TP
 .BI paperwidth\~ n
-The horizontal dimension of the physical output medium is
+The horizontal dimension of the output medium is
 .IR n \~basic
 units
 (deprecated:
@@ -333,16 +332,14 @@ output devices use this directive.
 .BI print\~  program
 Use
 .I program
-as the spooler program for printing.
+as the print spooler.
 .
 If omitted,
-the
+.IR groff 's
 .B \-l
 and
 .B \-L
-options of
-.I groff
-are ignored.
+options are ignored.
 .
 .
 .TP
@@ -472,7 +469,7 @@ The vertical motion quantum is
 .IR n \~basic
 units.
 .
-All vertical quantities are rounded to multiples
+Vertical quantities are rounded to multiples
 .RI of\~ n.
 .
 .

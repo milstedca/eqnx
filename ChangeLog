@@ -1,5 +1,12 @@
 2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/gropdf/gropdf.pl (LoadFont): Revise error message
+	when a font can't be found for embedding.  User failure to add
+	an entry for locating the font file seems a more likely scenario
+	than outright corruption of the file.
+
+2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (font_change): Warn upon selection of a
 	nonexistent font name.
 

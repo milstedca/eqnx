@@ -2506,11 +2506,12 @@ sub LoadFont
     }
     else
     {
-        Warn("unable to embed font file for '$fnt{internalname}'"
-            . " ($ofontnm) (corrupt 'download' file?)") if $embedall;
-        $fno=++$objct;
-        $fontlst{$fontno}->{OBJ}=BuildObj($objct,
-                        {'Type' => '/Font',
+	Warn("unable to embed font file for '$fnt{internalname}'"
+	    . " ($ofontnm) (missing entry in 'download' file?)")
+	    if $embedall;
+	$fno=++$objct;
+	$fontlst{$fontno}->{OBJ}=BuildObj($objct,
+			{'Type' => '/Font',
 			'Subtype' => '/Type1',
 			'BaseFont' => '/'.$fnt{internalname},
 			'Widths' => $fnt{WIDTH},

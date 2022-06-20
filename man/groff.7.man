@@ -2998,8 +2998,7 @@ In a macro, shift the arguments by
 positions.
 .
 .TPx
-.REQ .sizes "s1 s2 \fR\&.\|.\|.\&\fP s\fRn\~\c
-[\f[CB]0\f[]]
+.REQ .sizes "s1 s2 \f[R].\|.\|.\&\f[] sn \f[R][\f[CB]0\f[]]"
 Set available type sizes similarly to the
 .B sizes
 directive in a

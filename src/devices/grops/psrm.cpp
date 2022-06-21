@@ -317,7 +317,8 @@ void resource_manager::output_prolog(ps_output &out)
   char *prologue = getenv("GROPS_PROLOGUE");
   FILE *fp = font::open_file(prologue, &path);
   if (!fp)
-    fatal("can't find '%1'", prologue);
+    fatal("failed to open PostScript prologue '%1': %2", prologue,
+	  strerror(errno));
   fputs("%%BeginResource: ", outfp);
   procset_resource->print_type_and_name(outfp);
   putc('\n', outfp);
@@ -353,7 +354,8 @@ void resource_manager::supply_resource(resource *r, int rank,
     if (r->type == RESOURCE_FONT) {
       fp = font::open_file(r->filename, &path);
       if (!fp) {
-	error("can't find '%1'", r->filename);
+	error("failed to open PostScript resource '%1': %2",
+	      r->filename, strerror(errno));
 	delete[] r->filename;
 	r->filename = 0 /* nullptr */;
       }
@@ -1079,7 +1081,7 @@ void resource_manager::read_download_file()
   char *path = 0 /* nullptr */;
   FILE *fp = font::open_file("download", &path);
   if (0 /* nullptr */ == fp)
-    fatal("failed to open 'download' file");
+    fatal("failed to open 'download' file: %1", strerror(errno));
   char buf[512];
   int lineno = 0;
   while (fgets(buf, sizeof(buf), fp)) {
@@ -1089,7 +1091,8 @@ void resource_manager::read_download_file()
       continue;
     char *q = strtok(0 /* nullptr */, " \t\r\n");
     if (!q)
-      fatal_with_file_and_line(path, lineno, "missing filename");
+      fatal_with_file_and_line(path, lineno, "file name missing for"
+			       " font '%1'", p);
     lookup_font(p)->filename = strsave(q);
   }
   free(path);

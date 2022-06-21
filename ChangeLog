@@ -1,3 +1,13 @@
+2022-06-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grops/psrm.cpp (resource_manager::output_prolog):
+	(resource_manager::supply_resource):
+	(resource_manager::read_download_file): Update diagnostic
+	message language and report underlying problem encountered by
+	system when failing to open files.  This will probably be the
+	text for ENOENT in most cases, but should help avoid frustration
+	in those where it isn't.
+
 2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grops/psrm.cpp

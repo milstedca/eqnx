@@ -1,5 +1,12 @@
 2022-06-10  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
+	[gropdf]: Correct display of pathnames used.
+
+	* font/devpdf/util/BuildFoundries.pl: Convert array to
+	string of pathnames.
+
+2022-06-10  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
 	[gropdf]: Fix to gropdf.
 
 	* src/devices/gropdf/gropdf.pl: If pdfbookmark was called

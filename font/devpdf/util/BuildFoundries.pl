@@ -86,7 +86,7 @@ sub LoadFoundry
 
 	if (lc($r[0]) eq 'foundry')
 	{
-	    Warn("\nThe path(s) used for searching:\n".join(':',$foundrypath)."\n") if $notFoundFont;
+	    Warn("\nThe path(s) used for searching:\n".join(':',@{$foundrypath})."\n") if $notFoundFont;
 	    $foundry=uc($r[1]);
 	    $foundrypath=[];
 	    push(@{$foundrypath},$dirURW) if $dirURW;
@@ -166,7 +166,7 @@ sub LoadFoundry
     }
 
     close(F);
-    Warn("\nThe path(s) used for searching:\n".join(':',$foundrypath)."\n") if $notFoundFont;
+    Warn("\nThe path(s) used for searching:\n".join(':',@{$foundrypath})."\n") if $notFoundFont;
 }
 
 sub RunAfmtodit

@@ -20,7 +20,7 @@
 
 #=======================================================================
 #Foundry|Name|Search path
-foundry||(gs)
+foundry||@urwfontsdir@:(gs):/usr/share/fonts/type1/gsfonts:/usr/share/fonts/default/Type1:/usr/share/fonts/default/Type1/adobestd35:/usr/share/fonts/type1/urw-base35:/opt/local/share/fonts/urw-fonts:/usr/local/share/fonts/ghostscript
 
 # Enable the font description files for grops (generated from Adobe
 # foundry font files) to be used with gropdf.  afmtodit must not be
@@ -72,7 +72,7 @@ EURO|N||||*../devps/freeeuro.pfa
 # URW fonts are typically shipped with Ghostscript, but can be replaced.
 
 #Foundry|Name|Search path
-foundry|U|@urwfontsdir@:/usr/share/fonts/type1/gsfonts:/usr/share/fonts/default/Type1:/usr/share/fonts/default/Type1/adobestd35:/usr/share/fonts/type1/urw-base35:/opt/local/share/fonts/urw-fonts:(gs)
+foundry|U|@urwfontsdir@:/usr/share/fonts/type1/gsfonts:/usr/share/fonts/default/Type1:/usr/share/fonts/default/Type1/adobestd35:/usr/share/fonts/type1/urw-base35:/opt/local/share/fonts/urw-fonts:/usr/local/share/fonts/ghostscript:(gs)
 
 # Define flags for afmtodit.
 

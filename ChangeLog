@@ -1,3 +1,13 @@
+2022-06-21  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	[gropdf]: Add more search paths to the Foundry file.
+
+	* font/devpdf/Foundry.in: Use the directory specified with the
+	config flag --with-urw-fonts-dir to populate the default foundry
+	as well as the U foundry. Important to populate the download
+	file with font files to embed the fonts not part of the base
+	pdf fonts or if user wants all fonts embedded.
+
 2022-06-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an-ext.tmac (UR, MT): Fix problem with hyphenation
@@ -148,14 +158,14 @@
 	* src/roff/groff/groff.cpp (help): Revise usage message for
 	expressiveness and clarity.
 
-2022-06-10  Deri James  <deri@chuzzlewit.myzen.co.uk>
+2022-06-21  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[gropdf]: Correct display of pathnames used.
 
 	* font/devpdf/util/BuildFoundries.pl: Convert array to
 	string of pathnames.
 
-2022-06-10  Deri James  <deri@chuzzlewit.myzen.co.uk>
+2022-06-21  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[gropdf]: Fix to gropdf.
 

@@ -1077,7 +1077,7 @@ void resource_manager::read_download_file()
   char *path = 0;
   FILE *fp = font::open_file("download", &path);
   if (!fp)
-    fatal("can't find 'download'");
+    fatal("failed to open 'download' file");
   char buf[512];
   int lineno = 0;
   while (fgets(buf, sizeof(buf), fp)) {

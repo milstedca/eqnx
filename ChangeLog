@@ -1,5 +1,11 @@
 2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grops/psrm.cpp
+	(resource_manager::read_download_file): Align diagnostic message
+	wording with gropdf in the same circumstance.
+
+2022-06-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Throw warning in font category when a font selection
 	escape sequence is used after the output line continuation
 	escape sequence on an input line, because it is ignored.

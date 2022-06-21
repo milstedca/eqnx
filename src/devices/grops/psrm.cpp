@@ -1,4 +1,3 @@
-// -*- C++ -*-
 /* Copyright (C) 1989-2020 Free Software Foundation, Inc.
      Written by James Clark (jjc@jclark.com)
 
@@ -271,7 +270,8 @@ void resource_manager::document_setup(ps_output &out)
   }
 }
 
-void resource_manager::print_resources_comment(unsigned flag, FILE *outfp)
+void resource_manager::print_resources_comment(unsigned flag,
+					       FILE *outfp)
 {
   int continued = 0;
   for (resource *r = resource_list; r; r = r->next)
@@ -335,8 +335,8 @@ void resource_manager::import_file(const char *filename, ps_output &out)
   supply_resource(r, -1, out.get_file(), 1);
 }
 
-void resource_manager::supply_resource(resource *r, int rank, FILE *outfp,
-				       int is_document)
+void resource_manager::supply_resource(resource *r, int rank,
+				       FILE *outfp, int is_document)
 {
   if (r->flags & resource::BUSY) {
     r->name += '\0';
@@ -347,15 +347,15 @@ void resource_manager::supply_resource(resource *r, int rank, FILE *outfp,
   r->flags |= resource::BUSY;
   if (rank > r->rank)
     r->rank = rank;
-  char *path = 0;		// pacify compiler
-  FILE *fp = 0;
-  if (r->filename != 0) {
+  char *path = 0 /* nullptr */;
+  FILE *fp = 0 /* nullptr */;
+  if (r->filename != 0 /* nullptr */) {
     if (r->type == RESOURCE_FONT) {
       fp = font::open_file(r->filename, &path);
       if (!fp) {
 	error("can't find '%1'", r->filename);
 	delete[] r->filename;
-	r->filename = 0;
+	r->filename = 0 /* nullptr */;
       }
     }
     else {
@@ -364,7 +364,7 @@ void resource_manager::supply_resource(resource *r, int rank, FILE *outfp,
       if (!fp) {
 	error("can't open '%1': %2", r->filename, strerror(errno));
 	delete[] r->filename;
-	r->filename = 0;
+	r->filename = 0 /* nullptr */;
       }
       else
 	path = r->filename;
@@ -608,8 +608,8 @@ int resource_manager::do_begin_resource(const char *ptr, int, FILE *,
   return 1;
 }
 
-int resource_manager::do_include_resource(const char *ptr, int rank, FILE *,
-					  FILE *outfp)
+int resource_manager::do_include_resource(const char *ptr, int rank,
+					  FILE *, FILE *outfp)
 {
   resource *r = read_resource_arg(&ptr);
   if (r) {
@@ -634,8 +634,8 @@ int resource_manager::do_begin_document(const char *ptr, int, FILE *,
   return 1;
 }
 
-int resource_manager::do_include_document(const char *ptr, int rank, FILE *,
-					  FILE *outfp)
+int resource_manager::do_include_document(const char *ptr, int rank,
+					  FILE *, FILE *outfp)
 {
   resource *r = read_file_arg(&ptr);
   if (r)
@@ -658,8 +658,8 @@ int resource_manager::do_begin_procset(const char *ptr, int, FILE *,
   return 0;
 }
 
-int resource_manager::do_include_procset(const char *ptr, int rank, FILE *,
-					  FILE *outfp)
+int resource_manager::do_include_procset(const char *ptr, int rank,
+					 FILE *, FILE *outfp)
 {
   resource *r = read_procset_arg(&ptr);
   if (r)
@@ -682,8 +682,8 @@ int resource_manager::do_begin_file(const char *ptr, int, FILE *,
   return 0;
 }
 
-int resource_manager::do_include_file(const char *ptr, int rank, FILE *,
-				      FILE *outfp)
+int resource_manager::do_include_file(const char *ptr, int rank,
+				      FILE *, FILE *outfp)
 {
   resource *r = read_file_arg(&ptr);
   if (r)
@@ -727,7 +727,8 @@ int resource_manager::change_to_end_resource(const char *, int, FILE *,
   return 0;
 }
 
-int resource_manager::do_begin_preview(const char *, int, FILE *fp, FILE *)
+int resource_manager::do_begin_preview(const char *, int, FILE *fp,
+				       FILE *)
 {
   string buf;
   do {
@@ -934,18 +935,19 @@ static unsigned parse_extensions(const char *ptr)
   return flags;
 }
 
-// XXX if it has not been surrounded with {Begin,End}Document need to strip
-// out Page: Trailer {Begin,End}Prolog {Begin,End}Setup sections.
+// XXX if it has not been surrounded with {Begin,End}Document need to
+// strip out Page: Trailer {Begin,End}Prolog {Begin,End}Setup sections.
 
 // XXX Perhaps the decision whether to use BeginDocument or
 // BeginResource: file should be postponed till we have seen
 // the first line of the file.
 
-void resource_manager::process_file(int rank, FILE *fp, const char *filename,
-				    FILE *outfp)
+void resource_manager::process_file(int rank, FILE *fp,
+				    const char *filename, FILE *outfp)
 {
   // If none of these comments appear in the header section, and we are
-  // just analyzing the file (ie outfp is 0), then we can return immediately.
+  // just analyzing the file (i.e., outfp is 0), then we can return
+  // immediately.
   static const char *header_comment_table[] = {
     "DocumentNeededResources:",
     "DocumentSuppliedResources:",
@@ -956,7 +958,7 @@ void resource_manager::process_file(int rank, FILE *fp, const char *filename,
     "DocumentNeededFiles:",
     "DocumentSuppliedFiles:",
   };
-  
+
   const int NHEADER_COMMENTS = sizeof(header_comment_table)
 			       / sizeof(header_comment_table[0]);
   struct comment_info {
@@ -1074,18 +1076,18 @@ void resource_manager::process_file(int rank, FILE *fp, const char *filename,
 
 void resource_manager::read_download_file()
 {
-  char *path = 0;
+  char *path = 0 /* nullptr */;
   FILE *fp = font::open_file("download", &path);
-  if (!fp)
+  if (0 /* nullptr */ == fp)
     fatal("failed to open 'download' file");
   char buf[512];
   int lineno = 0;
   while (fgets(buf, sizeof(buf), fp)) {
     lineno++;
     char *p = strtok(buf, " \t\r\n");
-    if (p == 0 || *p == '#')
+    if (p == 0 /* nullptr */ || *p == '#')
       continue;
-    char *q = strtok(0, " \t\r\n");
+    char *q = strtok(0 /* nullptr */, " \t\r\n");
     if (!q)
       fatal_with_file_and_line(path, lineno, "missing filename");
     lookup_font(p)->filename = strsave(q);
@@ -1176,3 +1178,9 @@ void resource_manager::print_language_level_comment(FILE *outfp)
   if (language_level)
     fprintf(outfp, "%%%%LanguageLevel: %u\n", language_level);
 }
+
+// Local Variables:
+// fill-column: 72
+// mode: C++
+// End:
+// vim: set cindent noexpandtab shiftwidth=2 textwidth=72:

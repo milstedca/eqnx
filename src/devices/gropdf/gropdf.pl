@@ -1,6 +1,6 @@
 #!@PERL@ -w
 #
-#	gropdf		: PDF post processor for groff
+#       gropdf          : PDF post processor for groff
 #
 # Copyright (C) 2011-2020 Free Software Foundation, Inc.
 #      Written by Deri James <deri@chuzzlewit.myzen.co.uk>
@@ -29,7 +29,7 @@ use constant
     CHRCODE		=> 1,
     PSNAME		=> 2,
     ASSIGNED		=> 3,
-    USED		=> 4,
+    USED                => 4,
 };
 
 (my $progname=$0) =~s @.*/@@;
@@ -38,19 +38,19 @@ my $gotzlib=0;
 
 my $rc = eval
 {
-    require Compress::Zlib;
-    Compress::Zlib->import();
-    1;
+  require Compress::Zlib;
+  Compress::Zlib->import();
+  1;
 };
 
 if($rc)
 {
-    $gotzlib=1;
+  $gotzlib=1;
 }
 else
 {
     Warn("Perl module 'Compress::Zlib' not available; cannot compress"
-	 . " this PDF");
+         . " this PDF");
 }
 
 my %cfg;
@@ -60,7 +60,7 @@ $cfg{GROFF_FONT_PATH}='@GROFF_FONT_DIR@';
 $cfg{RT_SEP}='@RT_SEP@';
 binmode(STDOUT);
 
-my @obj;	# Array of PDF objects
+my @obj;        # Array of PDF objects
 my $objct=0;	# Count of Objects
 my $fct=0;	# Output count
 my %fnt;	# Used fonts
@@ -230,14 +230,14 @@ if (defined($unicodemap))
     }
     elsif (-r $unicodemap)
     {
-	local $/;
-	open(F,"<$unicodemap") or Die("failed to open '$unicodemap'");
-	($ucmap)=(<F>);
-	close(F);
+        local $/;
+        open(F,"<$unicodemap") or Die("failed to open '$unicodemap'");
+        ($ucmap)=(<F>);
+        close(F);
     }
     else
     {
-	Warn("failed to find '$unicodemap'; ignoring");
+        Warn("failed to find '$unicodemap'; ignoring");
     }
 }
 
@@ -607,7 +607,7 @@ sub ToPoints
     }
     else
     {
-	Die("invalid scaling unit '$unit'");
+        Die("invalid scaling unit '$unit'");
     }
 }
 
@@ -640,7 +640,7 @@ sub LoadDownload
 	    $download{"$foundry $name"}=$file;
 	}
 
-	close($f);
+        close($f);
     }
 
     Die("failed to open 'download' file") if !$found;
@@ -671,7 +671,7 @@ sub LoadDesc
 
     OpenFile(\$f,$fontdir,"DESC");
     Die("failed to open device description file 'DESC'")
-	if !defined($f);
+        if !defined($f);
 
     while (<$f>)
     {
@@ -686,35 +686,35 @@ sub LoadDesc
 
     foreach my $directive ('unitwidth', 'res', 'sizescale')
     {
-	Die("device description file 'DESC' missing mandatory directive"
-	    . " '$directive'") if !exists($desc{$directive});
+        Die("device description file 'DESC' missing mandatory directive"
+            . " '$directive'") if !exists($desc{$directive});
     }
 
     foreach my $directive ('unitwidth', 'res', 'sizescale')
     {
-	my $val=$desc{$directive};
-	Die("device description file 'DESC' directive '$directive'"
-	    . " value must be positive; got '$val'")
-	    if ($val !~ m/^\d+$/ or $val <= 0);
+        my $val=$desc{$directive};
+        Die("device description file 'DESC' directive '$directive'"
+            . " value must be positive; got '$val'")
+            if ($val !~ m/^\d+$/ or $val <= 0);
     }
 
     if (exists($desc{'hor'}))
     {
-	my $hor=$desc{'hor'};
-	Die("device horizontal motion quantum must be 1, got '$hor'")
-	    if ($hor != 1);
+        my $hor=$desc{'hor'};
+        Die("device horizontal motion quantum must be 1, got '$hor'")
+            if ($hor != 1);
     }
 
     if (exists($desc{'vert'}))
     {
-	my $vert=$desc{'vert'};
-	Die("device vertical motion quantum must be 1, got '$vert'")
-	    if ($vert != 1);
+        my $vert=$desc{'vert'};
+        Die("device vertical motion quantum must be 1, got '$vert'")
+            if ($vert != 1);
     }
 
     my ($res,$ss)=($desc{'res'},$desc{'sizescale'});
     Die("device resolution must be a multiple of 72*sizescale, got"
-	. " '$res' ('sizescale'=$ss)") if (($res % ($ss * 72)) != 0);
+        . " '$res' ('sizescale'=$ss)") if (($res % ($ss * 72)) != 0);
 }
 
 sub rad  { $_[0]*3.14159/180 }
@@ -729,10 +729,10 @@ sub do_x
 
     if ($xcmd eq 'T')
     {
-	Warn("expecting a PDF pipe (got $xprm[0])")
-	    if $xprm[0] ne substr($devnm,3);
+        Warn("expecting a PDF pipe (got $xprm[0])")
+            if $xprm[0] ne substr($devnm,3);
     }
-    elsif ($xcmd eq 'f')	# Register Font
+    elsif ($xcmd eq 'f')        # Register Font
     {
 	$xprm[1]="${Foundry}-$xprm[1]" if $Foundry ne '';
 	LoadFont($xprm[0],$xprm[1]);
@@ -922,16 +922,13 @@ sub do_x
 		    }
 		}
 		elsif ($pdfmark=~m/(.+) \/DEST\s*$/)
-		{
-		    my @xwds=split(' ',"<< $1 >>");
-		    my $dest=ParsePDFValue(\@xwds);
-		    foreach my $v (@{$dest->{View}})
-		    {
-			$v=GraphY(abs($v)) if substr($v,0,1) eq '-';
-		    }
-		    unshift(@{$dest->{View}},"$cpageno 0 R");
+                {
+                    my @xwds=split(' ',"<< $1 >>");
+                    my $dest=ParsePDFValue(\@xwds);
+                    $dest->{View}->[1]=GraphY($dest->{View}->[1]*-1);
+                    unshift(@{$dest->{View}},"$cpageno 0 R");
 
-		    if (!defined($dests))
+                    if (!defined($dests))
 		    {
 			$cat->{Dests}=BuildObj(++$objct,{});
 			$dests=$obj[$objct]->{DATA};
@@ -1073,13 +1070,13 @@ sub do_x
 			}
 
 			$incfil{$fil}=LoadSWF($fil,[$llx,$lly,$urx,$ury],$mat);
-		    }
-		    else
-		    {
-			Warn("unrecognized 'import' file type '$fil'");
-			return undef;
-		    }
-		}
+                    }
+                    else
+                    {
+                        Warn("unrecognized 'import' file type '$fil'");
+                        return undef;
+                    }
+                }
 
 		if (defined($incfil{$fil}))
 		{
@@ -1228,30 +1225,30 @@ sub do_x
 					    {
 						$pginsert=$j;
 						last FIND;
-					    }
-					    else
-					    {
-						# XXX: indentation wince
-						Warn(
+                                            }
+                                            else
+                                            {
+                                                # XXX: indentation wince
+                                                Warn(
 "expected 'switchtopage' parameter to be one of"
 . "'top|bottom|before|after', got '$ba'");
-						last FIND;
-					    }
-					}
+                                                last FIND;
+                                            }
+                                        }
 
-				    }
+                                    }
 
-				    Warn("cannot find page ref '$ref'");
-				    last FIND
+                                    Warn("cannot find page ref '$ref'");
+                                    last FIND
 
-				}
+                                }
 			    }
-			}
-			else
-			{
-			    Warn("cannot find page named '$want'");
-			}
-		    }
+                        }
+                        else
+                        {
+                            Warn("cannot find page named '$want'");
+                        }
+                    }
 
 		    if ($pginsert < 0)
 		    {
@@ -1473,11 +1470,11 @@ sub GetPoints
 # 	my $wid=($bbox->[2]-$bbox->[0])*$mat->[0];
 # 	my $hgt=($bbox->[3]-$bbox->[1])*$mat->[3];
 #
-# 	if (!open(PDF,"<$fil"))
-# 	{
-# 		Warn("failed to open '$fil'");
-# 		return(undef);
-# 	}
+#       if (!open(PDF,"<$fil"))
+#       {
+#               Warn("failed to open '$fil'");
+#               return(undef);
+#       }
 #
 # 	my (@f)=(<PDF>);
 #
@@ -1530,8 +1527,8 @@ sub LoadSWF
 
     if (!open(PDF,"<$fil"))
     {
-	Warn("failed to open SWF '$fil'");
-	return(undef);
+        Warn("failed to open SWF '$fil'");
+        return(undef);
     }
 
     my (@f)=(<PDF>);
@@ -1631,8 +1628,8 @@ sub LoadPDF
 
     if (!defined($PD))
     {
-	Warn("failed to open PDF '$pdfnm'");
-	return undef;
+        Warn("failed to open PDF '$pdfnm'");
+        return undef;
     }
 
     my $hdr=<$PD>;
@@ -1679,13 +1676,13 @@ sub LoadPDF
 		$pdf->[$curobj]->{STREAMPOS}=[tell($PD)+$adj,$strmlen];
 		seek($PD,$strmlen,1);
 		$instream=1;
-	    }
-	    else
-	    {
-		Warn("parsing PDF '$pdfnm' failed");
-		return undef;
-	    }
-	}
+            }
+            else
+            {
+                Warn("parsing PDF '$pdfnm' failed");
+                return undef;
+            }
+        }
 
 	s/%.*?$//;
 	$pdftxt.=$_.' ';
@@ -1825,11 +1822,11 @@ sub LoadStream
     $l=$pdf->[$$l]->{OBJ} if (defined($l) && ref($l) eq 'OBJREF');
 
     Die("unable to determine length of stream \@$o->{STREAMPOS}->[0]")
-	if !defined($l);
+        if !defined($l);
 
     sysseek(PD,$o->{STREAMPOS}->[0],0);
     Warn("failed to read all of the stream")
-	if $l != sysread(PD,$o->{STREAM},$l);
+        if $l != sysread(PD,$o->{STREAM},$l);
 
     if ($gotzlib and exists($o->{OBJ}->{'Filter'}) and $o->{OBJ}->{'Filter'} eq '/FlateDecode')
     {
@@ -1857,7 +1854,7 @@ sub BuildStream
     }
     else
     {
-	Warn("unexpected 'Contents'");
+        Warn("unexpected 'Contents'");
     }
 
     foreach my $o (@{$objs})
@@ -2055,12 +2052,12 @@ sub ParsePDFHash
 
 	my (@w)=split('/',$wd,3);
 
-	if ($w[0])
-	{
-	    Warn("PDF Dict Key '$wd' does not start with '/'");
-	    exit 1;
-	}
-	else
+        if ($w[0])
+        {
+            Warn("PDF Dict Key '$wd' does not start with '/'");
+            exit 1;
+        }
+        else
 	{
 	    unshift(@{$pdfwds},"/$w[2]") if $w[2];
 	    $wd=$w[1];
@@ -2228,11 +2225,11 @@ sub Msg
 
     if ($fatal)
     {
-	print STDERR "fatal error: ";
+        print STDERR "fatal error: ";
     }
     else
     {
-	print STDERR "warning: ";
+        print STDERR "warning: ";
     }
 
     print STDERR "$msg\n";
@@ -2366,7 +2363,7 @@ sub LoadFont
     {
 	# Try with no foundry
 	$fontnm=~s/.*?-//;
-	OpenFile(\$f,$fontdir,$fontnm);
+        OpenFile(\$f,$fontdir,$fontnm);
     }
 
     Die("failed to open font '$ofontnm'") if !defined($f);
@@ -2461,13 +2458,13 @@ sub LoadFont
 
     if (exists($download{$fontkey}))
     {
-	# Not a Base Font
-	my ($l1,$l2,$l3,$t1stream)=GetType1($download{$fontkey});
-	Warn("incorrect font format for '$fontkey' ($l1)")
-	    if !defined($t1stream);
-	$fno=++$objct;
-	$fontlst{$fontno}->{OBJ}=BuildObj($objct,
-			{'Type' => '/Font',
+        # Not a Base Font
+        my ($l1,$l2,$l3,$t1stream)=GetType1($download{$fontkey});
+        Warn("incorrect font format for '$fontkey' ($l1)")
+            if !defined($t1stream);
+        $fno=++$objct;
+        $fontlst{$fontno}->{OBJ}=BuildObj($objct,
+                        {'Type' => '/Font',
 			'Subtype' => '/Type1',
 			'BaseFont' => '/'.$fnt{internalname},
 			'Widths' => $fnt{WIDTH},
@@ -2509,11 +2506,11 @@ sub LoadFont
     }
     else
     {
-	Warn("unable to embed font file for '$fnt{internalname}'"
-	    . " ($ofontnm) (corrupt 'download' file?)") if $embedall;
-	$fno=++$objct;
-	$fontlst{$fontno}->{OBJ}=BuildObj($objct,
-			{'Type' => '/Font',
+        Warn("unable to embed font file for '$fnt{internalname}'"
+            . " ($ofontnm) (corrupt 'download' file?)") if $embedall;
+        $fno=++$objct;
+        $fontlst{$fontno}->{OBJ}=BuildObj($objct,
+                        {'Type' => '/Font',
 			'Subtype' => '/Type1',
 			'BaseFont' => '/'.$fnt{internalname},
 			'Widths' => $fnt{WIDTH},
@@ -2615,17 +2612,17 @@ sub GetChunk
 		}
 
 		$type=$chunktype;
-		return if $chunktype == 3;
+                return if $chunktype == 3;
 
-		$ct=read($F,$hdr,4);
-		Die("failed to read binary segment length") if $ct != 4;
-		my $sl=unpack('V',$hdr);
-		my $data;
-		my $chk=read($F,$data,$sl);
-		Die("failed to read binary segment") if $chk != $sl;
-		$chunk.=$data;
-	    }
-	    else
+                $ct=read($F,$hdr,4);
+                Die("failed to read binary segment length") if $ct != 4;
+                my $sl=unpack('V',$hdr);
+                my $data;
+                my $chk=read($F,$data,$sl);
+                Die("failed to read binary segment") if $chk != $sl;
+                $chunk.=$data;
+            }
+            else
 	    {
 		# ascii chunk
 
@@ -3477,7 +3474,7 @@ sub d3
     return(sprintf("%.3f",shift || 0));
 }
 
-sub LoadAhead
+sub  LoadAhead
 {
     my $no=shift;
 
@@ -3789,8 +3786,8 @@ sub RemapChr
     }
     else
     {
-	Warn("too many glyphs used in font '$cft'");
-	return(32);
+        Warn("too many glyphs used in font '$cft'");
+        return(32);
     }
 }
 
@@ -3811,8 +3808,8 @@ sub do_N
 
     if (!defined($fnt->{NO}->[$par]))
     {
-	Warn("no chr($par) in font $fnt->{internalname}");
-	return;
+        Warn("no chr($par) in font $fnt->{internalname}");
+        return;
     }
 
     my $chnm=$fnt->{NO}->[$par]->[0];

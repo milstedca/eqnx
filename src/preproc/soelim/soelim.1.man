@@ -371,22 +371,24 @@ even when followed by a character other than space or newline.
 .
 .TP
 .BI \-I\~ dir
-Add the directory
+Search the directory
 .I dir
-to the search path for macro files
-(both those on the command line and those named in
-.B .so
-requests).
+path for
+.I input-
+and
+.I included-files.
 .
-This option may be specified more than once;
-the directories are searched in the order specified.
+.B \-I
+may be specified more than once;
+each
+.I dir
+is searched in the given order.
 .
-If you want to search the current directory before others,
+To search the current working directory before others,
 add
 .RB \[lq] "\-I .\&" \[rq]
-at the desired place.
-.
-The current working directory is otherwise searched last.
+at the desired place;
+it is otherwise searched last.
 .
 .
 .TP

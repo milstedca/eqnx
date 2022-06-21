@@ -280,22 +280,25 @@ U.S.\& letter and A4 paper formats without change.
 .
 .TP
 .BI \-I\~ dir
-This option may be used to add a directory to the search path for
-files on the command line and files named in
-.B \[rs]X\[aq]ps: \%import\[aq]
-and
+Search the directory
+.I dir
+for files named in
 .B \[rs]X\[aq]ps: file\[aq]
+and
+.B \[rs]X\[aq]ps: import\[aq]
 escape sequences.
 .
-This option may be specified more than once;
-the directories are then searched in the order specified.
+.B \-I
+may be specified more than once;
+each
+.I dir
+is searched in the given order.
 .
-If you want to search the current directory before others,
+To search the current working directory before others,
 add
 .RB \[lq] "\-I .\&" \[rq]
-at the desired place.
-.
-The current working directory is otherwise searched last.
+at the desired place;
+it is otherwise searched last.
 .
 .
 .TP

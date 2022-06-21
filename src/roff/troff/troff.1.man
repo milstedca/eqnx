@@ -265,33 +265,34 @@ processed.
 .
 .TP
 .BI \-I\~ dir
-Search
+Search the directory
 .I dir
-for input files
-(those on the command line,
-those named in
+for files
+(those named on the command line;
+in
 .BR psbb ,
 .BR so ,
 and
 .B soquiet
-requests,
-and
-those named in
+requests;
+and in
 .RB \[lq] "\[rs]X\[aq]ps: import\[aq]" \[rq],
 .RB \[lq] "\[rs]X\[aq]ps: file\[aq]" \[rq],
 and
 .RB \[lq] "\[rs]X\[aq]pdf: pdfpic\[aq]" \[rq]
 device control escape sequences).
 .
-This option may be specified more than once;
-the directories are searched in the order specified.
+.B \-I
+may be specified more than once;
+each
+.I dir
+is searched in the given order.
 .
-If you want to search the current directory before others,
+To search the current working directory before others,
 add
 .RB \[lq] "\-I .\&" \[rq]
-at the desired place.
-.
-The current working directory is otherwise searched last.
+at the desired place;
+it is otherwise searched last.
 .
 .B \-I
 works similarly to,

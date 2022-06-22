@@ -2605,8 +2605,6 @@ void exit_troff()
     tok.next();
     process_input_stack();
   }
-  // This will only happen if a trap-called macro starts a diversion,
-  // or if vertical position traps have been disabled.
   cleanup_and_exit(EXIT_SUCCESS);
 }
 

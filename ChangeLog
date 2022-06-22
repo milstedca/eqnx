@@ -1,5 +1,14 @@
 2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Rename a function for clarity.
+
+	* src/roff/troff/input.cpp (add_to_node_list): Rename this...
+	(add_to_zero_width_node_list): ...to this.
+	(do_zero_width): Update call site.
+	* src/roff/troff/token.h: Update declaration.
+
+2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/groff.cpp (handle_unknown_desc_command):
 	Refactor to skip unnecessary string comparisons.  We explicitly
 	return in the final case instead of falling off the end of this

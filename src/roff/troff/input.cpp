@@ -1612,7 +1612,7 @@ static node *do_zero_width()
     if (tok == start
 	&& (compatible_flag || input_stack::get_level() == start_level))
       break;
-    if (!tok.add_to_node_list(&rev))
+    if (!tok.add_to_zero_width_node_list(&rev))
       error("invalid token in argument to \\Z");
   }
   node *n = 0;
@@ -7263,7 +7263,7 @@ void check_missing_character()
 
 // this is for \Z
 
-int token::add_to_node_list(node **pp)
+int token::add_to_zero_width_node_list(node **pp)
 {
   hunits w;
   int s;

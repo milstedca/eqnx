@@ -4889,7 +4889,7 @@ void composite_node::tprint(troff_output_file *out)
     out->right(track_kern);
 }
 
-node *make_composite_node(charinfo *s, environment *env)
+static node *make_composite_node(charinfo *s, environment *env)
 {
   int fontno = env_definite_font(env);
   if (fontno < 0) {
@@ -4908,7 +4908,8 @@ node *make_composite_node(charinfo *s, environment *env)
   return new composite_node(n, s, tf, 0, 0, 0);
 }
 
-node *make_glyph_node(charinfo *s, environment *env, int no_error_message = 0)
+static node *make_glyph_node(charinfo *s, environment *env,
+			     bool want_warnings = true)
 {
   int fontno = env_definite_font(env);
   if (fontno < 0) {
@@ -4923,7 +4924,7 @@ node *make_glyph_node(charinfo *s, environment *env, int no_error_message = 0)
     if (mac && s->is_fallback())
       return make_composite_node(s, env);
     if (s->numbered()) {
-      if (!no_error_message)
+      if (want_warnings)
 	warning(WARN_CHAR, "character code %1 not defined in current"
 		" font", s->get_number());
       return 0;
@@ -4967,7 +4968,7 @@ node *make_glyph_node(charinfo *s, environment *env, int no_error_message = 0)
 	}
     }
     if (!found) {
-      if (!no_error_message && s->first_time_not_found()) {
+      if (want_warnings && s->first_time_not_found()) {
 	unsigned char input_code = s->get_ascii_code();
 	if (input_code != 0) {
 	  if (csgraph(input_code))
@@ -5032,7 +5033,7 @@ int character_exists(charinfo *ci, environment *env)
     ci = tem;
   if (ci->get_macro())
     return 1;
-  node *nd = make_glyph_node(ci, env, 1);
+  node *nd = make_glyph_node(ci, env, false /* don't want warnings */);
   if (nd) {
     delete nd;
     return 1;

@@ -1744,7 +1744,7 @@ void token::next()
     node *n = 0;
     int cc = input_stack::get(&n);
     if (cc != escape_char || escape_char == 0) {
-    handle_normal_char:
+    handle_ordinary_char:
       switch(cc) {
       case INPUT_NO_BREAK_SPACE:
 	  type = TOKEN_STRETCHABLE_SPACE;
@@ -2300,12 +2300,12 @@ void token::next()
 	  type = TOKEN_SPECIAL;
 	  return;
 	}
-	goto handle_normal_char;
+	goto handle_ordinary_char;
       default:
 	if (cc != escape_char && cc != '.')
 	  warning(WARN_ESCAPE, "escape character ignored before %1",
 		  input_char_description(cc));
-	goto handle_normal_char;
+	goto handle_ordinary_char;
       }
     }
   }

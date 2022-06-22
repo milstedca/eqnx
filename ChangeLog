@@ -1,5 +1,21 @@
 2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/input.cpp (token::next): Rename statement label
+	to use documentary terminology.
+	* src/roff/troff/node.cpp (make_composite_node,
+	make_glyph_node): Make functions static since nothing outside
+	this translation unit calls them.
+	* src/roff/troff/node.cpp (make_glyph_node): Refactor optional
+	argument and its usage.  Put it down, flip it, and reverse it.
+	That is, demote its type from `int` to `bool`, invert its sense,
+	and rename it since it affects warning, not error, diagnostics.
+	(character_exists): Update only call site of `make_glyph_node()`
+	that uses non-default argument value.
+
+2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Adjust diagnostic message text to clarify and better
 	match terminology used in documentation.
 

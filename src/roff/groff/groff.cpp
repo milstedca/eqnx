@@ -560,6 +560,7 @@ void handle_unknown_desc_command(const char *command, const char *arg,
 			       " requires an argument");
     else
       spooler = xstrdup(arg);
+    return;
   }
   if (strcmp(command, "prepro") == 0) {
     if (arg == 0 /* nullptr */)
@@ -570,10 +571,10 @@ void handle_unknown_desc_command(const char *command, const char *arg,
 	  error_with_file_and_line(filename, lineno, "invalid 'prepro'"
 				   " directive argument '%1': program"
 				   " name required", arg);
-	  return;
 	}
       predriver = xstrdup(arg);
     }
+    return;
   }
   if (strcmp(command, "postpro") == 0) {
     if (arg == 0 /* nullptr */)
@@ -589,6 +590,7 @@ void handle_unknown_desc_command(const char *command, const char *arg,
 	}
       postdriver = xstrdup(arg);
     }
+    return;
   }
 }
 

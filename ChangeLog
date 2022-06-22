@@ -1,6 +1,13 @@
 2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/groff.cpp (handle_unknown_desc_command):
+	Refactor to skip unnecessary string comparisons.  We explicitly
+	return in the final case instead of falling off the end of this
+	void function for consistency if additional cases are added.
+
+2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/groff.cpp (handle_unknown_desc_command):
 	Partially revert commit 64dc40d23a, 19 June.  I forgot to save
 	and restore the previous values of the globals
 	`current_filename` and `current_lineno`, and, noticing that this

@@ -725,7 +725,7 @@ class real_output_file : public output_file {
   int piped;
 #endif
   int printing;		// decision via optional page list
-  int output_on;	// \O[0] or \O[1] escape calls
+  int output_on;	// \O[0] or \O[1] escape sequences
   virtual void really_transparent_char(unsigned char) = 0;
   virtual void really_print_line(hunits x, vunits y, node *n,
 				 vunits before, vunits after, hunits width) = 0;
@@ -4135,8 +4135,8 @@ void suppress_node::tprint(troff_output_file *out)
 	// Ensure the new string fits with room for a terminal '\0'.
 	const size_t len = strlen(new_name);
 	if (len > (namebuflen - 1))
-	  error("constructed file name in suppressed output escape is"
-		" too long (>= %1 bytes); skipping image",
+	  error("constructed file name in suppressed output escape"
+		" sequence is too long (>= %1 bytes); skipping image",
 		(int)namebuflen);
 	else
 	  strncpy(name, new_name, (namebuflen - 1));
@@ -4145,8 +4145,8 @@ void suppress_node::tprint(troff_output_file *out)
       }
       else {
 	if (image_filename_len > (namebuflen - 1))
-	  error("file name in suppressed output escape is too long"
-		" (>= %1 bytes); skipping image", (int)namebuflen);
+	  error("file name in suppressed output escape sequence is too"
+		" long (>= %1 bytes); skipping image", (int)namebuflen);
 	else
 	  strcpy(name, image_filename);
       }
@@ -4893,7 +4893,7 @@ node *make_composite_node(charinfo *s, environment *env)
 {
   int fontno = env_definite_font(env);
   if (fontno < 0) {
-    error("no current font");
+    error("cannot format composite glyph: no current font");
     return 0;
   }
   assert(fontno < font_table_size && font_table[fontno] != 0);
@@ -4912,7 +4912,7 @@ node *make_glyph_node(charinfo *s, environment *env, int no_error_message = 0)
 {
   int fontno = env_definite_font(env);
   if (fontno < 0) {
-    error("no current font");
+    error("cannot format glyph: no current font");
     return 0;
   }
   assert(fontno < font_table_size && font_table[fontno] != 0);
@@ -4924,8 +4924,8 @@ node *make_glyph_node(charinfo *s, environment *env, int no_error_message = 0)
       return make_composite_node(s, env);
     if (s->numbered()) {
       if (!no_error_message)
-	warning(WARN_CHAR, "can't find numbered character %1",
-		s->get_number());
+	warning(WARN_CHAR, "character code %1 not defined in current"
+		" font", s->get_number());
       return 0;
     }
     special_font_list *sf = font_table[fontno]->sf;
@@ -4971,15 +4971,16 @@ node *make_glyph_node(charinfo *s, environment *env, int no_error_message = 0)
 	unsigned char input_code = s->get_ascii_code();
 	if (input_code != 0) {
 	  if (csgraph(input_code))
-	    warning(WARN_CHAR, "can't find character '%1'", input_code);
+	    warning(WARN_CHAR, "character '%1' not defined",
+		    input_code);
 	  else
-	    warning(WARN_CHAR, "can't find character with input code %1",
-		    int(input_code));
+	    warning(WARN_CHAR, "character with input code %1 not"
+		    " defined", int(input_code));
 	}
 	else if (s->nm.contents()) {
 	  const char *nm = s->nm.contents();
 	  const char *backslash = (nm[1] == 0) ? "\\" : "";
-	  warning(WARN_CHAR, "can't find special character '%1%2'",
+	  warning(WARN_CHAR, "special character '%1%2' not defined",
 		  backslash, nm);
 	}
       }

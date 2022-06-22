@@ -1,5 +1,22 @@
 2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Adjust diagnostic message text to clarify and better
+	match terminology used in documentation.
+
+	* src/roff/troff/input.cpp (set_escape_char, do_overstrike,
+	do_bracket, do_name_test, do_width, do_special):
+	* src/roff/troff/node.cpp (suppress_node::tprint): Migrate from
+	"escape" to "escape sequence".
+
+	* src/roff/troff/node.cpp (make_composite_node,
+	make_glyph_node): Clarify what went wrong.
+
+	* src/roff/troff/input.cpp (token::get_char,
+	check_missing_character): Migrate from "normal character" to
+	"ordinary character" (see groff_char(7)).
+
+2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Rename a function for clarity.
 
 	* src/roff/troff/input.cpp (add_to_node_list): Rename this...

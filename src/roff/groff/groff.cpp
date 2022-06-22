@@ -554,11 +554,10 @@ const char *xbasename(const char *s)
 void handle_unknown_desc_command(const char *command, const char *arg,
 				 const char *filename, int lineno)
 {
-  current_filename = filename;
-  current_lineno = lineno;
   if (strcmp(command, "print") == 0) {
     if (arg == 0 /* nullptr */)
-      error("'print' directive requires an argument");
+      error_with_file_and_line(filename, lineno, "'print' directive"
+			       " requires an argument");
     else
       spooler = xstrdup(arg);
   }
@@ -568,8 +567,9 @@ void handle_unknown_desc_command(const char *command, const char *arg,
     else {
       for (const char *p = arg; *p; p++)
 	if (csspace(*p)) {
-	  error("invalid 'prepro' directive argument '%1':"
-		" program name required", arg);
+	  error_with_file_and_line(filename, lineno, "invalid 'prepro'"
+				   " directive argument '%1': program"
+				   " name required", arg);
 	  return;
 	}
       predriver = xstrdup(arg);
@@ -577,12 +577,14 @@ void handle_unknown_desc_command(const char *command, const char *arg,
   }
   if (strcmp(command, "postpro") == 0) {
     if (arg == 0 /* nullptr */)
-      error("'postpro' directive requires an argument");
+      error_with_file_and_line(filename, lineno, "'postpro' directive"
+			       " requires an argument");
     else {
       for (const char *p = arg; *p; p++)
 	if (csspace(*p)) {
-	  error("invalid 'postpro' directive argument '%1':"
-		" program name required", arg);
+	  error_with_file_and_line(filename, lineno, "invalid 'postpro'"
+				   " directive argument '%1': program"
+				   " name required", arg);
 	  return;
 	}
       postdriver = xstrdup(arg);

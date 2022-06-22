@@ -1,3 +1,12 @@
+2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/groff.cpp (handle_unknown_desc_command):
+	Partially revert commit 64dc40d23a, 19 June.  I forgot to save
+	and restore the previous values of the globals
+	`current_filename` and `current_lineno`, and, noticing that this
+	function has 3 return paths, decided that it's cheaper just to
+	go back to `error_with_file_and_line()`.
+
 2022-06-21  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[gropdf]: Add more search paths to the Foundry file.

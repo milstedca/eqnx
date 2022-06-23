@@ -288,10 +288,8 @@ AC_DEFUN([GROFF_URW_FONTS_PATH], [
 ])
 
 # Check availability of URW fonts in the search path given by 'gs -h'
-# supplemented with
-# /usr/share/fonts/type1/gsfonts/:/opt/local/share/fonts/urw-fonts
-# (where font/devpdf/Foundry.in expects them), or in the custom
-# directory passed to 'configure'.
+# supplemented with the paths where font/devpdf/Foundry.in expects them,
+# or in the custom directory passed to 'configure'.
 
 AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   AC_REQUIRE([GROFF_AWK_PATH])
@@ -301,8 +299,13 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   then
     AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
     _list_paths=`$GHOSTSCRIPT -h | $AWK 'BEGIN { found = 0 } /Search path:/ { found = 1 } /^[ ]*\// { print $'0' }'| tr : ' '`
-    _list_paths="$_list_paths /usr/share/fonts/type1/gsfonts/ \
-      /opt/local/share/fonts/urw-fonts/"
+    _list_paths="$_list_paths \
+      /usr/share/fonts/type1/gsfonts/ \
+      /usr/share/fonts/default/Type1/ \
+      /usr/share/fonts/default/Type1/adobestd35/ \
+      /usr/share/fonts/type1/urw-base35/ \
+      /opt/local/share/fonts/urw-fonts/ \
+      /usr/local/share/fonts/ghostscript/"
     if test -n "$urwfontsdir"
     then
       _list_paths="$ _list_paths $urwfontsdir"

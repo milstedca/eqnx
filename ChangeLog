@@ -1,5 +1,10 @@
 2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/tests/ab_works.sh: Add regression test for
+	Savannah #60782.
+
+2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.
 
 	* src/roff/troff/input.cpp (token::next): Rename statement label

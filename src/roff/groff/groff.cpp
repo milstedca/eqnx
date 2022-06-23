@@ -609,12 +609,12 @@ void print_commands(FILE *fp)
 
 int run_commands(int no_pipe)
 {
-  char **v[NCOMMANDS];
-  int j = 0;
+  char **v[NCOMMANDS]; // vector of argv arrays to pipe together
+  int ncommands = 0;
   for (int i = 0; i < NCOMMANDS; i++)
     if (commands[i].get_name() != 0 /* nullptr */)
-      v[j++] = commands[i].get_argv();
-  return run_pipeline(j, v, no_pipe);
+      v[ncommands++] = commands[i].get_argv();
+  return run_pipeline(ncommands, v, no_pipe);
 }
 
 possible_command::possible_command()

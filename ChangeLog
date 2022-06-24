@@ -1,5 +1,10 @@
 2022-06-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/html/pre-html.cpp (checkImageDir): If `mkdir()`
+	fails, use `strerror()` to report the underlying problem.
+
+2022-06-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/html/pre-html.cpp: Refactor.  Drop unnecessary
 	prototype for static function.  Use idiomatic C++98 null pointer
 	constant.  Annotate it as null pointer to ease any future

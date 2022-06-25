@@ -1585,7 +1585,7 @@ int char_buffer::do_image(int argc, char *argv[])
 static char_buffer inputFile;
 
 /*
- *  usage - Emit usage arguments.
+ *  usage - Emit usage message.
  */
 
 static void usage(FILE *stream)
@@ -1594,17 +1594,19 @@ static void usage(FILE *stream)
 	  " [-D IMAGE-DIRECTORY] [-F FONT-DIRECTORY]"
 	  " [-g ANTI-ALIASING-GRAPHICS-BITS] [-i RESOLUTION]"
 	  " [-I IMAGE-STEM] [-o IMAGE-VERTICAL-OFFSET]"
-	  " [-x HTML-DIALECT] [FILE ...]\n"
-	  "usage: %s -v\n"
-	  "\n"
-	  "This program is not intended to be called stand-alone;\n"
-	  "it is part of the groff pipeline to produce HTML output.\n"
-	  "\n"
-	  "If there is ever the need to call it manually (e.g., for\n"
-	  "debugging purposes), add command-line option '-V' while\n"
-	  "calling the 'groff' program to see which arguments are\n"
-	  "passed to it.\n"
-	  "\n", program_name, program_name);
+	  " [-x HTML-DIALECT] [TROFF-COMMAND] [TROFF-ARGUMENT] ...\n"
+	  "usage: %s -v\n", program_name, program_name);
+  fputs(
+"\n"
+"This program is not intended to be executed standalone; it is\n"
+"normally part of a groff pipeline for producing HTML output.\n"
+"\n"
+"If your need to call it manually (e.g., for debugging purposes),\n"
+"give the 'groff' program the command-line option '-V' to inspect\n",
+	stream);
+  fprintf(stream, "the arguments with which '%s' is called.\n",
+      program_name);
+  fputs("\nSee grohtml(1).\n", stream);
 }
 
 /*

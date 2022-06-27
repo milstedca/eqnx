@@ -1808,6 +1808,31 @@ static int makeTempFiles(void)
   return 0;
 }
 
+static int do_file(const char *filename)
+{
+  FILE *fp;
+
+  current_filename = filename;
+  if (strcmp(filename, "-") == 0)
+    fp = stdin;
+  else {
+    fp = fopen(filename, "r");
+    if (fp == 0) {
+      error("can't open '%1': %2", filename, strerror(errno));
+      return 0;
+    }
+  }
+
+  if (inputFile.read_file(fp)) {
+    // XXX
+  }
+
+  if (fp != stdin)
+    fclose(fp);
+  current_filename = NULL;
+  return 1;
+}
+
 int main(int argc, char **argv)
 {
   program_name = argv[0];
@@ -1866,31 +1891,6 @@ int main(int argc, char **argv)
 	    " output driver to see diagnostic messages", argv[0],
 	    WEXITSTATUS(wstatus));
   return 0;
-}
-
-static int do_file(const char *filename)
-{
-  FILE *fp;
-
-  current_filename = filename;
-  if (strcmp(filename, "-") == 0)
-    fp = stdin;
-  else {
-    fp = fopen(filename, "r");
-    if (fp == 0) {
-      error("can't open '%1': %2", filename, strerror(errno));
-      return 0;
-    }
-  }
-
-  if (inputFile.read_file(fp)) {
-    // XXX
-  }
-
-  if (fp != stdin)
-    fclose(fp);
-  current_filename = NULL;
-  return 1;
 }
 
 // Local Variables:

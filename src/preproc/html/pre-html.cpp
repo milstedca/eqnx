@@ -231,9 +231,6 @@ static html_dialect dialect = html4;
 #define IMAGE_DEVICE "-Tps"
 
 
-static int do_file(const char *filename);
-
-
 /*
  *  sys_fatal - Write a fatal error message.
  *              Taken from src/roff/groff/pipeline.c.

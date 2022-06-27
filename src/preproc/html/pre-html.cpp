@@ -1788,7 +1788,7 @@ static void makeTempFiles(void)
 #endif /* not DEBUGGING */
 }
 
-static int do_file(const char *filename)
+static bool do_file(const char *filename)
 {
   FILE *fp;
 
@@ -1797,16 +1797,16 @@ static int do_file(const char *filename)
     fp = stdin;
   else {
     fp = fopen(filename, "r");
-    if (fp == 0) {
-      error("can't open '%1': %2", filename, strerror(errno));
-      return 0;
+    if (0 /* nullptr*/ == fp) {
+      error("unable to open '%1': %2", filename, strerror(errno));
+      return false;
     }
   }
   inputFile.read_file(fp);
   if (fp != stdin)
     fclose(fp);
-  current_filename = NULL;
-  return 1;
+  current_filename = 0 /* nullptr */;
+  return true;
 }
 
 int main(int argc, char **argv)

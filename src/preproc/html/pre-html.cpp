@@ -1747,7 +1747,7 @@ static int scanArguments(int argc, char **argv)
  *  makeTempFiles - Name the temporary files.
  */
 
-static int makeTempFiles(void)
+static void makeTempFiles(void)
 {
 #if defined(DEBUGGING)
   psFileName = DEBUG_FILE("prehtml-ps");
@@ -1759,48 +1759,33 @@ static int makeTempFiles(void)
 #else /* not DEBUGGING */
   FILE *f;
 
-  /* psPageName contains a single page of postscript */
-  f = xtmpfile(&psPageName,
-	       PS_TEMPLATE_LONG, PS_TEMPLATE_SHORT,
-	       TRUE);
-  if (f == NULL) {
+  // psPageName contains a single page of PostScript.
+  f = xtmpfile(&psPageName, PS_TEMPLATE_LONG, PS_TEMPLATE_SHORT, true);
+  if (0 /* nullptr */ == f)
     sys_fatal("xtmpfile");
-    return -1;
-  }
   fclose(f);
 
-  /* imagePageName contains a bitmap image of the single postscript page */
-  f = xtmpfile(&imagePageName,
-	       PAGE_TEMPLATE_LONG, PAGE_TEMPLATE_SHORT,
-	       TRUE);
-  if (f == NULL) {
+  // imagePageName contains a bitmap image of a single PostScript page.
+  f = xtmpfile(&imagePageName, PAGE_TEMPLATE_LONG, PAGE_TEMPLATE_SHORT,
+	       true);
+  if (0 /* nullptr */ == f)
     sys_fatal("xtmpfile");
-    return -1;
-  }
   fclose(f);
 
-  /* psFileName contains a postscript file of the complete document */
-  f = xtmpfile(&psFileName,
-	       PS_TEMPLATE_LONG, PS_TEMPLATE_SHORT,
-	       TRUE);
-  if (f == NULL) {
+  // psFileName contains a PostScript file of the complete document.
+  f = xtmpfile(&psFileName, PS_TEMPLATE_LONG, PS_TEMPLATE_SHORT, true);
+  if (0 /* nullptr */ == f)
     sys_fatal("xtmpfile");
-    return -1;
-  }
   fclose(f);
 
-  /* regionFileName contains a list of the images and their boxed coordinates */
+  // regionFileName contains a list of the images and their boxed
+  // coordinates.
   f = xtmpfile(&regionFileName,
-	       REGION_TEMPLATE_LONG, REGION_TEMPLATE_SHORT,
-	       TRUE);
-  if (f == NULL) {
+	       REGION_TEMPLATE_LONG, REGION_TEMPLATE_SHORT, true);
+  if (0 /* nullptr */ == f)
     sys_fatal("xtmpfile");
-    return -1;
-  }
   fclose(f);
-
 #endif /* not DEBUGGING */
-  return 0;
 }
 
 static int do_file(const char *filename)
@@ -1869,8 +1854,7 @@ int main(int argc, char **argv)
 
   if (!found)
     do_file("-");
-  if (makeTempFiles())
-    return 1;
+  makeTempFiles();
   int wstatus = inputFile.do_image(argc, argv);
   if (wstatus == 0) {
     generateImages(regionFileName);

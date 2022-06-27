@@ -448,7 +448,7 @@ class char_buffer {
 public:
   char_buffer();
   ~char_buffer();
-  int read_file(FILE *fp);
+  void read_file(FILE *fp);
   int do_html(int argc, char *argv[]);
   int do_image(int argc, char *argv[]);
   void emit_troff_output(int device_format_selector);
@@ -489,7 +489,7 @@ char_buffer::~char_buffer()
  *              char_blocks.
  */
 
-int char_buffer::read_file(FILE *fp)
+void char_buffer::read_file(FILE *fp)
 {
   int n;
   while (!feof(fp)) {
@@ -505,14 +505,12 @@ int char_buffer::read_file(FILE *fp)
     }
     // at this point we have a tail which is ready for the next SIZE
     // bytes of the file
-    n = fread(tail->buffer, sizeof(char), char_block::SIZE-tail->used, fp);
-    if (n <= 0)
-      // error
-      return 0;
-    else
-      tail->used += n * sizeof(char);
+    n = fread(tail->buffer, sizeof(char), char_block::SIZE-tail->used,
+	      fp);
+    if ((n < 0) || ((0 == n) && !feof(fp)))
+      sys_fatal("fread");
+    tail->used += n * sizeof(char);
   }
-  return 1;
 }
 
 /*
@@ -1819,11 +1817,7 @@ static int do_file(const char *filename)
       return 0;
     }
   }
-
-  if (inputFile.read_file(fp)) {
-    // XXX
-  }
-
+  inputFile.read_file(fp);
   if (fp != stdin)
     fclose(fp);
   current_filename = NULL;

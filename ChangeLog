@@ -1,3 +1,19 @@
+2022-06-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/html/pre-html.cpp
+	(char_buffer::run_output_filter): Return wait status of child
+	process.
+	(char_buffer::run_output_filter, main): Rename local variable
+	`status` to `wstatus` to recognize distinction between exit
+	status (a 7-bit quantity) and wait status (a wider type).
+	(main): Issue fatal diagnostic if child process exited with
+	nonzero status.  Since the child's output to the standard error
+	stream is lost, advise re-running with different output driver
+	to see them.  This unhappy shortcoming is filed as Savannah
+	#62673.  Explicitly return zero otherwise.
+
+	Fixes <https://savannah.gnu.org/bugs/?60782>.
+
 2022-06-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/tests/ab_works.sh: Add regression test for

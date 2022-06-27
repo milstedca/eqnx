@@ -1344,7 +1344,7 @@ int char_buffer::run_output_filter(int filter, int argc, char **argv)
 {
   int pipedes[2];
   PID_T child_pid;
-  int status;
+  int wstatus;
 
   print_args(argc, argv);
   if (pipe(pipedes) < 0)
@@ -1412,7 +1412,7 @@ int char_buffer::run_output_filter(int filter, int argc, char **argv)
 
     // Finally, we must wait for the child process to complete.
 
-    if (WAIT(&status, child_pid, _WAIT_CHILD) != child_pid)
+    if (WAIT(&wstatus, child_pid, _WAIT_CHILD) != child_pid)
       sys_fatal("wait");
   }
 
@@ -1479,7 +1479,7 @@ int char_buffer::run_output_filter(int filter, int argc, char **argv)
 
   // And finally, we must wait for the child process to complete.
 
-  if (WAIT(&status, child_pid, _WAIT_CHILD) != child_pid)
+  if (WAIT(&wstatus, child_pid, _WAIT_CHILD) != child_pid)
     sys_fatal("wait");
 
 #else /* can't do asynchronous pipes! */
@@ -1489,7 +1489,7 @@ int char_buffer::run_output_filter(int filter, int argc, char **argv)
 
 #endif /* MAY_FORK_CHILD_PROCESS or MAY_SPAWN_ASYNCHRONOUS_CHILD */
 
-  return 0;
+  return wstatus;
 }
 
 /*
@@ -1855,12 +1855,17 @@ int main(int argc, char **argv)
     do_file("-");
   if (makeTempFiles())
     return 1;
-  ok = inputFile.do_image(argc, argv);
-  if (ok == 0) {
+  int wstatus = inputFile.do_image(argc, argv);
+  if (wstatus == 0) {
     generateImages(regionFileName);
-    ok = inputFile.do_html(argc, argv);
+    wstatus = inputFile.do_html(argc, argv);
   }
-  return ok;
+  else
+    if (WEXITSTATUS(wstatus) != 0)
+      fatal("'%1' exited with status %2; re-run '%1' with a different"
+	    " output driver to see diagnostic messages", argv[0],
+	    WEXITSTATUS(wstatus));
+  return 0;
 }
 
 static int do_file(const char *filename)

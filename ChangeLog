@@ -1,4 +1,4 @@
-2022-06-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+2022-06-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/html/pre-html.cpp: Refactor.  Drop unnecessary
 	prototype for static function.
@@ -13,6 +13,10 @@
 	(makeFileName, checkImageDir, char_buffer::run_output_filter,
 	scanArguments): Call `fatal()` instead of `error()` and then
 	`exit(1)`.
+	(makeFileName, scanArguments): Dismiss Shlemiel the Painter:
+	save return value of `strlen()` and call `strcpy()` multiple
+	times instead of mixing `strcpy()` and `strcat()`; the latter
+	approach rescans the string unnecessarily.
 	(char_buffer::run_output_filter): Stop passing unnecessary null
 	pointer argument to diagnostic message functions.  Stop calling
 	`fflush()` after libgroff diagnostic function, which always

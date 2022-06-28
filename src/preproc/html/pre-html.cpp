@@ -572,13 +572,14 @@ static void makeFileName(void)
   if (macroset_template == NULL)
     sys_fatal("make_message");
 
-  image_template =
-    (char *)malloc(strlen("%d") + strlen(macroset_template) + 1);
+  size_t mtlen = strlen(macroset_template);
+  image_template = (char *)malloc(strlen("%d") + mtlen + 1);
   if (image_template == NULL)
     sys_fatal("malloc");
-  strcpy(image_template, macroset_template);
+  char *s = strcpy(image_template, macroset_template);
+  s += mtlen;
   // Keep this format string synced with troff:suppress_node::tprint().
-  strcat(image_template, "%d");
+  strcpy(s, "%d");
 }
 
 /*
@@ -1600,12 +1601,14 @@ static void usage(FILE *stream)
 
 static int scanArguments(int argc, char **argv)
 {
-  const char *command_prefix = getenv("GROFF_COMMAND_PREFIX");
-  if (!command_prefix)
-    command_prefix = PROG_PREFIX;
-  char *troff_name = new char[strlen(command_prefix) + strlen("troff") + 1];
-  strcpy(troff_name, command_prefix);
-  strcat(troff_name, "troff");
+  const char *cmdprefix = getenv("GROFF_COMMAND_PREFIX");
+  if (!cmdprefix)
+    cmdprefix = PROG_PREFIX;
+  size_t pfxlen = strlen(cmdprefix);
+  char *troff_name = new char[pfxlen + strlen("troff") + 1];
+  char *s = strcpy(troff_name, cmdprefix);
+  s += pfxlen;
+  strcpy(s, "troff");
   int c, i;
   static const struct option long_options[] = {
     { "help", no_argument, 0, CHAR_MAX + 1 },

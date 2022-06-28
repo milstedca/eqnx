@@ -1409,8 +1409,8 @@ int char_buffer::run_output_filter(int filter, int argc, char **argv)
 
 #else /* can't do asynchronous pipes! */
 
-  // TODO: code to support an MS-DOS style process model
-  //        should go here
+  // TODO: code to support an MS-DOS style process model should go here
+  fatal("output filtering not supported on this platform");
 
 #endif /* MAY_FORK_CHILD_PROCESS or MAY_SPAWN_ASYNCHRONOUS_CHILD */
 

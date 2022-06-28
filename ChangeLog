@@ -1,5 +1,11 @@
 2022-06-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/html/pre-html.cpp
+	(char_buffer::run_output_filter): Die if platform supports
+	neither `fork()` nor `spawn()` for child process creation.
+
+2022-06-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/html/pre-html.cpp (cleanup): Add function to tidy
 	memory before exiting.
 	(main): Register aforementioned function with `atexit()`.  Die

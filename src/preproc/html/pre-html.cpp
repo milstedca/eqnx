@@ -1736,7 +1736,8 @@ static bool do_file(const char *filename)
   }
   inputFile.read_file(fp);
   if (fp != stdin)
-    fclose(fp);
+    if (fclose(fp) != 0)
+      sys_fatal("fclose");
   current_filename = 0 /* nullptr */;
   return true;
 }

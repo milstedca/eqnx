@@ -1811,25 +1811,20 @@ static bool do_file(const char *filename)
 
 int main(int argc, char **argv)
 {
-  program_name = argv[0];
-  int i;
-  int found = 0;
-  int ok = 1;
-
 #ifdef CAPTURE_MODE
-  FILE *dump;
   fprintf(stderr, "%s: invoked with %d arguments ...\n", argv[0], argc);
-  for (i = 0; i < argc; i++)
+  for (int i = 0; i < argc; i++)
     fprintf(stderr, "%2d: %s\n", i, argv[i]);
-  if ((dump = fopen(DEBUG_FILE("pre-html-data"), "wb")) != NULL) {
-    while((i = fgetc(stdin)) >= 0)
-      fputc(i, dump);
+  FILE *dump = fopen(DEBUG_FILE("pre-html-data"), "wb");
+  if (dump != 0 /* nullptr */) {
+    while((int ch = fgetc(stdin)) >= 0)
+      fputc(ch, dump);
     fclose(dump);
   }
-  exit(1);
+  exit(EXIT_FAILURE);
 #endif /* CAPTURE_MODE */
-  device = "html";
-  i = scanArguments(argc, argv);
+  program_name = argv[0];
+  int operand_index = scanArguments(argc, argv);
   image_gen = strsave(get_image_generator());
   if (0 == image_gen)
     fatal("'image_generator' directive not found in file '%1'",
@@ -1841,18 +1836,17 @@ int main(int argc, char **argv)
   setupAntiAlias();
   checkImageDir();
   makeFileName();
-  while (i < argc) {
-    if (argv[i][0] != '-') {
-      /* found source file */
-      ok = do_file(argv[i]);
-      if (!ok)
-	return 0;
-      found = 1;
+  bool have_file_operand = false;
+  while (operand_index < argc) {
+    if (argv[operand_index][0] != '-') {
+      if(!do_file(argv[operand_index]))
+	exit(EXIT_FAILURE);
+      have_file_operand = true;
     }
-    i++;
+    operand_index++;
   }
 
-  if (!found)
+  if (!have_file_operand)
     do_file("-");
   makeTempFiles();
   int wstatus = inputFile.do_image(argc, argv);
@@ -1865,7 +1859,7 @@ int main(int argc, char **argv)
       fatal("'%1' exited with status %2; re-run '%1' with a different"
 	    " output driver to see diagnostic messages", argv[0],
 	    WEXITSTATUS(wstatus));
-  return 0;
+  exit(EXIT_SUCCESS);
 }
 
 // Local Variables:

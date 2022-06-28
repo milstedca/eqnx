@@ -10,12 +10,22 @@
 	library that this file makes.  Improve check for error from
 	`fread()` by not regarding a return value of zero when the
 	end-of-file indicator is set as an error condition.
-	(makeTempFiles, do_file): Boolify.  Use idiomatic C++98 null
-	pointer constant.  Annotate it as null pointer to ease any
-	future migration to ISO C++11.  Reorder null pointer equality
+	(makeTempFiles, do_file, main): Boolify.  Use idiomatic C++98
+	null pointer constant.  Annotate it as null pointer to ease any
+	future migration to ISO C++11.
+	(makeTempFiles, do_file): Reorder null pointer equality
 	comparisons to avoid inadvertent lvalue assignment.
 	(do_file): Demote return type from `int` to `bool`.  Return
 	Boolean literals.  Drop conditional with empty consequent.
+	(main): Declare local variables closer to the points of use.
+	Stop trying to be a register allocator: stop reusing loop index
+	variable `i` as integer storage for another (albeit related)
+	purpose; introduce `operand_index` instead.  Clarify logic by
+	splitting combined initialization and comparison operations, and
+	by testing function return value directly instead of storing it
+	in a pointless temporary.  Use `EXIT_SUCCESS` and `EXIT_FAILURE`
+	constants from C library instead of integer literals for exit
+	status.
 
 2022-06-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 

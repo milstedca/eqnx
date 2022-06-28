@@ -1742,6 +1742,11 @@ static bool do_file(const char *filename)
   return true;
 }
 
+static void cleanup(void)
+{
+  free(const_cast<char *>(image_gen));
+}
+
 int main(int argc, char **argv)
 {
 #ifdef CAPTURE_MODE
@@ -1757,6 +1762,8 @@ int main(int argc, char **argv)
   exit(EXIT_FAILURE);
 #endif /* CAPTURE_MODE */
   program_name = argv[0];
+  if (atexit(&cleanup) != 0)
+    sys_fatal("atexit");
   int operand_index = scanArguments(argc, argv);
   image_gen = strsave(get_image_generator());
   if (0 == image_gen)

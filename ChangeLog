@@ -1,5 +1,12 @@
 2022-06-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/html/pre-html.cpp (cleanup): Add function to tidy
+	memory before exiting.
+	(main): Register aforementioned function with `atexit()`.  Die
+	if registration fails.
+
+2022-06-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/html/pre-html.cpp (do_file): Die if `fclose()`
 	fails; such a situation suggests a pretty hosed environment.
 

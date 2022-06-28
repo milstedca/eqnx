@@ -547,15 +547,11 @@ static void writeString(const char *s)
 
 static void makeFileName(void)
 {
-  if ((image_dir != NULL) && (strchr(image_dir, '%') != NULL)) {
-    error("cannot use a '%%' within the image directory name");
-    exit(1);
-  }
+  if ((image_dir != NULL) && (strchr(image_dir, '%') != NULL))
+    fatal("'%%' is prohibited within the image directory name");
 
-  if ((image_template != NULL) && (strchr(image_template, '%') != NULL)) {
-    error("cannot use a '%%' within the image template");
-    exit(1);
-  }
+  if ((image_template != NULL) && (strchr(image_template, '%') != NULL))
+    fatal("'%%' is prohibited within the image template");
 
   if (image_dir == NULL)
     image_dir = (char *)"";
@@ -609,10 +605,9 @@ static void setupAntiAlias(void)
 static void checkImageDir(void)
 {
   if (image_dir != NULL && strcmp(image_dir, "") != 0)
-    if (!(mkdir(image_dir, 0777) == 0 || errno == EEXIST)) {
-      error("cannot create directory '%1'", image_dir);
-      exit(1);
-    }
+    if (!(mkdir(image_dir, 0777) == 0 || errno == EEXIST))
+      fatal("cannot create directory '%1': %2", image_dir,
+	    strerror(errno));
 }
 
 /*
@@ -1216,9 +1211,9 @@ static int save_and_redirect(int was, int willbe)
 }
 
 /*
- *  alterDeviceTo - If, toImage, is set
+ *  alterDeviceTo - If toImage is set
  *                     the argument list is altered to include
- *                     IMAGE_DEVICE and we invoke groff rather than troff.
+ *                     IMAGE_DEVICE; we invoke groff rather than troff.
  *                  Else
  *                     set -Thtml and groff.
  */
@@ -1376,14 +1371,8 @@ int char_buffer::run_output_filter(int filter, int argc, char **argv)
 
     // Now we are ready to launch the output filter.
 
-    execvp(argv[0], argv);
-
-    // If we get to here then the 'exec...' request for the output filter
-    // failed.  Diagnose it and bail out.
-
-    error("couldn't exec %1: %2", argv[0], strerror(errno), ((char *)0));
-    fflush(stderr);	// just in case error() didn't
-    exit(1);
+    execvp(argv[0], argv); // does not return unless it fails
+    fatal("cannot execute '%1': %2", argv[0], strerror(errno));
   }
 
   else {
@@ -1445,8 +1434,7 @@ int char_buffer::run_output_filter(int filter, int argc, char **argv)
   if ((child_pid = spawnvp(_P_NOWAIT, argv[0], argv)) < 0) {
     // Should the spawn request fail we issue a diagnostic and bail out.
 
-    error("cannot spawn %1: %2", argv[0], strerror(errno), ((char *)0));
-    exit(1);
+    fatal("cannot spawn %1: %2", argv[0], strerror(errno));
   }
 
   // Once the post-processor has been started we revert our 'stdin'
@@ -1631,10 +1619,8 @@ static int scanArguments(int argc, char **argv)
     case 'a':
       textAlphaBits = min(max(MIN_ALPHA_BITS, atoi(optarg)),
 			  MAX_ALPHA_BITS);
-      if (textAlphaBits == 3) {
-	error("cannot use 3 bits of antialiasing information");
-	exit(1);
-      }
+      if (textAlphaBits == 3)
+	fatal("cannot use 3 bits of antialiasing information");
       break;
     case 'b':
       // handled by post-grohtml (set background color to white)
@@ -1659,10 +1645,8 @@ static int scanArguments(int argc, char **argv)
     case 'g':
       graphicAlphaBits = min(max(MIN_ALPHA_BITS, atoi(optarg)),
 			     MAX_ALPHA_BITS);
-      if (graphicAlphaBits == 3) {
-	error("cannot use 3 bits of antialiasing information");
-	exit(1);
-      }
+      if (graphicAlphaBits == 3)
+	fatal("cannot use 3 bits of antialiasing information");
       break;
     case 'G':
       // handled by post-grohtml (don't write CreationDate HTML comment)
@@ -1702,7 +1686,7 @@ static int scanArguments(int argc, char **argv)
       break;
     case 'v':
       printf("GNU pre-grohtml (groff) version %s\n", Version_string);
-      exit(0);
+      exit(EXIT_SUCCESS);
     case 'V':
       // handled by post-grohtml (create validator button)
       break;
@@ -1720,11 +1704,11 @@ static int scanArguments(int argc, char **argv)
       break;
     case CHAR_MAX + 1: // --help
       usage(stdout);
-      exit(0);
+      exit(EXIT_SUCCESS);
       break;
     case '?':
       usage(stderr);
-      exit(1);
+      exit(EXIT_FAILURE);
       break;
     default:
       break;

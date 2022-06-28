@@ -10,11 +10,21 @@
 	library that this file makes.  Improve check for error from
 	`fread()` by not regarding a return value of zero when the
 	end-of-file indicator is set as an error condition.
+	(makeFileName, checkImageDir, char_buffer::run_output_filter,
+	scanArguments): Call `fatal()` instead of `error()` and then
+	`exit(1)`.
+	(char_buffer::run_output_filter): Stop passing unnecessary null
+	pointer argument to diagnostic message functions.  Stop calling
+	`fflush()` after libgroff diagnostic function, which always
+	{ultimately} flushes the standard error stream itself.
 	(makeTempFiles, do_file, main): Boolify.  Use idiomatic C++98
 	null pointer constant.  Annotate it as null pointer to ease any
 	future migration to ISO C++11.
 	(makeTempFiles, do_file): Reorder null pointer equality
 	comparisons to avoid inadvertent lvalue assignment.
+	(scanArguments, main): Use `EXIT_SUCCESS` and `EXIT_FAILURE`
+	constants from C library instead of integer literals for exit
+	status.
 	(do_file): Demote return type from `int` to `bool`.  Return
 	Boolean literals.  Drop conditional with empty consequent.
 	(main): Declare local variables closer to the points of use.

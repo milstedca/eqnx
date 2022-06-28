@@ -381,43 +381,34 @@ void html_system(const char *s, int redirect_stdout)
 }
 
 /*
- *  make_message - Create a string via malloc and place the result of the
- *                 va args into string.  Finally the new string is returned.
- *                 Taken from man page of printf(3).
+ *  make_string - Create a string via `malloc()`, place the variadic
+ *                arguments as formatted by `fmt` into it, and return
+ *                it.  Adapted from Linux man-pages' printf(3) example.
+ *                We never return a null pointer, instead treating
+ *                failure as invariably fatal.
  */
 
-char *make_message(const char *fmt, ...)
+char *make_string(const char *fmt, ...)
 {
-  /* Guess we need no more than 100 bytes. */
-  int n, size = 100;
-  char *p;
-  char *np;
+  size_t size = 0;
+  char *p = 0 /* nullptr */;
   va_list ap;
-  if ((p = (char *)malloc(size)) == NULL)
-    return NULL;
-  while (1) {
-    /* Try to print in the allocated space. */
-    va_start(ap, fmt);
-    n = vsnprintf(p, size, fmt, ap);
-    va_end(ap);
-    /* If that worked, return the string. */
-    if (n > -1 && n < size - 1) { /* glibc 2.1 and pre-ANSI C 99 */
-      if (size > n + 1) {
-	np = strsave(p);
-	free(p);
-	return np;
-      }
-      return p;
-    }
-    /* Else try again with more space. */
-    else		/* glibc 2.0 */
-      size *= 2;	/* twice the old size */
-    if ((np = (char *)realloc(p, size)) == NULL) {
-      free(p);		/* realloc failed, free old, p. */
-      return NULL;
-    }
-    p = np;		/* use realloc'ed, p */
-  }
+  va_start(ap, fmt);
+  int n = vsnprintf(p, size, fmt, ap);
+  va_end(ap);
+  if (n < 0)
+    sys_fatal("vsnprintf");
+  size = static_cast<size_t>(n) + 1 /* '\0' */;
+  p = static_cast<char *>(malloc(size));
+  if (0 /* nullptr */ == p)
+    sys_fatal("vsnprintf");
+  va_start(ap, fmt);
+  n = vsnprintf(p, size, fmt, ap);
+  va_end(ap);
+  if (n < 0)
+    sys_fatal("vsnprintf");
+  assert(p != 0 /* nullptr */);
+  return p;
 }
 
 /*
@@ -556,22 +547,14 @@ static void makeFileName(void)
   if (image_dir == NULL)
     image_dir = (char *)"";
   else if (strlen(image_dir) > 0
-	   && image_dir[strlen(image_dir) - 1] != '/') {
-    image_dir = make_message("%s/", image_dir);
-    if (image_dir == NULL)
-      sys_fatal("make_message");
-  }
-
+	   && image_dir[strlen(image_dir) - 1] != '/')
+    image_dir = make_string("%s/", image_dir);
   if (image_template == NULL)
-    macroset_template = make_message("%sgrohtml-%d-", image_dir,
+    macroset_template = make_string("%sgrohtml-%d-", image_dir,
 				     (int)getpid());
   else
-    macroset_template = make_message("%s%s-", image_dir,
+    macroset_template = make_string("%s%s-", image_dir,
 				     image_template);
-
-  if (macroset_template == NULL)
-    sys_fatal("make_message");
-
   size_t mtlen = strlen(macroset_template);
   image_template = (char *)malloc(strlen("%d") + mtlen + 1);
   if (image_template == NULL)
@@ -589,13 +572,13 @@ static void makeFileName(void)
 static void setupAntiAlias(void)
 {
   if (textAlphaBits == 0 && graphicAlphaBits == 0)
-    antiAlias = make_message(" ");
+    antiAlias = make_string(" ");
   else if (textAlphaBits == 0)
-    antiAlias = make_message("-dGraphicsAlphaBits=%d ", graphicAlphaBits);
+    antiAlias = make_string("-dGraphicsAlphaBits=%d ", graphicAlphaBits);
   else if (graphicAlphaBits == 0)
-    antiAlias = make_message("-dTextAlphaBits=%d ", textAlphaBits);
+    antiAlias = make_string("-dTextAlphaBits=%d ", textAlphaBits);
   else
-    antiAlias = make_message("-dTextAlphaBits=%d -dGraphicsAlphaBits=%d ",
+    antiAlias = make_string("-dTextAlphaBits=%d -dGraphicsAlphaBits=%d ",
 			     textAlphaBits, graphicAlphaBits);
 }
 
@@ -955,30 +938,24 @@ int imageList::createPage(int pageno)
     fprintf(stderr, "creating page %d\n", pageno);
 #endif
 
-  s = make_message("psselect -q -p%d %s %s\n",
+  s = make_string("psselect -q -p%d %s %s\n",
 		   pageno, psFileName, psPageName);
-
-  if (s == NULL)
-    sys_fatal("make_message");
   html_system(s, 1);
-
   assert(strlen(image_gen) > 0);
-  s = make_message("echo showpage | "
-		   "%s%s -q -dBATCH -dSAFER "
-		   "-dDEVICEHEIGHTPOINTS=792 "
-		   "-dDEVICEWIDTHPOINTS=%d -dFIXEDMEDIA=true "
-		   "-sDEVICE=%s -r%d %s "
-		   "-sOutputFile=%s %s -\n",
-		   image_gen,
-		   EXE_EXT,
-		   (getMaxX(pageno) * image_res) / postscriptRes,
-		   image_device,
-		   image_res,
-		   antiAlias,
-		   imagePageName,
-		   psPageName);
-  if (s == NULL)
-    sys_fatal("make_message");
+  s = make_string("echo showpage | "
+		  "%s%s -q -dBATCH -dSAFER "
+		  "-dDEVICEHEIGHTPOINTS=792 "
+		  "-dDEVICEWIDTHPOINTS=%d -dFIXEDMEDIA=true "
+		  "-sDEVICE=%s -r%d %s "
+		  "-sOutputFile=%s %s -\n",
+		  image_gen,
+		  EXE_EXT,
+		  (getMaxX(pageno) * image_res) / postscriptRes,
+		  image_device,
+		  image_res,
+		  antiAlias,
+		  imagePageName,
+		  psPageName);
   html_system(s, 1);
   free(s);
   currentPageNo = pageno;
@@ -1048,19 +1025,16 @@ void imageList::createImage(imageItem *i)
 	     + max(i->Y1, i->Y2) * image_res / postscriptRes
 	     + 1 + IMAGE_BORDER_PIXELS;
     if (createPage(i->pageNo) == 0) {
-      s = make_message("pnmcut%s %d %d %d %d < %s "
-		       "| pnmcrop%s -quiet | pnmtopng%s -quiet %s"
-		       "> %s\n",
-		       EXE_EXT,
-		       x1, y1, x2 - x1 + 1, y2 - y1 + 1,
-		       imagePageName,
-		       EXE_EXT,
-		       EXE_EXT,
-		       TRANSPARENT,
-		       i->imageName);
-      if (s == NULL)
-	sys_fatal("make_message");
-
+      s = make_string("pnmcut%s %d %d %d %d < %s "
+		      "| pnmcrop%s -quiet | pnmtopng%s -quiet %s"
+		      "> %s\n",
+		      EXE_EXT,
+		      x1, y1, x2 - x1 + 1, y2 - y1 + 1,
+		      imagePageName,
+		      EXE_EXT,
+		      EXE_EXT,
+		      TRANSPARENT,
+		      i->imageName);
       html_system(s, 0);
       free(s);
     }

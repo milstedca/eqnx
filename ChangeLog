@@ -2,6 +2,16 @@
 
 	* src/preproc/html/pre-html.cpp: Refactor.  Drop unnecessary
 	prototype for static function.
+	(make_message): Rename this...
+	(make_string): ...to this.  Align more closely with contemporary
+	version of example from Linux man-pages printf(3) page.  Use
+	`vsnprintf()` to determine size of memory buffer needed prior to
+	allocation instead of iteratively growing it until it is large
+	enough.  Always die if `vsnprintf()` fails: this function now
+	always returns a valid pointer if it returns at all.
+	(makeFileName, setupAntiAlias, imageList::createPage,
+	imageList::createImage): Update call sites to use
+	`make_string()`.
 	(char_buffer::read_file, makeTempFiles): Demote return type from
 	`int` to `void`.  Stop returning after calling functions that
 	don't return.

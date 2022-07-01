@@ -165,13 +165,6 @@ extern "C" const char *Version_string;
 #define REGION_TEMPLATE_SHORT "rg"
 #define REGION_TEMPLATE_LONG "-regions-"
 
-#if !defined(TRUE)
-# define TRUE (1==1)
-#endif
-#if !defined(FALSE)
-# define FALSE (1==0)
-#endif
-
 typedef enum {
   CENTERED, LEFT, RIGHT, INLINE
 } IMAGE_ALIGNMENT;
@@ -209,17 +202,17 @@ static int textAlphaBits = MAX_ALPHA_BITS;
 static int graphicAlphaBits = MAX_ALPHA_BITS;
 static char *antiAlias = 0 /* nullptr */;	// anti-alias arguments
 						// to be passed to gs
-static int show_progress = FALSE;	// display page numbers as they
-					// are processed?
+static bool want_progress_report = false;	// display page numbers
+						// as they are processed
 static int currentPageNo = -1;		// current image page number
 #if defined(DEBUGGING)
-static int debugging = FALSE;
+static bool debugging = false;
 static char *troffFileName = 0 /* nullptr */;	// pre-html output sent
 						// to troff -Tps
 static char *htmlFileName = 0 /* nullptr */;	// pre-html output sent
 						// to troff -Thtml
 #endif
-static int eqn_flag = FALSE;		// must we preprocess via eqn?
+static bool need_eqn = false;		// must we preprocess via eqn?
 
 static char *linebuf = 0 /* nullptr */;	// for scanning devps/DESC
 static int linebufsize = 0;
@@ -448,8 +441,8 @@ public:
   int do_image(int argc, char *argv[]);
   void emit_troff_output(int device_format_selector);
   void write_upto_newline(char_block **t, int *i, int is_html);
-  int can_see(char_block **t, int *i, const char *string);
-  int skip_spaces(char_block **t, int *i);
+  bool can_see(char_block **t, int *i, const char *string);
+  bool skip_spaces(char_block **t, int *i);
   void skip_until_newline(char_block **t, int *i);
 private:
   char_block *head;
@@ -696,10 +689,10 @@ void char_buffer::write_upto_newline(char_block **t, int *i,
 }
 
 /*
- *  can_see - Return TRUE if we can see string in t->buffer[i] onwards.
+ *  can_see - Return true if we can see string in t->buffer[i] onwards.
  */
 
-int char_buffer::can_see(char_block **t, int *i, const char *str)
+bool char_buffer::can_see(char_block **t, int *i, const char *str)
 {
   int j = 0;
   int l = strlen(str);
@@ -714,22 +707,22 @@ int char_buffer::can_see(char_block **t, int *i, const char *str)
     if (j == l) {
       *i = k;
       *t = s;
-      return TRUE;
+      return true;
     }
     else if (k < s->used && s->buffer[k] != str[j])
-      return( FALSE );
+      return false;
     s = s->next;
     k = 0;
   }
-  return FALSE;
+  return false;
 }
 
 /*
- *  skip_spaces - Return TRUE if we have not run out of data.
+ *  skip_spaces - Return true if we have not run out of data.
  *                Consume spaces also.
  */
 
-int char_buffer::skip_spaces(char_block **t, int *i)
+bool char_buffer::skip_spaces(char_block **t, int *i)
 {
   char_block *s = *t;
   int k = *i;
@@ -743,10 +736,10 @@ int char_buffer::skip_spaces(char_block **t, int *i)
     }
     else {
       *i = k;
-      return TRUE;
+      return true;
     }
   }
-  return FALSE;
+  return false;
 }
 
 /*
@@ -928,7 +921,7 @@ int imageList::createPage(int pageno)
     unlink(psPageName);
   }
 
-  if (show_progress) {
+  if (want_progress_report) {
     fprintf(stderr, "[%d] ", pageno);
     fflush(stderr);
   }
@@ -1125,7 +1118,7 @@ static void generateImages(char *region_file_name)
   }
 
   listOfImages.createImages();
-  if (show_progress) {
+  if (want_progress_report) {
     fprintf(stderr, "done\n");
     fflush(stderr);
   }
@@ -1475,7 +1468,7 @@ int char_buffer::do_html(int argc, char *argv[])
   if (dialect == xhtml) {
     argv = addRegDef(argc, argv, "-rxhtml=1");
     argc++;
-    if (eqn_flag) {
+    if (need_eqn) {
       argv = addRegDef(argc, argv, "-e");
       argc++;
     }
@@ -1521,7 +1514,7 @@ int char_buffer::do_image(int argc, char *argv[])
   argc++;
 
   if (dialect == xhtml) {
-    if (eqn_flag) {
+    if (need_eqn) {
       argv = addRegDef(argc, argv, "-rxhtml=1");
       argc++;
     }
@@ -1611,14 +1604,14 @@ static int scanArguments(int argc, char **argv)
       break;
     case 'd':
 #if defined(DEBUGGING)
-      debugging = TRUE;
+      debugging = true;
 #endif
       break;
     case 'D':
       image_dir = optarg;
       break;
     case 'e':
-      eqn_flag = TRUE;
+      need_eqn = true;
       break;
     case 'F':
       font_path.command_line_dir(optarg);
@@ -1654,7 +1647,7 @@ static int scanArguments(int argc, char **argv)
       vertical_offset = atoi(optarg);
       break;
     case 'p':
-      show_progress = TRUE;
+      want_progress_report = true;
       break;
     case 'r':
       // handled by post-grohtml (no header and footer lines)

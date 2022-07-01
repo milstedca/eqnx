@@ -3,7 +3,11 @@
 	* src/preproc/html/pre-html.cpp: Refactor.  Drop unnecessary
 	prototype for static function.  Use idiomatic C++98 null pointer
 	constant.  Annotate it as null pointer to ease any future
-	migration to ISO C++11.
+	migration to ISO C++11.  Boolify.  Use C++98 bool data type
+	instead of preprocessor macros `TRUE` and `FALSE`.  Demote some
+	global Boolean variables from `int` to `bool` and rename some to
+	be more clear: `show_progress` -> `want_progress_report`;
+	`debugging`; `eqn_flag` -> `need_eqn`.
 	(make_message): Rename this...
 	(make_string): ...to this.  Align more closely with contemporary
 	version of example from Linux man-pages printf(3) page.  Use
@@ -14,6 +18,8 @@
 	(makeFileName, setupAntiAlias, imageList::createPage,
 	imageList::createImage): Update call sites to use
 	`make_string()`.
+	(char_buffer::can_see, char_buffer::skip_spaces): Demote return
+	type from `int` to `bool`.
 	(char_buffer::read_file, makeTempFiles): Demote return type from
 	`int` to `void`.  Stop returning after calling functions that
 	don't return.

@@ -1,7 +1,9 @@
 2022-06-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/html/pre-html.cpp: Refactor.  Drop unnecessary
-	prototype for static function.
+	prototype for static function.  Use idiomatic C++98 null pointer
+	constant.  Annotate it as null pointer to ease any future
+	migration to ISO C++11.
 	(make_message): Rename this...
 	(make_string): ...to this.  Align more closely with contemporary
 	version of example from Linux man-pages printf(3) page.  Use
@@ -31,9 +33,7 @@
 	pointer argument to diagnostic message functions.  Stop calling
 	`fflush()` after libgroff diagnostic function, which always
 	{ultimately} flushes the standard error stream itself.
-	(makeTempFiles, do_file, main): Boolify.  Use idiomatic C++98
-	null pointer constant.  Annotate it as null pointer to ease any
-	future migration to ISO C++11.
+	(makeTempFiles, do_file, main): Boolify.
 	(makeTempFiles, do_file): Reorder null pointer equality
 	comparisons to avoid inadvertent lvalue assignment.
 	(scanArguments, main): Use `EXIT_SUCCESS` and `EXIT_FAILURE`

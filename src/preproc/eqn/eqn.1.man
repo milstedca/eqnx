@@ -1110,7 +1110,7 @@ file sets it to\~1 for the
 .BR utf8 ,
 and
 .B cp1047
-output devices.)
+output devices.
 .
 .
 .LP

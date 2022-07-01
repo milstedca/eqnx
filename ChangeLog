@@ -18,8 +18,8 @@
 	(makeFileName, setupAntiAlias, imageList::createPage,
 	imageList::createImage): Update call sites to use
 	`make_string()`.
-	(char_buffer::can_see, char_buffer::skip_spaces): Demote return
-	type from `int` to `bool`.
+	(char_buffer::can_see): Demote return type from `int` to `bool`.
+	(char_buffer::skip_spaces): Drop unused member function.
 	(char_buffer::read_file, makeTempFiles): Demote return type from
 	`int` to `void`.  Stop returning after calling functions that
 	don't return.

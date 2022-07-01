@@ -442,7 +442,6 @@ public:
   void emit_troff_output(int device_format_selector);
   void write_upto_newline(char_block **t, int *i, int is_html);
   bool can_see(char_block **t, int *i, const char *string);
-  bool skip_spaces(char_block **t, int *i);
   void skip_until_newline(char_block **t, int *i);
 private:
   char_block *head;
@@ -713,31 +712,6 @@ bool char_buffer::can_see(char_block **t, int *i, const char *str)
       return false;
     s = s->next;
     k = 0;
-  }
-  return false;
-}
-
-/*
- *  skip_spaces - Return true if we have not run out of data.
- *                Consume spaces also.
- */
-
-bool char_buffer::skip_spaces(char_block **t, int *i)
-{
-  char_block *s = *t;
-  int k = *i;
-
-  while (s) {
-    while (k < s->used && isspace(s->buffer[k]))
-      k++;
-    if (k == s->used) {
-      k = 0;
-      s = s->next;
-    }
-    else {
-      *i = k;
-      return true;
-    }
   }
   return false;
 }

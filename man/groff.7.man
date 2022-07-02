@@ -1468,8 +1468,6 @@ not an algebraic sign.
 .
 To assign a register a negative value or the negated value of another
 register,
-enclose
-.squoted_char \-
 enclose it with its operand in
 parentheses or subtract it from zero.
 .

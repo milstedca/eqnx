@@ -1380,7 +1380,7 @@ A PFA file begins as follows.
 A PFB file contains this string as well,
 preceded by some non-printing bytes.
 .
-In the following example steps,
+In the following steps,
 we will consider the use of CTAN's
 .UR https://\:ctan.org/\:tex\-archive/\:fonts/\:brushscr
 BrushScriptX-Italic

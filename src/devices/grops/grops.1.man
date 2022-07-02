@@ -1429,7 +1429,7 @@ Old PostScript printers might not support them
 (that is,
 they might not have a built-in TrueType font interpreter).
 .
-In the following example steps,
+In the following steps,
 we will consider the use of CTAN's
 .UR https://\:ctan.org/\:tex\-archive/\:fonts/\:brushscr
 BrushScriptX-Italic

@@ -1,3 +1,9 @@
+2022-07-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (abort_request): Flush the standard
+	error stream before exiting, to improve chances of user seeing
+	any message as arguments to the `ab` request.
+
 2022-06-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/html/pre-html.cpp

@@ -7556,6 +7556,7 @@ void abort_request()
       fputs(asciify(c), stderr);
     fputc('\n', stderr);
   }
+  fflush(stderr);
   cleanup_and_exit(EXIT_FAILURE);
 }
 

@@ -110,6 +110,18 @@ appropriate order and with appropriate options.
 .SH Options
 .\" ====================================================================
 .
+.B \-h
+and
+.B \-\-help
+display a usage message,
+while
+.B \-v
+and
+.B \-\-version
+show version information;
+all exit afterward.
+.
+.
 .TP
 .B \-a
 Generate a plain text approximation of the typeset output.

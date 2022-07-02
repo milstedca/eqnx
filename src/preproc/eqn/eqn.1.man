@@ -1463,7 +1463,7 @@ does.
 .
 Thus:
 .
-.IP \[bu]
+.IP \[bu] 2n
 .I @g@eqn
 parameters have no effect on the generated MathML.
 .

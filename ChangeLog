@@ -1,5 +1,14 @@
 2022-07-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/pipeline.c: Refactor.  Drop function rename via
+	preprocessor macro usage.  Declare and define `c_error` by its
+	correct name.
+	(run_pipeline): Update call sites.  Stop flushing standard error
+	stream after calling libgroff's `error` function (which
+	`c_error` wraps); libgroff already guarantees this operation.
+
+2022-07-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (abort_request): Flush the standard
 	error stream before exiting, to improve chances of user seeing
 	any message as arguments to the `ab` request.

@@ -5063,11 +5063,11 @@ Sometimes, a line cannot be broken automatically.  This usually does
 not happen with natural language text unless the output line length has
 been manipulated to be extremely short, but it can with specialized
 text like program source code.  We can use @code{perl} at the shell
-prompt to contrive an example of failure to break the output line.  The
-regular output is omitted below.
+prompt to contrive an example of failure to break the line.  We also
+employ the @option{-z} option to suppress normal output.
 
 @Example
-$ perl -e 'print "#" x 80, "\n";' | nroff
+$ perl -e 'print "#" x 80, "\n";' | nroff -z
     @error{} warning: cannot break line
 @endExample
 
@@ -5469,12 +5469,12 @@ traditions have accrued in service of these goals.
 @item
 Follow sentence endings in the input with newlines to ease their
 recognition (@pxref{Sentences}).  It is frequently convenient to end
-input lines after colons and semicolons as well, as these typically
+text lines after colons and semicolons as well, as these typically
 precede independent clauses.  Consider doing so after commas; they often
 occur in lists that become easy to scan when itemized by line, or
 constitute supplements to the sentence that are added, deleted, or
 updated to clarify it.  Parenthetical and quoted phrases are also good
-candidates for placement on input lines by themselves.
+candidates for placement on text lines by themselves.
 
 @item
 Set your text editor's line length to 72 characters or
@@ -5645,8 +5645,8 @@ next text baseline automatically.  If the formatter were already writing
 to the last line that would fit on the page, advancing by one vee would
 place the next text baseline off the page.  Rather than let that happen,
 @code{roff} formatters instruct the output driver to eject the page,
-start a new one, and reset the drawing position to one vee below the
-page top again; this is a @dfn{page break}.
+start a new one, and again set the drawing position to one vee below the
+page top; this is a @dfn{page break}.
 
 When the last line of input text is also the last output line that can
 fit on the page, the break caused by the end of input will also break
@@ -5875,8 +5875,8 @@ to their left and right; they are @code{+} (addition), @code{-}
 (subtraction), @code{*} (multiplication), @code{/} (truncating
 division), and @code{%} (modulo).  @dfn{Truncating division} rounds to
 the integer nearer to zero, no matter how large the fractional portion.
-Overflow and division by zero are errors and abort evaluation of a
-numeric expression.
+Overflow and division (or modulo) by zero are errors and abort
+evaluation of a numeric expression.
 @cindex unary arithmetic operators
 @cindex operators, unary arithmetic
 @cindex negation
@@ -6130,8 +6130,9 @@ likely undesirable, results.  On the @samp{ps} output device, it
 underlines the period.
 
 For vertical movements, the @code{|} operator specifies a distance from
-the first text baseline on the page or in the current diversion, using
-the current vertical spacing.
+the first text baseline on the page or in the current diversion.  The
+default scaling unit is vees, computed in terms of the current
+vertical spacing (not necessarily that at the top of the page).
 
 @Example
 A
@@ -6169,10 +6170,10 @@ Register Formats}.
 
 @cindex space characters, in expressions
 @cindex expressions, and space characters
-Due to the way arguments are parsed, spaces are not allowed in numeric
-expressions unless the (sub)expression containing them is surrounded by
-parentheses.  @xref{Request and Macro Arguments}, and @ref{Conditionals
-and Loops}.
+Because spaces separate arguments to requests, spaces are not allowed in
+numeric expressions unless the (sub)expression containing them is
+surrounded by parentheses.  @xref{Request and Macro Arguments}, and
+@ref{Conditionals and Loops}.
 
 @Example
 .nf
@@ -6405,13 +6406,13 @@ available via both requests and escape sequences.
 @cindex control character, no-break (@code{'})
 A request invocation begins with a control character, which is either a
 single quote (@samp{'}, the @dfn{no-break control character}) or a
-period (@samp{.}, the normal @dfn{control character}).  These can be
-changed; see @ref{Character Translations}, for details.  After this
-there may be optional tabs or spaces followed by an identifier, which is
-the name of the request.  If the request is given arguments, they must
-be separated from the request name and each other by spaces; GNU
-@code{troff} does not allow tabs for argument
-separation.@footnote{Plan@tie{}9 @code{troff} does.}
+period (@samp{.}, the normal @dfn{control character}).  Either can be
+changed; see @ref{Request and Macro Arguments}, for details.  After it
+come optional tabs and/or spaces and then an identifier naming the
+request.  If the request is given arguments, they must be separated from
+the request name and each other by spaces; GNU @code{troff} does not
+allow tabs for argument separation.@footnote{Plan@tie{}9 @code{troff}
+does.}
 
 @cindex structuring source code of documents or macro packages
 @cindex documents, structuring the source of
@@ -6434,8 +6435,8 @@ macro files.
 
 @cindex blank line
 @cindex blank line macro (@code{blm})
-Another possibility is to use the blank line macro request @code{blm} by
-assigning an empty macro to it.
+Instead of the empty request, you can separate macro definitions (or any
+control lines) with blank lines if you assign an empty blank line macro.
 
 @Example
 .de do-nothing

@@ -556,8 +556,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	\}
 .\}
 .ie !\\n(.$ \{\
-.	nr pg@colw \\n[LL]*7/15
-.	nr pg*gutw \\n[LL]-(2*\\n[pg@colw])
+.	nr pg*gutw \\n[MINGW]
+.	nr pg@colw \\n[LL]-\\n[pg*gutw]/2u
 .	nr pg@ncols 2
 .\}
 .el \{\

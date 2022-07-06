@@ -1,5 +1,14 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Fix Savannah #62687.
+
+	* tmac/s.tmac (@MC): Honor `MINGW` register even when setting
+	only two columns, as clearly implied by our documentation.
+
+	Fixes <https://savannah.gnu.org/bugs/?62687>.
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Regression-test Savannah #62687.
 
 	* tmac/tests/s_honor-MINGW-when-two-columns.sh: Do it.

@@ -308,10 +308,10 @@ The highest level of organization of a man page is determined by this
 group of macros.
 .
 .B .TH
-(title heading) identifies the document as a man page and defines
-information enabling its indexing by
+(title heading)
+identifies the document as a man page and defines information enabling
 .MR mandb 8
-or a similar tool.
+or a similar tool to `index' it.
 .
 Section headings
 .RB ( .SH ),
@@ -463,7 +463,7 @@ Its argument,
 or the text on the next input line if
 .B .SH
 is given none,
-is set with no indentation,
+is set at the left margin,
 in bold
 (or the font specified by the string
 .BR HF )
@@ -478,11 +478,9 @@ use of an italic style in
 .I heading-text
 is mapped to the bold-italic style if available in the font family.
 .
-Additionally,
-the left margin and indentation affecting subsequent text are reset to
-their default values.
+The inset level is reset to 1 and paragraph indentation to the default.
 .
-Text on input lines after
+Text after
 .I heading-text
 is set as an ordinary paragraph
 .RB ( .P ).
@@ -543,14 +541,12 @@ If the heading font
 .B \[rs]*[HF]
 is bold,
 use of an italic style in
-.I heading-text
+.I subheading-text
 is mapped to the bold-italic style if available in the font family.
 .
-Additionally,
-the left margin and indentation affecting subsequent text are reset to
-their default values.
+The inset level is reset to 1 and paragraph indentation to the default.
 .
-Text on input lines after
+Text after
 .I subheading-text
 is set as an ordinary paragraph
 .RB ( .P ).
@@ -681,9 +677,7 @@ An ordinary paragraph
 _ifstyle()dnl
 like this one
 _endif()dnl
-is set without a first-line indentation at the current left margin,
-which by default is indented from the leftmost position of the output
-device.
+is set without a first-line indentation at the current left margin.
 .
 In man pages and other technical literature,
 definition lists are frequently encountered;
@@ -913,7 +907,7 @@ in section \(lqFiles\(rq below.
 .BI .SY " command"
 Begin synopsis.
 .
-A new paragraph is begun at the left margin
+A new paragraph begins at the left margin
 _ifstyle()dnl
 (as with
 .BR .P )
@@ -1531,10 +1525,10 @@ _endif()dnl
 .IR text ]
 Set
 .I text
-in italics.
+in an italic or oblique face.
 .
 If the macro is given no arguments,
-the text of the next input line is set in italics.
+the text of the next input line is set in an italic or oblique face.
 .
 .
 _ifstyle()dnl
@@ -1894,10 +1888,10 @@ footers
 .BR .TH ),
 and section headings
 .RB ( .SH )
-are set with no indentation
+are set at the left margin,
 and subsection headings
 .RB ( .SS )
-are indented 3n
+indented from it by 3n
 (but see the
 .B \-rSN
 option).
@@ -3280,11 +3274,10 @@ term for headers and footers.)
 _endif()dnl
 .
 By default,
-the line length
+it is set to the line length
 (see
 .B \-rLL
-above)
-is used for the title length.
+above).
 .
 .
 .TP

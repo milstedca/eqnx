@@ -1584,12 +1584,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\}
 .el \m[black]\M[white]\Z'\\$1'\h'\\n[par*bxw]u'\m[]\M[]
 ..
-.\" The first time UX is used, put a registered mark after it.
-.ds par*ux-rg \(rg
-.de UX
-\s[\\n[.s]*8u/10u]UNIX\s0\\$1\\*[par*ux-rg]
-.ds par*ux-rg
-..
 .\" superscript
 .ds par@sup-start \v'-.9m\s'\En[.s]*7u/10u'+.7m'
 .als { par@sup-start

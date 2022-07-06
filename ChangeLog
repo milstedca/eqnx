@@ -1,5 +1,17 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/s.tmac (UX): Drop undocumented support for this macro.
+	This implementation isn't consistent with historical ones, which
+	identified the trademark holder.  But doing that is a problem,
+	so just stop trying to cope.  Also, spelling Unix in full caps
+	was an imposition by the AT&T legal department on on the CSRC.
+
+	"The name Unix is a trademark, originally owned by Bell Labs and
+	subsequently traded off like a baseball card among a number of
+	companies." -- Ben Klemens
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Replace incomplete documentation of unimplemented macros.
 
 	* doc/groff.texi (Missing ms Macros):

@@ -1,5 +1,12 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Regression-test Savannah #62687.
+
+	* tmac/tests/s_honor-MINGW-when-two-columns.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Fix Savannah #62686.
 
 	* tmac/s.tmac (@MC): Set no-space mode before doing a paragraph

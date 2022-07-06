@@ -4497,12 +4497,11 @@ register.
 
 @menu
 * Missing ms Macros::
-* Additional ms Macros::
 @end menu
 
 @c ---------------------------------------------------------------------
 
-@node Missing ms Macros, Additional ms Macros, Differences from AT&T ms, Differences from AT&T ms
+@node Missing ms Macros, , Differences from AT&T ms, Differences from AT&T ms
 @subsubsection @acronym{AT&T} @file{ms} macros not appearing in @code{groff} @file{ms}
 
 Macros missing from @code{groff} @file{ms} are specific to Bell Labs and
@@ -4540,27 +4539,6 @@ Murray Hill Bell Laboratories postal address
 Tenth Edition @c possibly 9th
 Research Unix supported a pair of @code{P1} and @code{P2} macros for
 setting code examples; @code{groff} @file{ms} does not.
-
-@c ---------------------------------------------------------------------
-
-@node Additional ms Macros,  , Missing ms Macros, Differences from AT&T ms
-@subsubsection @code{groff} @file{ms} macros not appearing in @acronym{AT&T} @file{ms}
-
-The @code{groff} @file{ms} macros have a few minor extensions to the
-@acronym{AT&T} @file{ms} macros.
-
-@Defmac {CW, , ms}
-Set text in a @code{constant-width} (monospaced) typeface.  This is a
-Tenth Edition Research Unix extension.
-@endDefmac
-
-@Defmac {IX, , ms}
-Write an indexing term to the standard error stream.  You can write a
-script to capture and process an index generated in this manner.
-@endDefmac
-
-Several new strings are available as well.  You can change these to
-handle (for example) the local language.  @xref{ms Legacy Features}.
 
 @c ---------------------------------------------------------------------
 

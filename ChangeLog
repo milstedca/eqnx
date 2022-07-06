@@ -1,3 +1,15 @@
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (do_translate): Throw an error
+	diagnostic when the user attempts to translate space characters.
+	{By contrast, translating _to_ [unbreakable, unadjustable]
+	spaces is an old troff hack often seen as ".tr ~ ", and largely
+	superseded by groff's "\~" escape sequence, now widely supported
+	by troffs.}
+
+	Fixes <https://savannah.gnu.org/bugs/?60803>.  Thanks to T. Kurt
+	Bond and Oliver Corff for the report.
+
 2022-07-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/pipeline.c: Refactor.  Drop function rename via

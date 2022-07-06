@@ -6982,6 +6982,7 @@ static void do_translate(int translate_transparent, int translate_input)
       translate_space_to_dummy = tok.is_dummy();
       if (tok.is_newline() || tok.is_eof())
 	break;
+      error("cannot translate space character; ignoring");
       tok.next();
       continue;
     }

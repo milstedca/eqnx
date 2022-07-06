@@ -4496,49 +4496,49 @@ register.
 @endDefmpreg
 
 @menu
-* Missing ms Macros::
+* Unix Version 7 ms Macros Not Implemented by groff ms::
 @end menu
 
 @c ---------------------------------------------------------------------
 
-@node Missing ms Macros, , Differences from AT&T ms, Differences from AT&T ms
-@subsubsection @acronym{AT&T} @file{ms} macros not appearing in @code{groff} @file{ms}
+@node Unix Version 7 ms Macros Not Implemented by groff ms, , Differences from AT&T ms, Differences from AT&T ms
+@subsubsection Unix Version 7 @file{ms} macros not implemented by @code{groff} @file{ms}
 
-Macros missing from @code{groff} @file{ms} are specific to Bell Labs and
-Berkeley.  The macros known to be missing are:
+Several macros described in the Unix Version@tie{}7 @file{ms}
+documentation are unimplemented by @code{groff} @file{ms} because they
+are specific to the requirements of documents produced internally by
+Bell Laboratories, some of which also require a glyph for the Bell
+System logo that @code{groff} does not support.  These include macros
+implementing several document type formats
+(@code{EG}, @c engineer's notes
+@code{IM}, @c internal memorandum
+@code{MF}, @c memorandum for file
+@code{MR}, @c memorandum for record
+@code{TM}, @c technical memorandum
+@code{TR}), @c technical report
+were meaningful only in conjuction with the use of certain document
+types
+(@code{AT}, @c attachments
+@code{CS}, @c cover sheet info for `TM` documents
+@code{CT}, @c copies to
+@code{OK}, @c "other keywords" for `TM` documents
+@code{SG}), @c signatures for `TM` documents
+stored the postal addresses of Bell Labs sites
+(@code{HO}, @c Holmdel
+@code{IH}, @c Naperville
+@code{MH}, @c Murray Hill
+@code{PY}, @c Piscataway
+@code{WH}), @c Whippany
+or lack a stable definition historically
+(@code{UX}). @c Unix; on 1st use, add footnote id'ing trademark owner
+To compatibly render historical @file{ms} documents using these macros,
+we advise you to define replacements with an authentically typeset
+original at hand.  For informal purposes, a simple definition of
+@code{UX} should maintain the readability of the document's substance.
 
-@table @code
-@item .TM
-Technical memorandum; a cover sheet style
-
-@item .IM
-Internal memorandum; a cover sheet style
-
-@item .MR
-Memo for record; a cover sheet style
-
-@item .MF
-Memo for file; a cover sheet style
-
-@item .EG
-Engineer's notes; a cover sheet style
-
-@item .TR
-Computing Science Technical Report; a cover sheet style
-
-@item .OK
-Other keywords
-
-@item .CS
-Cover sheet information
-
-@item .MH
-Murray Hill Bell Laboratories postal address
-@end table
-
-Tenth Edition @c possibly 9th
-Research Unix supported a pair of @code{P1} and @code{P2} macros for
-setting code examples; @code{groff} @file{ms} does not.
+@CartoucheExample
+.ds UX Unix\"
+@endCartoucheExample
 
 @c ---------------------------------------------------------------------
 

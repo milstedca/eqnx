@@ -3746,51 +3746,71 @@ or another implementation should test this register.
 .
 .
 .NH 2
-AT&T
+Unix Version\~7
 .BI ms
-macros not appearing in
+macros not implemented by
 .BI "groff ms"
 .XS
-	AT&T
+	Unix Version 7
 .I ms
-macros not appearing in
+macros not implemented by
 .I "groff ms"
 .XE
 .LP
-Macros missing from
+Several macros described in the Unix Version\~7
+.I ms
+documentation are unimplemented by
 .I "groff ms"
-are cover page macros specific to
-Bell Labs.
-The macros known to be missing are:
-.IP \&.TM 0.5i
-Technical memorandum; a cover sheet style
-.IP \&.IM
-Internal memorandum; a cover sheet style
-.IP \&.MR
-Memo for record; a cover sheet style
-.IP \&.MF
-Memo for file; a cover sheet style
-.IP \&.EG
-Engineer's notes; a cover sheet style
-.IP \&.TR
-Computing Science Tech Report; a cover sheet style
-.IP \&.OK
-Other keywords
-.IP \&.CS
-Cover sheet information
-.IP \&.MH
-A cover sheet macro
+because they are specific to the requirements of documents produced
+internally by Bell Laboratories,
+some of which also require a glyph for the Bell System logo that
+.I groff
+does not support.
+.
+These include macros implementing several document type formats
+(\c
+.CW EG , \" engineer's notes
+.CW IM , \" internal memorandum
+.CW MF , \" memorandum for file
+.CW MR , \" memorandum for record
+.CW TM , \" technical memorandum
+.CW TR ), \" technical report
+were meaningful only in conjuction with the use of certain document
+types
+(\c
+.CW AT , \" attachments
+.CW CS , \" cover sheet info for `TM` documents
+.CW CT , \" copies to
+.CW OK , \" "other keywords" for `TM` documents
+.CW SG ), \" signatures for `TM` documents
+stored the postal addresses of Bell Labs sites
+(\c
+.CW HO , \" Holmdel
+.CW IH , \" Naperville
+.CW MH , \" Murray Hill
+.CW PY , \" Piscataway
+.CW WH ), \" Whippany
+or lack a stable definition historically
+(\c
+.CW UX ). \" Unix; on 1st use, add footnote identifying trademark owner
+.
+To compatibly render historical
+.I ms
+documents using these macros,
+we advise you to define replacements with an authentically typeset
+original at hand.
+.
+For informal purposes,
+a simple definition of
+.CW UX
+should maintain the readability of the document's substance.
 .
 .
-.LP
-Tenth Edition \" possibly 9th
-Research Unix supported a pair of
-.CW P1
-and
-.CW P2
-macros for setting code examples;
-.I "groff ms"
-does not.
+.TS
+box center;
+lf(CR).
+\&.ds UX Unix\[rs]"
+.TE
 .
 .
 .\" ------------------------

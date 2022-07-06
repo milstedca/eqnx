@@ -2540,6 +2540,48 @@ or another implementation should test this register.
 .
 .
 .\" ====================================================================
+.SS "Unix Version\~7 macros not implemented by \f[I]groff ms\f[]"
+.\" ====================================================================
+.
+Several macros described in the Unix Version\~7
+.I ms
+documentation are unimplemented by
+.I groff ms
+because they are specific to the requirements of documents produced
+internally by Bell Laboratories,
+some of which also require a glyph for the Bell System logo that
+.I groff
+does not support.
+.
+These include macros implementing several document type formats
+(\c
+.BR EG , \" engineer's notes
+.BR IM , \" internal memorandum
+.BR MF , \" memorandum for file
+.BR MR , \" memorandum for record
+.BR TM , \" technical memorandum
+.BR TR ), \" technical report
+were meaningful only in conjuction with the use of certain document
+types
+(\c
+.BR AT , \" attachments
+.BR CS , \" cover sheet info for `TM` documents
+.BR CT , \" copies to
+.BR OK , \" "other keywords" for `TM` documents
+.BR SG ), \" signatures for `TM` documents
+stored the postal addresses of Bell Labs sites
+(\c
+.BR HO , \" Holmdel
+.BR IH , \" Naperville
+.BR MH , \" Murray Hill
+.BR PY , \" Piscataway
+.BR WH ), \" Whippany
+or lack a stable definition historically
+(\c
+.BR UX ). \" Unix; on 1st use, add footnote identifying trademark owner
+.
+.
+.\" ====================================================================
 .SH "Legacy features"
 .\" ====================================================================
 .

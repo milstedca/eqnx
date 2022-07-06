@@ -1,5 +1,20 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Replace incomplete documentation of unimplemented macros.
+
+	* doc/groff.texi (Missing ms Macros):
+	* doc/ms.ms (AT&T ms macros not appearing in groff ms): Drop,
+	replacing with...
+
+	* doc/groff.texi (Unix Version 7 ms Macros Not Implemented by
+	groff ms):
+	* doc/ms.ms (Unix Version 7 ms macros not implemented by groff
+	ms):
+	* tmac/groff_ms.7.man (Unix Version 7 macros not implemented by
+	groff ms): ...these.
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_translate): Throw an error
 	diagnostic when the user attempts to translate space characters.
 	{By contrast, translating _to_ [unbreakable, unadjustable]

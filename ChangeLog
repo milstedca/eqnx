@@ -1,5 +1,12 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Regression-test Savannah #62686.
+
+	* tmac/tests/s_mark-column-start-correctly.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/s.tmac (IX): Drop.
 	* NEWS: Add item.
 

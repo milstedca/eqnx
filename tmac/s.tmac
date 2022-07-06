@@ -534,11 +534,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ..
 .nr pg*P1 0
 .de P1
-.ie r bell_localisms \{\
-.	DS L
-.	ft CW
-.\}
-.el .nr pg*P1 1
+.nr pg*P1 1
 ..
 .wh -\n[FM]u pg@bottom
 .wh -\n[FM]u/2u pg*footer
@@ -2142,41 +2138,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\}
 ..
 .par@load-init
-.\" ****************************
-.\" ******** module bell ********
-.\" ****************************
-.\" Emulate Bell Labs localisms. Note, (a) they're not documented, and
-.\" (b) the .P1 and .UC macros collide with different ones in Berkeley
-.\" ms.
-.\"
-.\" [Correction 2022-04-17: 10th Edition AT&T ms also collides with
-.\" Berkeley's (undocumented) FP macro.]
-.\"
-.\" We hack around this by conditionalizing the behavior of P1; UC was
-.\" not defined by groff and will be a no-op if called Berkeley style
-.\" with no arguments, so there is no problem with hijacking it here.
-.\"
-.\" What's done here is sufficient to give back the Guide to EQN (1976)
-.\" its section headings and restore some text that had gone missing as
-.\" macro arguments; no warranty express or implied is given as to how
-.\" well the typographic details these produce match the original Bell
-.\" Labs macros.
-.\"
-.\" P1 is now defined in module pg.
-.de SC
-.nr bell_localisms 1
-.NH 
-\\$*
-..
-.de UC
-.if r bell_localisms \f(CR\\$*\fP
-..
-.de P2
-.if r bell_localisms \{\
-.	ft
-.	DE
-.\}
-..
 .\" Local Variables:
 .\" mode: nroff
 .\" fill-column: 72

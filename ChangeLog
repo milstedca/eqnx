@@ -1,5 +1,13 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Fix Savannah #62690.
+
+	* tmac/s.tmac (P1, SC, UC, P2): Drop undocumented support for
+	document-private macros used by Kernighan & Cherry's
+	"Typesetting Mathematics -- User's Guide (Second Edition)".
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Fix Savannah #62688.
 
 	* tmac/s.tmac (DE): Set no-space mode when ending displays.

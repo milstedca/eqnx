@@ -3629,6 +3629,15 @@ is preferable.
 .
 .
 .PP
+AT&T
+.I ms 's
+.CW AU
+macro recognized arguments that were used with some cover sheet types;
+.I "groff ms"
+does not.
+.
+.
+.PP
 Right-aligned displays are available.
 .
 The AT&T

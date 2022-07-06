@@ -2425,6 +2425,15 @@ accessing an undefined register automatically defines it.
 .
 .
 .IP \[bu]
+AT&T
+.IR ms 's
+.B AU
+macro recognized arguments that were used with some cover sheet types;
+.I groff ms
+does not.
+.
+.
+.IP \[bu]
 Right-aligned displays are available.
 .
 The AT&T

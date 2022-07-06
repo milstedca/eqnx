@@ -1,5 +1,10 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/s.tmac (IX): Drop.
+	* NEWS: Add item.
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/s.tmac: Add "sorry" implementations for documented but
 	unsupported Unix Version 7 ms macros.  This way it's easier to
 	tell when a historical document needs one and this case is

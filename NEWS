@@ -309,6 +309,12 @@ o The "ptx.tmac" macro file, a counterpart to the GNU coreutils ptx(1)
   command for generating permuted indexes, is now installed.  It has
   long been part of the source distribution.
 
+o The s (ms) macro package no longer implements the `IX` macro.  This
+  4.2BSD extension was not documented by Berkeley, nor in the
+  groff_ms(7) man page.  No applications of it are attested.  We
+  recommend makeindex(1), which supports troff and is available with
+  most TeX distributions, for your ms document indexing needs.
+
 o The s (ms) macro package supports a new string, `FR`, which defines
   the ratio of the footnote line length to the current line length.  The
   default expression is "11/12", eleven twelfths of the normal line

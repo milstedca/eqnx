@@ -1,5 +1,12 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Regression-test Savannah #62688.
+
+	* tmac/tests/s_no-excess-space-around-displays.tmac: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Fix Savannah #62687.
 
 	* tmac/s.tmac (@MC): Honor `MINGW` register even when setting

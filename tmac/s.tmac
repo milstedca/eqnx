@@ -325,10 +325,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .par@ab-indent
 .par@reset
 .if !'\\$1'no' \{\
-.       if '\*(.T'html'  \{\
+.	if '\*(.T'html' \{\
 .		nf
 .		sp
-.       \}
+.	\}
 .	ft I
 .	ce 1
 \\*[ABSTRACT]
@@ -437,17 +437,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .sp 3
 .ce 9999
 .if d cov*tl-div \{\
-.    cov*tl-div
-.    DEVTAG-EO-TL
+.	cov*tl-div
+.	DEVTAG-EO-TL
 .\}
 .nr cov*i 1
 .nr cov*sp 1v
 .while \\n[cov*i]<=\\n[cov*n-au] \{\
-.       ie '\*(.T'html' .br
+.	ie '\*(.T'html' .br
 .	el .sp \\n[cov*sp]u
 .	cov*au-div!\\n[cov*i]
 .	ie d cov*ai-div!\\n[cov*i] \{\
-.		sp .5v	
+.		sp .5v
 .		cov*ai-div!\\n[cov*i]
 .		nr cov*sp 1v
 .	\}
@@ -1895,9 +1895,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .		ds eqn*tabs \\n[.tabs]
 .		nf
 .		ie \\n[dl] \{\
-.\"                     --fixme-- this really should not be necessary
-.\"                     and indicates that there is extra space creeping
-.\"                     into an equation when ps4html is enabled..
+.\"			XXX: This really should not be necessary and
+.\"			indicates that there is extra space creeping
+.\"			into an equation when ps4html is enabled.
 .			ie r ps4html .ds@need \\n[dn]u-1v+\n[.V]u+1i
 .			el .ds@need \\n[dn]u-1v+\n[.V]u
 .			chop eqn*div

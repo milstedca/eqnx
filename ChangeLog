@@ -1,5 +1,16 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Fix Savannah #62686.
+
+	* tmac/s.tmac (@MC): Set no-space mode before doing a paragraph
+	reset, not after: we don't want vertical space at the top of the
+	first column when entering multi-column mode, because then it
+	doesn't align with the tops of subsequent columns.
+
+	Fixes <https://savannah.gnu.org/bugs/?62686>.
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Regression-test Savannah #62686.
 
 	* tmac/tests/s_mark-column-start-correctly.sh: Do it.

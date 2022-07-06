@@ -1,5 +1,15 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Fix Savannah #62688.
+
+	* tmac/s.tmac (DE): Set no-space mode when ending displays.
+	(@EN): Set no-space mode after outputting the display distance
+	so that it doesn't combine with inter-paragraph space.
+
+	Fixes <https://savannah.gnu.org/bugs/?62688>.
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Regression-test Savannah #62688.
 
 	* tmac/tests/s_no-excess-space-around-displays.tmac: Do it.

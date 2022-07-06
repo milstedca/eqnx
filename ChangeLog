@@ -1,5 +1,13 @@
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/s.tmac: Add "sorry" implementations for documented but
+	unsupported Unix Version 7 ms macros.  This way it's easier to
+	tell when a historical document needs one and this case is
+	distinguishable from a document-private macro warned about with
+	"groff -w mac".
+
+2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/s.tmac (UX): Drop undocumented support for this macro.
 	This implementation isn't consistent with historical ones, which
 	identified the trademark holder.  But doing that is a problem,

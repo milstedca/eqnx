@@ -55,17 +55,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	@diag warning: \\$*
 ..
 .
+.de @nop
+..
+.
 .de @not-implemented
 .@error sorry, .\\$0 not implemented
 .als \\$0 @nop
 ..
 .
-.\" AT&T technical memorandum/Berkeley thesis mode
-.als TM @not-implemented
-.\" Chapter titles for Berkeley thesis mode
-.als CT @not-implemented
-.de @nop
-..
+.\" documented Unix Version 7 ms macros that we don't implement
+.als EG @not-implemented \" engineer's notes
+.als IM @not-implemented \" internal memorandum
+.als MF @not-implemented \" memorandum for file
+.als MR @not-implemented \" memorandum for record
+.als TM @not-implemented \" technical memorandum
+.als TR @not-implemented \" technical report
+.als AT @not-implemented \" attachments
+.als CS @not-implemented \" cover sheet info for `TM` documents
+.als CT @not-implemented \" copies to
+.als OK @not-implemented \" "other keywords" for `TM` documents
+.als SG @not-implemented \" signatures for `TM` documents
+.als HO @not-implemented \" Holmdel
+.als IH @not-implemented \" Naperville
+.als MH @not-implemented \" Murray Hill
+.als PY @not-implemented \" Piscataway
+.als WH @not-implemented \" Whippany
+.als UX @not-implemented \" Unix w/ footnote trademark
+.
+.\" 4.2BSD ms macros documented by Tuthill 1983 that we don't implement
+.\"als TM @not-implemented \" thesis mode (already handled)
+.\"als CT @not-implemented \" chapter title for thesis (already handled)
 .
 .\" Wrap the .di request to save the name of the file being processed
 .\" when a diversion is started.  This aids diagnostics when diversions

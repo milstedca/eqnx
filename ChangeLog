@@ -6,6 +6,8 @@
 	document-private macros used by Kernighan & Cherry's
 	"Typesetting Mathematics -- User's Guide (Second Edition)".
 
+	Fixes <https://savannah.gnu.org/bugs/?62690>.
+
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Fix Savannah #62688.

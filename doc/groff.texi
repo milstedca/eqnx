@@ -2677,10 +2677,9 @@ Set string @var{name} to @var{contents}.  If @var{name} exists, it is
 removed first.
 @endDefreq
 
-A list of document control registers and strings follows.  They are
-presented in the syntax used to interpolate them.  For any parameter
-whose default is unsatisfactory, define its register or string before
-calling any @file{ms} macro other than @code{RP}.
+A list of document control registers and strings follows.  For any
+parameter whose default is unsatisfactory, define its register or string
+before calling any @file{ms} macro other than @code{RP}.
 
 @unnumberedsubsubsec Margin settings
 
@@ -3189,13 +3188,17 @@ footnotes, and inclusions of material such as tables and figures.
 @cindex @file{ms} macros, text settings
 
 The @code{FAM} string sets the font family for body text; the default is
-@samp{T} (Times).  The font family setting is ignored on terminal
-devices.  Setting the @code{FAM} string before the first call of a
-heading, paragraphing, or (non-date) document description macro also
-applies it to headers, footers, and (for @code{FAM}) footnotes.
+@samp{T} (Times).  The @code{PS} and @code{VS} registers set the type
+size and vertical spacing (distance between text baselines),
+respectively.  The font family and type size are ignored on terminal
+devices.  Setting these parameters before the first call of a heading,
+paragraphing, or (non-date) document description macro also applies them
+to headers, footers, and (for @code{FAM}) footnotes.
 
 The hyphenation mode (as used by the @code{hy} request) is set from the
-@code{HY} register.
+@code{HY} register.  Setting @code{HY} to @samp{0} is equivalent to
+using the @code{nh} request.  This is a Tenth Edition Research Unix
+extension.
 
 @c ---------------------------------------------------------------------
 
@@ -3819,8 +3822,7 @@ One application of @code{ne} is to reserve space on the page for a
 figure or illustration to be included later.
 
 @cindex boxes [@file{ms}]
-A keep can also be @dfn{boxed}.  Text in a box is automatically placed
-in a diversion (keep).
+A keep have a frame drawn around it; this is called a @dfn{boxed keep}.
 
 @DefmacList {B1, , ms}
 @DefmacListEndx {B2, , ms}
@@ -3828,10 +3830,10 @@ in a diversion (keep).
 boxed keep.
 @endDefmac
 
-Box macros cause breaks; if you need to box a word or phrase within a
-line, see the @code{BX} macro in @ref{Typeface and decoration}.  Box
-lines are drawn as close as possible to the text they enclose so that
-they are usable within paragraphs.  If you wish to box one or more
+Boxed keep macros cause breaks; if you need to box a word or phrase
+within a line, see the @code{BX} macro in @ref{Typeface and decoration}.
+Box lines are drawn as close as possible to the text they enclose so
+that they are usable within paragraphs.  If you wish to box one or more
 paragraphs, you may improve the appearance by calling @code{B1} after
 the first paragraphing macro, and by adding a small amount of vertical
 space before calling @code{B2}.
@@ -3847,8 +3849,9 @@ speeds.
 .B2
 @endCartoucheExample
 
-If you want a box to float, you will need to enclose the @code{B1} and
-@code{B2} calls within a pair of @code{KF} and @code{KE} calls.
+If you want a boxed keep to float, you will need to enclose the
+@code{B1} and @code{B2} calls within a pair of @code{KF} and @code{KE}
+calls.
 
 @cindex displays [@file{ms}]
 @dfn{Displays} turn off filling; lines of verse or program code are
@@ -4183,11 +4186,11 @@ There are multiple ways to produce headers and footers.  One is to
 define the strings @code{LH}, @code{CH}, and @code{RH} to set the left,
 center, and right headers, respectively; and @code{LF}, @code{CF}, and
 @code{RF} to set the left, center, and right footers similarly.  This
-approach works best for documents that do not distinguish odd and even
-pages.
+approach works best for documents that do not distinguish odd- and
+even-numbered pages.
 
 Another method is to call macros with arguments that set headers or
-footers for odd or even pages; these variables produce four
+footers for odd- or even-numbered pages; these variables produce four
 combinations, so four macros are available.  Each takes a delimiter
 separating the left, center, and right header or footer texts from each
 other.  You can replace the neutral apostrophes (@code{'}) with any
@@ -4224,7 +4227,7 @@ calls the (normally undefined) @code{HD} macro after @code{PT}; you can
 define @code{HD} if you need additional processing after setting the
 header (for example, to draw a line below it).  The @code{HD} hook is a
 Berkeley extension.  Any such macros you (re)define must implement any
-desired specialization for odd-, even-, or first-numbered pages.
+desired specialization for odd-, even-, or first numbered pages.
 
 @c ---------------------------------------------------------------------
 

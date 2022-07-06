@@ -8,7 +8,7 @@ groff_ms \- GNU roff manuscript macro package for formatting documents
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1989-2021 Free Software Foundation, Inc.
+.\" Copyright (C) 1989-2022 Free Software Foundation, Inc.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -217,12 +217,12 @@ its preparation requires separate processing.
 .SS "Document control settings"
 .\" ====================================================================
 .
-The following tables list the document control registers and strings.
+The following tables list the document control registers,
+strings,
+and special characters.
 .
 For any parameter whose default is unsatisfactory,
-define its register,
-string,
-or special character before calling any
+define it before calling any
 .I ms
 macro other than
 .BR RP .
@@ -586,8 +586,6 @@ the default is
 .RB \[lq] T \[rq]
 (Times).
 .
-The font family setting is ignored on terminal devices.
-.
 The
 .B PS
 and
@@ -595,6 +593,8 @@ and
 registers set the type size and vertical spacing
 (distance between text baselines),
 respectively.
+.
+The font family and type size are ignored on terminal devices.
 .
 Setting these parameters before the first call of a heading,
 paragraphing,
@@ -1251,9 +1251,9 @@ vertical space specified in its argument remaining on the page.
 .
 .
 .PP
-A keep can also be boxed.
-.
-Text in a box is automatically placed in a diversion (keep).
+A keep have a frame drawn around it;
+this is called a
+.I boxed keep.
 .
 .
 .TP
@@ -1267,7 +1267,7 @@ End boxed keep.
 .
 .
 .P
-Box macros cause breaks;
+Boxed keep macros cause breaks;
 if you need to box a word or phrase within a line,
 see the
 .B BX
@@ -1276,8 +1276,8 @@ macro in section \[lq]Highlighting\[rq] above.
 Box lines are drawn as close as possible to the text they enclose so
 that they are usable within paragraphs.
 .
-If you wish to box one or more paragraphs,
-you may improve the appearance by calling
+If you wish to place one or more paragraphs in a boxed keep,
+you may improve their appearance by calling
 .B .B1
 after the first paragraphing macro,
 and by adding a small amount of vertical space before calling
@@ -1285,7 +1285,7 @@ and by adding a small amount of vertical space before calling
 .
 .
 .P
-If you want a box to float,
+If you want a boxed keep to float,
 you will need to enclose the
 .B .B1
 and
@@ -1771,13 +1771,13 @@ to set the left,
 center,
 and right footers similarly.
 .
-This approach works best for documents that do not distinguish odd and
-even pages.
+This approach works best for documents that do not distinguish odd- and
+even-numbered pages.
 .
 .
 .P
 Another method is to call macros with arguments that set headers or
-footers for odd or even pages;
+footers for odd- or even-numbered pages;
 these variables produce four combinations,
 so four macros are available.
 .
@@ -1873,7 +1873,7 @@ hook is a Berkeley extension.
 Any such macros you (re)define must implement any desired specialization
 for odd-,
 even-,
-or first-numbered pages.
+or first numbered pages.
 .
 .
 .\" ====================================================================

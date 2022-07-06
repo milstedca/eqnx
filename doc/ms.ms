@@ -22,8 +22,8 @@
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ie t .nr PI 3.5n
 .el   .nr PI 4n
-.ND June 2022
-.EH '%''June 2022'
+.ND July 2022
+.EH '%''July 2022'
 .EF ''''
 .OH 'Using \f[I]groff\f[] with the \f[I]ms\f[] macros''%'
 .OF ''''
@@ -316,8 +316,7 @@ Interpolate glyph of special character named
 T}
 \[rs]&	non-printing, zero-width dummy character
 \[rs]\[ti]	T{
-Move horizontally by the current font's space width
-(\[lq]non-breaking space\[rq]).
+Insert an unbreakble space that is adjustable like a normal space.
 T}
 \[rs]|	T{
 Move horizontally by one-sixth em
@@ -482,8 +481,8 @@ Document control settings
 .
 .
 .LP
-The following list of document parameters is presented in the syntax
-used to interpolate them.
+The document parameters below are presented in the syntax
+used to interpolate their values.
 .
 For any unsatisfactory default,
 define its register,
@@ -846,8 +845,6 @@ the default is
 .CW T \[rq] \[lq]
 (Times).
 .
-The font family setting is ignored on terminal devices.
-.
 The
 .CW PS
 and
@@ -855,6 +852,8 @@ and
 registers set the type size and vertical spacing
 (distance between text baselines),
 respectively.
+.
+The font family and type size are ignored on terminal devices.
 .
 Setting these parameters before the first call of a heading,
 paragraphing,
@@ -1649,6 +1648,7 @@ Cb Cb
 Lf(CR) L.
 Input	Result
 T{
+.na
 The course\[aq]s students found one C language keyword
 .br
 \&.CW static ) \[rs]%(
@@ -1676,6 +1676,7 @@ Cb Cb
 Lf(CR) L.
 Input	Result
 T{
+.na
 The course\[aq]s students found one C language keyword
 .br
 (\[rs]c
@@ -2145,10 +2146,9 @@ included later.
 .
 .
 .PP
-A keep can also be
-.I boxed .
-.
-Text in a box is automatically placed in a diversion (keep).
+A keep have a frame drawn around it;
+this is called a
+.I "boxed keep."
 .
 .
 .TS
@@ -2163,7 +2163,7 @@ _
 .
 .
 .LP
-Box macros cause breaks;
+Boxed keep macros cause breaks;
 if you need to box a word or phrase within a line,
 see the
 .CW BX
@@ -2172,8 +2172,8 @@ macro in section \[lq]Typeface and decoration\[rq] above.
 Box lines are drawn as close as possible to the text they enclose so
 that they are usable within paragraphs.
 .
-If you wish to box one or more paragraphs,
-you may improve the appearance by calling
+If you wish to place one or more paragraphs in a boxed keep,
+you may improve their appearance by calling
 .CW .B1
 after the first paragraphing macro,
 and by adding a small amount of vertical space before calling
@@ -2193,7 +2193,7 @@ Happy Fun Ball may suddenly accelerate to dangerous speeds.
 .
 .
 .LP
-If you want a box to float,
+If you want a boxed keep to float,
 you will need to enclose the
 .CW .B1
 and
@@ -2981,13 +2981,13 @@ to set the left,
 center,
 and right footers similarly.
 .
-This approach works best for documents that do not distinguish odd and
-even pages.
+This approach works best for documents that do not distinguish odd- and
+even-numbered pages.
 .
 .
 .PP
 Another method is to call macros with arguments that set headers or
-footers for odd or even pages;
+footers for odd- or even-numbered pages;
 these variables produce four combinations,
 so four macros are available.
 .
@@ -3096,7 +3096,7 @@ hook is a Berkeley extension.
 Any such macros you (re)define must implement any desired specialization
 for odd-,
 even-,
-or first-numbered pages.
+or first numbered pages.
 .
 .
 .KS

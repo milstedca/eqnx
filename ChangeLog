@@ -1,3 +1,10 @@
+2022-07-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devpdf/devpdf.am (font/devpdf/util/BuildFoundries): Add
+	dependency on "afmtodit" since "BuildFoundries" calls this
+	program when generating groff font description files from URW
+	fonts.
+
 2022-07-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Fix Savannah #62690.

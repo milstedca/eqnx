@@ -223,8 +223,6 @@ limitations,
 .IR c\~ cannot
 be,
 and
-.I s
-and
 .I name
 cannot contain,
 an equals sign,
@@ -356,19 +354,18 @@ Output only pages in
 .IR list ,
 which is a comma-separated list of inclusive page ranges;
 .I n
-means print page
+means page
 .IR n ,
 .IB m \- n
-means print every page
+means every page
 .RI between\~ m
 .RI and\~ n ,
-.IR n ,
 .BI \- n
-means print every page up
+means every page up
 .RI to\~ n ,
 and
 .IB n \-
-means print every page from
+means every page from
 .IR n \~on.
 .
 .I @g@troff
@@ -400,8 +397,6 @@ limitations,
 .IR c\~ cannot
 be,
 and
-.I n
-and
 .I reg
 cannot contain,
 an equals sign,
@@ -432,7 +427,7 @@ see
 .B \-U
 Operate in
 .IR "unsafe mode" ,
-enableing the
+enabling the
 .BR open ,
 .BR opena ,
 .BR pi ,

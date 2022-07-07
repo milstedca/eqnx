@@ -992,7 +992,7 @@ AT&T prepared patent applications to the U.S.\& government with it.
 .
 This arrangement enabled the group to acquire a PDP-11;
 .I roff
-promptly proved equal to the task of typesetting the manual for what
+promptly proved equal to the task of formatting the manual for what
 would become known as \[lq]First Edition Unix\[rq],
 dated November 1971.
 .

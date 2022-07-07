@@ -78,7 +78,7 @@
 	This implementation isn't consistent with historical ones, which
 	identified the trademark holder.  But doing that is a problem,
 	so just stop trying to cope.  Also, spelling Unix in full caps
-	was an imposition by the AT&T legal department on on the CSRC.
+	was an imposition by the AT&T legal department on the CSRC.
 
 	"The name Unix is a trademark, originally owned by Bell Labs and
 	subsequently traded off like a baseball card among a number of
@@ -305,16 +305,17 @@
 2022-06-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an-ext.tmac (UR, MT): Fix problem with hyphenation
-	occuring before the end of the line when the line length was not
-	the device default (common for man pages at the terminal) and
-	hyperlinks were enabled.  The issue is that the new environment
-	we created inherits the default environment's line length (its
-	state at troff initialization, prior to macro package loading
-	and configuration).  This latent issue was exposed by post-groff
-	1.22.4 changes to enable the hyphenation of link text and add
-	the hyperlink feature.  Fix it by copying the line length at the
-	time the macro is called, which is necessarily after man(7)
-	sets up the line length, to the new environment.
+	occurring before the end of the line when the line length was
+	not the device default (common for man pages at the terminal)
+	and hyperlinks were enabled.  The issue is that the new
+	environment we created inherits the default environment's line
+	length (its state at troff initialization, prior to macro
+	package loading and configuration).  This latent issue was
+	exposed by post-groff 1.22.4 changes to enable the hyphenation
+	of link text and add the hyperlink feature.  Fix it by copying
+	the line length at the time the macro is called, which is
+	necessarily after man(7) sets up the line length, to the new
+	environment.
 
 2022-06-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -484,7 +485,7 @@
 
 2022-06-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[docs]: Revise introduction of vertical spacing context to avoid
+	[docs]: Revise introduction of vertical spacing concept to avoid
 	render inference that the formatter will compute a vertical
 	spacing appropriate to the type size automagically--it will not.
 

@@ -1,5 +1,14 @@
 2022-07-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/util/BuildFoundries.pl: Add Boolean-value scalar
+	`beStrict` (defaults false) and new command-line option
+	`--strict` to make it true.
+	(LoadFoundry): Check return value of subroutine `LocateAF`.
+	Emit diagnostic if it is null, as a warning if not "strict", and
+	fatal if so.
+
+2022-07-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/devpdf.am (font/devpdf/util/BuildFoundries): Add
 	dependency on "afmtodit" since "BuildFoundries" calls this
 	program when generating groff font description files from URW

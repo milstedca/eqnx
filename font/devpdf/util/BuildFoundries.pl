@@ -28,8 +28,10 @@ my $pathsep='@PATH_SEPARATOR@';
 
 my $check=0;
 my $dirURW='';
+my $beStrict=0;
 
-GetOptions("check" => \$check, "dirURW=s" => \$dirURW);
+GetOptions("check" => \$check, "dirURW=s" => \$dirURW,
+	   "strict" => \$beStrict);
 
 (my $progname = $0) =~s @.*/@@;
 my $where=shift||'';
@@ -142,8 +144,15 @@ sub LoadFoundry
 	    }
 	    else
 	    {
-		# We need to run afmtodit to create this groff font
-		my $psfont=RunAfmtodit($gfont,LocateAF($foundrypath,$r[5]),$r[2],$r[3],$r[4]);
+		# Use afmtodit to create a groff font description file.
+		my $afmfile=LocateAF($foundrypath,$r[5]);
+		if (!$afmfile) {
+		    my $sub=\&Warn;
+		    $sub=\&Die if ($beStrict);
+		    &$sub("cannot locate AFM file for font '$gfont'");
+		    next;
+		}
+		my $psfont=RunAfmtodit($gfont,$afmfile,$r[2],$r[3],$r[4]);
 
 		if ($psfont)
 		{

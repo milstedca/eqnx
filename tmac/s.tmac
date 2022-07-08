@@ -187,7 +187,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .par@init
 .als RP cov*err-not-after-first-page
 .@init
-.ie \\n[cov*rp-format] \{\
+.ie \\n[cov*use-rp-format] \{\
 .	pg@cs-top
 .	als FS cov*FS
 .	als FE cov*FE
@@ -206,14 +206,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .br
 \\*[FS]\\
 ..
-.nr cov*rp-format 0
+.nr cov*use-rp-format 0
+.\" If we add more cover page formats, these behaviors and names could
+.\" be generalized.
 .nr cov*rp-no-repeat-info 0
-.\" released paper format
+.nr cov*rp-no-renumber 0
+.\" report (AT&T: "released paper") document type
 .de RP
-.nr cov*rp-format 1
-.if \\n[.$] .if '\\$1'no' .nr cov*rp-no-repeat-info 1
+.nr cov*use-rp-format 1
+.while \\n[.$] \{\
+.	if '\\$1'no' .nr cov*rp-no-repeat-info 1
+.	if '\\$1'no-repeat-info' .nr cov*rp-no-repeat-info 1
+.	if '\\$1'no-renumber' .nr cov*rp-no-renumber 1
+.	shift
+.\}
 .if rPO .po \\n(POu
-.pn 0
 ..
 .de TL
 .br
@@ -365,16 +372,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .de @div-end!cov*ab-div
 .AE
 ..
+.de cov*break-page
+.ie \\n[cov*rp-no-renumber] .bp
+.el .bp 1
+..
 .de cov*print
 .als cov*print @nop
 .ie d cov*tl-div \{\
-.	ie \\n[cov*rp-format] .cov*rp-print
+.	ie \\n[cov*use-rp-format] .cov*rp-print
 .	el .cov*draft-print
 .\}
 .el \{\
-.	if \\n[cov*rp-format] \{\
+.	if \\n[cov*use-rp-format] \{\
 .		@warning .RP format but no .TL
-.		bp 1
+.		.cov*break-page
 .		als FS @FS
 .		als FE @FE
 .		CHECK-FOOTER-AND-KEEP
@@ -416,7 +427,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .if -\\n[FM]/2+1v+\\n[cov*page-length]<\\n[nl] \
 .	@error cover sheet overflow
 .pl \\n[cov*page-length]u
-.bp 1
+.cov*break-page
 .if !\\n[cov*rp-no-repeat-info] .cov*tl-au-print
 .rs
 .sp 1

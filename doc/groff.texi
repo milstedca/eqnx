@@ -3068,14 +3068,19 @@ except that @code{TL} is mandatory if any of @code{RP}, @code{AU},
 @code{AI}, or @code{AB} is called, and @code{AE} is mandatory if
 @code{AB} is called.
 
-@Defmac {RP, [@code{no}], ms}
+@Defmac {RP, [@code{no-repeat-info}] [@code{no-renumber}], ms}
 Use the ``report'' (@acronym{AT&T}: ``released paper'') format for your
 document, creating a separate cover page.  The default arrangement is to
-print most of the document description (title, author names and
-institutions, and abstract, but not the date) at the top of page@tie{}1.
-If the optional @code{no} argument is given, @file{ms} prints a cover
-page but does not repeat any of its information on page@tie{}1 (see the
-@code{DA} macro below regarding the date).
+place most of the document description (title, author names and
+institutions, and abstract, but not the date) at the top of the first
+page.  If the optional @code{no-repeat-info} argument is given,
+@file{ms} produces a cover page but does not repeat any of its
+information subsequently (but see the @code{DA} macro below regarding
+the date).  Normally, @code{RP} sets the page number following the cover
+page to@tie{}1.  Specifying the optional @code{no-renumber} argument
+suppresses this alteration.  Optional arguments can occur in any order.
+@code{no} is recognized as a synonym of @code{no-repeat-info} for
+@code{AT&T} compatibility.
 @endDefmac
 
 @Defmac {TL, , ms}

@@ -349,6 +349,13 @@ o The s (ms) macro package has added a hook macro, `FS-MARK`, which is
   distributed with groff as `pdfmark.ms`, uses this technique.  Thanks
   to Keith Marshall.
 
+o The s (ms) macro package's `RP` macro recognizes a new optional
+  argument, `no-renumber`, which suppresses the renumbering of the page
+  after the cover page as page 1.  It furthermore recognizes the
+  optional argument `no-repeat-info`, which has the same effect as `no`;
+  the latter will continue to be supported for backward compatibility.
+  Optional arguments to `RP` can be given in any order.
+
 o The "a4.tmac" file has been dropped from the distribution.  Its
   successor, "papersize.tmac", has been present and documented for
   nearly 20 years.  See subsection "Paper size" of groff(1).

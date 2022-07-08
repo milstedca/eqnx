@@ -643,28 +643,43 @@ lf(CR) lx.
 Macro	Description
 _
 .TH
-\&.RP \f[R][\f[]no\f[R]]	T{
+\&.RP \f[R][\f[I]option\f[] .\|.\|.]	T{
 Use the \[lq]report\[rq]
 (AT&T: \[lq]released paper\[rq])
 format for your document,
 creating a separate cover page.
 .
-The default arrangement is to print most of the document description
+The default arrangement is to place most of the document description
 (title,
 author names and institutions,
 and abstract,
 but not the date)
-at the top of page\~1.
+at the top of the first page.
 .
 If the optional
-.CW no
+.CW no\-repeat\-info
 argument is given,
 .I ms
-prints a cover page but does not repeat any of its information on
-page\~1
+produces a cover page but does not repeat any of its information
+subsequently
 (but see the
 .CW DA
 macro below regarding the date).
+.
+Normally,
+.CW .RP
+sets the page number following the cover page to\~1.
+.
+Specifying the optional
+.CW no\-renumber
+argument suppresses this alteration.
+.
+Optional arguments can occur in any order.
+.
+.CW no
+is recognized as a synonym of
+.CW no\-repeat\-info
+for AT&T compatibility.
 T}
 _
 \&.TL	T{

@@ -1,5 +1,26 @@
 2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/s.tmac (RP): Recognize new optional arguments
+	`no-renumber` and `no-repeat-info`, the latter as a synonym for
+	the existing `no`.  The former suppresses the page number
+	manipulation that normally occurs.  Drop now-unnecessary `pn 0`
+	request.
+	(top level, cov*first-page-init, RP, cov*print): Rename
+	`cov*rp-format` to `cov*use-rp-format` for clarity.
+	(cov*break-page): New macro breaks the cover page at the end,
+	resetting next page number to 1 only if desired by user.
+	(cov*print, cov*rp-print): Call `cov*break-page` instead of
+	invoking `bp`.
+
+	* doc/groff.texi (Document Description Macros) <RP>:
+	* doc/ms.ms (Document description macros) <RP>:
+	* tmac/groff_ms.7.man (Document description macros) <RP>:
+	Document them.
+
+	* NEWS: Add item.
+
+2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/s.tmac: Rename register `cov*rp-no` to
 	`cov*rp-no-repeat-info`.
 

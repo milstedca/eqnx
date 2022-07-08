@@ -276,7 +276,7 @@ to the first output line.
 .TL
 .b .ip
 .i T
-.i I
+.i i
 .DE
 Like
 .b .lp ,
@@ -285,7 +285,7 @@ with a hanging tag
 .i T
 [empty]
 and the remainder indented by
-.i I
+.i i
 [\c
 .NR (ii
 [5n]].
@@ -301,7 +301,7 @@ must be unbreakable.
 If
 .i T
 will not fit in the space
-.i I,
+.i i,
 .b .ip
 puts the text after the tag on a new line.
 .TL

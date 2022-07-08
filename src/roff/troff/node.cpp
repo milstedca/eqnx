@@ -4191,13 +4191,14 @@ void suppress_node::tprint(troff_output_file *out)
 	// `name` will contain a "%d" in which the image_no is placed.
 	fprintf(stderr,
 		"grohtml-info:page %d  %d  %d  %d  %d  %d  %s  %d  %d"
-		"  %s\n",
+		"  %s:%s\n",
 		topdiv->get_page_number(),
 		get_register("opminx"), get_register("opminy"),
 		get_register("opmaxx"), get_register("opmaxy"),
 		// page offset + line length
 		get_register(".o") + get_register(".l"),
-		name, hresolution, vresolution, get_string(".F"));
+		name, hresolution, vresolution, get_string(".F"),
+		get_string(".c"));
 	fflush(stderr);
       }
     }

@@ -1,5 +1,11 @@
 2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (suppress_node::tprint): Add source
+	file line number after its name when emitting "grohtml-info", to
+	aid debugging.
+
+2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (get_register, get_string): Reorder
 	null pointer inequality comparisons; they don't need to be in a
 	funny order because it's pretty hard to mistype `!=` as an

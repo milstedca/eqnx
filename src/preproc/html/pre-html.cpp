@@ -1090,6 +1090,7 @@ static void generateImages(char *region_file_name)
       fputc(f->getPB(), stderr);
     }
   }
+  fflush(stderr);
 
   listOfImages.createImages();
   if (want_progress_report) {
@@ -1109,7 +1110,7 @@ static void set_redirection(int was, int willbe)
   // Nothing to do if 'was' and 'willbe' already have same handle.
   if (was != willbe) {
     // Otherwise attempt the specified redirection.
-    if (dup2 (willbe, was) < 0) {
+    if (dup2(willbe, was) < 0) {
       // Redirection failed, so issue diagnostic and bail out.
       fprintf(stderr, "failed to replace fd=%d with %d\n", was, willbe);
       if (willbe == STDOUT_FILENO)
@@ -1306,7 +1307,9 @@ int char_buffer::run_output_filter(int filter, int argc, char **argv)
     // The IMAGE_OUTPUT_FILTER needs special output redirection...
 
     if (filter == IMAGE_OUTPUT_FILTER) {
-      // with BOTH 'stdout' AND 'stderr' diverted to files.
+      // ...with BOTH 'stdout' AND 'stderr' diverted to files, the
+      // latter so that `generateImages()` can scrape "grohtml-info"
+      // from it.
 
       set_redirection(STDOUT_FILENO, PS_OUTPUT_STREAM);
       set_redirection(STDERR_FILENO, REGION_OUTPUT_STREAM);

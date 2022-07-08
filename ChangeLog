@@ -1,5 +1,10 @@
 2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/html/pre-html.cpp (generateImages): Flush the
+	standard error stream after writing to it in a loop.
+
+2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/s.tmac (RP): Recognize new optional arguments
 	`no-renumber` and `no-repeat-info`, the latter as a synonym for
 	the existing `no`.  The former suppresses the page number

@@ -606,6 +606,8 @@ and
 footnotes.
 .
 .
+.br
+.ne 2v
 .P
 The
 .B HY
@@ -645,15 +647,12 @@ Interpolate an em dash.
 .TQ
 .B \[rs]*[U]
 Interpolate typographer's quotation marks where available,
-and neutral quotes otherwise.
+and neutral double quotes otherwise.
 .
 .B \[rs]*[Q]
 is the left quote and
 .B \[rs]*[U]
 the right.
-.
-(As a mnemonic,
-think of \[lq]quote\[rq] and \[lq]unquote\[rq].)
 .
 .
 .\" ====================================================================
@@ -1035,8 +1034,7 @@ but use the roman style
 (upright text of normal weight)
 instead of bold.
 .
-Arguments are recognized only by
-.I groff ms.
+Argument recognition is a GNU extension.
 .
 .
 .TP
@@ -1082,8 +1080,10 @@ reverse video is used instead.
 If you want
 .I text
 to contain space,
-use horizontal motion escape sequences of appropriate width
+use unbreakable space or horizontal motion escape sequences
 .RB ( \[rs]\[ti] ,
+.BI \[rs] space\c
+,
 .BR \[rs]\[ha] ,
 .BR \[rs]| ,
 .BR \[rs]0 ,
@@ -1284,6 +1284,8 @@ and by adding a small amount of vertical space before calling
 .B .B2 .
 .
 .
+.br
+.ne 2v
 .P
 If you want a boxed keep to float,
 you will need to enclose the
@@ -1620,14 +1622,12 @@ correspond to
 .BR PS ,
 and
 .BR VS ,
-respectively.
-.
-The
+respectively;
 .BR FPD ,
 .BR FPS ,
 and
 .B FVS
-registers are GNU extensions.
+are GNU extensions.
 .
 .
 .P
@@ -1776,17 +1776,15 @@ even-numbered pages.
 .
 .
 .P
-Another method is to call macros with arguments that set headers or
-footers for odd- or even-numbered pages;
-these variables produce four combinations,
-so four macros are available.
+Another method is to call macros that set headers or footers for odd- or
+even-numbered pages.
 .
-Each takes a delimiter separating the left,
+Each such macro takes a delimited argument separating the left,
 center,
 and right header or footer texts from each other.
 .
-You can replace the neutral apostrophes (\[aq]) with any character not
-appearing in the header or footer text.
+You can replace the neutral apostrophes (\[aq]) shown below with any
+character not appearing in the header or footer text.
 .
 These macros are Berkeley extensions.
 .
@@ -2428,7 +2426,7 @@ accessing an undefined register automatically defines it.
 AT&T
 .IR ms 's
 .B AU
-macro recognized arguments that were used with some cover sheet types;
+macro supported arguments used with some document types;
 .I groff ms
 does not.
 .
@@ -2586,7 +2584,7 @@ or lack a stable definition historically
 .\" ====================================================================
 .
 .I "groff ms"
-retains support for some legacy features solely to support rendering of
+retains support for some legacy features solely to support formatting of
 historical documents;
 contemporary ones should not use them because they can render poorly.
 .

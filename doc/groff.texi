@@ -3218,8 +3218,8 @@ Interpolate an em dash.
 @DefmpstrList {Q, ms}
 @DefmpstrListEndx {U, ms}
 Interpolate typographer's quotation marks where available, and neutral
-quotes otherwise.  @code{\*Q} is the left quote and @code{\*U} the
-right.  (As a mnemonic, think of ``quote'' and ``unquote''.)
+double quotes otherwise.  @code{\*Q} is the left quote and @code{\*U}
+the right.
 @endDefmpstr
 
 @c ---------------------------------------------------------------------
@@ -3478,7 +3478,7 @@ until the next highlighting, paragraphing, or heading macro call.
 
 @Defmac {R, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
 As @code{B}, but use the roman style (upright text of normal weight)
-instead of bold.
+instead of bold.  Argument recognition is a GNU extension.
 @endDefmac
 
 @Defmac {I, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
@@ -3500,9 +3500,9 @@ instead of bold.  This is a Tenth Edition Research Unix extension.
 @Defmac {BX, [@Var{text}], ms}
 Typeset @var{text} and draw a box around it.  On terminal devices,
 reverse video is used instead (see the implementation note below).
-If you want @var{text} to contain space, use horizontal motion escape
-sequences of appropriate width (@code{\~}, @code{\^}, @code{\|},
-@code{\0} or @code{\h}).
+If you want @var{text} to contain space, use unbreakable space or
+horizontal motion escape sequences (@code{\~}, @code{\SP}, @code{\^},
+@code{\|}, @code{\0} or @code{\h}).
 @endDefmac
 
 @Defmac {UL, [@Var{text} [@Var{post}]], ms}
@@ -4067,8 +4067,7 @@ corresponding @code{FS} call as long as each @code{FS} call occurs
 Footnote text is formatted as paragraphs are, using analogous
 parameters.  The registers @code{FI}, @code{FPD}, @code{FPS}, and
 @code{FVS} correspond to @code{PI}, @code{PD}, @code{PS}, and @code{CS},
-respectively. The @code{FPD}, @code{FPS}, and @code{FVS} registers are
-GNU extensions.
+respectively; @code{FPD}, @code{FPS}, and @code{FVS} are GNU extensions.
 
 The @code{FF} register controls the formatting of automatically numbered
 footnote paragraphs and those for which @code{FS} is given a marker
@@ -4189,13 +4188,12 @@ center, and right headers, respectively; and @code{LF}, @code{CF}, and
 approach works best for documents that do not distinguish odd- and
 even-numbered pages.
 
-Another method is to call macros with arguments that set headers or
-footers for odd- or even-numbered pages; these variables produce four
-combinations, so four macros are available.  Each takes a delimiter
+Another method is to call macros that set headers or footers for odd- or
+even-numbered pages.  Each such macro takes a delimited argument
 separating the left, center, and right header or footer texts from each
-other.  You can replace the neutral apostrophes (@code{'}) with any
-character not appearing in the header or footer text.  These macros are
-Berkeley extensions.
+other.  You can replace the neutral apostrophes (@code{'}) shown below
+with any character not appearing in the header or footer text.  These
+macros are Berkeley extensions.
 
 @DefmacList {OH, @code{'}@Var{left}@code{'}@Var{center}@code{'}@Var{right}@code{'}, ms}
 @DefmacItemx {EH, @code{'}@Var{left}@code{'}@Var{center}@code{'}@Var{right}@code{'}, ms}
@@ -4450,8 +4448,8 @@ multiplied by 1000.  See the @code{PS} register in @ref{ms Document
 Control Settings}.
 
 @item
-@acronym{AT&T} @file{ms}'s @code{AU} macro recognized arguments that
-were used with some cover sheet types; @code{groff} @file{ms} does not.
+@acronym{AT&T} @file{ms}'s @code{AU} macro supported arguments used with
+some document types; @code{groff} @file{ms} does not.
 
 @item
 Right-aligned displays are available.  The @acronym{AT&T} @file{ms}
@@ -4552,7 +4550,7 @@ original at hand.  For informal purposes, a simple definition of
 @cindex strings [@file{ms}]
 
 @code{groff} @file{ms} retains support for some legacy features solely
-to support rendering of historical documents; contemporary ones should
+to support formatting of historical documents; contemporary ones should
 not use them because they can render poorly.  See the
 @cite{groff_char@r{(7)}} man page.
 

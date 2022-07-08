@@ -911,15 +911,12 @@ _
 _
 \[rs]*[Q]	T{
 Interpolate typographer's quotation marks where available,
-and neutral quotes otherwise.
+and neutral double quotes otherwise.
 .
 .CW \[rs]*[Q]
 is the left quote and
 .CW \[rs]*[U]
 the right.
-.
-(As a mnemonic,
-think of \*[Q]quote\*[U] and \*[Q]unquote\*[U].)
 T}
 \[rs]*[U]	\^
 .TE
@@ -1504,8 +1501,7 @@ but use the roman style
 (upright text of normal weight)
 instead of bold.
 .
-Arguments are recognized only by
-.I "groff ms."
+Argument recognition is a GNU extension.
 T}
 _
 \&.I \f[R][\f[I]text\f[] [\f[I]post\f[] [\f[I]pre\f[]]]]	T{
@@ -1552,8 +1548,10 @@ reverse video is used instead
 If you want
 .I text
 to contain space,
-use horizontal motion escape sequences of appropriate width
+use unbreakable space or horizontal motion escape sequences
 .CW \[rs]\[ti] , (
+.CW \[rs]\c
+.I space ,
 .CW \[rs]\[ha] ,
 .CW \[rs]| ,
 .CW \[rs]0 ,
@@ -2162,6 +2160,7 @@ _
 .TE
 .
 .
+.KS
 .LP
 Boxed keep macros cause breaks;
 if you need to box a word or phrase within a line,
@@ -2190,6 +2189,7 @@ Happy Fun Ball may suddenly accelerate to dangerous speeds.
 \&.sp \[rs]n[PD]/2
 \&.B2
 .TE
+.KE
 .
 .
 .LP
@@ -2680,14 +2680,12 @@ correspond to
 .CW PS ,
 and
 .CW VS ,
-respectively.
-.
-The
+respectively;
 .CW FPD ,
 .CW FPS ,
 and
 .CW FVS
-registers are GNU extensions.
+are GNU extensions.
 .
 .
 .KS
@@ -2986,17 +2984,15 @@ even-numbered pages.
 .
 .
 .PP
-Another method is to call macros with arguments that set headers or
-footers for odd- or even-numbered pages;
-these variables produce four combinations,
-so four macros are available.
+Another method is to call macros that set headers or footers for odd- or
+even-numbered pages.
 .
-Each takes a delimiter separating the left,
+Each such macro takes a delimited argument separating the left,
 center,
 and right header or footer texts from each other.
 .
-You can replace the neutral apostrophes (\[aq]) with any character not
-appearing in the header or footer text.
+You can replace the neutral apostrophes (\[aq]) shown below with any
+character not appearing in the header or footer text.
 .
 These macros are Berkeley extensions.
 .
@@ -3632,7 +3628,7 @@ is preferable.
 AT&T
 .I ms 's
 .CW AU
-macro recognized arguments that were used with some cover sheet types;
+macro supported arguments used with some document types;
 .I "groff ms"
 does not.
 .
@@ -3824,7 +3820,7 @@ Legacy features
 .
 .LP
 .I "groff ms"
-retains support for some legacy features solely to support rendering of
+retains support for some legacy features solely to support formatting of
 historical documents;
 contemporary ones should not use them because they can render poorly.
 .

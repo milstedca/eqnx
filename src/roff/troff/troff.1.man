@@ -213,7 +213,7 @@ or
 .I name
 .RI as\~ s
 or
-.IR string ;
+.I string;
 .I c
 must be a one-character name.
 .
@@ -345,17 +345,17 @@ and ordering.
 .TP
 .BI \-n\~ num
 Number the first page
-.IR num .
+.I num.
 .
 .
 .TP
 .BI \-o\~ list
 Output only pages in
-.IR list ,
+.I list,
 which is a comma-separated list of inclusive page ranges;
 .I n
 means page
-.IR n ,
+.I n,
 .IB m \- n
 means every page
 .RI between\~ m
@@ -370,7 +370,7 @@ means every page from
 .
 .I @g@troff
 stops processing and exits after formatting the last page enumerated in
-.IR list .
+.I list.
 .
 .
 .TP
@@ -387,7 +387,7 @@ as
 numeric
 .RI expression\~ n
 or
-.IR expr ;
+.I expr;
 .IR c \~must
 be a one-character name.
 .
@@ -416,7 +416,7 @@ and
 .TP
 .BI \-T\~ dev
 Prepare output for device
-.IR dev ,
+.I dev,
 rather than the default,
 .BR @DEVICE@ ;
 see
@@ -426,7 +426,7 @@ see
 .TP
 .B \-U
 Operate in
-.IR "unsafe mode" ,
+.I unsafe mode,
 enabling the
 .BR open ,
 .BR opena ,
@@ -454,7 +454,7 @@ Enable
 or inhibit
 .RB ( \-W )
 warnings in category
-.IR name .
+.I name.
 .
 See section \[lq]Warnings\[rq] below.
 .
@@ -870,7 +870,7 @@ describes the output device
 describes the font
 .I F
 of device
-.IR name .
+.I name.
 .
 .
 .P

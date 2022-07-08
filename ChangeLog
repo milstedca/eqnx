@@ -1,5 +1,14 @@
 2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (get_register, get_string): Reorder
+	null pointer inequality comparisons; they don't need to be in a
+	funny order because it's pretty hard to mistype `!=` as an
+	assignment operator.  Annotate them as null pointers to ease any
+	future migration to ISO C++11.  Use primitive type constructor
+	instead of C-style cast operator; this seems more idiomatic.
+
+2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/html/pre-html.cpp (generateImages): Flush the
 	standard error stream after writing to it in a loop.
 

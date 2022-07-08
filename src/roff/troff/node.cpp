@@ -4030,23 +4030,25 @@ int tag_node::ends_sentence()
   return 2;
 }
 
-// Get contents of register `p`--used only by suppress_node::tprint().
+// Get contents of register `p` as integer.
+// Used only by suppress_node::tprint().
 static int get_register(const char *p)
 {
-  assert(0 != p);
+  assert(p != 0 /* nullptr */);
   reg *r = (reg *)number_reg_dictionary.lookup(p);
-  assert(0 != r);
+  assert(r != 0 /* nullptr */);
   units value;
   assert(r->get_value(&value));
-  return (int)value;
+  return int(value);
 }
 
-// Get contents of string `p`--used only by suppress_node::tprint().
+// Get contents of register `p` as string.
+// Used only by suppress_node::tprint().
 static const char *get_string(const char *p)
 {
-  assert(0 != p);
+  assert(p != 0 /* nullptr */);
   reg *r = (reg *)number_reg_dictionary.lookup(p);
-  assert(0 != r);
+  assert(r != 0 /* nullptr */);
   return r->get_string();
 }
 
@@ -4186,8 +4188,7 @@ void suppress_node::tprint(troff_output_file *out)
 	//		      " suppress_start_page = %d\n",
 	//	  topdiv->get_page_number(), suppress_start_page);
 
-	// remember that the filename will contain a %d in which the
-	// image_no is placed
+	// `name` will contain a "%d" in which the image_no is placed.
 	fprintf(stderr,
 		"grohtml-info:page %d  %d  %d  %d  %d  %d  %s  %d  %d"
 		"  %s\n",

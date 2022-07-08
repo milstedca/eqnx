@@ -306,11 +306,13 @@ sub LocateFile
                 return("$p/$file");
             }
 
-            if ($tryafm and $p=~s'type1/'afm/'i)
+            my $ap=$p;
+
+            if ($tryafm and $ap=~s'type1/'afm/'i)
             {
-                if (-r "$p/$file")
+                if (-r "$ap/$file")
                 {
-                    return("$p/$file");
+                    return("$ap/$file");
                 }
             }
         }

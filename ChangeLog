@@ -1,3 +1,9 @@
+2022-07-08  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+        * font/devpdf/util/BuildFoundries.pl: Some systems store .afm
+        files in a parallel directory to the Type 1 files, restore
+        original path after checking for parallel directory.
+
 2022-07-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* font/devpdf/devpdf.am (font/devpdf/download): Call

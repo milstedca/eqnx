@@ -207,11 +207,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \\*[FS]\\
 ..
 .nr cov*rp-format 0
-.nr cov*rp-no 0
+.nr cov*rp-no-repeat-info 0
 .\" released paper format
 .de RP
 .nr cov*rp-format 1
-.if \\n[.$] .if '\\$1'no' .nr cov*rp-no 1
+.if \\n[.$] .if '\\$1'no' .nr cov*rp-no-repeat-info 1
 .if rPO .po \\n(POu
 .pn 0
 ..
@@ -402,7 +402,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	ev nf
 .	cov*fn-div
 .	ev
-.	ie \\n[cov*rp-no] .rm cov*fn-div
+.	ie \\n[cov*rp-no-repeat-info] .rm cov*fn-div
 .	el \{\
 .		rn cov*fn-div fn@overflow-div
 .		nr fn@have-overflow 1
@@ -417,7 +417,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	@error cover sheet overflow
 .pl \\n[cov*page-length]u
 .bp 1
-.if !\\n[cov*rp-no] .cov*tl-au-print
+.if !\\n[cov*rp-no-repeat-info] .cov*tl-au-print
 .rs
 .sp 1
 ..

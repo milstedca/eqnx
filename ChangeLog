@@ -1,3 +1,8 @@
+2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/s.tmac: Rename register `cov*rp-no` to
+	`cov*rp-no-repeat-info`.
+
 2022-07-08  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	* font/devpdf/util/BuildFoundries.pl (LocateFile): Some systems

@@ -1,5 +1,11 @@
 2022-07-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/devpdf.am (font/devpdf/download): Call
+	"BuildFoundries" with new `--strict` option so that the build
+	fails if the AFM files for the URW fonts can't be found.
+
+2022-07-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/util/BuildFoundries.pl: Add Boolean-value scalar
 	`beStrict` (defaults false) and new command-line option
 	`--strict` to make it true.

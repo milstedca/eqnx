@@ -118,7 +118,7 @@ font/devpdf/download: $(DEVPDFFONTMAP_1) $(DEVPDFFONTMAP_2) \
 	&& echo "# foundry	ps-name	psfile" >$@.tmp \
 	&& PATH="$(abs_top_builddir)$(GROFF_PATH_SEPARATOR)$(abs_top_builddir)/build-aux$(GROFF_PATH_SEPARATOR)$(PATH)" \
 	     $(abs_top_builddir)/font/devpdf/util/BuildFoundries \
-	       $(abs_top_builddir)/font/devpdf \
+	       --strict $(abs_top_builddir)/font/devpdf \
 	       '$(abs_top_srcdir)/font/devps : $(abs_top_builddir)/font/devps' \
 	       >>$@.tmp \
 	&& mv $@.tmp $@

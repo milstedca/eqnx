@@ -332,7 +332,7 @@ doc/meintro_fr.ps: doc/meintro_fr.me preconv
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
 	&& $(DOC_GROFF) -K utf8 -t -Tps -me -mfr $< >$@
 
-doc/ms.ps: $(doc_srcdir)/ms.ms
+doc/ms.ps: $(doc_srcdir)/ms.ms tbl
 	$(GROFF_V)$(MKDIR_P) `dirname $@` \
 	&& $(DOC_GROFF) -t -Tps -ms $(doc_srcdir)/ms.ms >$@
 

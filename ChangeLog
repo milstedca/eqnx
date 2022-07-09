@@ -1,3 +1,7 @@
+2022-07-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/doc.am (doc/ms.ps): Add dependency on "tbl".
+
 2022-07-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp (suppress_node::tprint): Add source

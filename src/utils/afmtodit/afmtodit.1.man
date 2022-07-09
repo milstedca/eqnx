@@ -466,10 +466,35 @@ device refers to it.
 .
 .
 .TP
+.I @FONTDIR@/\:\%devps/\:\%generate/\:\%dingbats.map
+.TQ
+.I @FONTDIR@/\:\%devps/\:\%generate/\:\%dingbats.rmap
+.TQ
+.I @FONTDIR@/\:\%devps/\:\%symbolmap
+.TQ
+.I @FONTDIR@/\:\%devps/\:\%generate/\:\%lgreekmap
+.TQ
 .I @FONTDIR@/\:\%devps/\:\%generate/\:\%textmap
-maps names in the Adobe Glyph List to
+map names in the Adobe Glyph List to
 .I groff
-special character identifiers.
+special character identifiers for Zapf Dingbats
+.RB ( ZD ),
+reversed Zapf Dingbats
+.RB ( ZDR ),
+symbol
+.RB ( S ),
+slanted symbol
+.RB ( SS ),
+and text fonts,
+respectively.
+.
+These
+.IR map-file s
+are used to produce the font description files provided with
+.I groff
+for the
+.I \%grops
+output driver.
 .
 .
 .\" ====================================================================

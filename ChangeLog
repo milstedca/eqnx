@@ -1,3 +1,10 @@
+2022-07-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/doc.am (doc/ms.ps): Add dependency on "eqn", and call
+	groff with "-e" option.
+	* src/utils/grog/tests/smoke-test.sh: Update expected "grog"
+	output for the ms.ms document.
+
 2022-07-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (doc/ms.ps): Add dependency on "tbl".

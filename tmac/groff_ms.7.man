@@ -894,8 +894,12 @@ following redefinition of the alias for
 .
 The formatted number of the current heading is available in
 .B \[rs]*[SN]
-(a feature first documented by Berkeley),
-facilitating its inclusion in
+(a feature first documented by Berkeley);
+this feature facilitates its inclusion in,
+for example,
+table captions,
+equation labels,
+and
 .BR .XS / .XA / .XE
 table of contents entries.
 .
@@ -1484,25 +1488,29 @@ preprocessor.
 .
 .TP
 .BR .EQ \~[\c
-.IR align ]
+.IR align \~[\c]
+.IR label ]]
 .TQ
 .B .EN
 Demarcate an equation to be processed by the
 .I eqn
 preprocessor.
 .
-The equation is center-aligned by default;
-the optional
+The equation is centered by default;
 .I align
-argument can be
+can be
 .BR C ,
 .BR L ,
 .RB or\~ I
-to center,
+to (explicitly) center,
 left-align,
 or indent it by
 .BR \[rs]n[DI] ,
 respectively.
+.
+If specified,
+.I label
+is set right-aligned.
 .
 .
 .TP

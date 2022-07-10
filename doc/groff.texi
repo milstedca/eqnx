@@ -3181,7 +3181,6 @@ footnotes, and inclusions of material such as tables and figures.
 * Indented regions in ms::
 * ms keeps and displays::
 * ms Insertions::
-* Example multi-page table::
 * ms Footnotes::
 * ms language and localization::
 @end menu
@@ -3402,9 +3401,9 @@ define the alias as follows.
 Any such change in numbering style becomes effective from the next use
 of @code{NH} following redefinition of the alias for @code{SN-STYLE}.
 The formatted number of the current heading is available in the
-@code{SN} string (a feature first documented by Berkeley), facilitating
-its inclusion in @code{XS}/@code{XA}/@code{XE} table of contents
-entries.
+@code{SN} string (a feature first documented by Berkeley); this feature
+facilitates its inclusion in, for example, table captions, equation
+labels, and @code{XS}/@code{XA}/@code{XE} table of contents entries.
 @endDefmpstr
 
 @Defmac {SH, [@Var{depth}], ms}
@@ -3911,7 +3910,7 @@ effect at the next display boundary.
 
 @c ---------------------------------------------------------------------
 
-@node ms Insertions, Example multi-page table, ms keeps and displays, ms Body Text
+@node ms Insertions, ms Footnotes, ms keeps and displays, ms Body Text
 @subsubsection Tables, figures, equations, and references
 @cindex @file{ms} macros, tables
 @cindex @file{ms} macros, figures
@@ -3950,13 +3949,13 @@ can create @code{pic} input manually or by using a program such as
 @code{xfig}.
 @endDefmac
 
-@DefmacList {EQ, [@Var{align}], ms}
+@DefmacList {EQ, [@Var{align} [@Var{label}], ms}
 @DefmacListEndx {EN, , ms}
 Demarcate an equation to be processed by the @code{eqn} preprocessor.
-The equation is center-aligned by default; the optional @var{align}
-argument can be @samp{C}, @samp{L}, or @samp{I} to center, left-align,
-or indent it by the amount stored in the @code{DI} register,
-respectively.
+The equation is centered by default; @var{align} can be @samp{C},
+@samp{L}, or @samp{I} to (explicitly) center, left-align, or indent it
+by the amount stored in the @code{DI} register, respectively.  If
+specified, @var{label} is set right-aligned.
 @endDefmac
 
 @DefmacList {[, , ms}
@@ -3972,17 +3971,8 @@ When @code{refer} emits collected references (as might be done on a
 ``Works Cited'' page), it interpolates the @code{REFERENCES} string as
 an unnumbered heading (@code{SH}).
 
-@menu
-* Example multi-page table::
-@end menu
-
-@c ---------------------------------------------------------------------
-
-@node Example multi-page table, ms Footnotes, ms Insertions, ms Body Text
-@subsubsection An example multi-page table
-@cindex example markup, multi-page table [@file{ms}]
-@cindex multi-page table, example markup [@file{ms}]
-
+@cindex table, multi-page, example [@file{ms}]
+@cindex multi-page table example [@file{ms}]
 The following is an example of how to set up a table that may print
 across two or more pages.
 
@@ -3999,13 +3989,34 @@ GH-1978@arrow{}Fribulating gonkulator
 .TE
 @endCartoucheExample
 
+@noindent
 Attempting to place a multi-page table inside a keep can lead to
 unpleasant results, particularly if the @code{tbl} @code{allbox} option
 is used.
 
+@cindex equation example [@file{ms}]
+Mathematics can be typeset using the language of the @code{eqn}
+preprocessor.
+
+@CartoucheExample
+.EQ C (\*[SN-NO-DOT]a)
+p ~ = ~ q sqrt @{ ( 1 + ~ ( x / q sup 2 ) @}
+.EN
+@endCartoucheExample
+
+@noindent
+This input formats a labelled equation.  We used the @code{SN-NO-DOT}
+string to base the equation label on the current heading number, giving
+us more flexibility to reorganize the document.
+
+Remember to run any desired preprocessors on the input; @command{groff}
+options will take care of this.  Use @option{-e} for @command{geqn},
+@option{-p} for @command{gpic}, @option{-R} for @command{grefer}, and
+@option{-t} for @command{gtbl}.
+
 @c ---------------------------------------------------------------------
 
-@node ms Footnotes,  , Example multi-page table, ms Body Text
+@node ms Footnotes, , ms Insertions, ms Body Text
 @subsubsection Footnotes
 @cindex @file{ms} macros, footnotes
 @cindex footnotes [@file{ms}]

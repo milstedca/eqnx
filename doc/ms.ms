@@ -1279,8 +1279,12 @@ following redefinition of the alias for
 .
 The formatted number of the current heading is available in
 .CW \[rs]*[SN]
-(a feature first documented by Berkeley),
-facilitating its inclusion in
+(a feature first documented by Berkeley);
+this feature facilitates its inclusion in,
+for example,
+table captions,
+equation labels,
+and
 .CW .XS /\c
 .CW .XA /\c
 .CW .XE
@@ -2382,7 +2386,8 @@ _
 T{
 \&.EQ
 .R
-.I align ] [
+.I align \~[\c [
+.I label ]]
 .CW
 .br
 \&.EN
@@ -2391,19 +2396,22 @@ Demarcate an equation to be processed by the
 .I eqn
 preprocessor.
 .
-The equation is center-aligned by default;
-the optional
+The equation is centered by default;
 .I align
-argument can be
+can be
 .CW C ,
 .CW L ,
 or
 .CW I
-to center,
+to (explicitly) center,
 left-align,
 or indent it by
 .CW \[rs]n[DI] ,
 respectively.
+.
+If specified,
+.I label
+is set right-aligned.
 T}
 _
 T{
@@ -2436,14 +2444,7 @@ as an unnumbered heading
 .
 .
 .KS
-.NH 3
-An example multi-page table
-.XS
-		An example multi-page table
-.XE
-.
-.
-.LP
+.PP
 The following is an example of how to set up a table that may print
 across two or more pages.
 .
@@ -2473,7 +2474,6 @@ T}
 .TE
 .
 .
-.PP
 Attempting to place a multi-page table inside a keep can lead to
 unpleasant results,
 particularly if the
@@ -2481,6 +2481,56 @@ particularly if the
 .CW allbox
 option is used.
 .KE
+.
+.
+.PP
+Mathematics can be typeset using the language of the
+.I eqn
+preprocessor.
+.
+.
+.TS
+box center;
+Lf(CR).
+\&.EQ C (\[rs]*[SN\-NO\-DOT]a)
+p \[ti] = \[ti] q sqrt { ( 1 + \[ti] ( x / q sup 2 ) }
+\&.EN
+.TE
+.
+.
+This input formats a labelled equation.
+.
+We used the
+.CW SN\-NO\-DOT
+string to base the equation label on the current heading number,
+giving us more flexibility to reorganize the document.
+.
+.
+.EQ C (\*[SN-NO-DOT]a)
+p ~ = ~ q sqrt { ( 1 + ~ ( x / q sup 2 ) }
+.EN
+.
+.
+.PP
+Remember to run any desired preprocessors on the input;
+.I groff
+options
+will take care of this.
+.
+Use
+.CW \-e
+for
+.I eqn ,
+.CW \-p
+for
+.I pic ,
+.CW \-R
+for
+.I refer ,
+and
+.CW \-t
+for
+.I tbl.
 .
 .
 .KS

@@ -1,5 +1,17 @@
 2022-07-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[afmtodit]: Clarify diagnostic message.
+
+	* src/utils/afmtodit/afmtodit.pl: When we have excess Adobe
+	Glyph List mappings for a groff special character identifier
+	{making the reverse mapping from groff special character to font
+	glyph name ambiguous}, report that we're ignoring the excess.
+	Use "print STDERR" instead of Perl "warn" built-in since we want
+	diagnostic messages to start with the name of the program
+	emitting them.
+
+2022-07-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Name and place PS->groff glyph name maps consistently.
 
 	* font/devps/symbolmap: Rename from this...

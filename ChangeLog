@@ -35,6 +35,17 @@
 	* font/devps/generate/Makefile (SS):
 	* src/utils/afmtodit/afmtodit.1.man: Reflect rename.
 
+	* font/devps/generate/textmap: Rename from this...
+	* font/devps/generate/text.map: ...to this.
+
+	* font/devpdf/Foundry.in:
+	* font/devpdf/devpdf.am (DEVPDFFONTMAP_1):
+	* font/devps/devps.am (DEVPSGENFILES):
+	* font/devps/generate/Makefile (TEXTMAP):
+	* src/devices/gropdf/gropdf.1.man:
+	* src/devices/grops/grops.1.man:
+	* src/utils/afmtodit/afmtodit.1.man: Reflect rename.
+
 2022-07-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (doc/ms.ps): Add dependency on "eqn", and call

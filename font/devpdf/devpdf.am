@@ -42,7 +42,7 @@ devpdffontmapdir = $(devpdffontdir)/map
 DEVPDFFONTMAP_1 = \
   font/devpdf/map/dingbats.map \
   font/devpdf/map/symbolchars \
-  font/devpdf/map/textmap
+  font/devpdf/map/text.map
 DEVPDFFONTMAP_2 = font/devpdf/map/symbol.map
 devpdffontmap_DATA = $(DEVPDFFONTMAP_1) $(DEVPDFFONTMAP_2)
 

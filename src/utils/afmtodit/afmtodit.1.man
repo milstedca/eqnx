@@ -474,7 +474,7 @@ device refers to it.
 .TQ
 .I @FONTDIR@/\:\%devps/\:\%generate/\:\%symbol.map
 .TQ
-.I @FONTDIR@/\:\%devps/\:\%generate/\:\%textmap
+.I @FONTDIR@/\:\%devps/\:\%generate/\:\%text.map
 map names in the Adobe Glyph List to
 .I groff
 special character identifiers for Zapf Dingbats

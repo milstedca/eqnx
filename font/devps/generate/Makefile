@@ -62,7 +62,7 @@ RFLAG=-i 0 -m
 NOLIGFLAG=-n
 TEXTENC=$(srcdir)/../text.enc
 EFLAG=-e $(TEXTENC)
-TEXTMAP=$(srcdir)/textmap
+TEXTMAP=$(srcdir)/text.map
 AFMNAME=$(srcdir)/afmname
 
 RM=rm -f

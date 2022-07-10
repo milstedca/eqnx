@@ -115,7 +115,7 @@ DEVPSGENFILES = \
   font/devps/generate/slanted-symbol.map \
   font/devps/generate/symbol.map \
   font/devps/generate/symbolchars \
-  font/devps/generate/textmap
+  font/devps/generate/text.map
 DEVPSGENSCRIPTS = \
   font/devps/generate/afmname \
   font/devps/generate/symbol.sed

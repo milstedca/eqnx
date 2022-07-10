@@ -1404,7 +1404,7 @@ For instance,
 .RS \" two RS calls to get inboard of IP indentation
 .EX
 $ \c
-.B afmtodit BrushScriptX\-Italic.afm textmap BSI
+.B afmtodit BrushScriptX\-Italic.afm text.map BSI
 .EE
 .RE \" but only one to get back to it
 .

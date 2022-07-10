@@ -241,7 +241,8 @@ ZD:
 
 SS: $(OUTDIR)/symbolsl.afm
 	$(AFMTODIT) -s -x $(IFLAG) \
-	  $(OUTDIR)/symbolsl.afm $(srcdir)/lgreekmap $(OUTDIR)/$@
+	  $(OUTDIR)/symbolsl.afm $(srcdir)/slanted-symbol.map \
+	  $(OUTDIR)/$@
 
 S: symbol.afm
 	$(AFMTODIT) -s $(RFLAG) \
@@ -283,7 +284,7 @@ ZD: $(srcdir)/dingbats.map
 ZDR: $(srcdir)/dingbats-reversed.map
 $(TEXTFONTS): $(TEXTMAP) $(TEXTENC)
 $(SPECIALFONTS): $(srcdir)/symbol.map
-$(GREEKFONTS): $(srcdir)/lgreekmap
+$(GREEKFONTS): $(srcdir)/slanted-symbol.map
 $(FONTS): $(DESC)
 
 $(srcdir)/symbol.map: $(TEXTMAP) $(srcdir)/symbolchars

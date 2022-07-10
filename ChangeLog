@@ -28,6 +28,13 @@
 	* font/devps/generate/Makefile (ZDR):
 	* src/utils/afmtodit/afmtodit.1.man: Reflect rename.
 
+	* font/devps/generate/lgreekmap: Rename from this...
+	* font/devps/generate/slanted-symbol.map: ...to this.
+
+	* font/devps/devps.am (DEVPSGENFILES):
+	* font/devps/generate/Makefile (SS):
+	* src/utils/afmtodit/afmtodit.1.man: Reflect rename.
+
 2022-07-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (doc/ms.ps): Add dependency on "eqn", and call

@@ -112,7 +112,7 @@ DEVPSGENFILES = \
   font/devps/generate/Makefile \
   font/devps/generate/dingbats.map \
   font/devps/generate/dingbats-reversed.map \
-  font/devps/generate/lgreekmap \
+  font/devps/generate/slanted-symbol.map \
   font/devps/generate/symbol.map \
   font/devps/generate/symbolchars \
   font/devps/generate/textmap

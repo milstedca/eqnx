@@ -113,6 +113,7 @@ DEVPSGENFILES = \
   font/devps/generate/dingbats.map \
   font/devps/generate/dingbats.rmap \
   font/devps/generate/lgreekmap \
+  font/devps/generate/symbol.map \
   font/devps/generate/symbolchars \
   font/devps/generate/textmap
 DEVPSGENSCRIPTS = \
@@ -123,7 +124,6 @@ dist_devpsgen_DATA = $(DEVPSGENFILES) $(DEVPSGENSCRIPTS)
 
 MOSTLYCLEANFILES += $(DEVPSFONTFILES_GENERATED)
 EXTRA_DIST += \
-  font/devps/symbolmap \
   font/devps/DESC.in  \
   font/devps/prologue.ps \
   font/devps/psstrip.sed \

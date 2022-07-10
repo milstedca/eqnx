@@ -1,5 +1,28 @@
 2022-07-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Name and place PS->groff glyph name maps consistently.
+
+	* font/devps/symbolmap: Rename from this...
+	* font/devps/generate/symbol.map: ...to this.
+
+	* font/devpdf/devpdf.am (font/devpdf/map/symbolmap): Rename
+	target...
+	(font/devpdf/map/symbol.map): ...to this.
+	(font/devpdf/map/symbol.map): Copy "devps" version of file from
+	its new location in the "generate" subdirectory.
+
+	* font/devpdf/Foundry.in: Reflect rename.
+
+	* font/devps/generate/Makefile (symbolmap): Rename target...
+	($(srcdir)/symbol.map): ...to this.
+
+	* font/devps/devps.am (DEVPSGENFILES, EXTRA_DIST):
+	* font/devps/generate/Makefile (S, EURO $(SPECIALFONTS), clean):
+	* src/utils/afmtodit/afmtodit.1.man: Reflect rename and
+	relocation.
+
+2022-07-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am (doc/ms.ps): Add dependency on "eqn", and call
 	groff with "-e" option.
 	* src/utils/grog/tests/smoke-test.sh: Update expected "grog"

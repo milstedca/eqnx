@@ -43,7 +43,7 @@ DEVPDFFONTMAP_1 = \
   font/devpdf/map/dingbats.map \
   font/devpdf/map/symbolchars \
   font/devpdf/map/textmap
-DEVPDFFONTMAP_2 = font/devpdf/map/symbolmap
+DEVPDFFONTMAP_2 = font/devpdf/map/symbol.map
 devpdffontmap_DATA = $(DEVPDFFONTMAP_1) $(DEVPDFFONTMAP_2)
 
 EXTRA_DIST += \
@@ -58,9 +58,9 @@ font/devpdf/enc/text.enc:
 	$(AM_V_at)cp -f $(top_srcdir)/font/devps/text.enc \
 	  $(top_builddir)/font/devpdf/enc
 
-font/devpdf/map/symbolmap:
+font/devpdf/map/symbol.map:
 	$(AM_V_at)$(MKDIR_P) $(top_builddir)/font/devpdf/map
-	$(AM_V_at)cp -f $(top_srcdir)/font/devps/symbolmap \
+	$(AM_V_at)cp -f $(top_srcdir)/font/devps/generate/symbol.map \
 	  $(top_builddir)/font/devpdf/map
 
 $(DEVPDFFONTMAP_1):

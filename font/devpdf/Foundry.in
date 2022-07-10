@@ -110,7 +110,7 @@ PB|N|r|textmap|text.enc|P052-Bold.t1!P052-Bold!URWPalladioL-Bold!p052004l.pfb
 PBI|N|i|textmap|text.enc|P052-BoldItalic.t1!P052-BoldItalic!URWPalladioL-BoldItal!p052024l.pfb
 PI|N|i|textmap|text.enc|P052-Italic.t1!P052-Italic!URWPalladioL-Ital!p052023l.pfb
 PR|N|r|textmap|text.enc|P052-Roman.t1!P052-Roman!URWPalladioL-Roma!p052003l.pfb
-S|N|sr|symbolmap||StandardSymbolsPS.t1!StandardSymbolsPS!StandardSymL!s050000l.pfb
+S|N|sr|symbol.map||StandardSymbolsPS.t1!StandardSymbolsPS!StandardSymL!s050000l.pfb
 TB|N|r|textmap|text.enc|NimbusRoman-Bold.t1!NimbusRoman-Bold!NimbusRomNo9L-Medi!n021004l.pfb
 TBI|N|i|textmap|text.enc|NimbusRoman-BoldItalic.t1!NimbusRoman-BoldItalic!NimbusRomNo9L-MediItal!n021024l.pfb
 TI|N|i|textmap|text.enc|NimbusRoman-Italic.t1!NimbusRoman-Italic!NimbusRomNo9L-ReguItal!n021023l.pfb

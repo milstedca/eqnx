@@ -470,9 +470,9 @@ device refers to it.
 .TQ
 .I @FONTDIR@/\:\%devps/\:\%generate/\:\%dingbats.rmap
 .TQ
-.I @FONTDIR@/\:\%devps/\:\%symbolmap
-.TQ
 .I @FONTDIR@/\:\%devps/\:\%generate/\:\%lgreekmap
+.TQ
+.I @FONTDIR@/\:\%devps/\:\%generate/\:\%symbol.map
 .TQ
 .I @FONTDIR@/\:\%devps/\:\%generate/\:\%textmap
 map names in the Adobe Glyph List to

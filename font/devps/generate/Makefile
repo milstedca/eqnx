@@ -245,7 +245,7 @@ SS: $(OUTDIR)/symbolsl.afm
 
 S: symbol.afm
 	$(AFMTODIT) -s $(RFLAG) \
-	  symbol.afm symbolmap $(OUTDIR)/$@
+	  symbol.afm $(srcdir)/symbol.map $(OUTDIR)/$@
 
 ZDR: $(OUTDIR)/zapfdr.afm
 	$(AFMTODIT) -s $(RFLAG) \
@@ -254,7 +254,7 @@ ZDR: $(OUTDIR)/zapfdr.afm
 # the map is just a dummy
 EURO: freeeuro.afm
 	$(AFMTODIT) $(RFLAG) \
-	  freeeuro.afm symbolmap $(OUTDIR)/$@
+	  freeeuro.afm $(srcdir)/symbol.map $(OUTDIR)/$@
 
 freeeuro.afm freeeuro.pfa: $(srcdir)/freeeuro.sfd
 	fontforge -script $(srcdir)/sfdtopfa.pe $(srcdir)/freeeuro.sfd \
@@ -281,11 +281,11 @@ zapfdr.afm: $(srcdir)/apfdr.sed
 ZD: $(srcdir)/dingbats.map
 ZDR: $(srcdir)/dingbats.rmap
 $(TEXTFONTS): $(TEXTMAP) $(TEXTENC)
-$(SPECIALFONTS): symbolmap
+$(SPECIALFONTS): $(srcdir)/symbol.map
 $(GREEKFONTS): $(srcdir)/lgreekmap
 $(FONTS): $(DESC)
 
-symbolmap: $(TEXTMAP) $(srcdir)/symbolchars
+$(srcdir)/symbol.map: $(TEXTMAP) $(srcdir)/symbolchars
 	printf \
 	  '#\n# This is a list of all predefined groff symbols.\n#\n' \
 	  > $(OUTDIR)/$@ \
@@ -293,8 +293,8 @@ symbolmap: $(TEXTMAP) $(srcdir)/symbolchars
 
 clean:
 	cd $(OUTDIR) \
-	  && $(RM) freeeuro.afm freeeuro.pfa symbol.afm symbolmap \
-	    symbolsl.afm zapfdr.afm
+	  && $(RM) freeeuro.afm freeeuro.pfa symbol.afm \
+	    $(srcdir)/symbol.map symbolsl.afm zapfdr.afm
 
 realclean: clean
 	cd $(OUTDIR) \

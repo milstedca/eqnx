@@ -468,7 +468,7 @@ device refers to it.
 .TP
 .I @FONTDIR@/\:\%devps/\:\%generate/\:\%dingbats.map
 .TQ
-.I @FONTDIR@/\:\%devps/\:\%generate/\:\%dingbats.rmap
+.I @FONTDIR@/\:\%devps/\:\%generate/\:\%dingbats\-reversed.map
 .TQ
 .I @FONTDIR@/\:\%devps/\:\%generate/\:\%lgreekmap
 .TQ

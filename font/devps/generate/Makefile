@@ -249,7 +249,8 @@ S: symbol.afm
 
 ZDR: $(OUTDIR)/zapfdr.afm
 	$(AFMTODIT) -s $(RFLAG) \
-	  $(OUTDIR)/zapfdr.afm $(srcdir)/dingbats.rmap $(OUTDIR)/$@
+	  $(OUTDIR)/zapfdr.afm $(srcdir)/dingbats-reversed.map \
+	  $(OUTDIR)/$@
 
 # the map is just a dummy
 EURO: freeeuro.afm
@@ -279,7 +280,7 @@ zapfdr.afm: $(srcdir)/apfdr.sed
 	  `$(AFMNAME) $(afmdir)/ZapfDingbats.afm` >$(OUTDIR)/$@
 
 ZD: $(srcdir)/dingbats.map
-ZDR: $(srcdir)/dingbats.rmap
+ZDR: $(srcdir)/dingbats-reversed.map
 $(TEXTFONTS): $(TEXTMAP) $(TEXTENC)
 $(SPECIALFONTS): $(srcdir)/symbol.map
 $(GREEKFONTS): $(srcdir)/lgreekmap

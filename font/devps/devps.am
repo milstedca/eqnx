@@ -111,7 +111,7 @@ dist_olddevpsfont_DATA = $(OLDDEVPSFONTFILES)
 DEVPSGENFILES = \
   font/devps/generate/Makefile \
   font/devps/generate/dingbats.map \
-  font/devps/generate/dingbats.rmap \
+  font/devps/generate/dingbats-reversed.map \
   font/devps/generate/lgreekmap \
   font/devps/generate/symbol.map \
   font/devps/generate/symbolchars \

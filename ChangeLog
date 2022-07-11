@@ -12,7 +12,7 @@
 
 2022-07-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	* font/devpdf/util/BuildFoundries.pl: Add Boolean-value scalar
+	* font/devpdf/util/BuildFoundries.pl: Add Boolean-valued scalar
 	`beStrict` (defaults false) and new command-line option
 	`--strict` to make it true.
 	(LoadFoundry): Check return value of subroutine `LocateAF`.
@@ -1593,7 +1593,7 @@
 	so that we report the line number as it was before the last
 	newline character seen.  This off-by-one error was partially
 	masked by...
-	* src/preproc/refer/refer.cpp (do_file): ...initialzation of
+	* src/preproc/refer/refer.cpp (do_file): ...initialization of
 	`current_lineno` to zero.  However, for syntax problems (as
 	opposed to the semantic problems of refer(1) command
 	processing), this could result in complaints about the line

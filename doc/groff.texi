@@ -3560,7 +3560,6 @@ also portable to older @file{ms} implementations.
 The course's students found one C language keyword
 (\c
 .CW \%static\c
-.R
 ) most troublesome.
 @endCartoucheExample
 

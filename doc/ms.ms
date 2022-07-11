@@ -1699,14 +1699,11 @@ The course\[aq]s students found one C language keyword
 .br
 \&.CW \[rs]%static\[rs]c
 .br
-\&.R
-.br
 ) most troublesome.
 T}	T{
 The course's students found one C language keyword
 (\c
 .CW \%static\c
-.R
 ) most troublesome.
 T}
 .TE

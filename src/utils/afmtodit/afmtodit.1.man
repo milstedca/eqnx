@@ -189,11 +189,18 @@ it is best to access them with glyph names only.
 .
 .
 .P
-If the font is downloadable to the device as a file,
-it may be listed in the file
-.IR @FONTDIR@/\:\%devps/\:\%download ;
-see
-.MR grops @MAN1EXT@ .
+If the font file proper
+(not just its metrics)
+is available,
+listing it in the files
+.I @FONTDIR@/\:\%devps/\:\%download
+and/or
+.IR @FONTDIR@/\:\%devpdf/\:\%download ;
+enables it to be embedded in the output produced by
+.MR grops @MAN1EXT@
+and
+.MR gropdf @MAN1EXT@ ,
+respectively.
 .
 .
 .P
@@ -452,17 +459,6 @@ on device
 .I @FONTDIR@/\:\%devps/\:\%download
 lists fonts available for embedding within the PostScript document
 (or download to the device).
-.
-.
-.TP
-.I @FONTDIR@/\:\%devps/\:text.enc
-describes the encoding scheme used by most PostScript Type\~1 fonts;
-the
-.B \%encoding
-directive of
-font description files for the
-.B ps
-device refers to it.
 .
 .
 .TP

@@ -72,8 +72,7 @@ automatically numbered headings,
 several different paragraph styles,
 a variety of text styling options,
 footnotes,
-multi-column page layouts,
-and indexing.
+and multi-column page layouts.
 .
 .I ms
 supports the

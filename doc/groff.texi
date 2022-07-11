@@ -2432,8 +2432,8 @@ The @file{ms} (``manuscript'') package is suitable for the preparation
 of letters, memoranda, reports, and books.  These @code{groff}
 macros feature cover page and table of contents generation,
 automatically numbered headings, several different paragraph styles, a
-variety of text styling options, footnotes, multi-column page layouts,
-and indexing.  @file{ms} supports the @command{tbl}, @command{eqn},
+variety of text styling options, footnotes, and multi-column page
+layouts.  @file{ms} supports the @command{tbl}, @command{eqn},
 @command{pic}, and @command{refer} preprocessors for inclusion of
 tables, mathematical equations, diagrams, and standardized bibliographic
 citations.  This implementation is mostly compatible with the documented
@@ -2641,7 +2641,7 @@ interspersed with multi-level headings (chapters, sections, subsections,
 and so forth) and augmented by lists, footnotes, tables, diagrams, and
 similar material.  @xref{ms Body Text}.
 
-@item Tables of contents and indexes
+@item Tables of contents
 Macros enable the collection of entries for a table of contents (or
 index) as the material they discuss appears in the document.  You then
 call a macro to emit the table of contents at the end of your document.

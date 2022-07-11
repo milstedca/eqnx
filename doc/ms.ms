@@ -57,8 +57,7 @@ automatically numbered headings,
 several different paragraph styles,
 a variety of text styling options,
 footnotes,
-multi-column page layouts,
-and indexing.
+and multi-column page layouts.
 .
 .I ms
 supports the
@@ -441,7 +440,7 @@ and similar material.
 See section \[lq]Body text\[rq] below.
 .
 .
-.IP "\fBTables of contents and indexes\fP"
+.IP "\fBTables of contents\fP"
 Macros enable the collection of entries for a table of contents
 (or index)
 as the material they discuss appears in the document.

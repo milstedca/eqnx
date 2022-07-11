@@ -3229,6 +3229,10 @@ can set text in as many columns as reasonably fit on the page.
 The following macros force a page break if a multi-column layout is
 active when they are called.
 .
+.CW \[rs]n[MINGW]
+is the default minimum gutter width;
+it is a GNU extension.
+.
 .
 .TS
 box;
@@ -3257,10 +3261,6 @@ Otherwise,
 is the width of each column and
 .I gutter-width
 is the minimum distance between columns.
-.
-.CW \[rs]n[MINGW]
-is the default minimum gutter width;
-it is a GNU extension.
 T}
 .TE
 .KE

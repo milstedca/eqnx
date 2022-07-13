@@ -95,7 +95,8 @@ sub LoadFoundry
 	    push(@{$foundrypath},(split(':',$r[2])),@{$devps});
 	    foreach my $j (0..$#{$foundrypath})
 	    {
-		if ($foundrypath->[$j]=~m'\s*\(gs\)')
+		if (defined($foundrypath->[$j])
+		    && $foundrypath->[$j]=~m'\s*\(gs\)')
 		{
 		    splice(@{$foundrypath},$j,1,@{$GSpath});
 		}

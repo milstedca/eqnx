@@ -1,5 +1,12 @@
 2022-07-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Separate
+	lists of Type 1 font names with spaces as well as commas, for
+	better diagnostic message readability.  Also begin message in
+	lowercase (per GNU Coding Standards).
+
+2022-07-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Verify that
 	`$foundrypath->[$j]` is defined before operating on it.
 

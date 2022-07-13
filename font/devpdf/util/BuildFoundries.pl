@@ -129,8 +129,8 @@ sub LoadFoundry
 			if (uc($r[1]) ne 'Y')
 			{
 			    $gotf=0;
-			    my $fns=join(',',split('!',$r[5]));
-			    Warn("Unable to locate font(s) $fns");
+			    my $fns=join(', ',split('!',$r[5]));
+			    Warn("unable to locate font file(s): $fns");
 			    $notFoundFont=1;
 			    unlink $gfont;	# Unable to find the postscript file for the font just created by afmtodit
 			}

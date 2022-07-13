@@ -116,23 +116,28 @@ sub LoadFoundry
 
 	    if ($r[2] eq '')
 	    {
-		# Don't run afmtodit, just copy the grops font file
-
+		# Don't run afmtodit; just copy the groff font
+		# description file for grops.
 		my $gotf=1;
 		my $gropsfnt=LocateFile($devps,$r[0],0);
-
 		if ($gropsfnt ne '' and -r "$gropsfnt")
 		{
 		    my $psfont=UseGropsVersion($gropsfnt);
-		    if (!PutDownload($psfont,LocatePF($foundrypath,$r[5]),uc($r[1])))
+		    # To be embeddable in PDF, the font file name itself
+		    # needs to be located and written to "download".
+		    if (!PutDownload($psfont,
+				     LocatePF($foundrypath,$r[5]),
+					      uc($r[1])))
 		    {
 			if (uc($r[1]) ne 'Y')
 			{
 			    $gotf=0;
 			    my $fns=join(', ',split('!',$r[5]));
-			    Warn("unable to locate font file(s): $fns");
+			    Warn("groff font '$gfont' will not be"
+				 . " available for PDF output; unable"
+				 . " to locate font file(s): $fns");
 			    $notFoundFont=1;
-			    unlink $gfont;	# Unable to find the postscript file for the font just created by afmtodit
+			    unlink $gfont;
 			}
 		    }
 		    Notice("Copied grops font $gfont...") if $gotf;

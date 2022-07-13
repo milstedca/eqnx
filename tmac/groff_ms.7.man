@@ -2582,7 +2582,7 @@ These include macros implementing several document type formats
 .BR MR , \" memorandum for record
 .BR TM , \" technical memorandum
 .BR TR ), \" technical report
-were meaningful only in conjuction with the use of certain document
+were meaningful only in conjunction with the use of certain document
 types
 (\c
 .BR AT , \" attachments

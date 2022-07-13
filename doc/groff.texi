@@ -4529,7 +4529,7 @@ implementing several document type formats
 @code{MR}, @c memorandum for record
 @code{TM}, @c technical memorandum
 @code{TR}), @c technical report
-were meaningful only in conjuction with the use of certain document
+were meaningful only in conjunction with the use of certain document
 types
 (@code{AT}, @c attachments
 @code{CS}, @c cover sheet info for `TM` documents
@@ -4545,11 +4545,16 @@ stored the postal addresses of Bell Labs sites
 or lack a stable definition historically
 (@code{UX}). @c Unix; on 1st use, add footnote id'ing trademark owner
 To compatibly render historical @file{ms} documents using these macros,
-we advise you to define replacements with an authentically typeset
-original at hand.  For informal purposes, a simple definition of
-@code{UX} should maintain the readability of the document's substance.
+we advise your documents to invoke the @code{rm} request to remove any
+such macros it uses and then define replacements with an authentically
+typeset original at hand.@footnote{The removal beforehand is necessary
+because @code{groff} @file{ms} aliases these macros to a diagnostic
+macro, and you want to redefine the aliased name, not its target.}  For
+informal purposes, a simple definition of @code{UX} should maintain the
+readability of the document's substance.
 
 @CartoucheExample
+.rm UX
 .ds UX Unix\"
 @endCartoucheExample
 

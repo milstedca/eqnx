@@ -3832,7 +3832,7 @@ These include macros implementing several document type formats
 .CW MR , \" memorandum for record
 .CW TM , \" technical memorandum
 .CW TR ), \" technical report
-were meaningful only in conjuction with the use of certain document
+were meaningful only in conjunction with the use of certain document
 types
 (\c
 .CW AT , \" attachments
@@ -3854,8 +3854,17 @@ or lack a stable definition historically
 To compatibly render historical
 .I ms
 documents using these macros,
-we advise you to define replacements with an authentically typeset
-original at hand.
+we advise your documents to invoke the
+.CW rm
+request to remove any such macros it uses and then define replacements
+with an authentically typeset original at hand.\**
+.FS
+The removal beforehand is necessary because
+.I "groff ms"
+aliases these macros to a diagnostic macro,
+and you want to redefine the aliased name,
+not its target.
+.FE
 .
 For informal purposes,
 a simple definition of
@@ -3866,6 +3875,7 @@ should maintain the readability of the document's substance.
 .TS
 box center;
 lf(CR).
+\&.rm UX
 \&.ds UX Unix\[rs]"
 .TE
 .

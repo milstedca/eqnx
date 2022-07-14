@@ -1,5 +1,18 @@
 2022-07-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Add sanity checks for font description file generation
+	for PDF output device, prompted by discussion with Ingo
+	Schwarze.  See <https://lists.gnu.org/archive/html/groff/\
+	2022-06/msg00094.html>.
+
+	* font/devpdf/tests/basic-fonts-present.sh:
+	* font/devpdf/tests/urw-fonts-present.sh: Add files.
+
+	* font/devpdf/devpdf.am (font_devpdf_TESTS): Add the former test
+	unconditionally, and the latter only if `HAVE_URW_FONTS`.
+
+2022-07-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/devpdf.am: Refactor to simplify.  Now that
 	symbol.map lives in the "devpdf/generate" directory along with
 	the other map files, it doesn't need a dedicated Makefile target

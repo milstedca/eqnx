@@ -170,6 +170,15 @@ uninstall_devpdf:
 	  rmdir $(DESTDIR)$(devpdffontdir); \
 	fi
 
+font_devpdf_TESTS = \
+  font/devpdf/tests/basic-fonts-present.sh
+
+if HAVE_URW_FONTS
+font_devpdf_TESTS += font/devpdf/tests/urw-fonts-present.sh
+endif
+
+TESTS += $(font_devpdf_TESTS)
+EXTRA_DIST += $(font_devpdf_TESTS)
 
 # Local Variables:
 # mode: makefile-automake

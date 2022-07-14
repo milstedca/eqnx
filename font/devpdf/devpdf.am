@@ -39,12 +39,12 @@ devpdffontencdir = $(devpdffontdir)/enc
 devpdffontenc_DATA = font/devpdf/enc/text.enc
 
 devpdffontmapdir = $(devpdffontdir)/map
-DEVPDFFONTMAP_1 = \
+devpdffontmapdata = \
   font/devpdf/map/dingbats.map \
+  font/devpdf/map/symbol.map \
   font/devpdf/map/symbolchars \
   font/devpdf/map/text.map
-DEVPDFFONTMAP_2 = font/devpdf/map/symbol.map
-devpdffontmap_DATA = $(DEVPDFFONTMAP_1) $(DEVPDFFONTMAP_2)
+devpdffontmap_DATA = $(devpdffontmapdata)
 
 EXTRA_DIST += \
   font/devpdf/DESC.in \
@@ -58,12 +58,7 @@ font/devpdf/enc/text.enc:
 	$(AM_V_at)cp -f $(top_srcdir)/font/devps/text.enc \
 	  $(top_builddir)/font/devpdf/enc
 
-font/devpdf/map/symbol.map:
-	$(AM_V_at)$(MKDIR_P) $(top_builddir)/font/devpdf/map
-	$(AM_V_at)cp -f $(top_srcdir)/font/devps/generate/symbol.map \
-	  $(top_builddir)/font/devpdf/map
-
-$(DEVPDFFONTMAP_1):
+$(devpdffontmapdata):
 	$(AM_V_at)$(MKDIR_P) $(top_builddir)/font/devpdf/map
 	$(AM_V_at)cp -f \
 	  $(top_srcdir)/font/devps/generate/`basename $@` \
@@ -111,8 +106,8 @@ else
 	  $(devpdf_srcdir)/Foundry.in >$@
 endif
 
-font/devpdf/download: $(DEVPDFFONTMAP_1) $(DEVPDFFONTMAP_2) \
-  font/devpdf/DESC font/devpdf/Foundry font/devpdf/enc/text.enc \
+font/devpdf/download: $(devpdffontmapdata) font/devpdf/DESC \
+  font/devpdf/Foundry font/devpdf/enc/text.enc \
   font/devpdf/util/BuildFoundries
 	$(AM_V_GEN)$(MKDIR_P) $(top_builddir)/font/devpdf \
 	&& echo "# foundry	ps-name	psfile" >$@.tmp \

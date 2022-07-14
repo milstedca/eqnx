@@ -1,3 +1,14 @@
+2022-07-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devpdf/devpdf.am: Refactor to simplify.  Now that
+	symbol.map lives in the "devpdf/generate" directory along with
+	the other map files, it doesn't need a dedicated Makefile target
+	to produce it.
+	(DEVPDFFONTMAP_1, DEVPDFFONTMAP_2): Coalesce and rename to...
+	(devpdffontmapdata): ...this.
+	(font/devpdf/map/symbol.map:): Drop target.
+	(devpdffontmap_DATA, font/devpdf/download): Update dependencies.
+
 2022-07-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Recast

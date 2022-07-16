@@ -1,3 +1,8 @@
+2022-07-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/tests/pdfpic_does-not-choke-on-bad-pdfinfo-output.sh:
+	Skip test if "pdfinfo" command not available.
+
 2022-07-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: Add sanity checks for font description file generation

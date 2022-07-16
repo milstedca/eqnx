@@ -6033,7 +6033,7 @@ and has other limitations.
 .
 .P
 One could adapt
-.I ms 's
+.IR ms 's
 approach to the construction of a macro as follows.
 .
 .RS

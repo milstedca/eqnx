@@ -2012,7 +2012,7 @@ are presented alongside them in the following table.
 Three further string definitions cause no particular problems but have
 no advantage over \*G special character escape sequences
 apart from portability to BSD Unix systems.
-(The last lacks even that virtue,
+(The last lacks even that distinction,
 since
 Unix Version\~7 \*T
 supported the

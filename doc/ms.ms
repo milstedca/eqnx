@@ -369,12 +369,6 @@ macro package expects a certain amount of structure:
 a well-formed document contains at least one paragraphing or heading
 macro call.
 .
-To compose a document from scratch,
-begin it by calling
-.CW .LP
-or
-.CW .PP .
-.
 Longer documents have a structure as follows.
 .
 .
@@ -837,7 +831,8 @@ registers,
 and strings can be used to structure and style the body of your
 document.
 .
-Examples include paragraphs,
+They organize your text into
+paragraphs,
 headings,
 footnotes,
 and inclusions of material such as tables and figures.
@@ -1279,7 +1274,7 @@ following redefinition of the alias for
 The formatted number of the current heading is available in
 .CW \[rs]*[SN]
 (a feature first documented by Berkeley);
-this feature facilitates its inclusion in,
+this string facilitates its inclusion in,
 for example,
 table captions,
 equation labels,
@@ -3146,6 +3141,7 @@ if you need additional processing after setting the header
 (for example,
 to draw a line below it).
 .
+.\" Although undocumented in Tuthill's 4.2BSD ms.diffs paper...
 The
 .CW HD
 hook is a Berkeley extension.

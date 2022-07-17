@@ -107,7 +107,9 @@ macro package expects a certain amount of structure:
 a well-formed document contains at least one paragraphing or heading
 macro call.
 .
-To compose a document from scratch,
+.\" This sentence is unique to the man page because we omit the "Basic
+.\" information" section from ms.ms.
+To compose a simple document from scratch,
 begin it by calling
 .B .LP
 or
@@ -894,7 +896,7 @@ following redefinition of the alias for
 The formatted number of the current heading is available in
 .B \[rs]*[SN]
 (a feature first documented by Berkeley);
-this feature facilitates its inclusion in,
+this string facilitates its inclusion in,
 for example,
 table captions,
 equation labels,
@@ -1887,6 +1889,7 @@ you can define
 .B .HD
 if you need additional processing after setting the header.
 .
+.\" Although undocumented in Tuthill's 4.2BSD ms.diffs paper...
 The
 .B HD
 hook is a Berkeley extension.

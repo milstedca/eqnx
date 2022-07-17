@@ -2612,8 +2612,7 @@ Wallace said my exposure had been
 
 The @file{ms} macro package expects a certain amount of structure:
 a well-formed document contains at least one paragraphing or heading
-macro call.  To compose a document from scratch, begin it by calling
-@code{LP} or @code{PP}.  Longer documents have a structure as follows.
+macro call.  Longer documents have a structure as follows.
 
 @table @strong
 @item Document type
@@ -3168,8 +3167,9 @@ added features are more in line with user demand.
 @cindex @file{ms} macros, body text
 
 A variety of macros, registers, and strings can be used to structure and
-style the body of your document.  Examples include paragraphs, headings,
-footnotes, and inclusions of material such as tables and figures.
+style the body of your document.  They organize your text into
+paragraphs, headings, footnotes, and inclusions of material such as
+tables and figures.
 
 @menu
 * Text settings in ms::
@@ -3401,7 +3401,7 @@ define the alias as follows.
 Any such change in numbering style becomes effective from the next use
 of @code{NH} following redefinition of the alias for @code{SN-STYLE}.
 The formatted number of the current heading is available in the
-@code{SN} string (a feature first documented by Berkeley); this feature
+@code{SN} string (a feature first documented by Berkeley); this string
 facilitates its inclusion in, for example, table captions, equation
 labels, and @code{XS}/@code{XA}/@code{XE} table of contents entries.
 @endDefmpstr
@@ -4238,9 +4238,11 @@ be written, and @code{BT} (``bottom trap'') when the footer is to be.
 The page location trap that @file{ms} sets up to format the header also
 calls the (normally undefined) @code{HD} macro after @code{PT}; you can
 define @code{HD} if you need additional processing after setting the
-header (for example, to draw a line below it).  The @code{HD} hook is a
-Berkeley extension.  Any such macros you (re)define must implement any
-desired specialization for odd-, even-, or first numbered pages.
+header (for example, to draw a line below it).
+@c Although undocumented in Tuthill's 4.2BSD ms.diffs paper...
+The @code{HD} hook is a Berkeley extension.  Any such macros you
+(re)define must implement any desired specialization for odd-, even-, or
+first numbered pages.
 
 @c ---------------------------------------------------------------------
 

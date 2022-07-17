@@ -7,8 +7,8 @@
 .  \" Redefine CW to use bold instead for a visible font change.
 .  als CW B
 .\}
-.\" This document doesn't require the minus sign but we do want a copy-
-.\" and-pastable hyphen-minus.
+.\" This document doesn't require the minus sign (in Times) but we do
+.\" want a copy- and-pastable hyphen-minus.
 .char \- \N'45'
 .\" A very limited output device might not have a dagger glyph.
 .fchar \[dg] *
@@ -140,6 +140,11 @@ be advised that
 needs one of its macros called at the beginning of a document so that it
 can initialize.
 .
+A
+.I macro
+is a formatting instruction to
+.I ms.
+.
 Put a macro call on a line by itself.
 .
 Use
@@ -208,8 +213,12 @@ denied than admitted.
 .LP
 .I ms
 exposes many aspects of document layout to user control via
-.I groff
-registers and strings.
+.I groff 's
+.I registers
+and
+.I strings,
+which store numbers and text,
+respectively.
 .
 Measurements in
 .I groff
@@ -241,8 +250,10 @@ and strings with the
 .CW ds
 request.
 .
-Requests are like macro calls;
-they go on lines by themselves and start with the control character,
+.I Requests
+are like macro calls;
+they go on lines by themselves and start with the
+.I "control character,"
 a dot
 .CW . ). (
 .
@@ -269,7 +280,8 @@ we see that
 .CW \[rs]"
 begins a comment.
 .
-This is an example of an escape sequence,
+This is an example of an
+.I "escape sequence,"
 the other kind of formatting instruction.
 .
 Escape sequences can appear anywhere.
@@ -304,7 +316,7 @@ Interpolate contents of string
 T}
 \[rs]*\f[I]s	T{
 abbreviation of
-.CW \[rs]*[\f[I]s\f[]];
+.CW \[rs]*[\f[I]s\f[]] ;
 the name
 .I s
 must be only one character
@@ -325,18 +337,23 @@ T}
 .
 .
 .PP
-.CW \[rs]&
-has two important uses:
-put it before a word starting with a dot
+Prefix any words that start with a dot
 .CW .\& ) (
-if that word is at the beginning of an input line
+or neutral apostrophe
+.CW \[aq] ) (
+with
+.CW \[rs]&
+if they are at the beginning of an input line
 (or might become that way in editing)
-to prevent the dot from being interpreted as the control character,
-and after
+to prevent the them from being interpreted as macro calls or requests.
+.
+Suffix
 .CW . ,
 .CW ? ,
 and
 .CW !\&
+with
+.CW \[rs]&
 when needed to cancel end-of-sentence detection.
 .
 .

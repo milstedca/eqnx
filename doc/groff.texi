@@ -2479,9 +2479,10 @@ longer works intended for printing and possible publication.
 @file{ms} documents are plain text files; prepare them with your
 preferred text editor.  If you're in a hurry to get started, be advised
 that @file{ms} needs one of its macros called at the beginning of a
-document so that it can initialize.  Put a macro call on a line by
-itself.  Use @samp{.PP} if you want your paragraph's first line to be
-indented, or @samp{.LP} if you don't.
+document so that it can initialize.  A @dfn{macro} is a formatting
+instruction to @file{ms}.  Put a macro call on a line by itself.  Use
+@samp{.PP} if you want your paragraph's first line to be indented, or
+@samp{.LP} if you don't.
 
 After that, start typing normally.  It is a good practice to start each
 sentence on a new line, or to put two spaces after sentence-ending
@@ -2514,10 +2515,9 @@ denied than admitted.
 @endCartoucheExample
 
 @file{ms} exposes many aspects of document layout to user control via
-@code{groff} registers and strings.  Most registers have a default unit
-of measurement.  Specifying a unit explicitly does not cause problems,
-and can avoid them in complex situations.  The following table
-summarizes typical units.
+@code{groff}'s @dfn{registers} and @dfn{strings}, which store numbers
+and text, respectively.  Measurements in @code{groff} are expressed with
+a suffix called a @dfn{scaling unit}.
 
 @table @code
 @item i
@@ -2543,10 +2543,10 @@ ems; width of an ``M'' using the current font
 @end table
 
 Set registers with the @code{nr} request and strings with the @code{ds}
-request.  Requests are like macro calls; they go on lines by themselves
-and start with the control character, a dot (@code{.}).  The difference
-is that they directly instruct the formatter program, rather than the
-macro package.
+request.  @dfn{Requests} are like macro calls; they go on lines by
+themselves and start with the @dfn{control character}, a dot (@code{.}).
+The difference is that they directly instruct the formatter program,
+rather than the macro package.
 
 @CartoucheExample
 .nr PS 10.5p \" Use 10.5-point type.
@@ -2555,10 +2555,10 @@ macro package.
 
 @noindent
 In the foregoing, we see that @code{\"} begins a comment.  This is an
-example of an escape sequence, the other kind of formatting instruction.
-Escape sequences can appear anywhere.  They begin with the escape
-character (@code{\}) and are followed by at least one more character.
-@file{ms} documents
+example of an @dfn{escape sequence}, the other kind of formatting
+instruction.  Escape sequences can appear anywhere.  They begin with the
+escape character (@code{\}) and are followed by at least one more
+character.  @file{ms} documents
 @c like this one
 tend to use only a few of @code{groff}'s many requests and escape
 sequences; see @ref{Request Index} and @ref{Escape Sequence Index} or
@@ -2585,18 +2585,17 @@ Interpolate glyph of special character named @var{char}.
 non-printing, zero-width dummy character
 
 @item \~
-Move horizontally by the current font's space width (``non-breaking
-space'').
+Insert an unbreakble space that is adjustable like a normal space.
 
 @item \|
 Move horizontally by one-sixth em (``thin space'').
 @end table
 
-@code{\&} has two important uses: put it before a word starting with a
-dot @samp{.} if that word is at the beginning of an input line (or might
-become that way in editing) to prevent the dot from being interpreted as
-the control character, and after @samp{.}, @samp{?}, and @samp{!}, when
-needed to cancel end-of-sentence detection.
+Prefix any words that start with a dot @samp{.} or neutral apostrophe
+@samp{'} with @code{\&} if they are at the beginning of an input line
+(or might become that way in editing) to prevent them from being
+interpreted as macro calls or requests.  Suffix @samp{.}, @samp{?}, and
+@samp{!} with @code{\&} when needed to cancel end-of-sentence detection.
 
 @CartoucheExample
 After the criticality accident, Dr.\&

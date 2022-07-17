@@ -748,7 +748,7 @@ The Adobe Glyph List (AGL) has its own names for glyphs; they are often
 different from groff's special character names.  The afmtodit program is
 constructing a mapping from groff special character names to AGL names;
 this can be a one-to-one or many-to-one mapping, but one-to-many will
-not work, so afmtodit discards the excessing mappings.  The example you
+not work, so afmtodit discards the excessive mappings.  The example you
 see above is telling you that the groff font description that afmtodit
 is writing cannot map the groff special character '*D' to both 'Delta'
 and 'uni0394'.

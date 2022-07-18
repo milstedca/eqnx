@@ -1,5 +1,12 @@
 2022-07-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tty-char.tmac: Drop definition of \[sd] special
+	character.  This was superseded by commit 78e666246c, 8 May,
+	which defined a fallback for the character in tty.tmac instead.
+	Thanks to Dave Kemper for the catch.
+
+2022-07-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/tests/pdfpic_does-not-choke-on-bad-pdfinfo-output.sh:
 	Skip test if "pdfinfo" command not available.
 

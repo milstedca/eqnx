@@ -2035,6 +2035,8 @@ resets the page number
 and then calls
 .BR PX .
 .
+All of these macros are Berkeley extensions.
+.
 .
 .TP
 .BR .XS \~[\c

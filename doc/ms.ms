@@ -3359,8 +3359,6 @@ resets the page number
 and then calls
 .CW PX .
 .
-.
-.PP
 All of these macros are Berkeley extensions.
 .
 .TS

@@ -4324,15 +4324,12 @@ to fit or because style dictates that page numbers not be repeated.  You
 may wish to indent the text thus wrapped to correspond to its heading
 depth; this can be done in the entry text by prefixing it with tabs or
 horizontal motion escape sequences, or by providing a second argument to
-the @code{XA} macro.
-
-@code{XS} and @code{XA} automatically associate the page number where
-they are called with the text following them, but they accept arguments
-to override this behavior.  At the end of the document, call @code{TC}
-or @code{PX} to emit the table of contents; @code{TC} resets the page
-number to @samp{i} (Roman numeral one), and then calls @code{PX}.
-
-All of these macros are Berkeley extensions.
+the @code{XA} macro.  @code{XS} and @code{XA} automatically associate
+the page number where they are called with the text following them, but
+they accept arguments to override this behavior.  At the end of the
+document, call @code{TC} or @code{PX} to emit the table of contents;
+@code{TC} resets the page number to @samp{i} (Roman numeral one), and
+then calls @code{PX}.  All of these macros are Berkeley extensions.
 
 @DefmacList {XS, [@Var{page-number}], ms}
 @DefmacItemx {XA, [@Var{page-number} [@Var{indentation}]], ms}

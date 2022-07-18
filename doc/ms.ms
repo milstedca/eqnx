@@ -1442,7 +1442,7 @@ If insufficient space remains on the current page to accommodate the
 heading and this number of lines of paragraph text,
 a page break is forced before the heading is printed.
 .
-Any display macro or
+Any display macro call or
 .I tbl ,
 .I pic ,
 or
@@ -3242,6 +3242,15 @@ active when they are called.
 .CW \[rs]n[MINGW]
 is the default minimum gutter width;
 it is a GNU extension.
+.
+When multiple columns are in use,
+keeps
+and the
+.CW \%HORPHANS
+and
+.CW \%PORPHANS
+registers
+work with respect to column breaks instead of page breaks.
 .
 .
 .TS

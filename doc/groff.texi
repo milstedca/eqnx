@@ -3452,9 +3452,9 @@ immediately subsequent paragraph that must be kept on the same page as
 the heading.  If insufficient space remains on the current page to
 accommodate the heading and this number of lines of paragraph text, a
 page break is forced before the heading is printed.  Any display macro
-or @code{tbl}, @code{pic}, or @code{eqn} region between the heading and
-the subsequent paragraph suppresses this grouping.  @xref{ms keeps and
-displays} and @ref{ms Insertions}.
+call or @code{tbl}, @code{pic}, or @code{eqn} region between the heading
+and the subsequent paragraph suppresses this grouping.  @xref{ms keeps
+and displays} and @ref{ms Insertions}.
 
 @c ---------------------------------------------------------------------
 
@@ -4278,7 +4278,9 @@ margin.
 @file{ms} can set text in as many columns as reasonably fit on the page.
 The following macros force a page break if a multi-column layout is
 active when they are called.  The @code{MINGW} register stores the
-default minimum gutter width; it is a GNU extension.
+default minimum gutter width; it is a GNU extension.  When multiple
+columns are in use, keeps and the @code{HORPHANS} and @code{PORPHANS}
+registers work with respect to column breaks instead of page breaks.
 
 @Defmac {1C, , ms}
 Arrange page text in a single column (the default).

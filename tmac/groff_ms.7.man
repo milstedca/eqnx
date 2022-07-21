@@ -600,8 +600,7 @@ The
 .B FAM
 string sets the font family for body text;
 the default is
-.RB \[lq] T \[rq]
-(Times).
+.RB \[lq] T \[rq].
 .
 The
 .B PS
@@ -1404,7 +1403,8 @@ End any display.
 .P
 The distance stored in
 .B \[rs]n[DD]
-is inserted before and after each pair of display macros;
+is inserted before and after each pair of display macros,
+replacing any adjacent inter-paragraph distance;
 this is a Berkeley extension.
 .
 The

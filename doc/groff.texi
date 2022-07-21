@@ -2498,7 +2498,7 @@ can be useful for previewing.
 @CartoucheExample
 $ vi radical.ms
 $ nroff -ms radical.ms | less -R
-$ groff -ms radical.ms > radical.ps
+$ groff -T ps -ms radical.ms > radical.ps
 $ see radical.ps
 @endCartoucheExample
 
@@ -3191,12 +3191,19 @@ tables and figures.
 @cindex @file{ms} macros, text settings
 
 The @code{FAM} string sets the font family for body text; the default is
-@samp{T} (Times).  The @code{PS} and @code{VS} registers set the type
+@samp{T}.  The @code{PS} and @code{VS} registers set the type
 size and vertical spacing (distance between text baselines),
 respectively.  The font family and type size are ignored on terminal
 devices.  Setting these parameters before the first call of a heading,
 paragraphing, or (non-date) document description macro also applies them
 to headers, footers, and (for @code{FAM}) footnotes.
+
+Which font families are available depends on the output device; as a
+convention, @code{T} selects a serif family (``Times''), @code{H} a
+sans-serif family (``Helvetica''), and @code{C} a monospaced family
+(``Courier'').  The man page for the output driver documents its font
+repertoire.  Consult the @cite{groff@r{(1)}} man page for lists of
+available output devices and their drivers.
 
 The hyphenation mode (as used by the @code{hy} request) is set from the
 @code{HY} register.  Setting @code{HY} to @samp{0} is equivalent to
@@ -3551,9 +3558,9 @@ The foregoing example produces output as follows.
 troublesome.}
 @endCartoucheExample
 
-You might prefer to use the output line continuation escape sequence
-@code{\c} to achieve the same result (@pxref{Line Continuation}).  It is
-also portable to older @file{ms} implementations.
+You can use the output line continuation escape sequence @code{\c} to
+achieve the same result (@pxref{Line Continuation}).  It is also
+portable to older @file{ms} implementations.
 
 @CartoucheExample
 The course's students found one C language keyword
@@ -3576,13 +3583,13 @@ Begin and end subscripting, respectively.
 @endDefmpstr
 
 Rather than calling the @code{CW} macro, in @code{groff} @file{ms} you
-might prefer to change the font family to Courier---a monospaced
-typeface---by setting the @code{FAM} string to @samp{C}.  You can then
-use all four style macros above, returning to the default family (Times)
-with @samp{.ds FAM T}.  Because changes to @code{FAM} take effect only
-at the next paragraph, @code{CW} remains useful to ``inline'' a change
-to the font family, similarly to the practice of this document in noting
-syntactical elements of @file{ms} and @code{groff}.
+might prefer to change the font family to Courier by setting the
+@code{FAM} string to @samp{C}.  You can then use all four style macros
+above, returning to the default family (Times) with @samp{.ds FAM T}.
+Because changes to @code{FAM} take effect only at the next paragraph,
+@code{CW} remains useful to ``inline'' a change to the font family,
+similarly to the practice of this document in noting syntactical
+elements of @file{ms} and @code{groff}.
 
 @c ---------------------------------------------------------------------
 
@@ -3702,10 +3709,10 @@ line as the term or label (if it fits) @emph{then} breaks the line.
 \p Firearms,
 @endCartoucheExample
 
-Finally, you may append unbreakable horizontal space to the term or
-label with the @code{\h} escape sequence; using the same amount as the
-indentation will ensure that it's too wide for @code{groff} to treat it
-as ``fitting'' on the same line as the paragraph text.
+Finally, you may append a horizontal motion to the marker with the
+@code{\h} escape sequence; using the same amount as the indentation will
+ensure that the marker is too wide for @code{groff} to treat it as
+``fitting'' on the same line as the paragraph text.
 
 @CartoucheExample
 .IP guns\h'0.4i'
@@ -3840,14 +3847,14 @@ paragraphs, you may improve the appearance by calling @code{B1} after
 the first paragraphing macro, and by adding a small amount of vertical
 space before calling @code{B2}.
 
-@c Wrap example at 56 columns.
+@c Wrap example at 58 columns.
 @CartoucheExample
 .LP
 .B1
 .I Warning:
 Happy Fun Ball may suddenly accelerate to dangerous
 speeds.
-.sp \n[PD]/2
+.sp \n[PD]/2 \" space by half the inter-paragraph distance
 .B2
 @endCartoucheExample
 
@@ -3899,12 +3906,13 @@ End any display.
 @endDefmac
 
 The distance stored in the @code{DD} register is inserted before and
-after each pair of display macros; this is a Berkeley extension.  The
-@code{DI} register is a GNU extension; its value is an indentation
-applied to displays created with @samp{.DS} and @samp{.ID} without
-arguments, to @samp{.DS I} without an indentation argument, and to
-indented equations set with @samp{.EQ}.  Changes to either register take
-effect at the next display boundary.
+after each pair of display macros, replacing any adjacent
+inter-paragraph distance; this is a Berkeley extension.  The @code{DI}
+register is a GNU extension; its value is an indentation applied to
+displays created with @samp{.DS} and @samp{.ID} without arguments, to
+@samp{.DS I} without an indentation argument, and to indented equations
+set with @samp{.EQ}.  Changes to either register take effect at the next
+display boundary.
 
 @c ---------------------------------------------------------------------
 

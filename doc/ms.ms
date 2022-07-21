@@ -186,7 +186,7 @@ box center;
 lf(CB).
 \f[CR]$\f[] vi radical.ms
 \f[CR]$\f[] nroff \-ms radical.ms | less \-R
-\f[CR]$\f[] groff \-ms radical.ms > radical.ps
+\f[CR]$\f[] groff \-T ps \-ms radical.ms > radical.ps
 \f[CR]$\f[] see radical.ps
 .TE
 .
@@ -503,11 +503,11 @@ macro other than
 .CW RP .
 .
 The \[lq]Next\[rq] heading indicates that changes to the parameter are
-effective as of the next listed element encountered.
+effective as of the next new element processed of the listed type.
 .
 For entries marked
 .I special ,
-see the discussion in the applicable section below.
+see the discussion in the applicable section.
 .
 .
 .TS H
@@ -868,8 +868,7 @@ The
 .CW FAM
 string sets the font family for body text;
 the default is
-.CW T \[rq] \[lq]
-(Times).
+.CW T \[rq] \[lq].
 .
 The
 .CW PS
@@ -889,6 +888,24 @@ and
 (for
 .CW FAM )
 footnotes.
+.
+.
+.PP
+Which font families are available depends on the output device;
+as a convention,
+.CW T
+selects a serif family (\[lq]Times\[rq]),
+.CW H
+a sans-serif family (\[lq]Helvetica\[rq]),
+and
+.CW C
+a monospaced family (\[lq]Courier\[rq]).
+.
+The man page for the output driver documents its font repertoire.
+.
+Consult the
+.I groff (1)
+man page for lists of available output devices and their drivers.
 .
 .
 .PP
@@ -1690,7 +1707,7 @@ T}
 .TE
 .
 .KS
-You might prefer to use the output line continuation escape sequence
+You can use the output line continuation escape sequence
 .CW \[rs]c
 to achieve the same result.
 .
@@ -1728,8 +1745,7 @@ Rather than calling the
 macro,
 in
 .I "groff ms"
-you might prefer to change the font family to Courier\[em]a monospaced
-typeface\[em]by setting
+you might prefer to change the font family to Courier by setting
 .CW \[rs]*[FAM]
 to
 .CW C \[rq]. \[lq]
@@ -1952,12 +1968,11 @@ or label
 breaks the line.
 .
 Finally,
-you may append unbreakable horizontal space to the term or label with
-the
+you may append a horizontal motion to the marker with the
 .CW \[rs]h
 escape sequence;
-using the same amount as the indentation will ensure that it's too wide
-for
+using the same amount as the indentation will ensure that the marker is
+too wide for
 .I groff
 to treat it as \[lq]fitting\[rq] on the same line as the paragraph text.
 .
@@ -2213,7 +2228,7 @@ lf(CR).
 \&.B1
 \&.I Warning:
 Happy Fun Ball may suddenly accelerate to dangerous speeds.
-\&.sp \[rs]n[PD]/2
+\&.sp \[rs]n[PD]/2 \[rs]" space by half the inter-paragraph distance
 \&.B2
 .TE
 .KE
@@ -2286,7 +2301,8 @@ cf(CR) s | lx .
 .PP
 The distance stored in
 .CW \[rs]n[DD]
-is inserted before and after each pair of display macros;
+is inserted before and after each pair of display macros,
+replacing any adjacent inter-paragraph distance;
 this is a Berkeley extension.
 .
 The

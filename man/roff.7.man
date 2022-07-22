@@ -204,7 +204,7 @@ The default set is
 .BR \[rs][dd] ,
 .BR \[rs][rq] ,
 and
-.BR \[rs][cg] .
+.BR \[rs][cq] .
 .
 The last four are examples of
 .I special characters,

@@ -909,10 +909,6 @@ AC_DEFUN([GROFF_PAGE],
    fi
 
    test -n "$PAGE" || PAGE=letter
-   if test "$PAGE" = A4; then
-     AC_DEFINE([PAGEA4], [1],
-       [Define if the printer's page size is A4.])
-   fi
    AC_MSG_RESULT([$PAGE])
    AC_SUBST([PAGE])])
 

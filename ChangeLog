@@ -1,3 +1,9 @@
+2022-07-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m4/groff.m4 (GROFF_PAGE): Refactor: drop AC_DEFINE of
+	`PAGEA4`.  This symbol appears to be a relic; it is nowhere
+	tested or dereferenced.
+
 2022-07-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/tty-char.tmac: Drop definition of \[sd] special

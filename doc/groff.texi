@@ -2431,14 +2431,14 @@ documentation.
 The @file{ms} (``manuscript'') package is suitable for the preparation
 of letters, memoranda, reports, and books.  These @code{groff}
 macros feature cover page and table of contents generation,
-automatically numbered headings, several different paragraph styles, a
-variety of text styling options, footnotes, and multi-column page
-layouts.  @file{ms} supports the @command{tbl}, @command{eqn},
-@command{pic}, and @command{refer} preprocessors for inclusion of
-tables, mathematical equations, diagrams, and standardized bibliographic
-citations.  This implementation is mostly compatible with the documented
-interface and behavior of AT&T Unix Version@tie{}7 @file{ms}.  Several
-extensions from 4.2BSD (Berkeley)
+automatically numbered headings, several paragraph styles, a variety of
+text styling options, footnotes, and multi-column page layouts.
+@file{ms} supports the @command{tbl}, @command{eqn}, @command{pic}, and
+@command{refer} preprocessors for inclusion of tables, mathematical
+equations, diagrams, and standardized bibliographic citations.  This
+implementation is mostly compatible with the documented interface and
+behavior of AT&T Unix Version@tie{}7 @file{ms}.  Several extensions from
+4.2BSD (Berkeley)
 @c Few changes were made in 4.3, Tahoe, Reno, or 4.4.
 and Tenth Edition Research Unix have been recreated.
 
@@ -3284,7 +3284,7 @@ amount stored in the @code{PI} register on every line @emph{except} the
 first (also known as a hanging indent).  This is a Berkeley extension.
 @endDefmac
 
-The following example illustrates several different paragraphing macros.
+The following example illustrates the use of paragraphing macros.
 
 @CartoucheExample
 .NH 2
@@ -3327,9 +3327,8 @@ software.
 Use headings to create a sequential or hierarchical structure for your
 document.  The @file{ms} macros print headings in @strong{bold} using
 the same font family and, by default, type size as the body text.
-Headings are available with and without automatic numbering.  Text lines
-immediately after heading macro calls are treated as part of the
-heading, rendered on the same output line in the same style.
+Headings are available with and without automatic numbering.  Text on
+input lines following the macro call becomes the heading's title.
 
 @DefmacList {NH, [@Var{depth}], ms}
 @DefmacListEnd {NH, @t{S} @Var{heading-depth-index} @dots{}, ms}
@@ -4401,8 +4400,8 @@ great deal of time in the long run if you use @file{ms} regularly.
 You can customize the style of the leader that bridges each table of
 contents entry with its page number; define the @code{TC-LEADER} special
 character by using the @code{char} request.  A typical leader combines
-the dot glyph @samp{.} with a horizontal space escape sequence to spread
-the dots.  The width of the page number field is stored in the
+the dot glyph @samp{.} with a horizontal motion escape sequence to
+spread the dots.  The width of the page number field is stored in the
 @code{TC-MARGIN} register.
 
 @c ---------------------------------------------------------------------
@@ -4463,12 +4462,12 @@ request, but the @file{ms} @code{RS} and @code{RE} macros.
 @item
 @cindex fractional type sizes in @file{ms} macros
 @cindex @file{ms} macros, fractional type sizes in
-@acronym{AT&T} @file{ms} supported only integer values for the type size
-and vertical spacing.  To overcome this restriction, for the registers
-@code{PS}, @code{VS}, @code{FPS}, and @code{FVS}, @code{groff} @file{ms}
-interprets values equal to or larger than 1000 as decimal fractions
-multiplied by 1000.  See the @code{PS} register in @ref{ms Document
-Control Settings}.
+@acronym{AT&T} @file{ms} supported only integral values for the type
+size and vertical spacing.  To overcome this restriction, for the
+registers @code{PS}, @code{VS}, @code{FPS}, and @code{FVS}, @code{groff}
+@file{ms} interprets values equal to or larger than 1000 as decimal
+fractions multiplied by 1000.  See the @code{PS} register in @ref{ms
+Document Control Settings}.
 
 @item
 @acronym{AT&T} @file{ms}'s @code{AU} macro supported arguments used with

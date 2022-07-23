@@ -54,7 +54,7 @@ These
 .I groff
 macros feature cover page and table of contents generation,
 automatically numbered headings,
-several different paragraph styles,
+several paragraph styles,
 a variety of text styling options,
 footnotes,
 and multi-column page layouts.
@@ -868,7 +868,7 @@ The
 .CW FAM
 string sets the font family for body text;
 the default is
-.CW T \[rq] \[lq].
+.CW T \[rq]. \[lq]
 .
 The
 .CW PS
@@ -1086,7 +1086,7 @@ T}
 .
 .KS
 .PP
-The following example illustrates several different paragraphing macros.
+The following example illustrates the use of paragraphing macros.
 .
 .
 .TS
@@ -1150,9 +1150,8 @@ type size as the body text.
 .
 Headings are available with and without automatic numbering.
 .
-Text lines immediately after heading macro calls are treated as part of
-the heading,
-rendered on the same output line in the same style.
+Text on input lines following the macro call becomes the heading's
+title.
 .
 .
 .TS
@@ -3581,7 +3580,7 @@ request.
 .
 A typical leader combines the dot glyph
 .CW .\& \[rq] \[lq]
-with a horizontal space escape sequence to spread the dots.
+with a horizontal motion escape sequence to spread the dots.
 .
 The width of the page number field is stored in the
 .CW TC\-MARGIN
@@ -3695,7 +3694,7 @@ and
 .PP
 AT&T
 .I ms
-supported only integer values for the type size and vertical spacing.
+supported only integral values for the type size and vertical spacing.
 .
 To overcome this restriction,
 for the registers

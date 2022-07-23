@@ -862,7 +862,8 @@ AC_DEFUN([GROFF_PAGE],
    groff_prefix=$prefix
    test "$prefix" = NONE && groff_prefix=$ac_default_prefix
    if test -z "$PAGE" && test -r /etc/papersize; then
-     PAGE=`cat /etc/papersize | sed -e 's/^[ ]*#.*//g' | tr -d "\n" | awk '{ print $1 }'`
+     sedexpr='s/#.*//;s/[ \t]\+/ /;s/ \+$//;s/^ \+//;/^$/d;p'
+     PAGE=`sed -n "$sedexpr" /etc/papersize`
    fi
    if test -z "$PAGE"; then
      descfile=
@@ -889,23 +890,30 @@ AC_DEFUN([GROFF_PAGE],
    fi
 
    if test -z "$PAGE"; then
-     dom=`awk '([$]1 == "dom" || [$]1 == "search") { print [$]2; exit}' \
-	 /etc/resolv.conf 2>/dev/null`
-     if test -z "$dom"; then
-       dom=`(domainname) 2>/dev/null | tr -d '+'`
-       if test -z "$dom" \
-	  || test "$dom" = '(none)'; then
-	 dom=`(hostname) 2>/dev/null | grep '\.'`
+     domains=
+     if test -r /etc/resolv.conf; then
+       sedexpr='s/#.*//;s/[ \t]\+/ /;s/ \+$//;s/^ \+//;/^$/d;
+/^\(domain\|search\)/!d;s/\(domain\|search\) //;p'
+       domains=`sed -n "$sedexpr" /etc/resolv.conf`
+     fi
+     if test -z "$domains"; then
+       domains=`(domainname) 2>/dev/null | tr -d '+'`
+       if test -z "$domains" \
+	  || test "$domains" = '(none)'; then
+	 domains=`(hostname) 2>/dev/null | grep '\.'`
        fi
      fi
-     # If the top-level domain is two letters and it's not 'us' or 'ca'
-     # then they probably use A4 paper.
-     case "$dom" in
-     [*.[Uu][Ss]|*.[Cc][Aa])]
-       ;;
-     [*.[A-Za-z][A-Za-z])]
-       PAGE=A4 ;;
-     esac
+     # resolv.conf's "search" directive might return multiple domains.
+     # If any top-level domain is two letters and it's not 'us' or 'ca',
+     # assume the system uses A4 paper.
+     for d in $domains; do
+       case "$d" in
+       [*.[Uu][Ss]|*.[Cc][Aa])]
+	 ;;
+       [*.[A-Za-z][A-Za-z])]
+	 PAGE=A4 ;;
+       esac
+     done
    fi
 
    test -n "$PAGE" || PAGE=letter

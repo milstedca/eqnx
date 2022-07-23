@@ -1,5 +1,16 @@
 2022-07-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_PAGE): Macro used awk(1) without
+	`AC_REQUIRE`-ing a relevant macro or checking for its existence.
+	Fortunately, sed is powerful enough for our needs.  Remove
+	dependency on awk.  Cope with "search" directive in resolv.conf
+	having multiple arguments.  Match "domain" directive in same
+	file instead of "dom", which I cannot find attested (this logic
+	dates to 1991).  Rename `dom` shell variable to `domains` for
+	clarity, since its multiplicity could be greater than 1.
+
+2022-07-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_PAGE): Refactor: drop AC_DEFINE of
 	`PAGEA4`.  This symbol appears to be a relic; it is nowhere
 	tested or dereferenced.

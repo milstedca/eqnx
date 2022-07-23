@@ -857,68 +857,82 @@ AC_DEFUN([GROFF_BROKEN_SPOOLER_FLAGS],
    AC_SUBST([BROKEN_SPOOLER_FLAGS])])
 
 
-AC_DEFUN([GROFF_PAGE],
-  [AC_MSG_CHECKING([default paper size])
-   groff_prefix=$prefix
-   test "$prefix" = NONE && groff_prefix=$ac_default_prefix
-   if test -z "$PAGE" && test -r /etc/papersize; then
-     sedexpr='s/#.*//;s/[ \t]\+/ /;s/ \+$//;s/^ \+//;/^$/d;p'
-     PAGE=`sed -n "$sedexpr" /etc/papersize`
-   fi
-   if test -z "$PAGE"; then
-     descfile=
-     if test -r "$groff_prefix"/share/groff/font/devps/DESC; then
-       descfile=$groff_prefix/share/groff/font/devps/DESC
-     elif test -r "$groff_prefix"/lib/groff/font/devps/DESC; then
-       descfile=$groff_prefix/lib/groff/font/devps/DESC
-     else
-       for f in "$groff_prefix"/share/groff/*/font/devps/DESC; do
-	 if test -r "$f"; then
-	   descfile=$f
-	   break
-	 fi
-       done
-     fi
+AC_DEFUN([GROFF_PAGE], [
+  AC_MSG_CHECKING([default paper size])
+  groff_prefix=$prefix
+  test "$prefix" = NONE && groff_prefix=$ac_default_prefix
+  if test -z "$PAGE" && test -r /etc/papersize
+  then
+    sedexpr='s/#.*//;s/[ \t]\+/ /;s/ \+$//;s/^ \+//;/^$/d;p'
+    PAGE=`sed -n "$sedexpr" /etc/papersize`
+  fi
+  if test -z "$PAGE"
+  then
+    descfile=
+    if test -r "$groff_prefix"/share/groff/font/devps/DESC
+    then
+      descfile=$groff_prefix/share/groff/font/devps/DESC
+    elif test -r "$groff_prefix"/lib/groff/font/devps/DESC
+    then
+      descfile=$groff_prefix/lib/groff/font/devps/DESC
+    else
+      for f in "$groff_prefix"/share/groff/*/font/devps/DESC
+      do
+	if test -r "$f"
+	then
+	  descfile=$f
+	  break
+	fi
+      done
+    fi
 
-     if test -n "$descfile"; then
-       if grep ['^paperlength[	 ]\+841890'] "$descfile" >/dev/null 2>&1; then
-	 PAGE=A4
-       elif grep ['^papersize[	 ]\+[aA]4'] "$descfile" >/dev/null 2>&1; then
-	 PAGE=A4
-       fi
-     fi
-   fi
+    if test -n "$descfile"
+    then
+      if grep ['^paperlength[	 ]\+841890'] "$descfile" >/dev/null 2>&1
+      then
+	PAGE=A4
+      elif grep ['^papersize[	 ]\+[aA]4'] "$descfile" >/dev/null 2>&1
+      then
+	PAGE=A4
+      fi
+    fi
+  fi
 
-   if test -z "$PAGE"; then
-     domains=
-     if test -r /etc/resolv.conf; then
-       sedexpr='s/#.*//;s/[ \t]\+/ /;s/ \+$//;s/^ \+//;/^$/d;
+  if test -z "$PAGE"
+  then
+    domains=
+    if test -r /etc/resolv.conf
+    then
+      sedexpr='s/#.*//;s/[ \t]\+/ /;s/ \+$//;s/^ \+//;/^$/d;
 /^\(domain\|search\)/!d;s/\(domain\|search\) //;p'
-       domains=`sed -n "$sedexpr" /etc/resolv.conf`
-     fi
-     if test -z "$domains"; then
-       domains=`(domainname) 2>/dev/null | tr -d '+'`
-       if test -z "$domains" \
-	  || test "$domains" = '(none)'; then
-	 domains=`(hostname) 2>/dev/null | grep '\.'`
-       fi
-     fi
-     # resolv.conf's "search" directive might return multiple domains.
-     # If any top-level domain is two letters and it's not 'us' or 'ca',
-     # assume the system uses A4 paper.
-     for d in $domains; do
-       case "$d" in
-       [*.[Uu][Ss]|*.[Cc][Aa])]
-	 ;;
-       [*.[A-Za-z][A-Za-z])]
-	 PAGE=A4 ;;
-       esac
-     done
-   fi
+      domains=`sed -n "$sedexpr" /etc/resolv.conf`
+    fi
+    if test -z "$domains"
+    then
+      domains=`(domainname) 2>/dev/null | tr -d '+'`
+      if test -z "$domains" || test "$domains" = '(none)'
+      then
+        domains=`(hostname) 2>/dev/null | grep '\.'`
+      fi
+    fi
+    # resolv.conf's "search" directive might return multiple domains.
+    # If any top-level domain is two letters and it's not 'us' or 'ca',
+    # assume the system uses A4 paper.
+    for d in $domains
+    do
+      case "$d" in
+      [*.[Uu][Ss]|*.[Cc][Aa])]
+        ;;
+      [*.[A-Za-z][A-Za-z])]
+        PAGE=A4 ;;
+      esac
+    done
+  fi
 
-   test -n "$PAGE" || PAGE=letter
-   AC_MSG_RESULT([$PAGE])
-   AC_SUBST([PAGE])])
+  test -n "$PAGE" || PAGE=letter
+  AC_MSG_RESULT([$PAGE])
+  AC_SUBST([PAGE])
+])
 
 
 AC_DEFUN([GROFF_CXX_CHECK],

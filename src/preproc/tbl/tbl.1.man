@@ -189,17 +189,16 @@ token may specify region options,
 keywords that influence the interpretation or rendering of the region as
 a whole or all table entries within it indiscriminately.
 .
-They can be specified in any lettercase and must be separated by commas,
+They can be specified in any lettercase
+(unlike AT&T
+.IR tbl , \" AT&T
+which accepted only options with all characters in the same case)
+and must be separated by commas,
 spaces,
 or tabs.
 .
-(AT&T
-.I tbl \" AT&T
-accepted only options with all characters in the same lettercase.)
-.
-Some of these options require a parenthesized argument;
-those that do permit spaces and tabs between the option's name and the
-opening parenthesis.
+Those that require a parenthesized argument permit spaces and tabs
+between the option's name and the opening parenthesis.
 .
 Options accumulate and cannot be unset within a region once declared;
 if an option that takes a parameter is repeated,

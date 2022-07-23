@@ -888,10 +888,10 @@ AC_DEFUN([GROFF_PAGE], [
 
     if test -n "$descfile"
     then
-      if grep ['^paperlength[	 ]\+841890'] "$descfile" >/dev/null 2>&1
+      if grep -q ['^paperlength[	 ]\+841890'] "$descfile"
       then
 	PAGE=A4
-      elif grep ['^papersize[	 ]\+[aA]4'] "$descfile" >/dev/null 2>&1
+      elif grep -q ['^papersize[	 ]\+[aA]4'] "$descfile"
       then
 	PAGE=A4
       fi

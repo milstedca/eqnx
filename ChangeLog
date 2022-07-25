@@ -7,6 +7,14 @@
 	greek characters only slant if the glyp is sourced from a
 	special font, not if the regular font contains greek glyphs.
 
+2022-07-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/e.tmac: Initialize section number registers. Fixes
+	warnings when starting section numbering at a depth greater than
+	1.
+
+	Fixes <https://savannah.gnu.org/bugs/?62812>.
+
 2022-07-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m4/groff.m4 (GROFF_PAGE): Use 'grep -q' instead of redirecting

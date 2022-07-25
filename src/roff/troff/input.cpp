@@ -6651,7 +6651,10 @@ const char *input_char_description(int c)
   case '\0':
     return "node";
   }
-  static char buf[sizeof("magic character code ") + 1 + INT_DIGITS];
+  size_t bufsz = sizeof "magic character code "  + INT_DIGITS + 1;
+  // repeat expression; no VLAs in ISO C++
+  static char buf[sizeof "magic character code "  + INT_DIGITS + 1];
+  (void) memset(buf, 0, bufsz);
   if (invalid_input_char(c)) {
     const char *s = asciify(c);
     if (*s) {

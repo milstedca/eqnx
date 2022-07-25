@@ -20,7 +20,7 @@ for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-Version 2.5_a
+Version 2.5_b
 -------------
 Antoine de St-Exupéry asserted that elegance in engineering is
 achieved not when there is nothing left to add, but when there is
@@ -53,7 +53,7 @@ extensions, and float management).
 .if (\n[.x]\n[.y] < 118) \
 .   ab [mom]: You need GNU troff version 1.18 or higher to run this version of mom.
 \# Mom version
-.ds version 2.5_a
+.ds version 2.5_b
 .if dVERSION \{\
 .   ab [mom]: Version \*[version]
 .\}
@@ -11825,7 +11825,12 @@ Shimming must be disabled with NO_SHIM before using FLEX.
 \#
 .MAC LINEBREAK END
 .    if r #Q_AT_TOP .rr #Q_AT_TOP
-.    ie  '\\*[$LINEBREAK_CHAR]'' .sp 2
+.    if \\n[@TOP] .RESTORE_SPACE
+.    ie '\\*[$LINEBREAK_CHAR]'' \{\
+.       br
+.       nop \&
+.       sp
+.    \}
 .    el \{\
 .       ie \\n[#END_QUOTE] .
 .       el .sp
@@ -20586,6 +20591,11 @@ E\\R'#CAP_HEIGHT \\n[.cht]'
 .END
 \#
 .MAC TE END
+.    if !r TW \{\
+.       tm1 "[mom]: '\\n[.F]' contains tbl(1) data but '-t' flag is missing from
+.       tm1 "        the command line.
+.       ab Aborting.
+.    \}
 .    ev tbl*end \" Needed because of .ad changes
 .    evc \\*[ev-current] 
 .    nh

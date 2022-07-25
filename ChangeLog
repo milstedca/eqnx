@@ -9,6 +9,12 @@
 
 2022-07-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::usable_as_delimiter):
+	(do_non_interpreted, interpolate_arg): Recast diagnostic
+	messages for clarity.
+
+2022-07-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/e.tmac: Initialize section number registers. Fixes
 	warnings when starting section numbering at a depth greater than
 	1.

@@ -1270,9 +1270,9 @@ vertical space specified in its argument remaining on the page.
 .
 .
 .PP
-A keep have a frame drawn around it;
-this is called a
-.I boxed keep.
+A
+.I boxed keep
+has a frame drawn around it.
 .
 .
 .TP

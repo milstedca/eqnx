@@ -345,7 +345,7 @@ with
 .CW \[rs]&
 if they are at the beginning of an input line
 (or might become that way in editing)
-to prevent the them from being interpreted as macro calls or requests.
+to prevent them from being interpreted as macro calls or requests.
 .
 Suffix
 .CW . ,
@@ -2185,9 +2185,9 @@ included later.
 .
 .
 .PP
-A keep have a frame drawn around it;
-this is called a
-.I "boxed keep."
+A
+.I "boxed keep"
+has a frame drawn around it.
 .
 .
 .TS

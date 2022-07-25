@@ -3830,7 +3830,7 @@ One application of @code{ne} is to reserve space on the page for a
 figure or illustration to be included later.
 
 @cindex boxes [@file{ms}]
-A keep have a frame drawn around it; this is called a @dfn{boxed keep}.
+A @dfn{boxed keep} has a frame drawn around it.
 
 @DefmacList {B1, , ms}
 @DefmacListEndx {B2, , ms}

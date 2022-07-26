@@ -35,10 +35,10 @@
 
 	* m4/groff.m4 (GROFF_PAGE): Use 'grep -q' instead of redirecting
 	standard output to null device.  The '-q' option was
-	standardized in POSIX Issue 5 (1997).  Also drop the redirection
-	of the standard error stream; we have already checked the file
-	named in "$descfile" for existence and readability.  grep should
-	not emit diagnostic messages.
+	standardized in POSIX Issue 5 (1997) or earlier.  Also drop the
+	redirection of the standard error stream; we have already
+	checked the file named in "$descfile" for existence and
+	readability.  grep should not emit diagnostic messages.
 
 2022-07-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -1485,7 +1485,7 @@
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* Makefile.am (EXTRA_DIST): Ship "ChangeLog.122" in distribution
-	archive.  Overlooked in commit c11995df16, 19 Feburary 2021.
+	archive.  Overlooked in commit c11995df16, 19 February 2021.
 
 2022-05-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -14160,6 +14160,8 @@
 	with five bytes of input using transparent line indicator.
 
 	* src/roff/groff/groff.am: Add test.
+
+	Fixes <https://savannah.gnu.org/bugs/?55278>.
 
 2019-01-12  Ingo Schwarze  <schwarze@openbsd.org>
 

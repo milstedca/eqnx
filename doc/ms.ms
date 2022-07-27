@@ -184,7 +184,8 @@ can be useful for previewing.
 .TS
 box center;
 lf(CB).
-\f[CR]$\f[] vi radical.ms
+\f[CR]$\f[] editor radical.ms
+\f[CR]$\f[] nroff -ww -z -ms radical.ms # check for errors
 \f[CR]$\f[] nroff \-ms radical.ms | less \-R
 \f[CR]$\f[] groff \-T ps \-ms radical.ms > radical.ps
 \f[CR]$\f[] see radical.ps
@@ -412,7 +413,7 @@ and are not supported by
 .
 .IP "\fBFormat and layout\fP"
 By setting registers and strings,
-you can change your document's typeface,
+you can configure your document's typeface,
 margins,
 spacing,
 headers and footers,
@@ -2376,7 +2377,7 @@ The optional
 argument to
 .CW .TS
 instructs
-.I groff
+.I ms
 to repeat table rows
 (often column headings)
 at the top of each new page the table spans,

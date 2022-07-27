@@ -142,7 +142,7 @@ and are not supported in
 .TP
 .B "Format and layout"
 By setting registers and strings,
-you can change your document's typeface,
+you can configure your document's typeface,
 margins,
 spacing,
 headers and footers,
@@ -1463,7 +1463,7 @@ preprocessor.
 The optional
 .BR H "\~argument"
 instructs
-.I groff
+.I ms
 to repeat table rows
 (often column headings)
 at the top of each new page the table spans,

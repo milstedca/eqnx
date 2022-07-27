@@ -2496,7 +2496,8 @@ Format the document with the @command{groff} command.  @command{nroff}
 can be useful for previewing.
 
 @CartoucheExample
-$ vi radical.ms
+$ editor radical.ms
+$ nroff -ww -z -ms radical.ms # check for errors
 $ nroff -ms radical.ms | less -R
 $ groff -T ps -ms radical.ms > radical.ps
 $ see radical.ps
@@ -2623,7 +2624,7 @@ implementations are specific to @acronym{AT&T} or Berkeley, and are not
 supported by @code{groff} @file{ms}.
 
 @item Format and layout
-By setting registers and strings, you can change your document's
+By setting registers and strings, you can configure your document's
 typeface, margins, spacing, headers and footers, and footnote
 arrangment.  @xref{ms Document Control Settings}.
 
@@ -3939,7 +3940,7 @@ preprocessors match these tokens only at the start of an input line.
 @DefmacList {TS, [@code{H}], ms}
 @DefmacListEndx {TE, , ms}
 Demarcate a table to be processed by the @code{tbl} preprocessor.  The
-optional argument@tie{}@code{H} to @code{TS} instructs @code{groff} to
+optional argument@tie{}@code{H} to @code{TS} instructs @file{ms} to
 repeat table rows (often column headings) at the top of each new page
 the table spans, if applicable; calling the @code{TH} macro marks the
 end of such rows.  The GNU @cite{tbl@r{(1)}} man page provides a

@@ -2677,7 +2677,7 @@ end
 .    \}
 .    if d$DC_ADJUST .ps \\*[$DC_ADJUST]p
 .    nr #DC_LINES +1
-.    if \\n[#DC_LINES]v>\\n[.t] \{\
+.    if (\\n[#DC_LINES]v-1v)>(\\n[.t]-1) \{\
 .       nr pgnum \\n%+\\n[#PAGE_NUM_ADJ] 1
 .       if \\n[#COLUMNS]=1 .ds col-num ", column \\n[#COL_NUM]
 .       tm1 \

@@ -7,6 +7,14 @@
 	greek characters only slant if the glyp is sourced from a
 	special font, not if the regular font contains greek glyphs.
 
+2022-07-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/s.tmac: Add italic correction support to `I` and `BI`
+	macros.  Call `par*define-font-macro` with newly recognized
+	third argument indicating that italic corrections should be
+	applied.
+	(par*define-font-macro): Apply the corrections if directed.
+
 2022-07-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (input_char_description): Clear

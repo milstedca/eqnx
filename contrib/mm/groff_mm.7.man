@@ -359,6 +359,28 @@ for instance with
 .SH Macros
 .\" ====================================================================
 .
+An explicitly empty argument may be specified with a pair of double
+quotes;
+to call a macro
+.B XX
+with an empty second argument but non-empty first and third ones,
+you could input the following.
+.
+.RS
+.EX
+\&.XX foo \[dq]\[dq] baz
+.EE
+.RE
+.
+.
+.P
+Macro names longer than two characters are GNU extensions;
+some shorter names were not part of DWB
+.IR mm 's
+published interface but are documented aspects of
+.I groff mm.
+.
+.
 .TP
 .BI )E\  "level text"
 Add heading text

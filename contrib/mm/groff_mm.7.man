@@ -2242,46 +2242,6 @@ These lists are described at other places in this manual.
 See also
 .BR LB .
 .
-.TP
-.BI LT\  \fR[\fIarg\/\fR]\fI
-Format a letter in one of four different styles depending
-on the argument.
-.
-Also see section \[lq]Internals\[rq] below.
-.
-.RS
-.IP
-.TS
-tab(@);
-lb lb
-l lx.
-Arg@Style
-BL@T{
-Blocked.
-Date line, return address, writer's address and closing
-begins at the center of the line.
-.
-All other lines begin at the left margin.
-T}
-SB@T{
-Semi-blocked.
-Same as blocked,
-except that the first line in every paragraph is indented five spaces.
-T}
-FB@T{
-Full-blocked.
-All lines begin at the left margin.
-T}
-SP@T{
-Simplified.
-As full-blocked,
-but the salutation is replaced by a fully-capitalized subject,
-any formal closing is omitted,
-and the author's signature is presented on a single line in full
-capitals.
-T}
-.TE
-.RE
 .
 .TP
 .BI LO\  "type \fR[\fParg\fR]\fP"
@@ -2338,6 +2298,49 @@ See also string
 T}
 .TE
 .RE
+.
+.
+.TP
+.BI LT\  \fR[\fIarg\/\fR]\fI
+Format a letter in one of four different styles depending
+on the argument.
+.
+Also see section \[lq]Internals\[rq] below.
+.
+.RS
+.IP
+.TS
+tab(@);
+lb lb
+l lx.
+Arg@Style
+BL@T{
+Blocked.
+Date line, return address, writer's address and closing
+begins at the center of the line.
+.
+All other lines begin at the left margin.
+T}
+SB@T{
+Semi-blocked.
+Same as blocked,
+except that the first line in every paragraph is indented five spaces.
+T}
+FB@T{
+Full-blocked.
+All lines begin at the left margin.
+T}
+SP@T{
+Simplified.
+As full-blocked,
+but the salutation is replaced by a fully-capitalized subject,
+any formal closing is omitted,
+and the author's signature is presented on a single line in full
+capitals.
+T}
+.TE
+.RE
+.
 .
 .TP
 .BI MC\  "column-size \fR[\fPcolumn-separation\fR]\fP"
@@ -2466,13 +2469,6 @@ End alternative multi-column mode and emit the columns.
 .
 .
 .TP
-.BI nP\  \fR[\fPtype\fR]\fP
-Print numbered paragraph with header level two.
-.
-See
-.BR .P .
-.
-.TP
 .B NCOL
 Force printing to the next column.
 .
@@ -2480,6 +2476,25 @@ Don't use this together with the
 .B MUL*
 macros, see
 .BR 2C .
+.
+.
+.TP
+.BI ND\  new-date
+New date.
+.
+Overrides the current date.
+.
+Date is not printed if
+.I new-date
+is an empty string.
+.
+.
+.TP
+.BI nP\  \fR[\fPtype\fR]\fP
+Print numbered paragraph with header level two.
+.
+See
+.BR .P .
 .
 .TP
 .BI NS\  \fR[\fParg\  \fR[\fP1\fR]]\fP
@@ -2525,15 +2540,6 @@ l l.
 .TE
 .RE
 .
-.TP
-.BI ND\  new-date
-New date.
-.
-Overrides the current date.
-.
-Date is not printed if
-.I new-date
-is an empty string.
 .
 .TP
 .BI OF\  \fR[\fParg\fR]\fP
@@ -3375,10 +3381,6 @@ Several names can be specified with empty
 .BR WA / WE
 pairs, but only one address.
 .
-.TP
-.B WE
-End the address specification after
-.BR .WA .
 .
 .TP
 .BI WC\  "\fR[\fPformat1\fR] [\fPformat2\fR] [.\|.\|.]\fP"
@@ -3421,6 +3423,12 @@ Floating displays does not generate line break.
 T}
 .TE
 .RE
+.
+.
+.TP
+.B WE
+End the address specification after
+.BR WA .
 .
 .
 .\" ====================================================================
@@ -3494,41 +3502,11 @@ Contains the index command.
 Default value is
 .RB \[lq] sort\~\-t\[rs]t \[rq].
 .
-.TP
-.B Lifg
-String containing \[lq]Figure\[rq].
-.
-.TP
-.B Litb
-String containing \[lq]TABLE\[rq].
-.
-.TP
-.B Liex
-String containing \[lq]Exhibit\[rq].
-.
-.TP
-.B Liec
-String containing \[lq]Equation\[rq].
-.
-.TP
-.B Licon
-String containing \[lq]CONTENTS\[rq].
-.
-.TP
-.B Lf
-Contains the string \[lq]LIST OF FIGURES\[rq].
-.
-.TP
-.B Lt
-Contains the string \[lq]LIST OF TABLES\[rq].
-.
-.TP
-.B Lx
-Contains the string \[lq]LIST OF EXHIBITS\[rq].
 .
 .TP
 .B Le
 Contains the string \[lq]LIST OF EQUATIONS\[rq].
+.
 .
 .TP
 .B Letfc
@@ -3536,29 +3514,13 @@ Contains the string \[lq]Yours very truly,\[rq],
 used in
 .BR .FC .
 .
+.
 .TP
 .B Letapp
 Contains the string \[lq]APPROVED:\[rq],
 used in
 .BR .AV .
 .
-.TP
-.B Letdate
-Contains the string \[lq]Date\[rq],
-used in
-.BR .AV .
-.
-.TP
-.B LetCN
-Contains the string \[lq]CONFIDENTIAL\[rq],
-used in
-.BR ".LO CN" .
-.
-.TP
-.B LetSA
-Contains the string \[lq]To Whom It May Concern:\[rq],
-used in
-.BR ".LO SA" .
 .
 .TP
 .B LetAT
@@ -3566,17 +3528,20 @@ Contains the string \[lq]ATTENTION:\[rq],
 used in
 .BR ".LO AT" .
 .
-.TP
-.B LetSJ
-Contains the string \[lq]SUBJECT:\[rq],
-used in
-.BR ".LO SJ" .
 .
 .TP
-.B LetRN
-Contains the string \[lq]In reference to:\[rq],
+.B LetCN
+Contains the string \[lq]CONFIDENTIAL\[rq],
 used in
-.BR ".LO RN" .
+.BR ".LO CN" .
+.
+.
+.TP
+.B Letdate
+Contains the string \[lq]Date\[rq],
+used in
+.BR .AV .
+.
 .
 .TP
 .B Letns
@@ -3598,6 +3563,7 @@ as a prefix and
 as a suffix.
 .
 Observe the space after \[lq]Copy\[rq] and before \[lq]to\[rq].
+.
 .
 .RS
 .IP
@@ -3626,12 +3592,75 @@ Letns!to@ to \fI(note leading space)\fP
 .TE
 .RE
 .
+.
 .TP
 .B Letnsdef
 Define the standard notation used when no argument is given to
 .BR .NS .
 .
 Default is\~0.
+.
+.
+.TP
+.B LetRN
+Contains the string \[lq]In reference to:\[rq],
+used in
+.BR ".LO RN" .
+.
+.
+.TP
+.B LetSA
+Contains the string \[lq]To Whom It May Concern:\[rq],
+used in
+.BR ".LO SA" .
+.
+.
+.TP
+.B LetSJ
+Contains the string \[lq]SUBJECT:\[rq],
+used in
+.BR ".LO SJ" .
+.
+.
+.TP
+.B Lf
+Contains the string \[lq]LIST OF FIGURES\[rq].
+.
+.
+.TP
+.B Licon
+String containing \[lq]CONTENTS\[rq].
+.
+.
+.TP
+.B Liec
+String containing \[lq]Equation\[rq].
+.
+.
+.TP
+.B Liex
+String containing \[lq]Exhibit\[rq].
+.
+.
+.TP
+.B Lifg
+String containing \[lq]Figure\[rq].
+.
+.
+.TP
+.B Litb
+String containing \[lq]TABLE\[rq].
+.
+.
+.TP
+.B Lt
+Contains the string \[lq]LIST OF TABLES\[rq].
+.
+.
+.TP
+.B Lx
+Contains the string \[lq]LIST OF EXHIBITS\[rq].
+.
 .
 .TP
 .B "MO1 \(en MO12"
@@ -3695,6 +3724,11 @@ Default is\~1.
 .\" ====================================================================
 .
 .TP
+.B .mgm
+Always\~1.
+.
+.
+.TP
 .B Aph
 Print an appendix page for every new appendix if this register
 is non-zero.
@@ -3739,14 +3773,6 @@ If set to\~1, eject after floating display is output.
 .
 Default is\~0.
 .
-.TP
-.B Dsp
-If defined, it controls the space output before and after static
-displays.
-.
-Otherwise the value of
-.B Lsp
-is used.
 .
 .TP
 .B Df
@@ -3764,6 +3790,17 @@ If set to\~1, use the amount of space stored in register
 before and after display.
 .
 Default is\~1.
+.
+.
+.TP
+.B Dsp
+If defined, it controls the space output before and after static
+displays.
+.
+Otherwise the value of
+.B Lsp
+is used.
+.
 .
 .TP
 .B Ej
@@ -4187,9 +4224,6 @@ Default is 5n.
 .B W
 Line length, only for command-line settings.
 .
-.TP
-.B .mgm
-Always\~1.
 .
 .
 .\" ====================================================================

@@ -405,36 +405,43 @@ Author's firm, should be called before
 see also
 .BR COVER .
 .
+.
 .TP
-.BI AL\  \fR[\fPtype\ \fR[\fPtext-indent\  \fR[\fP1\fR]]]\fP
-Start auto-increment list.
+.BI AL\~ \fR[\fPtype\~\fR[\fPtext-indent\~ \fR[\fP1\fR]]]\fP
+Start an auto-incrementing list.
 .
 Items are numbered beginning with one.
 .
 The
 .I type
-argument controls the format of numbers.
+argument assigns the register format
+(see above)
+of the list item enumerators.
 .
-.RS
-.IP
-.TS
-tab(@);
-lb lb
-l l.
-Arg@Description
-1@Arabic (the default)
-A@Upper-case letters (A\(enZ)
-a@Lower-case letters (a\(enz)
-I@Upper-case roman
-i@Lower-case roman
-.TE
-.RE
+The default
+.RB is\~ 1 .
 .
-.IP
+An explicitly empty
+.I type
+also indicates the default.
+.
 .I text-indent
-sets the indentation and overrides
+sets the indentation and overrides the register
 .BR Li .
-A third argument prohibits printing of a blank line before each item.
+.
+If a third argument,
+conventionally
+.BR 1 ,
+is given,
+the blank line that normally precedes each list item is suppressed.
+.
+Use
+.B LI
+to declare list items,
+and
+.B LE
+to end the list.
+.
 .
 .TP
 .BI APP\  "name text"
@@ -1772,28 +1779,21 @@ Hyphenation can be turned off by setting register
 .B Hy
 to\~0 at the beginning of the file.
 .
+.
 .TP
 .BI HM\  "\fR[\fParg1 \fR[\fParg2 \fR[.\|.\|.\& [\fParg14\fR]]]]\fP"
-Heading mark style.
+Set the heading mark style.
 .
-Controls the type of marking for printing of the heading counters.
+Each argument assigns the specified register format
+(see above)
+to the corresponding heading level.
 .
-Default is\~1 for all levels.
+The default
+.RB is\~ 1
+for all levels.
 .
-.IP
-.B Argument
+An explicitly empty argument also indicates the default.
 .
-.TS
-tab(@);
-l l.
-1@Arabic numerals.
-0001@Arabic numerals with leading zeroes, one or more.
-A@upper-case alphabetic
-a@lower-case alphabetic
-I@upper-case roman numerals
-i@lower-case roman numerals
-\[dq]\[dq]@Arabic numerals.
-.TE
 .
 .TP
 .BI HU\  heading-text
@@ -2205,10 +2205,11 @@ Default value is 99.
 .
 There is no nesting limit.
 .
+.
 .IP
 The indentation can be changed through register
 .BR Li .
-Default is\~6.
+.
 .
 .IP
 All lists begin with a list initialization macro,
@@ -2235,12 +2236,6 @@ l l.
 \fBBVL\fP@Broken Variable List.
 .TE
 .RE
-.
-.IP
-These lists are described at other places in this manual.
-.
-See also
-.BR LB .
 .
 .
 .TP
@@ -2364,19 +2359,29 @@ Default separation is
 See also
 .BR 1C .
 .
-.TP
-.BI ML\  "mark \fR[\fPtext-indent\ " \fR[\fP1\fR]]\fP
-Marked list start.
 .
-The
+.TP
+.BI ML\~ "mark \fR[\fPtext-indent\~" \fR[\fP1\fR]]\fP
+Start a list with the
 .I mark
-argument is printed before each list item.
+argument preceding each list item.
 .
 .I text-indent
-sets the indent and overrides
+sets the indentation and overrides the register
 .BR Li .
 .
-A third argument prohibits printing of a blank line before each item.
+If a third argument,
+conventionally
+.BR 1 ,
+is given,
+the blank line that normally precedes each list item is suppressed.
+.
+Use
+.B LI
+to declare list items,
+and
+.B LE
+to end the list.
 .
 .
 .TP
@@ -4026,12 +4031,16 @@ List of tables, List of exhibits and List of equations, respectively.
 .
 Default values are Lf=1, Lt=1, Lx=1, and Le=0.
 .
+.
 .TP
 .B Li
-List indentation, used by
-.BR .AL .
+is the list item indentation amount used by lists
+.RB ( LB
+and the macros that call it).
 .
-Default is\~6.
+The default
+.BR is\~ 6 .
+.
 .
 .TP
 .B Limsp

@@ -2490,30 +2490,53 @@ is an empty string.
 .
 .
 .TP
+.B NE
+End notation begun with
+.BR NS ;
+filling is enabled.
+.
+.
+.TP
 .BI nP\  \fR[\fPtype\fR]\fP
 Print numbered paragraph with header level two.
 .
 See
 .BR .P .
 .
+.
 .TP
 .BI NS\  \fR[\fParg\  \fR[\fP1\fR]]\fP
-Print different types of notations.
+Collect notations of the type specified by
+.I arg
+until
+.B NE
+is called;
+filling is disabled.
 .
-The argument selects between the predefined type of notations.
+If a second argument,
+conventionally
+.BR 1 ,
+is given,
+then the argument becomes the entire notation and
+.B NE
+is not necessary.
 .
-If the second argument is available,
-then the argument becomes the entire notation.
-.
-If the argument doesn't select a predefined type,
-it is printed as
+If
+.I arg
+does not match one of the predefined types listed below,
+the notations are prefixed with
 .RI "\[lq]Copy (" arg ") to\[rq]."
 .
-It is possible to add more standard notations;
+In groff
+.IR mm ,
+you can set up further notations to be recognized by
+.BR NS ;
 see the strings
 .B Letns
 and
-.BR Letnsdef .
+.B Letnsdef
+below.
+.
 .
 .RS
 .IP

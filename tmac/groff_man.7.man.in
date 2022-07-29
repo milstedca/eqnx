@@ -3876,12 +3876,13 @@ non-printing input break escape sequence
 .BR \[rs]& .
 .
 That fact stands even if a string is defined to contain the sequence;
-moreover,
-if the string included the input breaks,
-end-of-sentence detection would be defeated in the event you used such a
-string at the end of an actual sentence.
+further,
+if the string ends with
+.BR \[rs]& ,
+end-of-sentence detection is defeated when you use the string at the end
+of an actual sentence.
 .
-(Ending a sentence thus is often poor style,
+(Ending a sentence with an ellipsis is often poor style,
 but not always.)
 .
 A hypothetical string

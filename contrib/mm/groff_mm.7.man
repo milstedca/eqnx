@@ -72,16 +72,66 @@ implementation found in the AT&T Documenter's Workbench (DWB),
 with the following limitations.
 .
 .
-.IP \[bu]
+.IP \[bu] 2n
 No Bell Labs localisms are implemented.
 .
-.
-.IP \[bu]
-The macros
+This includes the logo and company name strings,
+.B }Z
+and
+.BR ]S ,
+respectively;
+the encoded company site location addresses recognized as the third
+argument to the
+.B AU
+macro;
+the
+.B Pv
+(\[lq]private\[rq] heading)
+register;
+and the
+.B CS
+(cover sheet),
 .B OK
+(other keywords),
 and
 .B PM
-are not implemented.
+(proprietary markings)
+macros.
+.
+.
+.IP \[bu]
+The
+.I grap
+preprocessor is not explicitly supported;
+no
+.B G1
+and
+.B G2
+macros
+are defined.
+.
+.
+.IP \[bu]
+The service mark string
+.B Sm
+is not implemented.
+.
+.
+.IP \[bu]
+The registers
+.BR A ,
+.BR C ,
+.BR E ,
+.BR T ,
+and
+.BR U ,
+typically set from the
+.I troff \" generic
+or
+.I nroff \" generic
+command lines with DWB
+.IR mm ,
+are not recognized.
 .
 .
 .IP \[bu]

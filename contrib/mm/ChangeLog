@@ -1,5 +1,10 @@
 2022-07-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* groff_mm.7.man: Document further differences between DWB mm
+	and groff mm, including several unimplemented features.
+
+2022-07-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac: Remove pointless conditionals in initialization.
 	Simplify if-else request pairs that did the same thing in both
 	branches.

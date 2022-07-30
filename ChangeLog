@@ -1,5 +1,15 @@
 2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Fix Savannah #49390.
+
+	* src/preproc/tbl/table.cpp (table::do_bottom): Avoid
+	overprinting a boxed table's bottom border on nroff devices.
+
+	Fixes <https://savannah.gnu.org/bugs/?49390>.  Thanks to Osamu
+	Sayama for the report.
+
+2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Regression-test Savannah #49390.
 
 	* src/preproc/tbl/tests/\

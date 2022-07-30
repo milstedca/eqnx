@@ -2641,7 +2641,7 @@ accent mark strings as follows.
 .
 .TS
 Cb Lb
-Lf(CR) Lx.
+Lf(CR) L.
 String	Description
 _
 \[rs]*[\[aq]]	Apply acute accent to subsequent glyph.
@@ -2682,7 +2682,7 @@ Enable alternative accent mark and glyph-producing strings.
 .P
 .TS
 Cb Lb
-Lf(CR) Lx.
+Lf(CR) L.
 String	Description
 _
 \[rs]*[\[aq]]	Apply acute accent to preceding glyph.

@@ -261,6 +261,7 @@ in the next subsection.
 .
 .P
 All of the following characters map to glyphs as you would expect.
+.
 .TS
 center box;
 Lf(CR).
@@ -946,9 +947,12 @@ minus,
 and equals
 signs normally drawn from this range.
 .
+.
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -991,9 +995,12 @@ but rather to \[lq]SS\[rq].
 \[lq]Lowercase f with hook\[rq] is also used as a function symbol;
 see subsection \[lq]Mathematical symbols\[rq] below.
 .
+.
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1067,9 +1074,11 @@ and
 .RB \[lq] "caf\[rs][aa]e" \[rq]).
 .
 .
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1098,9 +1107,12 @@ All of these glyphs can be composed using combining glyph names as
 described in subsection \[lq]Special character escape forms\[rq] above;
 the names below are short aliases for convenience.
 .
+.
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1185,9 +1197,12 @@ is also available as a special character for convenient embedding in
 macro arguments;
 see subsection \[lq]Fundamental character set\[rq] above.
 .
+.
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1219,9 +1234,12 @@ mnemonic for the visually similar but semantically distinct
 multiplication dot;
 see subsection \[lq]Mathematical symbols\[rq] below.
 .
+.
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1335,9 +1353,11 @@ only glyphs with long names are guaranteed to pile up correctly for all
 devices\[em]provided those glyphs are available.
 .
 .
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1467,9 +1487,11 @@ for this purpose;
 see subsection \[lq]Mathematical symbols\[rq] below.
 .
 .
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1525,9 +1547,12 @@ L Lf(CR) L Lx.
 The Bell System logo is not supported in
 .IR groff .
 .
+.
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1601,9 +1626,12 @@ Terminal devices unify
 and
 .BR \[rs][or] .
 .
+.
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1679,9 +1707,11 @@ and
 are their counterparts with mathematical spacing.
 .
 .
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&
@@ -1786,9 +1816,11 @@ the uppercase letters have upright shape,
 and the lowercase ones are slanted.
 .
 .
+.P
+.if t .ne 2v
+.if n .ne 3v \" account for horizontal rule
 .TS
 L L L Lx.
-.ne 3v
 Output	Input	Unicode	Notes
 _
 .T&

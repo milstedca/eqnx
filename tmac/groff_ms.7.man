@@ -1741,6 +1741,8 @@ Load the desired localization macro package after
 see
 .MR groff_tmac @MAN5EXT@ .
 .
+.
+.P
 .RS
 .TS
 cb   cb
@@ -2639,6 +2641,7 @@ defined
 accent mark strings as follows.
 .
 .
+.P
 .TS
 Cb Lb
 Lf(CR) L.

@@ -1,5 +1,15 @@
 2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (TS): Stop inserting space before tables.  Unlike
+	ms(7), man(7) has no concept of "displays" and thus none of
+	"display distance".  It is up to the page author to use
+	paragraphing macros around tables if vertical space is desired.
+	And not up to us to impose it.
+
+	Fixes <https://savannah.gnu.org/bugs/?62841>.
+
+2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Regression-test Savannah #62841.
 
 	* tmac/tests/an_TS-adds-no-vertical-space.sh: Do it.

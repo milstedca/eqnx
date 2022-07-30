@@ -20,6 +20,13 @@
 
 groff="${abs_top_builddir:-.}/test-groff"
 
+fail=
+
+wail () {
+    echo "...FAILED" >&2
+    fail=yes
+}
+
 # Regression-test Savannah #49390.
 
 input='foo
@@ -32,7 +39,24 @@ baz
 .pl \n(nlu
 '
 
+echo "checking for post-table text non-overlap of (single) box border"
 output=$(printf "%s" "$input" | "$groff" -t -Tascii)
-echo "$output" | grep -q baz
+echo "$output" | grep -q baz || wail
+
+input='foo
+.TS
+doublebox;
+L.
+bar
+.TE
+baz
+.pl \n(nlu
+'
+
+echo "checking for post-table text non-overlap of double box border"
+output=$(printf "%s" "$input" | "$groff" -t -Tascii)
+echo "$output" | grep -q baz || wail
+
+test -z "$fail"
 
 # vim:set ai et sw=4 ts=4 tw=72:

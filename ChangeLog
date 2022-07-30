@@ -1,5 +1,13 @@
 2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Expand regression test for Savannah #49490.  Check for
+	overlap of double box borders, too.
+
+	* src/preproc/tbl/tests/\
+	do-not-overlap-bottom-border-in-nroff.sh: Do it.
+
+2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Fix Savannah #49390.
 
 	* src/preproc/tbl/table.cpp (table::do_bottom): Avoid

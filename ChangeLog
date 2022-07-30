@@ -1,3 +1,11 @@
+2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Regression-test Savannah #49390.
+
+	* src/preproc/tbl/tests/\
+	do-not-overlap-bottom-border-in-nroff.sh: Do it.
+	* src/preproc/tbl/tbl.am (tbl_TESTS): Run test.
+
 2022-07-28  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[gropdf]: slanting lowercase greek characters. See

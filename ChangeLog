@@ -1,5 +1,11 @@
 2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/table.cpp (table::do_bottom): Avoid
+	overprinting a double-boxed table's bottom border on nroff
+	devices.
+
+2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Expand regression test for Savannah #49490.  Check for
 	overlap of double box borders, too.
 

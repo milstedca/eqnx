@@ -1,3 +1,10 @@
+2022-07-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/pdfpic.tmac: Finish incomplete string renames.  Continues
+	0fd6ab6b4c, 21 January.
+		pdfpic*file-name -> pdfpic*file-name-base
+		pspic-args -> pdfpic*pspic-args
+
 2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (TS): Stop inserting space before tables.  Unlike

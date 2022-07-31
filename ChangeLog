@@ -1,5 +1,12 @@
 2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man]: Regression-test Savannah #62841.
+
+	* tmac/tests/an_TS-adds-no-vertical-space.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/table.cpp (table::do_bottom): Avoid
 	overprinting a double-boxed table's bottom border on nroff
 	devices.

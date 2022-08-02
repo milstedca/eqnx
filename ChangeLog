@@ -75,8 +75,9 @@
 	* src/roff/troff/input.cpp (input_char_description): Clear
 	static buffer on every entry to the function so that calling it
 	twice in succession where the second call populates the buffer
-	with less data doesn't return leftover garbage characters.
-	Problem appears to date back to 1991 or earlier.
+	with less data than the first doesn't leave garbage characters
+	in a diagnostic message.  Problem appears to date back to 1991
+	or earlier.
 
 	Fixes <https://savannah.gnu.org/bugs/?62813>.
 

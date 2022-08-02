@@ -138,6 +138,25 @@ are not recognized.
 Cut marks are not supported.
 .
 .
+.P
+DWB
+.I mm
+supported only seven levels of heading.
+.
+As a compatible extension,
+.I groff mm
+supports fourteen,
+introducing new registers
+.B H8
+through
+.BR H14 ,
+and affecting the interpretation of the
+.B HF
+and
+.B HP
+strings.
+.
+.
 .\" ====================================================================
 .SS Localization
 .\" ====================================================================

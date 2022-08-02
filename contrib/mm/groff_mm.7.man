@@ -2604,8 +2604,8 @@ does not match one of the predefined types listed below,
 the notations are prefixed with
 .RI "\[lq]Copy (" arg ") to\[rq]."
 .
-In groff
-.IR mm ,
+In
+.IR "groff mm" ,
 you can set up further notations to be recognized by
 .BR NS ;
 see the strings
@@ -3803,10 +3803,13 @@ ap@Appendix
 .TE
 .RE
 .
+.
 .TP
 .B Tm
-Contains the string \[lq]\[rs](tm\[rq],
-the trade mark symbol.
+contains the special character
+.BR \[rs](tm ,
+the trade mark sign.
+.
 .
 .TP
 .B Verbnm

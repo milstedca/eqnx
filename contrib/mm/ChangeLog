@@ -1,3 +1,12 @@
+2022-08-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* groff_mm.7.man: Document more features.
+	(Macros) <)E, VM>: Document these DWB mm internals as exposed by
+	groff mm.
+	(Macros) <B1, B2, MC>: Document as GNU extensions.
+	(Strings) <BU, Ci, F>: Document.
+	(Registers) <:R, Au, Ex, Fg, H8...H14, Oc, S>: Document.
+
 2022-07-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* groff_mm.7.man: Document further differences between DWB mm

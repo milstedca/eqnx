@@ -442,7 +442,12 @@ which is either\~0 or in the range 1 to\~7.
 See also
 .BR .H .
 .
-This macro is used for customized tables of contents.
+This undocumented DWB
+.I mm
+macro is exposed by
+.I groff mm
+to enable customized tables of contents.
+.
 .
 .TP
 .BR 1C\  [ 1 ]
@@ -721,11 +726,15 @@ kept display.
 The text is indented one character,
 and the right margin is one character shorter.
 .
+This is a GNU extension.
+.
 .
 .TP
 .B B2
 End boxed,
 kept display.
+.
+This is a GNU extension.
 .
 .
 .TP
@@ -2428,7 +2437,9 @@ is the space between two columns.
 Default separation is
 .IR column-size /15.
 .
-See also
+.
+This is a GNU extension;
+see also
 .BR 1C .
 .
 .
@@ -3473,6 +3484,13 @@ are defined if using
 .B \-T
 and setting top and/or bottom margin to less than the default.
 .
+This undocumented DWB
+.I mm
+macro is exposed by
+.I groff mm
+to increase user control of page layout.
+.
+.
 .TP
 .BI WA\  "\fR[\fPwriter-name \fR[\fPtitle\fR]]\fP"
 Begin specification of the writer and writer's address.
@@ -3545,6 +3563,20 @@ The current appendix text.
 .
 .
 .TP
+.B BU
+bullet
+(see
+.B BL
+macro)
+.
+.
+.TP
+.B Ci
+list of indentation amounts to use for table of contents heading levels,
+overriding automatic computation
+.
+.
+.TP
 .B DT
 The date;
 set by the
@@ -3565,6 +3597,12 @@ register.
 .TP
 .B EM
 Em dash string
+.
+.
+.TP
+.B F
+auto-incrementing footnote marker
+.
 .
 .TP
 .B H1txt
@@ -3832,6 +3870,13 @@ Always\~1.
 .
 .
 .TP
+.B :R
+auto-incrementing reference counter;
+see
+.B RS
+.
+.
+.TP
 .B Aph
 Print an appendix page for every new appendix if this register
 is non-zero.
@@ -3840,6 +3885,20 @@ No output occurs if
 .B Aph
 is zero,
 but there is always an appendix entry in the \[lq]List of contents\[rq].
+.
+.
+.TP
+.B Au
+includes supplemental author information
+(the third and subsequent arguments to
+.B AU )
+in memorandum \[lq]from\[rq] information.
+.
+It defaults
+.RB to\~ 1 ;
+.BR 0 \~excludes
+the information.
+.
 .
 .TP
 .B Cl
@@ -3918,15 +3977,34 @@ set to\~1.
 .
 Default is\~0.
 .
+.
+.TP
+.B Ex
+auto-incrementing exhibit counter;
+see
+.B EX
+.
+.
+.TP
+.B Fg
+auto-incrementing figure counter;
+see
+.B FG
+.
+.
 .TP
 .B Fs
 Footnote spacing.
 .
 Default is\~1.
 .
+.
 .TP
-.B "H1 \(en H7"
-Heading counters
+.BR H1 \|.\|.\|.\| H14
+auto-incrementing heading counters;
+see
+.B H
+.
 .
 .TP
 .B H1dot
@@ -4091,20 +4169,35 @@ above.
 .B L
 Page length, only for command-line settings.
 .
+.
+.TP
+.B Le
+.TQ
+.B Lf
+.TQ
+.B Lt
+.TQ
+.B Lx
+enable (1) or disable (0) the inclusion of lists of equations.
+figures,
+tables,
+and exhibits,
+respectively.
+.
+All default
+.RB to\~ 1
+except
+.BR Le ,
+which defaults
+.RB to\~ 0 .
+.
+.
 .TP
 .B Letwam
 Maximum lines in return-address, used in
 .BR .WA / .WE .
 .
 Default is\~14.
-.
-.TP
-.BR Lf ,\  Lt ,\  Lx ,\  Le
-Enable (1) or disable (0) the printing of List of figures,
-.
-List of tables, List of exhibits and List of equations, respectively.
-.
-Default values are Lf=1, Lt=1, Lx=1, and Le=0.
 .
 .
 .TP
@@ -4201,6 +4294,17 @@ Default is\~0.
 .B O
 Page offset, only for command-line settings.
 .
+.
+.TP
+.B Oc
+controls the presence of page numbers in the table of contents.
+.
+The default
+.RB is\~ 0 ,
+which numbers the pages with Arabic numerals;
+any positive value suppresses them.
+.
+.
 .TP
 .B Of
 Format of figure, table, exhibit, and equation titles.
@@ -4295,6 +4399,16 @@ Set default value for second argument of
 .BR .RP .
 .
 Default is\~0.
+.
+.
+.TP
+.B S
+defines the type size for the document in (scaled) points,
+and must be set from the command line.
+.
+.\" FIXME: This is a defect.  It should be 120%.
+The vertical spacing is set two points larger.
+.
 .
 .TP
 .B Sectf

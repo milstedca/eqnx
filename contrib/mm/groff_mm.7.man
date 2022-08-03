@@ -3898,7 +3898,7 @@ see macro
 .TP
 .B :R
 auto-incrementing reference counter;
-see
+see macro
 .B RS
 .
 .
@@ -4007,14 +4007,14 @@ Default is\~0.
 .TP
 .B Ex
 auto-incrementing exhibit counter;
-see
+see macro
 .B EX
 .
 .
 .TP
 .B Fg
 auto-incrementing figure counter;
-see
+see macro
 .B FG
 .
 .
@@ -4028,7 +4028,7 @@ Default is\~1.
 .TP
 .BR H1 \|.\|.\|.\| H14
 auto-incrementing heading counters;
-see
+see macro
 .B H
 .
 .

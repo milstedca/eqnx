@@ -12638,6 +12638,26 @@ condition was false) the remainder of the input line is interpreted
 @emph{as if it were on an input line by itself}.
 @endDefesc
 
+We can use @code{ie}, @code{el}, and conditional blocks to simulate the
+multi-way ``switch'' or ``case'' control structures of other languages.
+The following example is adapted from the @code{groff} @file{man}
+package.  Indentation is used to clarify the logic.
+
+@Example
+.\" Simulate switch/case in roff.
+.      ie '\\$2'1' .ds title General Commands\"
+.el \@{.ie '\\$2'2' .ds title System Calls\"
+.el \@{.ie '\\$2'3' .ds title Library Functions\"
+.el \@{.ie '\\$2'4' .ds title Kernel Interfaces\"
+.el \@{.ie '\\$2'5' .ds title File Formats\"
+.el \@{.ie '\\$2'6' .ds title Games\"
+.el \@{.ie '\\$2'7' .ds title Miscellaneous Information\"
+.el \@{.ie '\\$2'8' .ds title System Management\"
+.el \@{.ie '\\$2'9' .ds title Kernel Development\"
+.el                .ds title \" empty
+.\@}\@}\@}\@}\@}\@}\@}\@}
+@endExample
+
 @c ---------------------------------------------------------------------
 
 @node while,  , if-else, Conditionals and Loops

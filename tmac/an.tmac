@@ -303,7 +303,7 @@
 .    rm an-msg
 .  \}
 .
-.  if '\\*[an-extra3]'' \{\
+.  if '\\$5\\*[an-extra3]'' \{\
 .    ds an-msg .\\$0 missing fifth argument and second argument '\\$2'\"
 .    as an-msg " not a recognized manual section; specify volume title\"
 .    an-style-warn \\*[an-msg]

@@ -1,3 +1,10 @@
+2022-08-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/an.tmac (TH): Fix spurious complaint from `CHECKSTYLE`
+	feature when a custom manual section title is declared for a
+	standard section number.  Thanks to Quentin Monnet for the
+	report.
+
 2022-07-31  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/pdfpic.tmac: Finish incomplete string renames.  Continues

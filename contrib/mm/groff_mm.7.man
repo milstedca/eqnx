@@ -3889,6 +3889,13 @@ Always\~1.
 .
 .
 .TP
+.B :P
+auto-incrementing footnote counter;
+see macro
+.B FS
+.
+.
+.TP
 .B :R
 auto-incrementing reference counter;
 see

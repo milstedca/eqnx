@@ -1,3 +1,14 @@
+2022-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/eqn/lex.cpp (do_delim): Recognize "delim on" even
+	in compatibility mode, enabling tbl to toggle eqn delimiter
+	recognition when it is run in compatibility mode as well.
+	* src/preproc/eqn/eqn.1.man (Controlling delimiteres): Update.
+	* NEWS: Add item.
+
+	Fixes <https://savannah.gnu.org/bugs/?62852>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
 2022-08-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (TH): Fix spurious complaint from `CHECKSTYLE`

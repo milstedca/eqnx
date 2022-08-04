@@ -216,7 +216,6 @@ or
 .SS "Controlling delimiters"
 .\" ====================================================================
 .
-If not in compatibility mode,
 .I eqn
 recognizes
 .RB \[lq] "delim on" \[rq]
@@ -1318,10 +1317,7 @@ Recognize
 .B .EQ
 and
 .B .EN
-even when followed by a character other than space or newline,
-and do not handle the
-.RB \[lq] "delim on" \[rq]
-statement specially.
+even when followed by a character other than space or newline.
 .
 .
 .TP

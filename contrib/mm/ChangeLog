@@ -1,3 +1,15 @@
+2022-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (initialization): Recognize new register `V` for
+	setting the vertical spacing from the command line, instead of
+	blindly setting the vertical spacing two points larger than the
+	type size.  Handle setting of `V` and type size `S` in case they
+	are given with an appended scaling unit, using the same
+	technique as groff ms(7)--if the values are over 1,000, assume
+	that conversion to basic units by the formatter has already
+	taken place.
+	* groff_mm.7.man (Registers) <S, V>: Document it.
+
 2022-08-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (:P): Define register as an alias of `ft*nr`; the

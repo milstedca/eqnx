@@ -178,10 +178,16 @@ Index		array!index
 .	el .ds @sdf_font R
 .\}
 .\"
-.\"	Current pointsize and vertical space, always in points.
+.\"	Set the type size and vertical spacing.  If given on the command
+.\"	line, these have already been converted to basic units.
 .if !r S .nr S 10
-.ps \n[S]
-.vs \n[S]+2
+.ie (\n[S] >= 1000) .ps \n[S]z/1000u
+.el                 .ps \n[S]
+.nr *vs-default \n[.ps]*120/100
+.if !r V .nr V \n[*vs-default]
+.ie (\n[V] >= 1000) .vs \n[V]p/1000u
+.el                 .vs \n[V]
+.rm *vs-default
 .\"
 .nr @ps \n[.ps]
 .nr @vs \n[.v]

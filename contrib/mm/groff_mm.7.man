@@ -4429,11 +4429,11 @@ Default is\~0.
 .
 .TP
 .B S
-defines the type size for the document in (scaled) points,
+defines the type size for the document,
 and must be set from the command line.
 .
-.\" FIXME: This is a defect.  It should be 120%.
-The vertical spacing is set two points larger.
+A scaling unit may be appended;
+scaled points are assumed.
 .
 .
 .TP
@@ -4459,6 +4459,18 @@ See also register\~\c
 Display indentation.
 .
 Default is\~5.
+.
+.
+.TP
+.B V
+defines the vertical spacing for the document,
+and must be set from the command line.
+.
+A scaling unit may be appended;
+points are assumed.
+.
+The default vertical spacing is 120% of the type size.
+.
 .
 .TP
 .B Verbin

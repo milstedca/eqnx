@@ -1,5 +1,11 @@
 2022-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (initialization): In nroff mode, surround automatically
+	numbered footnote markers in body text with square brackets, as
+	groff me(7) and ms(7) do.
+
+2022-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (initialization): Recognize new register `V` for
 	setting the vertical spacing from the command line, instead of
 	blindly setting the vertical spacing two points larger than the

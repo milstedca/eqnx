@@ -1671,7 +1671,8 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .nr ft*exist 0\"	not zero if there are any footnotes to be printed
 .nr ft*clear-at-header 0\" >0 if footnotes should be reset at first level head.
 .\"
-.ds F \v'-.4m'\s-3\\n+[ft*nr]\s0\v'.4m'
+.ie t .ds F \v'-.4m'\s-3\\n+[ft*nr]\s0\v'.4m'
+.el   .ds F [\\n+[ft*nr]]
 .\"
 .\"-----------------
 .\" init footnote environment

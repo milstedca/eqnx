@@ -8,7 +8,7 @@ groff_mm \- memorandum macros for GNU roff
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1989-2021 Free Software Foundation, Inc.
+.\" Copyright (C) 1989-2022 Free Software Foundation, Inc.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -1372,9 +1372,13 @@ The default for
 .I mm
 is 10.
 .
+.
 .TP
 .B FE
-Footnote end.
+Footnote end;
+see macro
+.BR FS .
+.
 .
 .TP
 .BI FG\  "\fR[\fPtitle \fR[\fPoverride \fR[\fPflag \fR[\fPrefname\fR]]]]\fP"
@@ -1417,31 +1421,48 @@ is used inside
 it is not affected by the format of
 .BR DS .
 .
+.
 .TP
-.BI FS\  \fR[\fPlabel\fR]\fP
+.BR FS \~[\c
+.IR label ]
 Footnote start.
 .
-The footnote is ended by
-.BR FE .
+Text until
+.B FE
+is called is collected into a footnote.
 .
-By default, footnotes are automatically numbered;
-the number is available in string\~\c
-.BR F .
+By default,
+footnotes are automatically numbered starting at 1;
+the number is available in register
+.B :p
+and,
+with a trailing period,
+in
+.RB string\~ F .
 .
-Just add
-.B \[rs]*F
-in the text.
+This string precedes the footnote text at the bottom of the column or
+page.
 .
-By adding
-.IR label ,
-it is possible to have other number or names on the footnotes.
+Vertical space in the amount of
+.RB register\~ Fs
+separates footnotes;
+the default amount is 1v.
 .
-Footnotes in displays are now possible.
+In
+.IR "groff ms" ,
+footnotes may be used in displays.
 .
-An empty line separates footnotes;
-the height of the line is controlled by register
-.BR Fs ,
-default value is\~1.
+.
+.IP
+A
+.I label
+argument replaces the contents of the string
+.BR F ;
+it need not be numeric.
+.
+In this event,
+the footnote marker in the body text must be explicitly written.
+.
 .
 .TP
 .BI GETHN\  "refname \fR[\fPvarname\fR]\fP"
@@ -3620,7 +3641,19 @@ Em dash string
 .
 .TP
 .B F
-auto-incrementing footnote marker
+interpolates an automatically numbered footnote marker;
+the number is used by the next
+.B FS
+call without an argument.
+.
+In
+.I troff
+mode,
+the marker is superscripted;
+in
+.I nroff
+mode,
+it is surrounded by square brackets.
 .
 .
 .TP

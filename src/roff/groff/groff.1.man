@@ -1801,7 +1801,7 @@ constructing a pipeline to page the output.
 .RS
 .P
 .EX
-groff \-t \-man /usr/share/man/man1/groff.1.man | less \-R
+groff \-t \-man -Tutf8 /usr/share/man/man1/groff.1.man | less \-R
 .EE
 .RE
 .

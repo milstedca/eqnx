@@ -7,7 +7,7 @@
 	* src/preproc/eqn/lex.cpp (do_delim): Recognize "delim on" even
 	in compatibility mode, enabling tbl to toggle eqn delimiter
 	recognition when it is run in compatibility mode as well.
-	* src/preproc/eqn/eqn.1.man (Controlling delimiteres): Update.
+	* src/preproc/eqn/eqn.1.man (Controlling delimiters): Update.
 	* NEWS: Add item.
 
 	Fixes <https://savannah.gnu.org/bugs/?62852>.  Thanks to Bjarni

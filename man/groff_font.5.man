@@ -1079,8 +1079,12 @@ output drivers can use them.
 .
 .
 .P
+.MR @g@troff @MAN1EXT@
+documents the default device and font description file search path.
+.
+.
+.P
 .MR groff_out @MAN5EXT@ ,
-.MR @g@troff @MAN1EXT@ ,
 .MR addftinfo @MAN1EXT@
 .
 .

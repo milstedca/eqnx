@@ -802,8 +802,8 @@ or newlines between these
 .
 which are in basic units expressed as decimal integers.
 .
-Unspecified subfields default to
-.RB be\~ 0 .
+Unspecified subfields default
+.RB to\~ 0 .
 .
 Since there is no associated binary format,
 these values are not required to fit into the C language data type

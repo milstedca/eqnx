@@ -468,7 +468,7 @@ developing GNU and promoting software freedom.''
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle June 2022
+@subtitle August 2022
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -8089,12 +8089,13 @@ sensible places without hyphens.
 @cindex disabling hyphenation (@code{\%})
 @cindex hyphenation, disabling (@code{\%})
 To tell GNU @code{troff} how to hyphenate words as they occur in input,
-use the @code{\%} escape, also known as the @dfn{hyphenation character}.
-Each instance within a word indicates to GNU @code{troff} that the
-word may be hyphenated at that point, while prefixing a word with this
-escape prevents it from being otherwise hyphenated.  This mechanism
-affects only that occurrence of the word; to change the hyphenation of a
-word for the remainder of input processing, use the @code{hw} request.
+use the @code{\%} escape sequence; it is the default @dfn{hyphenation
+character}.  Each instance within a word indicates to GNU @code{troff}
+that the word may be hyphenated at that point, while prefixing a word
+with this escape prevents it from being otherwise hyphenated.  This
+mechanism affects only that occurrence of the word; to change the
+hyphenation of a word for the remainder of input processing, use the
+@code{hw} request.
 
 @cindex @code{\X}, followed by @code{\%}
 @cindex @code{\Y}, followed by @code{\%}
@@ -8962,17 +8963,20 @@ is recognized; any excess is ignored.
 
 @cindex table of contents
 @cindex contents, table of
-For a table of contents, to name an example, tab stops may be defined so
-that the section number is one tab stop, the title is the second with
-the remaining space being filled with a line of dots, and then the page
-number slightly separated from the dots.
+A table of contents, for example, may define tab stops after a section
+number, a title, and a gap to be filled with leader dots.  The page
+number follows the leader, after a right-aligned final tab stop wide
+enough to house the largest page number occurring in the document.
 
 @Example
-.ds entry 1.1\tBackground\a\t12
-.lc .
-.ta 1i 5i +.25i
-\*[entry]
-    @result{} 1.1  Foo..........................................  12
+.ds entry1 19.\tThe Prophet\a\t98
+.ds entry2 20.\tAll Astir\a\t101
+.ta .5i 4.5i +.5iR
+.nf
+\*[entry1]
+\*[entry2]
+    @result{} 19.  The Prophet.............................   98
+    @result{} 20.  All Astir...............................  101
 @endExample
 
 @c ---------------------------------------------------------------------
@@ -12376,8 +12380,8 @@ sequences used to obtain them.  In the previous example, @samp{|} and
 same positions, so the comparands are equal.  If @samp{.ft@tie{}I} had
 been added before the @samp{.ie}, they would differ: the first @samp{|}
 would produce an italic @samp{|}, not a roman one.  Motions must match
-in orientation and magnitude to within the applicable horizontal or
-vertical motion quantum of the device, after rounding.  @samp{.if
+in orientation and magnitude to within the applicable horizontal and
+vertical motion quanta of the device, after rounding.  @samp{.if
 "\u\d"\v'0'"} is false even though both comparands result in zero net
 motion, because motions are not interpreted or optimized but sent as-is
 to the output.@footnote{Because formatting of the comparands takes place
@@ -12579,7 +12583,7 @@ produce no output.
 subsequent to the request's conditional expression.  @code{\@}} should
 appear on a line with other occurrences of itself as necessary to match
 @code{\@{} sequences.  It can be preceded by a control character,
-spaces, and tabs.  Input after any quantity of @code{\@}} sequence on
+spaces, and tabs.  Input after any quantity of @code{\@}} sequences on
 the same line is processed only if all of the preceding conditions to
 which they correspond are true.  Furthermore, a @code{\@}} closing the
 body of a @code{while} request (discussed below) must be the last such
@@ -12687,10 +12691,10 @@ the @code{while} request's @dfn{body}.
 GNU @code{troff} treats the body of a @code{while} request similarly to
 that of a @code{de} request (albeit one not read in copy
 mode@footnote{@xref{Copy Mode}.}), but stores it under an internal name
-and deletes it when it exits.  The operation of a macro containing a
-@code{while} request can slow significantly if the @code{while} body is
-large.  Each time the macro is executed, the @code{while} body is parsed
-and stored again.
+and deletes it when the loop finishes.  The operation of a macro
+containing a @code{while} request can slow significantly if the
+@code{while} body is large.  Each time the macro is executed, the
+@code{while} body is parsed and stored again.
 
 @Example
 .de xxx
@@ -12707,7 +12711,7 @@ and stored again.
 @noindent
 An often better solution---and one that is more portable, since
 @acronym{AT&T} @code{troff} lacked the @code{while} request---is to
-instead write a recursive macro.  It will only be parsed
+instead write a recursive macro.  It will be parsed only
 once.@footnote{unless you redefine it}
 
 @Example
@@ -12871,9 +12875,9 @@ interpreted---without disturbing that state when it is finished.
 @Defreq {de1, name [@Var{end}]}
 The @code{de1} request defines a macro to be interpreted with
 compatibility mode disabled.  When @var{name} is called, compatibility
-mode enablement status is saved, and when @var{name} finishes, it is
-restored.  Observe the extra backlash before the interpolation of
-register @samp{xxx}; we'll explore this subject in @ref{Copy Mode}.
+mode enablement status is saved; it is restored when the call completes.
+Observe the extra backlash before the interpolation of register
+@samp{xxx}; we'll explore this subject in @ref{Copy Mode}.
 
 @Example
 .nr xxx 12345
@@ -18138,7 +18142,7 @@ The form of the @var{metrics} field is as follows.
 There must not be any spaces, tabs, or newlines between these
 @dfn{subfields} (which have been split here into two lines only for
 better legibility).  The subfields are in basic units expressed as
-decimal integers.  Unspecified subfields default to be@tie{}@code{0}.
+decimal integers.  Unspecified subfields default to@tie{}@code{0}.
 Since there is no associated binary format, these values are not
 required to fit into the C language data type @samp{char} as they are in
 @acronym{AT&T} device-independent @code{troff}.

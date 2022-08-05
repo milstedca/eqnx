@@ -1689,36 +1689,28 @@ escape sequences in subsection \(lqPortability\(rq below.
 _endif()dnl
 .P
 Unlike the above font style macros,
-the font style alternation macros below accept only arguments on the
-same line as the macro call.
+the font style alternation macros below set no input traps;
+they must be given arguments to have effect.
 .
 Italic corrections are applied as appropriate.
 .
-If space is required within one of the arguments,
+_ifstyle()dnl
+If a space is required within an argument,
 first consider whether the same result could be achieved with as much
-clarity by using the single-style macros on separate input lines.
+clarity by using single-style macros on separate input lines.
 .
 When it cannot,
 double-quote an argument containing embedded space characters.
 .
 Setting all three different styles within a word
 presents challenges;
-_ifstyle()dnl
 it is possible with the
 .B \ec
 and/or
 .B \ef
 escape sequences,
-but
-_endif()dnl
-see subsection \(lqPortability\(rq
-_ifnotstyle()dnl
-in
-.MR groff_man_style @MAN7EXT@
-for approaches.
-_endif()dnl
-_ifstyle()dnl
-below for caveats.
+but see subsection \(lqPortability\(rq
+below for approaches.
 _endif()dnl
 .
 .

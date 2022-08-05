@@ -3889,7 +3889,7 @@ Always\~1.
 .
 .
 .TP
-.B :P
+.B :p
 auto-incrementing footnote counter;
 see macro
 .B FS

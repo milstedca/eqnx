@@ -12,7 +12,7 @@
 
 2022-08-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	* m.tmac (:P): Define register as an alias of `ft*nr`; the
+	* m.tmac (:p): Define register as an alias of `ft*nr`; the
 	former name is a documented DWB mm feature.
 
 2022-08-01  G. Branden Robinson <g.branden.robinson@gmail.com>

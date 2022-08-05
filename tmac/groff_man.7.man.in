@@ -2344,7 +2344,7 @@ a series of lines ending in backslash-newline appears to
 .I groff
 as a single input line.
 .
-Use this escape sequence to break excessively long input lines for
+Use this escape sequence to split excessively long input lines for
 document maintenance.
 .
 .

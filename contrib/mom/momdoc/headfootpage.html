@@ -2300,7 +2300,7 @@ The optional argument <kbd>DIVIDER</kbd> must be given if
 you&#8217;re inserting a blank page before the start of major
 document sections (chapters, endnotes, bibliographies,
 or table of contents, provided the table of contents is not being
-<a href="tables-of-contents.html#auto-relocate-toc">autorelocated</a>.
+<a href="tables-of-contents.html#auto-relocate-toc">autorelocated</a>).
 Without the <kbd>DIVIDER</kbd> argument, mom simply
 inserts the blank pages and prepares the next page to receive
 <a href="definitions.html#running">running text</a>.
@@ -2313,6 +2313,14 @@ for each blank page.  She will, however, continue to keep track
 of which pages are recto/verso if recto/verso printing has been
 enabled.
 </p>
+
+<div id="blankpage-note" class="box-tip" style="margin-top: 1.5em;">
+<p class="tip">
+<span class="note">Note:</span>
+Do not use BLANKPAGE before TOC if the table of contents is being
+<a href="tables-of-contents.html#auto-relocate-toc">autorelocated</a>.
+</p>
+</div>
 
 <div class="rule-long"><hr/></div>
 

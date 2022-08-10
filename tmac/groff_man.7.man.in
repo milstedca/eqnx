@@ -1189,12 +1189,9 @@ Email addresses are bracketed with
 and other forms of hyperlink with
 .BR .UR / .UE .
 .
-Hyperlinked text is supported on the
-.BR html ,
-.BR tty ,
-and
-.B xhtml
-output devices;
+Hyperlinked text is supported on HTML
+.\", PDF,
+and terminal output devices;
 terminals and pager programs must support ECMA-48 OSC\~8 escape
 sequences
 (see

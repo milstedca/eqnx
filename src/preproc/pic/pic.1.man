@@ -179,9 +179,9 @@ Lines beginning with
 are not passed through transparently.
 .
 Lines beginning with
-.B .
+.B .\&
 are passed through with the initial
-.B .
+.B .\&
 changed to
 .BR \[rs] .
 .

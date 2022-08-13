@@ -6578,12 +6578,7 @@ solution, using escaped spaces, can be found in documents prepared for
 @acronym{AT&T} @code{troff}.  Nevertheless, it is not optimal in most
 situations, since @w{@samp{\ }} inserts a fixed-width, non-breaking
 space.  GNU @code{troff} provides the @code{\~} escape sequence to
-insert an adjustable, non-breaking space.@footnote{@code{\~} is also
-supported by Heirloom Doctools @code{troff} 050915 (September 2005),
-@code{mandoc} 1.9.5 (2009-09-21), and @code{neatroff} (since commit
-1c6ab0f6e, 2016-09-13), but not by Plan@tie{}9 @code{troff}, Solaris
-@code{troff}, or DWB @code{troff} or @code{onroff}.}
-@c as of this writing, 2022-08-12
+insert an adjustable, non-breaking space.
 
 @cindex @code{"}, in a macro argument
 @cindex double quote, in a macro argument
@@ -16666,6 +16661,20 @@ referred to it as a ``living fossil''.} should be migrated to another
 
 @node Other Differences, , Compatibility Mode, Implementation Differences
 @subsection Other Differences
+
+@code{groff} request names unrecognized by other @code{troff}
+implementations will likely be ignored; escape sequences that are
+@code{groff} extensions are liable to be formatted literally.
+@cindex @code{\~}, incompatibilities with @acronym{AT&T} @code{troff}
+For example, the adjustable, non-breaking escape sequence @code{\~}
+@c BEGIN Keep in sync with groff_diff(7) and groff_man_style(7).
+is also supported by Heirloom Doctools @code{troff} 050915 (September
+2005), @code{mandoc} 1.9.5 (2009-09-21), and @code{neatroff} (since
+commit 1c6ab0f6e, 2016-09-13), but not by Plan@tie{}9 @code{troff},
+Solaris @code{troff}, or Documenter's Workbench @code{troff}.
+@c as of this writing, 2022-08-12
+@c END Keep in sync with groff_diff(7) and groff_man_style(7).
+@xref{Manipulating Filling and Adjustment}.
 
 @cindex @code{\A}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\|}, incompatibilities with @acronym{AT&T} @code{troff}

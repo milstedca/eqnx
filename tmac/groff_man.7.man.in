@@ -2647,6 +2647,21 @@ source than
 escape sequences do.
 .
 .
+.P
+Several special characters are also widely portable.
+.
+AT&T
+.I troff
+did not `define' the reverse solidus or quotation characters listed
+below,
+but any of its descendants,
+like Plan\~9 or Solaris
+.IR troff , \" Plan 9, Solaris
+can support them by defining their glyphs in font description files;
+see
+.MR groff_font @MAN5EXT@ .
+.
+.
 .TP
 .B \e\-
 Minus sign or basic Latin hyphen-minus.

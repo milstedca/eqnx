@@ -5175,17 +5175,16 @@ is also supported by Heirloom Doctools
 050915 (September 2005),
 .I mandoc
 1.9.5 (2009-09-21),
-and
 .I neatroff
-(since commit 1c6ab0f6e,
+(commit 1c6ab0f6e,
 2016-09-13),
-but not by Plan\~9
-.IR troff , \" Plan 9
-Solaris
-.IR troff , \" Solaris
-or Documenter's Workbench
-.IR troff . \" DWB
-.\" as of this writing, 2022-08-12
+and Plan\~9 from User Space
+.I troff \" Plan 9
+(commit 93f8143600,
+2022-08-12),
+but not by Solaris or Documenter's Workbench
+.IR troff s. \" Solaris, DWB
+.\" as of this writing, 2022-08-13
 .\" END Keep in sync with groff.texi node "Other Differences" and
 .\" groff_man_style(7).
 .

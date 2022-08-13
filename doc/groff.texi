@@ -6580,10 +6580,10 @@ situations, since @w{@samp{\ }} inserts a fixed-width, non-breaking
 space.  GNU @code{troff} provides the @code{\~} escape sequence to
 insert an adjustable, non-breaking space.@footnote{@code{\~} is also
 supported by Heirloom Doctools @code{troff} 050915 (September 2005),
-@code{neatroff} (since commit 1c6ab0f6e, 2016-09-13), and @code{mandoc}
-1.14.5 (March 2019) but not by Plan@tie{}9 @code{troff}, Solaris
+@code{mandoc} 1.9.5 (2009-09-21), and @code{neatroff} (since commit
+1c6ab0f6e, 2016-09-13), but not by Plan@tie{}9 @code{troff}, Solaris
 @code{troff}, or DWB @code{troff} or @code{onroff}.}
-@c as of this writing, 2022-03-21
+@c as of this writing, 2022-08-12
 
 @cindex @code{"}, in a macro argument
 @cindex double quote, in a macro argument

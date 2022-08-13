@@ -2368,10 +2368,6 @@ are still honored.
 .
 .TP
 .B \e:
-.\" Heirloom Doctools troff since release 050915 (2005-09-15)
-.\" mandoc since 2018-12-15 (released in 1.14.5, 2019-03-10)
-.\" neatroff since 399a4936, 2014-02-17
-.\" Plan 9 troff does not appear to support it.
 Insert a non-printing break point.
 .
 A word can break at such a point,
@@ -2388,6 +2384,25 @@ in combination to control breaking of a file name or URI or to permit
 hyphenation only after certain explicit hyphens within a word.
 .
 See subsection \[lq]Hyperlink macros\[rq] above for an example.
+.
+.
+.IP
+This escape sequence is a
+.I groff
+extension also supported by Heirloom Doctools
+.I troff \" Heirloom
+050915 (September 2005),
+.I mandoc
+1.14.5 (2019-03-10),
+and
+.I neatroff
+(commit 399a4936,
+2014-02-17),
+but not by Plan\~9,
+Solaris,
+or Documenter's Workbench
+.IR troff s. \" Plan 9, Solaris, DWB
+.\" as of this writing, 2022-08-13
 .
 .
 .TP

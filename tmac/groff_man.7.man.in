@@ -2477,146 +2477,6 @@ and PDF.
 .
 .
 .TP
-.B \e\-
-Minus sign or basic Latin hyphen-minus.
-.
-This escape sequence produces the Unix command-line option dash in the
-output.
-.
-.RB \(lq \- \(rq
-is a hyphen in the
-.I roff
-language;
-some output devices replace it with U+2010
-(hyphen)
-or similar.
-.
-.
-.TP
-.B \e(aq
-Basic Latin neutral apostrophe.
-.
-Some
-output devices replace
-.RB \(lq \(aq \(rq
-with a right single quotation mark.
-.
-.
-.br
-.ne 3v
-.TP
-.B \e(oq
-.TQ
-.B \e(cq
-Opening (left) and closing (right) single quotation marks.
-.
-Use these for paired directional single quotes,
-\(oqlike this\(cq.
-.
-.
-.TP
-.B \e(dq
-Basic Latin quotation mark
-(double quote).
-.
-Use in macro calls to prevent
-.\" This page prefers double quotes, but not here because they are more
-.\" confusing to the eye when another double quote is what is quoted!
-.RB \(oq \(dq \(rq
-.\" AT&T: .RB ` """'
-from being interpreted as beginning a quoted argument,
-or simply for readability.
-.
-.
-.RS
-.IP
-.\" from src/preproc/eqn/eqn.1.man
-.EX
-\&.TP
-\&.BI \(dqsplit \e(dq\(dq text \e(dq
-.EE
-.RE
-.
-.
-.br
-.\" XXX: We need only 2v, but 2v more are necessary due to bad
-.\" interaction with TP's own use of the ne request.
-.ne 4v
-.TP
-.B \e(lq
-.TQ
-.B \e(rq
-Left and right double quotation marks.
-.
-Use these for paired directional double quotes,
-\(lqlike this\(rq.
-.
-.
-.TP
-.B \e(em
-Em-dash.
-.
-Use for an interruption\(emsuch as this one\(emin a sentence.
-.
-.
-.TP
-.B \e(en
-En-dash.
-.
-Use to separate the ends of a range,
-particularly between numbers;
-for example,
-\(lqthe digits 1\(en9\(rq.
-.
-.
-.TP
-.B \e(ga
-Basic Latin grave accent.
-.
-Some output devices replace
-.RB \(lq \(ga \(rq
-with a left single quotation mark.
-.
-.
-.TP
-.B \e(ha
-Basic Latin circumflex accent
-(\(lqhat\(rq).
-.
-Some output devices replace
-.RB \(lq \(ha \(rq
-with U+02C6
-(modifier letter circumflex accent)
-or similar.
-.
-.
-.TP
-.B \e(rs
-Reverse solidus
-(backslash).
-.
-The backslash is the default escape character in the
-.I roff
-language,
-so it does not represent itself in output.
-.
-Also see
-.B \ee
-below.
-.
-.
-.TP
-.B \e(ti
-Basic Latin tilde.
-.
-Some output devices replace
-.RB \(lq \(ti \(rq
-with U+02DC
-(small tilde)
-or similar.
-.
-.
-.TP
 .B \ec
 End a text line without inserting space or attempting a break.
 .
@@ -2785,6 +2645,146 @@ usually result in more readable
 source than
 .B \ef
 escape sequences do.
+.
+.
+.TP
+.B \e\-
+Minus sign or basic Latin hyphen-minus.
+.
+This escape sequence produces the Unix command-line option dash in the
+output.
+.
+.RB \(lq \- \(rq
+is a hyphen in the
+.I roff
+language;
+some output devices replace it with U+2010
+(hyphen)
+or similar.
+.
+.
+.TP
+.B \e(aq
+Basic Latin neutral apostrophe.
+.
+Some
+output devices replace
+.RB \(lq \(aq \(rq
+with a right single quotation mark.
+.
+.
+.br
+.ne 3v
+.TP
+.B \e(oq
+.TQ
+.B \e(cq
+Opening (left) and closing (right) single quotation marks.
+.
+Use these for paired directional single quotes,
+\(oqlike this\(cq.
+.
+.
+.TP
+.B \e(dq
+Basic Latin quotation mark
+(double quote).
+.
+Use in macro calls to prevent
+.\" This page prefers double quotes, but not here because they are more
+.\" confusing to the eye when another double quote is what is quoted!
+.RB \(oq \(dq \(rq
+.\" AT&T: .RB ` """'
+from being interpreted as beginning a quoted argument,
+or simply for readability.
+.
+.
+.RS
+.IP
+.\" from src/preproc/eqn/eqn.1.man
+.EX
+\&.TP
+\&.BI \(dqsplit \e(dq\(dq text \e(dq
+.EE
+.RE
+.
+.
+.br
+.\" XXX: We need only 2v, but 2v more are necessary due to bad
+.\" interaction with TP's own use of the ne request.
+.ne 4v
+.TP
+.B \e(lq
+.TQ
+.B \e(rq
+Left and right double quotation marks.
+.
+Use these for paired directional double quotes,
+\(lqlike this\(rq.
+.
+.
+.TP
+.B \e(em
+Em-dash.
+.
+Use for an interruption\(emsuch as this one\(emin a sentence.
+.
+.
+.TP
+.B \e(en
+En-dash.
+.
+Use to separate the ends of a range,
+particularly between numbers;
+for example,
+\(lqthe digits 1\(en9\(rq.
+.
+.
+.TP
+.B \e(ga
+Basic Latin grave accent.
+.
+Some output devices replace
+.RB \(lq \(ga \(rq
+with a left single quotation mark.
+.
+.
+.TP
+.B \e(ha
+Basic Latin circumflex accent
+(\(lqhat\(rq).
+.
+Some output devices replace
+.RB \(lq \(ha \(rq
+with U+02C6
+(modifier letter circumflex accent)
+or similar.
+.
+.
+.TP
+.B \e(rs
+Reverse solidus
+(backslash).
+.
+The backslash is the default escape character in the
+.I roff
+language,
+so it does not represent itself in output.
+.
+Also see
+.B \ee
+below.
+.
+.
+.TP
+.B \e(ti
+Basic Latin tilde.
+.
+Some output devices replace
+.RB \(lq \(ti \(rq
+with U+02DC
+(small tilde)
+or similar.
 .
 .
 .P

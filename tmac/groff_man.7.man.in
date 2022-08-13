@@ -741,6 +741,8 @@ again excepted);
 see subsection \(lqFont style macros\(rq below.
 .
 .
+.br
+.ne 4v
 .TP
 .B .P
 .TQ
@@ -2320,6 +2322,8 @@ grave accent,
 tilde).
 .
 .
+.br
+.ne 2v
 .TP
 .B \e\(dq
 Comment.
@@ -2457,6 +2461,8 @@ output devices replace
 with a right single quotation mark.
 .
 .
+.br
+.ne 3v
 .TP
 .B \e(oq
 .TQ
@@ -2491,6 +2497,10 @@ or simply for readability.
 .RE
 .
 .
+.br
+.\" XXX: We need only 2v, but 2v more are necessary due to bad
+.\" interaction with TP's own use of the ne request.
+.ne 4v
 .TP
 .B \e(lq
 .TQ

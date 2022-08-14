@@ -1225,7 +1225,7 @@ see
 .I \%an\-ext.tmac
 in section \(lqFiles\(rq below.
 .
-The plan9port project's
+Plan\~9 from User Space's
 .I troff \" plan9port
 implements
 .BR .MR .
@@ -3171,7 +3171,7 @@ and
 .BR .UR / .UE .
 .\" ...along with implementations of OP, EX, and EE.
 .
-The plan9port project's
+Plan\~9 from User Space's
 .I troff \" plan9port
 introduced
 .B .MR

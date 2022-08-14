@@ -2499,10 +2499,6 @@ as in
 .BR .EX / .EE
 examples.
 .
-Nothing after
-.B \ec
-on the input line is formatted.
-.
 The next line is interpreted as usual and can `include' a macro call
 (contrast with
 .BI \e newline\/\c

@@ -613,18 +613,14 @@ and
 and sentence endings are still detected and additional inter-sentence
 space applied.
 .
-If a user
-(or one of
-.IR groff 's
-localization support macro files)
-has changed the additional inter-sentence space amount,
-the latter process can change the rendering of,
+If the amount of additional inter-sentence is altered,
+the rendering of,
 for instance,
 regular expressions using
 .B .\&
 or
 .B ?\&
-followed by multiple spaces.
+followed by multiple spaces can change.
 .
 Use the non-printing input break escape sequence
 .B \(rs&

@@ -2684,7 +2684,7 @@ Basic Latin neutral apostrophe.
 .
 Some
 output devices replace
-.RB \(lq \(aq \(rq
+.RB \(lq\| \(aq \|\(rq
 with a right single quotation mark.
 .
 .
@@ -2708,7 +2708,7 @@ Basic Latin quotation mark
 Use in macro calls to prevent
 .\" This page prefers double quotes, but not here because they are more
 .\" confusing to the eye when another double quote is what is quoted!
-.RB \(oq \(dq \(rq
+.RB \(oq\| \(dq \|\(rq
 .\" AT&T: .RB ` """'
 from being interpreted as beginning a quoted argument,
 or simply for readability.
@@ -2760,7 +2760,7 @@ for example,
 Basic Latin grave accent.
 .
 Some output devices replace
-.RB \(lq \(ga \(rq
+.RB \(lq\| \(ga \|\(rq
 with a left single quotation mark.
 .
 .

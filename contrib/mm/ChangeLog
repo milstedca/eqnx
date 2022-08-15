@@ -1,5 +1,17 @@
 2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (@warning, @error): Stop pointlessly using no-break
+	control character when invoking the `tm` request, which never
+	causes a break in formatted output.  (Management of the standard
+	output and standard error streams is the user's responsibility.)
+	(@error): Drop old-fashioned asterisk banners around error
+	diagnostics.  Stop invoking `ab` with redundant and sometimes
+	misleading arguments.  In groff 1.23, `ab` exits silently if
+	given none.  We've already issued a diagnostic and moreover not
+	all problems are with "syntax"; some are semantic.
+
+2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (PS): Validate better; check for 2 arguments exactly.
 
 2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>

@@ -390,15 +390,14 @@ Index		array!index
 .vs \\n[@vs]u
 ..
 .de @warning
-'tm \\*[@mm]:\\n[.F]:\\n[.c]: warning: \\$*
+.tm \\*[@mm]:\\n[.F]:\\n[.c]: warning: \\$*
 .if \\n[D] .backtrace
 ..
+.\" All errors are fatal.
 .de @error
-'tm ******************
-'tm \\*[@mm]:\\n[.F]:\\n[.c]: error: \\$*
+.tm \\*[@mm]:\\n[.F]:\\n[.c]: error: \\$*
 .if \\n[D] .backtrace
-'tm ******************
-.ab \\*[@mm]: syntax error; aborting
+.ab
 ..
 .de misc@toupper
 .tr aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ

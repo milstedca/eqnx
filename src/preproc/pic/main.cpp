@@ -24,7 +24,7 @@ extern "C" const char *Version_string;
 output *out;
 char *graphname;		// the picture box name in TeX mode
 
-int flyback_flag;
+bool want_flyback = false;
 int zero_length_line_flag = 0;
 // Non-zero means we're using a groff driver.
 int driver_extension_flag = 1;
@@ -94,7 +94,7 @@ int top_input::get()
 	  ungetc(d, fp);
 	if (d == EOF || d == ' ' || d == '\n' || compatible_flag) {
 	  eof = 1;
-	  flyback_flag = c == 'F';
+	  want_flyback = (c == 'F');
 	  return EOF;
 	}
 	push_back[0] = c;
@@ -166,7 +166,7 @@ int top_input::peek()
 	  ungetc(d, fp);
 	if (d == EOF || d == ' ' || d == '\n' || compatible_flag) {
 	  eof = 1;
-	  flyback_flag = c == 'F';
+	  want_flyback = (c == 'F');
 	  return EOF;
 	}
 	push_back[0] = c;
@@ -217,7 +217,7 @@ int top_input::get_location(const char **filenamep, int *linenop)
 
 void do_picture(FILE *fp)
 {
-  flyback_flag = 0;
+  want_flyback = false;
   int c;
   if (!graphname)
     free(graphname);

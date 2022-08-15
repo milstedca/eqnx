@@ -298,14 +298,14 @@ void troff_output::finish_picture()
   line_thickness(BAD_THICKNESS);
   last_fill = -1.0;		// force it to be reset for each picture
   reset_color();
-  if (!flyback_flag)
+  if (!want_flyback)
     printf(".sp %.3fi+1\n", height);
   printf(".if \\n(" FILL_REG " .fi\n");
   printf(".br\n");
   printf(".nr " EQN_NO_EXTRA_SPACE_REG " 0\n");
   // this is a little gross
   set_location(current_filename, current_lineno);
-  fputs(flyback_flag ? ".PF\n" : ".PE\n", stdout);
+  fputs(want_flyback ? ".PF\n" : ".PE\n", stdout);
 }
 
 void troff_output::command(const char *s,

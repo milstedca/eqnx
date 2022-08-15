@@ -111,7 +111,7 @@ void lex_warning(const char *message,
 
 void lex_cleanup();
 
-extern int flyback_flag;
+extern bool want_flyback;
 extern int command_char;
 // zero_length_line_flag is non-zero if zero-length lines are drawn 
 // as dots by the output device

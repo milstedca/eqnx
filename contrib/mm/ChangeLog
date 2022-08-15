@@ -1,5 +1,9 @@
 2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (PS): Validate better; check for 2 arguments exactly.
+
+2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (PS): Refactor; drop dead code.  The `pic*in` register
 	was used only for dead stores; it was never read or tested.
 

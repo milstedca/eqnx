@@ -2397,7 +2397,11 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .de PS
 .br
 .SP .5
-.ie \\n[.$]<2 .@error "PS: bad arguments. Probably not processed with pic."
+.ie !\\n[.$]=2 \{\
+.	ds pic*msg PS: expected 2 arguments, got \\n[.$]\"
+.	as pic*msg ; not preprocessed with pic?\"
+.	@error \\*[pic*msg]
+.\}
 .el \{\
 .	if r ds*format .if !\\n[ds*lvl] .ne (u;\\$1)+1v
 .\}

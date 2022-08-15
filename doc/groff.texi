@@ -3974,7 +3974,7 @@ can create @code{pic} input manually or by using a program such as
 @code{xfig}.
 @endDefmac
 
-@DefmacList {EQ, [@Var{align} [@Var{label}], ms}
+@DefmacList {EQ, [@Var{align} [@Var{label}]], ms}
 @DefmacListEndx {EN, , ms}
 Demarcate an equation to be processed by the @code{eqn} preprocessor.
 The equation is centered by default; @var{align} can be @samp{C},

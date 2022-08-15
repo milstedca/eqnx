@@ -1481,9 +1481,18 @@ examples of its use.
 .B .PS
 .TQ
 .B .PE
-Demarcate a diagram to be processed by the
+.TQ
+.B .PF
+.B .PS
+begins a picture to be processed by the
 .I pic
-preprocessor.
+preprocessor;
+either of
+.B .PE
+or
+.B .PF
+ends it,
+the latter with \[lq]flyback\[rq] to the vertical position at its top.
 .
 .
 .TP

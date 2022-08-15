@@ -3968,10 +3968,12 @@ use.
 @endDefmac
 
 @DefmacList {PS, , ms}
-@DefmacListEndx {PE, , ms}
-Demarcate a diagram to be processed by the @code{pic} preprocessor.  You
-can create @code{pic} input manually or by using a program such as
-@code{xfig}.
+@DefmacItemx {PE, , ms}
+@DefmacListEndx {PF, , ms}
+@code{PS} begins a picture to be processed by the @command{gpic}
+preprocessor; either of @code{PE} or @code{PF} ends it, the latter with
+``flyback'' to the vertical position at its top.  You can create
+@code{pic} input manually or with a program such as @code{xfig}.
 @endDefmac
 
 @DefmacList {EQ, [@Var{align} [@Var{label}]], ms}

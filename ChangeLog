@@ -1,5 +1,22 @@
 2022-08-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Support pic(1) "flyback" feature.
+
+	* tmac/s.tmac (PF): Add macro; it does what `PE` formerly did,
+	minus vertical spacing.
+	(PE): Call `PF` and vertically space as before.
+
+	* doc/groff.texi (ms Insertions):
+	* doc/ms.ms (Tables, figures, equations, and references):
+	* tmac/groff_ms.7.man (Tables, figures, equations, and
+	references): Document it.
+
+	* NEWS: Add item.
+
+	Fixes <https://savannah.gnu.org/bugs/?60558>.
+
+2022-08-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/s.tmac (@PS): Validate better; check for 2 arguments
 	exactly.
 

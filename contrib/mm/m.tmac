@@ -2395,19 +2395,11 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 ..
 .\" ####### module pic #######################################
 .de PS
-.nr pic*in 0
 .br
 .SP .5
 .ie \\n[.$]<2 .@error "PS: bad arguments. Probably not processed with pic."
 .el \{\
-.	if !\\n[ds*lvl] .ne (u;\\$1)+1v
-.\" should be contained between .DS/.DE
-.if r ds*format \{\
-.		if \\n[ds*lvl]&((\\n[ds*format]=2):(\\n[ds*format]=3)) \{\
-.			nr pic*in \\n[.i]
-.\" .		in +(u;\\n[.l]-\\n[.i]-\\$2/2)
-.		\}
-.	\}
+.	if r ds*format .if !\\n[ds*lvl] .ne (u;\\$1)+1v
 .\}
 ..
 .de PE

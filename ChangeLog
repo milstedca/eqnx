@@ -1,5 +1,29 @@
 2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pic]: Recognize `.PY` as synonym of `.PF`.
+
+	* src/preproc/pic/main.cpp:
+	* src/preproc/pic/pic.h: Add new Boolean variable,
+	`want_alternate_flyback` to record `.PY` usage.
+
+	* src/preproc/pic/main.cpp (top_input::get, top_input::peek):
+	Recognize it.  Update diagnostic messages to mention it.
+	(main): Define `PY` troff macro as empty if not defined.
+
+	* src/preproc/pic/troff.cpp (troff_output::finish_picture):
+	Don't advance the vertical position if `want_alternate_flyback`.
+	Write out the `PY` macro call if it was on the input.
+
+	* src/preproc/pic/pic.1.man: Document it.
+
+	* tmac/pic.tmac (PY): Define the same as `PF`.
+
+	* NEWS: Add item.
+
+	Fixes <https://savannah.gnu.org/bugs/?62901>.
+
+2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[pic]: Refactor `flyback_flag`.
 
 	* src/preproc/pic/main.cpp:

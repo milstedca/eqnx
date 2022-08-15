@@ -1546,6 +1546,8 @@ as an unnumbered heading
 .RB ( .SH ).
 .
 .
+.br
+.ne 2v
 .P
 Attempting to place a multi-page table inside a keep can lead to
 unpleasant results,
@@ -2225,6 +2227,9 @@ and
 .B XH
 implementations support the following pair of callback macros:
 .
+.
+.br
+.ne 4v
 .TP
 .B \%.XN\-INIT
 .TQ
@@ -2846,6 +2851,8 @@ Macro Package\[rq];
 Larry Kollar and G.\~Branden Robinson.
 .
 .
+.br
+.ne 5v
 .TP
 .I @DOCDIR@/\:\%msboxes\:.ms
 .TQ

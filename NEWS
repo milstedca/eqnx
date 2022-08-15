@@ -334,6 +334,9 @@ o The m (mm) and s (ms) macro packages no longer manipulate the set of
 o The m (mm) and s (ms) macro packages' `R` macros now work analogously
   to their `B` and `I` macros instead of ignoring their arguments.
 
+o The m (mm) package now offers a `PY` macro, which serves the function
+  of `PF` (end pic(1) picture with flyback) from other macro packages.
+
 o The "ptx.tmac" macro file, a counterpart to the GNU coreutils ptx(1)
   command for generating permuted indexes, is now installed.  It has
   long been part of the source distribution.

@@ -2903,6 +2903,18 @@ mode.
 .
 .
 .TP
+.B PY
+Picture end with flyback.
+.
+Ends a
+.MR @g@pic @MAN1EXT@
+picture,
+returning the vertical position to where it was prior to the picture.
+.
+This is a GNU extension.
+.
+.
+.TP
 .BR R \~\c \" space in roman because we must use 2-font macro with \c
 .RI [ roman-text\~\c
 .RI [ previous-font-text ]]\~.\|.\|.

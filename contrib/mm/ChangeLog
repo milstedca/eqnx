@@ -1,5 +1,15 @@
 2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (PY): Add new macro.
+	(PE): Replace `init@reset` call with `PY` (and then space by
+	half a vee as before).
+
+	* groff_mm.7.man (PY): Document it.
+
+	Fixes <https://savannah.gnu.org/bugs/?62900>.
+
+2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (@warning, @error): Stop pointlessly using no-break
 	control character when invoking the `tm` request, which never
 	causes a break in formatted output.  (Management of the standard

@@ -2405,8 +2405,11 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .	if r ds*format .if !\\n[ds*lvl] .ne (u;\\$1)+1v
 .\}
 ..
-.de PE
+.de PY
 .init@reset
+..
+.de PE
+.PY
 .SP .5
 ..
 .\" ####### module eq #######################################

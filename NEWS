@@ -316,6 +316,10 @@ o The e (me) macro package's `$v` and `$V` registers have been renamed
   are expected to set them if desired, unlike other registers and
   strings beginning with "$".
 
+o The e (me) and s (ms) macro packages now offer a `PF` macro,
+  supporting the pic(1) preprocessor's "flyback" feature.  Thanks to
+  Dave Kemper.
+
 o The m (mm) macro package now recognizes a `V` register to set the
   vertical spacing for the document.  Like the existing `S`, it must be
   set from the command line.  Further, both registers are interpreted
@@ -386,9 +390,6 @@ o The s (ms) macro package's `RP` macro recognizes a new optional
   optional argument `no-repeat-info`, which has the same effect as `no`;
   the latter will continue to be supported for backward compatibility.
   Optional arguments to `RP` can be given in any order.
-
-o The s (ms) package now offers a `PF` macro, supporting the pic(1)
-  preprocessor's "flyback" feature.
 
 o The "a4.tmac" file has been dropped from the distribution.  Its
   successor, "papersize.tmac", has been present and documented for

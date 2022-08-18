@@ -1,3 +1,11 @@
+2022-08-18  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	[gropdf]: Improve parsing of troff font files.
+
+	* src/devices/gropdf/gropdf.pl: Allow the glyph code number
+	to be octal or hex as well as a decimal number. If entity_name
+	is missing use name instead.
+
 2022-08-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Support pic(1) "flyback" feature.

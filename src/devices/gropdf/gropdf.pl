@@ -922,7 +922,7 @@ sub do_x
 		    }
 		}
 		elsif ($pdfmark=~m/(.+) \/DEST\s*$/)
-                {
+		{
                     my @xwds=split(' ',"<< $1 >>");
                     my $dest=ParsePDFValue(\@xwds);
                     $dest->{View}->[1]=GraphY($dest->{View}->[1]*-1);
@@ -2414,15 +2414,17 @@ sub LoadFont
 	    if ($r[1] eq '"')
 	    {
 		$fnt{NAM}->{$r[0]}=$fnt{NAM}->{$lastnm};
-		next;
-	    }
+                next;
+            }
 
-	    $r[0]='u0020' if $r[3] == 32;
-	    $r[0]="u00".hex($r[3]) if $r[0] eq '---';
-#	    next if $r[3] >255;
-	    $fnt{NAM}->{$r[0]}=[$p[0],$r[3],'/'.$r[4],$r[3],0];
-	    $fnt{NO}->[$r[3]]=[$r[0],$r[0]];
-	    $lastnm=$r[0];
+            $r[3]=oct($r[3]) if substr($r[3],0,1) eq '0';
+            $r[0]='u0020' if $r[3] == 32;
+            $r[0]="u00".hex($r[3]) if $r[0] eq '---';
+#           next if $r[3] >255;
+            $r[4]=$r[0] if !defined($r[4]);
+            $fnt{NAM}->{$r[0]}=[$p[0],$r[3],'/'.$r[4],$r[3],0];
+            $fnt{NO}->[$r[3]]=[$r[0],$r[0]];
+            $lastnm=$r[0];
 	    $lastchr=$r[3] if $r[3] > $lastchr;
 	    $fixwid=$p[0] if $fixwid == -1;
 	    $fixwid=-2 if $fixwid > 0 and $p[0] != $fixwid;
@@ -2506,12 +2508,12 @@ sub LoadFont
     }
     else
     {
-	Warn("unable to embed font file for '$fnt{internalname}'"
-	    . " ($ofontnm) (missing entry in 'download' file?)")
-	    if $embedall;
-	$fno=++$objct;
-	$fontlst{$fontno}->{OBJ}=BuildObj($objct,
-			{'Type' => '/Font',
+        Warn("unable to embed font file for '$fnt{internalname}'"
+            . " ($ofontnm) (missing entry in 'download' file?)")
+            if $embedall;
+        $fno=++$objct;
+        $fontlst{$fontno}->{OBJ}=BuildObj($objct,
+                        {'Type' => '/Font',
 			'Subtype' => '/Type1',
 			'BaseFont' => '/'.$fnt{internalname},
 			'Widths' => $fnt{WIDTH},

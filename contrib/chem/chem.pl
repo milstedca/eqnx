@@ -23,7 +23,7 @@ my $Copyright = 'Copyright (C) 2006-2014 Free Software Foundation, Inc.';
 # settings
 ########################################################################
 
-my $Program_Version = '1.0.5';
+my $Program_Version = '1.0.6';
 
 # this setting of the groff version is only used before make is run,
 # otherwise @VERSION@ will set it.
@@ -50,7 +50,6 @@ use FindBin;
 my $Chem_Name;
 my $Groff_Version;
 my $File_chem_pic;
-my $File_pic_tmac;
 
 BEGIN {
   {
@@ -67,7 +66,6 @@ BEGIN {
       $at_at{'BINDIR'} = $chem_dir;
       $at_at{'G'} = '';
       $File_chem_pic = File::Spec->catfile($chem_dir, 'chem.pic');
-      $File_pic_tmac = File::Spec->catfile($chem_dir, '..', 'pic.tmac');
       $Groff_Version = '';
       $Chem_Name = 'chem';
     } else {
@@ -75,10 +73,8 @@ BEGIN {
       $at_at{'BINDIR'} = '@BINDIR@';
       $at_at{'G'} = '@g@';
       $at_at{'PICDIR'} = '@PICDIR@';
-      $at_at{'TMACDIR'} = '@MACRODIR@';
       $File_chem_pic =
 	File::Spec->catfile($at_at{'PICDIR'}, 'chem.pic');
-      $File_pic_tmac = File::Spec->catfile($at_at{'TMACDIR'}, 'pic.tmac');
       $Chem_Name = $at_at{'G'} . 'chem';
     }
   }
@@ -208,10 +204,6 @@ my $Line = '';
     my $count_minus = 0;
     my @stdin = ();
     my $stdin = 0;
-
-    # for centralizing the pic code
-    open TMAC, "<$File_pic_tmac" and print <TMAC>;
-    close TMAC;
 
     foreach (@ARGV) {
       $count_minus++ if /^-$/;

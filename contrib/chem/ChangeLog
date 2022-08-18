@@ -1,3 +1,12 @@
+2022-08-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* chem.pl: Stop copying "pic.tmac" (fallback troff macro
+	definitions) into the output.  It might not be necessary and it
+	is inappropriate to do so if a macro package offers its own
+	definitions or the user has made other arrangements on the
+	command line.  (The same thing can be achieved with the "-mpic"
+	argument to the formatter or a front end.)  Bump version number.
+
 2022-06-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* chem.1.man: Fix markup nits.  Use idiomatic input style,

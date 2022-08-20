@@ -259,7 +259,7 @@ is a
 script that uses
 .MR hpftodit @MAN1EXT@
 to prepare the foregoing font description files from HP TFM data;
-in can be used to regenerate the
+it can be used to regenerate the
 .I groff
 font descriptions in the event the TFM files are updated.
 .

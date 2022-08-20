@@ -24,7 +24,7 @@ FDL in the main directory of the groff source package.
   <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 </head>
 
-<body style="background-color: #f5faff; font-variant-ligatures: none; font-feature-settings: "liga" 0;">
+<body style="background-color: #f5faff;">
 
 <!-- ==================================================================== -->
 
@@ -75,6 +75,7 @@ to the directory in which groff is installed, typically
 </span>
 (if you&#8217;ve built groff from source).
 </p>
+
 <p class="tip-bottom">
 <kbd>&lt;version&gt;</kbd> refers to the groff version number, which
 can be found, if necessary, by typing
@@ -82,9 +83,7 @@ can be found, if necessary, by typing
 <span class="pre-in-pp">
   groff -v
 </span>
-at the command line.  Groff installations usually make a symlink to
-the current version so &#8216;current&#8217; may be used instead of
-the literal version number.
+at the command line.
 </p>
 </div>
 
@@ -417,7 +416,7 @@ your type would come out in Courier Roman!
   <li><a href="#step-1">1. Acquire the font</a></li>
   <li><a href="#step-2">2. Prepare to convert the font to the correct format</a>
   <ul style="margin-left: -.5em">
-    <li><a href="#ttf">TTF/OTF fonts</a></li>
+    <li><a href="#ttf">TTF fonts</a></li>
     <li><a href="#type1">Type 1 fonts</a></li>
   </ul></li>
   <li><a href="#step-3">3. Convert the font and put it in the right place</a></li>
@@ -428,7 +427,8 @@ your type would come out in Courier Roman!
     <li><a href="#gropdf-download">Updating the gropdf download file</a></li>
   </ul></li>
   <li><a href="#groff-font-names">Naming groff fonts</a></li>
-  <li><a href="#install-font">Automate the whole process &ndash; the install-font script</a></li>
+  <li><a href="#install-font">Automate the whole process &ndash; the install-font script</a>
+  </li>
 </ul>
 </div>
 
@@ -436,11 +436,7 @@ your type would come out in Courier Roman!
 <p>
 There are a number of ways to approach making fonts available
 to groff.  These instructions aren&#8217;t meant to cover all
-possibilities, merely one.  What's more, they're meant for users
-wanting to understand what's involved.  The much simpler way
-is the
-<a href="#install-font">install-font.sh</a>
-script, which automates the whole process.
+possibilities, merely one.
 </p>
 
 <p>
@@ -470,7 +466,7 @@ to the way their distro operates.
 <ol id="site-font" style="margin-left: -1em;">
   <li>
     Locate the groff directory,
-    <kbd>site-font</kbd>.  The exact location is
+    <kbd class="nobr">site-font</kbd>.  The exact location is
     difficult to predict, owing to differences between distros and
     whether you&#8217;re using a pre-packaged groff or have built
     it from source.  Some typical locations are:
@@ -481,11 +477,10 @@ to the way their distro operates.
       /etc/groff/
     </span>
     If you can&#8217;t find the site-font directory, locate
-    groff&#8217;s <kbd class="nobr">site-tmac</kbd> directory, and,
-    as root, create site-font in the same directory.  E.g., if you
-    find site-tmac in <kbd class="nobr">/usr/share/groff/</kbd>,
-    create <span class="nobr">site-font</span> in
-    <kbd>/usr/share/groff/</kbd>
+    groff&#8217;s <kbd class="nobr">site-tmac</kbd> directory, and, as root,
+    create site-font in the same directory.  Eg, if you find
+    site-tmac in <kbd class="nobr">/usr/share/groff/</kbd>, create site-font in
+    <kbd class="nobr">/usr/share/groff/</kbd>
     <br/>
     <span class="pre-in-pp" style="margin-bottom: -2em;">
       sudo mkdir site-font
@@ -523,10 +518,10 @@ Generate($fontname + ".pfa");
 <h3 id="step-1" class="docs appendices">Step 1: Acquire the font</h3>
 
 <p class="top">
-The most commonly available types of fonts are PostScript Type1
-(extension .pfb), TrueType (extension .ttf), and OpenType.  All
-can be made available to groff.  There are many websites holding
-collections of all three.
+The two most commonly available types of fonts are PostScript Type1
+(extension .pfb) and TrueType (extension .ttf).  Either can be made
+available to groff.  There are many websites holding collections of
+both.
 </p>
 
 <h3 id="step-2" class="docs appendices">Step 2: Prepare to convert the font to the correct format</h3>
@@ -536,11 +531,11 @@ Change into the directory holding the new font.
 </p>
 
 <p>
-For convenience in the next step, make a symbolic link to
-the file 'text.map':
+For convenience in the next step, make a symbolic link to 
+the file 'textmap':
 <br/>
 <span class="pre-in-pp">
-  ln -s &lt;prefix&gt;/&lt;version&gt;/font/devps/generate/text.map .
+  ln -s &lt;prefix&gt;/&lt;version&gt;/font/devps/generate/textmap .
 </span>
 See
 <a href="#small-note">here</a>
@@ -562,14 +557,14 @@ directory, make links to the files 'generate-t42.pe' and
 <h3 id="step-3" class="docs appendices">Step 3: Convert the font and put it in the right place</h3>
 
 <p class="top">
-TrueType (.ttf) and OpenType (.otf) fonts need to be converted to
-.t42.  Type 1 fonts (.pfb) need to be converted to .pfa.
+TrueType fonts (.ttf) need to be converted to .t42.  Type 1 fonts
+(.pfa, .pfb) need to be converted to .pfa.
 </p>
 
-<h4 id="ttf" class="docs" style="font-size: 90%; text-transform: uppercase;">&nbsp;&bull;&nbsp;TTF/OTF Fonts</h4>
+<h4 id="ttf" class="docs" style="font-size: 90%; text-transform: uppercase;">&nbsp;&bull;&nbsp;Converting TTF Fonts</h4>
 
 <p class="top" style="margin-top: .5em;">
-For .ttf and .otf fonts, run
+For .ttf fonts, run
 <br/>
 <span class="pre-in-pp">
   fontforge -script generate-t42.pe &lt;file&gt;.ttf
@@ -578,7 +573,7 @@ This will create three new files with the extensions .t42, .pfa, and
 .afm.  Next, run
 <br/>
 <span class="pre-in-pp">
-  afmtodit &lt;afm file&gt; text.map &lt;groff font&gt;
+  afmtodit &lt;afm file&gt; textmap &lt;groff font&gt;
 </span>
 This will create a groff font with the name you give.  (See
 <a href="#groff-font-names">here</a>
@@ -587,17 +582,17 @@ for advice on naming groff fonts.)
 
 <p>
 Move the .t42 and groff font files to
-<kbd>&lt;prefix&gt;/site-font/devps/</kbd>.
+<kbd class="nobr">&lt;prefix&gt;/site-font/devps/</kbd>.
 </p>
 
 <p>
 If you&#8217;re running a recent version of groff that includes
-the native pdf device (gropdf), move the .pfa file to
-<kbd>&lt;prefix&gt;/&lt;version&gt;/font/devpdf/</kbd>.  If not, you
+the native pdf device (gropdf), move the .pfa file to <kbd
+class="nobr">&lt;prefix&gt;/site-font/devpdf/</kbd>.  If not, you
 may safely remove it.  You may also safely remove the .afm file.
 </p>
 
-<h4 id="type1" class="docs" style="font-size: 90%; text-transform: uppercase;">&nbsp;&bull;&nbsp;Type1 Fonts</h4>
+<h4 id="type1" class="docs" style="font-size: 90%; text-transform: uppercase;">&nbsp;&bull;&nbsp;Converting Type1 Fonts</h4>
 
 <p class="top" style="margin-top: .5em;">
 For .pfb fonts, run
@@ -609,10 +604,10 @@ This will create two new files with the extensions .pfa, and .afm.
 Next, run
 <br/>
 <span class="pre-in-pp">
-  afmtodit &lt;afm file&gt; text.map &lt;groff font&gt;
+  afmtodit &lt;afm file&gt; textmap &lt;groff font&gt;
 </span>
 Move the .pfa and groff font files to
-<kbd>&lt;prefix&gt;/&lt;site-font&gt;/devps/</kbd>.
+<kbd class="nobr">&lt;prefix&gt;/&lt;site-font&gt;/devps/</kbd>.
 (See
 <a href="#groff-font-names">here</a>
 for advice on naming groff fonts.)
@@ -620,11 +615,16 @@ for advice on naming groff fonts.)
 
 <p>
 If you&#8217;re running a recent version of groff that includes the
-native pdf device (gropdf), link the .pfa and groff font files,
-now in <kbd>&lt;prefix&gt;/&lt;site-font&gt;/devps/</kbd>,
-to the <kbd>devpdf</kbd> directory.  Start by changing into the
-<kbd>&lt;prefix&gt;/&lt;version&gt;/font/devpdf/</kbd> directory,
-then:
+native pdf device (gropdf), link the .pfa and groff font files, now
+in <kbd class="nobr">&lt;prefix&gt;/&lt;site-font&gt;/devps/</kbd>,
+to the <kbd class="nobr">&lt;prefix&gt;/site-font/devpdf</kbd>
+directory.
+</p>
+
+<p>
+Start by changing into the
+<kbd class="nobr">&lt;prefix&gt;/site-font/devpdf/</kbd>
+directory, then:
 <br/>
 <span class="pre-in-pp">
   ln -s &lt;prefix&gt;/&lt;site-font&gt;/devps/&lt;file&gt;.pfa .
@@ -655,42 +655,12 @@ Make a note of the internal name.
 <h4 id="add" class="docs" style="font-size: 90%; text-transform: uppercase;">&nbsp;&bull;&nbsp;Add the font to the download file</h4>
 
 <p class="top" style="margin-top: .5em;">
-If you are installing fonts in site-font for the first time, copy
-the file
-<br/>
-<span class="pre-in-pp">
-  &lt;prefix&gt;/&lt;version&gt;/font/devps/download
-</span>
-to
-<br/>
-<span class="pre-in-pp">
-  &lt;prefix&gt;/site-font/devps/
-</span>
+If it does not already exist, create a
+file called &#8216;download&#8217; in
+<kbd class="nobr">&lt;prefix&gt;/site-font/devps/</kbd>.
 </p>
 
 <p>
-Open <kbd class="nobr">&lt;prefix&gt;/site-font/devps/download</kbd>.
-In it you will see lines of the form
-<br/>
-<span class="pre-in-pp">
-  Symbol-Slanted       symbolsl.pfa
-  ZapfDingbats-Reverse zapfdr.pfa
-  FreeEuro             freeeuro.pfa
-</span>
-where the spaces are the tab character from the keyboard, not
-literal spaces.  Thus,
-<br/>
-<span class="pre-in-pp">
-  Symbol-Slanted       symbolsl.pfa
-</span>
-is really
-<br/>
-<span class="pre-in-pp">
-  Symbol-Slanted&lt;tab&gt;symbolsl.pfa
-</span>
-</p>
-
-<p id="add-devps-fonts">
 The download file maps the internal names used by groff to the
 actual fonts.  To add your new font to the download file, append a
 line containing the internal name, followed by a tab (make sure your
@@ -711,42 +681,22 @@ contain
 <h4 id="gropdf-download" class="docs" style="font-size: 90%; text-transform: uppercase;">&nbsp;&bull;&nbsp;Updating the gropdf download file</h4>
 
 <p class="top" style="margin-top: .5em;">
-If you&#8217;re running a recent version of groff that
-includes the native pdf device (gropdf), you must copy its
-<br/>
-<span class="pre-in-pp">
-  &lt;prefix&gt;/&lt;version&gt;/font/devpdf/download
-</span>
-to
-<span class="pre-in-pp">
-  &lt;prefix&gt;/site-font/devpdf/
-</span>
-In addition, copy over the files <kbd>freeeuro.pfa</kbd> and
-<kbd>EURO</kbd>, located in
-<kbd class="nobr">&lt;prefix&gt;/&lt;version&gt;/font/devps/</kbd>,
-to
-<kbd class="nobr">&lt;prefix&gt;/site-font/devpdf/</kbd>.
+If you&#8217;re running a recent version of groff that includes the
+native pdf device (gropdf), you must update the
+<kbd class="nobr">&lt;prefix&gt;/site-font/devpdf/</kbd> download file
+as well, which is found in
+<kbd class="nobr">&lt;prefix&gt;/site-font/devpdf/</kbd>.  If it does not
+exist, create it.
 </p>
 
 <p>
-Open
+The instructions for registering fonts in the
+<kbd class="nobr">&lt;prefix&gt;/site-font/devpdf/</kbd> download
+file are identical to those for PostScript fonts (see above), but
+with one important difference: the lines must all begin with a tab
+character.  Thus, using our Optima example, your
 <kbd class="nobr">&lt;prefix&gt;/site-font/devpdf/download</kbd>
-and add the line
-<br/>
-<span class="pre-in-pp">
-  &lt;tab&gt;FreeEuro&lt;tab&gt;freeeuro.pfa
-</span>
-where <kbd>&lt;tab&gt;</kbd> means the tab key; make sure your text
-editor is putting in the tab character, not spaces.
-</p>
-
-<p>
-Subsequently adding new fonts to <kbd>site-font/devpdf/download</kbd>
-is the same as
-<a href="#add-devps-fonts">adding fonts to site-font/devps/download</a>
-but with one important difference: every line must begin with a tab.
-Thus, using our Optima example, your line for it in
-<kbd>site-font/devpdf/download</kbd> should read
+file download line for the same font is
 <br/>
 <span class="pre-in-pp">
   &lt;tab&gt;Optima-Bold&lt;tab&gt;Optima-Bold.pfa
@@ -810,7 +760,7 @@ A bash script to make the entire process of installing fonts a
 painless no-brainer has been posted online at
 <a href="https://www.schaffter.ca/mom/bin/install-font.sh">https://www.schaffter.ca/mom/bin/install-font.sh</a>.
 Be sure to make the script executable
-(<kbd>chmod 755 install-font</kbd>)
+(<kbd class="nobr">chmod 755 install-font</kbd>)
 after you download it, then type <kbd>./install-font.sh -H</kbd> for
 usage.
 </p>

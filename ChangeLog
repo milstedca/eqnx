@@ -1,3 +1,18 @@
+2022-08-20  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	Bug #62923 - problem using aliased glyphs
+
+	With a large font if 2 characters above the 255 code
+	point limit are aliased, the aliased glyph has incorrect meta
+	data.
+
+	* src/devices/gropdf/gropdf.pl: Instead of duplicating a pointer
+	to the font metadata, duplicate the data itself. Then, if the
+	glyph is remapped to a code point under 256, the metadata is
+	preserved.
+
+	Fixes <https://savannah.gnu.org/bugs/?62923>.
+
 2022-08-18  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[gropdf]: Improve parsing of troff font files.

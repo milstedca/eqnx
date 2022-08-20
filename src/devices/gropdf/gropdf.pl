@@ -2411,20 +2411,20 @@ sub LoadFont
 	    my (@r)=split;
 	    my (@p)=split(',',$r[1]);
 
-	    if ($r[1] eq '"')
-	    {
-		$fnt{NAM}->{$r[0]}=$fnt{NAM}->{$lastnm};
+            if ($r[1] eq '"')
+            {
+                $fnt{NAM}->{$r[0]}=[@{$fnt{NAM}->{$lastnm}}];
                 next;
             }
 
-            $r[3]=oct($r[3]) if substr($r[3],0,1) eq '0';
-            $r[0]='u0020' if $r[3] == 32;
-            $r[0]="u00".hex($r[3]) if $r[0] eq '---';
-#           next if $r[3] >255;
-            $r[4]=$r[0] if !defined($r[4]);
-            $fnt{NAM}->{$r[0]}=[$p[0],$r[3],'/'.$r[4],$r[3],0];
-            $fnt{NO}->[$r[3]]=[$r[0],$r[0]];
-            $lastnm=$r[0];
+	    $r[3]=oct($r[3]) if substr($r[3],0,1) eq '0';
+	    $r[0]='u0020' if $r[3] == 32;
+	    $r[0]="u00".hex($r[3]) if $r[0] eq '---';
+#	    next if $r[3] >255;
+	    $r[4]=$r[0] if !defined($r[4]);
+	    $fnt{NAM}->{$r[0]}=[$p[0],$r[3],'/'.$r[4],$r[3],0];
+	    $fnt{NO}->[$r[3]]=[$r[0],$r[0]];
+	    $lastnm=$r[0];
 	    $lastchr=$r[3] if $r[3] > $lastchr;
 	    $fixwid=$p[0] if $fixwid == -1;
 	    $fixwid=-2 if $fixwid > 0 and $p[0] != $fixwid;

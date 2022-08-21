@@ -36,7 +36,8 @@
 	glyph is remapped to a code point under 256, the metadata is
 	preserved.
 
-	Fixes <https://savannah.gnu.org/bugs/?62923>.
+	Fixes <https://savannah.gnu.org/bugs/?62923>.  Thanks to Nikita
+	Ivanov for the report.
 
 2022-08-18  Deri James  <deri@chuzzlewit.myzen.co.uk>
 

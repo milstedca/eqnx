@@ -186,6 +186,35 @@ appear inside a table or equation.
 .
 .
 .\" ====================================================================
+.SH Dependencies
+.\" ====================================================================
+.
+.I grohtml
+is dependent upon the PNG utilities
+.RI ( \%pnmcut ,
+.IR \%pnmcrop ,
+.IR \%pnmtopng )
+and Ghostscript
+.RI ( gs ).
+.
+.I \%pnmtopng
+(version 2.37.6 or greater)
+and
+.I \%pnmcut
+from the netpbm package (version 9.16 or greater) will work also.
+.
+It is also dependent upon
+.I \%psselect
+from the PSUtils package.
+.
+Images are generated whenever a table,
+picture,
+equation or line
+(such as a baseline rule or box rule)
+is encountered.
+.
+.
+.\" ====================================================================
 .SH Options
 .\" ====================================================================
 .
@@ -479,47 +508,6 @@ respectively.
 .
 .
 .\" ====================================================================
-.SH Dependencies
-.\" ====================================================================
-.
-.I grohtml
-is dependent upon the PNG utilities
-.RI ( \%pnmcut ,
-.IR \%pnmcrop ,
-.IR \%pnmtopng )
-and Ghostscript
-.RI ( gs ).
-.
-.I \%pnmtopng
-(version 2.37.6 or greater)
-and
-.I \%pnmcut
-from the netpbm package (version 9.16 or greater) will work also.
-.
-It is also dependent upon
-.I \%psselect
-from the PSUtils package.
-.
-Images are generated whenever a table,
-picture,
-equation or line
-(such as a baseline rule or box rule)
-is encountered.
-.
-.
-.\" ====================================================================
-.SH Files
-.\" ====================================================================
-.
-.I grohtml
-uses temporary files.
-.
-See
-.MR groff @MAN1EXT@
-for details about where such files are created.
-.
-.
-.\" ====================================================================
 .SH Environment
 .\" ====================================================================
 .
@@ -553,6 +541,18 @@ The time zone to use when converting the current time
 to human-readable form;
 see
 .MR tzset 3 .
+.
+.
+.\" ====================================================================
+.SH Files
+.\" ====================================================================
+.
+.I grohtml
+uses temporary files.
+.
+See
+.MR groff @MAN1EXT@
+for details about where such files are created.
 .
 .
 .\" ====================================================================

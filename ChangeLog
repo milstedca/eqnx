@@ -1,5 +1,13 @@
 2022-08-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (fatal_with_file_and_line)
+	(error_with_file_and_line, debug_with_file_and_line): Align more
+	closely with GNU Coding Standards regarding diagnostics: don't
+	suffix the colon after the program name with a space when
+	location information follows.
+
+2022-08-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grohtml/grohtml.1.man: Fix erroneous claim.
 	Images are not generated when "baseline rules" or "box rules"
 	are encountered in the input.  These are troff special

@@ -1,3 +1,28 @@
+2022-08-22  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	Bug #62934 - after glyph remapped mark it as used
+
+	When many glyphs are remapped from code points above 255
+	such as writing documents in cyrillic with the U-TR fonts,
+	gropdf starts reusing code points in the range 128-255.
+	If subsequently one of those code points is actually required,
+	such as \(em (code 138), and it has been replaced by a
+	cyrillic, then it needs to be mapped to another free code.
+
+	To determine if a particular code point is free each glyph
+	has a USED flag. The bug was caused because after remapping
+	\(em to the next free glyph the USED flag was not set. So the
+	next new cyrillic character to be entered was given the same
+	code point as had been allocated to \(em.
+
+	* src/devices/gropdf/gropdf.pl: Set the USED flag on remapped
+	glyphs.
+
+	Fixes <https://savannah.gnu.org/bugs/?62934>.
+
+	Thanks to Nikita Ivanov for spotting the problem and testing
+	the fix.
+
 2022-08-20  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	Bug #62923 - problem using aliased glyphs

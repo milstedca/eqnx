@@ -1,5 +1,13 @@
 2022-08-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/libs/libgroff/error.cpp (do_error_with_file_and_line):
+	Trivially refactor.  Use separate string constant for invariant
+	material.  (This will make it easier to, for example, store the
+	diagnostic level strings in an array that can be indexed by
+	their corresponding `enum` type.)
+
+2022-08-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (fatal_with_file_and_line)
 	(error_with_file_and_line, debug_with_file_and_line): Align more
 	closely with GNU Coding Standards regarding diagnostics: don't

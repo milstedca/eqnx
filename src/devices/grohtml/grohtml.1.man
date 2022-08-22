@@ -277,11 +277,9 @@ generates an image whenever an
 equation,
 .I @g@tbl
 table,
+or
 .I @g@pic
-picture,
-or line
-(such as a baseline rule or box rule)
-is encountered in the input.
+picture is encountered in the input.
 .
 .I \%grohtml
 therefore may run several commands as part of its operation.

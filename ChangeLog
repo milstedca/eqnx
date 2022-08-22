@@ -1,3 +1,16 @@
+2022-08-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grohtml/grohtml.1.man: Fix erroneous claim.
+	Images are not generated when "baseline rules" or "box rules"
+	are encountered in the input.  These are troff special
+	characters; the former is converted to an underscore and the
+	latter to U+2502, "box drawings light vertical".  This remains
+	true even if a series of them is drawn with the `\l` escape
+	sequence.  (I also checked vertical line drawing with `\L`.
+	grohtml's handling of that provoked a rather wet eructation from
+	my lower esophageal sphincter--the output is assuredly not
+	correct.  But it's still not an image.)
+
 2022-08-22  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	Bug #62934 - after glyph remapped mark it as used

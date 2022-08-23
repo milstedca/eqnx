@@ -1,5 +1,16 @@
 2022-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (font_family::make_definite):
+	Refactor.  Rename parameter from inscrutable `i` to
+	`mounting_position`.  Add `assert()` to enforce invariant: we're
+	passed a mounting position that is nonnegative.  Use `pos` as
+	short alias of parameter once we're into the function body.
+	Relocate conditional branches to front-load early returns as
+	well as those requiring little code to handle.  This reduces the
+	average indentation level of the function, a readability win.
+
+2022-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Restore robustness to `EE` misuse.
 
 	* tmac/an.tmac: Add `an*is-in-example` register to keep track

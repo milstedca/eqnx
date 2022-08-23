@@ -1,5 +1,13 @@
 2022-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment::set_family): Add some
+	paranoia.  Add `assert()`s on the previous font mounting
+	position still being valid and the font family dictionary lookup
+	not returning a null pointer.  Add an early return for the
+	latter case (which should be impossible).
+
+2022-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (font_family::make_definite):
 	Refactor.  Rename parameter from inscrutable `i` to
 	`mounting_position`.  Add `assert()` to enforce invariant: we're

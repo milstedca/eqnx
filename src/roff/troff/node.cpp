@@ -6103,7 +6103,7 @@ int font_family::make_definite(int mounting_position)
     if (pos >= map_size)
       map_size = pos + 10;
     map = new int[map_size];
-    memcpy(map, old_map, old_map_size*sizeof(int));
+    memcpy(map, old_map, old_map_size * sizeof (int));
     delete[] old_map;
     for (int j = old_map_size; j < map_size; j++)
       map[j] = -1;

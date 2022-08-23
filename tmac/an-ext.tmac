@@ -23,8 +23,8 @@
 .
 .
 .\" Protect against being sourced twice.
-.nr mX +1
-.if \n(mX>1 \
+.nr mZ +1
+.if \n(mZ>1 \
 .  nx
 .
 .\" Define this to your implementation's constant-width typeface.
@@ -247,7 +247,7 @@
 .\" Start example.
 .if \n(.g .ig
 .de EX
-.  nr mE \\n(.f
+.  nr mF \\n(.f
 .  nr mP \\n(PD
 .  nr PD 1v
 .  nf
@@ -258,7 +258,7 @@
 .\" End example.
 .if \n(.g .ig
 .de EE
-.  ft \\n(mE
+.  ft \\n(mF
 .  nr PD \\n(mP
 .  fi
 ..

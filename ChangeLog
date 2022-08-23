@@ -1,3 +1,11 @@
+2022-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/an-ext.tmac: Refactor.  Rename `mX` to `mZ` so we can use
+	`mX` for an "in-example" state register in a future commit.
+	Rename `mE` to `mF` to store the current font's mounting
+	position.  Bizarrely, `mF` was not already used for this
+	purpose.
+
 2022-08-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/libs/libgroff/error.cpp (do_error_with_file_and_line):

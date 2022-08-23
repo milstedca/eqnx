@@ -567,8 +567,10 @@ void environment::set_family(symbol fam)
 	   (0 != "font family dictionary lookup"));
     if (0 /* nullptr */ == f)
       return;
-    if (f->make_definite(fontno) < 0)
+    if (f->make_definite(fontno) < 0) {
+      error("no font family named '%1' exists", fam.contents());
       return;
+    }
     prev_family = family;
     family = f;
   }

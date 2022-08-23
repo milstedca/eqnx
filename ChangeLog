@@ -1,5 +1,17 @@
 2022-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (environment::set_family): Throw error
+	if user requests a font family that (when combined with the
+	current style) can't be resolved to a real font name.  Fixes a
+	regression introduced by me in commit d8cb8cf9d8, 2021-09-15,
+	arising from a revision of font selection logic in node.cpp to
+	enable a bunch of _other_ font error diagnostics.
+
+	Fixes <https://savannah.gnu.org/bugs/?62941>.  Thanks to Dave
+	Kemper for the report and two useful end points for a bisection.
+
+2022-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (environment::set_family): Add some
 	paranoia.  Add `assert()`s on the previous font mounting
 	position still being valid and the font family dictionary lookup

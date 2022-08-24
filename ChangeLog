@@ -33,9 +33,9 @@
 
 	[man]: Restore robustness to `EE` misuse.
 
-	* tmac/an.tmac: Add `an*is-in-example` register to keep track
-	state of within-exampleness.  Not doing so can cause a spurious
-	use of `EE` to wrongly set the inter-paragraph distance to zero.
+	* tmac/an.tmac: Add `an*is-in-example` register to track state
+	of within-exampleness.  Not doing so can cause a spurious use of
+	`EE` to wrongly set the inter-paragraph distance to zero.
 	(TH): Initialize register.
 	(EX): Test register; if set, ignore macro call and, if
 	`CHECKSTYLE` warnings are on, throw diagnostic.  Set register.

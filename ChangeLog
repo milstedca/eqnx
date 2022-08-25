@@ -1,3 +1,9 @@
+2022-08-25  Bjarni Ingi Gislason <bjarniig@vortex.is>
+
+	* man/groff_char.7.man: Fix bad example syntax.
+
+	Fixes <https://savannah.gnu.org/bugs/?62959>.
+
 2022-08-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mdoc]: Trivially refactor.

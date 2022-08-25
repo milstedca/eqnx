@@ -1,3 +1,16 @@
+2022-08-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[mdoc]: Trivially refactor.
+
+	* tmac/mdoc/doc-common:
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Stop using "Null" as an empty string
+	indicator when comparing a string interpolation to an empty
+	parameter will serve just as well; it is also more idiomatic.
+	The string in question, `doc-section`, is never formatted if it
+	is empty anyway; the very tests at issue, which populate
+	`doc-header-string`, ensure this.
+
 2022-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp (environment::set_family): Throw error

@@ -209,7 +209,7 @@
 .\" NS doc-section global string
 .\" NS   the manual section
 .
-.ds doc-section Null
+.ds doc-section \" empty
 .
 .
 .\" NS Dt user macro (not parsed, not callable)
@@ -344,7 +344,7 @@
 .  \" reset default arguments
 .  ds doc-document-title UNTITLED
 .  ds doc-volume LOCAL
-.  ds doc-section Null
+.  ds doc-section \" empty
 .  ds doc-command-name
 .
 .  if !"\$1"" \

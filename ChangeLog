@@ -1,5 +1,16 @@
 2022-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man]: (EX, EE): Always break line, even if call invalid.
+
+	* tmac/an.tmac (EX, EE):
+	* tmac/an-ext.tmac (EX, EE): Do it.  Ingo Schwarze pointed out
+	that page authors will expect breaking semantics from these
+	macros even if using them in an ill-formed way.  In a
+	well-formed document, the breaks are redundant but harmless (the
+	later `nf` and `fi` requests, respectively, also cause breaks).
+
+2022-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Trivially refactor.
 
 	* tmac/doc.tmac:

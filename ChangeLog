@@ -1,3 +1,12 @@
+2022-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[mdoc]: Trivially refactor.
+
+	* tmac/doc.tmac:
+	* tmac/mdoc/doc-common: Rename string `doc-command-name` to
+	`doc-topic-name`; the former is misleading for man pages not in
+	sections 1, 6, or 8.
+
 2022-08-25  Bjarni Ingi Gislason <bjarniig@vortex.is>
 
 	* man/groff_char.7.man: Fix bad example syntax.

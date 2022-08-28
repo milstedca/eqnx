@@ -54,9 +54,9 @@ output driver for HTML
 .IR image-vertical-offset ]
 .RB [ \-x
 .IR  html-dialect ]
-.RI [ troff-command ]
-.RI [ troff-argument ]
-\&.\|.\|.]
+.I troff-command
+.I troff-argument
+\&.\|.\|.
 .YS
 .
 .

@@ -1,5 +1,12 @@
 2022-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/main.cpp (main): Clarify error diagnostics
+	regarding invalid option arguments.  Identify the option being
+	handled at the time and characterize the argument as "invalid",
+	not "bad".
+
+2022-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[eqn]: Drop support for undocumented '-D' option.  It has been
 	undocumented, and issued a warning of its obsolescence upon use,
 	for 30 years, since groff 1.06 (September 1992).  That's plenty

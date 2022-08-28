@@ -301,11 +301,13 @@ int main(int argc, char **argv)
       break;
     case 'd':
       if (optarg[0] == '\0' || optarg[1] == '\0')
-	error("-d requires two character argument");
+	error("'-d' option requires a two-character argument");
       else if (invalid_input_char(optarg[0]))
-	error("bad delimiter '%1'", optarg[0]);
+	error("invalid delimiter '%1' in '-d' option argument",
+	      optarg[0]);
       else if (invalid_input_char(optarg[1]))
-	error("bad delimiter '%1'", optarg[1]);
+	error("invalid delimiter '%1' in '-d' option argument",
+	      optarg[1]);
       else {
 	start_delim = optarg[0];
 	end_delim = optarg[1];
@@ -333,7 +335,7 @@ int main(int argc, char **argv)
       break;
     case 's':
       if (!set_gsize(optarg))
-	error("invalid size '%1'", optarg);
+	error("invalid size '%1' in '-s' option argument ", optarg);
       break;
     case 'p':
       {
@@ -341,7 +343,7 @@ int main(int argc, char **argv)
 	if (sscanf(optarg, "%d", &n) == 1)
 	  set_script_reduction(n);
 	else
-	  error("bad size '%1'", optarg);
+	  error("invalid size '%1' in '-p' option argument ", optarg);
       }
       break;
     case 'm':

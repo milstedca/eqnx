@@ -1,5 +1,12 @@
 2022-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/main.cpp (main): Issue deprecation warning
+	upon use of '-p' or '-s' options.  The eqn(1) man page has
+	documented these as deprecated since at least groff 1.02 (June
+	1991).  Don't count on them sticking around another 30 years.
+
+2022-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/eqn/main.cpp (main): Clarify error diagnostics
 	regarding invalid option arguments.  Identify the option being
 	handled at the time and characterize the argument as "invalid",

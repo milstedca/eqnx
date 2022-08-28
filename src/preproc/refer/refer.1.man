@@ -231,10 +231,6 @@ preprocessed by a command such as
 .
 .
 .\" ====================================================================
-.SH Usage
-.\" ====================================================================
-.
-.\" ====================================================================
 .SS "Bibliographic databases"
 .\" ====================================================================
 .
@@ -1679,8 +1675,9 @@ Don't recognize lines beginning with
 .
 .
 .P
-Other options are equivalent to commands;
-see subsection \[lq]Commands\[rq] below.
+Other options are equivalent to
+.I @g@refer
+commands.
 .
 .
 .TP 16n

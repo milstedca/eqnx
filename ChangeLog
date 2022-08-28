@@ -1,3 +1,13 @@
+2022-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[eqn]: Drop support for undocumented '-D' option.  It has been
+	undocumented, and issued a warning of its obsolescence upon use,
+	for 30 years, since groff 1.06 (September 1992).  That's plenty
+	long enough for a deprecation cycle.
+
+	* src/preproc/eqn/main.cpp (main): Do it.
+	* NEWS: Add item.
+
 2022-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[man]: (EX, EE): Always break line, even if call invalid.

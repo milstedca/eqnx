@@ -115,6 +115,10 @@ o The GNU extension
   to use 'o' and 'n' as left and right delimiters, respectively.  If
   yours does, consider swapping them, or select others.
 
+o The command-line option -D is no longer supported.  It has been
+  undocumented, and issued a warning of its obsolescence upon use, for
+  30 years, since groff 1.06 (September 1992).
+
 pic
 ---
 

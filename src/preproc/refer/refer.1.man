@@ -244,25 +244,37 @@ show version information;
 all exit afterward.
 .
 .
-.LP
-Most options are equivalent to commands
-(for a description of these commands,
-see subsection \[lq]Commands\[rq] below).
+.TP
+.B \-R
+Don't recognize lines beginning with
+.BR .R1 / .R2 .
+.
+.
+.P
+Other options are equivalent to commands;
+see subsection \[lq]Commands\[rq] below.
 .
 .
 .TP 16n
+.BI \-a\~ n
+.B reverse
+.BI A n
+.
+.
+.TP
 .B \-b
 .B "\%no\-label\-in\-text; \%no\-label\-in\-reference"
 .
 .
 .TP
-.B \-e
-.B accumulate
+.B \-B
+See below.
 .
 .
 .TP
-.B \-n
-.B \%no\-default\-database
+.BI \-c\~ fields
+.B capitalize
+.I fields
 .
 .
 .TP
@@ -271,26 +283,8 @@ see subsection \[lq]Commands\[rq] below).
 .
 .
 .TP
-.B \-P
-.B move\-punctuation
-.
-.
-.TP
-.B \-S
-.B \%label \[dq](A.n|Q) \[aq], \[aq] (D.y|D)\[dq]; \
-\%bracket-\%label \[dq]\~(\[dq]\~)\~\[dq];\~\[dq]
-.
-.
-.TP
-.BI \-a\~ n
-.B reverse
-.BI A n
-.
-.
-.TP
-.BI \-c\~ fields
-.B capitalize
-.I fields
+.B \-e
+.B accumulate
 .
 .
 .TP
@@ -342,9 +336,19 @@ see subsection \[lq]Commands\[rq] below).
 .
 .
 .TP
+.B \-n
+.B \%no\-default\-database
+.
+.
+.TP
 .BI \-p\~ db-file
 .B database
 .I db-file
+.
+.
+.TP
+.B \-P
+.B move\-punctuation
 .
 .
 .TP
@@ -354,15 +358,23 @@ see subsection \[lq]Commands\[rq] below).
 .
 .
 .TP
+.B \-S
+.B \%label \[dq](A.n|Q) \[aq], \[aq] (D.y|D)\[dq]; \
+\%bracket-\%label \[dq]\~(\[dq]\~)\~\[dq];\~\[dq]
+.
+.
+.TP
 .BI \-t\~ n
 .B search\-truncate
 .I n
 .
 .
 .P
-The next options are equivalent to commands with the addition that the
-file names specified on the command line are processed as if they were
-arguments to the
+The
+.B B
+option has command equivalents with the addition that the file names
+specified on the command line are processed as if they were arguments to
+the
 .B \%bibliography
 command instead of in the normal way.
 .
@@ -378,16 +390,6 @@ command instead of in the normal way.
 .I field
 .IB macro ;
 .B \%no\-label\-in\-reference
-.
-.
-.P
-The following option has no synonymous command.
-.
-.
-.TP
-.B \-R
-Don't recognize lines beginning with
-.BR .R1 / .R2 .
 .
 .
 .\" ====================================================================

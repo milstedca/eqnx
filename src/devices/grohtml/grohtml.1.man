@@ -386,11 +386,6 @@ usually
 .
 .
 .TP
-.B \-G
-Suppress output of \[lq]Creator:\[rq] HTML comment.
-.
-.
-.TP
 .BI \-g \~anti-aliasing-graphic-bits
 Number of bits of antialiasing information to be used by graphics when
 generating PNG images.
@@ -417,6 +412,11 @@ stops
 .I \%grohtml
 from issuing antialiasing commands to
 .IR gs .
+.
+.
+.TP
+.B \-G
+Suppress output of \[lq]Creator:\[rq] HTML comment.
 .
 .
 .TP

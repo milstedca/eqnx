@@ -488,6 +488,13 @@ It ends the argument (list).
 .
 .
 .P
+Additionally,
+the Control+A character (U+0001) in text is interpreted as a
+.I leader
+(see below).
+.
+.
+.P
 Horizontal white space characters are significant to
 .I groff,
 but trailing spaces on text lines are ignored.
@@ -549,6 +556,39 @@ See section \[lq]Line continuation\[rq] below.
 .I tab
 A tab character in text causes the drawing position to advance to the
 next defined tab stop.
+.
+.
+.\" ====================================================================
+.SH "Tabs and leaders"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Tabs and
+.\" Leaders".
+The formatter interprets input horizontal tab characters
+(\[lq]tabs\[rq]) and Control+A characters (\[lq]leaders\[rq]) into
+movements to the next tab stop.
+.
+Tabs simply move to the next tab stop;
+leaders place enough periods to fill the space.
+.
+Tab stops are by default located every half inch measured from the
+drawing position corresponding to the beginning of the input line;
+see section \[lq]Page geometry\[rq] of
+.MR roff 7 .
+.
+Tabs and leaders do not cause breaks and therefore do not interrupt
+filling.
+.
+Tab stops can be configured with the
+.B ta
+request,
+and tab and leader glyphs with the
+.B tc
+and
+.B lc
+requests,
+respectively.
+.\" END Keep (roughly) parallel with groff.texi node "Tabs and Leaders".
 .
 .
 .\" ====================================================================

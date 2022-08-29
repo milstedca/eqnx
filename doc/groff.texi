@@ -949,7 +949,8 @@ standard input.  Whitespace is permitted between an option and its
 argument.
 
 The @code{grog} command can be used to guess the correct @code{groff}
-command to format a file.
+command to format a file.  See its man page @cite{grog@r{(1)}}; type
+@samp{man grog} at the command line to view it.
 
 Here's the description of the command-line options:
 
@@ -1648,53 +1649,6 @@ groff -X -Z mydoc.t | gxditview -title 'trial run' -
 @noindent
 are equivalent.
 @c END Keep parallel with groff(1), section "Examples".
-
-@menu
-* grog::
-@end menu
-
-@c ---------------------------------------------------------------------
-
-@node grog,  , Invocation Examples, Invocation Examples
-@subsection @code{grog}
-
-@pindex grog
-@code{grog} reads files, guesses which of the @code{groff} preprocessors
-and/or macro packages are required for formatting them, and prints the
-@code{groff} command including those options on the standard output.  It
-generates one or more of the options @option{-e}, @option{-man},
-@option{-me}, @option{-mm}, @option{-mom}, @option{-ms}, @option{-mdoc},
-@option{-mdoc-old}, @option{-p}, @option{-R}, @option{-g}, @option{-G},
-@option{-s}, and @option{-t}.
-
-A special file name@tie{}@file{-} refers to the standard input.
-Specifying no files also means to read the standard input.  Any
-specified options are included in the printed command.  No space is
-allowed between options and their arguments.  The only options
-recognized are @option{-C} (which is also passed on) to enable
-compatibility mode, and @option{-v} to print the version number and
-exit.
-
-For example,
-
-@Example
-grog -Tdvi paper.ms
-@endExample
-
-@noindent
-guesses the appropriate command to print @file{paper.ms} and then prints
-it to the command line after adding the @option{-Tdvi} option.  For
-direct execution, enclose the call to @code{grog} in backquotes at the
-Unix shell prompt:
-
-@Example
-`grog -Tdvi paper.ms` > paper.dvi
-@endExample
-
-@noindent
-As this example shows, it is still necessary to redirect the output to
-something meaningful (i.e., either a file or a pager program like
-@code{less}).
 
 @codequotebacktick off
 @codequoteundirected off

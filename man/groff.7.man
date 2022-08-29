@@ -690,26 +690,19 @@ recognize the eight standard ISO\~6429/ECMA-48 color names
 .\" END Keep (roughly) parallel with groff.texi node "Colors".
 .
 .
+.br
+.ne 3v
 .\" ====================================================================
 .SH Measurements
 .\" ====================================================================
 .
-A
-.I numerical value
-is an integer or decimal fraction with an optional scaling unit
-appended.
+Numeric values are expressed as integers or decimal fractions optionally
+followed by a
+.I scaling unit,
+a letter abbreviating a unit of measurement.
 .
-They are used to express measurements or dimensionless quantities.
-.
-A
-.I scaling unit
-is a one-letter abbreviation for a unit of measurement.
-.
-.
-.P
-The
-.I groff
-language defines the following scaling units.
+They are stored as integers in device-specific
+.I basic units.
 .
 .
 .P
@@ -726,44 +719,56 @@ inch
 .
 .TPx
 .B P
-pica\ \[eq]\ 1/6\ inch
+pica
+(1/6 inch)
 .
 .TPx
 .B p
-point\ \[eq]\ 1/72\ inch
+point
+(1/72 inch)
 .
 .TPx
 .B m
-em\ \[eq]\ \f[R]the font size in points (approx.\& width of letter
-\[oq]\f[CR]m\f[R]\[cq])
+em
+(size of current font in points;
+approximate width of \[lq]M\[rq] glyph)
 .
 .TPx
 .B M
-100\^th \f[R]of an \f[CR]em
+1/100 em
 .
 .TPx
 .B n
-en\ \[eq]\ em/2
+en
+(1/2 em)
 .
 .TPx
 .B u
-Basic unit for output device
+basic unit;
+device-specific
 .
 .TPx
 .B v
-vee (vertical line space)
+vee
+(distance between adjacent text baselines)
 .
 .TPx
 .B s
-scaled point\ \[eq]\ 1/\f[CI]sizescale\f[R] of a point (defined in
-font \f[I]DESC\f[] file)
+scaled point;
+device-specific
 .
 .TPx
 .B f
-multiply by 65,536
-(used with color components)
+multiply by 65,536;
+used to scale color channel values
 .RE
 .LE
+.
+.
+.P
+See
+.MR groff_font @MAN5EXT@
+for information on device-specific measurements.
 .
 .
 .\" ====================================================================

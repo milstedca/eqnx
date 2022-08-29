@@ -2104,6 +2104,7 @@ so that reflowing the input doesn't turn them into control lines.
 .
 .IP \[bu]
 Do not use spaces to perform indentation or align columns of a table.
+Leading spaces are reliable when text is not being filled.
 .
 .
 .IP \[bu]

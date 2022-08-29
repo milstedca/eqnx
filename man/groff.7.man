@@ -1,7 +1,9 @@
 '\" t
 .TH groff @MAN7EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-groff \- GNU roff language reference
+groff \- GNU
+.I roff
+language reference
 .
 .
 .\" ====================================================================
@@ -772,13 +774,11 @@ multiply by 65,536
 .\" expressions".
 A
 .I numeric expression
-is a syntactic structure,
-recognized only in specific contexts,
-that evaluates to an integer:
+evaluates to an integer:
 it can be as simple as a literal
 .RB \[lq] 0 \[rq]
 or it can be a complex sequence of register and string interpolations
-interleaved with operators.
+interleaved with measurements operators.
 .
 .
 .P
@@ -793,7 +793,7 @@ _
 \f[R]unary\f[] +	assertion, motion, incrementation
 \f[R]unary\f[] \-	negation, motion, decrementation
 _
-(\f[CI]c\f[];\f[CI]e\f[])	scaling
+;	scaling
 >?	maximum
 <?	minimum
 _
@@ -900,8 +900,10 @@ then
 .P
 GNU
 .IR troff 's \" GNU
-scaling operator
-.BI ( c ; e )
+scaling operator,
+used with parentheses as
+.BI ( c ; e )\c
+,
 evaluates a numeric
 .RI expression\~ e
 .RI using\~ c

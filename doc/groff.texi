@@ -5876,10 +5876,9 @@ scaling unit.  To multiply or divide by a dimensionless value, use
 @cindex numeric expressions
 @cindex expressions, numeric
 
-A @dfn{numeric expression} is a syntactic structure, recognized only in
-specific contexts, that evaluates to an integer:@: it can be as simple
-as a literal @samp{0} or it can be a complex sequence of register and
-string interpolations interleaved with operators.
+A @dfn{numeric expression} evaluates to an integer:@: it can be as
+simple as a literal @samp{0} or it can be a complex sequence of register
+and string interpolations interleaved with measurements and operators.
 
 GNU @code{troff} provides a set of mathematical and logical operators
 familiar to programmers---as well as some unusual ones---but supports
@@ -5950,13 +5949,13 @@ remainder@tie{}@var{r} by @samp{(a % b)}, then @math{qb + r = a}.
 @cindex scaling operator
 @cindex operator, scaling
 @opindex ;
-GNU @code{troff}'s scaling operator @code{(@var{c};@var{e})}, evaluates
-a numeric expression@tie{}@var{e} using@tie{}@var{c} as the default
-scaling unit.  If @var{c} is omitted, scaling units are ignored in the
-evaluation of@tie{}@var{e}.  This operator can save typing by avoiding
-the attachment of scaling units to every operand out of caution.  Your
-macros can select a sensible default unit in case the user neglects to
-supply one.
+GNU @code{troff}'s scaling operator, used with parentheses as
+@code{(@var{c};@var{e})}, evaluates a numeric expression@tie{}@var{e}
+using@tie{}@var{c} as the default scaling unit.  If @var{c} is omitted,
+scaling units are ignored in the evaluation of@tie{}@var{e}.  This
+operator can save typing by avoiding the attachment of scaling units to
+every operand out of caution.  Your macros can select a sensible default
+unit in case the user neglects to supply one.
 
 @Example
 .\" Indent by amount given in first argument; assume ens.

@@ -270,6 +270,11 @@ o The an (man) macro package now interprets the value of the `HY`
   no longer supported.  The groff command-line option `-rHY=0` continues
   to disable automatic hyphenation of man page text as before.
 
+o The an (man) macro package's `TS` macro no longer inserts vertical
+  space.  It was not documented to do so, but had since groff 1.18 (July
+  2002).  The page author is free to use paragraphing macros around
+  tables if vertical space is desired.
+
 o The groff_man(7) man page documenting the groff implementation of the
   an (man) macro package has been split into two pages.  The original
   page remains as a terser reference for experienced users.  A new page,

@@ -1,3 +1,8 @@
+2022-08-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* NEWS: man(7)'s `TS` no longer adds vertical space.  See commit
+	7ec36dc9b9, 30 July.
+
 2022-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/eqn/main.cpp (main): Issue deprecation warning

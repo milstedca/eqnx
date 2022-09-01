@@ -969,9 +969,9 @@ Excess entries in a row of table data
 not even an implicit one arising from rectangularization of the table)
 are discarded with a diagnostic message.
 .
-Do not use a
 .I roff
-comment escape sequence in a table entry.
+control lines are accepted between rows of table data and within text
+blocks.
 .
 If you wish to visibly mark an empty table entry in the document source,
 populate it with the
@@ -1727,6 +1727,7 @@ center tab(;);
 CbS,LN,AN.
 Daily energy intake (in MJ)
 Macronutrients
+\&.\[rs]" assume 3 significant figures of precision
 Carbohydrates;4.5
 Fats;2.25
 Protein;3
@@ -1749,6 +1750,7 @@ Total;\[rs][ti]24.4
 center tab(;);
 CbS,LN,AN.
 Daily energy intake (in MJ)
+.\" assume 3 significant figures of precision
 Macronutrients
 Carbohydrates;4.5
 Fats;2.25

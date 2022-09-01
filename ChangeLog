@@ -1,3 +1,9 @@
+2022-09-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/tbl/tbl.1.man (Table data): Generalize discussion
+	of roff control line use in tables.
+	(Examples): Illustrate how to embed a comment in a table.
+
 2022-08-31  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* NEWS: man(7)'s `TS` no longer adds vertical space.  See commit

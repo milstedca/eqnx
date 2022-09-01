@@ -1940,78 +1940,45 @@ and its value can be retrieved by the escape sequence
 .
 .
 .\" ====================================================================
-.SH "File name extensions"
+.SH "File naming conventions"
 .\" ====================================================================
 .
-Manual pages
-(man\~pages)
-take the section number as a file name extension,
-e.g.,
-the file name for this document is
-.IR roff.7 ,
-i.e., it is kept in section\~7
-of the man pages.
-.
-.
-.P
-The classical macro packages take the package name as an extension,
-e.g.,
-.RI file .me
-for a document using the
-.I me
-macro package,
-.RI file .mm
-for
-.IR mm ,
-.RI file .ms
-for
-.IR ms ,
-.RI file .pic
-for
-.I pic
-files,
-and so on.
-.
-.
-.P
-There is no general naming scheme for
+The structure or content of a file name,
+beyond its location in the file system,
+is not significant to
 .I roff
-documents,
-though
-.RI file .t
-for \[lq]troff file\[rq] is seen now and then.
+tools.
 .
+.I roff
+documents employing \[lq]full-service\[rq] macro packages
+(see
+.MR groff_tmac @MAN5EXT@ )
+tend to be named with a suffix identifying the package;
+we thus see file names ending in
+.IR .man ,
+.IR .ms ,
+.IR .me ,
+.IR .mm ,
+and
+.IR .mom ,
+for instance.
 .
-.P
-File name extensions can be handy in conjunction with the
-.MR less 1
-pager.
+When installed,
+man pages tend to be named with the manual's section number as the
+suffix.
 .
-It provides the possibility to feed all input into a command-line pipe
-that is specified in the shell environment variable
-.IR LESSOPEN .
+For example,
+the file name for this document is
+.IR roff.7 .
 .
-This process is not well documented,
-so here is an example.
-.
-.RS
-.P
-.EX
-LESSOPEN=\[aq]|lesspipe %s\[aq]
-.EE
-.RE
-.
-.
-.P
-where
-.I lesspipe
-is either a system-supplied command or a shell script of your own.
-.
-.
-.P
-See
-.MR groff_filenames @MAN5EXT@
-for more on file name extensions.
+Practice for
+\[lq]raw\[rq]
+.I roff
+documents is less consistent;
+they
+are sometimes seen with a
+.I .t
+suffix.
 .
 .
 .\" BEGIN Keep parallel with groff.texi node "Input Conventions".
@@ -2366,7 +2333,9 @@ Bernd Warken
 .ME ,
 with the sections \[lq]Concepts\[rq],
 \[lq]History\[rq],
-and \[lq]Input Conventions\[rq]
+\[lq]File name conventions\[rq],
+and
+\[lq]Input conventions\[rq]
 mostly written by
 .MT g.branden\:.robinson@\:gmail\:.com
 G.\& Branden Robinson

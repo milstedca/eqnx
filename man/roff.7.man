@@ -1700,19 +1700,23 @@ CSTR\~#54 was first written in the 1970s.
 Such hardware is no longer used in production environments,
 and device capabilities
 (including resolution,
-color drawing,
+support for multiple colors,
 and font repertoire)
 have tended to increase.
 .
-The PostScript output driver
-.MR dpost 1
-from an AT&T
-.I troff
-of 1980s vintage had a resolution of 720 units per inch,
-whereas
+Further,
+to reduce file size and processing time,
+AT&T
+.IR troff 's
+device-independent output format placed low limits on the magnitudes of
+quantities it could represent in some cases.
+.
+Its PostScript output driver,
+.MR dpost 1 ,
+had a resolution of 720 units per inch;
 .IR groff 's
 .MR grops @MAN1EXT@
-uses 72 000.
+uses 72,000.
 .
 .
 .\".P
@@ -1856,9 +1860,8 @@ and escape sequences
 .IR "ad libitum" .
 .
 .
-A document writer will not
-(usually)
-note any difference in usage for requests or macros;
+A document writer will not (usually) note any difference in usage for
+requests or macros;
 both are written on a line on their own starting with a dot.
 .
 However,
@@ -1931,7 +1934,7 @@ escape sequence.
 .
 .P
 .I Registers
-store numbers and sizes.
+store numbers and measurements.
 .
 A register can be set with the request
 .B .nr

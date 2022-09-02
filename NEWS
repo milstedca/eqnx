@@ -576,6 +576,10 @@ o grog no longer supports the "--warnings" option; the one diagnostic
 o The ditroff(7) man page has been deleted.  The "History" section of
   roff(7) covers the same subject in greater depth.
 
+o The groff_filenames(5) man page has been deleted.  It had inaccuracies
+  and spurious content.  The "File name conventions" section of roff(7)
+  covers the same subject.
+
 
 VERSION 1.22.4
 ==============

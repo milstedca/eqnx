@@ -2166,7 +2166,7 @@ manual.
 You can browse it interactively with \[lq]info groff\[rq].
 .
 .
-.\" groff ships 61 man pages generated from 60 source files.  The
+.\" groff ships 60 man pages generated from 59 source files.  The
 .\" numbered comments refer to their sorting order in the source tree,
 .\" so that it is easier to tell that we've enumerated all of them.
 .TP
@@ -2230,7 +2230,6 @@ and GNU extensions:
 .MR groff @MAN7EXT@ , \" #17
 .MR groff_char @MAN7EXT@ , \" #18
 .MR groff_diff @MAN7EXT@ , \" #19
-.MR groff_filenames @MAN5EXT@ , \" #8
 .MR groff_font @MAN5EXT@ , \" #20
 .MR groff_tmac @MAN5EXT@ \" #22
 .

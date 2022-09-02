@@ -1,3 +1,15 @@
+2022-09-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Drop groff_filenames(5) document.  It says nothing accurate that
+	is not covered elsewhere.
+
+	* contrib/groff_filenames: Delete.
+	* doc/doc.am (GROFF_MAN_PAGES): Drop.
+	* src/roff/groff/groff.1.man: Drop cross reference to it.
+	* NEWS: Add item.
+
+	Fixes <https://savannah.gnu.org/bugs/index.php?61818>.
+
 2022-09-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/tbl/tbl.1.man (Table data): Generalize discussion

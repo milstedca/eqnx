@@ -1,3 +1,16 @@
+2022-09-02
+
+	examples/mom-pdf.mom: Fixes missing parameter to \*[SIZE] at
+	line 457.
+
+	om.tmac: Fixes CODE <anything> not restoring point size
+	correctly.  The point size was being stored in a number register
+	instead of a string.
+
+	BUGS: Updated.
+
+	Fixes <https://savannah.gnu.org/bugs/?62996>.
+
 2022-08-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* mom.am (MOMPDFMOM): Pass `PDFMOMBIN` '-K utf8', not '-k', in

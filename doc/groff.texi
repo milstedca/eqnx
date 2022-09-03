@@ -6117,9 +6117,8 @@ likely undesirable, results.  On the @samp{ps} output device, it
 underlines the period.
 
 For vertical movements, the @code{|} operator specifies a distance from
-the first text baseline on the page or in the current diversion.  The
-default scaling unit is vees, computed in terms of the current
-vertical spacing (not necessarily that at the top of the page).
+the first text baseline on the page or in the current diversion, using
+the current vertical spacing.
 
 @Example
 A

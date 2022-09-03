@@ -5826,6 +5826,8 @@ scaling unit.  To multiply or divide by a dimensionless value, use
 
 @c =====================================================================
 
+@c BEGIN Keep (roughly) parallel with section "Numeric expressions" of
+@c groff(7).
 @node Numeric Expressions, Identifiers, Measurements, gtroff Reference
 @section Numeric Expressions
 @cindex numeric expressions
@@ -6175,6 +6177,9 @@ surrounded by parentheses.  @xref{Request and Macro Arguments}, and
 The @code{nr} request (@pxref{Setting Registers}) expects its second and
 optional third arguments to be numeric expressions; a bare @code{+} does
 not qualify, so our first attempt got a warning.
+@c END Keep (roughly) parallel with section "Numeric expressions" of
+@c groff(7).
+
 
 @c =====================================================================
 

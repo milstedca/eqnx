@@ -468,7 +468,7 @@ developing GNU and promoting software freedom.''
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle August 2022
+@subtitle September 2022
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -5575,6 +5575,8 @@ know the page length (@pxref{Page Layout}).
 @cindex resolution, device
 @cindex basic units
 @cindex units, basic
+@cindex machine units
+@cindex units, machine
 A device's @dfn{resolution} converts practical units like inches or
 centimeters to @dfn{basic units}, a convenient length measure for the
 output device or file format.  The formatter and output driver use basic
@@ -5644,10 +5646,6 @@ moreover, all but the simplest page layouts tend to have headers and
 footers, or at least bear vertical margins larger than one vee.
 
 
-@codequotebacktick off
-@codequoteundirected off
-
-
 @c =====================================================================
 @c TODO: Add a section here about interpolations and input processing.
 @c
@@ -5667,6 +5665,8 @@ footers, or at least bear vertical margins larger than one vee.
 @c parsing and they apply to escape sequences in general.
 @c =====================================================================
 
+@c BEGIN Keep (roughly) parallel with section "Measurements" of
+@c groff(7).
 @node Measurements, Numeric Expressions, Text, gtroff Reference
 @section Measurements
 @cindex measurements
@@ -5674,79 +5674,74 @@ footers, or at least bear vertical margins larger than one vee.
 @cindex indicator, scaling
 
 @cindex units of measurement
-@cindex basic unit (@code{u})
-@cindex machine unit (@code{u})
-@cindex measurement unit
+@cindex measurement units
+GNU @code{troff} sometimes requires the input of numeric parameters to
+specify measurements.  These are specified as integers or decimal
+fractions with an optional @dfn{scaling unit} suffixed.  A scaling unit
+is a letter that immediately follows the last digit of a number.  Digits
+after the decimal point are optional.  Measurement expressions include
+@samp{10.5p}, @samp{11i}, and @samp{3.c}.
+
+@cindex basic units, conversion to
+@cindex units, basic, converstion to
+@cindex conversion to basic units
+Measurements are scaled by the scaling unit and stored internally (with
+any fractional part discarded) in basic units.  The only constraint
+on the basic unit is that it is at least as small as any other unit.
+@c That's a fib.  A device resolution of around 2^31 would surely also
+@c cause problems.  But nobody does that.
+
+@table @code
+@cindex basic scaling unit (@code{u})
 @cindex @code{u} scaling unit
 @cindex unit, scaling, @code{u}
 @cindex scaling unit @code{u}
-@code{gtroff} (like many other programs) requires numeric parameters to
-specify various measurements.  Most numeric parameters@footnote{those
-that specify vertical or horizontal motion or a type size} may have a
-@dfn{measurement unit} attached.  These units are specified as a single
-character that immediately follows the number or expression.  Each of
-these units are understood, by @code{gtroff}, to be a multiple of its
-@dfn{basic unit}.  So, whenever a different measurement unit is
-specified @code{gtroff} converts this into its @dfn{basic units}.  This
-basic unit, represented by a @samp{u}, is a device dependent
-measurement, which is quite small, ranging from 1/75@dmn{th} to
-1/72000@dmn{th} of an inch.  The values may be given as fractional
-numbers; however, fractional basic units are always rounded to integers.
+@item u
+Basic unit.
 
-Some of the measurement units are independent of any of the current
-settings (e.g., type size) of GNU @code{troff}.
-
-Although GNU @code{troff}'s basic unit is device-dependent, it may still
-be smaller than the smallest unit the device is capable of producing.
-The register @code{.H} specifies how many @code{groff} basic units
-constitute the current device's basic unit horizontally, and the
-register @code{.V} specifies this value vertically.
-
-@table @code
 @item i
 @cindex inch scaling unit (@code{i})
 @cindex @code{i} scaling unit
 @cindex unit, scaling, @code{i}
 @cindex scaling unit @code{i}
-Inches.  An antiquated measurement unit still in use in certain
-backward countries with incredibly low-cost computer equipment.  One
-inch is defined to be 2.54@tie{}cm (worldwide since 1964).
+Inch; defined as 2.54@tie{}centimeters.
 
 @item c
 @cindex centimeter scaling unit (@code{c})
 @cindex @code{c} scaling unit
 @cindex unit, scaling, @code{c}
 @cindex scaling unit @code{c}
-Centimeters.  One centimeter is about 0.3937@tie{}in.
+Centimeter; a centimeter is about 0.3937@tie{}inches.
 
 @item p
 @cindex point scaling unit (@code{p})
 @cindex @code{p} scaling unit
 @cindex unit, scaling, @code{p}
 @cindex scaling unit @code{p}
-Points.  This is a typesetter's measurement used for measure type size.
-It is 72@tie{}points to an inch.
+Point; a typesetter's unit used for measuring type size.
+There are 72@tie{}points to an inch.
 
 @item P
 @cindex pica scaling unit (@code{P})
 @cindex @code{P} scaling unit
 @cindex unit, scaling, @code{P}
 @cindex scaling unit @code{P}
-Pica.  Another typesetting measurement.  6@tie{}picas to an inch (and
-12@tie{}points to a pica).
+Pica; another typesetter's unit.  There are 6@tie{}picas to an inch and
+12@tie{}points to a pica.
 
 @item s
 @itemx z
 @xref{Fractional Type Sizes}, for a discussion of these units.
 
 @item f
-Multiply by 65,536.
-@xref{Colors}, for usage.
+GNU @code{troff} defines this unit to scale decimal fractions in the
+interval [0, 1] to 16-bit unsigned integers.  It multiplies a quantity
+by 65,536.  @xref{Colors}, for usage.
 @end table
 
-The other measurements understood by @code{gtroff} depend on settings
-currently in effect in @code{gtroff}.  These are very useful for
-specifying measurements that should look proper with any size of text.
+The magnitudes of other scaling units depend on the text formatting
+parameters in effect.  These are useful when specifying measurements
+that need to scale with the typeface or vertical spacing.
 
 @table @code
 @item m
@@ -5754,16 +5749,15 @@ specifying measurements that should look proper with any size of text.
 @cindex @code{m} scaling unit
 @cindex unit, scaling, @code{m}
 @cindex scaling unit @code{m}
-Ems.  This unit is equal to the current font size in points.  So called
-because it is @emph{approximately} the width of the letter@tie{}@samp{m}
-in the current font.
+Em; an em is equal to the current type size in points.  It is named thus
+because it is approximately the width of the letter@tie{}@samp{M}.
 
 @item n
 @cindex en scaling unit (@code{n})
 @cindex @code{n} scaling unit
 @cindex unit, scaling, @code{n}
 @cindex scaling unit @code{n}
-Ens.  In @code{groff}, this is half of an em.
+En; an en is one-half em.
 
 @item v
 @cindex vertical space unit (@code{v})
@@ -5772,56 +5766,112 @@ Ens.  In @code{groff}, this is half of an em.
 @cindex @code{v} scaling unit
 @cindex unit, scaling, @code{v}
 @cindex scaling unit @code{v}
-Vees.  @xref{Page Geometry}.
+Vee; recall @ref{Page Geometry}.
 
 @item M
 @cindex @code{M} scaling unit
 @cindex unit, scaling, @code{M}
 @cindex scaling unit @code{M}
-100ths of an em.
+Hundredth of an em.
 @end table
 
 @menu
+* Motion Quanta::
 * Default Units::
 @end menu
+@c END Keep (roughly) parallel with section "Measurements" of groff(7).
 
 @c ---------------------------------------------------------------------
 
-@node Default Units,  , Measurements, Measurements
+@node Motion Quanta, Default Units, Measurements, Measurements
+@subsection Motion Quanta
+@cindex motion quanta
+@cindex quanta, motion
+
+@c BEGIN Keep (roughly) parallel with subsection "Motion quanta" of
+@c groff(7).
+An output device's basic unit @code{u} is not necessarily its smallest
+addressable length; @code{u} can be smaller to avoid problems with
+integer roundoff.  The minimum distances that a device can work with in
+the horizontal and vertical directions are termed its @dfn{motion
+quanta}.  Measurements are rounded to applicable motion quanta.
+Half-quantum fractions round toward zero.
+
+@table @code
+@item \n[.H]
+@cindex horizontal motion quantum register (@code{.H})
+@cindex motion quantum, horizontal, register (@code{.H})
+@cindex horizontal resolution register (@code{.H})
+@cindex resolution, horizontal, register (@code{.H})
+@vindex .H
+Horizontal motion quantum of the output device in basic units.
+
+@item \n[.V]
+@cindex vertical motion quantum register (@code{.V})
+@cindex motion quantum, vertical, register (@code{.V})
+@cindex vertical resolution register (@code{.V})
+@cindex resolution, vertical, register (@code{.V})
+@vindex .V
+Vertical motion quantum of the output device in basic units.
+@end table
+
+For example, we might draw short baseline rules on a terminal device as
+follows.  @xref{Drawing Requests}.
+
+@Example
+.tm \n[.H]
+  @error{} 24
+.nf
+\l'36u' 36u
+\l'37u' 37u
+  @result{} _ 36u
+  @result{} __ 37u
+@endExample
+@c END Keep (roughly) parallel with subsection "Motion quanta" of
+@c groff(7).
+
+@c ---------------------------------------------------------------------
+
+@node Default Units,  , Motion Quanta, Measurements
 @subsection Default Units
 @cindex default units
 @cindex units, default
 
-Many requests take a default unit.  While this can be helpful at times,
-it can cause strange errors in some expressions.  For example, the line
-length request expects em units.  Here are several attempts to get a
-line length of 3.5@tie{}inches and their results:
+@c BEGIN Keep (roughly) parallel with subsection "Default units" of
+@c groff(7).
+A general-purpose register (one created or updated with the @code{nr}
+request; see @pxref{Registers}) is implicitly dimensionless, or reckoned
+in basic units if interpreted in a measurement context.  But it is
+convenient for many requests and escape sequences to infer a scaling
+unit for an argument if none is specified.  An explicit scaling unit can
+override an undesirable default.  Effectively, the default unit is
+suffixed to the expression if a scaling unit is not already present.
+GNU @code{troff}'s use of integer arithmetic should also be
+kept in mind (@pxref{Numeric Expressions}).
+
+The @code{ll} request interprets its argument in ems by default.
+Consider several attempts to set a line length of 3.5@tie{}inches when
+the type size is 10@tie{}points on a terminal device with a resolution
+of 240 basic units and horizontal motion quantum of 24.  Some
+expressions become zero; the request clamps them to that quantum.
 
 @Example
-3.5i      @result{}   3.5i
-7/2       @result{}   0i
-7/2i      @result{}   0i
-(7 / 2)u  @result{}   0i
-7i/2      @result{}   0.1i
-7i/2u     @result{}   3.5i
+.ll 3.5i      \" 3.5i (= 840u)
+.ll 7/2       \" 7u/2u -> 3u -> 3m -> 0, clamped to 24u
+.ll (7 / 2)u  \" 7u/2u -> as above
+.ll 7/2i      \" 7u/2i -> 7u/480u -> 0 -> as above
+.ll 7i/2      \" 7i/2u -> 1680u/2m -> 1680u/24u -> 35u
+.ll 7i/2u     \" 3.5i (= 840u)
 @endExample
 
 @noindent
-Everything is converted to basic units first.  In the above example it
-is assumed that 1@dmn{i} equals@tie{}240@dmn{u}, and 1@dmn{m}
-equals@tie{}10@dmn{p} (thus 1@dmn{m} equals@tie{}33@dmn{u}).  The value
-7@dmn{i}/2 is first handled as 7@dmn{i}/2@dmn{m}, then converted to
-1680@dmn{u}/66@dmn{u}, which is 25@dmn{u}, and this is approximately
-0.1@dmn{i}.  As can be seen, a scaling indicator after a closing
-parenthesis is simply ignored.
-
+As shown, a scaling unit after a closing parenthesis is ignored.
 @cindex measurements, specifying safely
-Thus, the safest way to specify measurements is to always attach a
-scaling unit.  To multiply or divide by a dimensionless value, use
-@samp{u} as its unit.
-
-@codequotebacktick on
-@codequoteundirected on
+The safest way to specify measurements is to attach a scaling unit.  To
+multiply or divide by a dimensionless quantity, use @samp{u} as its
+scaling unit.
+@c END Keep (roughly) parallel with subsection "Default units" of
+@c groff(7).
 
 
 @c =====================================================================
@@ -7418,15 +7468,6 @@ in @ref{Register Index}.
 This read-only string-valued register stores the name of the file being
 formatted.
 
-@item \n[.H]
-@cindex horizontal motion quantum register (@code{.H})
-@cindex motion quantum, horizontal, register (@code{.H})
-@cindex horizontal resolution register (@code{.H})
-@cindex resolution, horizontal, register (@code{.H})
-@vindex .H
-Number of basic units in the horizontal motion quantum of the output
-device.  @xref{Measurements}.
-
 @item \n[.R]
 @cindex number of registers register (@code{.R})
 @cindex registers, number of, register (@code{.R})
@@ -7443,15 +7484,6 @@ as many registers as required.} it exists for backward compatibility.
 @vindex .U
 1 if GNU @code{troff} is called with the @option{-U} command-line option
 to activate unsafe mode, and zero otherwise.  @xref{Groff Options}.
-
-@item \n[.V]
-@cindex vertical motion quantum register (@code{.V})
-@cindex motion quantum, vertical, register (@code{.V})
-@cindex vertical resolution register (@code{.V})
-@cindex resolution, vertical, register (@code{.V})
-@vindex .V
-Number of basic units in the vertical motion quantum of the output
-device.  @xref{Measurements}.
 
 @item \n[seconds]
 @cindex seconds, current time (@code{seconds})

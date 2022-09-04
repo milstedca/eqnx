@@ -736,79 +736,153 @@ recognize the eight standard ISO\~6429/ECMA-48 color names
 .SH Measurements
 .\" ====================================================================
 .
-Numeric values are expressed as integers or decimal fractions optionally
-followed by a
-.I scaling unit,
-a letter abbreviating a unit of measurement.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Measurements".
+Numeric parameters that specify measurements are expressed as
+integers or decimal fractions with an optional
+.I scaling unit
+suffixed.
 .
-They are stored as integers in device-specific
-.I basic units.
+A scaling unit is a letter that immediately follows the last digit of a
+number.
+.
+Digits after the decimal point are optional.
+.
+.
+.P
+Measurements are scaled by the scaling unit and stored internally
+(with any fractional part discarded)
+in basic units.
+.
+The only constraint on the basic unit is that it is at least as small as
+any other unit.
 .
 .
 .P
 .LS
-.RS
-.
-.TPx
-.B c
-centimeter
-.
-.TPx
-.B i
-inch
-.
-.TPx
-.B P
-pica
-(1/6 inch)
-.
-.TPx
-.B p
-point
-(1/72 inch)
-.
-.TPx
-.B m
-em
-(size of current font in points;
-approximate width of \[lq]M\[rq] glyph)
-.
-.TPx
-.B M
-1/100 em
-.
-.TPx
-.B n
-en
-(1/2 em)
-.
-.TPx
+.TP
 .B u
-basic unit;
-device-specific
+Basic unit.
 .
-.TPx
-.B v
-vee
-(distance between adjacent text baselines)
+.TP
+.B i
+Inch;
+defined as 2.54\~centimeters.
 .
-.TPx
-.B s
-scaled point;
-device-specific
+.TP
+.B c
+Centimeter.
 .
-.TPx
+.TP
+.B p
+Point;
+a typesetter's unit used for measuring type size.
+.
+There are 72\~points to an inch.
+.
+.TP
+.B P
+Pica;
+another typesetter's unit.
+.
+There are 6\~picas to an inch and 12\~points to a pica.
+.
+.TP
+.BR s ,\~ z
+Scaled points and multiplication by the output device's
+.I sizescale
+parameter,
+respectively.
+.
+.TP
 .B f
-multiply by 65,536;
-used to scale color channel values
-.RE
+Multiplication by 65,536;
+.
+scales decimal fractions in the interval [0, 1] to 16-bit unsigned
+integers.
 .LE
 .
 .
 .P
-See
-.MR groff_font @MAN5EXT@
-for information on device-specific measurements.
+The magnitudes of other scaling units depend on the text formatting
+parameters in effect.
+.
+.
+.P
+.LS
+.TP
+.B m
+Em;
+an em is equal to the current type size in points.
+.
+.TP
+.B n
+En;
+an en is one-half em.
+.
+.TP
+.B v
+Vee;
+distance between text baselines.
+.
+.TP
+.B M
+Hundredth of an em.
+.LE
+.\" END Keep (roughly) parallel with groff.texi node "Measurements".
+.
+.
+.\" ====================================================================
+.SS "Motion quanta"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Motion Quanta".
+An output device's basic unit
+.B u
+is not necessarily its smallest addressable length;
+.B u
+can be smaller to avoid problems with integer roundoff.
+.
+The minimum distances that a device can work with in the horizontal and
+vertical directions are termed its
+.I motion quanta,
+.B \[rs]n[.H]
+and
+.B \[rs]n[.V]
+respectively.
+.
+Measurements are rounded to applicable motion quanta.
+.
+Half-quantum fractions round toward zero.
+.\" END Keep (roughly) parallel with groff.texi node "Motion Quanta".
+.
+.
+.\" ====================================================================
+.SS "Default units"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Default Units".
+A general-purpose register
+(one created or updated with the
+.B nr
+request;
+see section \[lq]Registers\[rq] below)
+is implicitly dimensionless,
+or reckoned in basic units if interpreted in a measurement context.
+.
+But it is convenient for many requests and escape sequences to infer a
+scaling unit for an argument if none is specified.
+.
+An explicit scaling unit can override an undesirable default.
+.
+Effectively,
+the default unit is suffixed to the expression if a scaling unit is not
+already present.
+.
+GNU
+.IR troff 's \" GNU
+use of integer arithmetic should also be kept in mind;
+see below.
+.\" END Keep (roughly) parallel with groff.texi node "Default Units".
 .
 .
 .\" ====================================================================

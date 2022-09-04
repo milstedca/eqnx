@@ -1,3 +1,29 @@
+2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[docs]: Revise discussion of measurements.
+
+	* doc/groff.texi: Drop Texinfo @codequote* command brackets
+	around revised sections; relevant nodes have been reviewed for
+	correct glyph usage.  Move concept index entries for obsolescent
+	term "machine units" to same location as "basic units".
+	Bump document date.
+	(Measurements): Rewrite presentation.  We have already
+	introduced page geometry concepts, including the concept of
+	basic units.
+	(Motion Quanta): New subsection node; introduce this concept
+	much sooner, right after measurement units.  Relocate
+	documentation of `.H` and `.V` registers from a miscellaneous
+	read-only register list here.  Introduce example of rounding to
+	horizontal motion quantum.
+	(Default Units): Revise discussion.  Stop abusing @result
+	notation in example.
+	(Built-In Registers): Relocate `.H` and `.V` as above.
+
+	* man/groff.7.man: Sync with Texinfo content updates.
+
+	Fixes <https://savannah.gnu.org/bugs/?61432>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
 2022-09-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Drop groff_filenames(5) document.  It says nothing accurate that

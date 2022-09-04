@@ -668,7 +668,7 @@ but not the date)
 at the top of the first page.
 .
 If the optional
-.CW no\-repeat\-info
+.CW no\-\:\%repeat\-\:\%info
 argument is given,
 .I ms
 produces a cover page but does not repeat any of its information
@@ -682,14 +682,14 @@ Normally,
 sets the page number following the cover page to\~1.
 .
 Specifying the optional
-.CW no\-renumber
+.CW no\-\:\%renumber
 argument suppresses this alteration.
 .
 Optional arguments can occur in any order.
 .
 .CW no
 is recognized as a synonym of
-.CW no\-repeat\-info
+.CW no\-\:\%repeat\-\:\%info
 for AT&T compatibility.
 T}
 _

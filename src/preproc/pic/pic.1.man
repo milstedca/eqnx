@@ -682,6 +682,12 @@ are equivalent.
 The commands to be performed for each line can also be taken from a
 macro defined earlier by giving the name of the macro as the argument to
 .BR thru .
+.
+The argument after
+.B thru
+is looked up as a macro name first;
+if not defined,
+its first character is interpreted as a delimiter.
 .RE
 .
 .

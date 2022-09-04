@@ -1,5 +1,10 @@
 2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/pic.ypp (placeless_element): Explicitly say
+	that an unsafe command is being ignored in diagnostic.
+
+2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/eqn/main.cpp (main): Drop man page reference from
 	deprecation diagnostics.  The man page might be installed with a
 	prefix determined at configuration time, and that's too much

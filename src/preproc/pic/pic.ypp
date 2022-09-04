@@ -359,7 +359,8 @@ placeless_element:
 		{
 		  delim_flag = 0;
 		  if (safer_flag)
-		    lex_error("unsafe to run command '%1'", $3);
+		    lex_error("unsafe to run command '%1'; ignoring",
+			      $3);
 		  else {
 		    int retval = system($3);
 		    if (retval < 0)

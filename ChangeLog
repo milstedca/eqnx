@@ -1,5 +1,11 @@
 2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/pic.ypp (object_spec): Emit deprecation
+	diagnostic for "plot" command.  The man page has declared it
+	thus for over 30 years, at least since groff 1.02 (June 1991).
+
+2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/pic.ypp (placeless_element): Explicitly say
 	that an unsafe command is being ignored in diagnostic.
 

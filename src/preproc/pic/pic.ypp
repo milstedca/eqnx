@@ -686,6 +686,8 @@ object_spec:
 		}
 	| PLOT expr
 		{
+		  lex_warning("'plot' is deprecated; use 'sprintf'"
+			      " instead");
 		  $$ = new object_spec(TEXT_OBJECT);
 		  $$->text = new text_item(format_number(0, $2), 0, -1);
 		}

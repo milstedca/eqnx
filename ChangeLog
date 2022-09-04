@@ -1,5 +1,12 @@
 2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/pic.ypp (not_lower_than): Emit deprecation
+	warning for use of 'rand()' with a (non-empty) argument.  The
+	man page has declared it thus for over 30 years, at least since
+	groff 1.02 (June 1991).
+
+2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/pic.ypp (object_spec): Emit deprecation
 	diagnostic for "plot" command.  The man page has declared it
 	thus for over 30 years, at least since groff 1.02 (June 1991).

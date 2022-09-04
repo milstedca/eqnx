@@ -335,7 +335,7 @@ int main(int argc, char **argv)
       break;
     case 's':
       if (set_gsize(optarg))
-	warning("option '-s' is deprecated; see eqn(1) man page");
+	warning("option '-s' is deprecated");
       else
 	error("invalid size '%1' in '-s' option argument ", optarg);
       break;
@@ -343,7 +343,7 @@ int main(int argc, char **argv)
       {
 	int n;
 	if (sscanf(optarg, "%d", &n) == 1) {
-	  warning("option '-p' is deprecated; see eqn(1) man page");
+	  warning("option '-p' is deprecated");
 	  set_script_reduction(n);
 	}
 	else

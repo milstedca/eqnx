@@ -1,5 +1,14 @@
 2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/main.cpp (main): Drop man page reference from
+	deprecation diagnostics.  The man page might be installed with a
+	prefix determined at configuration time, and that's too much
+	trouble to mess with for construction of a message.  Trust the
+	user of these ancient options to try reading the man page with
+	the same name as the command.
+
+2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[docs]: Revise discussion of measurements.
 
 	* doc/groff.texi: Drop Texinfo @codequote* command brackets

@@ -237,9 +237,9 @@ i	inches (\[sd])
 c	centimeters
 p	points (1/72\[sd])
 P	picas (1/6\[sd])
-v	\[lq]vees\[rq]; height of a line using the current font
-n	\[lq]ens\[rq]; width of an \[lq]n\[rq] using the current font
-m	\[lq]ems\[rq]; width of an \[lq]M\[rq] using the current font
+v	\[lq]vees\[rq]; line height at the current vertical spacing
+m	\[lq]ems\[rq]; width of an \[lq]M\[rq] in the current font
+n	\[lq]ens\[rq]; one-half em
 .TE
 .
 .

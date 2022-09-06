@@ -1,5 +1,19 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-common: Populate default date string
+	`doc-date-string` with "UNDATED".
+	(Dd, Dt, Os): Make more orthogonal: stop touching
+	`doc-topic-name`.  It is "doc.tmac"'s job to initialize it and
+	the `Nm` macro's job to update it.
+	(Dd): Do nothing if given no arguments.  (You can still blank
+	out the document date with an explicitly empty argument:
+	  .Dd ""
+	.)
+
+	Fixes <https://savannah.gnu.org/bugs/?62774> (1/7).
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common: Change `doc-default-operating-system`
 	string from "BSD" to "GNU", per discussion with Ingo Schwarze.
 	See <https://lists.gnu.org/archive/html/groff/2022-07/\

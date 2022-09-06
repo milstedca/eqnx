@@ -197,13 +197,13 @@
 .\" NS doc-document-title global string
 .\" NS   the title of the manual page
 .
-.ds doc-document-title UNTITLED
+.ds doc-document-title UNTITLED\"
 .
 .
 .\" NS doc-volume global string
-.\" NS   the volume where the manual page belongs to
+.\" NS   the volume to which the manual page belongs
 .
-.ds doc-volume LOCAL
+.ds doc-volume LOCAL\"
 .
 .
 .\" NS doc-section global string
@@ -399,17 +399,17 @@
 .
 .
 .\" NS doc-default-operating-system global string
-.\" NS   the exact (default) version of the operating system
+.\" NS   the default OS to associate with man pages
 .\" NS
 .\" NS override this in 'mdoc.local', if necessary
 .
-.ds doc-default-operating-system BSD
+.ds doc-default-operating-system BSD\"
 .
 .
 .\" NS doc-operating-system global string
-.\" NS   the exact version of the operating system
+.\" NS   the OS or software project associated with the man page
 .
-.ds doc-operating-system
+.ds doc-operating-system \" empty
 .
 .
 .\" NS Os user macro (not parsed, not callable)
@@ -417,7 +417,6 @@
 .\" NS
 .\" NS modifies:
 .\" NS   doc-operating-system
-.\" NS   doc-topic-name
 .\" NS
 .\" NS local variables:
 .\" NS   doc-operating-system-XXX-XXX

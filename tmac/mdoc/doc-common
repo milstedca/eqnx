@@ -340,10 +340,6 @@
 .
 .eo
 .de Dt
-.  \" reset default arguments
-.  ds doc-volume LOCAL
-.  ds doc-section \" empty
-.
 .  if !"\$1"" \
 .    ds doc-document-title "\$1
 .

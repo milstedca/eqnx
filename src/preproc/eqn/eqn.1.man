@@ -235,6 +235,7 @@ a large operator such as
 .ds Su \[lq]\s+5\[*S]\s0\[rq]
 .if \n(.g .if !c\[*S] .ds Su the summation operator
 \*[Su]
+.rm Su
 T}
 binary	a binary operator such as \[lq]\[pl]\[rq]
 relation	a relation such as \[lq]=\[rq]

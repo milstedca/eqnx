@@ -345,7 +345,6 @@
 .  ds doc-topic-name \" empty
 .  ds doc-volume LOCAL
 .  ds doc-section \" empty
-.  ds doc-command-name
 .
 .  if !"\$1"" \
 .    ds doc-document-title "\$1

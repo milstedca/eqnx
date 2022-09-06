@@ -1,3 +1,9 @@
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/mdoc/doc-common (Dt): Delete lingering and useless
+	definition of `doc-command-name` string.  Thanks to Steffen
+	Nurpmeso for the report.  See commit e9e92ee008, 27 August.
+
 2022-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/pic/pic.ypp (not_lower_than): Emit deprecation

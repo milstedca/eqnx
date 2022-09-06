@@ -62,7 +62,7 @@ then
     echo "paragraph body check failed" >&2
 fi
 
-if ! echo "$OUTPUT" | grep -qE '^BSD +August 25, 2020'
+if ! echo "$OUTPUT" | grep -qE '^GNU +August 25, 2020'
 then
     FAIL=yes
     echo "footer check failed" >&2

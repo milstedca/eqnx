@@ -1,5 +1,15 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-common: Change `doc-default-operating-system`
+	string from "BSD" to "GNU", per discussion with Ingo Schwarze.
+	See <https://lists.gnu.org/archive/html/groff/2022-07/\
+	msg00280.html>.
+
+	* tmac/tests/doc_smoke-test.sh: Update expectations of footer
+	regression test.
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common (Dt): Delete lingering and useless
 	definition of `doc-command-name` string.  Thanks to Steffen
 	Nurpmeso for the report.  See commit e9e92ee008, 27 August.

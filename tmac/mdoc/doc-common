@@ -403,7 +403,7 @@
 .\" NS
 .\" NS override this in 'mdoc.local', if necessary
 .
-.ds doc-default-operating-system BSD\"
+.ds doc-default-operating-system GNU\"
 .
 .
 .\" NS doc-operating-system global string

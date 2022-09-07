@@ -1,5 +1,32 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Align footer management more closely with man(7).
+
+	* tmac/doc.tmac (doc-save-global-vars, doc-restore-global-vars):
+	* tmac/mdoc/doc-common (Rd):
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Stop defining, saving, and restoring
+	`doc-footer-space`.
+
+	* tmac/mdoc/doc-common (doc-break-body-text): New macro, called
+	only when not continuously rendering, schedules a page break.
+	(doc-footer): Stop vertically spacing by `doc-footer-space`,
+	instead relying upon a trap to move us here.
+
+	* tmac/mdoc/doc-ditroff (doc-setup-header):
+	* tmac/mdoc/doc-nroff (doc-setup-header): Set traps at the end
+	of the page where man(7) does by default; break the body text at
+	1 inch from the page bottom, and write the footer at ½ inch.
+
+	* tmac/mdoc/doc-nroff (doc-setup-header): Add 1/6 inch "thin
+	space" between man page name and parenthesized section, for
+	precise parity with doc-ditroff implementation.  (`\|` does not
+	take up any character cells on nroff devices.)
+
+	Fixes <https://savannah.gnu.org/bugs/?62774> (6/7).
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common (Dt, Dd): Emit diagnostic warnings if
 	macros called with no arguments.
 

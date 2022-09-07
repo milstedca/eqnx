@@ -970,6 +970,14 @@
 .ec
 .
 .
+.\" NS doc-break-body-text
+.\" NS   Schedule a page break when the next output line is written (not
+.\" NS   called if continuously rendering).
+.de doc-break-body-text
+'  bp
+..
+.
+.
 .\" NS doc-footer macro
 .\" NS   print page footer
 .
@@ -977,7 +985,6 @@
 .de doc-footer
 .  ev doc-caption-enviroment
 .  doc-setup-page-layout
-.  sp \n[doc-footer-space]u
 .  ie \n[D] \{\
 .    ie e \
 .      tl '%'\*[doc-caption-font2]\*[doc-date-string]\f[]'\*[doc-caption-font]\*[doc-operating-system]\f[]'
@@ -1572,7 +1579,6 @@
 .  tm doc-operating-system == '\*[doc-operating-system]'
 .  tm doc-date-string == '\*[doc-date-string]'
 .  tm doc-header-space == \n[doc-header-space]
-.  tm doc-footer-space == \n[doc-footer-space]
 .  tm doc-display-vertical == \n[doc-display-vertical]
 .  tm doc-header-string == '\*[doc-header-string]'
 .  tm doc-in-synopsis-section == \n[doc-in-synopsis-section]

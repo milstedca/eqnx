@@ -108,12 +108,6 @@
 .nr doc-header-space 1v
 .
 .
-.\" NS doc-footer-space global register
-.\" NS   the space between body and footer
-.
-.nr doc-footer-space 1v
-.
-.
 .\" NS doc-display-vertical global register
 .\" NS   vertical space between list elements etc.
 .
@@ -125,6 +119,7 @@
 .\" NS
 .\" NS modifies:
 .\" NS   doc-display-vertical
+.\" NS   doc-line-length
 .
 .eo
 .de doc-setup-page-layout
@@ -194,18 +189,21 @@
 .\" NS
 .\" NS modifies:
 .\" NS   doc-header-string
+.\"
+.\" TODO: Support man(7)'s `FT` register.
 .
 .eo
 .de doc-setup-header
 .  ds doc-header-string "\*[doc-document-title]
 .  if !"\*[doc-section]"" \
-.    as doc-header-string (\*[doc-section])
+.    as doc-header-string \|(\*[doc-section])
 .
 .  br
 .
 .  if !\n[cR] \{\
 .    wh 0 doc-header
-.    wh -1.167i doc-footer
+.    wh -1.0i doc-break-body-text
+.    wh -.5i doc-footer
 .  \}
 .
 .  e@ doc-end-macro

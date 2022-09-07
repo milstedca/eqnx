@@ -1,5 +1,16 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-common (doc-footer): Pull more footer concerns
+	into this macro.  Don't bail out if continuously rendering;
+	instead, format the appropriate footer text if we are.  For now,
+	break the page only if we are not continuously rendering.
+	(doc-end-macro): Call `doc-footer` instead of fomatting footer
+	here.
+
+	Fixes <https://savannah.gnu.org/bugs/?62774> (4/7).
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common (doc-end-macro): When continuously
 	rendering, set the page reference (e.g., "ls(1)") in the right
 	footer instead of repeating the left footer.  Thanks to Ingo

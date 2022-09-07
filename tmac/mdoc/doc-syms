@@ -231,7 +231,7 @@
 .  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
-.      ie \A\*[doc-arg\n[doc-arg-ptr]] \{\
+.      ie \A'\*[doc-arg\n[doc-arg-ptr]]' \{\
 .        ie d doc-str-At-\*[doc-arg\n[doc-arg-ptr]] \
 .          ds doc-str-At1 "\*[doc-str-At-\*[doc-arg\n[doc-arg-ptr]]]
 .        el \{\
@@ -296,7 +296,7 @@
 .  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
-.      ie \A\*[doc-arg\n[doc-arg-ptr]] \{\
+.      ie \A'\*[doc-arg\n[doc-arg-ptr]]' \{\
 .        ie d doc-operating-system-DragonFly-\*[doc-arg\n[doc-arg-ptr]] \
 .          as doc-str-Dx1 \~\*[doc-operating-system-DragonFly-\*[doc-arg\n[doc-arg-ptr]]]
 .        el \{\
@@ -361,7 +361,7 @@
 .  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
-.      ie \A\*[doc-arg\n[doc-arg-ptr]] \{\
+.      ie \A'\*[doc-arg\n[doc-arg-ptr]]' \{\
 .        ie d doc-operating-system-FreeBSD-\*[doc-arg\n[doc-arg-ptr]] \
 .          as doc-str-Fx1 \~\*[doc-operating-system-FreeBSD-\*[doc-arg\n[doc-arg-ptr]]]
 .        el \{\
@@ -427,7 +427,7 @@
 .  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
-.      ie \A\*[doc-arg\n[doc-arg-ptr]] \{\
+.      ie \A'\*[doc-arg\n[doc-arg-ptr]]' \{\
 .        ie d doc-operating-system-NetBSD-\*[doc-arg\n[doc-arg-ptr]] \
 .          as doc-str-Nx1 \~\*[doc-operating-system-NetBSD-\*[doc-arg\n[doc-arg-ptr]]]
 .        el \{\
@@ -731,7 +731,7 @@
 .    ds doc-str-St \f[\n[doc-curr-font]]
 .
 .    ds doc-str-St1
-.    ie \A\*[doc-arg\n[doc-arg-ptr]] \{\
+.    ie \A'\*[doc-arg\n[doc-arg-ptr]]' \{\
 .      ie d doc-str-St-\*[doc-arg\n[doc-arg-ptr]] \
 .        ds doc-str-St1 "\*[doc-str-St-\*[doc-arg\n[doc-arg-ptr]]]
 .      el \{\

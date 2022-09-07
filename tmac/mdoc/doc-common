@@ -348,17 +348,17 @@
 .
 .  if !"\$2"" \{\
 .    ds doc-section \$2
-.    ie \B\$2 \{\
+.    ie \B'\$2' \{\
 .      if ((\$2 >= 1) & (\$2 <= 9)) \{\
 .        ie \n[doc-volume-operating-system-ateol] \{\
 .          ds doc-volume "\*[doc-volume-ds-\$2] \*[doc-volume-operating-system]
-.          if \A\$3 \{\
+.          if \A'\$3' \{\
 .            if d doc-volume-as-\$3 \
 .              as doc-volume "/\*[doc-volume-as-\$3]
 .        \}\}
 .        el \{\
 .          ds doc-volume "\*[doc-volume-operating-system]
-.          if \A\$3 \{\
+.          if \A'\$3' \{\
 .            if d doc-volume-as-\$3 \
 .              as doc-volume "/\*[doc-volume-as-\$3]
 .          \}
@@ -372,7 +372,7 @@
 .      el .if "\$2"paper" \
 .        ds doc-volume UNTITLED
 .      \}\}
-.      if \A\$3 \{\
+.      if \A'\$3' \{\
 .        if d doc-volume-ds-\$3 \
 .          ds doc-volume "\*[doc-volume-ds-\$3]
 .  \}\}\}
@@ -819,14 +819,14 @@
 .    ds doc-operating-system "\*[doc-default-operating-system]
 .  el \{ .ie "\$1"ATT" \{\
 .    ds doc-operating-system AT&T
-.    if \A\$2 \{\
+.    if \A'\$2' \{\
 .      ie d doc-operating-system-ATT-\$2 \
 .        as doc-operating-system " \*[doc-operating-system-ATT-\$2]
 .      el \
 .        as doc-operating-system " UNIX
 .  \}\}
 .  el \{ .ie "\$1"BSD" \{\
-.    if \A\$2 \{\
+.    if \A'\$2' \{\
 .      ie d doc-operating-system-BSD-\$2 \
 .        ds doc-operating-system "\*[doc-operating-system-BSD-\$2]
 .      el \
@@ -834,7 +834,7 @@
 .  \}\}
 .  el \{ .ie "\$1"FreeBSD" \{\
 .    ds doc-operating-system FreeBSD
-.    if \A\$2 \{\
+.    if \A'\$2' \{\
 .      ie d doc-operating-system-FreeBSD-\$2 \
 .        as doc-operating-system \~\*[doc-operating-system-FreeBSD-\$2]
 .      el \
@@ -842,7 +842,7 @@
 .  \}\}
 .  el \{ .ie "\$1"DragonFly" \{\
 .    ds doc-operating-system DragonFly
-.    if \A\$2 \{\
+.    if \A'\$2' \{\
 .      ie d doc-operating-system-DragonFly-\$2 \
 .        as doc-operating-system \~\*[doc-operating-system-DragonFly-\$2]
 .      el \
@@ -850,7 +850,7 @@
 .  \}\}
 .  el \{ .ie "\$1"NetBSD" \{\
 .    ds doc-operating-system NetBSD
-.    if \A\$2 \{\
+.    if \A'\$2' \{\
 .      ie d doc-operating-system-NetBSD-\$2 \
 .        as doc-operating-system \~\*[doc-operating-system-NetBSD-\$2]
 .      el \
@@ -858,7 +858,7 @@
 .  \}\}
 .  el \{ .ie "\$1"OpenBSD" \{\
 .    ds doc-operating-system OpenBSD
-.    if \A\$2 \{\
+.    if \A'\$2' \{\
 .      ie d doc-operating-system-OpenBSD-\$2 \
 .        as doc-operating-system \~\*[doc-operating-system-OpenBSD-\$2]
 .      el \
@@ -866,7 +866,7 @@
 .  \}\}
 .  el \{ .ie "\$1"Darwin" \{\
 .    ds doc-operating-system Darwin
-.    if \A\$2 \{\
+.    if \A'\$2' \{\
 .      ie d doc-operating-system-Darwin-\$2 \
 .        as doc-operating-system \~\*[doc-operating-system-Darwin-\$2]
 .      el \
@@ -952,7 +952,7 @@
 .    rr doc-hs-len-prev
 .    as doc-header-string "\|.\|.\|.
 .  \}
-.  tl \*[doc-caption-font]\*[doc-header-string]\f[]\*[doc-caption-font2]\*[doc-volume]\f[]\*[doc-caption-font]\*[doc-header-string]\f[]
+.  tl '\*[doc-caption-font]\*[doc-header-string]\f[]'\*[doc-caption-font2]\*[doc-volume]\f[]'\*[doc-caption-font]\*[doc-header-string]\f[]'
 .  ie !\n[cR] \
 .    sp \n[doc-header-space]u
 .  el \{\
@@ -970,23 +970,23 @@
 .
 .eo
 .de doc-footer
-.    ev doc-caption-enviroment
-.    doc-setup-page-layout
-.    sp \n[doc-footer-space]u
-.    ie \n[D] \{\
-.      ie e \
-.        tl %\*[doc-caption-font2]\*[doc-date-string]\f[]\*[doc-caption-font]\*[doc-operating-system]\f[]
-.      el \
-.        tl \*[doc-caption-font]\*[doc-operating-system]\f[]\*[doc-caption-font2]\*[doc-date-string]\f[]%
-.    \}
-.    el \{\
-.      ie \n[cR] \
-.      tl \*[doc-caption-font]\*[doc-operating-system]\f[]\*[doc-caption-font2]\*[doc-date-string]\f[]\*[doc-header-string]
-.      el \
-.      tl \*[doc-caption-font]\*[doc-operating-system]\f[]\*[doc-caption-font2]\*[doc-date-string]\f[]%
-.    \}
-.    if !\n[cR] .bp
-.    ev
+.  ev doc-caption-enviroment
+.  doc-setup-page-layout
+.  sp \n[doc-footer-space]u
+.  ie \n[D] \{\
+.    ie e \
+.      tl '%'\*[doc-caption-font2]\*[doc-date-string]\f[]'\*[doc-caption-font]\*[doc-operating-system]\f[]'
+.    el \
+.      tl '\*[doc-caption-font]\*[doc-operating-system]\f[]'\*[doc-caption-font2]\*[doc-date-string]\f[]'%'
+.  \}
+.  el \{\
+.    ie \n[cR] \
+.      tl '\*[doc-caption-font]\*[doc-operating-system]\f[]'\*[doc-caption-font2]\*[doc-date-string]\f[]'\*[doc-header-string]'
+.    el \
+.      tl '\*[doc-caption-font]\*[doc-operating-system]\f[]'\*[doc-caption-font2]\*[doc-date-string]\f[]'%'
+.  \}
+.  if !\n[cR] .bp
+.  ev
 ..
 .ec
 .

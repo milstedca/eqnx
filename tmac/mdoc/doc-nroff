@@ -222,7 +222,7 @@
 .
 .eo
 .de doc-get-width
-.  nr doc-width \w\$1
+.  nr doc-width \w'\$1'
 .  ie (\n[doc-width] >= \n[doc-fixed-width]) \{\
 .    ie (\n[doc-width] % \n[doc-fixed-width]) \
 .      nr doc-width ((\n[doc-width] / \n[doc-fixed-width]) + 1)
@@ -244,7 +244,7 @@
 .
 .eo
 .de doc-get-arg-width
-.  nr doc-width \w\*[doc-arg\$1]
+.  nr doc-width \w'\*[doc-arg\$1]'
 .  ie (\n[doc-width] >= \n[doc-fixed-width]) \{\
 .    ie (\n[doc-width] % \n[doc-fixed-width]) \
 .      nr doc-width ((\n[doc-width] / \n[doc-fixed-width]) + 1)

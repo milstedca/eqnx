@@ -1,5 +1,20 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Fix code style nit: stop using Control+G as an escape
+	sequence argument delimiter.  This is not necessary in groff and
+	hasn't been for at least thirty years.  See the node/section
+	"Implementation Differences" of our Texinfo manual.  Our mdoc
+	implementation does not operate in compatibility mode, so using
+	control characters like this obfuscates input to no advantage.
+
+	* tmac/doc.tmac:
+	* tmac/mdoc/doc-common:
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff:
+	* tmac/mdoc/doc-syms: Do it.
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common (doc-footer): Pull more footer concerns
 	into this macro.  Don't bail out if continuously rendering;
 	instead, format the appropriate footer text if we are.  For now,

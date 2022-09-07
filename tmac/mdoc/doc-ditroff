@@ -103,11 +103,11 @@
 .tr *\[**]
 .
 .\" miscellaneous
-.nr doc-subheader-indent (\w\f[C],u * 5u)
+.nr doc-subheader-indent (\w'\f[C],'u * 5u)
 .nr doc-paragraph-space .5v
 .
 .nr doc-digit-width \w'\0'u
-.nr doc-fixed-width \w\f[C]0
+.nr doc-fixed-width \w'\f[C]0'
 .
 .
 .\" NS doc-header-space global register
@@ -218,7 +218,7 @@
 .
 .eo
 .de doc-get-width
-.  nr doc-width \w\f[C]\$1
+.  nr doc-width \w'\f[C]\$1'
 .  ie (\n[doc-width] >= \n[doc-fixed-width]) \{\
 .    ie (\n[doc-width] % \n[doc-fixed-width]) \
 .      nr doc-width ((\n[doc-width] / \n[doc-fixed-width]) + 1)
@@ -244,7 +244,7 @@
 .
 .eo
 .de doc-get-arg-width
-.  nr doc-width \w\f[C]\*[doc-arg\$1]
+.  nr doc-width \w'\f[C]\*[doc-arg\$1]'
 .  ie (\n[doc-width] >= \n[doc-fixed-width]) \{\
 .    ie (\n[doc-width] % \n[doc-fixed-width]) \
 .      nr doc-width ((\n[doc-width] / \n[doc-fixed-width]) + 1)

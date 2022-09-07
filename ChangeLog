@@ -1,5 +1,12 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-common (doc-end-macro): Reset strings to reduce
+	info leaks from one man page to the next.
+
+	Fixes <https://savannah.gnu.org/bugs/?62774> (3/7).
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common (Dt): Stop reinitializing `doc-volume`
 	and `doc-section`.  This is the job of package initialization
 	{and, soon, the end-of-input macro}.

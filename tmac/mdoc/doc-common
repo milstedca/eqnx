@@ -1050,6 +1050,14 @@
 .  ch doc-header
 .  bp
 .  nr doc-is-first-page-of-document 1
+.
+.  \" Reset strings to reduce info leaks from one man page to the next.
+.  ds doc-date-string UNDATED\"
+.  ds doc-document-title UNTITLED\"
+.  ds doc-volume LOCAL\"
+.  ds doc-section \" empty
+.  ds doc-operating-system \" empty
+.  ds doc-topic-name \" empty
 ..
 .ec
 .

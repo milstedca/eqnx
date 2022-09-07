@@ -1,5 +1,12 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-common (Dt, Dd): Emit diagnostic warnings if
+	macros called with no arguments.
+
+	Fixes <https://savannah.gnu.org/bugs/?62774> (5/7).
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Fix code style nit: stop using Control+G as an escape
 	sequence argument delimiter.  This is not necessary in groff and
 	hasn't been for at least thirty years.  See the node/section

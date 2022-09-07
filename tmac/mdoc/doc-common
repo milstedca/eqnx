@@ -340,6 +340,9 @@
 .
 .eo
 .de Dt
+.  if !\n[.$] \
+.    tm mdoc warning: .Dt directive expects one or more arguments \
+(#\n[.c])
 .  if !"\$1"" \
 .    ds doc-document-title "\$1
 .
@@ -902,6 +905,8 @@
 .
 .eo
 .de Dd
+.  if !\n[.$] \
+.    tm mdoc warning: .Dd directive expects an argument (#\n[.c])
 .  if \n[.$] \{\
 .    ie "\$1"$Mdocdate:" .ds doc-date-string \$2\~\$3, \$4\"
 .    el                  .ds doc-date-string \$*\"

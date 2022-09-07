@@ -1,5 +1,17 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-common (doc-end-macro): When continuously
+	rendering, set the page reference (e.g., "ls(1)") in the right
+	footer instead of repeating the left footer.  Thanks to Ingo
+	Schwarze for the discussion.
+
+	* tmac/tests/doc_smoke-test.sh: Update expectations of footer
+	regression test.
+
+	Fixes part of <https://savannah.gnu.org/bugs/?62926>.
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common (doc-end-macro): Reset strings to reduce
 	info leaks from one man page to the next.
 

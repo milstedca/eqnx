@@ -1,5 +1,16 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Refactor.  Rename strings and macro for clarity.  These
+	things don't only affect headers.
+	- doc-header-string ->       doc-pageref
+	- doc-header-string-saved -> doc-pageref-saved
+	- doc-setup-header ->        doc-set-up-titles
+
+	* tmac/doc.tmac:
+	* tmac/mdoc/doc-common: Do it.
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Refactor.  There is no difference in
 	`doc-header-string` and `doc-setup-header` between the files
 	"doc-ditroff" and "doc-nroff", so define them only once, in

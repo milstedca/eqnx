@@ -212,25 +212,29 @@
 .ds doc-section \" empty
 .
 .
-.\" NS doc-header-string global string
-.\" NS   the final string used for the manual page header
+.\" NS doc-pageref global string
+.\" NS   the man page identifier formatted for cross-reference
 .
-.ds doc-header-string
+.ds doc-pageref \" empty
 .
 .
-.\" NS doc-setup-header macro
+.\" NS doc-set-up-titles macro
 .\" NS   install and initialize header and footer support
 .\" NS
 .\" NS modifies:
-.\" NS   doc-header-string
+.\" NS   doc-pageref
 .\"
 .\" TODO: Support man(7)'s `FT` register.
+.\" TODO: support man(7)'s `MF` string.  Embed the font selection escape
+.\"   sequences in `doc-pageref` here; `doc-header` and `doc-footer` can
+.\"   treat it atomically and strings are already defined for the
+.\"   separate components; see below.
 .
 .eo
-.de doc-setup-header
-.  ds doc-header-string "\*[doc-document-title]
+.de doc-set-up-titles
+.  ds doc-pageref "\*[doc-document-title]
 .  if !"\*[doc-section]"" \
-.    as doc-header-string \|(\*[doc-section])
+.    as doc-pageref \|(\*[doc-section])
 .
 .  br
 .
@@ -417,7 +421,7 @@
 .    if "\*[doc-volume]"LOCAL" \
 .      ds doc-volume \$3
 .
-.  doc-setup-header
+.  doc-set-up-titles
 .
 .  if \n[nl] \
 .    bp
@@ -974,23 +978,23 @@
 .    \" Re-use doc-header-space between page top and header.
 .    sp \n[doc-header-space]u
 .  \}
-.  nr doc-reg-dh \w'\*[doc-caption-font]\*[doc-header-string]\f[]'
+.  nr doc-reg-dh \w'\*[doc-caption-font]\*[doc-pageref]\f[]'
 .  nr doc-reg-dh1 \w'\*[doc-caption-font2]\*[doc-volume]\f[]'
 .  if (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
 .    while (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
-.      length doc-hs-len-prev \*[doc-header-string]
-.      substring doc-header-string 0 -2
-.      length doc-hs-len \*[doc-header-string]
-.      nr doc-reg-dh \w'\*[doc-caption-font]\*[doc-header-string]\|.\|.\|.\f[]'
+.      length doc-hs-len-prev \*[doc-pageref]
+.      substring doc-pageref 0 -2
+.      length doc-hs-len \*[doc-pageref]
+.      nr doc-reg-dh \w'\*[doc-caption-font]\*[doc-pageref]\|.\|.\|.\f[]'
 .      \" If header string didn't actually get shorter, stop trying.
 .      if (\n[doc-hs-len-prev] <= \n[doc-hs-len]) \
 .        break
 .    \}
 .    rr doc-hs-len
 .    rr doc-hs-len-prev
-.    as doc-header-string "\|.\|.\|.
+.    as doc-pageref "\|.\|.\|.
 .  \}
-.  tl '\*[doc-caption-font]\*[doc-header-string]\f[]'\*[doc-caption-font2]\*[doc-volume]\f[]'\*[doc-caption-font]\*[doc-header-string]\f[]'
+.  tl '\*[doc-caption-font]\*[doc-pageref]\f[]'\*[doc-caption-font2]\*[doc-volume]\f[]'\*[doc-caption-font]\*[doc-pageref]\f[]'
 .  ie !\n[cR] \
 .    sp \n[doc-header-space]u
 .  el \{\
@@ -1026,7 +1030,7 @@
 .  \}
 .  el \{\
 .    ie \n[cR] \
-.      tl '\*[doc-caption-font]\*[doc-operating-system]\f[]'\*[doc-caption-font2]\*[doc-date-string]\f[]'\*[doc-header-string]'
+.      tl '\*[doc-caption-font]\*[doc-operating-system]\f[]'\*[doc-caption-font2]\*[doc-date-string]\f[]'\*[doc-pageref]'
 .    el \
 .      tl '\*[doc-caption-font]\*[doc-operating-system]\f[]'\*[doc-caption-font2]\*[doc-date-string]\f[]'%'
 .  \}
@@ -1328,7 +1332,7 @@
 .    doc-prepare-section-heading \$*
 .
 .    ie "\*[doc-sec-head]"\*[doc-section-name]" \{\
-.      doc-setup-header
+.      doc-set-up-titles
 .      in 0
 .    \}
 .    el \{\
@@ -1613,7 +1617,7 @@
 .  tm doc-date-string == '\*[doc-date-string]'
 .  tm doc-header-space == \n[doc-header-space]
 .  tm doc-display-vertical == \n[doc-display-vertical]
-.  tm doc-header-string == '\*[doc-header-string]'
+.  tm doc-pageref == '\*[doc-pageref]'
 .  tm doc-in-synopsis-section == \n[doc-in-synopsis-section]
 .  tm doc-in-library-section == \n[doc-in-library-section]
 .  tm doc-in-see-also-section == \n[doc-in-see-also-section]

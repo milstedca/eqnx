@@ -1,5 +1,16 @@
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Refactor.  There is no difference in
+	`doc-header-string` and `doc-setup-header` between the files
+	"doc-ditroff" and "doc-nroff", so define them only once, in
+	"doc-common".
+
+	* tmac/mdoc/doc-common:
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Do it.
+
+2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Align footer management more closely with man(7).
 
 	* tmac/doc.tmac (doc-save-global-vars, doc-restore-global-vars):

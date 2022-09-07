@@ -212,6 +212,39 @@
 .ds doc-section \" empty
 .
 .
+.\" NS doc-header-string global string
+.\" NS   the final string used for the manual page header
+.
+.ds doc-header-string
+.
+.
+.\" NS doc-setup-header macro
+.\" NS   install and initialize header and footer support
+.\" NS
+.\" NS modifies:
+.\" NS   doc-header-string
+.\"
+.\" TODO: Support man(7)'s `FT` register.
+.
+.eo
+.de doc-setup-header
+.  ds doc-header-string "\*[doc-document-title]
+.  if !"\*[doc-section]"" \
+.    as doc-header-string \|(\*[doc-section])
+.
+.  br
+.
+.  if !\n[cR] \{\
+.    wh 0 doc-header
+.    wh -1.0i doc-break-body-text
+.    wh -.5i doc-footer
+.  \}
+.
+.  e@ doc-end-macro
+..
+.ec
+.
+.
 .\" NS Dt user macro (not parsed, not callable)
 .\" NS   document title
 .\" NS

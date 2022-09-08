@@ -33,7 +33,7 @@
 .
 .
 .\" NS Ux user macro
-.\" NS   print UNIX
+.\" NS   format Unix
 .\" NS
 .\" NS modifies:
 .\" NS   doc-arg-ptr
@@ -57,7 +57,8 @@
 .    \}
 .
 .  \" replace current argument with result
-.  ds doc-arg\n[doc-arg-ptr] UNIX\*[doc-str-Ux]
+.  ds doc-arg\n[doc-arg-ptr] Unix\*[doc-str-Ux]
+.  rm doc-str-Ux
 .  nr doc-type\n[doc-arg-ptr] 2
 .  ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .

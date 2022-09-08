@@ -1,5 +1,14 @@
 2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Render `Ux` macro as "Unix", in mixed case.
+
+	* tmac/mdoc/doc-syms (Ux): Do it.  Also remove local string
+	after we're done with it.
+
+	Continues work begun prior to groff 1.22.4 release.
+
+2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Align spacing around headers with man(7).
 
 	* tmac/doc.tmac (doc-save-global-vars, doc-restore-global-vars):

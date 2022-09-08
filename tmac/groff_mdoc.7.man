@@ -203,7 +203,7 @@ as follows:
 .    It "DragonFly Macro"
 .    It "OpenBSD Macro"
 .    It "BSD/OS Macro"
-.    It "UNIX Macro"
+.    It "Unix Macro"
 .    It "Emphasis Macro"
 .    It "Font Mode"
 .    It "Enclosure and Quoting Macros"
@@ -1057,8 +1057,8 @@ the release ID.
 .Pp
 For
 .Tn ATT ,
-an unknown second parameter will be replaced with the string
-.Tn UNIX ;
+an unrecognized second parameter will be replaced with the string
+.Dq Ux ;
 for the other predefined acronyms it will be ignored and a warning
 message emitted.
 .
@@ -2656,7 +2656,7 @@ command above in section
 .El
 .
 .
-.Ss "UNIX Macro"
+.Ss "Unix Macro"
 .
 .Pp
 .Dl Usage: .Ux ...

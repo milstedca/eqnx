@@ -1417,7 +1417,7 @@
 .    \}
 .
 .    doc-setup-page-layout
-.    sp
+.    sp \n[doc-paragraph-space]u
 .    ns
 .    ta T .5i
 .    if !\n[cR] \
@@ -1496,7 +1496,7 @@
 .
 .    ds doc-subsection-heading \$*
 .
-.    sp
+.    sp \n[doc-paragraph-space]u
 .    if !\n[cR] \
 .      ne 3
 .    ti -.25i

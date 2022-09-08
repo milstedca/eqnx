@@ -126,7 +126,7 @@
 .
 .\" miscellaneous
 .nr doc-subheader-indent (\w'\f[C],'u * 5u)
-.nr doc-paragraph-space .5v
+.nr doc-paragraph-space .4v
 .
 .nr doc-digit-width \w'\0'u
 .nr doc-fixed-width \w'\f[C]0'

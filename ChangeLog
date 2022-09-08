@@ -1,3 +1,11 @@
+2022-09-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/mdoc/doc-nroff: Map monospaced fonts (CR, CB, CI, CBI) to
+	standard styles as man(7) has done for 15 years.  This silences
+	warnings from the formatter when a man page attempts to use
+	fonts from the Courier family in tbl(1) tables, which is about
+	the only place a reasonable man page attempts such a thing.
+
 2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mdoc]: Stop prefixing center header with name of operating

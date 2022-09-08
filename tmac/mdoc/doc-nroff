@@ -81,6 +81,12 @@
 .\" the following switch is ignored in nroff mode
 .nr S 10
 .
+.\" Map monospaced fonts to standard styles.
+.ftr CR R
+.ftr CI I
+.ftr CB B
+.ftr CBI BI
+.
 .\" the 'doc-xx-font' strings must not be empty!
 .
 .ds doc-caption-font \f[R]

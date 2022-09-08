@@ -1,5 +1,21 @@
 2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Support `C` register for consecutive page numbering.
+
+	* tmac/mdoc/doc-common (Dd): Reset page number to 1 upon new
+	document only if not consecutively numbering.
+
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Process `C` register setting from command
+	line as man(7) does.
+
+	* tmac/groff_mdoc.7.man (Formatting with groff, troff, and
+	nroff): Document it.
+
+	Fixes part of <https://savannah.gnu.org/bugs/?63046>.
+
+2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Align trap management more closely with man(7).
 
 	* tmac/mdoc/doc-common: Call new macro (see below)

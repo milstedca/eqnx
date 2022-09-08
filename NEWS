@@ -282,8 +282,8 @@ o The groff_man(7) man page documenting the groff implementation of the
   material supplemented with explanations, examples, and advice for the
   reader who is not an expert in *roff systems or in writing man pages.
 
-o The doc (mdoc) macro package now honors the HY register as the an
-  (man) package does.  It furthermore recognizes the `AD` string (see
+o The doc (mdoc) macro package now honors the C and HY registers as the
+  an (man) package does.  It furthermore recognizes the `AD` string (see
   above) for compatibility with an (man), but at present ignores its
   value.
 

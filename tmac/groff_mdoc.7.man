@@ -4693,6 +4693,15 @@ A normal user will never need it.
 .
 .Sh "Formatting with groff, troff, and nroff"
 .
+Setting register
+.Ql C
+to\~1 numbers output pages consecutively,
+rather than resetting the page number to\~1 with each new
+.Nm mdoc
+document.
+.
+.
+.Pp
 By default,
 the package inhibits page breaks,
 headers,

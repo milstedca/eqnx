@@ -309,12 +309,15 @@
 .  \"
 .  \" If also continuously rendering, cause a page transition to a new
 .  \" mdoc(7) document.  Clear the page header trap first so it is not
-.  \" sprung with stale information.
+.  \" sprung with stale information.  Update the page number depending
+.  \" on the C (consecutive numbering) register.
 .  if !\n[doc-is-first-page-of-document] \{\
 .    ie \n[cR] .doc-end-macro
 .    el \{\
 .      ch doc-header
-.      bp 1
+.
+.      ie \n[C] .bp (\n[%] + 1) \" argument NOT redundant before page 1
+.      el       .bp 1
 .    \}
 .    nr doc-is-first-page-of-document 1
 .  \}

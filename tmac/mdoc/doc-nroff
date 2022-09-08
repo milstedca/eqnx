@@ -32,6 +32,28 @@
 .\"     @(#)doc-nroff	8.1 (Berkeley) 06/08/93
 .
 .
+.nr doc-is-output-html 0
+.if '\*[.T]'html' .nr doc-is-output-html 1
+.
+.\" Use -rC1 to consecutively number pages across multiple documents.
+.\"
+.\" We must use consecutive page numbers when using PostScript to
+.\" generate HTML images; we must not reset the page number at the
+.\" beginning of each document (the 'ps4html' register is automatically
+.\" added to the command line by the pre-HTML preprocessor).
+.ie !r C \
+.  nr C 0
+.el \
+.  if !\n[C] \
+.    if \n[doc-is-output-html] \{\
+.       tm mdoc: consecutive page numbering required for HTML output
+.       nr C 1
+.    \}
+.if \n[doc-is-output-html] \
+.  nr C 1
+.if r ps4html \
+.  nr C 1
+.
 .\" Use -rCS=1 to force capitalization of section headings.
 .if !r CS .nr CS 0
 .

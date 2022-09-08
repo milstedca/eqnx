@@ -1026,10 +1026,8 @@
 .de doc-header
 .  ev doc-env-dh
 .  doc-setup-page-layout
-.  if !\n[cR] \{\
-.    \" Re-use doc-header-space between page top and header.
-.    sp \n[doc-header-space]u
-.  \}
+.  ie \n[cR] .pl +1v
+.  el        .sp .5i
 .  nr doc-reg-dh \w'\*[doc-caption-font]\*[doc-pageref]\f[]'
 .  nr doc-reg-dh1 \w'\*[doc-caption-font2]\*[doc-volume]\f[]'
 .  if (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
@@ -1047,12 +1045,11 @@
 .    as doc-pageref "\|.\|.\|.
 .  \}
 .  tl '\*[doc-caption-font]\*[doc-pageref]\f[]'\*[doc-caption-font2]\*[doc-volume]\f[]'\*[doc-caption-font]\*[doc-pageref]\f[]'
-.  ie !\n[cR] \
-.    sp \n[doc-header-space]u
-.  el \{\
+.  ie \n[cR] \{\
 .    pl +1v
 .    sp 1v
 .  \}
+.  el .sp |1i
 .  ev
 .  ns
 ..
@@ -1667,7 +1664,6 @@
 .  tm doc-section == '\*[doc-section]'
 .  tm doc-operating-system == '\*[doc-operating-system]'
 .  tm doc-date-string == '\*[doc-date-string]'
-.  tm doc-header-space == \n[doc-header-space]
 .  tm doc-display-vertical == \n[doc-display-vertical]
 .  tm doc-pageref == '\*[doc-pageref]'
 .  tm doc-in-synopsis-section == \n[doc-in-synopsis-section]

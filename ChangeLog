@@ -1,5 +1,23 @@
 2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Align spacing around headers with man(7).
+
+	* tmac/doc.tmac (doc-save-global-vars, doc-restore-global-vars):
+	* tmac/mdoc/doc-common (Rd):
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Stop defining, saving, and restoring
+	`doc-header-space`.
+
+	* tmac/mdoc/doc-common (doc-header): When starting new document
+	and not continuously rendering, space by one half-inch instead
+	of by the now-defunct `doc-header-space` amount (which,
+	strictly, should not have applied to this measurement).  If not
+	continuously rendering, extend page length by 1v to accommodate
+	header line.  After formatting header, if not continuously
+	rendering, space to 1 inch below first text baseline.
+
+2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Support `C` register for consecutive page numbering.
 
 	* tmac/mdoc/doc-common (Dd): Reset page number to 1 upon new

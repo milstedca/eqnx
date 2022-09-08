@@ -132,12 +132,6 @@
 .nr doc-fixed-width \w'\f[C]0'
 .
 .
-.\" NS doc-header-space global register
-.\" NS   the space between header and body
-.
-.nr doc-header-space .5i
-.
-.
 .\" NS doc-display-vertical global register
 .\" NS   vertical space between list elements etc.
 .

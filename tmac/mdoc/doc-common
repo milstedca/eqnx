@@ -192,6 +192,45 @@
 .nr doc-punct! 3
 .
 .
+.\" Define alternate requests to handle continuous rendering.
+.\"
+.\" This .ne replacement avoids page breaks; instead, the page length is
+.\" increased to the necessary amount (this is needed for tables).
+.
+.eo
+.de doc-ne
+.  ie \n[.$] .nr doc-amount (v;\$*)
+.  el        .nr doc-amount 1v
+.  if (\n[doc-amount] >= \n[.t]) \
+.    pl +(\n[doc-amount]u - \n[.t]u + 1v)
+.  rr doc-amount
+..
+.ec
+.
+.\" This .bp replacement for continuous rendering mode adjusts the page
+.\" length to the current position so that no empty lines are inserted.
+.
+.eo
+.de doc-bp
+.  pl \n[nl]u
+..
+.ec
+.
+.
+.\" NS doc-set-up-continuous-rendering
+.\"   Move macros into place for continuous rendering.  An end-of-input
+.\"   macro is set up by doc-set-up-titles.
+.de doc-set-up-continuous-rendering
+.  rn ne doc-real-ne
+.  rn bp doc-real-bp
+.  rn doc-ne ne
+.  rn doc-bp bp
+..
+.
+.if \n[cR] \
+.  doc-set-up-continuous-rendering
+.
+.
 .\" header assembly macros
 .
 .\" NS doc-document-title global string
@@ -265,6 +304,21 @@
 .
 .eo
 .de Dd
+.  \" If batch processing (rendering multiple) man page documents, we
+.  \" must handle the end of a previous document.
+.  \"
+.  \" If also continuously rendering, cause a page transition to a new
+.  \" mdoc(7) document.  Clear the page header trap first so it is not
+.  \" sprung with stale information.
+.  if !\n[doc-is-first-page-of-document] \{\
+.    ie \n[cR] .doc-end-macro
+.    el \{\
+.      ch doc-header
+.      bp 1
+.    \}
+.    nr doc-is-first-page-of-document 1
+.  \}
+.
 .  if !\n[.$] \
 .    tm mdoc warning: .Dd directive expects an argument (#\n[.c])
 .  if \n[.$] \{\
@@ -446,14 +500,6 @@
 .  if !"\$3"" \
 .    if "\*[doc-volume]"LOCAL" \
 .      ds doc-volume \$3
-.
-.  doc-set-up-titles
-.
-.  if \n[nl] \
-.    bp
-.
-.  if '\*[.T]'pdf' \
-.    pdfbookmark 1 "\*[doc-document-title](\*[doc-section])"
 ..
 .ec
 .
@@ -944,10 +990,13 @@
 .      as doc-operating-system " \$2
 .  \}\}\}\}\}\}\}\}
 .
-.  if \n[doc-is-first-page-of-document] \{\
-.    doc-header
-.    nr doc-is-first-page-of-document 0
-.  \}
+.  doc-set-up-titles
+.
+.  if '\*[.T]'pdf' \
+.    pdfbookmark 1 "\*[doc-document-title](\*[doc-section])"
+.
+.  doc-header
+.  nr doc-is-first-page-of-document 0
 ..
 .ec
 .

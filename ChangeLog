@@ -1,5 +1,45 @@
 2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Align trap management more closely with man(7).
+
+	* tmac/mdoc/doc-common: Call new macro (see below)
+	`doc-set-up-continuous-rendering` when initializing, if that is
+	mode is configured.
+	(doc-ne): New macro replaces `ne` request
+	in continuous rendering mode.  It extends the page length by the
+	amount in the argument or by 1v if none given.
+	(doc-bp): New macro replaces `bp` request in continuous
+	rendering mode, setting the page length to the vertical drawing
+	position.
+	(doc-set-up-continuous-rendering): New macro renames requests to
+	emplace the foregoing.
+	(Dd): Interpret this macro call strictly as starting a new
+	mdoc(7) document.  (andoc.tmac already makes this assumption,
+	and has for over 20 years.  groff_mdoc(7) and mandoc_mdoc(7)
+	also prescribe the sequence `Dd`, `Dt`, `Os`.)  We require this
+	invariant even more rigidly now because it's the only way we can
+	be sure that we can process multiple documents while rendering
+	headers and footers with information corresponding to the
+	appropriate document.  (man(7)'s `TH` has an advantage here in
+	that calling it is "atomic": from its arguments alone you can
+	obtain everything you need to know to format the header and
+	footer.  In mdoc(7), permuting the initialization macro order
+	reliably produces chaos.)  Break the page (if necessary)
+	_before_ processing any arguments (instead of after), to flush
+	the previous page's footer.  Stop calling `doc-set-up-titles`
+	here; we don't have enough information to do that yet.  Also
+	stop writing the PDF bookmark here, because `doc-document-title`
+	and `doc-section` will not reflect the new page content yet.
+	(Os): Once the `doc-operating-system` string content has been
+	determined, call `doc-set-up-titles`, write the PDF bookmark for
+	the page, and call `doc-header`, causing the page header to be
+	formatted.  These changes further imply a stronger requirement
+	on initialization macro ordering being canonical.
+
+	Fixes <https://savannah.gnu.org/bugs/?62774> (7/7).
+
+2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Trivially refactor.  Relocate string and macro
 	definition within file.  mdoc(7) mandates that the document
 	setup macros `Dd`, `Dt`, and `Os` be called in that order;

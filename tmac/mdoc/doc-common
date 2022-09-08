@@ -348,7 +348,6 @@
 .
 .\" an alternative, more detailed scheme for naming the manual sections
 .\"
-.ds doc-volume-operating-system BSD
 .ds doc-volume-ds-1 General Commands Manual
 .ds doc-volume-ds-2 System Calls Manual
 .ds doc-volume-ds-3 Library Functions Manual
@@ -472,10 +471,10 @@
 .    ds doc-section \$2
 .    ie \B'\$2' \{\
 .      if ((\$2 >= 1) & (\$2 <= 9)) \{\
-.        ds doc-volume "\*[doc-volume-operating-system]
+.        ds doc-volume \" empty (not "LOCAL")
 .        if \A'\$3' \{\
 .          if d doc-volume-as-\$3 \
-.            as doc-volume "/\*[doc-volume-as-\$3]
+.            as doc-volume "\*[doc-volume-as-\$3]
 .          \}
 .        as doc-volume " \*[doc-volume-ds-\$2]
 .      \}

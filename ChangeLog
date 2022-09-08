@@ -1,5 +1,23 @@
 2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Stop prefixing center header with name of operating
+	system.  This was hard-coded to "BSD" and stuck on all mdoc(7)
+	pages using a default manual section number, regardless of host
+	operating system.  Bad idea.  Further, the argument to the `Os`
+	call, if any, or a default, is always disclosed in the left
+	footer.
+
+	* tmac/mdoc/doc-common: Do it.
+	(Dt): Initialize `doc-volume` as empty and annotate it;
+	calling the macro with a numeric second argument overrides the
+	fallback default of "LOCAL".  A slash is no longer needed to
+	separate a recognized architecture string from the OS name, so
+	drop it.
+
+	* tmac/tests/doc_smoke-test.sh: Update test expectations.
+
+2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Drop dead code.  The register
 	`doc-volume-operating-system-ateol`, introduced in groff 1.18
 	{July 2002}, was being tested but never set to a nonzero value.

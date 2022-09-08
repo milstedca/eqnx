@@ -38,7 +38,7 @@ things are probably working.'
 OUTPUT=$(printf "%s\n" "$EXAMPLE" | "$groff" -Tascii -P-cbou -mdoc)
 FAIL=
 
-if ! echo "$OUTPUT" | grep -qE '^mdoc-test\(7\) +BSD Miscellaneous'
+if ! echo "$OUTPUT" | grep -qE '^mdoc-test\(7\) +Miscellaneous'
 then
     FAIL=yes
     echo "header check failed" >&2

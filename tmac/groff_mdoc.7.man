@@ -839,16 +839,16 @@ the following sections are defined:
 .
 .Pp
 .TS
-l l l.
-1	\*[doc-volume-operating-system] \*[doc-volume-ds-1]
-2	\*[doc-volume-operating-system] \*[doc-volume-ds-2]
-3	\*[doc-volume-operating-system] \*[doc-volume-ds-3]
-4	\*[doc-volume-operating-system] \*[doc-volume-ds-4]
-5	\*[doc-volume-operating-system] \*[doc-volume-ds-5]
-6	\*[doc-volume-operating-system] \*[doc-volume-ds-6]
-7	\*[doc-volume-operating-system] \*[doc-volume-ds-7]
-8	\*[doc-volume-operating-system] \*[doc-volume-ds-8]
-9	\*[doc-volume-operating-system] \*[doc-volume-ds-9]
+l l.
+1	\*[doc-volume-ds-1]
+2	\*[doc-volume-ds-2]
+3	\*[doc-volume-ds-3]
+4	\*[doc-volume-ds-4]
+5	\*[doc-volume-ds-5]
+6	\*[doc-volume-ds-6]
+7	\*[doc-volume-ds-7]
+8	\*[doc-volume-ds-8]
+9	\*[doc-volume-ds-9]
 .TE
 .
 .
@@ -925,16 +925,16 @@ prevents the digit\~7 from being a valid numeric expression.
 .Bl -tag -width ".Li .Dt\ FOO\ 2\ i386" -compact -offset indent
 .It Li ".Dt FOO 7"
 .Ql FOO(7)
-.Ql \*[doc-volume-operating-system] \*[doc-volume-ds-7]
+.Ql \*[doc-volume-ds-7]
 .It Li ".Dt FOO 7 bar"
 .Ql FOO(7)
-.Ql \*[doc-volume-operating-system] \*[doc-volume-ds-7]
+.Ql \*[doc-volume-ds-7]
 .It Li ".Dt FOO \e&7 bar"
 .Ql FOO(7)
 .Ql bar
 .It Li ".Dt FOO 2 i386"
 .Ql FOO(2)
-.Ql \*[doc-volume-operating-system]/\*[doc-volume-as-i386] \*[doc-volume-ds-2]
+.Ql \*[doc-volume-ds-2]
 .It Li ".Dt FOO \[dq]\[dq] bar"
 .Ql FOO
 .Ql bar

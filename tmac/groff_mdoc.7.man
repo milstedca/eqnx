@@ -119,11 +119,14 @@ translation to future documentation tools.
 .
 .
 .Pp
-Throughout the
+Throughout
 .Ux
-manual pages,
-a manual entry is simply referred to as a man page,
-regardless of actual length and without sexist intention.
+documentation,
+a manual entry is referred simply to as a
+.Dq "man page" ,
+regardless of its length,
+without gendered implication,
+and irrespective of the macro package selected for its composition.
 .
 .
 .Sh "Getting started"

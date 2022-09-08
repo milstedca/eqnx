@@ -171,10 +171,10 @@
 .
 .\" Cause a page transition to a new man(7) document.  Clear the page
 .\" header trap so it is not sprung with stale information.  Update the
-.\" page number depending on the C (continuous page numbering) register.
+.\" page number depending on the C (consecutive numbering) register.
 .de an-start-new-document
 .  ch an-header
-.  ie \\n[C] .bp (\\n[%] + 1)
+.  ie \\n[C] .bp (\\n[%] + 1) \" argument NOT redundant before page 1
 .  el        .bp 1
 ..
 .
@@ -1187,22 +1187,18 @@ contains unsupported escape sequence
 .  el   .nr cR 0
 .\}
 .
-.\" continuous page numbering over multiple documents
+.\" consecutive page numbering across multiple documents
 .\"
 .\" We must use consecutive page numbers when using PostScript to
 .\" generate HTML images; we must not reset the page number at the
 .\" beginning of each document (the 'ps4html' register is automatically
 .\" added to the command line by the pre-HTML preprocessor).
-.\"
-.\" \n[C] may get set to 1 redundantly in the below; we could replace
-.\" that with a complex conditional, but it doesn't seem to be worth the
-.\" trouble given restrictions on use of '!', '&', and ':' operators.
 .ie !r C \
 .  nr C 0
 .el \
 .  if !\n[C] \
 .    if \n[an-is-output-html] \{\
-.       tm \*[an]: ignoring continuous page numbering in HTML output
+.       tm \*[an]: consecutive page numbering required for HTML output
 .       nr C 1
 .    \}
 .if \n[an-is-output-html] \

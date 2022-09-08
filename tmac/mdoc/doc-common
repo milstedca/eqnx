@@ -249,6 +249,32 @@
 .ec
 .
 .
+.\" NS doc-date-string global string
+.\" NS   the manual page date as set by 'Dd'
+.
+.ds doc-date-string UNDATED\"
+.
+.
+.\" NS Dd user macro (not parsed, not callable)
+.\" NS   set document date
+.\" NS
+.\" NS modifies:
+.\" NS   doc-date-string
+.\" NS
+.\" NS width register 'Dd' set above
+.
+.eo
+.de Dd
+.  if !\n[.$] \
+.    tm mdoc warning: .Dd directive expects an argument (#\n[.c])
+.  if \n[.$] \{\
+.    ie "\$1"$Mdocdate:" .ds doc-date-string \$2\~\$3, \$4\"
+.    el                  .ds doc-date-string \$*\"
+.  \}
+..
+.ec
+.
+.
 .\" NS Dt user macro (not parsed, not callable)
 .\" NS   document title
 .\" NS
@@ -921,32 +947,6 @@
 .  if \n[doc-is-first-page-of-document] \{\
 .    doc-header
 .    nr doc-is-first-page-of-document 0
-.  \}
-..
-.ec
-.
-.
-.\" NS doc-date-string global string
-.\" NS   the manual page date as set by 'Dd'
-.
-.ds doc-date-string UNDATED\"
-.
-.
-.\" NS Dd user macro (not parsed, not callable)
-.\" NS   set document date
-.\" NS
-.\" NS modifies:
-.\" NS   doc-date-string
-.\" NS
-.\" NS width register 'Dd' set above
-.
-.eo
-.de Dd
-.  if !\n[.$] \
-.    tm mdoc warning: .Dd directive expects an argument (#\n[.c])
-.  if \n[.$] \{\
-.    ie "\$1"$Mdocdate:" .ds doc-date-string \$2\~\$3, \$4\"
-.    el                  .ds doc-date-string \$*\"
 .  \}
 ..
 .ec

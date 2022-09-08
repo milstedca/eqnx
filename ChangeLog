@@ -1,3 +1,10 @@
+2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[mdoc]: Trivially refactor.  Relocate string and macro
+	definition within file.  mdoc(7) mandates that the document
+	setup macros `Dd`, `Dt`, and `Os` be called in that order;
+	arrange their definitions accordingly, for maintainability.
+
 2022-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mdoc]: Refactor.  Rename strings and macro for clarity.  These

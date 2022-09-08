@@ -1,5 +1,15 @@
 2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Drop dead code.  The register
+	`doc-volume-operating-system-ateol`, introduced in groff 1.18
+	{July 2002}, was being tested but never set to a nonzero value.
+	In fact, it seems never to have been.
+
+	* tmac/mdoc/doc-common: Get rid of it...
+	(Dt): ...and the dependent block.
+
+2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Render `Ux` macro as "Unix", in mixed case.
 
 	* tmac/mdoc/doc-syms (Ux): Do it.  Also remove local string

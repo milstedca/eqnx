@@ -912,34 +912,27 @@ the third parameter is used verbatim as the volume name.
 .
 .
 .Pp
-In the following examples,
-the left
-(which is identical to the right)
-and the middle part of the manual page header strings are shown.
+The effects of varying
+.Ql .Dt
+arguments on the page header content
+are shown below.
 .
-Note how
-.Ql \e&
-prevents the digit\~7 from being a valid numeric expression.
+Observe how
+.Ql \[rs]&
+prevents the digit\~2 from being treated as a manual section number.
 .
-.Bd -ragged
-.Bl -tag -width ".Li .Dt\ FOO\ 2\ i386" -compact -offset indent
-.It Li ".Dt FOO 7"
-.Ql FOO(7)
-.Ql \*[doc-volume-ds-7]
-.It Li ".Dt FOO 7 bar"
-.Ql FOO(7)
-.Ql \*[doc-volume-ds-7]
-.It Li ".Dt FOO \e&7 bar"
-.Ql FOO(7)
-.Ql bar
-.It Li ".Dt FOO 2 i386"
-.Ql FOO(2)
-.Ql \*[doc-volume-ds-2]
-.It Li ".Dt FOO \[dq]\[dq] bar"
-.Ql FOO
-.Ql bar
-.El
-.Ed
+.
+.Pp
+.\" XXX: Figure out how to indent this.
+.TS
+tab(@);
+Lf(CR) | L C R.
+\&.Dt foo 2@foo(2)@System Calls Manual@foo(2)
+\&.Dt foo 2 m68k@foo(2)@m68k System Calls Manual@foo(2)
+\&.Dt foo 2 baz@foo(2)@System Calls Manual@foo(2)
+\&.Dt foo \[rs]&2 baz@foo(2)@baz@foo(2)
+\&.Dt foo \[dq]\[dq] baz@foo@baz@foo
+.TE
 .
 .
 .Pp

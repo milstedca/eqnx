@@ -1,3 +1,18 @@
+2022-09-08  Nikita Ivanov <nikita.vyach.ivanov@gmail.com>
+
+	* tmac/ps.tmac: Fallback definitions for glyphs that usually
+	come from special fonts should use `schar` instead of `fchar`.
+	{Define fallback special characters using `schar` instead of
+	`fchar` for glyphs that we do not expect to find in text fonts;
+	that is, they don't have bold, italic, and bold-italic stylistic
+	variants.  This means all special character definitions in the
+	file except for rules, ligatures, and digraphs.  Problem dates
+	back to a series of commits from March 2002 to February 2003,
+	straddling the introduction of the `schar` request in November
+	2002. --GBR}
+
+	Fixes <https://savannah.gnu.org/bugs/?62955>.
+
 2022-09-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Slightly simplify new `XN` macro feature to align it more

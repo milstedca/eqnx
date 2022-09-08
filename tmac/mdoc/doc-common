@@ -472,13 +472,14 @@
 .    ds doc-section \$2
 .    ie \B'\$2' \{\
 .      if ((\$2 >= 1) & (\$2 <= 9)) \{\
-.          ds doc-volume "\*[doc-volume-operating-system]
-.          if \A'\$3' \{\
-.            if d doc-volume-as-\$3 \
-.              as doc-volume "/\*[doc-volume-as-\$3]
+.        ds doc-volume "\*[doc-volume-operating-system]
+.        if \A'\$3' \{\
+.          if d doc-volume-as-\$3 \
+.            as doc-volume "/\*[doc-volume-as-\$3]
 .          \}
-.          as doc-volume " \*[doc-volume-ds-\$2]
-.    \}\}\}
+.        as doc-volume " \*[doc-volume-ds-\$2]
+.      \}
+.    \}
 .    el \{\
 .      ie "\$2"unass" \
 .        ds doc-volume DRAFT
@@ -486,11 +487,13 @@
 .        ds doc-volume DRAFT
 .      el .if "\$2"paper" \
 .        ds doc-volume UNTITLED
-.      \}\}
-.      if \A'\$3' \{\
-.        if d doc-volume-ds-\$3 \
-.          ds doc-volume "\*[doc-volume-ds-\$3]
-.  \}\}\}
+.      \}
+.   \}
+.   if \A'\$3' \{\
+.     if d doc-volume-ds-\$3 \
+.       ds doc-volume "\*[doc-volume-ds-\$3]
+.   \}
+. \}
 .
 .  if !"\$3"" \
 .    if "\*[doc-volume]"LOCAL" \

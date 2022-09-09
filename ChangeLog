@@ -1,5 +1,15 @@
 2022-09-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-ditroff (doc-setup-page-layout):  In troff mode,
+	if the user does not define the `LL` register, use the device's
+	default line length, not 6.5 inches.  If the user does not
+	define the `LT` register, make the default line length for
+	titles the same as the regular line length, not 6.5 inches
+	independently of it.  This is consistent with man(7)'s handling
+	of `LL` and `LT`.
+
+2022-09-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Support `AD` string to set default adjustment mode.
 
 	* tmac/mdoc/doc-common (Sh): Set adjustment mode to

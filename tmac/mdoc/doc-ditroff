@@ -154,12 +154,12 @@
 .  ie r LL \
 .    ll \n[LL]u
 .  el \
-.    ll 6.5i
+.    ll \n[.l]u
 .
 .  ie r LT \
 .    lt \n[LT]u
 .  el \
-.    lt 6.5i
+.    lt \n[.l]u
 .
 .  po 1i
 .

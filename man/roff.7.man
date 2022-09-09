@@ -1,7 +1,9 @@
 '\" t
 .TH roff @MAN7EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-roff \- concepts and history of roff typesetting
+roff \- concepts and history of
+.I roff
+typesetting
 .
 .
 .\" TODO: Synchronize this material with introductory section(s) of our
@@ -71,22 +73,20 @@ implementation.
 .
 .
 .P
-This document
-presents typographical concepts that form the common background of all
+Below we present
+typographical concepts that form the background of all
 .I roff
 implementations,
-describes some of the development history of
+narrate the development history of some
 .I roff
 systems,
-offers details of the
-.I roff
-pipeline which are usually managed by front ends like
+detail the command pipeline managed by
 .MR groff @MAN1EXT@ ,
-surveys the formatting language,
-suggests some tips for editing
+survey the formatting language,
+suggest tips for editing
 .I roff
-input files,
-and recommends materials for further reading.
+input,
+and recommend further reading materials.
 .
 .
 .\" ====================================================================

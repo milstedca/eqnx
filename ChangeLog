@@ -1,5 +1,15 @@
 2022-09-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Refactor: relocate most rendering option handling to
+	"doc.tmac" from "doc-ditroff" and "doc-nroff", cutting down on a
+	lot of duplication.  The `S` register retains separate handling.
+
+	* tmac/doc.tmac:
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Do it.
+
+2022-09-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-ditroff (doc-setup-page-layout):  In troff mode,
 	if the user does not define the `LL` register, use the device's
 	default line length, not 6.5 inches.  If the user does not

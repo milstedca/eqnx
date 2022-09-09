@@ -61,6 +61,75 @@
 .  ab \*[doc-msg]
 .\}
 .
+.\" Handle most rendering options.
+.
+.nr doc-is-output-html 0
+.if '\*[.T]'html' .nr doc-is-output-html 1
+.
+.\" Use -dAD to set the adjustment mode for ordinary body text.
+.if !d AD \
+.  ds AD b\"
+.
+.\" Use -rC1 to consecutively number pages across multiple documents.
+.\"
+.\" We must use consecutive page numbers when using PostScript to
+.\" generate HTML images; we must not reset the page number at the
+.\" beginning of each document (the 'ps4html' register is automatically
+.\" added to the command line by the pre-HTML preprocessor).
+.ie !r C \
+.  nr C 0
+.el \
+.  if !\n[C] \
+.    if \n[doc-is-output-html] \{\
+.       tm mdoc: consecutive page numbering required for HTML output
+.       nr C 1
+.    \}
+.if \n[doc-is-output-html] \
+.  nr C 1
+.if r ps4html \
+.  nr C 1
+.
+.\" Use -rCS=1 to force capitalization of section headings.
+.if !r CS .nr CS 0
+.
+.\" Use -rCT=1 to force capitalization of page titles in headers.
+.if !r CT .nr CT 0
+.
+.\" Use -rD=1 for double-sided printing.
+.if !r D .nr D 0
+.
+.\" Use -rcR=0 for multiple pages instead of a single, very long page.
+.if !r cR \{\
+.  if t .nr cR 0
+.  if n .nr cR 1
+.\}
+.
+.\" If continuous rendering, tell tbl not to use keeps.
+.ie \n[cR] \
+.  nr 3usekeeps 0
+.el \
+.  nr 3usekeeps 1
+.
+.\" TODO: Implement HF string.
+.
+.\" \n[HY] is recognized for groff_man(7) compatibility, particuarly via
+.\" andoc.tmac and man(1); see \n[doc-hyphen-flags] in doc-common.
+.if !r HY .nr HY 1
+.
+.\" TODO: Implement IN register.
+.
+.\" LL and LT registers are handled by the doc-setup-page-layout macro.
+.
+.\" TODO: Implement MF string.
+.
+.\" TODO: Implement P register.
+.
+.\" TODO: Implement SN register.
+.
+.\" TODO: Implement U register.
+.
+.\" TODO: Implement X register.
+.
 .
 .\" Load startup files.
 .ie t \

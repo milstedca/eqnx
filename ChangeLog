@@ -1,3 +1,8 @@
+2022-09-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/doc.tmac (doc-tag-list): Fix code style nit: don't give
+	`ad` request a numeric argument.  Say `l` instead of `0`.
+
 2022-09-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mdoc]: Align inter-paragraph spacing with man(7).

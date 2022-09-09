@@ -3500,7 +3500,7 @@ taking advantage of the fact that pages using them must call
 or
 .BR .Dd ,
 respectively,
-as their first macro.
+before any other macros.
 .
 A
 .I man

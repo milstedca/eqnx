@@ -143,6 +143,7 @@
 .\" NS
 .\" NS modifies:
 .\" NS   doc-display-vertical
+.\" NS   doc-line-length
 .
 .eo
 .de doc-setup-page-layout

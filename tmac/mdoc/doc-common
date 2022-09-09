@@ -1368,8 +1368,7 @@
 .    ds doc-macro-name Sh
 .    doc-parse-args \$@
 .
-.    if t \
-.      ad
+.    ad \*[AD]
 .
 .    \" this resolves, e.g., '.Sh "SEE ALSO"'
 .    doc-prepare-section-heading \$*

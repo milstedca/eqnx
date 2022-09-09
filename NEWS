@@ -241,10 +241,10 @@ o Part of the an (man) macro package has been renamed from `an-old.tmac`
   this.  The man-db man(1) implementation has, since 2001, used
   "-mandoc" preferentially if available when man-db is configured.
 
-o The an (man) macro package supports a new `AD` string to put the
-  default adjustment mode under user control at rendering time.  The
-  default is "b" (adjust lines to both margins) as has been the Unix
-  man(7) default since 1979.
+o The an (man) and doc (mdoc) macro packages support a new `AD` string
+  to put the default adjustment mode under user control at rendering
+  time.  The default is "b" (adjust lines to both margins) as has been
+  the Unix man(7) default since 1979.
 
 o The an (man) and doc (mdoc) macro packages support new `CS` and `CT`
   registers to control rendering of man page section headings and titles
@@ -282,10 +282,8 @@ o The groff_man(7) man page documenting the groff implementation of the
   material supplemented with explanations, examples, and advice for the
   reader who is not an expert in *roff systems or in writing man pages.
 
-o The doc (mdoc) macro package now honors the C and HY registers as the
-  an (man) package does.  It furthermore recognizes the `AD` string (see
-  above) for compatibility with an (man), but at present ignores its
-  value.
+o The doc (mdoc) macro package now honors the `C` and `HY` registers as
+  the an (man) package does.
 
 o The e (me) macro package has changed its support for output line
   numbering with the `n1` and `n2` macros to resolve several bugs in the

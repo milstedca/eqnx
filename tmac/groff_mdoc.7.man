@@ -4559,6 +4559,30 @@ A normal user will never need it.
 .
 .Sh "Formatting with groff, troff, and nroff"
 .
+Setting string
+.Li AD
+configures the adjustment mode for most formatted text.
+.
+Typical values are
+.Li b
+for adjustment to both margins
+(the default),
+or
+.Li l
+for left alignment
+(ragged right margin).
+.
+Any valid argument to
+.Nm groff Ns No 's
+.Li .ad
+request may be used.
+.
+See
+.Xr groff @MAN7EXT@
+for less-common choices.
+.
+.D1 Li groff \-Tutf8 \-dAD=l \-mdoc groff_mdoc.7 | less \-R
+.
 Setting register
 .Ql C
 to\~1 numbers output pages consecutively,

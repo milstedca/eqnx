@@ -90,7 +90,7 @@
 
 2022-09-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[mdoc]: Render `Ux` macro as "Unix", in mixed case.
+	[mdoc]: Make `Ux` render "Unix" in mixed case.
 
 	* tmac/mdoc/doc-syms (Ux): Do it.  Also remove local string
 	after we're done with it.
@@ -136,7 +136,7 @@
 	[mdoc]: Align trap management more closely with man(7).
 
 	* tmac/mdoc/doc-common: Call new macro (see below)
-	`doc-set-up-continuous-rendering` when initializing, if that is
+	`doc-set-up-continuous-rendering` when initializing, if that
 	mode is configured.
 	(doc-ne): New macro replaces `ne` request
 	in continuous rendering mode.  It extends the page length by the
@@ -255,7 +255,7 @@
 	into this macro.  Don't bail out if continuously rendering;
 	instead, format the appropriate footer text if we are.  For now,
 	break the page only if we are not continuously rendering.
-	(doc-end-macro): Call `doc-footer` instead of fomatting footer
+	(doc-end-macro): Call `doc-footer` instead of formatting footer
 	here.
 
 	Fixes <https://savannah.gnu.org/bugs/?62774> (4/7).

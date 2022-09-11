@@ -907,7 +907,7 @@ Rf(CR) L.
 \-	subtraction
 *	multiplication
 /	truncating division
-%	modulo
+%	modulus
 _
 \f[R]unary\f[] +	assertion, motion, incrementation
 \f[R]unary\f[] \-	negation, motion, decrementation
@@ -968,14 +968,14 @@ they are
 (truncating division),
 and
 .B %
-(modulo).
+(modulus).
 .
 .I Truncating division
 rounds to the integer nearer to zero,
 no matter how large the fractional portion.
 .
 Overflow and division
-(or modulo)
+(or modulus)
 by zero are errors and abort evaluation of a numeric expression.
 .
 .
@@ -996,10 +996,10 @@ discussed below.
 .
 .
 .P
-The sign of the modulo of operands of mixed signs is determined by the
+The sign of the modulus of operands of mixed signs is determined by the
 sign of the first.
 .
-Division and modulo operators satisfy the following property:
+Division and modulus operators satisfy the following property:
 given a
 .RI dividend\~ a
 and a

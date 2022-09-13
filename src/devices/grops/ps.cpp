@@ -1525,7 +1525,7 @@ void ps_printer::special(char *arg, const environment *env, char type)
   if (type != 'p')
     return;
   typedef void (ps_printer::*SPECIAL_PROCP)(char *, const environment *);
-  static struct {
+  static const struct {
     const char *name;
     SPECIAL_PROCP proc;
   } proc_table[] = {

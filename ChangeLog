@@ -1,3 +1,18 @@
+2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grops/ps.cpp (ps_printer::special)
+	(resource_manager::process_file): Fix code style nit.  Mark
+	static structs initialized within functions and never modified
+	thereafter as `const`.  This attempts to work around an apparent
+	false positive from AddressSanitizer.  If it doesn't pacify
+	ASAN, please explain to me how constant structure members
+	initialized to string literals and function pointers within the
+	translation unit can ever be null.  If that is infeasible,
+	please report a bug to your compiler vendor.
+
+	Fixes (addresses, at any rate) https://savannah.gnu.org/bugs/\
+	?61643>.  Thanks to Bjarni Ingi Gislason for the report.
+
 2022-09-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mdoc]: Refactor: relocate most rendering option handling to

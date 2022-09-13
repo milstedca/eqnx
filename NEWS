@@ -272,7 +272,7 @@ o The an (man) macro package now interprets the value of the `HY`
 
 o The an (man) macro package's `TS` macro no longer inserts vertical
   space.  It was not documented to do so, but had since groff 1.18 (July
-  2002).  The page author is free to use paragraphing macros around
+  2002).  Man page authors may freely use paragraphing macros around
   tables if vertical space is desired.
 
 o The groff_man(7) man page documenting the groff implementation of the

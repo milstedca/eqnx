@@ -320,13 +320,14 @@ is device-independent.
 .SH Usage
 .\" ====================================================================
 .
-This section describes only the differences between GNU
+This section primarily discusses the differences between GNU
 .I pic \" GNU
-and the original version of
-.IR pic . \" AT&T
+and the Eighth Edition Research Unix version of AT&T
+.I pic \" AT&T
+(1985).
 .
-Many of these differences also apply to newer versions of AT&T
-.BR pic .
+Many of these differences also apply to later versions of AT&T
+.IR pic .
 .
 .
 .\" ====================================================================
@@ -1418,7 +1419,9 @@ papersize to
 .IR groff .
 .
 .
-.LP
+.br
+.ne 3v
+.P
 As the Encapsulated PostScript File Format
 .B EPS
 is getting more and more important,
@@ -1500,15 +1503,16 @@ is part of the
 distribution.
 .
 .
-.LP
+.P
 \[lq]PIC\[em]A Graphics Language for Typesetting: User Manual\[rq],
 by Brian W.\& Kernighan,
-1991,
+1984
+(revised 1991),
 AT&T Bell Laboratories Computing Science Technical Report No.\& 116
 .
 .
-.LP
-.B ps2eps
+.P
+.I ps2eps
 is available from CTAN mirrors, e.g.,
 .UR ftp://\:ftp\:.dante\:.de/\:tex\-archive/\:support/\:ps2eps/
 .UE

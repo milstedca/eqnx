@@ -1534,31 +1534,19 @@ only programmers of macro packages need a substantial command of it.
 .
 A
 .I roff
-preprocessor is any program generating output that syntactically obeys
-the rules of the
+preprocessor is a program that,
+directly or ultimately,
+generates output in the
 .I roff
-formatting language.
+language.
 .
-Each preprocessor defines a language of its own that is translated
-into
+Typically, \" preconv is an exception.
+each preprocessor defines a language of its own that transforms its
+input into that for
 .I roff
-code when run through the preprocessor program.
+or another preprocessor.
 .
-Portions of the document written in these languages are bracketed by
-tokens that look like
-.I roff
-macro calls.
-.
-.I roff
-preprocessor programs transform only the regions of the document
-inteded for them.
-.
-Each document thus enhanced by preprocessor code must be run through the
-corresponding preprocessors before the formatter processes it.
-.
-Some preprocessors produce input intended for interpretation by another
-preprocessor;
-for example,
+As an example of the latter,
 .I chem \" generic
 produces
 .I pic \" generic
@@ -1569,6 +1557,24 @@ Preprocessors must consequently be run in an appropriate order;
 handles this automatically for all preprocessors supplied by the GNU
 .I roff
 system.
+.
+.
+.P
+Portions of the document written in preprocessor languages are usually
+.\" preconv is the exception again.
+bracketed by tokens that look like
+.I roff
+macro calls.
+.
+.I roff
+preprocessor programs transform only the regions of the document
+intended for them.
+.\" In preconv's case, that's the whole document.
+.
+When a preprocessor language is used by a document,
+its corresponding program must process it before the input is seen by
+the formatter,
+or incorrect rendering is almost guaranteed.
 .
 .
 .P
@@ -1584,12 +1590,13 @@ including
 and
 .IR @g@soelim .
 .
+See
+.MR groff @MAN1EXT@
+for a complete list.
 .
-.P
 Other preprocessors for
 .I roff
 systems are known.
-.
 .
 .RS
 .TS
@@ -1597,7 +1604,7 @@ tab (@);
 Li L.
 dformat@depicts data structures;
 grap@constructs statistical charts; and
-ideal@draws diagrams using a constraint-based language
+ideal@draws diagrams using a constraint-based language.
 .TE
 .RE
 .
@@ -1606,66 +1613,57 @@ ideal@draws diagrams using a constraint-based language
 .SS "Formatter programs"
 .\" ====================================================================
 .
-In the context of
+A
 .I roff
-systems,
-the formatter is the program that parses documents written in the
+formatter interprets input in the
 .I roff
-language.
+language and transforms it into
+.I intermediate output
+intended for processing by a selected device.
 .
-It generates intermediate output,
-which is intended to be fed into an output driver
-(also known as a device postprocessor),
-the identity of which must be known prior to processing.
-.
-The documents must already have been run through all necessary
-preprocessors to render correctly.
-.
-.
-.P
-The output produced by a
-.I roff
-formatter is represented in another language,
-termed the \[lq]intermediate output format\[rq].
-.
-As noted in section \[lq]History\[rq] above,
-this language was first specified in CSTR\~#97;
-GNU extensions to it are documented in
+Intermediate output uses its own language,
+described in
 .MR groff_out @MAN5EXT@ .
 .
-Intermediate output is in specialized in its parameters,
+Intermediate output is specialized in its parameters,
 but not its syntax,
-for the output driver used;
+for the selected device;
 the format is
 .RI device- independent ,
 but not
 .RI device- agnostic .
 .
+The parameters the formatter uses to arrange the document are stored in
+.I device
+and
+.IR "font description files" ;
+see
+.MR groff_font @MAN5EXT@ .
+.
 .
 .P
-The formatter is the heart of the
-.I roff
-system.
-.
-AT&T
-had two formatters:
+AT&T Unix
+had two formatters\[em]\c
 .I nroff
 for terminals,
 and
 .I troff
 for typesetters.
 .
-.
-.P
 Often,
 the name
 .I troff
-is used as a general term to refer to both formatters.
+is used loosely to refer to both.
 .
-When speaking that generally,
+When generalizing thus,
 .I groff
 documentation prefers the term
 .RI \[lq] roff \[rq].
+.
+In GNU
+.IR roff ,
+the formatter program is always
+.MR @g@troff @MAN1EXT@ .
 .
 .
 .\" ====================================================================
@@ -1681,15 +1679,15 @@ is a hardware interface like a printer,
 a text or graphical terminal,
 or a standardized file format that unrelated software can interpret.
 .
-.
-.P
-A
-.I roff
-output driver is a program that parses the device-independent
-intermediate output format of
-.I troff
+An
+.I output driver
+is a program that parses the output of
+.I troff \" generic
 and produces instructions specific to the device or file format it
 supports.
+.
+An output driver might support multiple devices,
+particularly if they are similar.
 .
 .
 .P
@@ -1711,7 +1709,7 @@ to reduce file size and processing time,
 AT&T
 .IR troff 's
 device-independent output format placed low limits on the magnitudes of
-quantities it could represent in some cases.
+some of the quantities it could represent.
 .
 Its PostScript output driver,
 .MR dpost 1 ,
@@ -1923,13 +1921,11 @@ and many others.
 .
 .P
 .I Strings
-are variables that can store a string.
+store text.
 .
-A string is stored by the
+They are populated with the
 .B .ds
-request.
-.
-The stored string can be retrieved later by the
+request and interpolated using the
 .B \[rs]*
 escape sequence.
 .

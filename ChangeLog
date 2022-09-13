@@ -1,5 +1,10 @@
 2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_special): Fix code style nit;
+	align function definition with declaration (internal linkage).
+
+2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grops/ps.cpp (ps_printer::special)
 	(resource_manager::process_file): Fix code style nit.  Mark
 	static structs initialized within functions and never modified

@@ -5469,7 +5469,7 @@ static void encode_char(macro *mac, char c)
   }
 }
 
-node *do_special()
+static node *do_special()
 {
   token start;
   start.next();

@@ -5063,7 +5063,7 @@ Text baseline high-water mark on page or in diversion.
 .
 .TPx
 .REG .H
-Number of basic units per horizontal unit of output device resolution.
+Horizontal motion quantum of the output device in basic units.
 .
 .TPx
 .REG .height
@@ -5337,7 +5337,7 @@ Current vertical line spacing.
 .
 .TPx
 .REG .V
-Number of basic units per vertical unit of output device resolution.
+Vertical motion quantum of the output device in basic units.
 .
 .
 .TPx

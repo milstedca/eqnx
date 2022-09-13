@@ -797,8 +797,8 @@ Computer-driven document formatting dates back to the 1960s.
 .
 The
 .I roff
-system itself is intimately connected with the Unix operating system,
-but its roots go back to the earlier operating systems CTSS,
+system is intimately connected with Unix,
+but its origins lie with the earlier operating systems CTSS,
 GECOS,
 and Multics.
 .

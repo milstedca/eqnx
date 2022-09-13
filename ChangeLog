@@ -1,5 +1,31 @@
 2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[docs]: Fix errors in documentation regarding which escape
+	sequences accept newlines as argument delimiters, and other
+	inaccuracies.
+
+	* doc/groff.texi (Escape Sequences): Cover general cases before
+	exceptional ones.  Leaders can be used as argument delimiters.
+	Call out letters and numerals as (usually) usable as well.
+	Correct an almost completely inaccurate list of escape sequences
+	that accept a newline as an argument delimiter: \A, \b, \o, \w,
+	and \X do; \B and \Z do not.  Correct example of use of newline
+	as delimiter with \o escape sequence.  Stop referring to the
+	decimal point as an "operator".  Drop "newline" from a list of
+	prohibited delimiters by several escape sequences since it has
+	already been discussed.
+
+	* man/groff.7.man (Escape sequences): Replace weaksauce cross
+	reference to our Texinfo manual with a proper discussion of
+	acceptable delimiters in escape sequences, synced with the
+	foregoing change.  Stop using quotation marks around escape
+	sequences, except for "\ " which obviously needs it.
+
+	Fixes <https://savannah.gnu.org/bugs/?63002>.  Thanks to Dave
+	Kemper for the report.
+
+2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Don't throw a spurious warning when using newline as
 	delimiter with the few escape sequences that permit this.
 

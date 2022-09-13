@@ -3601,7 +3601,7 @@ to requests and macros
 .
 An escape sequence is introduced by the escape character,
 a backslash
-.RB \[lq] \[rs] \[rq]
+.B \[rs]
 (but see the
 .B .ec
 request).
@@ -3630,26 +3630,134 @@ and an argument of arbitrary length is enclosed in brackets
 In the latter convention,
 the user selects a delimiter character;
 the neutral apostrophe
-.RB \[lq] \[aq] \[rq]
+.B \[aq]
 is a popular choice and shown in this document.
 .
-Some characters cannot be used as delimiters;
-see subsection \[lq]Escape Sequences\[rq] in the
-.I groff
-Texinfo manual for details.
-.\" TODO: Reproduce that material here, as tersely as possible.
+The neutral double quote
+.B \[dq]
+is another popular choice.
 .
+Letters,
+numerals,
+and leaders can be used.
+.
+.
+.P
+The following escape sequences
+(which are handled similarly to characters since they don't take an
+argument)
+are also allowed as delimiters:
+.BR \[rs]% ,
+.RB \[lq] \|\[rs]\~ "\[rq] (backslash-space),"
+.BR \[rs]| ,
+.BR \[rs]\[ha] ,
+.BR \[rs]{ ,
+.BR \[rs]} ,
+.BR \[rs]\[aq] ,
+.BR \[rs]\[ga] ,
+.BR \[rs]\- ,
+.BR \[rs]_ ,
+.BR \[rs]! ,
+.BR \[rs]? ,
+.BR \[rs]) ,
+.BR \[rs]/ ,
+.BR \[rs], ,
+.BR \[rs]& ,
+.BR \[rs]: ,
+.BR \[rs]\[ti] ,
+.BR \[rs]0 ,
+.BR \[rs]a ,
+.BR \[rs]c ,
+.BR \[rs]d ,
+.BR \[rs]e ,
+.BR \[rs]E ,
+.BR \[rs]p ,
+.BR \[rs]r ,
+.BR \[rs]t ,
+and
+.BR \[rs]u .
+.
+However,
+using them this way is discouraged;
+it can make the input confusing to read.
+.
+.
+.P
+A few escape sequences,
+.BR \[rs]A ,
+.BR \[rs]b ,
+.BR \[rs]o ,
+.BR \[rs]w ,
+.BR \[rs]X ,
+and
+.BR \[rs]Z ,
+accept a newline as a delimiter.
+.
+A newline that serves as an ending delimiter continues to be
+recognized as an input line ending.
+.
+The use of newlines as delimiters in escape sequences is discouraged.
+.
+.
+.P
+The escape sequences
+.BR \[rs]D ,
+.BR \[rs]h ,
+.BR \[rs]H ,
+.BR \[rs]l ,
+.BR \[rs]L ,
+.BR \[rs]N ,
+.BR \[rs]R ,
+.BR \[rs]s ,
+.BR \[rs]S ,
+.BR \[rs]v ,
+and
+.B \[rs]x
+prohibit many delimiters.
+.
+.
+.RS
+.IP \[bu] 2n
+the numerals 0\[en]9 and the decimal point
+.RB \[lq] . \[rq]
+.
+.
+.IP \[bu]
+the (single-character) operators
+.B +\-/*%<>=&:()
+.
+.
+.IP \[bu]
+any escape sequences other than
+.BR \[rs]% ,
+.BR \[rs]: ,
+.BR \[rs]{ ,
+.BR \[rs]} ,
+.BR \[rs]\[aq] ,
+.BR \[rs]\[ga] ,
+.BR \[rs]\- ,
+.BR \[rs]_ ,
+.BR \[rs]! ,
+.BR \[rs]/ ,
+.BR \[rs]c ,
+.BR \[rs]e ,
+and
+.B \[rs]p
+.RE
+.
+.
+.P
 A few escape sequences are idiosyncratic,
 and support both of the foregoing conventions
-.RB (\[lq] \[rs]s \[rq]),
-designate their own terminating character
-.RB (\[lq] \[rs]? \[rq]),
+.RB ( \|\[rs]s ),
+designate their own termination sequence
+.RB ( \|\[rs]? ),
 consume input until the next newline
-.RB (\[lq] \[rs]! \[rq],
-.RB \[lq] \[rs]" \[rq],
-.RB \[lq] \[rs]# \[rq]),
+.RB ( \|\[rs]! ,
+.BR \|\[rs]" ,
+.BR \|\[rs]# ),
 or support an additional modifier character
-.RB (\[lq] \[rs]s \[rq]
+.RB ( \|\[rs]s
 again).
 .
 .
@@ -3672,6 +3780,8 @@ consult its documentation to learn of \[lq]safe\[rq] sequences or
 alternative facilities it provides to achieve the desired result.
 .
 .
+.br
+.ne 2v
 .P
 If the escape character is followed by a character that does not
 identify a defined operation,
@@ -5593,7 +5703,7 @@ restrictions imposed by the hyphenation mode are
 .I not
 respected for words whose hyphenations have been explicitly specified
 with the hyphenation character
-.RB (\[lq] \[rs]% \[rq]
+.RB (\[lq] \|\[rs]% \[rq]
 by default)
 or the
 .B .hw
@@ -5767,7 +5877,7 @@ returning to the enclosing context.
 .
 Macro call and string interpolation parameters can be accessed using
 escape sequences starting with
-.RB \[lq] \[rs]$ \[rq].
+.RB \[lq] \|\[rs]$ \[rq].
 .
 The
 .B \[rs]n[.$]
@@ -5914,7 +6024,7 @@ expects them as control characters if you mean to use them literally.
 Macro definitions can be nested to arbitrary depth.
 .
 In
-.RB \[lq] \[rs]\[rs] \[rq],
+.RB \[lq] \|\[rs]\[rs] \[rq],
 each escape character is interpreted twice\[em]once in copy mode,
 when the macro is defined,
 and once outside of it,

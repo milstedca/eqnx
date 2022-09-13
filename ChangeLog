@@ -1,5 +1,16 @@
 2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Don't throw a spurious warning when using newline as
+	delimiter with the few escape sequences that permit this.
+
+	* src/roff/troff/input.cpp (do_overstrike, do_bracket, do_width)
+	(do_special): Do it.
+
+	Fixes <https://savannah.gnu.org/bugs/?63011>.  Thanks to Bjarni
+	Ingi Gislason for the report and Dave Kemper for the discussion.
+
+2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Add regression test for Savannah #63011.
 
 	* src/roff/groff/tests/\

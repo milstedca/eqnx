@@ -1439,9 +1439,14 @@ node *do_overstrike()
   start.next();
   for (;;) {
     tok.next();
-    if (tok.is_newline() || tok.is_eof()) {
+    if (tok.is_newline()) {
+      input_stack::push(make_temp_iterator("\n"));
+      break;
+    }
+    if (tok.is_eof()) {
       warning(WARN_DELIM, "missing closing delimiter in overstrike"
 	     " escape sequence (got %1)", tok.description());
+      // Pretend we saw a newline.
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
@@ -1476,15 +1481,16 @@ static node *do_bracket()
   int start_level = input_stack::get_level();
   for (;;) {
     tok.next();
-    if (tok.is_eof() || tok.is_newline()) {
+    if (tok.is_newline()) {
+      input_stack::push(make_temp_iterator("\n"));
+      break;
+    }
+    if (tok.is_eof()) {
       warning(WARN_DELIM, "missing closing delimiter in"
 	      " bracket-building escape sequence (got %1)",
 	      tok.description());
-      // XXX: Most other places we miss a closing delimiter, we push a
-      // temp iterator for the EOF case too.  What's special about \b?
-      // Exceptions: \w, \X are like this too.
-      if (tok.is_newline())
-	input_stack::push(make_temp_iterator("\n"));
+      // Pretend we saw a newline.
+      input_stack::push(make_temp_iterator("\n"));
       break;
     }
     if (tok == start
@@ -5263,14 +5269,16 @@ static void do_width()
   curenv = &env;
   for (;;) {
     tok.next();
-    if (tok.is_eof() || tok.is_newline()) {
+    if (tok.is_newline()) {
+      input_stack::push(make_temp_iterator("\n"));
+      break;
+    }
+    if (tok.is_eof()) {
       warning(WARN_DELIM, "missing closing delimiter in"
-	      " width computation escape sequence (got %1)", tok.description());
-      // XXX: Most other places we miss a closing delimiter, we push a
-      // temp iterator for the EOF case too.  What's special about \w?
-      // Exception: \b, \X are like this too.
-      if (tok.is_newline())
-	input_stack::push(make_temp_iterator("\n"));
+	      " width computation escape sequence (got %1)",
+	      tok.description());
+      // Pretend we saw a newline.
+      input_stack::push(make_temp_iterator("\n"));
       break;
     }
     if (tok == start
@@ -5475,17 +5483,19 @@ static node *do_special()
   start.next();
   int start_level = input_stack::get_level();
   macro mac;
+  // XXX: will tok != start ever be false?
   for (tok.next();
        tok != start || input_stack::get_level() != start_level;
        tok.next()) {
-    if (tok.is_eof() || tok.is_newline()) {
+    if (tok.is_newline()) {
+      input_stack::push(make_temp_iterator("\n"));
+      break;
+    }
+    if (tok.is_eof()) {
       warning(WARN_DELIM, "missing closing delimiter in device control"
 	      " escape sequence (got %1)", tok.description());
-      // XXX: Most other places we miss a closing delimiter, we push a
-      // temp iterator for the EOF case too.  What's special about \X?
-      // Exceptions: \b, \w are like this too.
-      if (tok.is_newline())
-	input_stack::push(make_temp_iterator("\n"));
+      // Pretend we saw a newline.
+      input_stack::push(make_temp_iterator("\n"));
       break;
     }
     unsigned char c;

@@ -1,5 +1,13 @@
 2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Add regression test for Savannah #63011.
+
+	* src/roff/groff/tests/\
+	some_escapes_accept_newline_delimiters.sh: Do it.
+	* src/roff/groff/groff.am (groff_TESTS): Run it.
+
+2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_special): Fix code style nit;
 	align function definition with declaration (internal linkage).
 

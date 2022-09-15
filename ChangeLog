@@ -1,5 +1,15 @@
 2022-09-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Fix Savannah #59738.
+
+	* tmac/doc.tmac (Lk): Process further macro arguments more like
+	other macros do, calling `doc-print-recursive`.  This permits
+	recognition of end-of-sentence punctuation in the argument list.
+
+	Fixes <https://savannah.gnu.org/bugs/?59738>.
+
+2022-09-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Regression-test Savannah #59738.
 
 	* tmac/tests/doc_Lk-respect-sentence-ending-punctuation.sh: Do

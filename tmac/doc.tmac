@@ -6755,13 +6755,12 @@
 .  nop \f[\n[doc-curr-font]]\c
 .
 .  \" Format trailing arguments, like punctuation, if any.
-.  \" XXX: This loses track of end-of-sentence state.
-.  while (\n[doc-arg-ptr] <= \n[doc-arg-count]) \{\
-.    nop \&\*[doc-arg\n[doc-arg-ptr]]\c
-.    nr doc-arg-ptr +1
+.  ie (\n[doc-arg-ptr] <= \n[doc-arg-count]) \
+.    doc-print-recursive
+.  el \{\
+.    nop \&
+.    doc-reset-args
 .  \}
-.  nop \&
-.  doc-reset-args
 ..
 .ec
 .

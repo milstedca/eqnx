@@ -66,6 +66,7 @@
 .ds doc-Ft-font \f[CO]\s[\n[.ps]u]
 .ds doc-Ic-font \f[CB]\s[\n[.ps]u]
 .ds doc-Li-font \f[C]
+.ds doc-Lk-font \f[R]\"
 .ds doc-Me-font \f[B]\s[\n[.ps]u]
 .ds doc-Nm-font \f[CB]\s[\n[.ps]u]
 .ds doc-No-font \f[R]\s[\n[.ps]u]

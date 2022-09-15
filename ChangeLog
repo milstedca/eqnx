@@ -1,5 +1,17 @@
 2022-09-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Add internal string `doc-Lk-font` to manage the typeface
+	in which to render URIs.
+
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Add it.  Use roman instead of (Courier)
+	bold.  This is more consistent with man(7)'s `UR` and less with
+	mandoc(1).
+
+	* tmac/doc.tmac (Lk): Use it instead of `doc-Sy-font`.
+
+2022-09-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Fix Savannah #59738.
 
 	* tmac/doc.tmac (Lk): Process further macro arguments more like

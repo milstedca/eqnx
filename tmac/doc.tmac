@@ -6738,6 +6738,8 @@
 .  \}
 .
 .  \" Format the link text, if any.
+.  \" XXX: The forced use of the emphasis font and a trailing colon
+.  \" seems intrusive.
 .  nr doc-curr-font \n[.f]
 .  if (\n[doc-arg-ptr] <= \n[doc-lasttext-Lk]) \{\
 .    nop \*[doc-Em-font]\c
@@ -6751,7 +6753,7 @@
 .  \}
 .
 .  \" Format the link target.
-.  nop \*[doc-Sy-font]\*[doc-target-Lk]\c
+.  nop \*[doc-Lk-font]\*[doc-target-Lk]\c
 .  nop \f[\n[doc-curr-font]]\c
 .
 .  \" Format trailing arguments, like punctuation, if any.

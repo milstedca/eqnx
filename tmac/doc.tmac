@@ -6737,7 +6737,7 @@
 .    nr doc-lasttext-Lk -1
 .  \}
 .
-.  \" Print the link text, if any.
+.  \" Format the link text, if any.
 .  nr doc-curr-font \n[.f]
 .  if (\n[doc-arg-ptr] <= \n[doc-lasttext-Lk]) \{\
 .    nop \*[doc-Em-font]\c
@@ -6750,11 +6750,12 @@
 .    nr doc-arg-ptr +1
 .  \}
 .
-.  \" Print the link target.
+.  \" Format the link target.
 .  nop \*[doc-Sy-font]\*[doc-target-Lk]\c
 .  nop \f[\n[doc-curr-font]]\c
 .
-.  \" Print the delimiters, if any.
+.  \" Format trailing arguments, like punctuation, if any.
+.  \" XXX: This loses track of end-of-sentence state.
 .  while (\n[doc-arg-ptr] <= \n[doc-arg-limit]) \{\
 .    nop \&\*[doc-arg\n[doc-arg-ptr]]\c
 .    nr doc-arg-ptr +1

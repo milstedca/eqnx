@@ -208,7 +208,7 @@
 .
 .eo
 .de Ql
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \
 .      ds doc-macro-name Ql
 .    el \

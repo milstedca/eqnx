@@ -50,7 +50,7 @@
 .  nr doc-curr-font \n[.f]
 .  ds doc-str-Ux \f[\n[doc-curr-font]]
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    if \n[.$] \{\
 .      ds doc-macro-name Ux
 .      doc-parse-args \$@
@@ -63,8 +63,8 @@
 .  ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .  \" recompute space vector for remaining arguments
-.  nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.  nr doc-arg-limit \n[doc-arg-ptr]
+.  nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.  nr doc-arg-count \n[doc-arg-ptr]
 .  if \n[doc-num-args] \
 .    doc-parse-space-vector
 .
@@ -105,13 +105,13 @@
 .  \" default value if no argument
 .  ds doc-str-Bx1 BSD\*[doc-str-Bx]
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    if \n[.$] \{\
 .      ds doc-macro-name Bx
 .      doc-parse-args \$@
 .    \}
 .
-.  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .      ie        "\*[doc-arg\n[doc-arg-ptr]]"-alpha" \
@@ -124,7 +124,7 @@
 .        ds doc-str-Bx1 \&\*[doc-arg\n[doc-arg-ptr]]\^
 .        as doc-str-Bx1 BSD\*[doc-str-Bx]
 .
-.        if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.        if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .          nr doc-arg-ptr +1
 .          ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .            ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
@@ -149,8 +149,8 @@
 .  ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .  \" recompute space vector for remaining arguments
-.  nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.  nr doc-arg-limit \n[doc-arg-ptr]
+.  nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.  nr doc-arg-count \n[doc-arg-ptr]
 .  if \n[doc-num-args] \
 .    doc-parse-space-vector
 .
@@ -223,13 +223,13 @@
 .  \" default value if no argument
 .  ds doc-str-At1 AT&T UNIX\*[doc-str-At]
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    if \n[.$] \{\
 .      ds doc-macro-name At
 .      doc-parse-args \$@
 .    \}
 .
-.  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .      ie \A'\*[doc-arg\n[doc-arg-ptr]]' \{\
@@ -253,8 +253,8 @@
 .  ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .  \" recompute space vector for remaining arguments
-.  nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.  nr doc-arg-limit \n[doc-arg-ptr]
+.  nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.  nr doc-arg-count \n[doc-arg-ptr]
 .  if \n[doc-num-args] \
 .    doc-parse-space-vector
 .
@@ -288,13 +288,13 @@
 .  \" default value if no argument
 .  ds doc-str-Dx1 \%DragonFly\*[doc-str-Dx]
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    if \n[.$] \{\
 .      ds doc-macro-name Dx
 .      doc-parse-args \$@
 .    \}
 .
-.  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .      ie \A'\*[doc-arg\n[doc-arg-ptr]]' \{\
@@ -318,8 +318,8 @@
 .  ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .  \" recompute space vector for remaining arguments
-.  nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.  nr doc-arg-limit \n[doc-arg-ptr]
+.  nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.  nr doc-arg-count \n[doc-arg-ptr]
 .  if \n[doc-num-args] \
 .    doc-parse-space-vector
 .
@@ -353,13 +353,13 @@
 .  \" default value if no argument
 .  ds doc-str-Fx1 \%FreeBSD\*[doc-str-Fx]
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    if \n[.$] \{\
 .      ds doc-macro-name Fx
 .      doc-parse-args \$@
 .    \}
 .
-.  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .      ie \A'\*[doc-arg\n[doc-arg-ptr]]' \{\
@@ -383,8 +383,8 @@
 .  ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .  \" recompute space vector for remaining arguments
-.  nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.  nr doc-arg-limit \n[doc-arg-ptr]
+.  nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.  nr doc-arg-count \n[doc-arg-ptr]
 .  if \n[doc-num-args] \
 .    doc-parse-space-vector
 .
@@ -419,13 +419,13 @@
 .  ds doc-str-Nx1 \%Net
 .  as doc-str-Nx1 BSD\*[doc-str-Nx]
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    if \n[.$] \{\
 .      ds doc-macro-name Nx
 .      doc-parse-args \$@
 .    \}
 .
-.  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .      ie \A'\*[doc-arg\n[doc-arg-ptr]]' \{\
@@ -449,8 +449,8 @@
 .  ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .  \" recompute space vector for remaining arguments
-.  nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.  nr doc-arg-limit \n[doc-arg-ptr]
+.  nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.  nr doc-arg-count \n[doc-arg-ptr]
 .  if \n[doc-num-args] \
 .    doc-parse-space-vector
 .
@@ -481,13 +481,13 @@
 .  \" default value if no argument
 .  ds doc-str-Ox1 \%OpenBSD\*[doc-str-Ox]
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    if \n[.$] \{\
 .      ds doc-macro-name Ox
 .      doc-parse-args \$@
 .    \}
 .
-.  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \
 .      as doc-str-Ox1 \~\*[doc-arg\n[doc-arg-ptr]]
@@ -501,8 +501,8 @@
 .  ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .  \" recompute space vector for remaining arguments
-.  nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.  nr doc-arg-limit \n[doc-arg-ptr]
+.  nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.  nr doc-arg-count \n[doc-arg-ptr]
 .  if \n[doc-num-args] \
 .    doc-parse-space-vector
 .
@@ -533,13 +533,13 @@
 .  \" default value if no argument
 .  ds doc-str-Bsx1 BSD/OS\*[doc-str-Bsx]
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    if \n[.$] \{\
 .      ds doc-macro-name Bsx
 .      doc-parse-args \$@
 .    \}
 .
-.  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .    nr doc-arg-ptr +1
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \
 .      as doc-str-Bsx1 \~\*[doc-arg\n[doc-arg-ptr]]
@@ -553,8 +553,8 @@
 .  ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .  \" recompute space vector for remaining arguments
-.  nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.  nr doc-arg-limit \n[doc-arg-ptr]
+.  nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.  nr doc-arg-count \n[doc-arg-ptr]
 .  if \n[doc-num-args] \
 .    doc-parse-space-vector
 .
@@ -714,7 +714,7 @@
 .
 .eo
 .de St
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name St
 .      doc-parse-args \$@
@@ -723,11 +723,11 @@
 .      doc-St-usage
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    nr doc-curr-font \n[.f]
 .    ds doc-str-St \f[\n[doc-curr-font]]
 .
@@ -859,7 +859,7 @@
 .
 .eo
 .de Lb
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Lb
 .      doc-parse-args \$@
@@ -868,11 +868,11 @@
 .      tm Usage: .Lb library_name ... (#\n[.c])
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    nr doc-curr-font \n[.f]
 .    ds doc-str-Lb \f[\n[doc-curr-font]]
 .

@@ -148,10 +148,10 @@
 .als doc-arg0 doc-macro-name
 .
 .
-.\" NS doc-arg-limit global register
+.\" NS doc-arg-count global register
 .\" NS   total number of arguments
 .
-.nr doc-arg-limit 0
+.nr doc-arg-count 0
 .
 .
 .\" NS doc-num-args global register
@@ -171,7 +171,7 @@
 .\" NS   argument vector
 .\" NS
 .\" NS limit:
-.\" NS   doc-arg-limit
+.\" NS   doc-arg-count
 .
 .ds doc-arg1
 .
@@ -181,7 +181,7 @@
 .\" NS   punctuation prefix=4)
 .\" NS
 .\" NS limit:
-.\" NS   doc-arg-limit
+.\" NS   doc-arg-count
 .
 .nr doc-type1 0
 .
@@ -190,7 +190,7 @@
 .\" NS   space vector
 .\" NS
 .\" NS limit:
-.\" NS   doc-arg-limit
+.\" NS   doc-arg-count
 .
 .ds doc-space1
 .
@@ -199,7 +199,7 @@
 .\" NS   parse arguments (recursively) ('.doc-parse-args arg ...')
 .\" NS
 .\" NS modifies:
-.\" NS   doc-arg-limit
+.\" NS   doc-arg-count
 .\" NS   doc-arg-ptr
 .\" NS   doc-argXXX
 .\" NS   doc-spaceXXX
@@ -214,7 +214,7 @@
 .
 .eo
 .de doc-parse-args
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    doc-set-spacing-1
 .
 .  nr doc-have-space 0
@@ -222,20 +222,20 @@
 .  if !\n[.$] \
 .    return
 .
-.  nr doc-arg-limit +1
+.  nr doc-arg-count +1
 .
 .  \" handle '|' and '...' specially
 .  ie        "\$1"|" \
-.    ds doc-arg\n[doc-arg-limit] \f[R]|\f[]
+.    ds doc-arg\n[doc-arg-count] \f[R]|\f[]
 .  el \{ .ie "\$1"..." \
-.    ds doc-arg\n[doc-arg-limit] \|.\|.\|.
+.    ds doc-arg\n[doc-arg-count] \|.\|.\|.
 .  el \
-.    ds doc-arg\n[doc-arg-limit] "\$1
+.    ds doc-arg\n[doc-arg-count] "\$1
 .  \}
 .
 .  \" get argument type and set spacing
-.  doc-get-arg-type* \n[doc-arg-limit]
-.  nr doc-type\n[doc-arg-limit] \n[doc-arg-type]
+.  doc-get-arg-type* \n[doc-arg-count]
+.  nr doc-type\n[doc-arg-count] \n[doc-arg-type]
 .  doc-set-spacing-\n[doc-arg-type]
 .
 .  \" check whether we have processed the last parameter
@@ -257,7 +257,7 @@
 .\" NS   cf. comments in doc-parse-args
 .\" NS
 .\" NS modifies:
-.\" NS   doc-arg-limit
+.\" NS   doc-arg-count
 .\" NS   doc-arg-ptr
 .\" NS   doc-argXXX
 .\" NS   doc-num-args
@@ -271,19 +271,19 @@
 .
 .eo
 .de doc-parse-arg-vector
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    doc-set-spacing-1
 .
-.  nr doc-arg-limit +1
+.  nr doc-arg-count +1
 .
-.  ie        "\*[doc-arg\n[doc-arg-limit]]"|" \
-.    ds doc-arg\n[doc-arg-limit] \f[R]|\f[]
-.  el \{ .if "\*[doc-arg\n[doc-arg-limit]]"..." \
-.    ds doc-arg\n[doc-arg-limit] \|.\|.\|.
+.  ie        "\*[doc-arg\n[doc-arg-count]]"|" \
+.    ds doc-arg\n[doc-arg-count] \f[R]|\f[]
+.  el \{ .if "\*[doc-arg\n[doc-arg-count]]"..." \
+.    ds doc-arg\n[doc-arg-count] \|.\|.\|.
 .  \}
 .
-.  doc-get-arg-type* \n[doc-arg-limit]
-.  nr doc-type\n[doc-arg-limit] \n[doc-arg-type]
+.  doc-get-arg-type* \n[doc-arg-count]
+.  nr doc-type\n[doc-arg-count] \n[doc-arg-type]
 .  doc-set-spacing-\n[doc-arg-type]
 .
 .  ie (\n[doc-num-args] == 1) \{\
@@ -304,15 +304,15 @@
 .\" NS   parse space vector (recursive)
 .\" NS
 .\" NS modifies:
-.\" NS   doc-arg-limit
+.\" NS   doc-arg-count
 .\" NS   doc-num-args
 .\" NS   doc-spaceXXX
 .
 .eo
 .de doc-parse-space-vector
-.  nr doc-arg-limit +1
+.  nr doc-arg-count +1
 .
-.  doc-set-spacing-\n[doc-type\n[doc-arg-limit]]
+.  doc-set-spacing-\n[doc-type\n[doc-arg-count]]
 .
 .  ie (\n[doc-num-args] == 1) \
 .    nr doc-num-args 0
@@ -355,15 +355,15 @@
 .\" NS   '.doc-append-arg [arg] [type]'
 .\" NS
 .\" NS modifies:
-.\" NS   doc-arg-limit
+.\" NS   doc-arg-count
 .\" NS   doc-argXXX
 .\" NS   doc-typeXXX
 .
 .eo
 .de doc-append-arg
-.  nr doc-arg-limit +1
-.  ds doc-arg\n[doc-arg-limit] "\$1
-.  nr doc-type\n[doc-arg-limit] \$2
+.  nr doc-arg-count +1
+.  ds doc-arg\n[doc-arg-count] "\$1
+.  nr doc-type\n[doc-arg-count] \$2
 .  doc-set-spacing-\$2
 ..
 .ec
@@ -385,13 +385,13 @@
 .\" NS   reset argument counters
 .\" NS
 .\" NS modifies:
-.\" NS   doc-arg-limit
+.\" NS   doc-arg-count
 .\" NS   doc-arg-ptr
 .\" NS   doc-have-slot
 .
 .eo
 .de doc-reset-args
-.  nr doc-arg-limit 0
+.  nr doc-arg-count 0
 .  nr doc-arg-ptr 0
 .  nr doc-have-slot 0
 .
@@ -424,7 +424,7 @@
 .  nr doc-curr-font \n[.f]
 .  nop \*[doc-Fl-font]\c
 .
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ds doc-macro-name Fl
 .    doc-parse-args \$@
 .
@@ -433,11 +433,11 @@
 .      nop \|\-\|\f[]\s[0]
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
-.  ie (\n[doc-arg-limit] < \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .    \" last argument
 .    nop \|\-\f[]\s[0]\c
 .    doc-print-and-reset
@@ -508,7 +508,7 @@
 .      nop \)\*[doc-str-dfr]\f[]\s[0]\c
 .    \}
 .
-.    ie (\n[doc-arg-limit] == \n[doc-arg-ptr]) \{\
+.    ie (\n[doc-arg-count] == \n[doc-arg-ptr]) \{\
 .      \" last argument
 .      if (\n[doc-reg-dfr1] == 4) \
 .        nop \|\-\c
@@ -569,7 +569,7 @@
 .    \}
 .
 .    nr doc-arg-ptr +1
-.    ie (\n[doc-arg-limit] < \n[doc-arg-ptr]) \{\
+.    ie (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .      \" last argument
 .      nop \f[\n[doc-curr-font]]\c
 .      doc-print-and-reset
@@ -590,7 +590,7 @@
 .
 .eo
 .de doc-print-prefixes
-.  while (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  while (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    if !(\n[doc-type\n[doc-arg-ptr]] == 4) \
 .      break
 .    nop \f[\n[doc-curr-font]]\c
@@ -611,7 +611,7 @@
 .
 .eo
 .de doc-generic-macro
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name \$0
 .      doc-parse-args \$@
@@ -620,11 +620,11 @@
 .      tm Usage: .\$0 \*[doc-\$0-usage] ... (#\n[.c])
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    if (\n[doc-type\n[doc-arg-ptr]] == 1) \{\
 .      tmc mdoc warning: Using a macro as first argument
 .      tm1 " cancels effect of .\$0 (#\n[.c])
@@ -671,7 +671,7 @@
 .  nr doc-curr-font \n[.f]
 .  nop \*[doc-Ar-font]\c
 .
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ds doc-macro-name Ar
 .    doc-parse-args \$@
 .
@@ -680,12 +680,12 @@
 .      nop \)\*[doc-str-Ar-default]\&\f[]\s[0]
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
 .  doc-print-prefixes
-.  ie (\n[doc-arg-limit] < \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .    nop \)\*[doc-str-Ar-default]\&\f[]\s[0]\c
 .    doc-print-and-reset
 .  \}
@@ -698,8 +698,8 @@
 .      ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .      \" recompute space vector for remaining arguments
-.      nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.      nr doc-arg-limit \n[doc-arg-ptr]
+.      nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.      nr doc-arg-count \n[doc-arg-ptr]
 .      doc-parse-space-vector
 .    \}
 .    doc-print-recursive
@@ -744,7 +744,7 @@
 .
 .eo
 .de Cd
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Cd
 .      doc-parse-args \$@
@@ -753,11 +753,11 @@
 .      tm Usage: .Cd configuration_file_declaration ... (#\n[.c])
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    nr doc-curr-font \n[.f]
 .
 .    ie \n[doc-in-synopsis-section] \{\
@@ -889,7 +889,7 @@
 .
 .eo
 .de Fd
-.  ie ((\n[.$] >= 1) & (\n[doc-arg-limit] == 0)) \{\
+.  ie ((\n[.$] >= 1) & (\n[doc-arg-count] == 0)) \{\
 .    doc-do-func-decl
 .    nop \*[doc-Fd-font]\$*
 .    br
@@ -919,7 +919,7 @@
 .
 .eo
 .de In
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name In
 .      doc-parse-args \$@
@@ -928,12 +928,12 @@
 .      tm Usage: .In include_file ... (#\n[.c])
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
 .  doc-print-prefixes
-.  ie ((\n[doc-arg-limit] >= \n[doc-arg-ptr]) & (\n[doc-type\n[doc-arg-ptr]] == 2)) \{\
+.  ie ((\n[doc-arg-count] >= \n[doc-arg-ptr]) & (\n[doc-type\n[doc-arg-ptr]] == 2)) \{\
 .    nr doc-curr-font \n[.f]
 .
 .    ie \n[doc-in-synopsis-section] \{\
@@ -943,7 +943,7 @@
 .        ft \n[doc-curr-font]
 .        br
 .        nr doc-arg-ptr +1
-.        ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \
+.        ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \
 .          doc-print-recursive
 .        el \
 .          doc-reset-args
@@ -1029,7 +1029,7 @@
 .
 .eo
 .de Nm
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ds doc-macro-name Nm
 .    ie \n[.$] \
 .      doc-parse-args \$@
@@ -1040,12 +1040,12 @@
 .        doc-parse-args \*[doc-topic-name]
 .  \}\}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
 .  doc-print-prefixes
-.  ie (\n[doc-arg-limit] < \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .    \" last argument
 .    ie "\*[doc-topic-name]"" \{\
 .      tm Usage: .Nm name ... (#\n[.c])
@@ -1069,8 +1069,8 @@
 .        ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .        \" recompute space vector for remaining arguments
-.        nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.        nr doc-arg-limit \n[doc-arg-ptr]
+.        nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.        nr doc-arg-count \n[doc-arg-ptr]
 .        doc-parse-space-vector
 .    \}\}
 .    el \{\
@@ -1111,7 +1111,7 @@
 .
 .eo
 .de Pa
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ds doc-macro-name Pa
 .    doc-parse-args \$@
 .
@@ -1120,12 +1120,12 @@
 .      nop \*[doc-Pa-font]\[ti]\f[]\s[0]
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
 .  doc-print-prefixes
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    nr doc-curr-font \n[.f]
 .    nop \*[doc-Pa-font]\c
 .    if !(\n[doc-type\n[doc-arg-ptr]] == 2) \{\
@@ -1136,8 +1136,8 @@
 .      ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
 .      \" recompute space vector for remaining arguments
-.      nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.      nr doc-arg-limit \n[doc-arg-ptr]
+.      nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.      nr doc-arg-count \n[doc-arg-ptr]
 .      doc-parse-space-vector
 .    \}
 .    doc-print-recursive
@@ -1180,7 +1180,7 @@
 .
 .eo
 .de Tn
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Tn
 .      doc-parse-args \$@
@@ -1189,11 +1189,11 @@
 .      tm Usage: .Tn trade_name ... (#\n[.c])
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    nr doc-curr-font \n[.f]
 .    nop \)\c
 .    ie !\n[doc-is-reference] \{\
@@ -1255,7 +1255,7 @@
 .
 .eo
 .de Op
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Op
 .
 .  ds doc-quote-left "\*[doc-left-bracket]
@@ -1278,7 +1278,7 @@
 .
 .eo
 .de Aq
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Aq
 .
 .  ie "\*[doc-macro-name]"An" \{\
@@ -1307,7 +1307,7 @@
 .
 .eo
 .de Bq
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Bq
 .
 .  ds doc-quote-left "\*[doc-left-bracket]
@@ -1330,7 +1330,7 @@
 .
 .eo
 .de Brq
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Brq
 .
 .  ds doc-quote-left {
@@ -1353,7 +1353,7 @@
 .
 .eo
 .de Dq
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Dq
 .
 .  ds doc-quote-left "\*[Lq]
@@ -1376,7 +1376,7 @@
 .
 .eo
 .de Eq
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Eq
 .
 .  ds doc-quote-left "\$1
@@ -1400,7 +1400,7 @@
 .
 .eo
 .de Pq
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Pq
 .
 .  ds doc-quote-left "\*[doc-left-parenthesis]
@@ -1429,7 +1429,7 @@
 .
 .eo
 .de Qq
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Qq
 .
 .  ds doc-quote-left "\*[q]
@@ -1452,7 +1452,7 @@
 .
 .eo
 .de Sq
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Sq
 .
 .  ds doc-quote-left "\*[doc-left-singlequote]
@@ -1475,7 +1475,7 @@
 .
 .eo
 .de Es
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie (\n[.$] > 2) \{\
 .      ds doc-macro-name Es
 .      doc-parse-args \$@
@@ -1485,7 +1485,7 @@
 .      ds doc-quote-right "\$2
 .  \}\}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
@@ -1493,7 +1493,7 @@
 .  nr doc-arg-ptr +1
 .  ds doc-quote-right "\*[doc-arg\n[doc-arg-ptr]]
 .  nr doc-arg-ptr +1
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \
 .    doc-do-\n[doc-type\n[doc-arg-ptr]]
 .  el \
 .    doc-print-and-reset
@@ -1530,14 +1530,14 @@
 .  if \n[doc-in-synopsis-section] \
 .    doc-set-hard-space
 .
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \
 .      doc-parse-args \$@
 .    el \{\
 .      nop \)\*[doc-quote-left]\*[doc-quote-right]
 .  \}\}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-curr-font \n[.f]
@@ -1546,7 +1546,7 @@
 .  doc-print-prefixes
 .  \" the final '\)' prevents hyphenation in case next character is '\%'
 .  nop \)\*[doc-quote-left]\)\c
-.  ie (\n[doc-arg-limit] < \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .    \" last argument
 .    nop \)\*[doc-quote-right]\)\c
 .    doc-print-and-reset
@@ -1554,8 +1554,8 @@
 .  el \{\
 .    \" test whether last arguments are of type closing punctuation
 .    \" resp. suffix
-.    ie (\n[doc-type\n[doc-arg-limit]] == 3) \{\
-.      nr doc-reg-des (\n[doc-arg-limit] - 1)
+.    ie (\n[doc-type\n[doc-arg-count]] == 3) \{\
+.      nr doc-reg-des (\n[doc-arg-count] - 1)
 .      while (\n[doc-type\n[doc-reg-des]] == 3) \
 .        nr doc-reg-des -1
 .
@@ -1566,7 +1566,7 @@
 .    el \{\
 .      \" test whether last arguments are macros which continue the line
 .      \" logically
-.      nr doc-reg-des \n[doc-arg-limit]
+.      nr doc-reg-des \n[doc-arg-count]
 .      while (\n[doc-reg-des] >= \n[doc-arg-ptr]) \{\
 .        if !\A'\*[doc-arg\n[doc-reg-des]]' \
 .          break
@@ -1576,7 +1576,7 @@
 .      \}
 .
 .      \" if there are no trailing macros to be skipped, append argument
-.      ie (\n[doc-reg-des] == \n[doc-arg-limit]) \
+.      ie (\n[doc-reg-des] == \n[doc-arg-count]) \
 .        doc-append-arg "\)\*[doc-quote-right]\)" 3
 .      el \{\
 .        \" if a previous call to 'doc-enclose-string' has already
@@ -1586,8 +1586,8 @@
 .        el \{\
 .          \" we have to shift all arguments to the right
 .          nr doc-reg-des +1
-.          nr doc-reg-des1 \n[doc-arg-limit]
-.          nr doc-reg-des2 (\n[doc-arg-limit] + 1)
+.          nr doc-reg-des1 \n[doc-arg-count]
+.          nr doc-reg-des2 (\n[doc-arg-count] + 1)
 .          while (\n[doc-reg-des1] >= \n[doc-reg-des]) \{\
 .            rn doc-arg\n[doc-reg-des1] doc-arg\n[doc-reg-des2]
 .            rnn doc-type\n[doc-reg-des1] doc-type\n[doc-reg-des2]
@@ -1595,14 +1595,14 @@
 .            nr doc-reg-des1 -1
 .            nr doc-reg-des2 -1
 .          \}
-.          nr doc-arg-limit +1
+.          nr doc-arg-count +1
 .
 .          \" finally, insert closing delimiter into the freed slot and
 .          \" recompute spacing vector
 .          ds doc-arg\n[doc-reg-des] "\)\*[doc-quote-right]\)
 .          nr doc-type\n[doc-reg-des] 3
-.          nr doc-num-args (\n[doc-arg-limit] - \n[doc-reg-des] + 1)
-.          nr doc-arg-limit (\n[doc-reg-des] - 1)
+.          nr doc-num-args (\n[doc-arg-count] - \n[doc-reg-des] + 1)
+.          nr doc-arg-count (\n[doc-reg-des] - 1)
 .          doc-parse-space-vector
 .          nr doc-have-slot 1
 .    \}\}\}
@@ -1633,7 +1633,7 @@
 .
 .eo
 .de Ao
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Ao
 .
 .  ie "\*[doc-macro-name]"An" \
@@ -1657,7 +1657,7 @@
 .
 .eo
 .de Ac
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Ac
 .
 .  ie "\*[doc-macro-name]"An" \
@@ -1681,7 +1681,7 @@
 .
 .eo
 .de Bo
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Bo
 .
 .  ds doc-quote-left "\*[doc-left-bracket]
@@ -1702,7 +1702,7 @@
 .
 .eo
 .de Bc
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Bc
 .
 .  ds doc-quote-right "\*[doc-right-bracket]
@@ -1723,7 +1723,7 @@
 .
 .eo
 .de Bro
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Bo
 .
 .  ds doc-quote-left {
@@ -1744,7 +1744,7 @@
 .
 .eo
 .de Brc
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Bc
 .
 .  ds doc-quote-right }
@@ -1765,7 +1765,7 @@
 .
 .eo
 .de Do
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Do
 .
 .  ds doc-quote-left "\*[Lq]
@@ -1786,7 +1786,7 @@
 .
 .eo
 .de Dc
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Dc
 .
 .  ds doc-quote-right "\*[Rq]
@@ -1807,7 +1807,7 @@
 .
 .eo
 .de Eo
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Eo
 .
 .  ds doc-quote-left "\$1
@@ -1829,7 +1829,7 @@
 .
 .eo
 .de Ec
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Ec
 .
 .  ds doc-quote-right "\$1
@@ -1851,7 +1851,7 @@
 .
 .eo
 .de Oo
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Oo
 .
 .  ds doc-quote-left [
@@ -1872,7 +1872,7 @@
 .
 .eo
 .de Oc
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Oc
 .
 .  ds doc-quote-right ]
@@ -1893,7 +1893,7 @@
 .
 .eo
 .de Po
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Po
 .
 .  ds doc-quote-left "\*[doc-left-parenthesis]
@@ -1914,7 +1914,7 @@
 .
 .eo
 .de Pc
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Pc
 .
 .  ds doc-quote-right "\*[doc-right-parenthesis]
@@ -1935,7 +1935,7 @@
 .
 .eo
 .de Qo
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Qo
 .
 .  ds doc-quote-left "\*[q]
@@ -1956,7 +1956,7 @@
 .
 .eo
 .de Qc
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Qc
 .
 .  ds doc-quote-right "\*[q]
@@ -1977,7 +1977,7 @@
 .
 .eo
 .de So
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name So
 .
 .  ds doc-quote-left "\*[doc-left-singlequote]
@@ -1998,7 +1998,7 @@
 .
 .eo
 .de Sc
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Sc
 .
 .  ds doc-quote-right "\*[doc-right-singlequote]
@@ -2019,7 +2019,7 @@
 .
 .eo
 .de Xo
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Xo
 .
 .  ds doc-quote-left
@@ -2040,7 +2040,7 @@
 .
 .eo
 .de Xc
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Xc
 .
 .  ds doc-quote-right
@@ -2071,7 +2071,7 @@
 .
 .eo
 .de doc-enclose-open
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    doc-parse-args \$@
 .
 .  nr doc-arg-ptr +1
@@ -2092,9 +2092,9 @@
 .  \" increase nesting level *after* parsing of arguments
 .  nr doc-nesting-level +1
 .
-.  if \n[doc-arg-limit] \{\
+.  if \n[doc-arg-count] \{\
 .    nr doc-arg-ptr +1
-.    ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \
+.    ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \
 .      doc-print-recursive
 .    el \
 .      doc-reset-args
@@ -2124,15 +2124,15 @@
 .  nop \*[doc-enclosure-box\n[doc-nesting-level]]\c
 .  nop \)\*[doc-quote-right]\)\c
 .
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    doc-parse-args \$@
 .
 .    if !\n[.$] \
 .      doc-print-and-reset
 .  \}
 .
-.  if \n[doc-arg-limit] \{\
-.    ie (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.  if \n[doc-arg-count] \{\
+.    ie (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .      nop \)\*[doc-space\n[doc-arg-ptr]]\c
 .      nr doc-arg-ptr +1
 .      doc-print-recursive
@@ -2162,11 +2162,11 @@
 .
 .eo
 .de Pf
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    ds doc-macro-name Pf
 .
-.  ie \n[doc-arg-limit] \{\
-.    ie ((\n[doc-arg-limit] - \n[doc-arg-ptr]) > 1) \{\
+.  ie \n[doc-arg-count] \{\
+.    ie ((\n[doc-arg-count] - \n[doc-arg-ptr]) > 1) \{\
 .      nr doc-arg-ptr +1
 .      nop \)\*[doc-arg\n[doc-arg-ptr]]\c
 .    \}
@@ -2183,9 +2183,9 @@
 .      nop \)
 .  \}\}
 .
-.  if \n[doc-arg-limit] \{\
+.  if \n[doc-arg-count] \{\
 .    nr doc-arg-ptr +1
-.    ie (\n[doc-arg-limit] < \n[doc-arg-ptr]) \
+.    ie (\n[doc-arg-count] < \n[doc-arg-ptr]) \
 .      doc-print-and-reset
 .    el \
 .      doc-do-\n[doc-type\n[doc-arg-ptr]]
@@ -2205,7 +2205,7 @@
 .
 .eo
 .de Ns
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Ns
 .      doc-parse-args \$@
@@ -2214,9 +2214,9 @@
 .      tm Usage: .Ns must be called with arguments (#\n[.c])
 .  \}
 .
-.  if \n[doc-arg-limit] \{\
+.  if \n[doc-arg-count] \{\
 .    nr doc-arg-ptr +1
-.    ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \
+.    ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \
 .      doc-print-recursive
 .    el \
 .      doc-reset-args
@@ -2232,12 +2232,12 @@
 .
 .eo
 .de Ap
-.  ie !\n[doc-arg-limit] \
+.  ie !\n[doc-arg-count] \
 .    tm Usage: 'Ap' cannot be first macro on a line (no '.Ap') (#\n[.c])
 .  el \{\
 .    nop \)'\)\c
 .    nr doc-arg-ptr +1
-.    ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \
+.    ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \
 .      doc-print-recursive
 .    el \
 .      doc-reset-args
@@ -2318,7 +2318,7 @@
 .\" NS   without argument, toggle space mode
 .\" NS
 .\" NS modifies:
-.\" NS   doc-arg-limit
+.\" NS   doc-arg-count
 .\" NS   doc-arg-ptr
 .\" NS   doc-argXXX
 .\" NS   doc-macro-name
@@ -2340,7 +2340,7 @@
 .  el \
 .    nr doc-reg-Sm 1
 .
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Sm
 .      doc-parse-args \$@
@@ -2363,7 +2363,7 @@
 .      \}
 .  \}\}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
@@ -2398,8 +2398,8 @@
 .
 .  ie \n[doc-space-mode] \{\
 .    \" recompute space vector for remaining arguments
-.    nr doc-num-args (\n[doc-arg-limit] - \n[doc-arg-ptr])
-.    nr doc-arg-limit \n[doc-arg-ptr]
+.    nr doc-num-args (\n[doc-arg-count] - \n[doc-arg-ptr])
+.    nr doc-arg-count \n[doc-arg-ptr]
 .    if \n[doc-num-args] \
 .      doc-parse-space-vector
 .
@@ -2412,7 +2412,7 @@
 .  el \{\
 .    \" reset remaining space vector elements
 .    nr doc-reg-Sm (\n[doc-arg-ptr] + 1)
-.    while (\n[doc-reg-Sm] <= \n[doc-arg-limit]) \{\
+.    while (\n[doc-reg-Sm] <= \n[doc-arg-count]) \{\
 .      ds doc-space\n[doc-reg-Sm]
 .      nr doc-reg-Sm +1
 .      \" the body of a 'while' request must end with the fitting '\}'!
@@ -2420,7 +2420,7 @@
 .  \}
 .
 .  \" do we have parameters to print?
-.  ie (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .    \" skip 'Sm' argument
 .    nr doc-arg-ptr +1
 .    doc-print-recursive
@@ -2505,29 +2505,29 @@
 .
 .eo
 .de doc-set-spacing-1
-.  nr doc-reg-dssfm1 \n[\*[doc-arg\n[doc-arg-limit]]]
+.  nr doc-reg-dssfm1 \n[\*[doc-arg\n[doc-arg-count]]]
 .
 .  \" closing macros like .Ac, Bc., etc. have value 3 (remove space
 .  \" before argument)
 .  ie (\n[doc-reg-dssfm1] == 3) \{\
-.    if \n[doc-arg-limit] \{\
-.      nr doc-reg-dssfm (\n[doc-arg-limit] - 1)
+.    if \n[doc-arg-count] \{\
+.      nr doc-reg-dssfm (\n[doc-arg-count] - 1)
 .      ds doc-space\n[doc-reg-dssfm]
 .    \}
-.    ds doc-space\n[doc-arg-limit] "\*[doc-space]
+.    ds doc-space\n[doc-arg-count] "\*[doc-space]
 .  \}
 .  el \{\
 .    \" macros like .Ap and .Ns have value 2 (remove space before and
 .    \" after argument)
 .    ie (\n[doc-reg-dssfm1] == 2) \{\
-.      if \n[doc-arg-limit] \{\
-.        nr doc-reg-dssfm (\n[doc-arg-limit] - 1)
+.      if \n[doc-arg-count] \{\
+.        nr doc-reg-dssfm (\n[doc-arg-count] - 1)
 .        ds doc-space\n[doc-reg-dssfm]
 .      \}
-.      ds doc-space\n[doc-arg-limit]
+.      ds doc-space\n[doc-arg-count]
 .    \}
 .    el \
-.      ds doc-space\n[doc-arg-limit]
+.      ds doc-space\n[doc-arg-count]
 .  \}
 ..
 .ec
@@ -2541,7 +2541,7 @@
 .
 .eo
 .de doc-set-spacing-2
-.  ds doc-space\n[doc-arg-limit] "\*[doc-space]
+.  ds doc-space\n[doc-arg-count] "\*[doc-space]
 ..
 .ec
 .
@@ -2557,12 +2557,12 @@
 .
 .eo
 .de doc-set-spacing-3
-.  if \n[doc-arg-limit] \{\
-.    nr doc-reg-dssfps (\n[doc-arg-limit] - 1)
+.  if \n[doc-arg-count] \{\
+.    nr doc-reg-dssfps (\n[doc-arg-count] - 1)
 .    ds doc-space\n[doc-reg-dssfps]
 .  \}
 .
-.  ds doc-space\n[doc-arg-limit] "\*[doc-space]
+.  ds doc-space\n[doc-arg-count] "\*[doc-space]
 ..
 .ec
 .
@@ -2575,7 +2575,7 @@
 .
 .eo
 .de doc-set-spacing-4
-.  ds doc-space\n[doc-arg-limit]
+.  ds doc-space\n[doc-arg-count]
 ..
 .ec
 .
@@ -3245,7 +3245,7 @@
 .  doc-increment-list-stack
 .
 .  if \n[.$] \{\
-.    nr doc-arg-limit \n[.$]
+.    nr doc-arg-count \n[.$]
 .    nr doc-arg-ptr 0
 .    doc-do-Bl-args
 .
@@ -3308,12 +3308,12 @@
 .de doc-do-Bl-args
 .  nr doc-arg-ptr +1
 .
-.  if (\n[doc-arg-limit] < \n[doc-arg-ptr]) \
+.  if (\n[doc-arg-count] < \n[doc-arg-ptr]) \
 .    return
 .
 .  \" avoid a warning message in case e.g. '-offset' has no parameter
 .  nr doc-reg-dBla (\n[doc-arg-ptr] + 1)
-.  if (\n[doc-arg-limit] < \n[doc-reg-dBla]) \
+.  if (\n[doc-arg-count] < \n[doc-reg-dBla]) \
 .    ds doc-arg\n[doc-reg-dBla]
 .
 .  nr doc-reg-dBla 1
@@ -3503,7 +3503,7 @@
 .      tm1 " in .Bl macro (#\n[.c])
 .  \}\}
 .
-.  if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \
+.  if (\n[doc-arg-count] > \n[doc-arg-ptr]) \
 .    doc-do-Bl-args
 ..
 .ec
@@ -3518,12 +3518,12 @@
 .eo
 .de doc-save-global-vars
 .  ds doc-macro-name-saved "\*[doc-macro-name]
-.  nr doc-arg-limit-saved \n[doc-arg-limit]
+.  nr doc-arg-count-saved \n[doc-arg-count]
 .  nr doc-num-args-saved \n[doc-num-args]
 .  nr doc-arg-ptr-saved \n[doc-arg-ptr]
 .
 .  nr doc-reg-dsgv 1
-.  while (\n[doc-reg-dsgv] <= \n[doc-arg-limit]) \{\
+.  while (\n[doc-reg-dsgv] <= \n[doc-arg-count]) \{\
 .    ds doc-arg\n[doc-reg-dsgv]-saved "\*[doc-arg\n[doc-reg-dsgv]]
 .    nr doc-type\n[doc-reg-dsgv]-saved \n[doc-type\n[doc-reg-dsgv]]
 .    ds doc-space\n[doc-reg-dsgv]-saved "\*[doc-space\n[doc-reg-dsgv]]
@@ -3660,12 +3660,12 @@
 .eo
 .de doc-restore-global-vars
 .  ds doc-macro-name "\*[doc-macro-name-saved]
-.  nr doc-arg-limit \n[doc-arg-limit-saved]
+.  nr doc-arg-count \n[doc-arg-count-saved]
 .  nr doc-num-args \n[doc-num-args-saved]
 .  nr doc-arg-ptr \n[doc-arg-ptr-saved]
 .
 .  nr doc-reg-drgv 1
-.  while (\n[doc-reg-drgv] <= \n[doc-arg-limit]) \{\
+.  while (\n[doc-reg-drgv] <= \n[doc-arg-count]) \{\
 .    ds doc-arg\n[doc-reg-drgv] "\*[doc-arg\n[doc-reg-drgv]-saved]
 .    nr doc-type\n[doc-reg-drgv] \n[doc-type\n[doc-reg-drgv]-saved]
 .    ds doc-space\n[doc-reg-drgv] "\*[doc-space\n[doc-reg-drgv]-saved]
@@ -4415,7 +4415,7 @@
 .
 .eo
 .de Xr
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Xr
 .      doc-parse-args \$@
@@ -4424,18 +4424,18 @@
 .      doc-Xr-usage
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
 .  doc-print-prefixes
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    \" first argument must be a string
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .      nr doc-curr-font \n[.f]
 .      ds doc-arg\n[doc-arg-ptr] \*[doc-Xr-font]\*[doc-arg\n[doc-arg-ptr]]\f[]\s[0]
 .
-.      if (\n[doc-arg-limit] > \n[doc-arg-ptr]) \{\
+.      if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .        nr doc-reg-Xr (\n[doc-arg-ptr] + 1)
 .        \" modify second argument if it is a string and
 .        \" remove space in between
@@ -4555,7 +4555,7 @@
 .    doc-parse-arg-vector
 .  nr doc-arg-ptr +1
 .
-.  if (\n[doc-arg-limit] < \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .    tm Usage: .It column_string [Ta [column_string ...] ] (#\n[.c])
 .    return
 .  \}
@@ -4588,10 +4588,10 @@
 .
 .eo
 .de Ta
-.  ie \n[doc-arg-limit] \{\
+.  ie \n[doc-arg-count] \{\
 .    nr doc-arg-ptr +1
 .    nop \*[doc-tab]\c
-.    ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \
+.    ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \
 .      doc-do-\n[doc-type\n[doc-arg-ptr]]
 .    el \
 .      doc-reset-args
@@ -4621,7 +4621,7 @@
 .  ta T .5i
 .  in +\n[doc-display-indent]u
 .
-.  ie \n[doc-arg-limit] \{\
+.  ie \n[doc-arg-count] \{\
 .    tm Usage: .Dl not callable by other macros (#\n[.c])
 .    doc-reset-args
 .  \}
@@ -4657,7 +4657,7 @@
 .  ta T .5i
 .  in +\n[doc-display-indent]u
 .
-.  ie \n[doc-arg-limit] \{\
+.  ie \n[doc-arg-count] \{\
 .    tm Usage: .D1 not callable by other macros (#\n[.c])
 .    doc-reset-args
 .  \}
@@ -4692,7 +4692,7 @@
 .
 .eo
 .de Vt
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Vt
 .      doc-parse-args \$@
@@ -4701,11 +4701,11 @@
 .      tm Usage: .Vt variable_type ... (#\n[.c])
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
-.  if (\n[doc-arg-limit] < \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .    tm Usage: .Vt variable_type ... (#\n[.c])
 .    doc-reset-args
 .    return
@@ -4764,7 +4764,7 @@
 .
 .eo
 .de Ft
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Ft
 .      doc-parse-args \$@
@@ -4773,11 +4773,11 @@
 .      tm Usage: .Ft function_type ... (#\n[.c])
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  nr doc-arg-ptr +1
-.  if (\n[doc-arg-limit] < \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .    tm Usage: .Ft function_type ... (#\n[.c])
 .    doc-reset-args
 .    return
@@ -4860,7 +4860,7 @@
 .
 .eo
 .de Fa
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Fa
 .      doc-parse-args \$@
@@ -4873,7 +4873,7 @@
 .    doc-do-func
 .  el \{\
 .    nr doc-arg-ptr +1
-.    if (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.    if (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .      nr doc-curr-font \n[.f]
 .      nop \*[doc-Fa-font]\c
 .      doc-print-recursive
@@ -4923,7 +4923,7 @@
 .
 .eo
 .de doc-do-func
-.  if (\n[doc-arg-limit] <= \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] <= \n[doc-arg-ptr]) \{\
 .    doc-reset-args
 .    return
 .  \}
@@ -4980,7 +4980,7 @@
 .
 .eo
 .de Fn
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Fn
 .      doc-parse-args \$@
@@ -4989,7 +4989,7 @@
 .      tm Usage: .Fn function_name [function_arg] ... (#\n[.c])
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  if \n[doc-in-synopsis-section] \{\
@@ -5030,7 +5030,7 @@
 .
 .  nr doc-arg-ptr +1
 .  doc-print-prefixes
-.  if (\n[doc-arg-limit] < \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .    tm Usage: .Fn function_name [function_arg] ... (#\n[.c])
 .    doc-reset-args
 .    return
@@ -5041,7 +5041,7 @@
 .  nop \f[]\s[0]\*[lp]\)\c
 .
 .  nr doc-arg-ptr +1
-.  if (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    if (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .      nop \*[doc-Fa-font]\c
 .      doc-do-func-args
@@ -5052,7 +5052,7 @@
 .  if \n[doc-in-synopsis-section] \
 .    nop \);\)\c
 .
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    \" output the space (if needed)
 .    nr doc-arg-ptr -1
 .    nop \)\*[doc-space\n[doc-arg-ptr]]\c
@@ -5098,7 +5098,7 @@
 .  nop \)\*[doc-arg\n[doc-arg-ptr]]\c
 .  nr doc-arg-ptr +1
 .
-.  if (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    if (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .      nr doc-reg-ddfa (\n[doc-arg-ptr] - 1)
 .      nop \f[\n[doc-curr-font]]\|\c
@@ -5150,7 +5150,7 @@
 .  nr doc-saved-nesting-level \n[doc-nesting-level]
 .  nr doc-in-func-enclosure 1
 .
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ds doc-macro-name Fo
 .      doc-parse-args \$@
@@ -5201,7 +5201,7 @@
 .
 .  nr doc-arg-ptr +1
 .  doc-print-prefixes
-.  if (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  if (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    nr doc-func-arg-count 1
 .    nr doc-curr-font \n[.f]
 .
@@ -5266,7 +5266,7 @@
 .  nop \*[doc-func-box]\c
 .
 .  nr doc-arg-ptr +1
-.  ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.  ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .    nr doc-curr-font \n[.f]
 .    doc-print-recursive
 .  \}
@@ -5655,7 +5655,7 @@
 .
 .eo
 .de %A
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%A author_name ... (#\n[.c])
 .    return
 .  \}
@@ -5709,7 +5709,7 @@
 .
 .eo
 .de %B
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%B book_name ... (#\n[.c])
 .    return
 .  \}
@@ -5772,7 +5772,7 @@
 .
 .eo
 .de %C
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%C city_name ... (#\n[.c])
 .    return
 .  \}
@@ -5826,7 +5826,7 @@
 .
 .eo
 .de %D
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%D date ... (#\n[.c])
 .    return
 .  \}
@@ -5880,7 +5880,7 @@
 .
 .eo
 .de %I
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%I issuer/publisher_name ... (#\n[.c])
 .    return
 .  \}
@@ -5935,7 +5935,7 @@
 .
 .eo
 .de %J
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%J journal_name ... (#\n[.c])
 .    return
 .  \}
@@ -5990,7 +5990,7 @@
 .
 .eo
 .de %N
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%N issue_number ... (#\n[.c])
 .    return
 .  \}
@@ -6044,7 +6044,7 @@
 .
 .eo
 .de %O
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%O optional_information ... (#\n[.c])
 .    return
 .  \}
@@ -6098,7 +6098,7 @@
 .
 .eo
 .de %P
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%P page_number ... (#\n[.c])
 .    return
 .  \}
@@ -6152,7 +6152,7 @@
 .
 .eo
 .de %Q
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%Q corporate_or_foreign_author ... (#\n[.c])
 .    return
 .  \}
@@ -6206,7 +6206,7 @@
 .
 .eo
 .de %R
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%R reference_report ... (#\n[.c])
 .    return
 .  \}
@@ -6267,7 +6267,7 @@
 .
 .eo
 .de %T
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%T reference_title ... (#\n[.c])
 .    return
 .  \}
@@ -6355,7 +6355,7 @@
 .
 .eo
 .de %U
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%U URL ... (#\n[.c])
 .    return
 .  \}
@@ -6397,7 +6397,7 @@
 .
 .eo
 .de %V
-.  if (\n[doc-arg-limit] : (\n[.$] == 0)) \{\
+.  if (\n[doc-arg-count] : (\n[.$] == 0)) \{\
 .    tm Usage: .%V volume ... (#\n[.c])
 .    return
 .  \}
@@ -6447,7 +6447,7 @@
 .  el \{\
 .    nop \)\*[doc-arg\n[doc-arg-ptr]]\c
 .
-.    ie (\n[doc-arg-limit] == \n[doc-arg-ptr]) \{\
+.    ie (\n[doc-arg-count] == \n[doc-arg-ptr]) \{\
 .      \" finish reference box
 .      br
 .      ev
@@ -6475,7 +6475,7 @@
 .
 .eo
 .de Hf
-.  ie ((\n[.$] == 1) & (\n[doc-arg-limit] == 0)) \{\
+.  ie ((\n[.$] == 1) & (\n[doc-arg-count] == 0)) \{\
 .    doc-paragraph
 .    nop File:
 .    Pa \$1
@@ -6511,7 +6511,7 @@
 .
 .eo
 .de An
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ie \n[.$] \{\
 .      ie        "\$1"-nosplit" \
 .        nr doc-in-authors-section 0
@@ -6533,9 +6533,9 @@
 .      nr doc-have-author 1
 .  \}
 .
-.  if \n[doc-arg-limit] \{\
+.  if \n[doc-arg-count] \{\
 .    nr doc-arg-ptr +1
-.    ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.    ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .      nr doc-curr-font \n[.f]
 .      doc-print-recursive
 .    \}
@@ -6585,7 +6585,7 @@
 .
 .\" XXX: what does this function without '-std'?
 .
-.  if \n[doc-arg-limit] \{\
+.  if \n[doc-arg-count] \{\
 .    tm Usage: .Rv not callable by other macros (#\n[.c])
 .    doc-reset-args
 .    return
@@ -6651,7 +6651,7 @@
 .
 .\" XXX: what does this function without '-std'?
 .
-.  if \n[doc-arg-limit] \{\
+.  if \n[doc-arg-count] \{\
 .    tm Usage: .Ex not callable by other macros (#\n[.c])
 .    doc-reset-args
 .    return
@@ -6716,12 +6716,12 @@
 .
 .eo
 .de Lk
-.  if !\n[doc-arg-limit] \{\
+.  if !\n[doc-arg-count] \{\
 .    ds doc-macro-name Lk
 .    doc-parse-args \$@
 .  \}
 .
-.  if !\n[doc-arg-limit] \
+.  if !\n[doc-arg-count] \
 .    return
 .
 .  \" The first argument is the target URI.
@@ -6730,7 +6730,7 @@
 .  nr doc-arg-ptr +1
 .
 .  \" Search backwards for the first closing punctuation.
-.  nr doc-lasttext-Lk \n[doc-arg-limit]
+.  nr doc-lasttext-Lk \n[doc-arg-count]
 .  while (\n[doc-lasttext-Lk] >= \n[doc-arg-ptr]) \{\
 .    if !(\n[doc-type\n[doc-lasttext-Lk]] == 3) \
 .      break
@@ -6756,7 +6756,7 @@
 .
 .  \" Format trailing arguments, like punctuation, if any.
 .  \" XXX: This loses track of end-of-sentence state.
-.  while (\n[doc-arg-ptr] <= \n[doc-arg-limit]) \{\
+.  while (\n[doc-arg-ptr] <= \n[doc-arg-count]) \{\
 .    nop \&\*[doc-arg\n[doc-arg-ptr]]\c
 .    nr doc-arg-ptr +1
 .  \}

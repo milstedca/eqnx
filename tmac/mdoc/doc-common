@@ -1341,12 +1341,12 @@
 .  \" Tell doc-print-recursive whether to force capitalization.
 .  nr doc-do-capitalize \n[CS]
 .
-.  ie \n[doc-arg-limit] \{\
+.  ie \n[doc-arg-count] \{\
 .    \" we only allow 'Sh' within 'Sh'; it will change the font back to
 .    \" 'doc-Sh-font'
 .    ie "\*[doc-macro-name]"Sh" \{\
 .      nr doc-arg-ptr +1
-.      ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.      ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .        nr doc-curr-font \n[.f]
 .        nop \*[doc-Sh-font]\c
 .        doc-print-recursive
@@ -1466,12 +1466,12 @@
 .
 .eo
 .de Ss
-.  ie \n[doc-arg-limit] \{\
+.  ie \n[doc-arg-count] \{\
 .    \" we only allow 'Ss' within 'Ss'; it will change the font back to
 .    \" 'doc-Sh-font'
 .    ie "\*[doc-macro-name]"Ss" \{\
 .      nr doc-arg-ptr +1
-.      ie (\n[doc-arg-limit] >= \n[doc-arg-ptr]) \{\
+.      ie (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
 .        nr doc-curr-font \n[.f]
 .        nop \*[doc-Sh-font]\c
 .        doc-print-recursive
@@ -1536,12 +1536,12 @@
 .de Rd
 .  tm MDOC GLOBAL REGISTER DUMP
 .  tm doc-macro-name == '\*[doc-macro-name]'
-.  tm doc-arg-limit == \n[doc-arg-limit]
+.  tm doc-arg-count == \n[doc-arg-count]
 .  tm doc-num-args == \n[doc-num-args]
 .  tm doc-arg-ptr == \n[doc-arg-ptr]
 .
 .  nr doc-reg-Rd 1
-.  while (\n[doc-reg-Rd] <= \n[doc-arg-limit]) \{\
+.  while (\n[doc-reg-Rd] <= \n[doc-arg-count]) \{\
 .    tm doc-arg\n[doc-reg-Rd] == '\*[doc-arg\n[doc-reg-Rd]]'
 .    tm doc-type\n[doc-reg-Rd] == \n[doc-type\n[doc-reg-Rd]]
 .    tm doc-space\n[doc-reg-Rd] == '\*[doc-space\n[doc-reg-Rd]]'

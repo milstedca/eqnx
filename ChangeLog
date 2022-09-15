@@ -1,3 +1,17 @@
+2022-09-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[mdoc]: Fix code style nit.  Rename `doc-arg-limit` to
+	`doc-arg-count`.  This register doesn't track any sort of limit
+	on the number of arguments you can give to an mdoc(7) macro, or
+	anything like that.  It is simply a count of the number of
+	arguments visible to the currently operating macro.
+
+	* tmac/doc.tmac:
+	* tmac/mdoc/doc-common:
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff:
+	* tmac/mdoc/doc-syms: Do it.
+
 2022-09-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[docs]: Fix errors in documentation regarding which escape

@@ -1,5 +1,13 @@
 2022-09-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Regression-test Savannah #59738.
+
+	* tmac/tests/doc_Lk-respect-sentence-ending-punctuation.sh: Do
+	it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-09-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Fix code style nit.  Rename `doc-arg-limit` to
 	`doc-arg-count`.  This register doesn't track any sort of limit
 	on the number of arguments you can give to an mdoc(7) macro, or

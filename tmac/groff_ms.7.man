@@ -2434,26 +2434,42 @@ and
 .IP \[bu]
 AT&T
 .I ms
-supported only integral values for the type size and vertical spacing.
+interpreted the values of the registers
+.B PS
+and
+.B VS
+in points,
+and did not support the use of scaling units with them.
 .
-To overcome this restriction,
-for the registers
+.I groff ms
+interprets values of the registers
 .BR PS ,
 .BR VS ,
 .BR FPS ,
 and
 .BR FVS ,
-.I groff ms
-interprets values equal to or larger than\~1000 as decimal fractions
-multiplied by\~1000.
+equal to or larger than\~1,000
+(one thousand)
+as decimal fractions multiplied by\~1,000.
 .
-In
-.I ms
-documents that don't need to be portable to other implementations,
-use of a scaling unit,
-as in
-.RB \[lq] ".nr PS 10.5p" \[rq],
-is preferable.
+(Register values are converted to and stored as basic
+units.
+.
+See \[lq]Measurements\[rq] in the
+.I groff
+Texinfo manual or the
+.MR groff @MAN7EXT@
+man page.)
+.
+This threshold makes use of a scaling unit with these parameters
+practical for high-resolution devices while preserving backward
+compatibility.
+.
+For example,
+.RB \[lq] "groff \-rPS=10.5p" \[rq]
+at the shell prompt is equivalent to placing
+.RB \[lq] ".nr PS 10.5p" \[rq]
+at the beginning of the document.
 .
 .
 .IP \[bu]

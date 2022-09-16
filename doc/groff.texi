@@ -2752,13 +2752,7 @@ Default: empty.
 @unnumberedsubsubsec Text settings
 
 @Defmpreg {PS, ms}
-Defines the type size of the body text in points.  If the value is
-larger than or equal to 1000, it is divided by 1000 to get a fractional
-type size.  For example, @samp{.nr PS 10500} sets the document's type
-size to 10.5@dmn{points}.  This rescaling of large type sizes is a GNU
-extension.  In @file{ms} documents that don't need to be portable to
-other implementations, using a scaling unit, as in @samp{.nr PS
-10.5p}, is preferable.
+Defines the type size of the body text.
 
 Effective: next paragraph.
 
@@ -2766,10 +2760,7 @@ Default: 10@dmn{p}.
 @endDefmpreg
 
 @Defmpreg {VS, ms}
-Defines the space between lines (line height plus leading).  If the
-value is larger than or equal to 1000, it is divided by 1000 to get a
-fractional type size.  This rescaling of large type sizes is a GNU
-extension.  See register @code{PS} above.
+Defines the space between lines (line height plus leading).
 
 Effective: next paragraph.
 
@@ -2930,10 +2921,7 @@ Default: 0.
 @endDefmpreg
 
 @Defmpreg {FPS, ms}
-Defines the footnote type size in points.  If the value is larger than
-or equal to 1000, it is divided by 1000 to get a fractional type size.
-This rescaling of large type sizes is a GNU extension.  See register
-@code{PS} above.
+Defines the footnote type size.
 
 Effective: next footnote.
 
@@ -2941,10 +2929,7 @@ Default: @math{@code{@\n[PS]} - 2p}.
 @endDefmpreg
 
 @Defmpreg {FVS, ms}
-Defines the footnote vertical spacing.  If the value is larger than or
-equal to 1000, it is divided by 1000 to get a fractional type size.
-This rescaling of large type sizes is a GNU extension.  See register
-@code{PS} above.
+Defines the footnote vertical spacing.
 
 Effective: next footnote.
 
@@ -4438,12 +4423,17 @@ request, but the @file{ms} @code{RS} and @code{RE} macros.
 @item
 @cindex fractional type sizes in @file{ms} macros
 @cindex @file{ms} macros, fractional type sizes in
-@acronym{AT&T} @file{ms} supported only integral values for the type
-size and vertical spacing.  To overcome this restriction, for the
-registers @code{PS}, @code{VS}, @code{FPS}, and @code{FVS}, @code{groff}
-@file{ms} interprets values equal to or larger than 1000 as decimal
-fractions multiplied by 1000.  See the @code{PS} register in @ref{ms
-Document Control Settings}.
+@acronym{AT&T} @file{ms} interpreted the values of the registers
+@code{PS} and @code{VS} in points, and did not support the use of
+scaling units with them.  @code{groff} @file{ms} interprets values of
+the registers @code{PS}, @code{VS}, @code{FPS}, and @code{FVS} equal to
+or larger than@tie{}1,000 (one thousand) as decimal fractions multiplied
+by@tie{}1,000.@footnote{Register values are converted to and stored as
+basic units.  @xref{Measurements}.}  This threshold makes use of a
+scaling unit with these parameters practical for high-resolution
+devices while preserving backward compatibility.  For example,
+@samp{groff -rPS=10.5p} at the shell prompt is equivalent to placing
+@samp{.nr PS 10.5p} at the beginning of the document.
 
 @item
 @acronym{AT&T} @file{ms}'s @code{AU} macro supported arguments used with

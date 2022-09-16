@@ -3704,30 +3704,42 @@ and
 .PP
 AT&T
 .I ms
-supported only integral values for the type size and vertical spacing.
+interpreted the values of the registers
+.CW PS
+and
+.CW VS
+in points,
+and did not support the use of scaling units with them.
 .
-To overcome this restriction,
-for the registers
+.I "groff ms"
+interprets values of the registers
 .CW PS ,
 .CW VS ,
 .CW FPS ,
 and
-.CW FVS ,
-.I "groff ms"
-interprets values equal to or larger than\~1000 as decimal fractions
-multiplied by\~1000.
+.CW FVS
+equal to or larger than\~1,000
+(one thousand)
+as decimal fractions multiplied by\~1,000.\**
+.FS
+Register values are converted to and stored as basic units.
+.
+See \[lq]Measurements\[rq] in the
+.I groff
+Texinfo manual or the
+.I groff (7)
+man page.
+.FE
+.
+This threshold makes use of a scaling unit with these parameters
+practical for high-resolution devices while preserving backward
+compatibility.
 .
 For example,
-.CW ".nr PS 10500" \[rq] \[lq]
-sets the document's type size to 10.5\~points.
-.
-In
-.I ms
-documents that don't need to be portable to other implementations,
-using a scaling unit,
-as in
-.CW ".nr PS 10.5p" \[rq], \[lq]
-is preferable.
+.CW "groff \-rPS=10.5p"
+at the shell prompt is equivalent to placing
+.CW ".nr PS 10.5p"
+at the beginning of the document.
 .
 .
 .PP

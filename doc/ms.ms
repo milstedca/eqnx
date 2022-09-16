@@ -2756,9 +2756,9 @@ call occurs
 .I after
 the corresponding
 .CW \[rs]**
-and the occurrences of
+and occurrences of
 .CW .FS
-are in the same order as the corresponding occurrences of
+are in the same order as corresponding occurrences of
 .CW \[rs]** .
 .
 .

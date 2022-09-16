@@ -3062,9 +3062,9 @@ reaching an @code{AU}, @code{AB}, or heading or paragraphing macro call.
 @endDefmac
 
 @Defmac {DA, [@Var{x} @dots{}], ms}
-Typeset the current date, or any arguments @var{x} in the center footer,
-and, if @code{RP} is also called, left-aligned after other document
-description information on the cover page.
+Typeset the current date, or any arguments @var{x}, in the center
+footer, and, if @code{RP} is also called, left-aligned after other
+document description information on the cover page.
 @endDefmac
 
 @Defmac {ND, [@Var{x} @dots{}], ms}
@@ -3306,9 +3306,9 @@ the previous @code{NH} call---that is, you ``skip a depth'', as by
 warning on the standard error stream.
 
 Alternatively, you can give @code{NH} a first argument of@tie{}@code{S},
-followed by integers arguments to number the the heading depths
-explicitly.  Further automatic numbering, if used, resumes using the
-specified indices as their predecessors.
+followed by integers to number the heading depths explicitly.  Further
+automatic numbering, if used, resumes using the specified indices as
+their predecessors.
 @c Although undocumented in Tuthill's 4.2BSD ms.diffs paper...
 This feature is a Berkeley extension.
 @endDefmac
@@ -3467,10 +3467,9 @@ instead of bold.  This is a Tenth Edition Research Unix extension.
 
 @Defmac {BX, [@Var{text}], ms}
 Typeset @var{text} and draw a box around it.  On terminal devices,
-reverse video is used instead (see the implementation note below).
-If you want @var{text} to contain space, use unbreakable space or
-horizontal motion escape sequences (@code{\~}, @code{\SP}, @code{\^},
-@code{\|}, @code{\0} or @code{\h}).
+reverse video is used instead.  If you want @var{text} to contain space,
+use unbreakable space or horizontal motion escape sequences (@code{\~},
+@code{\SP}, @code{\^}, @code{\|}, @code{\0} or @code{\h}).
 @endDefmac
 
 @Defmac {UL, [@Var{text} [@Var{post}]], ms}
@@ -3575,8 +3574,6 @@ guns
 money
 @endCartoucheExample
 
-produces:
-
 @Example
 A bulleted list:
 
@@ -3601,8 +3598,6 @@ guns
 .IP \n+[step]
 money
 @endCartoucheExample
-
-produces:
 
 @Example
 A numbered list:
@@ -3630,8 +3625,6 @@ preferably large-caliber.
 Gotta pay for those
 lawyers and guns!
 @endCartoucheExample
-
-produces:
 
 @Example
 A glossary-style list:
@@ -4042,9 +4035,8 @@ Footnotes can be safely used within keeps and displays, but you should
 avoid using automatically numbered footnotes within floating keeps.  You
 can place a second @code{\**} interpolation between a @code{\**} and its
 corresponding @code{FS} call as long as each @code{FS} call occurs
-@emph{after} the corresponding @code{\**} and the occurrences of
-@code{FS} are in the same order as the corresponding occurrences of
-@code{\**}.
+@emph{after} the corresponding @code{\**} and occurrences of @code{FS}
+are in the same order as corresponding occurrences of @code{\**}.
 
 Footnote text is formatted as paragraphs are, using analogous
 parameters.  The registers @code{FI}, @code{FPD}, @code{FPS}, and

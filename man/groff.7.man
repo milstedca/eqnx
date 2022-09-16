@@ -2221,14 +2221,16 @@ at position
 .
 .TPx
 .REQ .ec
-Set escape character to
-.squoted_char \[rs] .
+Recognize
+.B \[rs]
+as the escape character.
 .
 .
 .TPx
 .REQ .ec "c"
-Set escape character to
-.IR c .
+Recognize
+.I c
+as the escape character.
 .
 .
 .TPx
@@ -2239,7 +2241,7 @@ Restore escape character saved with
 .
 .TPx
 .REQ .ecs
-Save current escape character.
+Save the escape character.
 .
 .
 .TPx
@@ -2261,8 +2263,7 @@ after the end of input.
 .
 .TPx
 .REQ .eo
-Unset escape character,
-turning off escape sequence interpretation.
+Disable the escape mechanism.
 .
 .
 .TPx
@@ -3594,19 +3595,19 @@ yet.
 .SH "Escape sequences"
 .\" ====================================================================
 .
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Escape
+.\" Sequences".
 Whereas requests must occur on control lines,
-escape sequences can occur intermixed with text and appear in arguments
-to requests and macros
-(and sometimes other escape sequences).
+escape sequences can occur intermixed with text and may appear in
+arguments to requests,
+macros,
+and other escape sequences.
 .
 An escape sequence is introduced by the escape character,
 a backslash
-.B \[rs]
-(but see the
-.B .ec
-request).
+.BR \[rs] .
 .
-The next character identifies the escape's function.
+The next character selects the escape's function.
 .
 Escape sequences vary in length.
 .
@@ -3628,25 +3629,96 @@ and an argument of arbitrary length is enclosed in brackets
 .RB \[lq] [] \[rq].
 .
 In the latter convention,
-the user selects a delimiter character;
-the neutral apostrophe
+the user selects a delimiter character.
+.
+A few escape sequences are idiosyncratic,
+and support both of the foregoing conventions
+.RB ( \|\[rs]s ),
+designate their own termination sequence
+.RB ( \|\[rs]? ),
+consume input until the next newline
+.RB ( \|\[rs]! ,
+.BR \|\[rs]" ,
+.BR \|\[rs]# ),
+or support an additional modifier character
+.RB ( \|\[rs]s
+again).
+.
+.
+.P
+Escape sequences serve a variety of purposes.
+.
+Widespread uses include
+commenting the source document;
+changing the font style;
+setting the type size;
+interpolating special characters,
+registers,
+and strings into the text;
+and placing or suppressing break and hyphenation points.
+.
+As with requests,
+use of escape sequences in source documents may interact poorly with a
+macro package you use;
+consult its documentation to learn of \[lq]safe\[rq] sequences or
+alternative facilities it provides to achieve the desired result.
+.
+.
+.P
+If an escape character is followed by a character that does not identify
+a defined operation,
+the escape character is ignored
+(producing a diagnostic of the \[lq]escape\[rq] warning type,
+which is not enabled by default)
+and the following character is processed normally.
+.
+.
+.P
+Escape sequence interpolation is of higher precedence than escape
+sequence argument interpretation.
+.
+This rule affords flexibility in using escape sequences to construct
+parameters to other escape sequences.
+.
+.
+.P
+Escape sequence interpretation can be turned off with the
+.request .eo
+request and restored,
+or the escape character changed,
+with
+.request .ec .
+.\" END Keep (roughly) parallel with groff.texi node "Escape Sequences".
+.
+.
+.\" ====================================================================
+.SS "Escape sequence argument delimiters"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Escape
+.\" Sequence Argument Delimiters".
+Escape sequences that require multiple parameters or a special format
+use delimiters.
+.
+The neutral apostrophe
 .B \[aq]
 is a popular choice and shown in this document.
 .
 The neutral double quote
 .B \[dq]
-is another popular choice.
+is also commonly seen.
 .
 Letters,
 numerals,
-and leaders can be used.
+and even leaders can be used;
+punctuation characters are likely better choices,
+except for those defined as infix operators in numerical expressions,
+about which more below.
 .
 .
 .P
-The following escape sequences
-(which are handled similarly to characters since they don't take an
-argument)
-are also allowed as delimiters:
+The following escape sequences are handled similarly to characters since
+they don't take arguments and thus are allowed as delimiters:
 .BR \[rs]% ,
 .RB \[lq] \|\[rs]\~ "\[rq] (backslash-space),"
 .BR \[rs]| ,
@@ -3679,7 +3751,7 @@ and
 .
 However,
 using them this way is discouraged;
-it can make the input confusing to read.
+doing so can make the input confusing to read.
 .
 .
 .P
@@ -3696,7 +3768,7 @@ accept a newline as a delimiter.
 A newline that serves as an ending delimiter continues to be
 recognized as an input line ending.
 .
-The use of newlines as delimiters in escape sequences is discouraged.
+Use of newlines as delimiters in escape sequences is also discouraged.
 .
 .
 .P
@@ -3747,48 +3819,27 @@ and
 .
 .
 .P
-A few escape sequences are idiosyncratic,
-and support both of the foregoing conventions
-.RB ( \|\[rs]s ),
-designate their own termination sequence
-.RB ( \|\[rs]? ),
-consume input until the next newline
-.RB ( \|\[rs]! ,
-.BR \|\[rs]" ,
-.BR \|\[rs]# ),
-or support an additional modifier character
-.RB ( \|\[rs]s
-again).
+Delimiter syntax is complex and flexible primarily for historical
+reasons;
+the foregoing restrictions need be kept in mind mainly when using
+.I groff
+in AT&T compatibility mode.
 .
+GNU
+.I troff \" GNU
+keeps track of the nesting depth of escape sequence interpolations,
+so the only characters you need to avoid using as delimiters are those
+that appear in the arguments you input,
+not any that result from interpolation.
 .
-.P
-Escape sequences serve a variety of purposes.
+Typically,
+.B \[aq]
+works fine.
 .
-Widespread uses include
-commenting the source document;
-changing the font style;
-setting the type size;
-interpolating special characters,
-registers,
-and strings into the text;
-and placing or suppressing break and hyphenation points.
-.
-As with requests,
-use of escape sequences in source documents may interact poorly with a
-macro package you use;
-consult its documentation to learn of \[lq]safe\[rq] sequences or
-alternative facilities it provides to achieve the desired result.
-.
-.
-.br
-.ne 2v
-.P
-If the escape character is followed by a character that does not
-identify a defined operation,
-the escape character is ignored
-(producing a diagnostic of the \[lq]escape\[rq] warning type,
-which is not enabled by default)
-and the following character is processed normally.
+See section \[lq]Implementation differences\[rq] in
+.MR groff_diff @MAN7EXT@ .
+.\" END Keep (roughly) parallel with groff.texi node "Escape
+.\" Sequence Argument Delimiters".
 .
 .
 .\" ====================================================================
@@ -4164,7 +4215,7 @@ see
 .
 .TP
 .ESC e
-Interpolate escape character.
+Interpolate the glyph corresponding to the escape character.
 .
 .
 .TP

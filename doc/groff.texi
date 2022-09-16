@@ -6667,65 +6667,180 @@ no-break control character is associated with the environment
 
 @c ---------------------------------------------------------------------
 
+@codequotebacktick on
+@codequoteundirected on
+
+@c BEGIN Keep (roughly) parallel with section "Escape sequences" of
+@c groff(7).
 @node Escape Sequences,  , Requests, Formatter Instructions
 @subsection Escape Sequences
 @cindex escape sequences
 
+Whereas requests must occur on control lines, escape sequences can occur
+intermixed with text and may appear in arguments to requests, macros,
+and other escape sequences.
+
 @esindex \
-Escape sequences may occur anywhere in the input to GNU @code{troff}.
-They always begin with the @dfn{escape character}, a backslash by
-default, and are followed by a character that indicates the function to
-be performed.  To change or disable the escape character, see
-@ref{Character Translations}.
+An escape sequence is introduced by the escape character, a backslash
+@code{\} (but see the @code{ec} request below).  The next character
+selects the escape's function.  Escape sequences vary in length.
+Some take an argument, and of those, some have different syntactical
+forms for a one-character, two-character, or arbitrary-length argument.
+Others accept only an arbitrary-length argument.  In the former
+convention, a one-character argument follows the function character
+immediately, an opening parenthesis @samp{(} introduces a two-character
+argument (no closing parenthesis is used), and an argument of arbitrary
+length is enclosed in brackets @samp{[]}.  In the latter convention, the
+user selects a delimiter character.  A few escape sequences are
+idiosyncratic, and support both of the foregoing conventions
+(@code{\s}), designate their own termination sequence (@code{\?}),
+consume input until the next newline (@code{\!}, @code{\"}, @code{\#}),
+or support an additional modifier character (@code{\s} again, and
+@code{\n}).
 
-Escape sequences that require a parameter accept three possible syntax
-forms.
+Escape sequences serve a variety of purposes.  Widespread uses include
+commenting the source document; changing the font style; setting the
+type size; interpolating special characters, registers, and strings into
+the text; and placing or suppressing break and hyphenation points.  As
+with requests, use of escape sequences in source documents may interact
+poorly with a macro package you use; consult its documentation to learn
+of ``safe'' sequences or alternative facilities it provides to achieve
+the desired result.
 
-@itemize @bullet
-@item
-The next single character is the identifier.
+If an escape character is followed by a character that does not
+identify a defined operation, the escape character is ignored (producing
+a diagnostic of the @samp{escape} warning category, which is not enabled
+by default) and the following character is processed normally.
 
-@cindex @code{(}, starting a two-character identifier
-@item
-If this single character is an opening parenthesis, take the following
-two characters as the identifier.  There is no closing parenthesis
-after the identifier.
+@Example
+$ groff -Tps -ww
+.nr N 12
+.ds co white
+.ds animal elephant
+I have \fI\nN \*(co \*[animal]s,\f[]
+said \P.\&\~Pseudo Pachyderm.
+  @error{} warning: escape character ignored before 'P'
+  @result{} I have @slanted{12 white elephants,} said P. Pseudo Pachyderm.
+@endExample
 
-@cindex @code{[}, starting an identifier
-@cindex @code{]}, ending an identifier
-@item
-If this single character is an opening bracket, take all characters
-until a closing bracket as the identifier.
-@end itemize
+Escape sequence interpolation is of higher precedence than escape
+sequence argument interpretation.  This rule affords flexibility in
+using escape sequences to construct parameters to other escape
+sequences.
+@c END Keep (roughly) parallel with section "Escape sequences" of
+@c groff(7).
+
+@Example
+.ds family T\" Times
+.ds style I\" oblique
+Choice a typeface \f(\*[family]\*[style]wisely.
+  @result{} Choose a typeface @slanted{wisely.}
+@endExample
 
 @noindent
-Examples:
+In the above, the syntax form @samp{\f(} accepts only two characters for
+an argument; the example works because the subsequent escape sequences
+are interpolated before the selection escape sequence argument is
+processed, and strings @code{family} and @code{style} interpolate one
+character each.@footnote{The omission of spaces before the comment
+escape sequences is necessary; see @ref{Strings}.}
+
+@need 1000
+@cindex formatting the escape character (@code{\e})
+@cindex escape character, formatting (@code{\e})
+@Defesc {\\e, , , }
+Interpolate the glyph corresponding to the escape character.
+@endDefesc
+
+@cindex formatting a backslash glyph (@code{\[rs]})
+@cindex backslash glyph, formatting (@code{\[rs]})
+To format a backslash glyph on the output, use the @code{\[rs]} special
+character escape sequence.  In macro and string definitions, two further
+input sequences @code{\\} and @code{\E} come into play, permitting
+deferred interpretation of escape sequences.  @xref{Copy Mode}.
+
+Escape sequence interpretation can be switched off and back on.  This
+procedure can obviate the need to double the escape character inside
+macro definitions.  @xref{Writing Macros}.
+
+@Defreq {eo, }
+@cindex disabling @code{\} (@code{eo})
+@cindex @code{\}, disabling (@code{eo})
+Disable the escape mechanism.  Once this request is invoked, no input
+character is recognized as starting an escape sequence.
+@endDefreq
+
+@Defreq {ec, [@Var{c}]}
+@cindex escape character, changing (@code{ec})
+@cindex character, escape, changing (@code{ec})
+Recognize@tie{}@var{c} as the escape character.  With no argument, the
+default escape character @samp{\} is selected.
+
+Changing the escape character globally likely breaks macro packages,
+since GNU @code{troff} has no mechanism to ``intern'' macros, that is,
+to convert a macro definition into an internal form independent of its
+representation.@footnote{@TeX{} does have such a mechanism.} When a
+macro is called, its contents are interpreted literally.
+@c XXX: all that stuff mapped into the C0 and C1 controls seems pretty
+@c close to an interning mechanism to me, though... --GBR
+@endDefreq
 
 @Example
-\fB
-\n(XX
-\*[TeX]
+.\" This is a simplified version of the `BR` macro from
+.\" the man(7) macro package.
+.eo
+.de BR
+.  ds result \&
+.  while (\n[.$] >= 2) \@{\
+.    as result \fB\$1\fR\$2\"
+.    shift 2
+.  \@}
+.  if \n[.$] .as result \fB\$1\"
+\*[result]
+.  rm result
+.  ft R
+..
+.ec
 @endExample
 
-@cindex @code{'}, as delimiter
+@DefreqList {ecs, }
+@DefreqListEndx {ecr, }
+The @code{ecs} request stores the escape character for recall with
+@code{ecr}.  @code{ecr} sets the escape character to @samp{\} if none
+has been saved.
+
+Use these requests together to temporarily change the escape character.
+@endDefreq
+
+@c XXX: Motivation?  Why are we directing the reader to these?
+@xref{Diversions}, and @ref{Identifiers}.
+
+@menu
+* Escape Sequence Argument Delimiters::
+* Comments::
+@end menu
+
+@c BEGIN Keep (roughly) parallel with subsection "Escape sequence
+@c argument delimiters" of groff(7).
+@node Escape Sequence Argument Delimiters, Comments, Escape Sequences, Escape Sequences
+@subsubsection Escape Sequence Argument Delimiters
+@cindex escape sequence argument delimiters
 @cindex delimiters, for escape sequence arguments
 @cindex arguments, for escape sequences, delimiting
-@cindex escape sequence argument delimiters
-Other escape sequences may require several parameters and/or a
-particular format.  In such cases the argument is traditionally enclosed
-in neutral apostrophes, and we use these exclusively in this manual when
-presenting escape sequences.  The escape sequence interprets the
-delimited contents.
+
+@cindex @code{'}, as delimiter
+@cindex @code{"}, as delimiter
+Escape sequences that require multiple parameters or a special format
+use delimiters.  The neutral apostrophe @code{'} is a popular choice and
+shown in this document.  The neutral double quote @code{"} is also
+commonly seen.  Letters, numerals, and even leaders can be used.
+Punctuation characters are likely better choices, except for those
+defined as infix operators in numerical expressions, about which more
+below.
 
 @Example
-\l'1.5i\(bu' \" draw 1.5 inches of bullets
+\l'1.5i\(bu' \" draw 1.5 inches of bullet glyphs
 @endExample
-
-@cindex @code{"}, as delimiter
-The neutral apostrophe in the foregoing example can be replaced with
-any character that does not occur in the argument.  The neutral double
-quote @code{"} is another popular choice.  Letters, numerals, and
-leaders can be used.
 
 @cindex @code{\%}, as delimiter
 @cindex @code{\@key{SP}}, as delimiter
@@ -6755,15 +6870,14 @@ leaders can be used.
 @cindex @code{\r}, as delimiter
 @cindex @code{\t}, as delimiter
 @cindex @code{\u}, as delimiter
-The following escape sequences (which are handled similarly to
-characters since they don't take an argument) are also allowed as
-delimiters: @code{\%}, @w{@samp{\ }}, @code{\|}, @code{\^}, @code{\@{},
-@code{\@}}, @code{\'}, @code{\`}, @code{\-}, @code{\_}, @code{\!},
-@code{\?}, @code{\)}, @code{\/}, @code{\,}, @code{\&}, @code{\:},
-@code{\~}, @code{\0}, @code{\a}, @code{\c}, @code{\d}, @code{\e},
-@code{\E}, @code{\p}, @code{\r}, @code{\t}, and @code{\u}.  However,
-using them this way is discouraged; it can make the input confusing to
-read.
+The following escape sequences are handled similarly to characters since
+they don't take arguments and thus are allowed as delimiters:
+@code{\SP}, @code{\%}, @code{\|}, @code{\^}, @code{\@{}, @code{\@}},
+@code{\'}, @code{\`}, @code{\-}, @code{\_}, @code{\!}, @code{\?},
+@code{\)}, @code{\/}, @code{\,}, @code{\&}, @code{\:}, @code{\~},
+@code{\0}, @code{\a}, @code{\c}, @code{\d}, @code{\e}, @code{\E},
+@code{\p}, @code{\r}, @code{\t}, and @code{\u}.  However, using them
+this way is discouraged; it can make the input confusing to read.
 
 @cindex @code{\A}, delimiters allowed by
 @cindex @code{\b}, delimiters allowed by
@@ -6791,7 +6905,7 @@ in Paris
 @endExample
 
 @noindent
-The use of newlines as delimiters in escape sequences is discouraged.
+Use of newlines as delimiters in escape sequences is also discouraged.
 
 @cindex @code{\D}, delimiters allowed by
 @cindex @code{\h}, delimiters allowed by
@@ -6862,84 +6976,26 @@ any escape sequences other than @code{\%}, @code{\:}, @code{\@{},
 @code{\/}, @code{\c}, @code{\e}, and @code{\p}
 @end itemize
 
-@cindex printing backslash (@code{\\}, @code{\e}, @code{\E}, @code{\[rs]})
-@cindex backslash, printing (@code{\\}, @code{\e}, @code{\E}, @code{\[rs]})
-To have a backslash (actually, the current escape character) appear in
-the output several escape sequences are defined: @code{\\}, @code{\e} or
-@code{\E}.  These are very similar, and only differ with respect to
-being used in macros or diversions.  @xref{Character Translations}, for
-an exact description of those escape sequences.
-
-@Defreq {eo, }
-@cindex disabling @code{\} (@code{eo})
-@cindex @code{\}, disabling (@code{eo})
-Disable the escape mechanism completely.  After executing this request,
-the backslash character @samp{\} no longer starts an escape sequence.
-
-This request can be helpful in writing macros since it obviates the
-need to double the escape character.
+Delimiter syntax is complex and flexible primarily for historical
+reasons; the foregoing restrictions need be kept in mind mainly when
+using @code{groff} in @acronym{AT&T} compatibility mode.  GNU
+@code{troff} keeps track of the nesting depth of escape sequence
+interpolations, so the only characters you need to avoid using as
+delimiters are those that appear in the arguments you input, not any
+that result from interpolation. Typically, @code{'} works fine.
+@xref{Implementation Differences}.
 
 @Example
-.\" This is a simplified version of the `BR` macro from
-.\" the man(7) macro package.
-.eo
-.de BR
-.  ds result \&
-.  while (\n[.$] >= 2) \@{\
-.    as result \fB\$1\fR\$2\"
-.    shift 2
-.  \@}
-.  if \n[.$] .as result \fB\$1\"
-\*[result]
-.  rm result
-.  ft R
-..
-.ec
+$ groff -Tps
+.nr a \w'\s'12'Foobar'
+\[lq]Foobar\[rq] in 12-point type is \n[a]u wide.
+  @result{} @quotedblleft{}Foobar@quotedblright{} in 12-point type is 33816u wide.
 @endExample
-@endDefreq
 
-@Defreq {ec, [@Var{c}]}
-@cindex escape character, changing (@code{ec})
-@cindex character, escape, changing (@code{ec})
-Set the escape character to@tie{}@var{c}.  With no argument the default
-escape character @samp{\} is restored.  It can be also used to re-enable
-the escape mechanism after an @code{eo} request.
+@c END Keep (roughly) parallel with subsection "Escape sequence
+@c argument delimiters" of groff(7).
 
-Changing the escape character globally likely breaks macro packages,
-since GNU @code{troff} has no mechanism to `intern' macros, i.e., to
-convert a macro definition into an internal form that is independent of
-its representation (@TeX{} has such a mechanism).  If a macro is called,
-it is executed literally.
-@endDefreq
-
-@DefreqList {ecs, }
-@DefreqListEndx {ecr, }
-The @code{ecs} request saves the current escape character.  Use this
-request in combination with the @code{ec} request to temporarily change
-the escape character.
-
-The @code{ecr} request restores the escape character saved with
-@code{ecs}, or sets the escape character to @samp{\} if none has been
-saved.
-@endDefreq
-
-@Defesc {\\e, , , }
-Interpolate the current escape character, which is the backslash
-@samp{\} by default.
-@endDefesc
-
-
-@xref{Implementation Differences}, @ref{Copy Mode}, @ref{Diversions},
-and @ref{Identifiers}.
-
-@menu
-* Comments::
-@end menu
-
-@codequotebacktick on
-@codequoteundirected on
-
-@node Comments,  , Escape Sequences, Escape Sequences
+@node Comments, , Escape Sequence Argument Delimiters, Escape Sequences
 @subsubsection Comments
 @cindex comments
 

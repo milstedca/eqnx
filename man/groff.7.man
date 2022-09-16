@@ -3553,12 +3553,9 @@ for an overview) or from a preprocessor.
 .
 .
 .P
-Preprocessor macros are easy to recognize.
+Most preprocessors enclose content between a pair of characteristic
+macros.
 .
-They enclose their code between a pair of characteristic macros.
-.
-.
-.P
 .TS
 box, center, tab (^);
 c | c | c
@@ -3575,6 +3572,7 @@ grap^.G1^.G2
 .\" Keep the .PF line below the @g@pic line.
 @g@pic^.PS^.PE
 ^^.PF
+^^.PY
 @g@refer^.R1^.R2
 @g@soelim^\f[I]none^\f[I]none
 @g@tbl^.TS^.TE
@@ -3586,7 +3584,9 @@ gpinyin^.pinyin start^.pinyin stop
 .
 .
 .P
-The \%\[oq]@g@ideal\[cq] preprocessor is not available in
+The
+.I @g@ideal
+preprocessor is not available in
 .I groff
 yet.
 .

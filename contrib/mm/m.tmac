@@ -513,9 +513,11 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .\" switch environment, keep all important settings.
 .de misc@ev-keep
 .nr misc*ll \\n[.l]
+.ds misc*fam \\n[.fam]
 .ev \\$1
 .ll \\n[misc*ll]u
 .lt \\n[misc*ll]u
+.fam \\*[misc*fam]
 ..
 .\"-------------
 .\" .misc@push stackname value

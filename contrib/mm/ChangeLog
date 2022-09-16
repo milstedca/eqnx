@@ -1,3 +1,11 @@
+2022-09-16  Nikita Ivanov <nikita.vyach.ivanov@gmail.com>
+
+	* m.tmac (misc@ev-keep): Select configured default font family,
+	as with `.fam H` at the top of the document, for example, when
+	switching to new environment.
+
+	Fixes <https://savannah.gnu.org/bugs/?63067>.
+
 2022-08-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (PY): Add new macro.

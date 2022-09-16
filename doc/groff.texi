@@ -6007,7 +6007,7 @@ true, others false.
 @ifinfo
 @opindex @r{<colon>}
 @end ifinfo
-We can operate on truth values with the the logical operators @code{&}
+We can operate on truth values with the logical operators @code{&}
 (logical conjunction or ``and'') and @code{:} (logical disjunction or
 ``or'').  They evaluate as comparison operators do.
 
@@ -8445,7 +8445,7 @@ Set the hyphenation language to @var{lang}.  Hyphenation exceptions
 specified with the @code{hw} request and hyphenation patterns and
 exceptions specified with the @code{hpf} and @code{hpfa} requests are
 associated with the hyphenation language.  The @code{hla} request is
-usually invoked by a localization file, which is turn loaded by the the
+usually invoked by a localization file, which is turn loaded by the
 @file{troffrc} or @file{troffrc-end} file; see the @code{hpf} request
 above.
 

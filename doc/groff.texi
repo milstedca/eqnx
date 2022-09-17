@@ -6897,8 +6897,7 @@ as an ending delimiter continues to be recognized as an input line
 ending.
 
 @Example
-A caf
-\o
+A caf\o
 e\(aa
 in Paris
   @result{} A café in Paris

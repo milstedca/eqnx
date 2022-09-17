@@ -1,3 +1,12 @@
+2022-09-17  Nikita Ivanov <nikita.vyach.ivanov@gmail.com>
+
+	* mm/ms.cov (cov@print-title, cov@print-authors): Escape
+	newlines when beginning conditional blocks.
+
+	Fixes <https://savannah.gnu.org/bugs/?63075>.  [Problems
+	introduced by me in commits 59d1fd7a5e and 4fd984adc9, both
+	2021-07-17. --GBR]
+
 2022-09-16  Nikita Ivanov <nikita.vyach.ivanov@gmail.com>
 
 	* m.tmac (misc@ev-keep): Select configured default font family,

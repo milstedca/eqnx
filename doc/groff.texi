@@ -6271,7 +6271,7 @@ Some care is required with identifiers starting with @samp{(} or
 .nr (x 2
 .nr [y 3
 .nr sum1 (\n(x + \n[y])
-    @error{} space character not allowed in escape
+    @error{} a space character is not allowed in an escape
     @error{}   sequence parameter
 A:2+3=\n[sum1]
 .nr sum2 (\n((x + \n[[y])

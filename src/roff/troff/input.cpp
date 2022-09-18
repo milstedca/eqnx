@@ -837,7 +837,7 @@ static char get_char_for_escape_parameter(bool allow_space = false)
   case '\t':
   case '\001':
   case '\b':
-    copy_mode_error("%1 not allowed in escape sequence parameter",
+    copy_mode_error("%1 is not allowed in an escape sequence parameter",
 		    input_char_description(c));
     return '\0';
   }
@@ -2369,7 +2369,7 @@ bool token::usable_as_delimiter(bool report_error)
     case ')':
     case '.':
       if (report_error)
-        error("character '%1' not allowed as starting delimiter",
+        error("character '%1' is not allowed as a starting delimiter",
 	      char(c));
       return false;
     default:
@@ -2387,7 +2387,7 @@ bool token::usable_as_delimiter(bool report_error)
   case TOKEN_TAB:
   case TOKEN_NEWLINE:
     if (report_error)
-      error("%1 not allowed as starting delimiter", description());
+      error("%1 is not allowed as a starting delimiter", description());
     return false;
   default:
     return true;
@@ -2507,7 +2507,7 @@ static void non_empty_name_warning()
       && !tok.is_tab() && !tok.is_right_brace()
       // We don't want to give a warning for .el\{
       && !tok.is_left_brace())
-    error("%1 not allowed in a name", tok.description());
+    error("%1 is not allowed in an identifier", tok.description());
 }
 
 symbol get_name(bool required)
@@ -6047,7 +6047,7 @@ void source_quietly()
 void pipe_source()
 {
   if (!unsafe_flag) {
-    error("'pso' request not allowed in safer mode");
+    error("'pso' request is not allowed in safer mode");
     skip_line();
   }
   else {
@@ -6229,7 +6229,8 @@ filename(fname), llx(0), lly(0), urx(0), ury(0), lastc(EOF)
 		  // ...we must ensure it is not a further attempt to defer
 		  // assignment to a trailer, (which we are already parsing).
 		  //
-		  error("'(atend)' not allowed in trailer of '%1'", filename);
+		  error("'(atend)' is not allowed in trailer of '%1'",
+			filename);
 	      }
 	    }
 	    else
@@ -6800,7 +6801,7 @@ void do_open(int append)
 void open_request()
 {
   if (!unsafe_flag) {
-    error("'open' request not allowed in safer mode");
+    error("'open' request is not allowed in safer mode");
     skip_line();
   }
   else
@@ -6810,7 +6811,7 @@ void open_request()
 void opena_request()
 {
   if (!unsafe_flag) {
-    error("'opena' request not allowed in safer mode");
+    error("'opena' request is not allowed in safer mode");
     skip_line();
   }
   else
@@ -7147,7 +7148,8 @@ void define_class()
       }
       if (child1->is_class() || child2->is_class()) {
 	warning(WARN_SYNTAX,
-		"nested character class is not allowed in range definition");
+		"a nested character class is not allowed in a range"
+		" definition");
 	skip_line();
 	return;
       }
@@ -7607,7 +7609,7 @@ char *read_string()
 void pipe_output()
 {
   if (!unsafe_flag) {
-    error("'pi' request not allowed in safer mode");
+    error("'pi' request is not allowed in safer mode");
     skip_line();
   }
   else {
@@ -7644,7 +7646,7 @@ static int system_status;
 void system_request()
 {
   if (!unsafe_flag) {
-    error("'sy' request not allowed in safer mode");
+    error("'sy' request is not allowed in safer mode");
     skip_line();
   }
   else {

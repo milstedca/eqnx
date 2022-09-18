@@ -3911,7 +3911,7 @@ void hyphen_trie::read_patterns_file(const char *name, int append,
 	  c = hpf_getc(fp);
 	if (c == '{') {
 	  if (have_patterns || have_hyphenation)
-	    error("\\patterns not allowed inside of %1 group",
+	    error("\\patterns is not allowed inside of %1 group",
 		  have_patterns ? "\\patterns" : "\\hyphenation");
 	  else {
 	    have_patterns = 1;
@@ -3926,7 +3926,7 @@ void hyphen_trie::read_patterns_file(const char *name, int append,
 	  c = hpf_getc(fp);
 	if (c == '{') {
 	  if (have_patterns || have_hyphenation)
-	    error("\\hyphenation not allowed inside of %1 group",
+	    error("\\hyphenation is not allowed inside of %1 group",
 		  have_patterns ? "\\patterns" : "\\hyphenation");
 	  else {
 	    have_hyphenation = 1;
@@ -3957,7 +3957,7 @@ void hyphen_trie::read_patterns_file(const char *name, int append,
       }
       else if (c == '{') {
 	if (have_patterns || have_hyphenation)
-	  error("'{' not allowed within %1 group",
+	  error("'{' is not allowed within %1 group",
 		have_patterns ? "\\patterns" : "\\hyphenation");
 	c = hpf_getc(fp);		// skipped if not starting \patterns
 					// or \hyphenation

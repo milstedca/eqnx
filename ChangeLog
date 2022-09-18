@@ -1,3 +1,22 @@
+2022-09-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Tweak diagnostic messages.
+
+	* src/roff/troff/input.cpp (non_empty_name_warning): Say
+	"identifier", not "name", in diagnostic message; it can be
+	thrown for attempted assignments to invalid register
+	identifiers, and some of our documentation refers to identifiers
+	in the name space shared by requests, macros, strings, and
+	diversions as "names".
+
+	* src/roff/troff/env.cpp (hyphen_trie::read_patterns_file):
+	* src/roff/troff/input.cpp (get_char_for_escape_parameter)
+	(token::usable_as_delimiter, non_empty_name_warning)
+	(pipe_source, psbb_locator::psbb_locator, open_request)
+	(opena_request, define_class, pipe_output, system_request):
+	Consistently say "_is_ not allowed".  The zero copula poses too
+	great a risk of incomprehension IMO.
+
 2022-09-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mdoc]: Add internal string `doc-Lk-font` to manage the typeface

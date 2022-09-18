@@ -111,7 +111,7 @@ bool text_file::next_line()
       int c = getc(fp);
       if (c == EOF)
 	break;
-      if (invalid_input_char(c))
+      if (is_invalid_input_char(c))
 	error("invalid input character code %1", int(c));
       else {
 	if (length + 1 >= linebufsize) {

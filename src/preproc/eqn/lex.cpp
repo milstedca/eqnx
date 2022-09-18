@@ -419,7 +419,7 @@ int file_input::read_line()
       }
       if (c == EOF)
 	break;
-      else if (invalid_input_char(c))
+      else if (is_invalid_input_char(c))
 	lex_error("invalid input character code %1", c);
       else {
 	line += char(c);

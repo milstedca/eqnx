@@ -1,5 +1,30 @@
 2022-09-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff, ...]: Trivially refactor.
+
+	Boolify and rename internal library function from
+	`invalid_input_char` to `is_invalid_input_char`.
+
+	* src/include/lib.h: Do it.
+
+	* src/libs/libgroff/font.cpp (text_file::next_line):
+	* src/preproc/eqn/lex.cpp (file_input::read_line):
+	* src/preproc/eqn/main.cpp (read_line, main):
+	* src/preproc/pic/lex.cpp (file_input::read_line,
+	simple_file_input::get, simple_file_input::peek):
+	* src/preproc/pic/main.cpp (top_input::get, top_input::peek)
+	(do_file):
+	* src/preproc/refer/command.cpp (input_stack::push_file):
+	* src/preproc/refer/refer.cpp (do_file, do_bib):
+	* src/roff/troff/env.cpp (environment::make_tag):
+	* src/roff/troff/input.cpp (file_iterator::fill)
+	(file_iterator::peek, get_char_for_escape_parameter)
+	(transparent_translate, read_request, asciify)
+	(input_char_description, read_string, transparent_file,
+	set_string): Update call sites.
+
+2022-09-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Tweak diagnostic messages.
 
 	* src/roff/troff/input.cpp (token::description)

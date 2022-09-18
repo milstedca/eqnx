@@ -51,7 +51,7 @@ int read_line(FILE *fp, string *p)
   p->clear();
   int c = -1;
   while ((c = getc(fp)) != EOF) {
-    if (!invalid_input_char(c))
+    if (!is_invalid_input_char(c))
       *p += char(c);
     else
       error("invalid input character code '%1'", c);
@@ -302,10 +302,10 @@ int main(int argc, char **argv)
     case 'd':
       if (optarg[0] == '\0' || optarg[1] == '\0')
 	error("'-d' option requires a two-character argument");
-      else if (invalid_input_char(optarg[0]))
+      else if (is_invalid_input_char(optarg[0]))
 	error("invalid delimiter '%1' in '-d' option argument",
 	      optarg[0]);
-      else if (invalid_input_char(optarg[1]))
+      else if (is_invalid_input_char(optarg[1]))
 	error("invalid delimiter '%1' in '-d' option argument",
 	      optarg[1]);
       else {

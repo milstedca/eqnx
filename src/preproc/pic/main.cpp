@@ -81,7 +81,7 @@ int top_input::get()
     return c;
   }
   int c = getc(fp);
-  while (invalid_input_char(c)) {
+  while (is_invalid_input_char(c)) {
     error("invalid input character code %1", int(c));
     c = getc(fp);
     bol = 0;
@@ -154,7 +154,7 @@ int top_input::peek()
   if (push_back[0] != EOF)
     return push_back[0];
   int c = getc(fp);
-  while (invalid_input_char(c)) {
+  while (is_invalid_input_char(c)) {
     error("invalid input character code %1", int(c));
     c = getc(fp);
     bol = 0;
@@ -322,7 +322,7 @@ void do_file(const char *filename)
   enum { START, MIDDLE, HAD_DOT, HAD_P, HAD_PS, HAD_l, HAD_lf } state = START;
   for (;;) {
     int c = getc(fp);
-    while (invalid_input_char(c)) {
+    while (is_invalid_input_char(c)) {
       error("invalid input character code %1", int(c));
       c = getc(fp);
     }

@@ -451,7 +451,7 @@ static void do_file(const char *filename)
 	  line += '\n';
 	break;
       }
-      if (invalid_input_char(c))
+      if (is_invalid_input_char(c))
 	error("invalid input character code %1", c);
       else {
 	line += c;
@@ -482,7 +482,7 @@ static void do_file(const char *filename)
 	  int d = getc(fp);
 	  if (d == ']') {
 	    while ((d = getc(fp)) != '\n' && d != EOF) {
-	      if (invalid_input_char(d))
+	      if (is_invalid_input_char(d))
 		error("invalid input character code %1", d);
 	      else
 		post += d;
@@ -492,7 +492,7 @@ static void do_file(const char *filename)
 	  if (d != EOF)
 	    ungetc(d, fp);
 	}
-	if (invalid_input_char(c))
+	if (is_invalid_input_char(c))
 	  error("invalid input character code %1", c);
 	else
 	  str += c;
@@ -589,7 +589,7 @@ static void do_file(const char *filename)
 				   "missing '.R2' line");
 	  break;
 	}
-	if (invalid_input_char(c))
+	if (is_invalid_input_char(c))
 	  error_with_file_and_line(current_filename, start_lineno,
 				   "invalid input character code %1",
 				   c);
@@ -1138,7 +1138,7 @@ void do_bib(const char *filename)
     int c = getc(fp);
     if (EOF == c)
       break;
-    if (invalid_input_char(c)) {
+    if (is_invalid_input_char(c)) {
       error("invalid input character code %1", c);
       continue;
     }

@@ -349,7 +349,7 @@ int file_iterator::fill(node **)
     int c = getc(fp);
     if (c == EOF)
       break;
-    if (invalid_input_char(c))
+    if (is_invalid_input_char(c))
       warning(WARN_INPUT, "invalid input character code %1", int(c));
     else {
       *p++ = c;
@@ -374,7 +374,7 @@ int file_iterator::fill(node **)
 int file_iterator::peek()
 {
   int c = getc(fp);
-  while (invalid_input_char(c)) {
+  while (is_invalid_input_char(c)) {
     warning(WARN_INPUT, "invalid input character code %1", int(c));
     c = getc(fp);
   }
@@ -823,7 +823,7 @@ static char get_char_for_escape_parameter(bool allow_space = false)
     copy_mode_error("end of input in escape sequence");
     return '\0';
   default:
-    if (!invalid_input_char(c))
+    if (!is_invalid_input_char(c))
       break;
     // fall through
   case '\n':
@@ -2692,7 +2692,7 @@ inline int possibly_handle_first_page_transition()
 
 static int transparent_translate(int cc)
 {
-  if (!invalid_input_char(cc)) {
+  if (!is_invalid_input_char(cc)) {
     charinfo *ci = charset_table[cc];
     switch (ci->get_special_translation(1)) {
     case charinfo::TRANSLATE_SPACE:
@@ -4125,7 +4125,7 @@ void read_request()
     while (c == ' ')
       c = get_copy(0);
     while (c != EOF && c != '\n' && c != ' ') {
-      if (!invalid_input_char(c)) {
+      if (!is_invalid_input_char(c)) {
 	if (reading_from_terminal)
 	  fputc(c, stderr);
 	had_prompt = 1;
@@ -4146,7 +4146,7 @@ void read_request()
   int nl = 0;
   int c;
   while ((c = getchar()) != EOF) {
-    if (invalid_input_char(c))
+    if (is_invalid_input_char(c))
       warning(WARN_INPUT, "invalid input character code %1", int(c));
     else {
       if (c == '\n') {
@@ -6637,7 +6637,7 @@ const char *asciify(int c)
     buf[0] = '\0';
     break;
   default:
-    if (invalid_input_char(c))
+    if (is_invalid_input_char(c))
       buf[0] = '\0';
     else
       buf[0] = c;
@@ -6666,7 +6666,7 @@ const char *input_char_description(int c)
   // repeat expression; no VLAs in ISO C++
   static char buf[sizeof "magic character code "  + INT_DIGITS + 1];
   (void) memset(buf, 0, bufsz);
-  if (invalid_input_char(c)) {
+  if (is_invalid_input_char(c)) {
     const char *s = asciify(c);
     if (*s) {
       buf[0] = '\'';
@@ -7585,7 +7585,7 @@ char *read_string()
     ;
   int i = 0;
   while (c != '\n' && c != EOF) {
-    if (!invalid_input_char(c)) {
+    if (!is_invalid_input_char(c)) {
       if (i + 2 > len) {
 	char *tem = s;
 	s = new char[len*2];
@@ -7714,7 +7714,7 @@ void transparent_file()
 	int c = getc(fp);
 	if (c == EOF)
 	  break;
-	if (invalid_input_char(c))
+	if (is_invalid_input_char(c))
 	  warning(WARN_INPUT, "invalid input character code %1", int(c));
 	else {
 	  curdiv->transparent_output(c);
@@ -7971,7 +7971,7 @@ static void set_string(const char *name, const char *value)
 {
   macro *m = new macro;
   for (const char *p = value; *p; p++)
-    if (!invalid_input_char((unsigned char)*p))
+    if (!is_invalid_input_char((unsigned char)*p))
       m->append(*p);
   request_dictionary.define(name, m);
 }

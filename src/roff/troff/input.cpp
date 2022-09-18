@@ -2423,7 +2423,7 @@ const char *token::description()
   case TOKEN_MARK_INPUT:
     return "'\\k'";
   case TOKEN_NEWLINE:
-    return "newline";
+    return "a newline";
   case TOKEN_NODE:
     return "a node";
   case TOKEN_NUMBERED_CHAR:
@@ -6650,17 +6650,17 @@ const char *input_char_description(int c)
 {
   switch (c) {
   case '\n':
-    return "newline character";
+    return "a newline character";
   case '\b':
-    return "backspace character";
+    return "a backspace character";
   case '\001':
-    return "leader character";
+    return "a leader character";
   case '\t':
-    return "tab character";
+    return "a tab character";
   case ' ':
-    return "space character";
+    return "a space character";
   case '\0':
-    return "node";
+    return "a node";
   }
   size_t bufsz = sizeof "magic character code "  + INT_DIGITS + 1;
   // repeat expression; no VLAs in ISO C++

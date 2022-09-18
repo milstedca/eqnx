@@ -2,6 +2,14 @@
 
 	[troff]: Tweak diagnostic messages.
 
+	* src/roff/troff/input.cpp (token::description)
+	(input_char_description): Consistently use articles in
+	descriptive noun phrases.
+
+2022-09-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Tweak diagnostic messages.
+
 	* src/roff/troff/input.cpp (non_empty_name_warning): Say
 	"identifier", not "name", in diagnostic message; it can be
 	thrown for attempted assignments to invalid register

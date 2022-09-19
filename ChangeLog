@@ -1,5 +1,14 @@
 2022-09-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_URW_FONTS_CHECK): If Ghostscript or awk are
+	unavailable, skip only the prepopulation of the URW font search
+	path instead of the entire check.  This way we still locate the
+	URW fonts if they are in one of several standard locations.
+
+	Fixes <https://savannah.gnu.org/bugs/?62775>.
+
+2022-09-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.
 
 	* src/roff/troff/input.cpp (do_name_test): Boolify and rename

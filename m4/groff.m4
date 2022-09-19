@@ -295,10 +295,13 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   AC_REQUIRE([GROFF_AWK_PATH])
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
   groff_have_urw_fonts=no
+  AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
+  _list_paths=
+
   if test "$AWK" != missing && test "$GHOSTSCRIPT" != missing
   then
-    AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
     _list_paths=`$GHOSTSCRIPT -h | $AWK 'BEGIN { found = 0 } /Search path:/ { found = 1 } /^[ ]*\// { print $'0' }'| tr : ' '`
+  fi
     _list_paths="$_list_paths \
       /usr/share/fonts/type1/gsfonts/ \
       /usr/share/fonts/default/Type1/ \
@@ -330,7 +333,6 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
     then
       AC_MSG_RESULT([none found])
     fi
-  fi
   AC_SUBST([groff_have_urw_fonts])
 ])
 

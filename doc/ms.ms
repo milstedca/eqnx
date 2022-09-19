@@ -75,7 +75,7 @@ This implementation is mostly compatible with the documented interface
 and behavior of AT&T Unix Version\~7
 .I ms .
 .
-Several extensions from 4.2BSD (Berkeley)
+Many extensions from 4.2BSD (Berkeley)
 .\" Few changes were made in 4.3, Tahoe, Reno, or 4.4.
 and Tenth Edition Research Unix have been recreated.
 .AE

@@ -1,4 +1,3 @@
-// -*- C++ -*-
 /* Copyright (C) 1989-2020 Free Software Foundation, Inc.
      Written by James Clark (jjc@jclark.com)
 
@@ -20,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "lib.h"
 
 #include <ctype.h>
-#include <assert.h>
 #include <stdlib.h>
 #include <errno.h>
 #include "errarg.h"
@@ -231,3 +229,9 @@ static void convert_font(const font_params &param, FILE *infp,
     fputs(p, outfp);
   }
 }
+
+// Local Variables:
+// fill-column: 72
+// mode: C++
+// End:
+// vim: set cindent noexpandtab shiftwidth=2 textwidth=72:

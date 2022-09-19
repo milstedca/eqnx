@@ -1,3 +1,48 @@
+2022-09-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[grodvi, ...]: Trivially refactor.
+
+	Tidy up #includes of the "assert.h" header, which we locally
+	provide to ensure a C99-conformant implementation.  Drop
+	inclusion of header from files that don't directly need it, add
+	it where they do, and spell the inclusion consistently with
+	double quotes to cue the reader of its local status.
+
+	* src/devices/grodvi/dvi.cpp:
+	* src/devices/grolj4/lj4.cpp:
+	* src/libs/libdriver/printer.cpp:
+	* src/preproc/eqn/box.cpp:
+	* src/preproc/eqn/delim.cpp:
+	* src/preproc/eqn/pile.cpp:
+	* src/preproc/eqn/script.cpp: Add inclusion.
+
+	* src/include/driver.h:
+	* src/libs/libgroff/fontfile.cpp:
+	* src/preproc/eqn/eqn.h:
+	* src/preproc/html/pushback.cpp:
+	* src/preproc/refer/refer.h:
+	* src/preproc/tbl/table.h:
+	* src/utils/addftinfo/addftinfo.cpp: Drop inclusion.
+
+	* src/include/itable.h:
+	* src/include/stringclass.h:
+	* src/libs/libbib/linear.cpp:
+	* src/libs/libbib/search.cpp:
+	* src/libs/libgroff/color.cpp:
+	* src/libs/libgroff/font.cpp:
+	* src/libs/libgroff/nametoindex.cpp:
+	* src/libs/libgroff/prime.cpp:
+	* src/libs/libgroff/searchpath.cpp:
+	* src/preproc/html/pre-html.cpp:
+	* src/preproc/preconv/preconv.cpp:
+	* src/preproc/soelim/soelim.cpp:
+	* src/utils/indxbib/indxbib.cpp:
+	* src/utils/lkbib/lkbib.cpp:
+	* src/utils/lookbib/lookbib.cpp: Respell inclusion.
+
+	Fixes <https://savannah.gnu.org/bugs/?63079>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
 2022-09-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff, ...]: Trivially refactor.

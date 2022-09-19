@@ -19,10 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "lib.h"
 
 #include <ctype.h>
-#include <assert.h>
 #include <math.h>
 #include <stdlib.h>
 #include <wchar.h>
+
+#include "assert.h"
+
 #include "errarg.h"
 #include "error.h"
 #include "cset.h"

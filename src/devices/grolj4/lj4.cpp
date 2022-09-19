@@ -1,4 +1,3 @@
-// -*- C++ -*-
 /* Copyright (C) 1994-2020 Free Software Foundation, Inc.
      Written by James Clark (jjc@jclark.com)
 
@@ -31,6 +30,7 @@ X command to specify inline escape sequence (how to specify unprintable chars?)
 X command to include bitmap graphics
 */
 
+#include "assert.h"
 #include "driver.h"
 #include "nonposix.h"
 
@@ -704,3 +704,9 @@ static void usage(FILE *stream)
 	  "       [-w n] [-F dir] [files ...]\n",
 	  program_name);
 }
+
+// Local Variables:
+// fill-column: 72
+// mode: C++
+// End:
+// vim: set cindent noexpandtab shiftwidth=2 textwidth=72:

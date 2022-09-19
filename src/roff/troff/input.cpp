@@ -1511,8 +1511,8 @@ static int do_name_test()
   token start;
   start.next();
   int start_level = input_stack::get_level();
-  int bad_char = 0;
-  int some_char = 0;
+  bool got_bad_char = false;
+  bool got_some_char = false;
   for (;;) {
     tok.next();
     if (tok.is_newline() || tok.is_eof()) {
@@ -1526,10 +1526,10 @@ static int do_name_test()
 	&& (compatible_flag || input_stack::get_level() == start_level))
       break;
     if (!tok.ch())
-      bad_char = 1;
-    some_char = 1;
+      got_bad_char = true;
+    got_some_char = true;
   }
-  return some_char && !bad_char;
+  return (got_some_char && !got_bad_char);
 }
 
 static int do_expr_test()

@@ -1,5 +1,14 @@
 2022-09-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/input.cpp (do_name_test): Boolify and rename
+	local variables to..."impredicate" their names.
+	  - bad_char -> got_bad_char
+	  - some_char -> got_some_char
+
+2022-09-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grodvi, ...]: Trivially refactor.
 
 	Tidy up #includes of the "assert.h" header, which we locally

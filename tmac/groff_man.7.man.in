@@ -1287,6 +1287,7 @@ for hyperlink-aware output drivers.
 .TP
 .BI .MR "\~page-title manual-section"\c
 .RI \~[ trailing-text ]
+.IR (since\~ groff \~1.23) \" TODO: remove note once novelty dies down
 Set a man page cross reference as
 \[lq]\c
 .IB page-title ( manual-section )\c

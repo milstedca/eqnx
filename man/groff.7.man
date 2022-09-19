@@ -897,7 +897,7 @@ evaluates to an integer:
 it can be as simple as a literal
 .RB \[lq] 0 \[rq]
 or it can be a complex sequence of register and string interpolations
-interleaved with measurements operators.
+interleaved with measurement operators.
 .
 .
 .P

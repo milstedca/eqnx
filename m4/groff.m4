@@ -302,37 +302,42 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   then
     _list_paths=`$GHOSTSCRIPT -h | $AWK 'BEGIN { found = 0 } /Search path:/ { found = 1 } /^[ ]*\// { print $'0' }'| tr : ' '`
   fi
-    _list_paths="$_list_paths \
-      /usr/share/fonts/type1/gsfonts/ \
-      /usr/share/fonts/default/Type1/ \
-      /usr/share/fonts/default/Type1/adobestd35/ \
-      /usr/share/fonts/type1/urw-base35/ \
-      /opt/local/share/fonts/urw-fonts/ \
-      /usr/local/share/fonts/ghostscript/"
-    if test -n "$urwfontsdir"
-    then
-      _list_paths="$ _list_paths $urwfontsdir"
-    fi
-    for k in $_list_paths
+
+  _list_paths="$_list_paths \
+    /usr/share/fonts/type1/gsfonts/ \
+    /usr/share/fonts/default/Type1/ \
+    /usr/share/fonts/default/Type1/adobestd35/ \
+    /usr/share/fonts/type1/urw-base35/ \
+    /opt/local/share/fonts/urw-fonts/ \
+    /usr/local/share/fonts/ghostscript/"
+
+  if test -n "$urwfontsdir"
+  then
+    _list_paths="$ _list_paths $urwfontsdir"
+  fi
+
+  for k in $_list_paths
+  do
+    for _font_file in \
+      URWGothic-Book.t1 \
+      URWGothic-Book.pfb \
+      URWGothicL-Book.pfb \
+      a010013l.pfb
     do
-      for _font_file in \
-        URWGothic-Book.t1 \
-        URWGothic-Book.pfb \
-        URWGothicL-Book.pfb \
-        a010013l.pfb
-      do
-        if test -f $k/$_font_file
-        then
-          AC_MSG_RESULT([found in $k])
-          groff_have_urw_fonts=yes
-          break 2
-        fi
-      done
+      if test -f $k/$_font_file
+      then
+        AC_MSG_RESULT([found in $k])
+        groff_have_urw_fonts=yes
+        break 2
+      fi
     done
-    if test $groff_have_urw_fonts = no
-    then
-      AC_MSG_RESULT([none found])
-    fi
+  done
+
+  if test $groff_have_urw_fonts = no
+  then
+    AC_MSG_RESULT([none found])
+  fi
+
   AC_SUBST([groff_have_urw_fonts])
 ])
 

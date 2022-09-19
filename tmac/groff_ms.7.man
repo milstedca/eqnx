@@ -689,7 +689,8 @@ All paragraphing macro calls cause the insertion of vertical space in
 the amount stored in the
 .B PD
 register,
-except at page or column breaks.
+except at page or column breaks,
+or adjacent to displays.
 .
 .
 .PP
@@ -2845,6 +2846,8 @@ Larry Kollar
 .ME .
 .
 .
+.br
+.ne 8v
 .\" ====================================================================
 .SH "See also"
 .\" ====================================================================

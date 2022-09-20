@@ -795,6 +795,22 @@ system, and the command of that name.  In the first sense, @code{groff}
 is an extended dialect of the @code{roff} language, for which many
 similar implementations exist.
 
+The @code{roff} language features several major categories for which
+many items are predefined.  Presentations of these items feature the
+form in which the item is most commonly used on the left, and, aligned
+to the right margin, the name of the category in brackets.
+
+@deffn Register \n[example]
+The register @samp{example} is one that that @code{groff} @emph{doesn't}
+predefine.  You can create it yourself, though; see @ref{Setting
+Registers}.
+@end deffn
+
+To make this document useful as a reference and not merely amiable
+bedtime reading, we tend to present these syntax items in exhaustive
+detail when they arise.  References to topics discussed later in the
+text are frequent; skip material you don't understand yet.
+
 We use Texinfo's ``result'' (@result{}) and @error{} notations to
 present output written to the standard output and standard error
 streams, respectively.  Diagnostic messages from the GNU @code{troff}

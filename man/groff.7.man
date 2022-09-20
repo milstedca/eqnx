@@ -1602,29 +1602,114 @@ an increment or decrement is applied as if to\~0.
 .SH Requests
 .\" ====================================================================
 .
-In
-.IR groff ,
+.\" XXX: This is more of a groff_diff(7) sort of observation.
+In GNU
+.IR troff , \" GNU
 identifier names,
 including those of requests,
 can be arbitrarily long.
 .
-No bracketing or marking of long names is needed in request invocation
-syntax.
+Unlike register and string interpolations,
+long request names require no specialized syntax.
+.
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Requests".
+.P
+Invoke a request by specifying its name after a control character and
+zero or more spaces or tabs.
+.
+The invocation of an unrecognized request is interpreted as a macro
+call.
+.
+Defining a macro with the same name as a request replaces the request.
+.
+Deleting a request name with the
+.request .rm
+request makes it unavailable.
+.
+Requests can be aliased with
+.request .als ,
+permitting them to be wrapped or non-destructively replaced.
 .
 .
 .P
 Most requests take one or more arguments.
 .
-Tabs are permitted after a request name,
-before its first argument
+Tabs are permitted after a request name and before its first argument
 (if any),
 but arguments themselves must be separated only by space characters.
 .
+(Plan\~9
+.I troff \" Plan 9
+allows tabs to separate arguments.)
+.
 There is no inherent limit on argument length or quantity.
+.
+Generally,
+a space
+.I within
+a request argument is not relevant,
+not meaningful,
+or is supported by bespoke provisions,
+as with the
+.request .tl
+request's delimiters.
+.
+Some requests,
+like
+.request .ds ,
+interpret the remainder of the control line as a single argument.
 .
 .
 .P
-Not all details of request behavior are outlined here.
+Since spaces and tabs are ignored after a control character,
+they are commonly used to structure the source of documents or macro
+files with indentation.
+.
+.
+.P
+To prevent interpretation of a control character as such,
+prefix it with
+.RB \[lq] \[rs]& \[rq].
+.
+Since a control character is recognized only at the beginning of an
+input line or the branch of a control structure such as the
+.request .if
+request,
+this dummy character
+(or non-printing input break)
+evades that special context without affecting the output.
+.
+.
+.P
+Test the
+.register .br
+register inside a macro definition to determine which control character
+was used when calling it.
+.
+.
+.P
+There is no way to invoke an undefined request;
+such syntax is interpreted as a macro call instead.
+.
+If a macro of the desired name does not exist,
+it is created,
+assigned an empty definition,
+and a warning in category
+.B mac
+is emitted.
+.
+Calling an undefined macro
+.I does
+end a macro definition naming it as its end macro.
+.\" END Keep (roughly) parallel with groff.texi node "Requests".
+.
+.
+.\" ====================================================================
+.SS "Request short reference"
+.\" ====================================================================
+.
+Not all details of each request's behavior are outlined here.
 .
 Refer to the
 .I groff
@@ -1632,10 +1717,7 @@ Texinfo manual or
 .MR groff_diff @MAN7EXT@ .
 .
 .
-.\" ====================================================================
-.SS "Request short reference"
-.\" ====================================================================
-.
+.P
 .LS
 .
 .TPx
@@ -3544,23 +3626,40 @@ to the stream named
 .LE
 .
 .
-.P
-Besides these standard groff requests, there might be further macro
-calls.
-They can originate from a macro package (see
-.MR roff @MAN7EXT@
-for an overview) or from a preprocessor.
+.br
+.ne 6v
+.\" ====================================================================
+.SH "Preprocessor tokens"
+.\" ====================================================================
 .
-.
-.P
 Most preprocessors enclose content between a pair of characteristic
-macros.
+tokens.
 .
+Such a token must occur at the beginning of an input line and use the
+dot control character.
+.
+Spaces and tabs must not follow the control character or precede the
+end of the input line.
+.
+Deviating from these rules defeats a token's recognition by the
+preprocessor.
+.
+Tokens are generally preserved in preprocessor output and interpreted as
+macro calls subsequently by
+.IR @g@troff .
+.
+The
+.I @g@ideal
+preprocessor is not yet available in
+.IR groff .
+.
+.
+.P
 .TS
 box, center, tab (^);
 c | c | c
 CfCB | CfCB | CfCB.
-preprocessor^start macro^ end macro
+preprocessor^starting token^ending token
 =
 @g@chem^.cstart^.cend
 @g@eqn^.EQ^.EN
@@ -3574,21 +3673,12 @@ grap^.G1^.G2
 ^^.PF
 ^^.PY
 @g@refer^.R1^.R2
-@g@soelim^\f[I]none^\f[I]none
 @g@tbl^.TS^.TE
 _
 glilypond^.lilypond start^.lilypond stop
 gperl^.Perl start^.Perl stop
 gpinyin^.pinyin start^.pinyin stop
 .TE
-.
-.
-.P
-The
-.I @g@ideal
-preprocessor is not available in
-.I groff
-yet.
 .
 .
 .\" ====================================================================
@@ -3716,6 +3806,8 @@ except for those defined as infix operators in numerical expressions,
 about which more below.
 .
 .
+.br
+.ne 2v
 .P
 The following escape sequences are handled similarly to characters since
 they don't take arguments and thus are allowed as delimiters:
@@ -4623,7 +4715,7 @@ formatted in a dummy environment.
 .
 .TP
 .ESCq x N
-Increase required line space by
+Increase vertical spacing of current output line by
 .IR N \~vees
 (or specified units;
 negative before,
@@ -5006,8 +5098,8 @@ is active.
 .
 .TPx
 .REG .br
-Within a macro, set to\~1 if macro called with the \[oq]normal\[cq]
-control character, and to\~0 otherwise.
+Interpolates\~1 if the currently executing macro was called using the
+normal control character and\~0 otherwise.
 .
 .TPx
 .REG .c

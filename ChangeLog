@@ -1,3 +1,15 @@
+2022-09-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[ms]: Slightly simplify new `XN` macro feature to align it more
+	closely with Berkeley TOC macro behavior; don't prepend the
+	table of contents entry with the section number (`\*[SN]`).  If
+	desired, a document can define `XN-REPLACEMENT`.  This does not
+	regress "pdfmark.ms" because it uses an alternative, older
+	implementation of these features from "spdf.tmac".
+
+	* tmac/s.tmac (XH-UPDATE-TOC): Update comments.
+	(XN-REPLACEMENT): Do it.
+
 2022-09-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/pdf.tmac (pdf*href-I): Call `pdf:error` macro by its

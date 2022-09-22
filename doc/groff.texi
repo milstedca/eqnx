@@ -6507,9 +6507,8 @@ To begin a line with a control character without it being interpreted,
 precede it with @code{\&}.  This represents a non-printing input break,
 which means it does not affect the output.
 
-In most cases the period is used as a control character.  Several
-requests cause a break implicitly; using the single quote control
-character prevents this.
+Use of the normal control character predominates.  Invoke a request that
+implies a break with the no-break control character to prevent breaking.
 
 @Defreg {.br}
 A read-only register, which is set to@tie{}1 if a macro is called with
@@ -6662,8 +6661,8 @@ Double quotes in the @code{ds} request are handled differently.
 @cindex no-break control character, changing (@code{c2})
 @cindex character, no-break control, changing (@code{c2})
 @cindex control character, no-break, changing (@code{c2})
-The control character (@samp{.}) and the no-break control character
-(@samp{'}) can be changed with the @code{cc} and @code{c2} requests,
+The control character @samp{.} and the no-break control character
+@samp{'} can be changed with the @code{cc} and @code{c2} requests,
 respectively.
 
 @Defreq {cc, [@Var{c}]}
@@ -6674,8 +6673,8 @@ character is associated with the environment (@pxref{Environments}).
 
 @Defreq {c2, [@Var{c}]}
 Set the no-break control character to@tie{}@var{c}.  With no argument
-the default control character @samp{'} is restored.  The value of the
-no-break control character is associated with the environment
+the default no-break control character @samp{'} is restored.  The value
+of the no-break control character is associated with the environment
 (@pxref{Environments}).
 @endDefreq
 

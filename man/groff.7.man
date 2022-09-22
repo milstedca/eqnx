@@ -3857,8 +3857,8 @@ and
 .BR \[rs]Z ,
 accept a newline as a delimiter.
 .
-A newline that serves as an ending delimiter continues to be
-recognized as an input line ending.
+Newlines that serve as delimiters continue to be recognized as input
+line terminators.
 .
 Use of newlines as delimiters in escape sequences is also discouraged.
 .

@@ -6908,9 +6908,8 @@ A few escape sequences,
 @code{\o},
 @code{\w},
 @code{\X},
-and @code{\Z}, accept a newline as a delimiter.  A newline that serves
-as an ending delimiter continues to be recognized as an input line
-ending.
+and @code{\Z}, accept a newline as a delimiter.  Newlines that serve
+as delimiters continue to be recognized as input line terminators.
 
 @Example
 A caf\o

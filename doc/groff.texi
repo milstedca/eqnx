@@ -5148,19 +5148,25 @@ track when using such low-level features, so most users turn to the
 We have now encountered almost all of the syntax there is in the
 @code{roff} language, with an exception already noted in passing.
 @cindex request
-@cindex control character
-@cindex control character, no-break
-@cindex no-break control character
+@cindex control character (@code{.})
+@cindex character, control (@code{.})
+@cindex no-break control character (@code{'})
+@cindex character, no-break control (@code{'})
+@cindex control character, no-break (@code{'})
 A @dfn{request} is an instruction to the formatter that occurs after a
 @dfn{control character}, which is recognized at the beginning of an
 input line.  The regular control character is a dot (@code{.}).  Its
 counterpart, the @dfn{no-break control character}, a neutral apostrophe
 (@code{'}), suppresses the break that is implied by some requests.
 These characters were chosen because it is uncommon for lines of text in
-natural languages to begin with them.  If you require a formatted period
-or apostrophe (closing single quotation mark) where GNU @code{troff} is
-expecting a control character, prefix the dot or neutral apostrophe with
-the non-printing input break escape sequence, @samp{\&}.
+natural languages to begin with them.
+@cindex non-printing input break (@code{\&})
+@cindex input break, non-printing (@code{\&})
+@cindex break, non-printing input (@code{\&})
+If you require a formatted period or apostrophe (closing single
+quotation mark) where GNU @code{troff} is expecting a control character,
+prefix the dot or neutral apostrophe with the non-printing input break
+escape sequence, @samp{\&}.
 
 @cindex control line
 An input line beginning with a control character is called a
@@ -6434,41 +6440,40 @@ available via both requests and escape sequences.
 
 @c ---------------------------------------------------------------------
 
+@codequotebacktick on
+@codequoteundirected on
+
 @node Requests, Escape Sequences, Formatter Instructions, Formatter Instructions
 @subsection Requests
 @cindex requests
 
-@cindex control character (@code{.})
-@cindex character, control (@code{.})
-@cindex no-break control character (@code{'})
-@cindex character, no-break control (@code{'})
-@cindex control character, no-break (@code{'})
-A request invocation begins with a control character, which is either a
-single quote (@samp{'}, the @dfn{no-break control character}) or a
-period (@samp{.}, the normal @dfn{control character}).  Either can be
-changed; see @ref{Request and Macro Arguments}, for details.  After it
-come optional tabs and/or spaces and then an identifier naming the
-request.  If the request is given arguments, they must be separated from
-the request name and each other by spaces; GNU @code{troff} does not
-allow tabs for argument separation.@footnote{Plan@tie{}9 @code{troff}
-does.}
+The mechanism of using @code{roff}'s control characters to invoke
+requests and call macros was introduced in @ref{Requests and Macros}.
+The control characters can be changed; see below.
 
+A control character is optionally followed by tabs and/or spaces and
+then an identifier naming the request or macro.  If arguments follow,
+they must be preceded by and separated from each other by spaces; GNU
+@code{troff} does not allow tabs for argument
+separation.@footnote{Plan@tie{}9 @code{troff} does.}
+
+@need 1000
 @cindex structuring source code of documents or macro packages
 @cindex documents, structuring the source of
 @cindex macro package, structuring the source of
 @cindex package, package, structuring the source of
-Since spaces and tabs are ignored after a control character, it is
-common practice to use them to structure the source of documents or
-macro files.
+@cindex indentation, of @code{roff} source code
+Spaces and tabs immediately after a control character are ignored.
+Commonly, authors structure the source of documents or macro files with
+them.
 
 @Example
 .de foo
 .  tm This is foo.
 ..
 .
-.
 .de bar
-.  tm This is bar.
+.@arrow{}tm This is bar.
 ..
 @endExample
 
@@ -6486,26 +6491,14 @@ control lines) with blank lines if you assign an empty blank line macro.
 .  tm This is foo.
 ..
 
-
 .de bar
-.  tm This is bar.
+.@arrow{}tm This is bar.
 ..
 
 .blm             \" deactivate blank line macro
 @endExample
 
 @xref{Blank Line Traps}.
-
-@cindex non-printing input break (@code{\&})
-@cindex input break, non-printing (@code{\&})
-@cindex break, non-printing input (@code{\&})
-@cindex zero-width space character (@emph{sic}) (@code{\&})
-@cindex character, zero-width space (@emph{sic}) (@code{\&})
-@cindex space character, zero-width (@emph{sic}) (@code{\&})
-@cindex @code{\&}, escaping control characters
-To begin a line with a control character without it being interpreted,
-precede it with @code{\&}.  This represents a non-printing input break,
-which means it does not affect the output.
 
 Use of the normal control character predominates.  Invoke a request that
 implies a break with the no-break control character to prevent breaking.
@@ -6540,9 +6533,7 @@ There is no way to invoke an undefined request; such syntax is
 interpreted as a macro call instead.  If a macro of the desired name
 does not exist, it is created, assigned an empty definition, and a
 warning in category @samp{mac} is produced.  @xref{Debugging}, for
-information about the enablement and suppression of warnings.  A call of
-an undefined macro @emph{does} end a macro definition naming it as its
-end macro (@pxref{Writing Macros}).
+information about the enablement and suppression of warnings.
 
 @menu
 * Request and Macro Arguments::
@@ -6608,10 +6599,12 @@ There are two possibilities to get a double quote reliably.
 @itemize @bullet
 @item
 Enclose the whole argument with double quotes and use two consecutive
-double quotes to represent a single one.  This traditional solution has
-the disadvantage that double quotes don't survive argument expansion
-again if called in compatibility mode (using the @option{-C} option of
-GNU @code{troff}).
+double quotes to represent a single one.@footnote{Strictly, you can
+omit the closing quote from the last macro argument, relying on the end
+of the control line to ``close'' it.  We consider that lethargic
+practice poor style.}  This traditional solution has the disadvantage
+that double quotes don't survive argument expansion again if called in
+compatibility mode (using the @option{-C} option of GNU @code{troff}).
 
 @Example
 .de xx
@@ -6623,16 +6616,16 @@ GNU @code{troff}).
 .  tm yy: `\\$1' `\\$2' `\\$3'
 ..
 .xx A "test with ""quotes""" .
-    @result{} xx: `A' `test with "quotes"' `.'
-    @result{} yy: `A' `test with ' `quotes""'
+  @result{} xx: @quoteleft{}A@quoteright{} @quoteleft{}test with "quotes"@quoteright{} @quoteleft{}.@quoteright{}
+  @result{} yy: @quoteleft{}A@quoteright{} @quoteleft{}test with @quoteright{} @quoteleft{}quotes""@quoteright{}
 @endExample
 
 @noindent
-If not in compatibility mode, you get the expected result
+If not in compatibility mode, you get
 
 @Example
-xx: `A' `test with "quotes"' `.'
-yy: `A' `test with "quotes"' `.'
+  @result{} xx: @quoteleft{}A@quoteright{} @quoteleft{}test with "quotes"@quoteright{} @quoteleft{}.@quoteright{}
+  @result{} yy: @quoteleft{}A@quoteright{} @quoteleft{}test with "quotes"@quoteright{} @quoteleft{}.@quoteright{}
 @endExample
 
 @noindent
@@ -6640,8 +6633,7 @@ yy: `A' `test with "quotes"' `.'
 @cindex level, input
 @cindex interpolation depth
 @cindex depth, interpolation
-since GNU @code{troff} tracks the nesting depth of
-interpolations.
+since GNU @code{troff} tracks the nesting depth of interpolations.
 
 @item
 Use the double-quote glyph @code{\(dq}.  This works with and without
@@ -6681,9 +6673,6 @@ of the no-break control character is associated with the environment
 @xref{Requests}.
 
 @c ---------------------------------------------------------------------
-
-@codequotebacktick on
-@codequoteundirected on
 
 @c BEGIN Keep (roughly) parallel with section "Escape sequences" of
 @c groff(7).

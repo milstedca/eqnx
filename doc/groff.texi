@@ -5309,9 +5309,9 @@ perhaps less obviously, we could also have defined them @emph{after}
 the body of a macro definition is not (completely) interpreted, but
 stored instead (@pxref{Copy Mode}).  While a macro is being defined (or
 appended to), requests are not interpreted and macros not interpolated,
-whereas some commonly used escape sequences @emph{are} interpolated.
-@code{roff} systems also support recursive macros---as long as you have
-a way to break the recursion (@pxref{Conditionals and Loops}).
+whereas some commonly used escape sequences @emph{are} interpreted.
+@code{roff} systems also support recursive macro calls, as long as you
+have a way to break the recursion (@pxref{Conditionals and Loops}).
 Maintainable @code{roff} documents tend to arrange macro definitions to
 minimize forward references.
 

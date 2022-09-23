@@ -5224,7 +5224,8 @@ Heywood Jabuzzoff
 @endExample
 
 In fact, the ending marker is itself the name of a macro that will be
-called if it is defined by that time.
+called if it is defined by that time (or the name of a request to be
+invoked).
 
 @Example
 .de END

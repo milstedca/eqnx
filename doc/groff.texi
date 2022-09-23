@@ -6535,6 +6535,28 @@ does not exist, it is created, assigned an empty definition, and a
 warning in category @samp{mac} is produced.  @xref{Debugging}, for
 information about the enablement and suppression of warnings.
 
+@cindex control character, changing (@code{cc})
+@cindex character, control, changing (@code{cc})
+@cindex no-break control character, changing (@code{c2})
+@cindex character, no-break control, changing (@code{c2})
+@cindex control character, no-break, changing (@code{c2})
+The control character @samp{.} and the no-break control character
+@samp{'} can be changed with the @code{cc} and @code{c2} requests,
+respectively.
+
+@Defreq {cc, [@Var{c}]}
+Set the control character to@tie{}@var{c}.  With no argument the default
+control character @samp{.} is restored.  The value of the control
+character is associated with the environment (@pxref{Environments}).
+@endDefreq
+
+@Defreq {c2, [@Var{c}]}
+Set the no-break control character to@tie{}@var{c}.  With no argument
+the default no-break control character @samp{'} is restored.  The value
+of the no-break control character is associated with the environment
+(@pxref{Environments}).
+@endDefreq
+
 @menu
 * Request and Macro Arguments::
 @end menu
@@ -6647,30 +6669,6 @@ define the @code{dq} special character.
 @cindex @code{ds} request, and double quotes
 Double quotes in the @code{ds} request are handled differently.
 @xref{Strings}.
-
-@cindex control character, changing (@code{cc})
-@cindex character, control, changing (@code{cc})
-@cindex no-break control character, changing (@code{c2})
-@cindex character, no-break control, changing (@code{c2})
-@cindex control character, no-break, changing (@code{c2})
-The control character @samp{.} and the no-break control character
-@samp{'} can be changed with the @code{cc} and @code{c2} requests,
-respectively.
-
-@Defreq {cc, [@Var{c}]}
-Set the control character to@tie{}@var{c}.  With no argument the default
-control character @samp{.} is restored.  The value of the control
-character is associated with the environment (@pxref{Environments}).
-@endDefreq
-
-@Defreq {c2, [@Var{c}]}
-Set the no-break control character to@tie{}@var{c}.  With no argument
-the default no-break control character @samp{'} is restored.  The value
-of the no-break control character is associated with the environment
-(@pxref{Environments}).
-@endDefreq
-
-@xref{Requests}.
 
 @c ---------------------------------------------------------------------
 

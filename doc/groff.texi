@@ -830,6 +830,12 @@ $ echo '.tm all is well.' | groff > /dev/null
     @error{} all is well.
 @endExample
 
+Sometimes we use @result{} somewhat abstractly to represent formatted
+text that you will need to use a PostScript or PDF viewer program (or a
+printer) to observe.  While arguably an abuse of notation, we think this
+preferable to requiring the reader to understand the syntax of these
+page description languages.
+
 We also present diagnostic messages in an abbreviated form, often
 omitting the name of the program issuing them, the input file name, and
 line number or other positional information when such data do not serve
@@ -1730,8 +1736,7 @@ spaces one line, but
 spaces four lines.  The number@tie{}4 is an argument to the @code{sp}
 request, which says to space four lines instead of one.  Arguments are
 separated from the request and from each other by spaces (@emph{no}
-tabs).  More details on this can be found in @ref{Request and Macro
-Arguments}.
+tabs).  @xref{Request and Macro Arguments}.
 
 The primary function of @code{gtroff} is to collect words from input
 lines, fill output lines with those words, justify the right-hand margin
@@ -7122,15 +7127,10 @@ the @code{\R} escape sequence.
 @DefreqList {nr, ident value}
 @DefescListEndx {\\R, @code{'}, ident value, @code{'}}
 Set register @var{ident} to @var{value}.  If @var{ident} doesn't exist,
-GNU @code{troff} creates it.
-
-The argument to @code{\R} must be enclosed within delimiters; see
-@ref{Escape Sequences}, for a list of valid delimiter characters.  The
-@code{\R} escape doesn't produce an input token in GNU @code{troff}; in
-other words, it vanishes completely after GNU @code{troff} has processed
-it.
-
-For example, the following two lines are equivalent:
+GNU @code{troff} creates it.  In the @code{\R} escape sequence, the
+delimiter need not be an apostrophe; see @ref{Escape Sequences}.  It
+also does not produce an input token in GNU @code{troff}.  @xref{Gtroff
+Internals}.
 
 @Example
 .nr a (((17 + (3 * 4))) % 4)
@@ -7337,8 +7337,7 @@ If @var{ident} has no auto-incrementation value, interpolate as with
 @code{\n}.
 @endDefesc
 
-For example,
-
+@need 1000
 @Example
 .nr a 0 1
 .nr xx 0 5
@@ -7348,14 +7347,9 @@ For example,
 \n-(xx, \n-(xx, \n-(xx, \n-(xx, \n-(xx
 .br
 \n+[foo], \n+[foo], \n+[foo], \n+[foo], \n+[foo]
-@endExample
-
-produces
-
-@Example
-1, 2, 3, 4, 5
--5, -10, -15, -20, -25
--2, -4, -6, -8, -10
+    @result{} 1, 2, 3, 4, 5
+    @result{} -5, -10, -15, -20, -25
+    @result{} -2, -4, -6, -8, -10
 @endExample
 
 @cindex increment value without changing the register
@@ -7364,10 +7358,6 @@ To change the increment value without changing the value of a register,
 assign the register's value to itself by interpolating it, and specify
 the desired increment normally.  Apply an increment of @samp{0} to
 disable auto-incrementation of the register.
-
-@Example
-.nr a \na 10
-@endExample
 
 @c ---------------------------------------------------------------------
 
@@ -7465,15 +7455,13 @@ and nothing is interpolated.  @code{\g} is interpreted even in copy mode
 
 @cindex register format, in expressions
 @cindex expressions, and register format
-GNU @code{troff}'s input parser understands only Arabic numerals.  The
-Roman numeral or alphabetic formats cannot be used as operands to
-arithmetic operators in expressions (@pxref{Numeric Expressions}).  For
-instance, it may be desirable to test the page number independently of
-its format.
+GNU @code{troff} interprets only Arabic numerals.  The Roman numeral or
+alphabetic formats cannot be used as operands to arithmetic operators in
+expressions (@pxref{Numeric Expressions}).  For instance, it may be
+desirable to test the page number independently of its format.
 
 @Example
 .af % i \" front matter
-@r{@dots{}}
 .de header-trap
 .  \" To test the page number, we need it in Arabic.
 .  ds saved-page-number-format \\g%\"
@@ -9696,8 +9684,8 @@ title line with the left-justified word @samp{foo}; the centered and
 right-justified parts are empty.
 
 @item
-@code{tl} accepts the same parameter delimiting characters as the
-@code{\A} escape sequence; see @ref{Escape Sequences}.
+@code{tl} accepts the same delimiters as the @code{\A} escape sequence;
+see @ref{Escape Sequences}.
 @end itemize
 @endDefreq
 
@@ -16697,8 +16685,9 @@ referred to it as a ``living fossil''.} should be migrated to another
 @subsection Other Differences
 
 @code{groff} request names unrecognized by other @code{troff}
-implementations will likely be ignored; escape sequences that are
-@code{groff} extensions are liable to be formatted literally.
+implementations will likely be ignored by them; escape sequences that
+are @code{groff} extensions are liable to be interpreted as if the
+escape character were not present.
 @cindex @code{\~}, incompatibilities with @acronym{AT&T} @code{troff}
 For example, the adjustable, non-breaking escape sequence @code{\~}
 @c BEGIN Keep in sync with groff_diff(7) and groff_man_style(7).
@@ -16871,9 +16860,10 @@ backslash's common use as a @code{troff} escape character---perhaps in
 discussion of character sets or other programming languages---is
 the character escape @code{\(rs} or @code{\[rs]}, for ``reverse
 solidus'', from its name in the @acronym{ECMA-6} (@acronym{ISO/IEC} 646)
-standard.@footnote{This escape sequence is not portable to
-@acronym{AT&T} @code{troff}, but is to its lineal descendant, Heirloom
-Doctools @code{troff}, as of its 060716 release (July 2006).}
+standard.@footnote{The @code{rs} special character identifier was not
+defined in @acronym{AT&T} @code{troff}'s font description files, but is
+in those if its lineal descendant, Heirloom Doctools @code{troff}, as of
+the latter's 060716 release (July 2006).}
 
 To store an escape sequence in a diversion that is interpreted when the
 diversion is reread, either use the traditional @code{\!} transparent

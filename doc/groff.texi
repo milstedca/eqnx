@@ -7134,8 +7134,10 @@ Internals}.
 
 @Example
 .nr a (((17 + (3 * 4))) % 4)
-\R'a (((17 + (3 * 4))) % 4)'
-    @result{} 1
+\n[a]
+.\R'a (((17 + (3 * 4))) % 4)'
+\n[a]
+    @result{} 1 1
 @endExample
 
 (Later, we will discuss additional forms of @code{nr} and @code{\R} that

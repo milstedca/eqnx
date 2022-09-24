@@ -1230,31 +1230,36 @@ containing them is surrounded by parentheses.
 .SH Identifiers
 .\" ====================================================================
 .
-An identifier is a label for an object of syntactical importance like
-a register,
-a name
-(macro,
-string,
-or diversion),
-an environment,
-a font,
-a style,
-a character class,
-a glyph,
-or a stream,
-comprising a sequence of one or more characters with the following
-exceptions.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Identifiers".
+GNU
+.I troff \" GNU
+has rules for properly formed
+.IR identifiers \[em]labels
+for objects with syntactical importance,
+like registers,
+names
+(macros,
+strings,
+or diversions),
+typefaces,
+glyphs,
+colors,
+character classes,
+environments,
+and streams.
 .
-.
-.IP \[bu]
-Spaces,
+An identifier consists of one or more characters excepting
+spaces,
 tabs,
-or newlines.
+newlines,
+and invalid input characters.
 .
 .
-.IP \[bu]
-Invalid input characters;
-these are certain control characters
+.\" XXX: We might move this discussion earlier since it is applicable to
+.\" troff input in general, and include a reference to the `trin`
+.\" request.
+.P
+Invalid input characters are subset of control characters
 (from the sets \[lq]C0 Controls\[rq] and \[lq]C1 Controls\[rq] as
 Unicode describes them).
 .
@@ -1262,12 +1267,18 @@ When
 .I @g@troff
 encounters one in an identifier,
 it produces a warning in category
-.RB \[lq] input \[rq]
+.RB \%\[lq] input \[rq]
 (see section \[lq]Warnings\[rq] in
 .MR @g@troff @MAN1EXT@ ).
 .
+They are removed during interpretation:
+an identifier \[lq]foo\[rq],
+followed by an invalid
+character and then \[lq]bar\[rq],
+is processed as \[lq]foobar\[rq].
 .
-.IP
+.
+.P
 On a machine using the ISO 646,
 8859,
 or 10646 character encodings,
@@ -1279,8 +1290,6 @@ invalid input characters are
 and
 .BR 0x80 \[en] 0x9F .
 .
-.
-.IP
 On an EBCDIC host,
 they are
 .BR 0x00 \[en] 0x01 ,
@@ -1292,27 +1301,92 @@ they are
 and
 .BR 0x30 \[en] 0x3F .
 .
-.
-.IP
 Some of these code points are used by
 .I @g@troff
 internally,
 making it non-trivial to extend the program to accept UTF-8 or other
 encodings that use characters from these ranges.
 .
-(Consider what happens when a C1 control
-.BR 0x80 \[en] 0x9F
-is necessary as a continuation byte in a UTF-8 sequence.)
+.
+.P
+An identifier with a closing bracket (\[lq]]\[rq]) in its name can't be
+accessed with bracket-form escape sequences that expect an identifier as
+a parameter.
+.
+Similarly,
+the
+identifier \[lq](\[rq] can't be interpolated
+.I except
+with bracket forms.
 .
 .
-.IP
-Invalid characters are removed during interpretation;
-an identifier
-.RB \[lq] foo \[rq],
-followed by an invalid character and then
-.RB \[lq] bar \[rq],
-is processed as
-.RB \[lq] foobar \[rq] .
+.P
+If you begin a macro,
+string,
+or diversion name with either of the characters \[lq][\[rq] or
+\[lq]]\[rq],
+you foreclose use of the
+.MR @g@refer @MAN1EXT@
+preprocessor,
+which recognizes \[lq].[\[rq] and \[lq].]\[rq] as bibliographic
+reference delimiters.
+.
+.
+.P
+The escape sequence
+.B \[rs]A
+tests its argument for validity as an identifier.
+.
+.
+.P
+How GNU
+.I troff \" GNU
+handles the interpretation of an undefined identifier depends on the
+context.
+.
+There is no way to invoke an undefined request;
+such syntax is interpreted as a macro call instead.
+.
+If the identifier is being interpreted as a string,
+macro,
+or diversion,
+.I @g@troff
+emits a warning in category
+.RB \[lq] mac \[rq],
+defines it as empty,
+and interpolates nothing.
+.
+If the identifier is being interpreted as a register,
+.I @g@troff
+emits a warning in category
+.RB \[lq] reg \[rq],
+initializes it to zero,
+and interpolates that value.
+.
+See section \[lq]Warnings\[rq] in
+.MR @g@troff @MAN1EXT@ ,
+and subsection \[lq]Interpolating registers\[rq] and section
+\[lq]Strings\[rq] below.
+.
+Attempting to use an undefined
+typeface,
+style,
+glyph,
+color,
+character class,
+environment,
+or stream generally provokes an error diagnostic.
+.
+.
+.P
+Identifiers for requests,
+macros,
+strings,
+and diversions share a name
+space.
+.
+No other object types do.
+.\" END Keep (roughly) parallel with groff.texi node "Identifiers".
 .
 .
 .\" ====================================================================
@@ -1785,7 +1859,7 @@ If a macro of the desired name does not exist,
 it is created,
 assigned an empty definition,
 and a warning in category
-.B mac
+.RB \[lq] mac \[rq]
 is emitted.
 .
 Calling an undefined macro

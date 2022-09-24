@@ -6243,17 +6243,21 @@ not qualify, so our first attempt got a warning.
 
 @c =====================================================================
 
+@c BEGIN Keep (roughly) parallel with section "Identifiers" of groff(7).
 @node Identifiers, Formatter Instructions, Numeric Expressions, gtroff Reference
 @section Identifiers
 @cindex identifiers
 
 GNU @code{troff} has rules for properly formed
 @dfn{identifiers}---labels for objects with syntactical importance, like
-registers, names (macros, strings, or diversions), environments, fonts,
-styles, colors, character classes, glyphs, and streams.  An identifier
-consists of one or more characters with the exception of spaces, tabs,
-newlines, and invalid input characters.
+registers, names (macros, strings, or diversions), typefaces, glyphs,
+colors, character classes, environments, and streams.  An identifier
+consists of one or more characters excepting spaces, tabs, newlines, and
+invalid input characters.
 
+@c XXX: We might move this discussion earlier since it is applicable to
+@c troff input in general, and include a reference to the `trin`
+@c request.
 @cindex invalid input characters
 @cindex input characters, invalid
 @cindex characters, invalid input
@@ -6261,8 +6265,8 @@ newlines, and invalid input characters.
 Invalid input characters are a subset of control characters (from the
 sets ``C0 Controls'' and ``C1 Controls'' as Unicode describes them).
 When GNU @code{troff} encounters one in an identifier, it produces a
-warning in category @samp{input} (@pxref{Debugging}).  They are removed
-during intepretation; an identifier @samp{foo}, followed by an invalid
+warning in category @samp{input} (@pxref{Warnings}).  They are removed
+during interpretation: an identifier @samp{foo}, followed by an invalid
 character and then @samp{bar}, is processed as @samp{foobar}.
 
 On a machine using the ISO 646, 8859, or 10646 character encodings,
@@ -6315,81 +6319,74 @@ An identifier with a closing bracket (@samp{]}) in its name can't be
 accessed with bracket-form escape sequences that expect an identifier as
 a parameter.  For example, @samp{\[foo]]} accesses the glyph @samp{foo},
 followed by @samp{]} in whatever the surrounding context is, whereas
-@samp{\C'foo]'} formats a glyph named @samp{foo]}.
+@samp{\C'foo]'} formats a glyph named @samp{foo]}.  Similarly, the
+identifier @samp{(} can't be interpolated @emph{except} with bracket
+forms.
 
 @cindex @code{refer}, and macro names starting with @code{[} or @code{]}
 @cindex @code{[}, macro names starting with, and @code{refer}
 @cindex @code{]}, macro names starting with, and @code{refer}
 @cindex macro names, starting with @code{[} or @code{]}, and @code{refer}
 If you begin a macro, string, or diversion name with either of the
-characters @samp{[} or @samp{]}, you foreclose use of the @code{refer}
-preprocessor, which recognizes @samp{.[} and @samp{.]} as bilbilographic
+characters @samp{[} or @samp{]}, you foreclose use of the @code{grefer}
+preprocessor, which recognizes @samp{.[} and @samp{.]} as bibliographic
 reference delimiters.
 
-@codequotebacktick off
-@codequoteundirected off
-
 @Defesc {\\A, @code{'}, ident, @code{'}}
-Test whether an identifier @var{ident} is valid in @code{gtroff}.  It
-expands to the character@tie{}1 or@tie{}0 according to whether its
-argument (usually delimited by quotes) is or is not acceptable as the
-name of a string, macro, diversion, register, environment, or font.  It
-returns@tie{}0 if no argument is given.  This is useful for looking up
-user input in some sort of associative table.
+Interpolate@tie{}1 if @var{ident} is a valid identifier in GNU
+@code{troff}, and@tie{}0 otherwise.  The delimiter need not be an
+apostrophe; see @ref{Escape Sequences}.  Because invalid input
+characters are removed (see above), invalid identifiers are empty or
+contain spaces, tabs, or newlines.
+
+You can employ @code{\A} to validate a macro argument before using it to
+construct another escape sequence or identifier.
 
 @Example
-\A'end-list'
-    @result{} 1
+.\" usage: init-coordinate-pair name val1 val2
+.\" Create a coordinate pair where name!x=val1 and
+.\" name!y=val2.
+.de init-coordinate-pair
+.  if \A'\\$1' \@{\
+.    if \B'\\$2' .nr \\$1!x \\$2
+.    if \B'\\$3' .nr \\$1!y \\$3
+.  \@}
+..
+.init-coordinate-pair center 5 10
+The center is at (\n[center!x], \n[center!y]).
+.init-coordinate-pair "poi@arrow{}nt" trash garbage \" ignored
+.init-coordinate-pair point trash garbage \" ignored
+    @result{} The center is at (5, 10).
 @endExample
+
+@noindent
+In this example, we also validated the numeric arguments; the registers
+@samp{point!x} and @samp{point!y} remain undefined.  @xref{Numeric
+Expressions} for the @code{\B} escape sequence.
 @endDefesc
-
-@xref{Escape Sequences}, for details on parameter delimiting characters.
-
-Identifiers in @code{gtroff} can be any length, but, in some contexts,
-@code{gtroff} needs to be told where identifiers end and text begins
-(and in different ways depending on their length):
-
-@itemize @bullet
-@item
-Single character.
-
-@cindex @code{(}, starting a two-character identifier
-@item
-Two characters.  Must be prefixed with @samp{(} in some situations.
-
-@cindex @code{[}, starting an identifier
-@cindex @code{]}, ending an identifier
-@item
-Arbitrary length (@code{gtroff} only).  Must be bracketed with @samp{[}
-and@tie{}@samp{]} in some situations.  Any length identifier can be put
-in brackets.
-@end itemize
 
 @cindex undefined identifiers
 @cindex identifiers, undefined
-Unlike many other programming languages, undefined identifiers are
-silently ignored or expanded to nothing.  When @code{gtroff} finds an
-undefined identifier, it emits a warning, doing the following:
+How GNU @code{troff} handles the interpretation of an undefined
+identifier depends on the context.  There is no way to invoke an
+undefined request; such syntax is interpreted as a macro call instead.
+If the identifier is being interpreted as a string, macro, or diversion,
+GNU @code{troff} emits a warning in category @samp{mac}, defines it as
+empty, and interpolates nothing.  If the identifier is being interpreted
+as a register, GNU @code{troff} emits a warning in category @samp{reg},
+initializes it to zero, and interpolates that value.  @xref{Warnings},
+@ref{Interpolating Registers}, and @ref{Strings}.  Attempting to use an
+undefined typeface, glyph, color, character class, environment, or
+stream generally provokes an error diagnostic.
 
-@itemize @bullet
-@item
-If the identifier is a string, macro, or diversion, @code{gtroff}
-defines it as empty.
-
-@item
-If the identifier is a register, @code{gtroff} defines it with a
-value of@tie{}0.
-@end itemize
-
-@xref{Warnings}, @ref{Interpolating Registers}, and @ref{Strings}.
-
+@need 1000
 @cindex name space, common, of macros, diversions, and strings
 @cindex common name space of macros, diversions, and strings
 @cindex macros, shared name space with strings and diversions
 @cindex strings, shared name space with macros and diversions
 @cindex diversions, shared name space with macros and strings
 Identifiers for requests, macros, strings, and diversions share a name
-space.
+space.  No other object types do.
 
 @Example
 .de xxx
@@ -6406,9 +6403,10 @@ bar
 @endExample
 
 @noindent
-As the previous example shows, GNU @code{troff} reuses the identifier
+The foregoing example shows that GNU @code{troff} reuses the identifier
 @samp{xxx}, changing it from a macro to a diversion.  No warning is
-emitted!  The contents of the first macro definition are lost.
+emitted, and the previous contents of @samp{xxx} are lost.
+@c END Keep (roughly) parallel with section "Identifiers" of groff(7).
 
 
 @c =====================================================================

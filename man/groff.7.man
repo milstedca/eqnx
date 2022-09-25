@@ -1676,6 +1676,159 @@ or the escape character changed
 .
 .
 .\" ====================================================================
+.SS "Escape sequence argument delimiters"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Escape
+.\" Sequence Argument Delimiters".
+Escape sequences that require multiple parameters or a special format
+use delimiters.
+.
+The neutral apostrophe
+.B \[aq]
+is a popular choice and shown in this document.
+.
+The neutral double quote
+.B \[dq]
+is also commonly seen.
+.
+Letters,
+numerals,
+and even leaders can be used;
+punctuation characters are likely better choices,
+except for those defined as infix operators in numerical expressions,
+about which more below.
+.
+.
+.br
+.ne 2v
+.P
+The following escape sequences are handled similarly to characters since
+they don't take arguments and thus are allowed as delimiters:
+.BR \[rs]% ,
+.RB \[lq] \|\[rs]\~ "\[rq] (backslash-space),"
+.BR \[rs]| ,
+.BR \[rs]\[ha] ,
+.BR \[rs]{ ,
+.BR \[rs]} ,
+.BR \[rs]\[aq] ,
+.BR \[rs]\[ga] ,
+.BR \[rs]\- ,
+.BR \[rs]_ ,
+.BR \[rs]! ,
+.BR \[rs]? ,
+.BR \[rs]) ,
+.BR \[rs]/ ,
+.BR \[rs], ,
+.BR \[rs]& ,
+.BR \[rs]: ,
+.BR \[rs]\[ti] ,
+.BR \[rs]0 ,
+.BR \[rs]a ,
+.BR \[rs]c ,
+.BR \[rs]d ,
+.BR \[rs]e ,
+.BR \[rs]E ,
+.BR \[rs]p ,
+.BR \[rs]r ,
+.BR \[rs]t ,
+and
+.BR \[rs]u .
+.
+However,
+using them this way is discouraged;
+doing so can make the input confusing to read.
+.
+.
+.P
+A few escape sequences,
+.BR \[rs]A ,
+.BR \[rs]b ,
+.BR \[rs]o ,
+.BR \[rs]w ,
+.BR \[rs]X ,
+and
+.BR \[rs]Z ,
+accept a newline as a delimiter.
+.
+Newlines that serve as delimiters continue to be recognized as input
+line terminators.
+.
+Use of newlines as delimiters in escape sequences is also discouraged.
+.
+.
+.P
+The escape sequences
+.BR \[rs]D ,
+.BR \[rs]h ,
+.BR \[rs]H ,
+.BR \[rs]l ,
+.BR \[rs]L ,
+.BR \[rs]N ,
+.BR \[rs]R ,
+.BR \[rs]s ,
+.BR \[rs]S ,
+.BR \[rs]v ,
+and
+.B \[rs]x
+prohibit many delimiters.
+.
+.
+.RS
+.IP \[bu] 2n
+the numerals 0\[en]9 and the decimal point
+.RB \[lq] . \[rq]
+.
+.
+.IP \[bu]
+the (single-character) operators
+.B +\-/*%<>=&:()
+.
+.
+.IP \[bu]
+any escape sequences other than
+.BR \[rs]% ,
+.BR \[rs]: ,
+.BR \[rs]{ ,
+.BR \[rs]} ,
+.BR \[rs]\[aq] ,
+.BR \[rs]\[ga] ,
+.BR \[rs]\- ,
+.BR \[rs]_ ,
+.BR \[rs]! ,
+.BR \[rs]/ ,
+.BR \[rs]c ,
+.BR \[rs]e ,
+and
+.B \[rs]p
+.RE
+.
+.
+.P
+Delimiter syntax is complex and flexible primarily for historical
+reasons;
+the foregoing restrictions need be kept in mind mainly when using
+.I groff
+in AT&T compatibility mode.
+.
+GNU
+.I troff \" GNU
+keeps track of the nesting depth of escape sequence interpolations,
+so the only characters you need to avoid using as delimiters are those
+that appear in the arguments you input,
+not any that result from interpolation.
+.
+Typically,
+.B \[aq]
+works fine.
+.
+See section \[lq]Implementation differences\[rq] in
+.MR groff_diff @MAN7EXT@ .
+.\" END Keep (roughly) parallel with groff.texi node "Escape
+.\" Sequence Argument Delimiters".
+.
+.
+.\" ====================================================================
 .SH "Control structures"
 .\" ====================================================================
 .
@@ -4023,159 +4176,6 @@ glilypond^.lilypond start^.lilypond stop
 gperl^.Perl start^.Perl stop
 gpinyin^.pinyin start^.pinyin stop
 .TE
-.
-.
-.\" ====================================================================
-.SS "Escape sequence argument delimiters"
-.\" ====================================================================
-.
-.\" BEGIN Keep (roughly) parallel with groff.texi node "Escape
-.\" Sequence Argument Delimiters".
-Escape sequences that require multiple parameters or a special format
-use delimiters.
-.
-The neutral apostrophe
-.B \[aq]
-is a popular choice and shown in this document.
-.
-The neutral double quote
-.B \[dq]
-is also commonly seen.
-.
-Letters,
-numerals,
-and even leaders can be used;
-punctuation characters are likely better choices,
-except for those defined as infix operators in numerical expressions,
-about which more below.
-.
-.
-.br
-.ne 2v
-.P
-The following escape sequences are handled similarly to characters since
-they don't take arguments and thus are allowed as delimiters:
-.BR \[rs]% ,
-.RB \[lq] \|\[rs]\~ "\[rq] (backslash-space),"
-.BR \[rs]| ,
-.BR \[rs]\[ha] ,
-.BR \[rs]{ ,
-.BR \[rs]} ,
-.BR \[rs]\[aq] ,
-.BR \[rs]\[ga] ,
-.BR \[rs]\- ,
-.BR \[rs]_ ,
-.BR \[rs]! ,
-.BR \[rs]? ,
-.BR \[rs]) ,
-.BR \[rs]/ ,
-.BR \[rs], ,
-.BR \[rs]& ,
-.BR \[rs]: ,
-.BR \[rs]\[ti] ,
-.BR \[rs]0 ,
-.BR \[rs]a ,
-.BR \[rs]c ,
-.BR \[rs]d ,
-.BR \[rs]e ,
-.BR \[rs]E ,
-.BR \[rs]p ,
-.BR \[rs]r ,
-.BR \[rs]t ,
-and
-.BR \[rs]u .
-.
-However,
-using them this way is discouraged;
-doing so can make the input confusing to read.
-.
-.
-.P
-A few escape sequences,
-.BR \[rs]A ,
-.BR \[rs]b ,
-.BR \[rs]o ,
-.BR \[rs]w ,
-.BR \[rs]X ,
-and
-.BR \[rs]Z ,
-accept a newline as a delimiter.
-.
-Newlines that serve as delimiters continue to be recognized as input
-line terminators.
-.
-Use of newlines as delimiters in escape sequences is also discouraged.
-.
-.
-.P
-The escape sequences
-.BR \[rs]D ,
-.BR \[rs]h ,
-.BR \[rs]H ,
-.BR \[rs]l ,
-.BR \[rs]L ,
-.BR \[rs]N ,
-.BR \[rs]R ,
-.BR \[rs]s ,
-.BR \[rs]S ,
-.BR \[rs]v ,
-and
-.B \[rs]x
-prohibit many delimiters.
-.
-.
-.RS
-.IP \[bu] 2n
-the numerals 0\[en]9 and the decimal point
-.RB \[lq] . \[rq]
-.
-.
-.IP \[bu]
-the (single-character) operators
-.B +\-/*%<>=&:()
-.
-.
-.IP \[bu]
-any escape sequences other than
-.BR \[rs]% ,
-.BR \[rs]: ,
-.BR \[rs]{ ,
-.BR \[rs]} ,
-.BR \[rs]\[aq] ,
-.BR \[rs]\[ga] ,
-.BR \[rs]\- ,
-.BR \[rs]_ ,
-.BR \[rs]! ,
-.BR \[rs]/ ,
-.BR \[rs]c ,
-.BR \[rs]e ,
-and
-.B \[rs]p
-.RE
-.
-.
-.P
-Delimiter syntax is complex and flexible primarily for historical
-reasons;
-the foregoing restrictions need be kept in mind mainly when using
-.I groff
-in AT&T compatibility mode.
-.
-GNU
-.I troff \" GNU
-keeps track of the nesting depth of escape sequence interpolations,
-so the only characters you need to avoid using as delimiters are those
-that appear in the arguments you input,
-not any that result from interpolation.
-.
-Typically,
-.B \[aq]
-works fine.
-.
-See section \[lq]Implementation differences\[rq] in
-.MR groff_diff @MAN7EXT@ .
-.\" END Keep (roughly) parallel with groff.texi node "Escape
-.\" Sequence Argument Delimiters".
 .
 .
 .\" ====================================================================

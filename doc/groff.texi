@@ -7041,7 +7041,7 @@ Test
 @endExample
 
 To avoid this, it is common to combine the empty request with the
-comment escape @samp{.\"}, causing the line to be ignored.
+comment escape as @samp{.\"}, causing the input line to be ignored.
 
 @cindex @code{'}, as a comment
 Another commenting scheme sometimes seen is three consecutive single

@@ -1736,7 +1736,7 @@ spaces one line, but
 spaces four lines.  The number@tie{}4 is an argument to the @code{sp}
 request, which says to space four lines instead of one.  Arguments are
 separated from the request and from each other by spaces (@emph{no}
-tabs).  @xref{Request and Macro Arguments}.
+tabs).  @xref{Invoking Requests}.
 
 The primary function of @code{gtroff} is to collect words from input
 lines, fill output lines with those words, justify the right-hand margin
@@ -4769,6 +4769,7 @@ not interested in details.
 * Numeric Expressions::
 * Identifiers::
 * Formatter Instructions::
+* Comments::
 * Registers::
 * Manipulating Filling and Adjustment::
 * Manipulating Hyphenation::
@@ -5191,8 +5192,7 @@ GNU @code{troff}'s requests and escape sequences comprise the control
 language of the formatter.  Of key importance are the requests that
 define macros.  Macros are invoked like requests, enabling the request
 repertoire to be extended or overridden.@footnote{Argument handling in
-macros is more flexible but also more complex.  @xref{Request and Macro
-Arguments}.}
+macros is more flexible but also more complex.  @xref{Calling Macros}.}
 
 @cindex macro
 @cindex calling a macro
@@ -6199,7 +6199,7 @@ In the foregoing example, we've used the @code{\Z} escape sequence
 @cindex valid numeric expression
 Interpolate@tie{}1 if @var{anything} is a valid numeric expression,
 and@tie{}0 otherwise.  The delimiter need not be an apostrophe; see
-@ref{Escape Sequences}.
+@ref{Using Escape Sequences}.
 @endDefesc
 
 You might use @code{\B} along with the @code{if} request to filter out
@@ -6220,7 +6220,7 @@ Register Formats}.
 @cindex expressions, and space characters
 Because spaces separate arguments to requests, spaces are not allowed in
 numeric expressions unless the (sub)expression containing them is
-surrounded by parentheses.  @xref{Request and Macro Arguments}, and
+surrounded by parentheses.  @xref{Invoking Requests}, and
 @ref{Conditionals and Loops}.
 
 @Example
@@ -6335,15 +6335,15 @@ reference delimiters.
 @Defesc {\\A, @code{'}, ident, @code{'}}
 Interpolate@tie{}1 if @var{ident} is a valid identifier in GNU
 @code{troff}, and@tie{}0 otherwise.  The delimiter need not be an
-apostrophe; see @ref{Escape Sequences}.  Because invalid input
-characters are removed (see above), invalid identifiers are empty or
-contain spaces, tabs, or newlines.
+apostrophe; see @ref{Delimiters}.  Because invalid input characters are
+removed (see above), invalid identifiers are empty or contain spaces,
+tabs, or newlines.
 
 You can employ @code{\A} to validate a macro argument before using it to
 construct another escape sequence or identifier.
 
 @Example
-.\" usage: init-coordinate-pair name val1 val2
+.\" usage: .init-coordinate-pair name val1 val2
 .\" Create a coordinate pair where name!x=val1 and
 .\" name!y=val2.
 .de init-coordinate-pair
@@ -6418,48 +6418,145 @@ emitted, and the previous contents of @samp{xxx} are lost.
 
 To support documents that require more than filling, automatic line
 breaking and hyphenation, adjustment, and supplemental inter-sentence
-space, a @code{roff} program offers two means of embedding instructions
-to the formatter.
+space, the @code{roff} language offers two means of embedding
+instructions to the formatter.
 
+@cindex request
 One is a @dfn{request}, which begins with a control character and takes
-up the remainder of the input line.@footnote{A control character can
-also occur in arguments to @code{if}, @code{ie}, @code{el}, @code{nop},
-and @code{while} requests.}  Requests often perform relatively
-large-scale operations such as setting the page length, breaking a line,
-or starting a new page.
+up the remainder of the input line.  Requests often perform relatively
+large-scale operations such as setting the page length, breaking the
+line, or starting a new page.  They also conduct internal operations
+like defining macros.
 
+@cindex escape sequence
+@cindex sequence, escape
 The other is an @dfn{escape sequence}, which begins with the escape
 character and can be embedded anywhere in the input, even in arguments
-to requests and other escape sequences.  Escape sequences often
-implement relatively minor operations like sub- and superscripting or
-interpolation of special characters, strings, or register contents.
+to requests and other escape sequences.  Escape sequences interpolate
+special characters, strings, or registers, and handle comparatively
+minor formatting tasks like sub- and superscripting.
 
 Some operations, such as font selection and type size alteration, are
 available via both requests and escape sequences.
 
 @menu
-* Requests::
-* Escape Sequences::
+* Control Characters::
+* Invoking Requests::
+* Calling Macros::
+* Using Escape Sequences::
+* Delimiters::
 @end menu
 
 @c ---------------------------------------------------------------------
 
-@codequotebacktick on
-@codequoteundirected on
-
-@node Requests, Escape Sequences, Formatter Instructions, Formatter Instructions
-@subsection Requests
-@cindex requests
+@node Control Characters, Invoking Requests, Formatter Instructions, Formatter Instructions
+@subsection Control Characters
+@cindex control characters
+@cindex configuring control characters
+@cindex changing control characters
 
 The mechanism of using @code{roff}'s control characters to invoke
 requests and call macros was introduced in @ref{Requests and Macros}.
-The control characters can be changed; see below.
+Control characters are recognized only at the beginning of an input
+line, or at the beginning of the branch of a control structure request;
+see @ref{Conditionals and Loops}.
+
+A few requests cause a break implicitly; use the no-break control
+character to prevent the break.  Break suppression is its sole
+behavioral distinction.  Employing the no-break control character to
+invoke requests that don't cause breaks is harmless but poor style.
+@xref{Manipulating Filling and Adjustment}.
+
+@cindex control character, changing (@code{cc})
+@cindex character, control, changing (@code{cc})
+@cindex no-break control character, changing (@code{c2})
+@cindex character, no-break control, changing (@code{c2})
+@cindex control character, no-break, changing (@code{c2})
+The control character @samp{.} and the no-break control character
+@samp{'} can be changed with the @code{cc} and @code{c2} requests,
+respectively.
+
+@Defreq {cc, [@Var{c}]}
+Set the control character to@tie{}@var{c}.  With no argument, the
+default control character @samp{.} is restored.  The identity of the
+control character is associated with the environment
+(@pxref{Environments}).
+@endDefreq
+
+@Defreq {c2, [@Var{c}]}
+Set the no-break control character to@tie{}@var{c}.  With no argument,
+the default no-break control character @samp{'} is restored.  The
+identity of the no-break control character is associated with the
+environment (@pxref{Environments}).
+@endDefreq
+
+When writing a macro, you might wish to know which control character was
+used to call it.
+
+@Defreg {.br}
+This read-only register interpolates@tie{}1 if the currently executing
+macro was called using the normal control character and@tie{}0
+otherwise.  If a macro is interpolated as a string, the @code{.br}
+register's value is inherited from context of the string interpolation.
+@xref{Strings}.
+
+@cindex intercepting requests
+@cindex requests, intercepting
+@cindex modifying requests
+@cindex requests, modifying
+Use this register to reliably intercept requests that imply breaks.
+
+@Example
+.als bp*orig bp
+.de bp
+.  ie \\n[.br] .bp*orig
+.  el          'bp*orig
+..
+@endExample
+
+Testing the @code{.br} register outside of a macro definition makes no
+sense.
+@endDefreg
+
+@c ---------------------------------------------------------------------
+
+@c BEGIN Keep (roughly) parallel with section "Requests" of groff(7).
+@node Invoking Requests, Calling Macros, Control Characters, Formatter Instructions
+@subsection Invoking Requests
+@cindex invoking requests
+@cindex requests, invoking
 
 A control character is optionally followed by tabs and/or spaces and
-then an identifier naming the request or macro.  If arguments follow,
-they must be preceded by and separated from each other by spaces; GNU
-@code{troff} does not allow tabs for argument
-separation.@footnote{Plan@tie{}9 @code{troff} does.}
+then an identifier naming a request or macro.  The invocation of an
+unrecognized request is interpreted as a macro call.  Defining a macro
+with the same name as a request replaces the request.  Deleting a
+request name with the @code{rm} request makes it unavailable.  The
+@code{als} request can alias requests, permitting them to be wrapped or
+non-destructively replaced.  @xref{Strings}.
+
+@cindex request arguments
+@cindex arguments to requests
+@cindex tabs, and macro arguments
+@cindex macro arguments, and tabs
+@cindex arguments to macros, and tabs
+@cindex tabs, and request arguments
+@cindex request arguments, and tabs
+@cindex arguments to requests, and tabs
+There is no general limit on argument length or quantity.  Most
+requests take one or more arguments, and ignore any they do not expect.
+A request may be separated from its arguments by tabs or spaces, but
+only spaces can separate an argument from its successor.  Only one
+between arguments is necessary; any excess is ignored.  GNU @code{troff}
+does not allow tabs for argument separation.@footnote{In compatibility
+mode, a space is not necessary after a request or macro name of two
+characters' length.  Also, Plan@tie{}9 @code{troff} allows tabs to
+separate arguments.}
+
+Generally, a space @emph{within} a request argument is not relevant, not
+meaningful, or is supported by bespoke provisions, as with the @code{tl}
+request's delimiters (@pxref{Page Layout}).  Some requests, like
+@code{ds}, interpret the remainder of the control line as a single
+argument.  @xref{Strings}.
 
 @need 1000
 @cindex structuring source code of documents or macro packages
@@ -6472,119 +6569,69 @@ Commonly, authors structure the source of documents or macro files with
 them.
 
 @Example
-.de foo
-.  tm This is foo.
+.de center
+.  if \\n[.br] \
+.    br
+.  ce \\$@@
 ..
 .
-.de bar
-.@arrow{}tm This is bar.
+.
+.de right-align
+.@arrow{}if \\n[.br] \
+.@arrow{}@arrow{}br
+.@arrow{}rj \\$@@
 ..
 @endExample
 
-@cindex blank line
+@cindex blank line trap (@code{blm})
 @cindex blank line macro (@code{blm})
-Instead of the empty request, you can separate macro definitions (or any
-control lines) with blank lines if you assign an empty blank line macro.
+If you assign an empty blank line trap, you can separate macro
+definitions (or any input lines) with blank lines.
 
 @Example
 .de do-nothing
 ..
-.blm do-nothing  \" activate blank line macro
+.blm do-nothing  \" activate blank line trap
 
-.de foo
-.  tm This is foo.
+.de center
+.  if \\n[.br] \
+.    br
+.  ce \\$@@
 ..
 
-.de bar
-.@arrow{}tm This is bar.
+
+.de right-align
+.@arrow{}if \\n[.br] \
+.@arrow{}@arrow{}br
+.@arrow{}rj \\$@@
 ..
 
-.blm             \" deactivate blank line macro
+.blm             \" deactivate blank line trap
 @endExample
 
 @xref{Blank Line Traps}.
+@c END Keep (roughly) parallel with section "Requests" of groff(7).
 
-Use of the normal control character predominates.  Invoke a request that
-implies a break with the no-break control character to prevent breaking.
+@c ---------------------------------------------------------------------
 
-@Defreg {.br}
-A read-only register, which is set to@tie{}1 if a macro is called with
-the normal control character (as defined with the @code{cc} request),
-and set to@tie{}0 otherwise.
-
-@cindex modifying requests
-@cindex requests, modifying
-This allows reliable modification of requests.
-
-@Example
-.als bp*orig bp
-.de bp
-.  tm before bp
-.  ie \\n[.br] .bp*orig
-.  el 'bp*orig
-.  tm after bp
-..
-@endExample
-
-Using this register outside of a macro makes no sense (it always returns
-zero in such cases).
-
-If a macro is interpolated as a string (that is, using @code{\*}), the
-value of the @code{.br} register is inherited from the caller.
-@endDefreg
-
-There is no way to invoke an undefined request; such syntax is
-interpreted as a macro call instead.  If a macro of the desired name
-does not exist, it is created, assigned an empty definition, and a
-warning in category @samp{mac} is produced.  @xref{Debugging}, for
-information about the enablement and suppression of warnings.
-
-@cindex control character, changing (@code{cc})
-@cindex character, control, changing (@code{cc})
-@cindex no-break control character, changing (@code{c2})
-@cindex character, no-break control, changing (@code{c2})
-@cindex control character, no-break, changing (@code{c2})
-The control character @samp{.} and the no-break control character
-@samp{'} can be changed with the @code{cc} and @code{c2} requests,
-respectively.
-
-@Defreq {cc, [@Var{c}]}
-Set the control character to@tie{}@var{c}.  With no argument the default
-control character @samp{.} is restored.  The value of the control
-character is associated with the environment (@pxref{Environments}).
-@endDefreq
-
-@Defreq {c2, [@Var{c}]}
-Set the no-break control character to@tie{}@var{c}.  With no argument
-the default no-break control character @samp{'} is restored.  The value
-of the no-break control character is associated with the environment
-(@pxref{Environments}).
-@endDefreq
-
-@menu
-* Request and Macro Arguments::
-@end menu
-
-@node Request and Macro Arguments,  , Requests, Requests
-@subsubsection Request and Macro Arguments
-@cindex request arguments
+@need 1000
+@node Calling Macros, Using Escape Sequences, Invoking Requests, Formatter Instructions
+@subsection Calling Macros
+@cindex calling macros
 @cindex macro arguments
-@cindex arguments to requests and macros
+@cindex arguments to macros
 
-@cindex tabs, and macro arguments
-@cindex macro arguments, and tabs
-@cindex arguments to macros, and tabs
-Arguments to requests and macros are separated by space characters.
-Only one space between arguments is necessary; additional ones are
-ignored.
+If a macro of the desired name does not exist when called, it is
+created, assigned an empty definition, and a warning in category
+@samp{mac} is emitted.  Calling an undefined macro @emph{does} end a
+macro definition naming it as its end macro (@pxref{Writing Macros}).
 
 @cindex spaces, in a macro argument
-A macro argument that must contain space characters can either be
-enclosed in double quotes---this is @emph{not} true of requests---or one
-of several varieties of escape sequence with a spacing function can be
-used instead.
+To embed spaces @emph{within} a macro argument, enclose the argument in
+neutral double quotes @code{"}.  Horizontal motion escape sequences are
+sometimes a better choice for arguments to be formatted as text.
 
-Consider calls to a hypothetical macro @code{uh}:
+Consider calls to a hypothetical section heading macro @samp{uh}.
 
 @Example
 .uh The Mouse Problem
@@ -6596,122 +6643,123 @@ Consider calls to a hypothetical macro @code{uh}:
 @cindex @code{\~}, difference to @code{\@key{SP}}
 @cindex @code{\@key{SP}}, difference to @code{\~}
 @noindent
-The first line is the @code{uh} macro being called with three arguments,
-@samp{The}, @samp{Mouse}, and @samp{Problem}.  The remainder call the
-@code{uh} macro with one argument, @samp{The Mouse Problem}.  The last
-solution, using escaped spaces, can be found in documents prepared for
-@acronym{AT&T} @code{troff}.  Nevertheless, it is not optimal in most
-situations, since @w{@samp{\ }} inserts a fixed-width, non-breaking
-space.  GNU @code{troff} provides the @code{\~} escape sequence to
-insert an adjustable, non-breaking space.
+The first line calls @code{uh} with three arguments: @samp{The},
+@samp{Mouse}, and @samp{Problem}.  The remainder call the @code{uh}
+macro with one argument, @samp{The Mouse Problem}.  The last solution,
+using escaped spaces, can be found in documents prepared for
+@acronym{AT&T} @code{troff}.  It can cause surprise when text is
+adjusted, because @code{\SP} inserts a @emph{fixed-width}, non-breaking
+space.  GNU @code{troff}'s @code{\~} escape sequence inserts an
+adjustable, non-breaking space.@footnote{@code{\~} is fairly portable;
+see @ref{Other Differences}.}
 
-@cindex @code{"}, in a macro argument
-@cindex double quote, in a macro argument
-A double quote that isn't preceded by a space doesn't start a macro
-argument.  If not closing a string, it is printed literally.
+@cindex @code{"}, embedding in a macro argument
+@cindex double quote, embedding in a macro argument
+@cindex @code{\}, embedding in a macro argument
+@cindex backslash, embedding in a macro argument
+The foregoing raises the question of how to embed neutral double quotes
+or backslashes in macro arguments when @emph{those} characters are
+desired as literals.  In GNU @code{troff}, the special character escape
+sequence @code{\[rs]} produces a backslash and @code{\[dq]} a neutral
+double quote.
 
-For example,
+In GNU @code{troff}'s @acronym{AT&T} compatibility mode, these
+characters remain available as @code{\(rs} and @code{\(dq},
+respectively.  @acronym{AT&T} @code{troff} did not define these special
+characters, but any of its descendants can be made to support them.
+@xref{Device and Font Description Files}.
+
+If even that is not feasible, options remain.  To obtain a literal
+escape character in a macro argument, you can simply type it if you
+change or disable the escape character first.  @xref{Using Escape
+Sequences}.  Otherwise, you must escape the escape character repeatedly
+to a context-dependent extent.  @xref{Copy Mode}.
+
+For the (neutral) double quote, you have recourse to an obscure
+syntactical feature of @acronym{AT&T} @code{troff}.  Because a double
+quote can begin a macro argument, the formatter keeps track of whether
+the current argument was started thus, and doesn't require a space after
+the double quote that ends it.@footnote{Strictly, you can neglect to
+close the last quoted macro argument, relying on the end of the control
+line to do so.   We consider this lethargic practice poor style.}  In
+the argument list to a macro, a double quote that @emph{isn't} preceded
+by a space @emph{doesn't} start a macro argument.  If not preceded by a
+double quote that began an argument, this double quote becomes part of
+the argument.  Futhermore, within a quoted argument, a pair of adjacent
+double quotes becomes a literal double quote.
 
 @Example
-.xxx a" "b c" "de"fg"
+.de eq
+.  tm arg1:\\$1 arg2:\\$2 arg3:\\$3
+.  tm arg4:\\$4 arg5:\\$5 arg6:\\$6
+.. \" 4 backslashes on the next line
+.eq a" "b c" "de"f\\\\g" h""i "j""k"
+    @error{} arg1:a" arg2:b c arg3:de
+    @error{} arg4:f\g" arg5:h""i arg6:j"k
 @endExample
 
-@noindent
-has the arguments @samp{a"}, @w{@samp{b c}}, @samp{de}, and @samp{fg"}.
-Don't rely on this obscure behaviour!
-
-There are two possibilities to get a double quote reliably.
-
-@itemize @bullet
-@item
-Enclose the whole argument with double quotes and use two consecutive
-double quotes to represent a single one.@footnote{Strictly, you can
-omit the closing quote from the last macro argument, relying on the end
-of the control line to ``close'' it.  We consider that lethargic
-practice poor style.}  This traditional solution has the disadvantage
-that double quotes don't survive argument expansion again if called in
-compatibility mode (using the @option{-C} option of GNU @code{troff}).
+Apart from the complexity of the rules, this traditional solution has
+the disadvantage that double quotes don't survive repeated argument
+expansion in @acronym{AT&T} @code{troff} or GNU @code{troff}'s
+compatibility mode.  This can frustrate efforts to pass such arguments
+intact through multiple macro calls.
 
 @Example
-.de xx
-.  tm xx: `\\$1' `\\$2' `\\$3'
-.
-.  yy "\\$1" "\\$2" "\\$3"
+.cp 1
+.de eq
+.  tm arg1:\\$1 arg2:\\$2 arg3:\\$3
+.  tm arg4:\\$4 arg5:\\$5 arg6:\\$6
 ..
-.de yy
-.  tm yy: `\\$1' `\\$2' `\\$3'
-..
-.xx A "test with ""quotes""" .
-  @result{} xx: @quoteleft{}A@quoteright{} @quoteleft{}test with "quotes"@quoteright{} @quoteleft{}.@quoteright{}
-  @result{} yy: @quoteleft{}A@quoteright{} @quoteleft{}test with @quoteright{} @quoteleft{}quotes""@quoteright{}
+.de xe
+.  eq \\$1 \\$2 \\$3 \\$4 \\$5 \\$6
+.. \" 8 backslashes on the next line
+.xe a" "b c" "de"f\\\\\\\\g" h""i "j""k"
+    @error{} arg1:a" arg2:b arg3:c
+    @error{} arg4:de arg5:f\g" arg6:h""i
 @endExample
 
-@noindent
-If not in compatibility mode, you get
-
-@Example
-  @result{} xx: @quoteleft{}A@quoteright{} @quoteleft{}test with "quotes"@quoteright{} @quoteleft{}.@quoteright{}
-  @result{} yy: @quoteleft{}A@quoteright{} @quoteleft{}test with "quotes"@quoteright{} @quoteleft{}.@quoteright{}
-@endExample
-
-@noindent
 @cindex input level
 @cindex level, input
 @cindex interpolation depth
 @cindex depth, interpolation
-since GNU @code{troff} tracks the nesting depth of interpolations.
-
-@item
-Use the double-quote glyph @code{\(dq}.  This works with and without
-compatibility mode enabled since GNU @code{troff} doesn't convert
-@code{\(dq} back to a double-quote input character.
-
-This method won't work with @acronym{AT&T} @code{troff} since it doesn't
-define the @code{dq} special character.
-@end itemize
-
-@cindex @code{ds} request, and double quotes
-Double quotes in the @code{ds} request are handled differently.
-@xref{Strings}.
+Outside of compatibility mode, GNU @code{troff} doesn't exhibit this
+problem because it tracks the nesting depth of interpolations.
+@xref{Implementation Differences}.
 
 @c ---------------------------------------------------------------------
 
 @c BEGIN Keep (roughly) parallel with section "Escape sequences" of
 @c groff(7).
-@node Escape Sequences,  , Requests, Formatter Instructions
-@subsection Escape Sequences
+@node Using Escape Sequences, Delimiters, Calling Macros, Formatter Instructions
+@subsection Using Escape Sequences
+@cindex using escape sequences
 @cindex escape sequences
 
 Whereas requests must occur on control lines, escape sequences can occur
 intermixed with text and may appear in arguments to requests, macros,
 and other escape sequences.
-
 @esindex \
 An escape sequence is introduced by the escape character, a backslash
 @code{\} (but see the @code{ec} request below).  The next character
-selects the escape's function.  Escape sequences vary in length.
-Some take an argument, and of those, some have different syntactical
-forms for a one-character, two-character, or arbitrary-length argument.
-Others accept only an arbitrary-length argument.  In the former
-convention, a one-character argument follows the function character
-immediately, an opening parenthesis @samp{(} introduces a two-character
-argument (no closing parenthesis is used), and an argument of arbitrary
-length is enclosed in brackets @samp{[]}.  In the latter convention, the
-user selects a delimiter character.  A few escape sequences are
-idiosyncratic, and support both of the foregoing conventions
-(@code{\s}), designate their own termination sequence (@code{\?}),
-consume input until the next newline (@code{\!}, @code{\"}, @code{\#}),
-or support an additional modifier character (@code{\s} again, and
-@code{\n}).
+selects the escape's function.
 
-Escape sequences serve a variety of purposes.  Widespread uses include
-commenting the source document; changing the font style; setting the
-type size; interpolating special characters, registers, and strings into
-the text; and placing or suppressing break and hyphenation points.  As
-with requests, use of escape sequences in source documents may interact
-poorly with a macro package you use; consult its documentation to learn
-of ``safe'' sequences or alternative facilities it provides to achieve
-the desired result.
+Escape sequences vary in length.  Some take an argument, and of those,
+some have different syntactical forms for a one-character,
+two-character, or arbitrary-length argument.  Others accept @emph{only}
+an arbitrary-length argument.  In the former scheme, a one-character
+argument follows the function character immediately, an opening
+parenthesis @samp{(} introduces a two-character argument (no closing
+parenthesis is used), and an argument of arbitrary length is enclosed in
+brackets @samp{[]}.  In the latter scheme, the user selects a delimiter
+character.  A few escape sequences are idiosyncratic, and support both
+of the foregoing conventions (@code{\s}), designate their own
+termination sequence (@code{\?}), consume input until the next newline
+(@code{\!}, @code{\"}, @code{\#}), or support an additional modifier
+character (@code{\s} again, and @code{\n}).  As with requests, use of
+some escape sequences in source documents may interact poorly with a
+macro package you use; consult its documentation to learn of ``safe''
+sequences or alternative facilities it provides to achieve the desired
+result.
 
 If an escape character is followed by a character that does not
 identify a defined operation, the escape character is ignored (producing
@@ -6751,11 +6799,14 @@ processed, and strings @code{family} and @code{style} interpolate one
 character each.@footnote{The omission of spaces before the comment
 escape sequences is necessary; see @ref{Strings}.}
 
-@need 1000
+@c @need 1000
+The escape character is nearly always interpreted when encountered; it
+is therefore desirable to have a way to interpolate it.
+
 @cindex formatting the escape character (@code{\e})
 @cindex escape character, formatting (@code{\e})
 @Defesc {\\e, , , }
-Interpolate the glyph corresponding to the escape character.
+Interpolate the escape character.
 @endDefesc
 
 @cindex formatting a backslash glyph (@code{\[rs]})
@@ -6820,33 +6871,28 @@ Use these requests together to temporarily change the escape character.
 @endDefreq
 
 @c XXX: Motivation?  Why are we directing the reader to these?
-@xref{Diversions}, and @ref{Identifiers}.
+@c @xref{Diversions}, and @ref{Identifiers}.
 
-@menu
-* Escape Sequence Argument Delimiters::
-* Comments::
-@end menu
-
-@c BEGIN Keep (roughly) parallel with subsection "Escape sequence
-@c argument delimiters" of groff(7).
-@node Escape Sequence Argument Delimiters, Comments, Escape Sequences, Escape Sequences
-@subsubsection Escape Sequence Argument Delimiters
+@c BEGIN Keep (roughly) parallel with subsection "Delimiters" of
+@c groff(7).
+@node Delimiters, , Using Escape Sequences, Formatter Instructions
+@subsection Delimiters
+@cindex delimiting escape sequence arguments
 @cindex escape sequence argument delimiters
 @cindex delimiters, for escape sequence arguments
 @cindex arguments, for escape sequences, delimiting
 
 @cindex @code{'}, as delimiter
 @cindex @code{"}, as delimiter
-Escape sequences that require multiple parameters or a special format
-use delimiters.  The neutral apostrophe @code{'} is a popular choice and
-shown in this document.  The neutral double quote @code{"} is also
-commonly seen.  Letters, numerals, and even leaders can be used.
-Punctuation characters are likely better choices, except for those
-defined as infix operators in numerical expressions, about which more
-below.
+Some escape sequences that require parameters use delimiters.  The
+neutral apostrophe @code{'} is a popular choice and shown in this
+document.  The neutral double quote @code{"} is also commonly seen.
+Letters, numerals, and leaders can be used.  Punctuation characters
+are likely better choices, except for those defined as infix operators
+in numerical expressions; see below.
 
 @Example
-\l'1.5i\(bu' \" draw 1.5 inches of bullet glyphs
+\l'1.5i\[bu]' \" draw 1.5 inches of bullet glyphs
 @endExample
 
 @cindex @code{\%}, as delimiter
@@ -6877,14 +6923,14 @@ below.
 @cindex @code{\r}, as delimiter
 @cindex @code{\t}, as delimiter
 @cindex @code{\u}, as delimiter
-The following escape sequences are handled similarly to characters since
-they don't take arguments and thus are allowed as delimiters:
+The following escape sequences don't take arguments and thus are allowed
+as delimiters:
 @code{\SP}, @code{\%}, @code{\|}, @code{\^}, @code{\@{}, @code{\@}},
 @code{\'}, @code{\`}, @code{\-}, @code{\_}, @code{\!}, @code{\?},
 @code{\)}, @code{\/}, @code{\,}, @code{\&}, @code{\:}, @code{\~},
 @code{\0}, @code{\a}, @code{\c}, @code{\d}, @code{\e}, @code{\E},
 @code{\p}, @code{\r}, @code{\t}, and @code{\u}.  However, using them
-this way is discouraged; it can make the input confusing to read.
+this way is discouraged; they can make the input confusing to read.
 
 @cindex @code{\A}, delimiters allowed by
 @cindex @code{\b}, delimiters allowed by
@@ -6992,16 +7038,32 @@ that result from interpolation. Typically, @code{'} works fine.
 
 @Example
 $ groff -Tps
-.nr a \w'\s'12'Foobar'
-\[lq]Foobar\[rq] in 12-point type is \n[a]u wide.
-  @result{} @quotedblleft{}Foobar@quotedblright{} in 12-point type is 33816u wide.
+.de Mw
+.  nr wd \w'\\$1'
+.  tm "\\$1" is \\n(wd units wide.
+..
+.Mw Wet'suwet'en
+.Mw Wet+200i
+.cp 1 \" turn on compatibility mode
+.Mw Wet'suwet'en
+.Mw Wet'
+.Mw Wet+200i
+    @error{} "Wet'suwet'en" is 54740 units wide.
+    @error{} "Wet'+200i" is 42610 units wide.
+    @error{} "Wet'suwet'en" is 15860 units wide.
+    @error{} "Wet'" is 15860 units wide.
+    @error{} "Wet'+200i" is 14415860 units wide.
 @endExample
 
-@c END Keep (roughly) parallel with subsection "Escape sequence
-@c argument delimiters" of groff(7).
+We see here that in compatibility mode, the part of the argument after
+the @code{'} delimiter escapes from its context and, if nefariously
+crafted, influences the computation of the @var{wd} register's value in
+a surprising way.
+@c END Keep (roughly) parallel with subsection " Delimiters" of
+@c groff(7).
 
-@node Comments, , Escape Sequence Argument Delimiters, Escape Sequences
-@subsubsection Comments
+@node Comments, Registers, Formatter Instructions, gtroff Reference
+@section Comments
 @cindex comments
 
 One of the most common forms of escape sequence is the
@@ -7126,8 +7188,8 @@ the @code{\R} escape sequence.
 @DefescListEndx {\\R, @code{'}, ident value, @code{'}}
 Set register @var{ident} to @var{value}.  If @var{ident} doesn't exist,
 GNU @code{troff} creates it.  In the @code{\R} escape sequence, the
-delimiter need not be an apostrophe; see @ref{Escape Sequences}.  It
-also does not produce an input token in GNU @code{troff}.  @xref{Gtroff
+delimiter need not be an apostrophe; see @ref{Delimiters}.  It also does
+not produce an input token in GNU @code{troff}.  @xref{Gtroff
 Internals}.
 
 @Example
@@ -8673,7 +8735,7 @@ The @code{\x} escape sequence takes a delimited measurement (like
 measurement is positive, extra vertical space is inserted below the
 current line; a negative measurement adds space above.  If @code{\x} is
 used multiple times on the same output line, the maxima of the positive
-and negative adjustments are used.  @xref{Escape Sequences}, for
+and negative adjustments are used.  @xref{Using Escape Sequences}, for
 more on delimiters.
 
 @cindex extra post-vertical line space register (@code{.a})
@@ -9685,7 +9747,7 @@ right-justified parts are empty.
 
 @item
 @code{tl} accepts the same delimiters as the @code{\A} escape sequence;
-see @ref{Escape Sequences}.
+see @ref{Using Escape Sequences}.
 @end itemize
 @endDefreq
 
@@ -11860,10 +11922,10 @@ it as empty.
 Define a string variable @var{name} with contents @var{string}.  If
 @var{name} already exists, it is removed first (see @code{rm} below).
 The syntax form using brackets accepts arguments that are handled as
-macro arguments are; recall @ref{Request and Macro Arguments}.  In
-contrast to macro invocations, however, a closing bracket as a string
-argument must be enclosed in double quotes.  @code{\\*} is interpreted
-even in copy mode (@pxref{Copy Mode}).
+macro arguments are; recall @ref{Calling Macros}.  In contrast to macro
+invocations, however, a closing bracket as a string argument must be
+enclosed in double quotes.  @code{\\*} is interpreted even in copy mode
+(@pxref{Copy Mode}).
 
 The @code{\*} escape @dfn{interpolates} (expands in place) a previously
 defined string variable @var{name} (one-character name@tie{}@var{n},
@@ -12396,7 +12458,7 @@ Versatec and Benson-Varian plotters.}
 @item @code{'}@var{xxx}@code{'}@var{yyy}@code{'}
 True if formatting the comparands @var{xxx} and @var{yyy} produces the
 same output commands.  Other delimiters can be used in place of the
-neutral apostrophes (@pxref{Escape Sequences}).  This @dfn{output
+neutral apostrophes (@pxref{Using Escape Sequences}).  This @dfn{output
 comparison operator} formats @var{xxx} and @var{yyy} in separate
 environments; after the comparison, the resulting data are discarded.
 
@@ -12501,12 +12563,12 @@ obvious.
 @Defreq {if, cond-expr anything}
 Evaluate the conditional expression @var{cond-expr}, and if it evaluates
 true (or to a positive value), interpret the remainder of the line
-@var{anything} as if it were an input line.  Recall from @ref{Request
-and Macro Arguments} that any quantity of spaces between arguments to
-requests serves only to separate them; leading spaces in @var{anything}
-are thus not seen.  @var{anything} effectively @emph{cannot} be omitted;
-if @var{cond-expr} is true and @var{anything} is empty, the newline at
-the end of the control line is interpreted as a blank input line (and
+@var{anything} as if it were an input line.  Recall from @ref{Invoking
+Requests} that any quantity of spaces between arguments to requests
+serves only to separate them; leading spaces in @var{anything} are thus
+not seen.  @var{anything} effectively @emph{cannot} be omitted; if
+@var{cond-expr} is true and @var{anything} is empty, the newline at the
+end of the control line is interpreted as a blank input line (and
 therefore a blank text line).
 
 @Example
@@ -13021,11 +13083,11 @@ one level higher.  This is used to define a wrapper macro for
 @cindex parameters
 
 Macro calls and string interpolations optionally accept a list of
-arguments; recall @ref{Request and Macro Arguments}.  At the time such
-an interpolation takes place, these @dfn{parameters} can be examined
-using a register and a variety of escape sequences starting with
-@samp{\$}.  All such escape sequences are interpreted even in copy mode,
-a fact we shall motivate and explain below (@pxref{Copy Mode}).
+arguments; recall @ref{Calling Macros}.  At the time such an
+interpolation takes place, these @dfn{parameters} can be examined using
+a register and a variety of escape sequences starting with @samp{\$}.
+All such escape sequences are interpreted even in copy mode, a fact we
+shall motivate and explain below (@pxref{Copy Mode}).
 
 @Defreg {.$}
 @cindex parameter count register (@code{.$})
@@ -13078,9 +13140,9 @@ once (to pass them to a request, for instance).  The @code{\$*} escape
 concatenates the parameters, separating them with spaces.  @code{\$@@}
 is similar, concatenating the parameters, surrounding each with double
 quotes and separating them with spaces.  If not in compatibility mode,
-the interpolation depth of double quotes is preserved (@pxref{Request
-and Macro Arguments}).  @code{\$^} interpolates all parameters as if
-they were arguments to the @code{ds} request.
+the interpolation depth of double quotes is preserved (@pxref{Calling
+Macros}).  @code{\$^} interpolates all parameters as if they were
+arguments to the @code{ds} request.
 
 @Example
 .de foo

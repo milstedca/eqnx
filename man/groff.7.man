@@ -1510,6 +1510,77 @@ authors structure the source of documents or macro files with them.
 .
 .
 .\" ====================================================================
+.SH "Calling macros"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Calling Macros".
+If a macro of the desired name does not exist when called,
+it is created,
+assigned an empty definition,
+and a warning in category
+.RB \[lq] mac \[rq]
+is emitted.
+.
+Calling an undefined macro
+.I does
+end a macro definition naming it as its end macro
+(see section \[lq]Writing macros\[rq] below).
+.
+.
+.P
+To embed spaces
+.I within
+a macro argument,
+enclose the argument in neutral double quotes
+.RB \[oq] \|\[dq]\| \[cq].
+.
+Horizontal motion escape sequences are sometimes a better choice for
+arguments to be formatted as text.
+.
+.
+.P
+The foregoing raises the question of how to embed neutral double quotes
+or backslashes in macro arguments when
+.I those
+characters are desired as literals.
+.
+In GNU
+.IR troff , \" GNU
+the special character escape sequence
+.B \[rs][rs]
+produces a backslash and
+.B \[rs][dq]
+a neutral double quote.
+.
+.
+.P
+In GNU
+.IR troff 's \" GNU
+AT&T compatibility mode,
+these characters remain available as
+.B \[rs](rs
+and
+.BR \[rs](dq ,
+respectively.
+.
+AT&T
+.I troff \" AT&T
+did not define these special characters,
+but any of its descendants can be made to support them.
+.
+See
+.MR groff_font @MAN5EXT@ .
+.
+If even that is not feasible,
+.\" Nope nope nope--if you're this much of a masochist, go read Texinfo.
+see the \[lq]Calling Macros\[rq] section of the
+.I groff
+Texinfo manual for the complex macro argument quoting rules of AT&T
+.IR troff . \" AT&T
+.\" END Keep (roughly) parallel with groff.texi node "Calling Macros".
+.
+.
+.\" ====================================================================
 .SH "Control structures"
 .\" ====================================================================
 .

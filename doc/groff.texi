@@ -5830,12 +5830,12 @@ follows.  @xref{Drawing Requests}.
 
 @Example
 .tm \n[.H]
-  @error{} 24
+    @error{} 24
 .nf
 \l'36u' 36u
 \l'37u' 37u
-  @result{} _ 36u
-  @result{} __ 37u
+    @result{} _ 36u
+    @result{} __ 37u
 @endExample
 @c END Keep (roughly) parallel with subsection "Motion quanta" of
 @c groff(7).
@@ -6725,8 +6725,8 @@ $ groff -Tps -ww
 .ds animal elephant
 I have \fI\nN \*(co \*[animal]s,\f[]
 said \P.\&\~Pseudo Pachyderm.
-  @error{} warning: escape character ignored before 'P'
-  @result{} I have @slanted{12 white elephants,} said P. Pseudo Pachyderm.
+    @error{} warning: escape character ignored before 'P'
+    @result{} I have @slanted{12 white elephants,} said P. Pseudo Pachyderm.
 @endExample
 
 Escape sequence interpolation is of higher precedence than escape
@@ -6740,7 +6740,7 @@ sequences.
 .ds family T\" Times
 .ds style I\" oblique
 Choice a typeface \f(\*[family]\*[style]wisely.
-  @result{} Choose a typeface @slanted{wisely.}
+    @result{} Choose a typeface @slanted{wisely.}
 @endExample
 
 @noindent
@@ -6906,7 +6906,7 @@ as delimiters continue to be recognized as input line terminators.
 A caf\o
 e\(aa
 in Paris
-  @result{} A café in Paris
+    @result{} A café in Paris
 @endExample
 
 @noindent
@@ -7035,9 +7035,9 @@ eliminating the comment, that is all that remains.
 Test
 \" comment
 Test
-  @result{} Test
-  @result{}
-  @result{} Test
+    @result{} Test
+    @result{}
+    @result{} Test
 @endExample
 
 To avoid this, it is common to combine the empty request with the
@@ -7059,7 +7059,7 @@ problems described above.
 Test
 \# comment
 Test
-  @result{} Test Test
+    @result{} Test Test
 @endExample
 @endDefesc
 
@@ -7087,7 +7087,7 @@ the call of its end macro.
 .TX
 @endExample
 @Example
-  @result{} handfasting
+    @result{} handfasting
 @endExample
 @endDefreq
 

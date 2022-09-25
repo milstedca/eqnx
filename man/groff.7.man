@@ -1437,24 +1437,13 @@ which control character was used to call it.
 .
 .
 .\" ====================================================================
-.SH Requests
+.SH "Invoking requests"
 .\" ====================================================================
 .
-.\" XXX: This is more of a groff_diff(7) sort of observation.
-In GNU
-.IR troff , \" GNU
-identifier names,
-including those of requests,
-can be arbitrarily long.
-.
-Unlike register and string interpolations,
-long request names require no specialized syntax.
-.
-.
-.\" BEGIN Keep (roughly) parallel with groff.texi node "Requests".
-.P
-Invoke a request by specifying its name after a control character and
-zero or more spaces or tabs.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Invoking
+.\" Requests".
+A control character is optionally followed by tabs and/or spaces and
+then an identifier naming a request or macro.
 .
 The invocation of an unrecognized request is interpreted as a macro
 call.
@@ -1462,27 +1451,39 @@ call.
 Defining a macro with the same name as a request replaces the request.
 .
 Deleting a request name with the
-.request .rm
+.B rm
 request makes it unavailable.
 .
-Requests can be aliased with
-.request .als ,
+The
+.B als
+request can alias requests,
 permitting them to be wrapped or non-destructively replaced.
+.\" @xref{Strings}.
 .
 .
 .P
-Most requests take one or more arguments.
+There is no general limit on argument length or quantity.
 .
-Tabs are permitted after a request name and before its first argument
-(if any),
-but arguments themselves must be separated only by space characters.
+Most requests take one or more arguments,
+and ignore any they do not expect.
 .
-(Plan\~9
-.I troff \" Plan 9
-allows tabs to separate arguments.)
+A request may be separated from its arguments by tabs or spaces,
+but only spaces can separate an argument from its successor.
 .
-There is no inherent limit on argument length or quantity.
+Only one between arguments is necessary;
+any excess is ignored.
 .
+GNU
+.I troff \" GNU
+does not allow tabs for argument separation.
+.\" @footnote{In compatibility mode, a space is not necessary after a
+.\" request or macro name of two characters' length.  Also, Plan@tie{}9
+.\" @code{troff} allows tabs to separate arguments.}
+.
+.
+.br
+.ne 3v
+.P
 Generally,
 a space
 .I within
@@ -1490,56 +1491,21 @@ a request argument is not relevant,
 not meaningful,
 or is supported by bespoke provisions,
 as with the
-.request .tl
+.B tl
 request's delimiters.
 .
 Some requests,
 like
-.request .ds ,
+.BR ds ,
 interpret the remainder of the control line as a single argument.
+.\" @xref{Strings}.
 .
 .
 .P
-Since spaces and tabs are ignored after a control character,
-they are commonly used to structure the source of documents or macro
-files with indentation.
+Spaces and tabs immediately after a control character are ignored.
 .
-.
-.P
-To prevent interpretation of a control character as such,
-prefix it with
-.RB \[lq] \[rs]& \[rq].
-.
-Since a control character is recognized only at the beginning of an
-input line or the branch of a control structure such as the
-.request .if
-request,
-this dummy character
-(or non-printing input break)
-evades that special context without affecting the output.
-.
-.
-.P
-Test the
-.register .br
-register inside a macro definition to determine which control character
-was used when calling it.
-.
-.
-.P
-There is no way to invoke an undefined request;
-such syntax is interpreted as a macro call instead.
-.
-If a macro of the desired name does not exist,
-it is created,
-assigned an empty definition,
-and a warning in category
-.RB \[lq] mac \[rq]
-is emitted.
-.
-Calling an undefined macro
-.I does
-end a macro definition naming it as its end macro.
+Commonly,
+authors structure the source of documents or macro files with them.
 .\" END Keep (roughly) parallel with groff.texi node "Requests".
 .
 .

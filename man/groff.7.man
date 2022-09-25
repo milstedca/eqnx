@@ -1581,10 +1581,10 @@ Texinfo manual for the complex macro argument quoting rules of AT&T
 .
 .
 .\" ====================================================================
-.SH "Escape sequences"
+.SH "Using escape sequences"
 .\" ====================================================================
 .
-.\" BEGIN Keep (roughly) parallel with groff.texi node "Escape
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Using Escape
 .\" Sequences".
 Whereas requests must occur on control lines,
 escape sequences can occur intermixed with text and may appear in
@@ -1595,9 +1595,12 @@ and other escape sequences.
 An escape sequence is introduced by the escape character,
 a backslash
 .BR \[rs] .
+.\" (but see the @code{ec} request below)
 .
 The next character selects the escape's function.
 .
+.
+.P
 Escape sequences vary in length.
 .
 Some take an argument,
@@ -1606,9 +1609,11 @@ some have different syntactical forms for a one-character,
 two-character,
 or arbitrary-length argument.
 .
-Others accept only an arbitrary-length argument.
+Others accept
+.I only
+an arbitrary-length argument.
 .
-In the former convention,
+In the former scheme,
 a one-character argument follows the function character immediately,
 an opening parenthesis
 .RB \[lq] ( \[rq]
@@ -1617,7 +1622,7 @@ introduces a two-character argument
 and an argument of arbitrary length is enclosed in brackets
 .RB \[lq] [] \[rq].
 .
-In the latter convention,
+In the latter scheme,
 the user selects a delimiter character.
 .
 A few escape sequences are idiosyncratic,
@@ -1631,33 +1636,23 @@ consume input until the next newline
 .BR \|\[rs]# ),
 or support an additional modifier character
 .RB ( \|\[rs]s
-again).
+again,
+and
+.BR \|\[rs]n ).
+.\" As with requests, use of some escape sequences in source documents
+.\" may interact poorly with a macro package you use; consult its
+.\" documentation to learn of ``safe'' sequences or alternative
+.\" facilities it provides to achieve the desired result.
 .
 .
 .P
-Escape sequences serve a variety of purposes.
-.
-Widespread uses include
-commenting the source document;
-changing the font style;
-setting the type size;
-interpolating special characters,
-registers,
-and strings into the text;
-and placing or suppressing break and hyphenation points.
-.
-As with requests,
-use of escape sequences in source documents may interact poorly with a
-macro package you use;
-consult its documentation to learn of \[lq]safe\[rq] sequences or
-alternative facilities it provides to achieve the desired result.
-.
-.
-.P
-If an escape character is followed by a character that does not identify
-a defined operation,
+If an escape character is followed by a character that does not
+identify a defined operation,
 the escape character is ignored
-(producing a diagnostic of the \[lq]escape\[rq] warning type,
+(producing
+a diagnostic of the
+.RB \[lq] escape \[rq]
+warning category,
 which is not enabled by default)
 and the following character is processed normally.
 .
@@ -1671,13 +1666,13 @@ parameters to other escape sequences.
 .
 .
 .P
-Escape sequence interpretation can be turned off with the
-.request .eo
-request and restored,
-or the escape character changed,
-with
-.request .ec .
-.\" END Keep (roughly) parallel with groff.texi node "Escape Sequences".
+Requests permit escape sequence interpretation to be deactivated
+.RB ( eo )
+and restored,
+or the escape character changed
+.RB ( ec ).
+.\" END Keep (roughly) parallel with groff.texi node "Using Escape
+.\" Sequences".
 .
 .
 .\" ====================================================================

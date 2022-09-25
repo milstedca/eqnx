@@ -1676,13 +1676,11 @@ or the escape character changed
 .
 .
 .\" ====================================================================
-.SS "Escape sequence argument delimiters"
+.SH Delimiters
 .\" ====================================================================
 .
-.\" BEGIN Keep (roughly) parallel with groff.texi node "Escape
-.\" Sequence Argument Delimiters".
-Escape sequences that require multiple parameters or a special format
-use delimiters.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Delimiters".
+Some escape sequences that require parameters use delimiters.
 .
 The neutral apostrophe
 .B \[aq]
@@ -1694,19 +1692,21 @@ is also commonly seen.
 .
 Letters,
 numerals,
-and even leaders can be used;
-punctuation characters are likely better choices,
+and leaders can be used.
+.
+Punctuation characters are likely better choices,
 except for those defined as infix operators in numerical expressions,
-about which more below.
+see below.
 .
 .
 .br
 .ne 2v
 .P
-The following escape sequences are handled similarly to characters since
-they don't take arguments and thus are allowed as delimiters:
+The following escape sequences don't take arguments and thus are allowed
+as delimiters:
+.BI \[rs] space\c
+,
 .BR \[rs]% ,
-.RB \[lq] \|\[rs]\~ "\[rq] (backslash-space),"
 .BR \[rs]| ,
 .BR \[rs]\[ha] ,
 .BR \[rs]{ ,
@@ -1737,7 +1737,7 @@ and
 .
 However,
 using them this way is discouraged;
-doing so can make the input confusing to read.
+they can make the input confusing to read.
 .
 .
 .P
@@ -1757,8 +1757,11 @@ line terminators.
 Use of newlines as delimiters in escape sequences is also discouraged.
 .
 .
+.br
+.ne 2v
 .P
-The escape sequences
+Finally,
+the escape sequences
 .BR \[rs]D ,
 .BR \[rs]h ,
 .BR \[rs]H ,
@@ -1824,8 +1827,7 @@ works fine.
 .
 See section \[lq]Implementation differences\[rq] in
 .MR groff_diff @MAN7EXT@ .
-.\" END Keep (roughly) parallel with groff.texi node "Escape
-.\" Sequence Argument Delimiters".
+.\" END Keep (roughly) parallel with groff.texi node "Delimiters".
 .
 .
 .\" ====================================================================

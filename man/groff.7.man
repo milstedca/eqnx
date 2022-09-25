@@ -1581,6 +1581,106 @@ Texinfo manual for the complex macro argument quoting rules of AT&T
 .
 .
 .\" ====================================================================
+.SH "Escape sequences"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Escape
+.\" Sequences".
+Whereas requests must occur on control lines,
+escape sequences can occur intermixed with text and may appear in
+arguments to requests,
+macros,
+and other escape sequences.
+.
+An escape sequence is introduced by the escape character,
+a backslash
+.BR \[rs] .
+.
+The next character selects the escape's function.
+.
+Escape sequences vary in length.
+.
+Some take an argument,
+and of those,
+some have different syntactical forms for a one-character,
+two-character,
+or arbitrary-length argument.
+.
+Others accept only an arbitrary-length argument.
+.
+In the former convention,
+a one-character argument follows the function character immediately,
+an opening parenthesis
+.RB \[lq] ( \[rq]
+introduces a two-character argument
+(no closing parenthesis is used),
+and an argument of arbitrary length is enclosed in brackets
+.RB \[lq] [] \[rq].
+.
+In the latter convention,
+the user selects a delimiter character.
+.
+A few escape sequences are idiosyncratic,
+and support both of the foregoing conventions
+.RB ( \|\[rs]s ),
+designate their own termination sequence
+.RB ( \|\[rs]? ),
+consume input until the next newline
+.RB ( \|\[rs]! ,
+.BR \|\[rs]" ,
+.BR \|\[rs]# ),
+or support an additional modifier character
+.RB ( \|\[rs]s
+again).
+.
+.
+.P
+Escape sequences serve a variety of purposes.
+.
+Widespread uses include
+commenting the source document;
+changing the font style;
+setting the type size;
+interpolating special characters,
+registers,
+and strings into the text;
+and placing or suppressing break and hyphenation points.
+.
+As with requests,
+use of escape sequences in source documents may interact poorly with a
+macro package you use;
+consult its documentation to learn of \[lq]safe\[rq] sequences or
+alternative facilities it provides to achieve the desired result.
+.
+.
+.P
+If an escape character is followed by a character that does not identify
+a defined operation,
+the escape character is ignored
+(producing a diagnostic of the \[lq]escape\[rq] warning type,
+which is not enabled by default)
+and the following character is processed normally.
+.
+.
+.P
+Escape sequence interpolation is of higher precedence than escape
+sequence argument interpretation.
+.
+This rule affords flexibility in using escape sequences to construct
+parameters to other escape sequences.
+.
+.
+.P
+Escape sequence interpretation can be turned off with the
+.request .eo
+request and restored,
+or the escape character changed,
+with
+.request .ec .
+.\" END Keep (roughly) parallel with groff.texi node "Escape Sequences".
+.
+.
+.\" ====================================================================
 .SH "Control structures"
 .\" ====================================================================
 .
@@ -3928,106 +4028,6 @@ glilypond^.lilypond start^.lilypond stop
 gperl^.Perl start^.Perl stop
 gpinyin^.pinyin start^.pinyin stop
 .TE
-.
-.
-.\" ====================================================================
-.SH "Escape sequences"
-.\" ====================================================================
-.
-.\" BEGIN Keep (roughly) parallel with groff.texi node "Escape
-.\" Sequences".
-Whereas requests must occur on control lines,
-escape sequences can occur intermixed with text and may appear in
-arguments to requests,
-macros,
-and other escape sequences.
-.
-An escape sequence is introduced by the escape character,
-a backslash
-.BR \[rs] .
-.
-The next character selects the escape's function.
-.
-Escape sequences vary in length.
-.
-Some take an argument,
-and of those,
-some have different syntactical forms for a one-character,
-two-character,
-or arbitrary-length argument.
-.
-Others accept only an arbitrary-length argument.
-.
-In the former convention,
-a one-character argument follows the function character immediately,
-an opening parenthesis
-.RB \[lq] ( \[rq]
-introduces a two-character argument
-(no closing parenthesis is used),
-and an argument of arbitrary length is enclosed in brackets
-.RB \[lq] [] \[rq].
-.
-In the latter convention,
-the user selects a delimiter character.
-.
-A few escape sequences are idiosyncratic,
-and support both of the foregoing conventions
-.RB ( \|\[rs]s ),
-designate their own termination sequence
-.RB ( \|\[rs]? ),
-consume input until the next newline
-.RB ( \|\[rs]! ,
-.BR \|\[rs]" ,
-.BR \|\[rs]# ),
-or support an additional modifier character
-.RB ( \|\[rs]s
-again).
-.
-.
-.P
-Escape sequences serve a variety of purposes.
-.
-Widespread uses include
-commenting the source document;
-changing the font style;
-setting the type size;
-interpolating special characters,
-registers,
-and strings into the text;
-and placing or suppressing break and hyphenation points.
-.
-As with requests,
-use of escape sequences in source documents may interact poorly with a
-macro package you use;
-consult its documentation to learn of \[lq]safe\[rq] sequences or
-alternative facilities it provides to achieve the desired result.
-.
-.
-.P
-If an escape character is followed by a character that does not identify
-a defined operation,
-the escape character is ignored
-(producing a diagnostic of the \[lq]escape\[rq] warning type,
-which is not enabled by default)
-and the following character is processed normally.
-.
-.
-.P
-Escape sequence interpolation is of higher precedence than escape
-sequence argument interpretation.
-.
-This rule affords flexibility in using escape sequences to construct
-parameters to other escape sequences.
-.
-.
-.P
-Escape sequence interpretation can be turned off with the
-.request .eo
-request and restored,
-or the escape character changed,
-with
-.request .ec .
-.\" END Keep (roughly) parallel with groff.texi node "Escape Sequences".
 .
 .
 .\" ====================================================================

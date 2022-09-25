@@ -1916,7 +1916,7 @@ an increment or decrement is applied as if to\~0.
 .
 .
 .\" ====================================================================
-.SS "Request short reference"
+.SH "Request short reference"
 .\" ====================================================================
 .
 Not all details of each request's behavior are outlined here.
@@ -3836,6 +3836,8 @@ to the stream named
 .LE
 .
 .
+.\" TODO: This doesn't really belong here; these aren't part of the
+.\" (g)roff _language_.  groff(1) may be a better place.
 .br
 .ne 6v
 .\" ====================================================================

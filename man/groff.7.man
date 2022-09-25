@@ -4184,7 +4184,7 @@ See section \[lq]Implementation differences\[rq] in
 .
 .
 .\" ====================================================================
-.SS "Escape sequence short reference"
+.SH "Escape sequence short reference"
 .\" ====================================================================
 .
 The escape sequences

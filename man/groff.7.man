@@ -1390,6 +1390,53 @@ No other object types do.
 .
 .
 .\" ====================================================================
+.SH "Control characters"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Control
+.\" Characters".
+.\" The mechanism of using @code{roff}'s control characters to invoke
+.\" requests and call macros was introduced in @ref{Requests and Macros}.
+Control characters are recognized only at the beginning of an input
+line,
+or at the beginning of the branch of a control structure request;
+.\" see @ref{Conditionals and Loops}.
+see section \[lq]Control structures\[rq] below.
+.
+.
+.P
+A few requests cause a break implicitly;
+use the no-break control character to prevent the break.
+.
+Break suppression is its sole behavioral distinction.
+.
+Employing the no-break control character to invoke requests that don't
+cause breaks is harmless but poor style.
+.
+.
+.P
+The control character
+.RB \[lq] .\& \[rq]
+and the no-break control character
+.RB \[lq] \|\[aq]\| \[rq]
+can be changed with the
+.B cc
+and
+.B c2
+requests,
+respectively.
+.
+When writing a macro,
+.\" you might wish to know
+use the
+.B .br
+register to determine
+which control character was used to call it.
+.\" END Keep (roughly) parallel with groff.texi node "Control
+.\" Characters".
+.
+.
+.\" ====================================================================
 .SH "Control structures"
 .\" ====================================================================
 .

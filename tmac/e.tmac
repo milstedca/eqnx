@@ -411,7 +411,12 @@
 .wh -\\n(_Bu @r
 .if \\n(?n \
 .	nm \\n(ln
+.if \\n(_f \
+.	if !\\n(_f=\\n($m \
+.		@err writing \\n($m-column footnote in \\n(_f-column \
+layout
 .|f
+.nr _f 0
 .if \\n(?n \
 .	nm
 .fi
@@ -1600,6 +1605,11 @@
 .
 .de (f			\" *** begin footnote
 .if "\\n(.z"|f" .do @err footnotes cannot be nested
+.if \\n(_f \
+.	if !\\n(_f=\\n($m \
+.		@err queueing \\n($m-column footnote after \
+\\n(_f-column footnote
+.nr _f \\n($m
 .ie "\\n(.z"" \
 \{\
 .	nr _D \\n(dn
@@ -2149,6 +2159,7 @@
 .@R ?C\"		\" at chapter header?
 .@R ?e\"		\" in equation?
 .@R ?f\"		\" inside footnote?
+.@R _f\"		\" column count of previous footnote
 .@R ?H\"		\" suppress headers and footers next page?
 .@R ?I\"		\" has the header trap been sprung?
 .@R ?N\"		\" numbering with shorter line length?

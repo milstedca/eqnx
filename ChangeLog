@@ -1,5 +1,20 @@
 2022-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/e.tmac: Initialize new register `_f`, the value of `$m`
+	{column count} of the previous pending footnote, to zero,
+	meaning there is no previous pending footnote.
+	(@o): Emit diagnostic when flushing footnotes into a different
+	column layout then the pending footnote last added.  Set `_f` to
+	zero.
+	((f): Emit diagnostic when enqueueing footnote using a different
+	column layout than the previous pending footnote used.  Set `_f`
+	to `$m`.
+
+	Fixes <https://savannah.gnu.org/bugs/?58736>.  Thanks to Dave
+	Kemper for the report and discussion.
+
+2022-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/e.tmac: Explicitly initialize and annotate internal
 	register `?f`.
 

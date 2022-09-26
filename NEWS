@@ -185,6 +185,19 @@ o The new sboxes macro package, contributed by Deri James, offers a
   See "Using PDF boxes with groff and the ms macros", installed as
   `msboxes.ms` and `msboxes.pdf` for instructions and a demonstration.
 
+o The an (man) and doc (mdoc) macro packages no longer remap the -, ',
+  and ` input characters to Basic Latin code points on UTF-8 devices,
+  but treat them as groff normally does (and AT&T troff before it did)
+  for typesetting devices, where they become the hyphen, apostrophe or
+  right single quotation mark, and left single quotation mark,
+  respectively.  This change is expected to expose glyph usage errors in
+  man pages.  See the "PROBLEMS" file for a recipe that will conceal
+  these errors.  A better long-term approach is for man pages to adopt
+  correct input practices; the man pages groff_man_style(7),
+  groff_char(7), and man-pages(7) (subsection "Generating optimal
+  glyphs"; from the Linux man-pages project) contain such instructions.
+  Doing so also improves man page typography when formatting for PDF.
+
 o The an (man) macro package can now produce clickable hyperlinks within
   terminal emulators, using the OSC 8 support added to grotty(1) (see
   below).  The groff man(7) extension macros `UR` and `MT`, present
@@ -449,7 +462,8 @@ o The "utf8" output device now maps the input characters '^' (caret,
   long-term approach is for man pages to adopt correct input practices;
   the man pages groff_man_style(7), groff_char(7), and man-pages(7)
   (subsection "Generating optimal glyphs"; from the Linux man-pages
-  project) contain such instructions.
+  project) contain such instructions.  Doing so also improves man page
+  typography when formatting for PDF.
 
   If you maintain a generator of man(7) or mdoc(7) documents (such as a
   tool that converts other formats to them), and need assistance, please

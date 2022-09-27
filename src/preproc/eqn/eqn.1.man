@@ -1339,14 +1339,15 @@ GNU
 .I eqn \" GNU
 further defines the macros
 .BR cdot ,
-.B cdots
-(see above),
+.BR cdots ,
+and
+.B utilde
+(all discussed above),
 .BR dollar ,
 which sets a dollar sign,
-.BR ldots ,
-which sets three dots on the baseline,
 and
-.BR utilde .
+.BR ldots ,
+which sets three dots on the baseline.
 .
 .
 .\" ====================================================================

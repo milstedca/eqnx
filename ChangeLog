@@ -499,7 +499,7 @@
 	of the page where man(7) does by default; break the body text at
 	1 inch from the page bottom, and write the footer at ½ inch.
 
-	* tmac/mdoc/doc-nroff (doc-setup-header): Add 1/6 inch "thin
+	* tmac/mdoc/doc-nroff (doc-setup-header): Add 1/6 em "thin
 	space" between man page name and parenthesized section, for
 	precise parity with doc-ditroff implementation.  (`\|` does not
 	take up any character cells on nroff devices.)
@@ -991,7 +991,7 @@
 
 2022-07-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[tbl]: Expand regression test for Savannah #49490.  Check for
+	[tbl]: Expand regression test for Savannah #49390.  Check for
 	overlap of double box borders, too.
 
 	* src/preproc/tbl/tests/\
@@ -1063,7 +1063,7 @@
 	standardized in POSIX Issue 5 (1997) or earlier.  Also drop the
 	redirection of the standard error stream; we have already
 	checked the file named in "$descfile" for existence and
-	readability.  grep should not emit diagnostic messages.
+	readability.  grep should thus not emit diagnostic messages.
 
 2022-07-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -1391,7 +1391,7 @@
 	{By contrast, translating _to_ [unbreakable, unadjustable]
 	spaces is an old troff hack often seen as ".tr ~ ", and largely
 	superseded by groff's "\~" escape sequence, now widely supported
-	by troffs.}
+	by other troffs.}
 
 	Fixes <https://savannah.gnu.org/bugs/?60803>.  Thanks to T. Kurt
 	Bond and Oliver Corff for the report.

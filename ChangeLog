@@ -1,3 +1,8 @@
+2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/e.tmac (@o, n2, sk (f, ++): Consistently call `@err`
+	macro with `do`.
+
 2022-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/e.tmac: Initialize new register `_f`, the value of `$m`

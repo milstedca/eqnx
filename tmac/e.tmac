@@ -413,8 +413,8 @@
 .	nm \\n(ln
 .if \\n(_f \
 .	if !\\n(_f=\\n($m \
-.		@err writing \\n($m-column footnote in \\n(_f-column \
-layout
+.		do @err writing \\n($m-column footnote in \
+\\n(_f-column layout
 .|f
 .nr _f 0
 .if \\n(?n \
@@ -642,7 +642,7 @@ layout
 .		rr |l
 .\}
 .	el \
-.		@err invalid numeric argument to 'n2': '\\$1'
+.		do @err invalid numeric argument to 'n2': '\\$1'
 .\}
 .el \
 \{\
@@ -696,7 +696,7 @@ layout
 .
 .de sk			\" *** leave a blank page (next page)
 .if \\n(.$>0 \
-.	@err ignoring argument(s) to 'sk'
+.	do @err ignoring argument(s) to 'sk'
 .nr ?s 1
 ..
 .
@@ -1607,7 +1607,7 @@ layout
 .if "\\n(.z"|f" .do @err footnotes cannot be nested
 .if \\n(_f \
 .	if !\\n(_f=\\n($m \
-.		@err queueing \\n($m-column footnote after \
+.		do @err queueing \\n($m-column footnote after \
 \\n(_f-column footnote
 .nr _f \\n($m
 .ie "\\n(.z"" \
@@ -1920,7 +1920,7 @@ layout
 .if "\\$1"AB" \
 .	nr _0 5			\" abstract
 .if \\n(_0=0 \
-.	@err invalid segment type to '++': '\\$1'
+.	do @err invalid segment type to '++': '\\$1'
 .nr ?R 0
 .if \\n(_0>10 \
 \{\

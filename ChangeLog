@@ -1,5 +1,16 @@
 2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.cpp (main): Fix SEGV when exiting
+	gxditview.  The `postdriver` pointer always referred to
+	allocated memory except when the `-X` option was given; it was
+	then assigned the address of a #defined string literal.  It was
+	thus statically allocated and an error to attempt to `free()`
+	it.  Duplicate the string on the heap instead so that we can
+	clean up uniformly regardless of postprocessor.  Problem caused
+	by me when introducing `xexit()` in commit 6769e56aab, 20 June.
+
+2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/e.tmac (@o, n2, sk (f, ++): Consistently call `@err`
 	macro with `do`.
 

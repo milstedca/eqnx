@@ -398,7 +398,7 @@ int main(int argc, char **argv)
   const char *real_driver = 0 /* nullptr */;
   if (Xflag) {
     real_driver = postdriver;
-    postdriver = (char *)GXDITVIEW;
+    postdriver = xstrdup(GXDITVIEW); // so we can free() it in xexit()
     commands[TROFF_INDEX].append_arg("-r" XREG "=", "1");
   }
   if (postdriver)

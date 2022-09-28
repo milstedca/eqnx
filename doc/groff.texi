@@ -2781,7 +2781,7 @@ Default: 10@dmn{p}.
 @endDefmpreg
 
 @Defmpreg {VS, ms}
-Defines the space between lines (line height plus leading).
+Defines the vertical spacing (type size plus leading).
 
 Effective: next paragraph.
 

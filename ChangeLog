@@ -1,5 +1,11 @@
 2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (interpolate_string): Trivially
+	refactor.  Rename function parameter from `s` to `nm` to more
+	obviously align with `interpolate_string_with_args()`.
+
+2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_zero_width, token::description)
 	(interpolate_string, interpolate_string_with_args)
 	(token::get_char): Revise diagnostic messages to stop presuming

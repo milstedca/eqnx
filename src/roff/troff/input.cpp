@@ -4342,14 +4342,14 @@ static void interpolate_string(symbol nm)
   }
 }
 
-static void interpolate_string_with_args(symbol s)
+static void interpolate_string_with_args(symbol nm)
 {
-  request_or_macro *p = lookup_request(s);
+  request_or_macro *p = lookup_request(nm);
   macro *m = p->to_macro();
   if (!m)
     error("you can only invoke a string or macro using escaped '*'");
   else {
-    macro_iterator *mi = new macro_iterator(s, *m);
+    macro_iterator *mi = new macro_iterator(nm, *m);
     decode_string_args(mi);
     input_stack::push(mi);
   }

@@ -165,7 +165,7 @@ void set_escape_char()
 {
   if (has_arg()) {
     if (tok.ch() == 0) {
-      error("invalid escape character");
+      error("cannot select invalid escape character; using '\\'");
       escape_char = '\\';
     }
     else

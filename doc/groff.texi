@@ -6385,14 +6385,15 @@ stream generally provokes an error diagnostic.
 @cindex macros, shared name space with strings and diversions
 @cindex strings, shared name space with macros and diversions
 @cindex diversions, shared name space with macros and strings
-Identifiers for requests, macros, strings, and diversions share a name
-space.  No other object types do.
+Identifiers for requests, macros, strings, and diversions share one name
+space; special characters and character classes another.  No other
+object types do.
 
 @Example
 .de xxx
 .  nop foo
 ..
-.
+@c . slack line for pagination management
 .di xxx
 bar
 .br
@@ -14906,11 +14907,11 @@ been already stored in the diversion (box) are not taken into account.
 
 @Example
 .\" Center text both horizontally and vertically.
+.\" Macro .(c starts centering mode; .)c terminates it.
 .
 .\" Disable the escape character with .eo so that we
 .\" don't have to double backslashes on the "\n"s.
 .eo
-.\" Macro .(c starts centering mode.
 .de (c
 .  br
 .  ev (c
@@ -14921,7 +14922,6 @@ been already stored in the diversion (box) are not taken into account.
 ..
 @endExample
 @Example
-.\" Macro .)c terminates centering mode.
 .de )c
 .  br
 .  ev
@@ -14937,7 +14937,6 @@ been already stored in the diversion (box) are not taken into account.
 .  rr @@s
 .  rm @@c
 ..
-.\" End of macro definitions; restore escape character.
 .ec
 @endExample
 @endDefreg
@@ -16779,10 +16778,9 @@ Workbench @code{troff}s.
 GNU @code{troff} does not allow the use of the escape sequences
 @code{\|}, @code{\^}, @code{\&}, @code{\@{}, @code{\@}},
 @code{\@key{SP}}, @code{\'}, @code{\`}, @code{\-}, @code{\_}, @code{\!},
-@code{\%}, and @code{\c} in names of strings, macros, diversions,
-registers, fonts, or environments; @acronym{AT&T} @code{troff} does.
-The @code{\A} escape sequence (@pxref{Identifiers}) may be helpful in
-avoiding use of these escape sequences in names.
+@code{\%}, and @code{\c} in identifiers; @acronym{AT&T} @code{troff}
+does.  The @code{\A} escape sequence (@pxref{Identifiers}) may be
+helpful in avoiding use of these escape sequences in names.
 
 @cindex adjustment to both margins, difference from @acronym{AT&T} @code{troff}
 @cindex rivers

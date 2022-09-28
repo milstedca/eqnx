@@ -1382,8 +1382,9 @@ or stream generally provokes an error diagnostic.
 Identifiers for requests,
 macros,
 strings,
-and diversions share a name
-space.
+and diversions share one name
+space;
+special characters and character classes another.
 .
 No other object types do.
 .\" END Keep (roughly) parallel with groff.texi node "Identifiers".

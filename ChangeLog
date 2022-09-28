@@ -1,5 +1,11 @@
 2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (read_size): Be more helpful to
+	ambiguous type size escape sequence users; offer advice in
+	terms of the current escape character.
+
+2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/groff.cpp (main): Fix SEGV when exiting
 	gxditview.  The `postdriver` pointer always referred to
 	allocated memory except when the `-X` option was given; it was

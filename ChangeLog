@@ -1,5 +1,20 @@
 2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (spring_trap, interpolate_string)
+	(interpolate_string_with_args): Improve error diagnostics: when
+	a sprung trap or an interpolation fails because it's being
+	attempted on a request, say so explicitly and _name_ it.  If the
+	argument to the trap-planting request or to a string
+	interpolation escape sequence is itself an interpolation, this
+	name might not be obvious.  Consider:
+	  .wh \n[pos] \*[mac]
+	  .em \*[mac]
+	  .itc 1 \*[mac]
+	  \*[\*[mac]]
+	Supplying this information requires no additional overhead.
+
+2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (interpolate_string): Trivially
 	refactor.  Rename function parameter from `s` to `nm` to more
 	obviously align with `interpolate_string_with_args()`.

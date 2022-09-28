@@ -4090,11 +4090,14 @@ void spring_trap(symbol nm)
   static char buf2[2] = { END_TRAP, '\0' };
   input_stack::push(make_temp_iterator(buf2));
   request_or_macro *p = lookup_request(nm);
+  // We don't perform this validation at the time the trap is planted
+  // because a request name might be replaced by a macro by the time the
+  // trap springs.
   macro *m = p->to_macro();
   if (m)
     input_stack::push(new macro_iterator(nm, *m, "trap-called macro"));
   else
-    error("you can't invoke a request with a trap");
+    error("trap failed to spring: '%1' is a request", nm.contents());
   input_stack::push(make_temp_iterator(buf));
 }
 
@@ -4327,7 +4330,7 @@ static void interpolate_string(symbol nm)
   request_or_macro *p = lookup_request(nm);
   macro *m = p->to_macro();
   if (!m)
-    error("you can only invoke a string or macro using escaped '*'");
+    error("cannot interpolate request '%1'", nm.contents());
   else {
     if (m->is_string()) {
       string_iterator *si = new string_iterator(*m, "string", nm);
@@ -4347,7 +4350,7 @@ static void interpolate_string_with_args(symbol nm)
   request_or_macro *p = lookup_request(nm);
   macro *m = p->to_macro();
   if (!m)
-    error("you can only invoke a string or macro using escaped '*'");
+    error("cannot interpolate request '%1'", nm.contents());
   else {
     macro_iterator *mi = new macro_iterator(nm, *m);
     decode_string_args(mi);

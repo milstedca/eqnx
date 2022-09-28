@@ -1,5 +1,12 @@
 2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_zero_width, token::description)
+	(interpolate_string, interpolate_string_with_args)
+	(token::get_char): Revise diagnostic messages to stop presuming
+	the identity of the escape character.
+
+2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (set_escape_char): Recast error
 	message to describe attempted operation and tell the user what
 	we're doing about being instructed to use an invalid escape

@@ -1621,7 +1621,7 @@ static node *do_zero_width()
 	&& (compatible_flag || input_stack::get_level() == start_level))
       break;
     if (!tok.add_to_zero_width_node_list(&rev))
-      error("invalid token in argument to \\Z");
+      error("invalid token in argument to escaped 'Z'");
   }
   node *n = 0;
   while (rev) {
@@ -2407,49 +2407,49 @@ const char *token::description()
     buf[3] = '\0';
     return buf;
   case TOKEN_DUMMY:
-    return "'\\&'";
+    return "an escaped '&'";
   case TOKEN_ESCAPE:
-    return "'\\e'";
+    return "an escaped 'e'";
   case TOKEN_HYPHEN_INDICATOR:
-    return "'\\%'";
+    return "an escaped '%'";
   case TOKEN_INTERRUPT:
-    return "'\\c'";
+    return "an escaped 'c'";
   case TOKEN_ITALIC_CORRECTION:
-    return "'\\/'";
+    return "an escaped '/'";
   case TOKEN_LEADER:
     return "a leader character";
   case TOKEN_LEFT_BRACE:
-    return "'\\{'";
+    return "an escaped '{'";
   case TOKEN_MARK_INPUT:
-    return "'\\k'";
+    return "an escaped 'k'";
   case TOKEN_NEWLINE:
     return "a newline";
   case TOKEN_NODE:
     return "a node";
   case TOKEN_NUMBERED_CHAR:
-    return "'\\N'";
+    return "an escaped 'N'";
   case TOKEN_RIGHT_BRACE:
-    return "'\\}'";
+    return "an escaped '}'";
   case TOKEN_SPACE:
     return "a space";
   case TOKEN_SPECIAL:
     return "a special character";
   case TOKEN_SPREAD:
-    return "'\\p'";
+    return "an escaped 'p'";
   case TOKEN_STRETCHABLE_SPACE:
-    return "'\\~'";
+    return "an escaped '~'";
   case TOKEN_UNSTRETCHABLE_SPACE:
-    return "'\\ '";
+    return "an escaped ' '";
   case TOKEN_HORIZONTAL_SPACE:
-    return "a horizontal space";
+    return "a horizontal motion";
   case TOKEN_TAB:
     return "a tab character";
   case TOKEN_TRANSPARENT:
-    return "'\\!'";
+    return "an escaped '!'";
   case TOKEN_TRANSPARENT_DUMMY:
-    return "'\\)'";
+    return "an escaped ')'";
   case TOKEN_ZERO_WIDTH_BREAK:
-    return "'\\:'";
+    return "an escaped ':'";
   case TOKEN_EOF:
     return "end of input";
   default:
@@ -4327,7 +4327,7 @@ static void interpolate_string(symbol nm)
   request_or_macro *p = lookup_request(nm);
   macro *m = p->to_macro();
   if (!m)
-    error("you can only invoke a string or macro using \\*");
+    error("you can only invoke a string or macro using escaped '*'");
   else {
     if (m->is_string()) {
       string_iterator *si = new string_iterator(*m, "string", nm);
@@ -4347,7 +4347,7 @@ static void interpolate_string_with_args(symbol s)
   request_or_macro *p = lookup_request(s);
   macro *m = p->to_macro();
   if (!m)
-    error("you can only invoke a string or macro using \\*");
+    error("you can only invoke a string or macro using escaped '*'");
   else {
     macro_iterator *mi = new macro_iterator(s, *m);
     decode_string_args(mi);
@@ -7250,7 +7250,7 @@ charinfo *token::get_char(bool required)
       // and token::process() don't add this token type if the escape
       // character is null.  If not, this should be an assert().  Also
       // see escape_off().
-      error("'\\e' used while escape sequences disabled");
+      error("escaped 'e' used while escape sequences disabled");
       return 0;
     }
   }

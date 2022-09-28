@@ -38,7 +38,7 @@ input=".sp
 That's my bracket.
 .pl \n(nlu"
 
-echo "checking that newline is accepted as delimeter to 'b' escape" >&2
+echo "checking that newline is accepted as delimiter to 'b' escape" >&2
 output=$(printf "%s\n" "$input" | "$groff" -Tascii -ww -z 2>&1)
 test -z "$output" || wail
 
@@ -47,7 +47,7 @@ e\(aa
 in Paris
 .pl \n(nlu"
 
-echo "checking that newline is accepted as delimeter to 'o' escape" >&2
+echo "checking that newline is accepted as delimiter to 'o' escape" >&2
 output=$(printf "%s\n" "$input" | "$groff" -Tascii -ww -z 2>&1)
 test -z "$output" || wail
 
@@ -57,7 +57,7 @@ girth
 \nw units.
 .pl \n(nlu"
 
-echo "checking that newline is accepted as delimeter to 'w' escape" >&2
+echo "checking that newline is accepted as delimiter to 'w' escape" >&2
 output=$(printf "%s\n" "$input" | "$groff" -Tascii -ww -z 2>&1)
 test -z "$output" || wail
 
@@ -67,7 +67,7 @@ tty: bogus
 now.
 .pl \n(nlu"
 
-echo "checking that newline is accepted as delimeter to 'X' escape" >&2
+echo "checking that newline is accepted as delimiter to 'X' escape" >&2
 output=$(printf "%s\n" "$input" | "$groff" -Tascii -ww -z 2>&1)
 test -z "$output" || wail
 

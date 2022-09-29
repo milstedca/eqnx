@@ -1,3 +1,9 @@
+2022-09-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/pdf.tmac: Add inclusion guard; if a `pdfmark` macro is
+	already defined, skip inclusion of this file.  Unfortunately
+	there are multiple name collisions with pdfmark.tmac.
+
 2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp:

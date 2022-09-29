@@ -470,6 +470,14 @@ through its
 command-line option.
 .
 .
+.P
+.I preconv
+assumes that its input uses the default escape character,
+a backslash
+.BR \[rs] ,
+and writes special character escape sequences accordingly.
+.
+.
 .\" ====================================================================
 .SH Options
 .\" ====================================================================

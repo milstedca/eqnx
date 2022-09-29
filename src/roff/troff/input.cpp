@@ -137,7 +137,7 @@ static symbol read_escape_parameter(read_mode = NO_ARGS);
 static symbol read_long_escape_parameters(read_mode = NO_ARGS);
 static void interpolate_string(symbol);
 static void interpolate_string_with_args(symbol);
-static void interpolate_macro(symbol, int = 0);
+static void interpolate_macro(symbol, bool = false);
 static void interpolate_number_format(symbol);
 static void interpolate_environment_variable(symbol);
 
@@ -2671,7 +2671,7 @@ void do_request()
   if (nm.is_null())
     skip_line();
   else
-    interpolate_macro(nm, 1);
+    interpolate_macro(nm, true /* don't want next token */);
   compatible_flag = do_old_compatible_flag;
   do_old_compatible_flag = -1;
   request_or_macro *p = lookup_request(nm);
@@ -3094,7 +3094,7 @@ request::request(REQUEST_FUNCP pp) : p(pp)
 {
 }
 
-void request::invoke(symbol, int)
+void request::invoke(symbol, bool)
 {
   (*p)();
 }
@@ -3793,7 +3793,7 @@ int operator==(const macro &m1, const macro &m2)
   return 1;
 }
 
-static void interpolate_macro(symbol nm, int no_next)
+static void interpolate_macro(symbol nm, bool do_not_want_next_token)
 {
   request_or_macro *p = (request_or_macro *)request_dictionary.lookup(nm);
   if (p == 0) {
@@ -3822,7 +3822,7 @@ static void interpolate_macro(symbol nm, int no_next)
     }
   }
   if (p)
-    p->invoke(nm, no_next);
+    p->invoke(nm, do_not_want_next_token);
   else {
     skip_line();
     return;
@@ -3931,14 +3931,14 @@ static void decode_string_args(macro_iterator *mi)
   }
 }
 
-void macro::invoke(symbol nm, int no_next)
+void macro::invoke(symbol nm, bool do_not_want_next_token)
 {
   macro_iterator *mi = new macro_iterator(nm, *this);
   decode_args(mi);
   input_stack::push(mi);
   // we must delay tok.next() in case the function has been called by
   // do_request to assure proper handling of compatible_flag
-  if (!no_next)
+  if (!do_not_want_next_token)
     tok.next();
 }
 

@@ -1,5 +1,13 @@
 2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp:
+	* src/roff/troff/request.h: Trivially refactor.  Boolify
+	`interpolate_macro` and `request::invoke`.  Also rename
+	parameter `no_next` to `do_not_want_next_token`, exposing
+	potentially confusing interface design.
+
+2022-09-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (spring_trap, interpolate_string)
 	(interpolate_string_with_args): Improve error diagnostics: when
 	a sprung trap or an interpolation fails because it's being

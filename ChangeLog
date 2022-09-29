@@ -1,5 +1,13 @@
 2022-09-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/libs/libdriver/input.cpp (do_file): Make use of
+	positioning commands before the first page is started fatal
+	errors; they suggest ill-formed input.  The 'p' command
+	clobbers the vertical position anyway.  (See
+	https://bugs.debian.org/421437 for discussion.)
+
+2022-09-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/pdf.tmac: Add inclusion guard; if a `pdfmark` macro is
 	already defined, skip inclusion of this file.  Unfortunately
 	there are multiple name collisions with pdfmark.tmac.

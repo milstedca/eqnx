@@ -1516,9 +1516,10 @@ static int do_name_test()
   for (;;) {
     tok.next();
     if (tok.is_newline() || tok.is_eof()) {
-      warning(WARN_DELIM, "missing closing delimiter in identifier"
-	      " validation escape sequence (got %1)",
-	      tok.description());
+      if (tok != start)
+	warning(WARN_DELIM, "missing closing delimiter in identifier"
+		" validation escape sequence (got %1)",
+		tok.description());
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
@@ -1612,8 +1613,9 @@ static node *do_zero_width()
   for (;;) {
     tok.next();
     if (tok.is_newline() || tok.is_eof()) {
-      warning(WARN_DELIM, "missing closing delimiter in"
-	      " zero-width escape (got %1)", tok.description());
+      if (tok != start)
+	warning(WARN_DELIM, "missing closing delimiter in"
+		" zero-width escape (got %1)", tok.description());
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
@@ -5273,14 +5275,11 @@ static void do_width()
   curenv = &env;
   for (;;) {
     tok.next();
-    if (tok.is_newline()) {
-      input_stack::push(make_temp_iterator("\n"));
-      break;
-    }
-    if (tok.is_eof()) {
-      warning(WARN_DELIM, "missing closing delimiter in"
-	      " width computation escape sequence (got %1)",
-	      tok.description());
+    if (tok.is_newline() || tok.is_eof()) {
+      if (tok != start)
+	warning(WARN_DELIM, "missing closing delimiter in"
+		" width computation escape sequence (got %1)",
+		tok.description());
       // Pretend we saw a newline.
       input_stack::push(make_temp_iterator("\n"));
       break;
@@ -5487,10 +5486,8 @@ static node *do_special()
   start.next();
   int start_level = input_stack::get_level();
   macro mac;
-  // XXX: will tok != start ever be false?
-  for (tok.next();
-       tok != start || input_stack::get_level() != start_level;
-       tok.next()) {
+  for (;;) {
+    tok.next();
     if (tok.is_newline()) {
       input_stack::push(make_temp_iterator("\n"));
       break;
@@ -5502,6 +5499,9 @@ static node *do_special()
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
+    if (tok == start
+	&& (compatible_flag || input_stack::get_level() == start_level))
+      break;
     unsigned char c;
     if (tok.is_space())
       c = ' ';

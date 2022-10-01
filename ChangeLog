@@ -1,5 +1,16 @@
 2022-10-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Fix inconsistencies in handling of
+	escape sequences that accept newlines as delimiters.  Some threw
+	spurious warnings as in Savannah #63011; others failed to treat
+	a newline-terminated escape sequence also as the ending of an
+	input line.
+	(do_name_test, do_zero_width): Suppress spurious warning.
+	(do_zero_width, do_width, do_special): Synthesize newline to
+	terminate input line.
+
+2022-10-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/\
 	some_escapes_accept_newline_delimiters.sh: Add test cases for
 	`\A` and test formatted output of escape sequences, not just the

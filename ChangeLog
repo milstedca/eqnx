@@ -1,5 +1,12 @@
 2022-10-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tmac]: Regression-test Savannah #63112 (1/3).
+
+	* tmac/tests/latin9_works: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-10-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Refactor to parallelize logic in
 	similar routines; namely, those handling escape sequences that
 	accept newlines as argument delimiters.

@@ -1,5 +1,12 @@
 2022-10-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tmac]: Regression-test Savannah #63112 (2/3).
+
+	* tmac/tests/latin5_works: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-10-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tmac]: Fix Savannah #63112 (1/3).
 
 	* tmac/latin9.tmac: Replace characters that ISO Latin-1 has but

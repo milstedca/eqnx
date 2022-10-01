@@ -6786,7 +6786,7 @@ sequences.
 @c groff(7).
 
 @Example
-.ds family T\" Times
+.ds family C\" Courier
 .ds style I\" oblique
 Choice a typeface \f(\*[family]\*[style]wisely.
     @result{} Choose a typeface @slanted{wisely.}
@@ -6832,8 +6832,8 @@ character is recognized as starting an escape sequence.
 @Defreq {ec, [@Var{c}]}
 @cindex escape character, changing (@code{ec})
 @cindex character, escape, changing (@code{ec})
-Recognize@tie{}@var{c} as the escape character.  With no argument, the
-default escape character @samp{\} is selected.
+Recognize@tie{}@var{c} as the escape character.  If@tie{}@var{c} is
+absent or invalid, the default escape character @samp{\} is selected.
 
 Changing the escape character globally likely breaks macro packages,
 since GNU @code{troff} has no mechanism to ``intern'' macros, that is,

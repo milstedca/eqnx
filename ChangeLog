@@ -327,7 +327,7 @@
 	Call out letters and numerals as (usually) usable as well.
 	Correct an almost completely inaccurate list of escape sequences
 	that accept a newline as an argument delimiter: \A, \b, \o, \w,
-	and \X do; \B and \Z do not.  Correct example of use of newline
+	\X, and \Z do; \B does not.  Correct example of use of newline
 	as delimiter with \o escape sequence.  Stop referring to the
 	decimal point as an "operator".  Drop "newline" from a list of
 	prohibited delimiters by several escape sequences since it has
@@ -1822,7 +1822,7 @@
 	Boolean.
 
 	* src/roff/groff/groff.cpp (main): Report full filespec of
-	troublesome "DESC" file when complainiing of missing "postpro"
+	troublesome "DESC" file when complaining of missing "postpro"
 	directive.
 
 2022-06-18  G. Branden Robinson <g.branden.robinson@gmail.com>
@@ -4228,7 +4228,7 @@
 	(read_increment_and_escape_name): Rename these...
 	(read_escape_parameter):
 	(read_long_escape_parameters):
-	(get_char_for_escape_name):
+	(get_char_for_escape_parameter):
 	(read_two_char_escape_parameter):
 	(read_increment_and_escape_parameter): ...to these.
 	(read_two_char_escape_parameter, read_long_escape_parameters,

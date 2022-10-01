@@ -1433,9 +1433,9 @@ static void define_color()
 
 node *do_overstrike()
 {
-  token start;
   overstrike_node *on = new overstrike_node;
   int start_level = input_stack::get_level();
+  token start;
   start.next();
   for (;;) {
     tok.next();
@@ -1446,7 +1446,7 @@ node *do_overstrike()
     if (tok.is_eof()) {
       warning(WARN_DELIM, "missing closing delimiter in overstrike"
 	     " escape sequence (got %1)", tok.description());
-      // Pretend we saw a newline.
+      // Synthesize an input line ending.
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
@@ -1475,10 +1475,10 @@ node *do_overstrike()
 
 static node *do_bracket()
 {
-  token start;
   bracket_node *bn = new bracket_node;
-  start.next();
   int start_level = input_stack::get_level();
+  token start;
+  start.next();
   for (;;) {
     tok.next();
     if (tok.is_newline()) {
@@ -1489,7 +1489,7 @@ static node *do_bracket()
       warning(WARN_DELIM, "missing closing delimiter in"
 	      " bracket-building escape sequence (got %1)",
 	      tok.description());
-      // Pretend we saw a newline.
+      // Synthesize an input line ending.
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
@@ -1508,9 +1508,9 @@ static node *do_bracket()
 
 static int do_name_test()
 {
+  int start_level = input_stack::get_level();
   token start;
   start.next();
-  int start_level = input_stack::get_level();
   bool got_bad_char = false;
   bool got_some_char = false;
   for (;;) {
@@ -1520,6 +1520,7 @@ static int do_name_test()
 	warning(WARN_DELIM, "missing closing delimiter in identifier"
 		" validation escape sequence (got %1)",
 		tok.description());
+      // Synthesize an input line ending.
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
@@ -1607,15 +1608,16 @@ static node *do_zero_width()
 static node *do_zero_width()
 {
   node *rev = new dummy_node;
+  int start_level = input_stack::get_level();
   token start;
   start.next();
-  int start_level = input_stack::get_level();
   for (;;) {
     tok.next();
     if (tok.is_newline() || tok.is_eof()) {
       if (tok != start)
 	warning(WARN_DELIM, "missing closing delimiter in"
 		" zero-width escape (got %1)", tok.description());
+      // Synthesize an input line ending.
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
@@ -5267,9 +5269,9 @@ static void do_register()
 
 static void do_width()
 {
+  int start_level = input_stack::get_level();
   token start;
   start.next();
-  int start_level = input_stack::get_level();
   environment env(curenv);
   environment *oldenv = curenv;
   curenv = &env;
@@ -5280,7 +5282,7 @@ static void do_width()
 	warning(WARN_DELIM, "missing closing delimiter in"
 		" width computation escape sequence (got %1)",
 		tok.description());
-      // Pretend we saw a newline.
+      // Synthesize an input line ending.
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
@@ -5482,9 +5484,9 @@ static void encode_char(macro *mac, char c)
 
 static node *do_special()
 {
+  int start_level = input_stack::get_level();
   token start;
   start.next();
-  int start_level = input_stack::get_level();
   macro mac;
   for (;;) {
     tok.next();
@@ -5495,7 +5497,7 @@ static node *do_special()
     if (tok.is_eof()) {
       warning(WARN_DELIM, "missing closing delimiter in device control"
 	      " escape sequence (got %1)", tok.description());
-      // Pretend we saw a newline.
+      // Synthesize an input line ending.
       input_stack::push(make_temp_iterator("\n"));
       break;
     }

@@ -1,5 +1,11 @@
 2022-10-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Refactor to parallelize logic in
+	similar routines; namely, those handling escape sequences that
+	accept newlines as argument delimiters.
+
+2022-10-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Fix inconsistencies in handling of
 	escape sequences that accept newlines as delimiters.  Some threw
 	spurious warnings as in Savannah #63011; others failed to treat

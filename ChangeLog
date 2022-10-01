@@ -1,3 +1,11 @@
+2022-10-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/\
+	some_escapes_accept_newline_delimiters.sh: Add test cases for
+	`\A` and test formatted output of escape sequences, not just the
+	absence of diagnostics from permitted use of newlines as
+	argument delimiters.
+
 2022-09-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/libs/libdriver/input.cpp (do_file): Make use of

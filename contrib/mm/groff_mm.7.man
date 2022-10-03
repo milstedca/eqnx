@@ -135,6 +135,15 @@ are not recognized.
 .
 .
 .IP \[bu]
+If setting the registers
+.B L
+or
+.B W
+from the command line,
+specify them with an explicit scaling unit to avoid surprises.
+.
+.
+.IP \[bu]
 Cut marks are not supported.
 .
 .
@@ -4239,7 +4248,14 @@ above.
 .
 .TP
 .B L
-Page length, only for command-line settings.
+defines the vertical spacing for the document,
+and must be set from the command line.
+.
+A scaling unit should be appended.
+.
+The default is that of the selected
+.I groff
+output device.
 .
 .
 .TP
@@ -4525,9 +4541,18 @@ Indentation for
 .
 Default is 5n.
 .
+.
 .TP
 .B W
-Line length, only for command-line settings.
+defines the \[lq]width\[rq]
+(line length)
+of the document,
+and must be set from the command line.
+.
+A scaling unit should be appended.
+.
+The default
+.RB is\~ 6i .
 .
 .
 .

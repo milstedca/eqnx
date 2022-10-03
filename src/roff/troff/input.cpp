@@ -2482,11 +2482,11 @@ void compatible()
   skip_line();
 }
 
-static void empty_name_warning(bool required)
+static void diagnose_missing_identifier(bool required)
 {
   if (tok.is_newline() || tok.is_eof()) {
     if (required)
-      warning(WARN_MISSING, "missing name");
+      warning(WARN_MISSING, "missing identifier");
   }
   else if (tok.is_right_brace() || tok.is_tab()) {
     const char *start = tok.description();
@@ -2496,16 +2496,16 @@ static void empty_name_warning(bool required)
     if (!tok.is_newline() && !tok.is_eof())
       error("%1 is not allowed before an argument", start);
     else if (required)
-      warning(WARN_MISSING, "missing name");
+      warning(WARN_MISSING, "missing identifier");
   }
   else if (required)
-    error("expected name, got %1", tok.description());
+    error("expected identifier, got %1", tok.description());
   else
-    error("expected name, got %1; treated as missing",
+    error("expected identifier, got %1; treated as missing",
 	  tok.description());
 }
 
-static void non_empty_name_warning()
+static void diagnose_invalid_identifier()
 {
   if (!tok.is_newline() && !tok.is_eof() && !tok.is_space()
       && !tok.is_tab() && !tok.is_right_brace()
@@ -2526,11 +2526,11 @@ symbol get_name(bool required)
 	tok.make_space();
       }
       else
-	non_empty_name_warning();
+	diagnose_invalid_identifier();
       return symbol(buf);
     }
     else {
-      empty_name_warning(required);
+      diagnose_missing_identifier(required);
       return NULL_SYMBOL;
     }
   }
@@ -2573,13 +2573,13 @@ static symbol do_get_long_name(bool required, char end)
     tok.next();
   }
   if (i == 0) {
-    empty_name_warning(required);
+    diagnose_missing_identifier(required);
     return NULL_SYMBOL;
   }
   if (end && buf[i] == end)
     buf[i+1] = '\0';
   else
-    non_empty_name_warning();
+    diagnose_invalid_identifier();
   if (buf == abuf)
     return symbol(buf);
   else {

@@ -1,3 +1,20 @@
+2022-10-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Apply consistent terminology.
+
+	* src/roff/troff/input.cpp: Rename functions to better align
+	with our documentation, and decouple their names from an
+	assumption of diagnostic severity.  Also give them imperative
+	names since they are called for their side effects, not their
+	return values.
+	- empty_name_warning -> diagnose_missing_identifier
+	- non_empty_name_warning -> diagnose_invalid_identifier
+	(diagnose_missing_identifier): Refer to absent operand as
+	"identifier", not "name", in diagnostic messages since the
+	latter (strictly) refers to the request/macro/string/diversion
+	name space, and this function is also used to gather register
+	identifiers.
+
 2022-10-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tmac]: Fix Savannah #63112 (3/3).

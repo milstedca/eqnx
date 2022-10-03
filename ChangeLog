@@ -1,5 +1,13 @@
 2022-10-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tmac]: Fix Savannah #63112 (3/3).
+
+	* tmac/latin2.tmac: Replace characters that ISO Latin-1 has but
+	Latin-2 doesn't.  Map characters that ISO Latin-2 has and
+	Latin-1 doesn't to their numeric code points.
+
+2022-10-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tmac]: Regression-test Savannah #63112 (3/3).
 
 	* tmac/tests/latin2_works: Do it.

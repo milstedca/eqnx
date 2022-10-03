@@ -112,9 +112,9 @@ test -z "$error" || wail
 
 # This looks really weird but is consistent.  A newline used as a
 # delimiter still gets interpreted as an input line ending.  What we see
-# here is 'ABC', the drawing position is reset, a word space (from
-# filling, but overstruck by 'A') goes on the output, then 'D', so it
-# appears as 'ADC'.
+# here is: 'ABC' is formatted, the drawing position is reset to the
+# beginning of the line, a word space (from filling, overstriking 'A')
+# goes on the output, followed by 'D', so it appears as 'ADC'.
 #
 # `printf '\\Z@ABC@\nD\n'` produces the same output.
 echo "checking correct handling of newline delimiter to 'Z' escape" >&2

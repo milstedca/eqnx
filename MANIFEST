@@ -76,7 +76,7 @@ This file summarizes the structure of the groff source distribution.
   devpdf        PDF device.
   devutf8       Terminal device with UTF-8 encoding.
   scripts       Scripts used in generation of device/font descriptions.
-  util          Tools to aid groff developes with new device support.
+  util          Tools to aid groff developers with new device support.
 
 ./m4            M4 macro files used to create the "configure" script.
 
@@ -88,7 +88,7 @@ This file summarizes the structure of the groff source distribution.
   grodvi        TeX DVI.
   grohtml       HTML.
   grolbp        Canon CaPSL laser printers.
-  grolj4        HP Laserjet 4/PCL 5 and compatible printers.
+  grolj4        HP LaserJet 4/PCL 5 and compatible printers.
   grops         PostScript.
   gropdf        PDF.
   grotty        Terminal output.

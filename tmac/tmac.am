@@ -195,6 +195,7 @@ tmac_TESTS = \
   tmac/tests/e_ld-works.sh \
   tmac/tests/e_line-numbering-works.sh \
   tmac/tests/e_rejects-too-short-page-lengths.sh \
+  tmac/tests/latin2_works.sh \
   tmac/tests/latin5_works.sh \
   tmac/tests/latin9_works.sh \
   tmac/tests/localization-works.sh \

@@ -1,5 +1,12 @@
 2022-10-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (pg@header): Add page length sufficiency check.
+
+	Fixes <https://savannah.gnu.org/bugs/?24048>.  Thanks to Werner
+	Lemberg for the report.
+
+2022-10-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Regression-test Savannah #24048.
 
 	* tests/short-pages-do-not-overflow-stack.sh: Test it.

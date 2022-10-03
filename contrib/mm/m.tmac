@@ -1253,6 +1253,13 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .\" Disable in HTML mode
 .if !'\*[.T]'html' \{\
 .if \\n[D]>1 .tm Page# \\n[%] (\\n[.F]:\\n[c.])
+.	if (u;(\\n[pg*header-size] + \\n[pg*extra-header-size] \
+       + \\n[pg*footer-size] + \\n[pg*extra-footer-size] \
+       + \\n[.V]) >= \\n[.p]) \{\
+.		pl \\n[nl]u
+.		@error insufficient page length; aborting\"
+.	\}
+.\}
 .\" check if Hy has been changed
 .ie \\n[Hy] 'hy 14
 .el 'nh

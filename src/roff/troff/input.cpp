@@ -1558,7 +1558,8 @@ static int do_expr_test()
     tok.next();
     if (tok.is_newline() || tok.is_eof()) {
       warning(WARN_DELIM, "missing closing delimiter in"
-	      " expression test escape (got %1)", tok.description());
+	      " expression test escape sequence (got %1)",
+	      tok.description());
       input_stack::push(make_temp_iterator("\n"));
       break;
     }
@@ -1616,7 +1617,8 @@ static node *do_zero_width()
     if (tok.is_newline() || tok.is_eof()) {
       if (tok != start)
 	warning(WARN_DELIM, "missing closing delimiter in"
-		" zero-width escape (got %1)", tok.description());
+		" zero-width escape sequence (got %1)",
+		tok.description());
       // Synthesize an input line ending.
       input_stack::push(make_temp_iterator("\n"));
       break;

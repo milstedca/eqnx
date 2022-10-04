@@ -1,5 +1,10 @@
 2022-10-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (do_expr_test, do_zero_width): Use
+	better terminology in diagnostic messages.
+
+2022-10-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Fix Savannah #63151.
 
 	* src/roff/troff/input.cpp (read_draw_node): Throw "delim"

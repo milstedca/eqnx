@@ -1,5 +1,13 @@
 2022-10-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* NEWS: Advise users of changes to "name" directive handling in
+	font description files.
+
+	Fixes <https://savannah.gnu.org/bugs/?61423>.  Thanks to Dave
+	Kemper for the report.
+
+2022-10-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/number.cpp: Refactor and fix code style nits.
 	Boolify and rename static (local) functions.
 	- parse_expr   -> is_valid_expression

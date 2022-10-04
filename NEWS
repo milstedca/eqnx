@@ -74,6 +74,11 @@ o New requests `stringdown` and `stringup` are available.  These change
 o The `ab` request no longer writes "User Abort." to the standard error
   stream if given no arguments.
 
+o The `fp` request no longer accepts file or font names with slashes in
+  them as arguments.  All font description files are expected to be
+  accessible within the directory of the output device for which they
+  were prepared.
+
 nroff
 -----
 
@@ -579,6 +584,11 @@ o The 'doc' Make target has been eliminated.  'all' (the default Make
   significant when building from a Git checkout or if our Texinfo
   manual's sources are modified; the distribution archive now provides
   copies of the manual in Info, plain text, HTML, DVI, and PDF.
+
+o The "afmtodit" utility no longer writes file names with directory
+  information in them to the "name" directives of the font descriptions
+  it generates.  (The `fp` request no longer accepts such names; see
+  "troff" above.)
 
 o groffer has been deleted from the distribution.
 

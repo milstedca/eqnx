@@ -17,83 +17,51 @@ Generic Problems
 
 
 
-* Displaying a man page on a terminal with/without my favourite pager
-  only gives garbage.
+* Displaying a man page on a terminal with/without my favorite pager
+  shows garbage.
 
-groff by default now uses SGR escape sequences (`ANSI color') to
-control the display attributes (bold, underlined, colour) on TTYs.
-Some terminals (e.g. `kterm') don't understand SGR, and some pagers
-(e.g. older versions of `less' or `less' without the -R option) don't
-understand SGR either.  There are three solutions to fix this, in
-order of preference; please read the grotty man page for more details.
+groff's terminal output driver, grotty, by default uses ISO 6429/ECMA-48
+escape sequences understood by video terminals and their emulators,
+rather than the overstriking sequences implemented for typewriter-like
+terminals used in the 1960s and 1970s.  These escape sequences control
+display attributes like bold and italic or oblique typefaces,
+underlining, foreground and background color selection, and hyperlink
+marking.  Terminal emulators that claim compatibility with the DEC
+VT100, Linux console driver, or xterm should ignore well-formed escape
+sequences that they are not able to support, but some implementations
+are buggy.
 
-The fourth and probably best option is to update your terminal program
-and pager to versions which can handle SGR.
+Furthermore, the popular "less" pager by default assumes that its input
+will use overstriking sequences.  (This is a surprising choice, as users
+of paper terminals had no need for pager programs; to "scroll back", the
+operator would simply physically pull up the spool of ejected paper to
+read it.)  less(1) must instead be given the '-R' option to interpret
+escape sequences used by video terminals.  Be aware that the
+overstriking convention is inescapably ambiguous in some output
+sequences.  See the grotty(1) man page.
 
-  1. Set the GROFF_NO_SGR environment variable.
+Hyperlink support in terminal emulators is a relatively new initiative
+(as of 2022) employing a sequence known as "OSC 8".
+  https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda
 
-  2. Pass option `-c' to grotty (this is, add `-P-c' to groff's
-     command line options).
+Due to the feature's young age, the man and mdoc macro packages have a
+configuration switch for hyperlink support, and it may be disabled in
+your site's man.local and mdoc.local files.  Use a command like
+  printf '\033]8;;man:grotty(1)\033\\grotty(1)\033]8;;\033\\\n' | more
+to check your terminal and pager for OSC 8 support.  If you see
+"grotty(1)" and no additional garbage characters, then you may wish to
+edit those site files to remove any lines that disable this feature.
 
-  3. Append the following fragment to the `troffrc' file:
+There are a couple of workarounds if you prefer or require overstriking
+sequences rather than ISO 6429/ECMA-48 escape sequences.
 
+  1. Set the GROFF_NO_SGR environment variable to any value.
 
---- start ---
-.if n \{\
-.  nr _C \n(.C
-.  cp 0
-.
-.  \" The following code sets a top-of-page trap to disable grotty's TTY
-.  \" mode.  Since neither \X nor .output can be used before the first
-.  \" page has started, we must use a trap.  To make it work with
-.  \" troff's -o option, we wait until the first printed page.
-.
-.  de sgr@dummy
-.  .
-.
-.  rn wh wh@old
-.
-.  \" The stand-alone version.  If no other trap is set, we can safely
-.  \" insert the truncated vertical space caused by the trap (if any).
-.  \" Otherwise we assume that the document's main macro package takes
-.  \" care of that.  The trap is removed once it has been executed.
-.  de1 no@sgr
-.    if \\n[.P] \{\
-.      if (\\n[.t] == \\n[.p]) \{\
-.        rn wh@old wh
-.        rm no@sgr
-.        wh 0
-.        sp \\n[.trunc]
-.        nop \X'tty: sgr 0'
-.        sp -1
-.    \}\}
-.  .
-.
-.  wh@old 0 no@sgr
-.
-.  \" The piggyback version to be appended to macros planted with the
-.  \" modified `wh' request.
-.  de1 no@sgr1
-.    if \\n[.P] \{\
-.      rn wh@old wh
-.      ds no@sgr1
-.      nop \X'tty: sgr 0'
-.      sp -1
-.    \}
-.  .
-.
-.  \" We redefine the `wh' request so that `no@sgr1' is appended to
-.  \" the trap macro.
-.  de1 wh
-.    am1 \\$2 sgr@dummy
-.      no@sgr1
-.    sgr@dummy
-.    wh@old \\$1 \\$2
-.  .
-.
-.  cp \n[_C]
-.\}
---- end ---
+  2. Pass option '-c' to grotty (that is, add '-P-c' to groff's
+     command-line options).
+
+The third and probably best option is to use terminal and pager programs
+that handle standardized video terminal escape sequences well.
 
 ----------------------------------------------------------------------
 

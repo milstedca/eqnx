@@ -1,3 +1,13 @@
+2022-10-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Fix Savannah #63151.
+
+	* src/roff/troff/input.cpp (read_draw_node): Throw "delim"
+	warning diagnostic when a drawing escape sequence ends the line
+	without a closing delimiter.
+
+	Fixes <https://savannah.gnu.org/bugs/?63151>.
+
 2022-10-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/fallbacks.tmac: Define fallbacks for characters in ISO

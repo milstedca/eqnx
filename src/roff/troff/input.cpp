@@ -8590,6 +8590,12 @@ static node *read_draw_node()
 	  maxpoints *= 2;
 	  delete[] oldpoint;
 	}
+	if (tok.is_newline() || tok.is_eof()) {
+	  warning(WARN_DELIM, "missing closing delimiter in drawing"
+		  " escape sequence (got %1)", tok.description());
+	  err = true;
+	  break;
+	}
 	if (!get_hunits(&point[i].h,
 			type == 'f' || type == 't' ? 'u' : 'm')) {
 	  err = true;

@@ -2405,11 +2405,15 @@ const char *token::description()
   case TOKEN_BACKSPACE:
     return "a backspace character";
   case TOKEN_CHAR:
-    buf[0] = '\'';
-    buf[1] = c;
-    buf[2] = '\'';
-    buf[3] = '\0';
-    return buf;
+    if (c == INPUT_DELETE)
+      return "a delete character";
+    else {
+      buf[0] = '\'';
+      buf[1] = c;
+      buf[2] = '\'';
+      buf[3] = '\0';
+      return buf;
+    }
   case TOKEN_DUMMY:
     return "an escaped '&'";
   case TOKEN_ESCAPE:

@@ -1,5 +1,14 @@
 2022-10-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Describe an input delete character comprehensibly.
+
+	* src/roff/troff/input.cpp (token::description): The delete
+	character (ISO 127 decimal, EBCDIC 7) is a valid `TOKEN_CHAR`
+	but is not printable.  Don't attempt to output it literally in
+	diagnostics; describe it in a phrase instead.
+
+2022-10-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Apply consistent terminology.
 
 	* src/roff/troff/input.cpp: Rename functions to better align

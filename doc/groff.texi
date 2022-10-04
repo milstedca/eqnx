@@ -7077,10 +7077,10 @@ This may sound simple, but it can be tricky to keep the comments from
 interfering with the appearance of the output.
 @cindex @code{ds}, @code{ds1} requests, and comments
 @cindex @code{as}, @code{as1} requests, and comments
-If the escape is to the right of some text or a request, that portion of
-the line is ignored, but spaces preceding it are processed normally by
-GNU @code{troff}.  This affects only the @code{ds} and @code{as}
-requests and their variants.
+If the escape sequence is to the right of some text or a request, that
+portion of the line is ignored, but spaces preceding it are processed
+normally by GNU @code{troff}.  This affects only the @code{ds} and
+@code{as} requests and their variants.
 
 @cindex tabs, before comments
 @cindex comments, lining up with tabs
@@ -7104,7 +7104,8 @@ Test
 @endExample
 
 To avoid this, it is common to combine the empty request with the
-comment escape as @samp{.\"}, causing the input line to be ignored.
+comment escape sequence as @samp{.\"}, causing the input line to be
+ignored.
 
 @cindex @code{'}, as a comment
 Another commenting scheme sometimes seen is three consecutive single
@@ -7231,10 +7232,10 @@ collect input until it sees the space (or in this case, the newline)
 after @code{hhh}.  At this point, the line is longer than the line
 length, and the line gets broken.
 
-In the first input line, since the @code{\R} escape leaves no traces,
-the check for the overfull line hasn't been done yet at the point where
-@code{\R} gets handled, and you get a value for the @code{.k} register
-that is even greater than the current line length.
+In the first input line, since the @code{\R} escape sequence leaves no
+traces, the check for the overfull line hasn't been done yet at the
+point where @code{\R} gets handled, and you get a value for the
+@code{.k} register that is even greater than the current line length.
 
 In the second input line, the insertion of @code{\h'0'} to emit an
 invisible zero-width space forces GNU @code{troff} to check the line
@@ -8192,8 +8193,8 @@ To tell GNU @code{troff} how to hyphenate words as they occur in input,
 use the @code{\%} escape sequence; it is the default @dfn{hyphenation
 character}.  Each instance within a word indicates to GNU @code{troff}
 that the word may be hyphenated at that point, while prefixing a word
-with this escape prevents it from being otherwise hyphenated.  This
-mechanism affects only that occurrence of the word; to change the
+with this escape sequence prevents it from being otherwise hyphenated.
+This mechanism affects only that occurrence of the word; to change the
 hyphenation of a word for the remainder of input processing, use the
 @code{hw} request.
 

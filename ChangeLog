@@ -1,5 +1,15 @@
 2022-10-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Fix Savannah #63149.
+
+	* src/roff/troff/reg.cpp (alter_format): Throw comprehensible
+	diagnostic when input delete character encountered in register
+	format.
+
+	Fixes <https://savannah.gnu.org/bugs/?63149>.
+
+2022-10-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Describe an input delete character comprehensibly.
 
 	* src/roff/troff/input.cpp (token::description): The delete

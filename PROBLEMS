@@ -506,7 +506,7 @@ You have at least 3 options:
 
 - use groff -Tps with GNU Ghostscript;
 
-- use groff -Tdvi with a TeX .dvi to Laserjet driver;
+- use groff -Tdvi with a TeX .dvi to LaserJet driver;
 
 - use groff with the LaserJet driver in Chris Lewis' psroff package
   (available for ftp from:

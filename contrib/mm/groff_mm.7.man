@@ -135,12 +135,12 @@ are not recognized.
 .
 .
 .IP \[bu]
-If setting the registers
+When setting the registers
 .B L
 or
 .B W
 from the command line,
-specify them with an explicit scaling unit to avoid surprises.
+use an explicit scaling unit to avoid surprises.
 .
 .
 .IP \[bu]
@@ -4248,7 +4248,7 @@ above.
 .
 .TP
 .B L
-defines the vertical spacing for the document,
+defines the page length for the document,
 and must be set from the command line.
 .
 A scaling unit should be appended.

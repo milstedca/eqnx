@@ -1,5 +1,32 @@
 2022-10-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/number.cpp: Refactor and fix code style nits.
+	Boolify and rename static (local) functions.
+	- parse_expr   -> is_valid_expression
+	- start_number -> is_valid_expression_start
+	- parse_term   -> is_valid_term
+	Rename preprocessor macro `SCALE_INDICATOR_CHARS` to
+	`SCALING_UNITS`.
+	(is_valid_expression, is_valid_term): Rename parameters and
+	demote them from `int` to `bool`.
+	- scaling_indicator -> scaling_unit (no demotion)
+	- parenthesised     -> is_parenthesized
+	- rigid             -> is_mandatory
+	(is_valid_expression_start, is_valid_expression, is_valid_term):
+	Return Boolean
+	rather than integer literals.
+	(get_vunits, get_hunits, get_number_rigidly, get_number)
+	(get_integer): Update call sites of renamed functions.  Replace
+	Boolean-valued integer literals used as Booleans with Boolean
+	literals and annotate their purposes.  (See <https://\
+	stackoverflow.com/questions/38076786/\
+	why-doesnt-c-support-named-parameters>.)
+	(get_vunits, get_hunits, get_number, get_integer): Replace `0`
+	in assertions with a communicative predicate.  In all of these
+	it's an unhandled `switch()` case.
+
+2022-10-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (do_expr_test, do_zero_width): Use
 	better terminology in diagnostic messages.
 

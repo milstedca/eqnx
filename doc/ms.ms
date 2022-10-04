@@ -22,8 +22,8 @@
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ie t .nr PI 3.5n
 .el   .nr PI 4n
-.ND August 2022
-.EH '%''August 2022'
+.ND October 2022
+.EH '%''October 2022'
 .EF ''''
 .OH 'Using \f[I]groff\f[] with the \f[I]ms\f[] macros''%'
 .OF ''''
@@ -97,10 +97,12 @@ macros are the oldest surviving package for
 systems.\**
 .
 .FS
-Although manual pages are even older,
-the
+While manual
+.I pages
+are older,
+early ones used macros supplanted by the
 .I man
-macros originated in Seventh Edition Unix (1979).
+package of Seventh Edition Unix (1979).
 .
 .I ms
 shipped with Sixth Edition (1975) and was documented by Mike Lesk in a
@@ -134,8 +136,8 @@ Basic information
 documents are plain text files;
 prepare them with your preferred text editor.
 .
-If you're in a hurry to get started,
-be advised that
+If you're in a hurry to start,
+know that
 .I ms
 needs one of its macros called at the beginning of a document so that it
 can initialize.
@@ -237,7 +239,7 @@ i	inches (\[sd])
 c	centimeters
 p	points (1/72\[sd])
 P	picas (1/6\[sd])
-v	\[lq]vees\[rq]; line height at the current vertical spacing
+v	\[lq]vees\[rq]; current vertical spacing
 m	\[lq]ems\[rq]; width of an \[lq]M\[rq] in the current font
 n	\[lq]ens\[rq]; one-half em
 .TE
@@ -260,6 +262,8 @@ a dot
 .
 The difference is that they directly instruct the formatter program,
 rather than the macro package.
+.
+We'll discuss a few as applicable.
 .
 It is wise to specify a scaling unit when setting any register that
 represents a length,
@@ -328,7 +332,7 @@ Interpolate glyph of special character named
 T}
 \[rs]&	non-printing, zero-width dummy character
 \[rs]\[ti]	T{
-Insert an unbreakble space that is adjustable like a normal space.
+Insert an unbreakble space of adjustable width like a normal space.
 T}
 \[rs]|	T{
 Move horizontally by one-sixth em
@@ -361,9 +365,8 @@ when needed to cancel end-of-sentence detection.
 .TS
 box center;
 lf(CR).
-After the criticality accident, Dr.\[rs]&
-Wallace said my exposure had been
-\[rs]&.5 to \[rs]&.6 Sv of neutrons.
+My exposure was \[rs]&.5 to \[rs]&.6 Sv of neutrons, said Dr.\[rs]&
+Wallace after the criticality incident.
 .TE
 .
 .
@@ -538,8 +541,7 @@ T}	\[rs]*[LH]	Left header text	header	\f[I]empty
 \^	\[rs]*[RF]	Right footer text	footer	\f[I]empty
 _
 Text	\[rs]n[PS]	Type (point) size	paragraph	10p
-\^	\[rs]n[VS]	Vertical spacing (leading)	paragraph\
-	12p
+\^	\[rs]n[VS]	Vertical spacing	paragraph	12p
 \^	\[rs]n[HY]	Hyphenation mode	paragraph	6
 \^	\[rs]*[FAM]	Font family	paragraph	T
 _
@@ -562,7 +564,7 @@ Footnotes	\[rs]n[FI]	Indentation	footnote	2n
 \^	\[rs]n[FF]	Format	footnote	0
 \^	\[rs]n[FPS]	Type (point) size	footnote\
 	\[rs]n[PS]\-2p
-\^	\[rs]n[FVS]	Vertical spacing (leading)	footnote\
+\^	\[rs]n[FVS]	Vertical spacing	footnote\
 	\[rs]n[FPS]+2p
 \^	\[rs]n[FPD]	Paragraph distance (spacing)	footnote\
 	\[rs]n[PD]/2
@@ -601,7 +603,7 @@ Document description macros
 .
 .
 .LP
-All but the simplest documents bear a title.\**
+Only the simplest document lacks a title.\**
 .
 .FS
 Distinguish a document title from \[lq]titles\[rq],
@@ -610,15 +612,15 @@ which are what
 systems call headers and footers collectively.
 .FE
 .
-As their level of sophistication
+As its level of sophistication
 (or complexity)
 increases,
-they tend to acquire dates of revision,
+it tends to acquire a date of revision,
 explicitly identified authors,
 sponsoring institutions for authors,
 and,
 at the rarefied heights,
-an abstract of their content.
+an abstract of its content.
 .
 Define these data by calling the macros below in the order shown;
 .CW .DA
@@ -697,24 +699,24 @@ _
 Specify the document title.
 .
 .I ms
-collects text on input lines following a call to this macro into the
-title until reaching an
+collects text on input lines following this call into the title
+until reaching
 .CW .AU ,
 .CW .AB ,
-or heading or paragraphing macro call.
+or a heading or paragraphing macro call.
 T}
 _
 \&.AU	T{
 Specify an author's name.
 .
 .I ms
-collects text on input lines following a call to this macro into the
-author's name until reaching an
+collects text on input lines following this call into the author's name
+until reaching
 .CW .AI ,
 .CW .AB ,
 another
 .CW .AU ,
-or heading or paragraphing macro call.
+or a heading or paragraphing macro call.
 .
 Call it repeatedly to specify multiple authors.
 T}
@@ -733,11 +735,11 @@ the last
 call controls.
 .
 .I ms
-collects text on input lines following a call to this macro into the
-author's institution until reaching an
+collects text on input lines following this call into the author's
+institution until reaching
 .CW .AU ,
 .CW .AB ,
-or heading or paragraphing macro call.
+or a heading or paragraphing macro call.
 T}
 _
 \&.DA \f[R][\f[I]x\f[] .\|.\|.\&]	T{
@@ -749,8 +751,7 @@ and,
 if
 .CW .RP
 is also called,
-left-aligned after other document description information on the cover
-page.
+left-aligned at the end of the document description on the cover page.
 T}
 _
 \&.ND \f[R][\f[I]x\f[] .\|.\|.\&]	T{
@@ -760,11 +761,10 @@ or any
 if
 .CW .RP
 is also called,
-left-aligned after other document description information on the cover
-page.
+left-aligned at the end of the document description on the cover page.
 .
-This is the
-.I "groff ms"
+This is
+.I "groff ms" 's
 default.
 T}
 _
@@ -772,8 +772,8 @@ _
 Begin the abstract.
 .
 .I ms
-collects text on input lines following a call to this macro into the
-abstract until reaching an
+collects text on input lines following this call into the abstract
+until reaching an
 .CW .AE
 call.
 .
@@ -867,7 +867,9 @@ Text settings
 .LP
 The
 .CW FAM
-string sets the font family for body text;
+string,
+a GNU extension,
+sets the font family for body text;
 the default is
 .CW T \[rq]. \[lq]
 .
@@ -937,10 +939,11 @@ Typographical symbols
 .
 .LP
 .I ms
-provides a handful of strings to obtain typographical symbols not easily
+provides a few strings to obtain typographical symbols not easily
 entered with the keyboard.
 .
-Many others are available as special character escape sequences\*[-]see
+These and many others are available as special character escape
+sequences\*[-]see
 the
 .I groff_char (7)
 man page.
@@ -976,6 +979,11 @@ Paragraphs
 .
 .
 .LP
+Paragraphing macros
+.I break ,
+or terminate,
+any pending output line so that a new paragraph can begin.
+.
 Several paragraph types are available,
 differing in how indentation
 applies to them:
@@ -1307,8 +1315,8 @@ following redefinition of the alias for
 .
 The formatted number of the current heading is available in
 .CW \[rs]*[SN]
-(a feature first documented by Berkeley);
-this string facilitates its inclusion in,
+(a feature first documented by Berkeley),
+which facilitates its inclusion in,
 for example,
 table captions,
 equation labels,
@@ -1862,6 +1870,15 @@ a number
 for numbered lists,
 or a word or phrase for glossary-style or definition lists.
 .
+If you set the paragraph indentation register
+.CW PI
+before calling
+.CW IP ,
+you can later reorder the items in the list without having to ensure
+that a
+.I width
+argument remains affixed to the first call.
+.
 .
 .TS H
 box center;
@@ -1872,8 +1889,9 @@ _
 .TH
 T{
 .nf
+\&.nr PI 2n
 A bulleted list:
-\&.IP \[rs][bu] 2n
+\&.IP \[rs][bu]
 lawyers
 \&.IP \[rs][bu]
 guns
@@ -1881,8 +1899,9 @@ guns
 money
 .fi
 T}	T{
+.nr PI 2n
 A bulleted list:
-.IP \[bu] 2
+.IP \[bu]
 lawyers
 .IP \[bu]
 guns
@@ -1892,19 +1911,21 @@ T}
 _
 T{
 .nf
-\&.nr step 1 1
+\&.nr step 0 1
+\&.nr PI 3n
 A numbered list:
-\&.IP \\n[step] 3n
+\&.IP \[rs]n+[step].
 lawyers
-\&.IP \\n+[step]
+\&.IP \[rs]n+[step].
 guns
-\&.IP \\n+[step]
+\&.IP \[rs]n+[step].
 money
 .fi
 T}	T{
-.nr step 1 1
+.nr step 0 1
+.nr PI 3n
 A numbered list:
-.IP \n[step]. 3
+.IP \n+[step].
 lawyers
 .IP \n+[step].
 guns
@@ -1939,7 +1960,28 @@ T}
 .
 .
 .PP
-In the last example above,
+In the enumerated list example,
+we employed the
+.CW nr
+request to create a register of our own,
+.CW step .
+.
+We initialized it to zero and assigned it an auto-increment of 1.
+.
+Each time we use the escape sequence
+.CW \[rs]n+[PI]
+(note the plus sign),
+the formatter applies the increment just before interpolating the
+register's value.
+.
+Preparing the
+.CW PI
+register as well enables us to rearrange the list without the tedium of
+updating macro calls.
+.
+.
+.PP
+In the glossary example,
 observe how the
 .CW IP
 macro places the definition on the same line as the term if it has
@@ -2072,18 +2114,18 @@ _
 T{
 .nf
 .CW
-\&.IP \\[bu] 2
+\&.IP \[rs][bu] 2
 Lawyers:
 \&.RS
-\&.IP \\[bu]
+\&.IP \[rs][bu]
 Dewey,
-\&.IP \\[bu]
+\&.IP \[rs][bu]
 Cheatham,
 and
-\&.IP \\[bu]
+\&.IP \[rs][bu]
 Howe.
 \&.RE
-\&.IP \\[bu]
+\&.IP \[rs][bu]
 Guns
 .R
 \&.\|.\|.
@@ -2185,6 +2227,7 @@ is to reserve space on the page for a figure or illustration to be
 included later.
 .
 .
+.KS
 .PP
 A
 .I "boxed keep"
@@ -2200,6 +2243,7 @@ _
 \&.B1	Begin a keep with a box drawn around it.
 \&.B2	End boxed keep.
 .TE
+.KE
 .
 .
 .KS
@@ -3124,7 +3168,7 @@ T}
 By default,
 .I ms
 places no header on any page numbered \[lq]1\[rq]
-(regardless of its assigned format).
+(regardless of its number format).
 .
 .
 .TS

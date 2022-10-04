@@ -459,7 +459,7 @@ but not the date)
 at the top of the first page.
 .
 If the optional
-.B no\-repeat\-info
+.B no\-\:\%repeat\-\:\%info
 argument is given,
 .I ms
 produces a cover page but does not repeat any of its information on
@@ -473,16 +473,15 @@ Normally,
 sets the page number following the cover page to\~1.
 .
 Specifying the optional
-.B no\-renumber
+.B no\-\:\%renumber
 argument suppresses this alteration.
 .
 Optional arguments can occur in any order.
-.\" Including the next sentence harms U.S. letter pagination... :-/
-.\"
-.\".RB \[lq] no \[rq]
-.\"is recognized as a synonym of
-.\".B no\-repeat\-info
-.\"for AT&T compatibility.
+.
+.RB \[lq] no \[rq]
+is recognized as a synonym of
+.B no\-\:\%repeat\-\:\%info
+for AT&T compatibility.
 .
 .
 .TP
@@ -490,11 +489,11 @@ Optional arguments can occur in any order.
 Specify the document title.
 .
 .I ms
-collects text on input lines following a call to this macro into the
-title until reaching an
+collects text on input lines following this call into the title until
+reaching
 .BR .AU ,
 .BR .AB ,
-or heading or paragraphing macro call.
+or a heading or paragraphing macro call.
 .
 .
 .TP
@@ -502,13 +501,13 @@ or heading or paragraphing macro call.
 Specify an author's name.
 .
 .I ms
-collects text on input lines following a call to this macro into the
-author's name until reaching an
+collects text on input lines following this call into the author's name
+until reaching
 .BR .AI ,
 .BR .AB ,
 another
 .BR .AU ,
-or heading or paragraphing macro call.
+or a heading or paragraphing macro call.
 .
 Call it repeatedly to specify multiple authors.
 .
@@ -528,11 +527,11 @@ the last
 call controls.
 .
 .I ms
-collects text on input lines following a call to this macro into the
-author's institution until reaching an
+collects text on input lines following this call into the author's
+institution until reaching
 .BR .AU ,
 .BR .AB ,
-or heading or paragraphing macro call.
+or a heading or paragraphing macro call.
 .
 .
 .TP
@@ -546,8 +545,7 @@ and,
 if
 .B .RP
 is also called,
-left-aligned after other document description information on the cover
-page.
+left-aligned at the end of the document description on the cover page.
 .
 .
 .TP
@@ -559,11 +557,10 @@ or any
 if
 .B .RP
 is also called,
-left-aligned after other document description information on the cover
-page.
+left-aligned at the end of the document description on the cover page.
 .
-This is the
-.I groff ms
+This is
+.IR "groff ms" 's
 default.
 .
 .
@@ -572,8 +569,8 @@ default.
 Begin the abstract.
 .
 .I ms
-collects text on input lines following a call to this macro into the
-abstract until reaching an
+collects text on input lines following this call into the abstract until
+reaching an
 .B .AE
 call.
 .
@@ -598,7 +595,9 @@ End the abstract.
 .
 The
 .B FAM
-string sets the font family for body text;
+string,
+a GNU extension,
+sets the font family for body text;
 the default is
 .RB \[lq] T \[rq].
 .
@@ -646,10 +645,11 @@ This is a Tenth Edition Research Unix extension.
 .\" ====================================================================
 .
 .I ms
-provides a handful of strings to obtain typographical symbols not easily
+provides a few strings to obtain typographical symbols not easily
 entered with the keyboard.
 .
-Many others are available as special character escape sequences\[em]see
+These and many others are available as special character escape
+sequences\[em]see
 .MR groff_char @MAN7EXT@ .
 .
 .
@@ -674,6 +674,11 @@ the right.
 .\" ====================================================================
 .SS Paragraphs
 .\" ====================================================================
+.
+Paragraphing macros
+.IR break ,
+or terminate,
+any pending output line so that a new paragraph can begin.
 .
 Several paragraph types are available,
 differing in how indentation
@@ -1858,7 +1863,7 @@ macros define footers for them.
 By default,
 .I ms
 places no header on any page numbered \[lq]1\[rq]
-(regardless of its assigned format).
+(regardless of its number format).
 .
 .
 .TP

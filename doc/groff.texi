@@ -2454,12 +2454,13 @@ and Tenth Edition Research Unix have been recreated.
 @subsection Introduction
 
 The @file{ms} macros are the oldest surviving package for @code{roff}
-systems.@footnote{Although manual pages are even older, the @file{man}
-macros originated in Seventh Edition Unix (1979).  @file{ms} shipped
-with Sixth Edition (1975) and was documented by Mike Lesk in a Bell Labs
-internal memorandum.}  While the @file{man} package was designed for
-brief reference documents, the @file{ms} macros are also suitable for
-longer works intended for printing and possible publication.
+systems.@footnote{While manual @emph{pages} are older, early ones used
+macros supplanted by the @file{man} package of Seventh Edition Unix
+(1979).  @file{ms} shipped with Sixth Edition (1975) and was documented
+by Mike Lesk in a Bell Labs internal memorandum.}  While the @file{man}
+package was designed for brief reference documents, the @file{ms} macros
+are also suitable for longer works intended for printing and possible
+publication.
 
 @menu
 * ms basic information::
@@ -2471,12 +2472,12 @@ longer works intended for printing and possible publication.
 @subsubsection Basic information
 
 @file{ms} documents are plain text files; prepare them with your
-preferred text editor.  If you're in a hurry to get started, be advised
-that @file{ms} needs one of its macros called at the beginning of a
-document so that it can initialize.  A @dfn{macro} is a formatting
-instruction to @file{ms}.  Put a macro call on a line by itself.  Use
-@samp{.PP} if you want your paragraph's first line to be indented, or
-@samp{.LP} if you don't.
+preferred text editor.  If you're in a hurry to start, know that
+@file{ms} needs one of its macros called at the beginning of a document
+so that it can initialize.  A @dfn{macro} is a formatting instruction to
+@file{ms}.  Put a macro call on a line by itself.  Use @samp{.PP} if you
+want your paragraph's first line to be indented, or @samp{.LP} if you
+don't.
 
 After that, start typing normally.  It is a good practice to start each
 sentence on a new line, or to put two spaces after sentence-ending
@@ -2528,20 +2529,22 @@ points (1/72 inch)
 picas (1/6 inch)
 
 @item v
-vees; height of a line using the current font
-
-@item n
-ens; width of an ``n'' using the current font
+vees; current vertical spacing
 
 @item m
-ems; width of an ``M'' using the current font
+ems; width of an ``M'' in the current font
+
+@item n
+ens; one-half em
 @end table
 
 Set registers with the @code{nr} request and strings with the @code{ds}
 request.  @dfn{Requests} are like macro calls; they go on lines by
 themselves and start with the @dfn{control character}, a dot (@code{.}).
 The difference is that they directly instruct the formatter program,
-rather than the macro package.
+rather than the macro package.  We'll discuss a few as applicable.  It
+is wise to specify a scaling unit when setting any register that
+represents a length, size, or distance.
 
 @CartoucheExample
 .nr PS 10.5p \" Use 10.5-point type.
@@ -2593,9 +2596,8 @@ interpreted as macro calls or requests.  Suffix @samp{.}, @samp{?}, and
 @samp{!} with @code{\&} when needed to cancel end-of-sentence detection.
 
 @CartoucheExample
-After the criticality accident, Dr.\&
-Wallace said my exposure had been
-\&.5 to \&.6 Sv of neutrons.
+My exposure was \&.5 to \&.6 Sv of neutrons, said Dr.\&
+Wallace after the criticality incident.
 @endCartoucheExample
 
 @c ---------------------------------------------------------------------
@@ -3032,12 +3034,12 @@ Default: @code{\w'000'}
 @cindex @file{ms} macros, document description
 @cindex document description macros, [@file{ms}]
 
-All but the simplest documents bear a title.@footnote{Distinguish a
+Only the simplest document lacks a title.@footnote{Distinguish a
 document title from ``titles'', which are what @code{roff} systems call
-headers and footers collectively.}  As their level of sophistication (or
-complexity) increases, they tend to acquire dates of revision,
+headers and footers collectively.}  As its level of sophistication (or
+complexity) increases, it tends to acquire a date of revision,
 explicitly identified authors, sponsoring institutions for authors, and,
-at the rarefied heights, an abstract of their content.  Define these
+at the rarefied heights, an abstract of its content.  Define these
 data by calling the macros below in the order shown; @code{DA} or
 @code{ND} can be called to set the document date (or other identifier)
 at any time before (a) the abstract, if present, or (b) its information
@@ -3063,42 +3065,42 @@ suppresses this alteration.  Optional arguments can occur in any order.
 
 @Defmac {TL, , ms}
 Specify the document title.  @file{ms} collects text on input lines
-following a call to this macro into the title until reaching an
-@code{AU}, @code{AB}, or heading or paragraphing macro call.
+following this call into the title until reaching @code{AU}, @code{AB},
+or a heading or paragraphing macro call.
 @endDefmac
 
 @Defmac {AU, , ms}
 Specify an author's name.  @file{ms} collects text on input lines
-following a call to this macro into the author's name until reaching an
-@code{AI}, @code{AB}, another @code{AU}, or heading or paragraphing
-macro call.  Call it repeatedly to specify multiple authors.
+following this call into the author's name until reaching @code{AI},
+@code{AB}, another @code{AU}, or a heading or paragraphing macro call.
+Call it repeatedly to specify multiple authors.
 @endDefmac
 
 @Defmac {AI, , ms}
 Specify the preceding author's institution.  An @code{AU} call is
 usefully followed by at most one @code{AI} call; if there are more, the
 last @code{AI} call controls.  @file{ms} collects text on input lines
-following a call to this macro into the author's institution until
-reaching an @code{AU}, @code{AB}, or heading or paragraphing macro call.
+following this call into the author's institution until reaching
+@code{AU}, @code{AB}, or a heading or paragraphing macro call.
 @endDefmac
 
 @Defmac {DA, [@Var{x} @dots{}], ms}
 Typeset the current date, or any arguments @var{x}, in the center
-footer, and, if @code{RP} is also called, left-aligned after other
-document description information on the cover page.
+footer, and, if @code{RP} is also called, left-aligned at the end of the
+description information on the cover page.
 @endDefmac
 
 @Defmac {ND, [@Var{x} @dots{}], ms}
 Typeset the current date, or any arguments @var{x}, if @code{RP} is also
-called, left-aligned after other document description information on the
-cover page.  This is the @code{groff} @file{ms} default.
+called, left-aligned at the end of the document description on the cover
+page.  This is @code{groff} @file{ms}'s default.
 @endDefmac
 
 @Defmac {AB, [@code{no}], ms}
-Begin the abstract.  @file{ms} collects text on input lines following a
-call to this macro into the abstract until reaching an @code{AE} call.
-By default, @file{ms} places the word ``ABSTRACT'' centered and in
-italics above the text of the abstract.  The optional argument @code{no}
+Begin the abstract.  @file{ms} collects text on input lines following
+this call into the abstract until reaching an @code{AE} call.  By
+default, @file{ms} places the word ``ABSTRACT'' centered and in italics
+above the text of the abstract.  The optional argument @code{no}
 suppresses this heading.
 @endDefmac
 
@@ -3170,13 +3172,13 @@ tables and figures.
 @subsubsection Text settings
 @cindex @file{ms} macros, text settings
 
-The @code{FAM} string sets the font family for body text; the default is
-@samp{T}.  The @code{PS} and @code{VS} registers set the type
-size and vertical spacing (distance between text baselines),
-respectively.  The font family and type size are ignored on terminal
-devices.  Setting these parameters before the first call of a heading,
-paragraphing, or (non-date) document description macro also applies them
-to headers, footers, and (for @code{FAM}) footnotes.
+The @code{FAM} string, a GNU extension, sets the font family for body
+text; the default is @samp{T}.  The @code{PS} and @code{VS} registers
+set the type size and vertical spacing (distance between text
+baselines), respectively.  The font family and type size are ignored on
+terminal devices.  Setting these parameters before the first call of a
+heading, paragraphing, or (non-date) document description macro also
+applies them to headers, footers, and (for @code{FAM}) footnotes.
 
 Which font families are available depends on the output device; as a
 convention, @code{T} selects a serif family (``Times''), @code{H} a
@@ -3196,9 +3198,9 @@ extension.
 @subsubsection Typographical symbols
 @cindex @file{ms} macros, obtaining typographical symbols
 
-@file{ms} provides a handful of strings to obtain typographical symbols
-not easily entered with the keyboard.  Many others are available as
-special character escape sequences---see the @cite{groff_char@r{(7)}}
+@file{ms} provides a few strings to obtain typographical symbols not
+easily entered with the keyboard.  These and many others are available
+as special character escape sequences---see the @cite{groff_char@r{(7)}}
 man page.
 
 @Defmpstr {-, ms}
@@ -3218,14 +3220,16 @@ the right.
 @subsubsection Paragraphs
 @cindex @file{ms} macros, paragraph handling
 
-Several paragraph types are available, differing in how indentation
-applies to them: to left, right, or both margins; to the first output
-line of the paragraph, all output lines, or all but the first.  All
-paragraphing macro calls cause the insertion of vertical space in the
-amount stored in the @code{PD} register, except at page or column
-breaks.  The @code{PORPHANS} register (@pxref{ms Document Control
-Settings}) operates in conjunction with each of these macros to inhibit
-the printing of isolated lines at the bottom of any page.
+Paragraphing macros @dfn{break}, or terminate, any pending output line
+so that a new paragraph can begin.  Several paragraph types are
+available, differing in how indentation applies to them: to left, right,
+or both margins; to the first output line of the paragraph, all output
+lines, or all but the first.  All paragraphing macro calls cause the
+insertion of vertical space in the amount stored in the @code{PD}
+register, except at page or column breaks.  The @code{PORPHANS} register
+(@pxref{ms Document Control Settings}) operates in conjunction with each
+of these macros to inhibit the printing of isolated lines at the bottom
+of any page.
 
 @Defmac {LP, , ms}
 Set a paragraph without any (additional) indentation.
@@ -3386,7 +3390,7 @@ define the alias as follows.
 Any such change in numbering style becomes effective from the next use
 of @code{NH} following redefinition of the alias for @code{SN-STYLE}.
 The formatted number of the current heading is available in the
-@code{SN} string (a feature first documented by Berkeley); this string
+@code{SN} string (a feature first documented by Berkeley), which
 facilitates its inclusion in, for example, table captions, equation
 labels, and @code{XS}/@code{XA}/@code{XE} table of contents entries.
 @endDefmpstr
@@ -3579,15 +3583,19 @@ The @var{marker} argument to the @code{IP} macro can be employed to
 present a variety of lists; for instance, you can use a bullet glyph
 (@code{\[bu]}) for unordered lists, a number (or auto-incrementing
 register) for numbered lists, or a word or phrase for glossary-style or
-definition lists.
+definition lists.  If you set the paragraph indentation register
+@code{PI} before calling @code{IP}, you can later reorder the items in
+the list without having to ensure that a @var{width} argument remains
+affixed to the first call.
 
 The following is an example of a bulleted list.
 @cindex example markup, bulleted list [@file{ms}]
 @cindex bulleted list, example markup [@file{ms}]
 
 @CartoucheExample
+.nr PI 2n
 A bulleted list:
-.IP \[bu] 2n
+.IP \[bu]
 lawyers
 .IP \[bu]
 guns
@@ -3610,9 +3618,10 @@ The following is an example of a numbered list.
 @cindex numbered list, example markup [@file{ms}]
 
 @CartoucheExample
-.nr step 1 1
+.nr step 0 1
+.nr PI 3n
 A numbered list:
-.IP \n[step] 3n
+.IP \n+[step]
 lawyers
 .IP \n+[step]
 guns
@@ -3630,8 +3639,15 @@ A numbered list:
 3. money
 @endExample
 
-Note the use of the auto-incrementing register @var{step} in the
-foregoing example.  The next illustrates a glossary-style list.
+Here we have employed the @code{nr} request to create a register of our
+own, @samp{step}.  We initialized it to zero and assigned it an
+auto-increment of 1.  Each time we use the escape sequence
+@samp{\n+[PI]} (note the plus sign), the formatter applies the increment
+just before interpolating the register's value.  Preparing the @code{PI}
+register as well enables us to rearrange the list without the tedium of
+updating macro calls.
+
+The next example illustrates a glossary-style list.
 @cindex example markup, glossary-style list [@file{ms}]
 @cindex glossary-style list, example markup [@file{ms}]
 
@@ -3746,9 +3762,6 @@ and Howe.
 Guns
 @endCartoucheExample
 
-@noindent
-produces
-
 @Example
 @bullet{} Lawyers:
 
@@ -3760,9 +3773,6 @@ produces
 
 @bullet{} Guns
 @endExample
-
-@noindent
-as output.
 
 @c ---------------------------------------------------------------------
 
@@ -4200,7 +4210,7 @@ and even-numbered (verso) pages, respectively; the @code{OF} and
 @endDefmac
 
 By default, @file{ms} places no header on any page numbered ``1''
-(regardless of its assigned format).
+(regardless of its number format).
 
 @Defmac {P1, , ms}
 Typeset the header even on page@tie{}1.  To be effective, this macro

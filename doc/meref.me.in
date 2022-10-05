@@ -243,7 +243,13 @@ the type size
 to
 .NR (pp
 [10p],
-and vertical space of
+and vertical spacing
+(text baseline distance)
+to
+.NR (tv
+[120]%
+of the type size.
+Vertical space of
 .NR (ps
 [0.35v]
 is inserted
@@ -572,10 +578,9 @@ or more than eight spaces total.
 .pp
 The spacing
 of headers and footers
-is controlled by four registers,
-computing distances based on the output device's default font,
-type size,
-and vertical spacing.
+is controlled by four registers
+initialized to values scaled
+with respect to the default type size and vertical spacing.
 .NR (hm
 [4v]
 is the distance from the top of the page
@@ -696,19 +701,13 @@ by an extra
 [same as
 .NR (ps ]
 of vertical space
-and use a
-vertical spacing
-(distance between text baselines)
-as a percentage of the type size
-of
+and use a vertical spacing of
 .NR (dv
 [120].
 Long quotation pre- and post-space is stored in a dedicated register,
 while centered blocks have none;
-both use the vertical spacing register for
-normal text,
-.NR (tv
-[120].
+both use the vertical spacing of normal text,
+.NR (tv .
 .TL
 .b .(l
 .i A

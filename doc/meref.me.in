@@ -218,7 +218,7 @@ or any longer sequence of numerals and/or
 letters as long as at least one letter is uppercase.\**
 .(f
 \**
-For portability betwen BSD and \*G \*(ME,
+For portability between BSD and \*G \*(ME,
 limit names to
 two characters,
 and avoid names starting with

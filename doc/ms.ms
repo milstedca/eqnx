@@ -3903,6 +3903,9 @@ Documents that need to determine whether they are being formatted with
 or another implementation should test this register.
 .
 .
+.\" XXX: We can't use a keep here because the wrong page number will be
+.\" recorded in the table of contents; see Savannah #63159.
+.\"KS
 .NH 2
 Unix Version\~7
 .BI ms
@@ -3979,6 +3982,7 @@ lf(CR).
 \&.rm UX
 \&.ds UX Unix\[rs]"
 .TE
+.\"KE
 .
 .
 .\" ------------------------

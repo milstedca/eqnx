@@ -1331,16 +1331,21 @@ End
 table.
 .TL
 .b .PS
-.i h
 .i w
+.i h
 .DE
 Begin
 .i \%@g@pic (1)
 picture.
-.i h
-is the height and
 .i w
-is the width.
+[empty]
+and
+.i h
+[empty],
+if present,
+scale the image.
+.\" XXX: That's vague, but DWB pic and GNU pic reportedly interpret
+.\" these arguments differently and there's no room here to discuss it.
 .TL
 .b .PE
 .DE
@@ -2226,7 +2231,7 @@ and a square \(sq labels \*G extensions.
 \&.TH	M	end heading for multi-page \fI@g@tbl\fP table
 \&.TS	M	begin \fI@g@tbl\fP table
 \e\(ha	F\(sc	1/12 em unbreakable hair space
-\e_	F\(sc	underscore
+\e_	F\(sc	underrule
 \e\(ga	F\(sc	grave accent
 \&.ad	M\(sc	set text adjustment mode
 \&.af	M\(sc	assign register format

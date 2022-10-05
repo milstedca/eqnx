@@ -2872,7 +2872,7 @@ it may be compressed and/or available in additional formats.
 with the
 .I ms
 Macro Package\[rq];
-Larry Kollar and G.\~Branden Robinson.
+Larry Kollar and \%G.\~Branden Robinson.
 .
 .
 .br
@@ -2888,9 +2888,9 @@ and the
 macros\[rq];
 Deri James.
 .
-.B BOXSTART
+.B \%BOXSTART
 and
-.B BOXSTOP
+.B \%BOXSTOP
 macros are available via the
 .I sboxes
 extension package,

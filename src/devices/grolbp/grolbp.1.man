@@ -127,97 +127,8 @@ reads the standard input stream.
 Output is written to the standard output stream.
 .
 .
-.P
-For compatibility with
-.MR grolj4 @MAN1EXT@ ,
-an additional drawing command is available.
-.
-.
-.TP
-.BI \[rs]D\[aq]R\~ "dh dv" \[aq]
-Draw a rule
-(i.e., a solid black rectangle),
-with one corner at the current position,
-and the diagonally opposite corner at the current
-position
-.RI +( dh , dv ).
-.
-.
 .\" ====================================================================
-.SH Options
-.\" ====================================================================
-.
-.B \-h
-and
-.B \-\-help
-display a usage message,
-while
-.B \-v
-and
-.B \-\-version
-show version information;
-all exit afterward.
-.
-.
-.TP
-.BI \-c " num-copies"
-.TQ
-.BI \-\-copies= num-copies
-Print
-.I num-copies
-copies of each page.
-.
-.
-.TP
-.BI \-F " font-directory"
-.TQ
-.BI \-\-fontdir= font-directory
-Prepend directory
-.RI font-directory /dev name
-to the search path for font and device description files;
-.I name
-is the name of the device, usually
-.BR lbp .
-.
-.
-.TP
-.B \-l
-.TQ
-.B \-\-landscape
-Print the document with a landscape orientation.
-.
-.
-.TP
-.BI \-o " orientation"
-.TQ
-.BI \-\-orientation= orientation
-Print the document with
-.I orientation
-orientation, which must be \(oqportrait\(cq or \(oqlandscape\(cq.
-.
-.
-.TP
-.BI \-p " paper-size"
-.TQ
-.BI \-\-papersize= paper-size
-Set the paper size to
-.IR paper-size ,
-which must be a valid paper size description as indicated in section
-\[lq]Paper Sizes\[rq], below.
-.
-.
-.TP
-.BI \-w " width"
-.TQ
-.BI \-\-linewidth= width
-Set the default line thickness to
-.I width
-thousandths of an em;
-the default is 0.04\~em.
-.
-.
-.\" ====================================================================
-.SH Typefaces
+.SS Typefaces
 .\" ====================================================================
 .
 The driver supports the Dutch,
@@ -258,7 +169,7 @@ Elite | ER | EB | EI |
 .
 .
 .\" ====================================================================
-.SH "Paper sizes"
+.SS "Paper sizes"
 .\" ====================================================================
 .
 The paper size can be set in the
@@ -306,7 +217,7 @@ a default size of A4 is used.
 .
 .
 .\" ====================================================================
-.SH "Page orientation"
+.SS "Page orientation"
 .\" ====================================================================
 .
 As with the page size,
@@ -359,7 +270,7 @@ option to select landscape orientation.
 .
 .
 .\" ====================================================================
-.SH "Font description files"
+.SS "Font description files"
 .\" ====================================================================
 .
 In addition to the font description file directives documented in
@@ -456,6 +367,99 @@ font description file
 for the
 .B lbp
 device.
+.
+.
+.\" ====================================================================
+.SS "Drawing commands"
+.\" ====================================================================
+.
+.P
+For compatibility with
+.MR grolj4 @MAN1EXT@ ,
+an additional drawing command is available.
+.
+.
+.TP
+.BI \[rs]D\[aq]R\~ "dh dv" \[aq]
+Draw a rule
+(i.e., a solid black rectangle),
+with one corner at the current position,
+and the diagonally opposite corner at the current
+position
+.RI +( dh , dv ).
+.
+.
+.\" ====================================================================
+.SH Options
+.\" ====================================================================
+.
+.B \-h
+and
+.B \-\-help
+display a usage message,
+while
+.B \-v
+and
+.B \-\-version
+show version information;
+all exit afterward.
+.
+.
+.TP
+.BI \-c " num-copies"
+.TQ
+.BI \-\-copies= num-copies
+Print
+.I num-copies
+copies of each page.
+.
+.
+.TP
+.BI \-F " font-directory"
+.TQ
+.BI \-\-fontdir= font-directory
+Prepend directory
+.RI font-directory /dev name
+to the search path for font and device description files;
+.I name
+is the name of the device, usually
+.BR lbp .
+.
+.
+.TP
+.B \-l
+.TQ
+.B \-\-landscape
+Print the document with a landscape orientation.
+.
+.
+.TP
+.BI \-o " orientation"
+.TQ
+.BI \-\-orientation= orientation
+Print the document with
+.I orientation
+orientation, which must be \(oqportrait\(cq or \(oqlandscape\(cq.
+.
+.
+.TP
+.BI \-p " paper-size"
+.TQ
+.BI \-\-papersize= paper-size
+Set the paper size to
+.IR paper-size ,
+which must be a valid paper size description as indicated in section
+\[lq]Paper Sizes\[rq], below.
+.
+.
+.TP
+.BI \-w " width"
+.TQ
+.BI \-\-linewidth= width
+Set the default line thickness to
+.I width
+thousandths of an em;
+the default is 0.04\~em.
 .
 .
 .\" ====================================================================

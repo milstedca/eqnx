@@ -1,11 +1,13 @@
 '\" t
 .TH grolbp @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-grolbp \- groff output driver for Canon CaPSL printers
+grolbp \-
+.I groff
+output driver for Canon CaPSL printers
 .
 .
-.\" Modified by Francisco Andrés Verdú <pandres@dragonet.es> for the
-.\" grolbp program.
+.\" Modified from grolj4 man page by Francisco Andrés Verdú
+.\" <pandres@dragonet.es> for the grolbp program.
 .
 .
 .\" ====================================================================
@@ -91,9 +93,9 @@ grolbp \- groff output driver for Canon CaPSL printers
 .SH Description
 .\" ====================================================================
 .
-The GNU
+This GNU
 .I roff
-LBP output driver translates the output of
+output driver translates the output of
 .MR @g@troff @MAN1EXT@
 into a CaPSL and VDM format suitable for Canon LBP-4 and LBP-8 printers.
 .
@@ -269,7 +271,7 @@ can be one of the letters
 .BR I ,
 or
 .BR B ,
-.\" XXX: what about "BI"?
+.\" The bold-italic style apparently was not supported for bitmap fonts.
 indicating the roman,
 italic,
 and bold styles,
@@ -304,7 +306,7 @@ listing A\[rq].
 For instance,
 to select the \[lq]Swiss\[rq] font in bold-italic style,
 which appears in the font listing
-as \[lq]Swiss\-BoldOblique\[rq],
+as \%\[lq]Swiss\-BoldOblique\[rq],
 .RS
 .EX
 lbpname Swiss\-BoldOblique
@@ -324,7 +326,6 @@ device.
 .SS "Drawing commands"
 .\" ====================================================================
 .
-.P
 For compatibility with
 .MR grolj4 @MAN1EXT@ ,
 an additional drawing command is available.
@@ -333,11 +334,11 @@ an additional drawing command is available.
 .TP
 .BI \[rs]D\[aq]R\~ "dh dv" \[aq]
 Draw a rule
-(i.e., a solid black rectangle),
-with one corner at the current position,
-and the diagonally opposite corner at the current
-position
+(solid black rectangle)
+with one corner at the drawing position,
+and the diagonally opposite corner at the drawing position
 .RI +( dh , dv ).
+.\" XXX , at which the drawing position will be afterward. ?
 .
 .
 .\" ====================================================================
@@ -360,7 +361,7 @@ all exit afterward.
 .BI \-c " num-copies"
 .TQ
 .BI \-\-copies= num-copies
-Print
+Produce
 .I num-copies
 copies of each page.
 .
@@ -373,7 +374,8 @@ Prepend directory
 .RI font-directory /dev name
 to the search path for font and device description files;
 .I name
-is the name of the device, usually
+is the name of the device,
+usually
 .BR lbp .
 .
 .
@@ -381,16 +383,19 @@ is the name of the device, usually
 .B \-l
 .TQ
 .B \-\-landscape
-Print the document with a landscape orientation.
+Format the document in landscape orientation.
 .
 .
 .TP
 .BI \-o " orientation"
 .TQ
 .BI \-\-orientation= orientation
-Print the document with
-.I orientation
-orientation, which must be \(oqportrait\(cq or \(oqlandscape\(cq.
+Format the document in the given
+.IR orientation ,
+which must be
+.RB \%\[lq] portrait \[rq]
+or
+.RB \%\[lq] landscape \[rq].
 .
 .
 .TP
@@ -399,8 +404,7 @@ orientation, which must be \(oqportrait\(cq or \(oqlandscape\(cq.
 .BI \-\-papersize= paper-size
 Set the paper size to
 .IR paper-size ,
-which must be a valid paper size description as indicated in section
-\[lq]Paper Sizes\[rq], below.
+which must be a valid paper size format as described above.
 .
 .
 .TP
@@ -410,7 +414,9 @@ which must be a valid paper size description as indicated in section
 Set the default line thickness to
 .I width
 thousandths of an em;
-the default is 0.04\~em.
+the default is
+.B 40
+(0.04\~em).
 .
 .
 .\" ====================================================================
@@ -419,7 +425,7 @@ the default is 0.04\~em.
 .
 .TP
 .I GROFF_FONT_PATH
-A list of directories in which to seek the selected output device's
+lists directories in which to seek the selected output device's
 directory of device and font description files.
 .
 See

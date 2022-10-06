@@ -1799,6 +1799,9 @@ PostScript Language Document Structuring Conventions Specification
 .MR groff_tmac @MAN5EXT@
 .
 .
+.\" Clean up.
+.rm FT
+.
 .\" Restore compatibility mode (for, e.g., Solaris 10/11).
 .cp \n[*groff_grops_1_man_C]
 .do rr *groff_grops_1_man_C

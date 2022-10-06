@@ -596,6 +596,7 @@ and widths of rules be rounded.
 .
 .
 .\" Clean up.
+.rm FT
 .rm tx
 .
 .\" Restore compatibility mode (for, e.g., Solaris 10/11).

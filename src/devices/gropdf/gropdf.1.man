@@ -1714,6 +1714,9 @@ by Deri James.
 .\" .BR \%groff_tmac (@MAN5EXT@),
 .
 .
+.\" Clean up.
+.rm FT
+.
 .\" Restore compatibility mode (for, e.g., Solaris 10/11).
 .cp \n[*groff_gropdf_1_man_C]
 .do rr *groff_gropdf_1_man_C

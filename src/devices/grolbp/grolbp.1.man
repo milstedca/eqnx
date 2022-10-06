@@ -169,23 +169,27 @@ Elite | ER | EB | EI |
 .
 .
 .\" ====================================================================
-.SS "Paper size, orientation, and device description file"
+.SS "Paper format, orientation, and device description file"
 .\" ====================================================================
+.
+.I grolbp
+supports paper formats
+.RB \[lq] A4 \[rq],
+.RB \[lq] letter \[rq],
+.RB \[lq] legal \[rq],
+and
+.RB \[lq] executive \[rq].
+.
+These are matched case-insensitively.
 .
 The
 .BR \-p ,
-.B \-\-paper\-size
+.B \-\-papersize
 option overrides any setting in the device description file
 .IR DESC .
 .
-If neither specifies a paper size,
+If neither specifies a paper format,
 A4 is assumed.
-.
-See subsection
-.RI \[lq] DESC
-file format\[rq] of
-.MR groff_font @MAN5EXT@
-for accepted paper size formats.
 .
 .
 .P

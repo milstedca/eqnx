@@ -1049,10 +1049,11 @@ The column separation
 .q gutter )
 is set to
 .i \(+-s
-[4n]
-and saved
+[4n],
+saved
 in
-.NR ($s .
+.NR ($s ,
+and persists until changed by this macro.
 The
 .i n
 columns with

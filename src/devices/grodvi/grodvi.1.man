@@ -409,7 +409,7 @@ supports an additional drawing command.
 .TP
 .BI \[rs]D\[aq]R\~ "dh dv" \[aq]
 Draw a rule
-(solid black rectangle),
+(solid black rectangle)
 with one corner at the drawing position,
 and the diagonally opposite corner at the drawing position
 .RI +( dh , dv ),

@@ -9,7 +9,7 @@ output driver for HP LaserJet 4 family printers
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1994-2020 Free Software Foundation, Inc.
+.\" Copyright (C) 1994-2020, 2022 Free Software Foundation, Inc.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -30,6 +30,14 @@ output driver for HP LaserJet 4 family printers
 .\" Save and disable compatibility mode (for, e.g., Solaris 10/11).
 .do nr *groff_grolj4_1_man_C \n[.cp]
 .cp 0
+.
+.\" This macro definition is poor style from a portability standpoint,
+.\" but it's a good test and demonstration of the standard font
+.\" repertoire for the devices where it has any effect at all, and so
+.\" should be retained.
+.de FT
+.  if '\\*(.T'lj4' .ft \\$1
+..
 .
 .
 .\" ====================================================================
@@ -103,6 +111,329 @@ is \[lq]\-\[rq],
 reads the standard input stream.
 .
 Output is written to the standard output stream.
+.
+.
+.\" ====================================================================
+.SS Typefaces
+.\" ====================================================================
+.
+.I grolj4
+supports the standard four styles:
+.B R
+(roman),
+.B I
+.RI ( italic ),
+.B B
+.RB ( bold ),
+and
+.B BI
+(\f[BI]bold-italic\f[]).
+.
+Fonts are grouped into families
+.BR A ,
+.BR C ,
+.BR G ,
+.BR O ,
+.BR T ,
+.BR TN ,
+.BR U ,
+and
+.B UC
+having members in each style.
+.
+.
+.RS
+.TP 14n
+.B AB
+.FT AB
+Arial Bold
+.FT
+.
+.TQ
+.B ABI
+.FT ABI
+Arial Bold Italic
+.FT
+.
+.TQ
+.B AI
+.FT AI
+Arial Italic
+.FT
+.
+.TQ
+.B AR
+.FT AR
+Arial Roman
+.FT
+.
+.TQ
+.B CB
+.FT CB
+Courier Bold
+.FT
+.
+.TQ
+.B CBI
+.FT CBI
+Courier Bold Italic
+.FT
+.
+.TQ
+.B CI
+.FT CI
+Courier Italic
+.FT
+.
+.TQ
+.B CR
+.FT CR
+Courier Roman
+.FT
+.
+.TQ
+.B GB
+.FT GB
+Garamond Halbfett
+.FT
+.
+.TQ
+.B GBI
+.FT GBI
+Garamond Kursiv Halbfett
+.FT
+.
+.TQ
+.B GI
+.FT GI
+Garamond Kursiv
+.FT
+.
+.TQ
+.B GR
+.FT GR
+Garamond Antiqua
+.FT
+.
+.TQ
+.B OB
+.FT OB
+CG Omega Bold
+.FT
+.
+.TQ
+.B OBI
+.FT OBI
+CG Omega Bold Italic
+.FT
+.
+.TQ
+.B OI
+.FT OI
+CG Omega Italic
+.FT
+.
+.TQ
+.B OR
+.FT OR
+CG Omega Roman
+.
+.TQ
+.B OB
+.FT OB
+CG Omega Bold
+.FT
+.
+.TQ
+.B OBI
+.FT OBI
+CG Omega Bold Italic
+.FT
+.
+.TQ
+.B OI
+.FT OI
+CG Omega Italic
+.FT
+.
+.TQ
+.B OR
+.FT OR
+CG Omega Roman
+.FT
+.
+.TQ
+.B TB
+.FT TB
+CG Times Bold
+.FT
+.
+.TQ
+.B TBI
+.FT TBI
+CG Times Bold Italic
+.FT
+.
+.TQ
+.B TI
+.FT TI
+CG Times Italic
+.FT
+.
+.TQ
+.B TR
+.FT TR
+CG Times Roman
+.FT
+.
+.TQ
+.B TNRB
+.FT TNRB
+M Times Bold
+.FT
+.
+.TQ
+.B TNRBI
+.FT TNRBI
+M Times Bold Italic
+.FT
+.
+.TQ
+.B TNRI
+.FT TNRI
+M Times Italic
+.FT
+.
+.TQ
+.B TNRR
+.FT TNRR
+M Times Roman
+.FT
+.
+.TQ
+.B UB
+.FT UB
+Univers Bold
+.FT
+.
+.TQ
+.B UBI
+.FT UBI
+Univers Bold Italic
+.FT
+.
+.TQ
+.B UI
+.FT UI
+Univers Medium Italic
+.FT
+.
+.TQ
+.B UR
+.FT UR
+Univers Medium
+.FT
+.
+.TQ
+.B UCB
+.FT UCB
+Univers Condensed Bold
+.FT
+.
+.TQ
+.B UCBI
+.FT UCBI
+Univers Condensed Bold Italic
+.FT
+.
+.TQ
+.B UCI
+.FT UCI
+Univers Condensed Medium Italic
+.FT
+.
+.TQ
+.B UCR
+.FT UCR
+Univers Condensed Medium
+.FT
+.RE
+.
+.
+.P
+The following fonts are not members of a family.
+.
+.
+.RS
+.TP 14n
+.B ALBB
+.FT ALBB
+Albertus Extra Bold
+.FT
+.
+.TQ
+.B ALBR
+.FT ALBR
+Albertus Medium
+.FT
+.
+.TQ
+.B AOB
+.FT AOB
+Antique Olive Bold
+.
+.TQ
+.B AOI
+.FT AOI
+Antique Olive Italic
+.
+.TQ
+.B AOR
+.FT AOR
+Antique Olive Roman
+.
+.TQ
+.B CLARENDON
+.FT CLARENDON
+Clarendon
+.
+.TQ
+.B CORONET
+.FT CORONET
+Coronet
+.
+.TQ
+.B LGB
+.FT LGB
+Letter Gothic Bold
+.
+.TQ
+.B LGI
+.FT LGI
+Letter Gothic Italic
+.
+.TQ
+.B LGR
+.FT LGR
+Letter Gothic Roman
+.
+.TQ
+.B MARIGOLD
+.FT MARIGOLD
+Marigold
+.RE
+.
+.
+.P
+The special font is
+.B S
+(PostScript Symbol);
+.B SYMBOL
+(M Symbol),
+and
+.B WINGDINGS
+(Wingdings)
+are also available but not mounted by default.
 .
 .
 .\" ====================================================================
@@ -340,6 +671,9 @@ Small dots.
 .MR groff_font @MAN5EXT@ ,
 .MR groff_char @MAN7EXT@
 .
+.
+.\" Clean up.
+.rm FT
 .
 .\" Restore compatibility mode (for, e.g., Solaris 10/11).
 .cp \n[*groff_grolj4_1_man_C]

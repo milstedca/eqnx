@@ -1,5 +1,10 @@
 2022-10-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grolj4/grolj4.1.man (Typefaces): Add new
+	subsection.
+
+2022-10-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/meref.me.in (Columnated Output): Document persistence of
 	`$s` register value across columnation mode changes.
 

@@ -169,104 +169,51 @@ Elite | ER | EB | EI |
 .
 .
 .\" ====================================================================
-.SS "Paper sizes"
+.SS "Paper size, orientation, and device description file"
 .\" ====================================================================
 .
-The paper size can be set in the
-.I DESC
-file or with command-line options to
-.I grolbp.
-If the paper size is specified both ways,
-the command-line options take
-precedence over the contents of the
-.I DESC
-file
-(this applies to the page orientation too).
+The
+.BR \-p ,
+.B \-\-paper\-size
+option overrides any setting in the device description file
+.IR DESC .
 .
+If neither specifies a paper size,
+A4 is assumed.
+.
+See subsection
+.RI \[lq] DESC
+file format\[rq] of
 .MR groff_font @MAN5EXT@
-describes how to set the paper dimensions in the
-.I DESC
-file.
+for accepted paper size formats.
 .
-To set the paper size on the command line,
-add
-.RS
-.EX
-.BI \-p\~ paper-size
-.EE
-.RE
-or
-.RS
-.EX
-.BI \-\-papersize= paper-size
-.EE
-.RE
-to the other
+.
+.P
+In its
+.I DESC
+file,
 .I grolbp
-options,
-where
-.I paper-size
-is in the same format as in the
-.I DESC
-file.
-.
-If no paper size is specified in the
-.I DESC
-file or on the command line,
-a default size of A4 is used.
-.
-.
-.\" ====================================================================
-.SS "Page orientation"
-.\" ====================================================================
-.
-As with the page size,
-the orientation of the page
-.RB ( portrait
+(case-insensitively) recognizes an
+.B orientation
+directive accepting one mandatory argument,
+.B portrait
 or
-.BR landscape )
-can be set in the
-.I DESC
-file or with command-line options.
+.BR landscape .
 .
-These keywords are case insensitive.
+The first valid orientation directive encountered controls.
+.\" XXX: This is inconsistent with other description file processing.
 .
-To set the orientation in the
-.I DESC
-file,
-insert a line
-.RS
-.EX
-orientation portrait
-.EE
-.RE
-or
-.RS
-.EX
-orientation landscape
-.EE
-.RE
-as desired.
-.
-The first valid orientation command in the
-.I DESC
-file is used.
-.
-.
-To set the page orientation with command-line options you can use the
-.B \-o
-or
+The
+.BR \-l ,
+.BR \-o ,
+and
 .B \-\-orientation
-options with the same parameters
-.RB ( portrait
-or
-.BR landscape )
-as in the
-.I DESC
-file,
-or the
-.B \-l
-option to select landscape orientation.
+command-line options
+override any setting in
+.IR DESC .
+.
+If none of the foregoing specify the orientation,
+portrait is assumed.
 .
 .
 .\" ====================================================================

@@ -13,6 +13,14 @@
 
 2022-10-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/meref.me.in: Annotate empty default arguments more
+	consistently.
+
+	Fixes <https://savannah.gnu.org/bugs/?62801>.  Thanks to Dave
+	Kemper for the report.
+
+2022-10-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/meref.me.in: Fix documentation errors.
 	(Preprocessor Support) <PS>: Swap argument order (width comes
 	first), note empty defaults, and (vaguely) describe their

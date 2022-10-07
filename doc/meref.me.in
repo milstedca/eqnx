@@ -703,7 +703,7 @@ by an extra
 of vertical space
 and use a vertical spacing of
 .NR (dv
-[120].
+[120]%.
 Long quotation pre- and post-space is stored in a dedicated register,
 while centered blocks have none;
 both use the vertical spacing of normal text,
@@ -870,7 +870,7 @@ Input until
 .b .)d
 is saved for later output by
 .b .pd .
-Delayed text regions are automatically numbered
+Delayed text regions are numbered
 starting at 1;
 the number is kept in
 .NR ($d
@@ -906,7 +906,7 @@ Input until
 .b .)f
 is saved for output
 when the foot of the page is reached.
-Footnotes are automatically numbered
+Footnotes are numbered
 starting at 1;
 the number is kept in
 .NR ($f
@@ -939,9 +939,9 @@ by
 Footnotes line up underneath
 columns in the page layout.
 .\" XXX: Quantify when debugged.  See Savannah #58447, #63163, #63164.
-If the text of the footnote
+If the footnote's content
 does not fit on the page,
-it is carried over
+it carries over
 to the next.
 .TL
 .b .)f
@@ -1029,7 +1029,7 @@ Emit index
 .i X
 [\c
 .b x ]
-using the current font style and type size
+using the current font and type size
 with display vertical spacing
 (\c
 .NR (dv ).
@@ -1082,6 +1082,8 @@ Like
 but begin a column
 on a new page
 only if necessary.
+.nr bs 0
+.(b
 .sh 1 "Type Size and Font Styles"
 .TL
 .b .sz
@@ -1090,33 +1092,23 @@ only if necessary.
 Set the type size to
 .i \(+-p
 [10p],
-and the vertical spacing proportionally
-(see section \[lq]Displays\[rq] above).
-This size is
+and the vertical spacing per
+.NR (tv .
+These do
 .i not
-persistent beyond most \*(ME macro calls:
-when a new paragraph is begun
-using
-.b .pp ,
-.b .lp ,
-.b .ip ,
-.b .np ,
-or
-.b .bu,
-the type size is set to that stored in
-.NR (pp
-(paragraph point size).
+persist beyond most \*(ME macro calls:
+when a paragraphing macro is called,
+the type size and vertical spacing are set.
 Similarly,
-.NR (fp
-(footnote point size),
-.NR (qp
-(long quotation point size),
-.NR (sp
-(section heading point size),
+headers/footers,
+section headings,
+long quotations,
+footnotes,
 and
-.NR (tp
-(title point size)
-set the type size of their corresponding contexts.
+chapter titles
+alter these parameters.
+.)b
+.nr bs \n(ps
 .lp
 The following macros
 style or decorate an argument
@@ -1310,8 +1302,8 @@ is
 .b H ,
 you can call
 .b .TH
-after the table header
-to repeat it across columns or pages.
+after some table rows
+to repeat them across columns or pages.
 If you want a table to float,
 surround the
 .b .TS
@@ -1575,7 +1567,7 @@ is called.
 .DE
 Format a chapter heading
 centered in boldface.
-The text is
+The text
 .ST (wc
 [\c
 .b Chapter ]
@@ -2140,7 +2132,7 @@ Those marked with
 changing them may have unexpected side effects.
 The degree sign \(de notes features requiring AT&T device-independent
 \*T extensions
-(ca. 1981),
+(ca.\& 1981),
 and a square \(sq labels \*G extensions.
 .de $H
 .ev 1

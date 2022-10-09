@@ -1,3 +1,10 @@
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/gropdf/pdfmom.pl: Recognize "--version" as synonym
+	for "-v".
+	* src/devices/gropdf/pdfmom.1.man (Synopsis, Description):
+	Document it.
+
 2022-10-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/utils/grog/grog.pl (version): Identify as a GNU program.

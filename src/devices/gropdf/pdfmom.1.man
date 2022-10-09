@@ -54,6 +54,9 @@ macro package for
 .
 .SY pdfmom
 .B \-v
+.
+.SY pdfmom
+.B \-\-version
 .YS
 .
 .
@@ -149,10 +152,11 @@ which was itself produced with
 .P
 If called with the
 .B \-v
-option,
+or
+.B \-\-version
+options,
 .I pdfmom
-simply displays its version information and exits.
-.I pdfmom
+displays its version information and exits.
 .
 .
 .\" ====================================================================

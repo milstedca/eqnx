@@ -3516,6 +3516,10 @@ Here's an example of typical
 table of contents preparation and
 its result.
 .
+We employ horizontal escape sequences
+.CW \[rs]h
+to indent the entries by sectioning depth.
+.
 .TS
 box center;
 L.
@@ -3533,11 +3537,11 @@ Introduction
 \&.NH 2
 Methodology
 \&.XS
-\[->]Methodology
+\[rs]h\[aq]2n\[aq]Methodology
 \&.XA no
-\[->]\[->]Fassbinder\[aq]s Approach
+\[rs]h\[aq]4n\[aq]Fassbinder\[aq]s Approach
 \&.XA no
-\[->]\[->]Kahiu\[aq]s Approach
+\[rs]h\[aq]4n\[aq]Kahiu\[aq]s Approach
 \&.XE
 .R
 \&.\|.\|.
@@ -3574,11 +3578,11 @@ Introduction
 .NH 2
 Methodology
 .XS
-	Methodology
+\h'2n'Methodology
 .XA no
-		Fassbinder's Approach
+\h'4n'Fassbinder's Approach
 .XA no
-		Kahiu's Approach
+\h'4n'Kahiu's Approach
 .XE
 .nr % 5
 .NH 1
@@ -3604,27 +3608,191 @@ Findings
 .
 .
 .PP
-Provins's
-.I "Groff and Friends HOWTO"
-includes a
-.I sed
-script that automatically inserts
-.CW .XS
-and
-.CW .XE
-entries after each heading in a document.
+The remaining features in this subsection are GNU extensions.
 .
-Altering the
+.I "groff ms"
+obviates the need to repeat heading text after
+.CW XS
+calls.
+.
+Call
+.CW XN
+and
+.CW XH
+after
 .CW NH
-macro to automatically build the table of contents is perhaps initially
-more difficult,
-but could save a great deal of time in the long run if you use
-.I ms
-regularly.
+and
+.CW SH ,
+respectively.
+.
+.
+.TS
+box;
+cb cb
+lf(CR) lx .
+Macro	Description
+_
+\&.XN \f[I]heading-text	T{
+Format
+.I heading-text
+and create a corresponding table of contents entry;
+the indentation is computed from the depth of the preceding
+.CW NH
+call.
+T}
+\&.XH \f[I]depth heading-text	T{
+As
+.CW .XN ,
+but use
+.I depth
+to determine the indentation.
+T}
+.TE
+.
+.
+.KS
+.PP
+.I groff ms
+encourages customization of table of contents entry production.
+.
+.
+.TS
+box;
+cb cb
+lf(CR) lx .
+Macro	Description
+_
+\&.XN\-REPLACEMENT \f[I]heading-text	T{
+These hook macros implement
+.CW .XN
+and
+.CW .XH ,
+respectively.
+.
+They call
+.CW \%XN\-INIT
+and
+pass their
+.I heading-text
+arguments to
+.CW .\%XH\-UPDATE\-TOC .
+T}
+\&.XH\-REPLACEMENT \f[I]depth heading-text	\^
+\&.XH\-INIT	T{
+This hook macro does nothing by default.
+T}
+\&.XH\-UPDATE\-TOC\~ \f[I]depth heading-text	T{
+Bracket
+.I heading-text
+with
+.CW XS
+and
+.CW XE
+calls,
+indenting it by 2 ens per level of
+.I depth
+beyond the first.
+T}
+.TE
+.KE
+.
+.
+.LP
+.TS
+box center;
+L.
+T{
+.nf
+.CW
+\&.NH 1
+\&.XN Introduction
+.R
+\&.\|.\|.
+.CW
+\&.NH 2
+\&.XN Methodology
+\&.XH 3 \[dq]Fassbinder\[aq]s Approach\[dq]
+\&.XH 3 \[dq]Kahiu\[aq]s Approach\[dq]
+.R
+\&.\|.\|.
+.CW
+\&.NH 1
+\&.XN Findings
+.R
+\&.\|.\|.
+.CW
+\&.TC
+.fi
+T}
+.TE
+.
+.nr SavedPageNumber \n%
+.nr SavedH1 \n[H1] \" groff ms internal name
+.nr SavedH2 \n[H2] \" groff ms internal name
+.nr % 1
+.rr H1
+.rr H2
+.als SavedTOC toc*div \" groff ms internal name
+.rm toc*div
+.di ThrowAway
+.NH 1
+.XN Introduction
+.nr % 2
+.NH 2
+.XN Methodology
+.XH 3 "Fassbinder's Approach"
+.XH 3 "Kahiu's Approach"
+.nr % 5
+.NH 1
+.XN Findings
+.br
+.di
+.\" We can't emit the TOC inside a B1/B2 box, so use lines instead.
+.R
+\l'\n[.l]u'
+.PX
+\l'\n[.l]u'
+.als toc*div SavedTOC
+.rm SavedTOC
+.nr % \n[SavedPageNumber]
+.nr H1 \n[SavedH1]
+.nr H2 \n[SavedH2]
+.rr SavedPageNumber
+.rr SavedH1
+.rr SavedH2
 .
 .
 .PP
-You can customize the style of the leader that bridges each table of
+To get the section number of the numbered headings into the table of
+contents entries,
+we might define
+.CW \%XN\-REPLACEMENT
+as follows.
+.
+(We obtain the heading depth from
+.I "groff ms" 's
+internal register
+.CW nh*hl .)
+.
+.
+.LP
+.TS
+box center;
+L.
+T{
+.nf
+.CW
+\&.de XN\-REPLACEMENT
+\&.XN\-INIT
+\&.XH\-UPDATE\-TOC \[rs]\[rs]n[nh*hl] \[rs]\[rs]$@
+\&\[rs]&\[rs]\[rs]*[SN] \[rs]\[rs]$*
+\&..
+T}
+.TE
+.
+.
+.PP
+You can change the style of the leader that bridges each table of
 contents entry with its page number;
 define the
 .CW TC\-LEADER

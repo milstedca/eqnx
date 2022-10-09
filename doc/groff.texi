@@ -4349,6 +4349,8 @@ numerals, and call @code{PX} (with a @code{no} argument, if present).
 @endDefmac
 
 Here's an example of typical @file{ms} table of contents preparation.
+We employ horizontal escape sequences @code{\h} to indent the entries by
+sectioning depth.
 
 @CartoucheExample
 .NH 1
@@ -4360,10 +4362,10 @@ Introduction
 .NH 2
 Methodology
 .XS
-Methodology
+\h'2n'Methodology
 .XA
-@arrow{}@arrow{}Fassbinder's Approach
-@arrow{}@arrow{}Kahiu's Approach
+\h'4n'Fassbinder's Approach
+\h'4n'Kahiu's Approach
 .XE
 @r{@dots{}}
 .NH 1
@@ -4375,13 +4377,69 @@ Findings
 .TC
 @endCartoucheExample
 
-Provins's ``Groff and Friends HOWTO'' includes a @code{sed} script that
-automatically inserts @code{XS} and @code{XE} entries after each heading
-in a document.  Altering the @code{NH} macro to automatically build the
-table of contents is perhaps initially more difficult, but could save a
-great deal of time in the long run if you use @file{ms} regularly.
+The remaining features in this subsubsection are GNU extensions.
+@code{groff} @file{ms} obviates the need to repeat heading text after
+@code{XS} calls.  Call @code{XN} and @code{XH} after @code{NH} and
+@code{SH}, respectively.
 
-You can customize the style of the leader that bridges each table of
+@DefmacList {XN, @Var{heading-text}, ms}
+@DefmacListEndx {XH, @Var{depth} @Var{heading-text}, ms}
+Format @var{heading-text} and create a corresponding table of contents
+entry.  @code{XN} computes the indentation from the depth of the
+preceding @code{NH} call; @code{XH} requires a @var{depth} argument to
+do so.
+@endDefmac
+
+@code{groff} @file{ms} encourages customization of table of contents
+entry production.
+
+@DefmacList {XN-REPLACEMENT, @Var{heading-text}, ms}
+@DefmacListEndx {XH-REPLACEMENT, @Var{depth} @Var{heading-text}, ms}
+These hook macros implement @code{XN} and @code{XH}, respectively.
+They call @code{XN-INIT} and pass their @var{heading-text} arguments to
+@code{XH-UPDATE-TOC}.
+@endDefmac
+
+@DefmacList {XN-INIT, , ms}
+@DefmacListEndx {XH-UPDATE-TOC, @Var{depth} @Var{heading-text}, ms}
+The @code{XN-INIT} hook macro does nothing by default.
+@code{XH-UPDATE-TOC} brackets @var{heading-text} with @code{XS} and
+@code{XE} calls, indenting it by 2 ens per level of @var{depth} beyond
+the first.
+@endDefmac
+
+We could therefore produce a table of contents similar to that in the
+previous example with fewer macro calls.  (The difference is that this
+input follows the ``Approach'' entries with leaders and page numbers.)
+
+@CartoucheExample
+.NH 1
+.XN Introduction
+@r{@dots{}}
+.NH 2
+.XN Methodology
+.XH 3 "Fassbinder's Approach"
+.XH 3 "Kahiu's Approach"
+@r{@dots{}}
+.NH 1
+.XN Findings
+@r{@dots{}}
+@endCartoucheExample
+
+To get the section number of the numbered headings into the table of
+contents entries, we might define @code{XN-REPLACEMENT} as follows.
+(We obtain the heading depth from @code{groff} @file{ms}'s internal
+register @code{nh*hl}.)
+
+@CartoucheExample
+.de XN-REPLACEMENT
+.XN-INIT
+.XH-UPDATE-TOC \\n[nh*hl] \\$@@
+\&\\*[SN] \\$*
+..
+@endCartoucheExample
+
+You can change the style of the leader that bridges each table of
 contents entry with its page number; define the @code{TC-LEADER} special
 character by using the @code{char} request.  A typical leader combines
 the dot glyph @samp{.} with a horizontal motion escape sequence to

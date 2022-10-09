@@ -1,5 +1,15 @@
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Document new XN/XH and related macros.
+
+	* doc/groff.texi (Creating a table of contents):
+	* doc/ms.ms (Creating a table of contents):
+	* tmac/groff_ms.7.man (Creating a table of contents): Do it.
+
+	Fixes <https://savannah.gnu.org/bugs/?63110>.
+
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[gxditview]: Support `-version`, `--version` option.  As a C
 	program, gxditview had no access to the (C++) libgroff
 	`Version_string` symbol, so construct a header file to store

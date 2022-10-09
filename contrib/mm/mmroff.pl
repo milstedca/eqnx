@@ -17,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 use strict;
+use warnings;
 # runs groff in safe mode, that seems to be the default
 # installation now. That means that I have to fix all nice
 # features outside groff. Sigh.

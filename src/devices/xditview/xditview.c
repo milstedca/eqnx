@@ -94,7 +94,7 @@ static XtResource resources[] = {
 #undef offset
 
 /* Command line options table.  Only resources are entered here...there is a
-   pass over the remaining options after XtParseCommand is let loose. */
+   pass over the remaining options after XrmParseCommand is let loose. */
 
 static XrmOptionDescRec options[] = {
 {(char *)"-page", (char *)"*dvi.pageNumber",

@@ -11,9 +11,9 @@ archive; otherwise, building from its Git repository will store it in
 the file '.version'.
 
 This release includes original implementations (not derived from AT&T
-Unix code) of the 'troff', 'nroff', 'pic', 'eqn', 'tbl', 'refer'
-programs; the 'man' and 'ms' macro packages; and output drivers for
-PostScript, PDF, and TeX DVI file formats, HP LaserJet 4- and Canon
+Unix code) of the 'troff', 'nroff', 'pic', 'eqn', 'tbl', 'refer', and
+'soelim' programs; the 'man' and 'ms' macro packages; and output drivers
+for PostScript, PDF, and TeX DVI file formats, HP LaserJet 4- and Canon
 CaPSL-compatible printers, HTML and XHTML (in beta status), and
 typewriter/terminal devices.
 

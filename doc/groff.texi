@@ -5863,11 +5863,11 @@ A general-purpose register (one created or updated with the @code{nr}
 request; see @pxref{Registers}) is implicitly dimensionless, or reckoned
 in basic units if interpreted in a measurement context.  But it is
 convenient for many requests and escape sequences to infer a scaling
-unit for an argument if none is specified.  An explicit scaling unit can
-override an undesirable default.  Effectively, the default unit is
-suffixed to the expression if a scaling unit is not already present.
-GNU @code{troff}'s use of integer arithmetic should also be
-kept in mind (@pxref{Numeric Expressions}).
+unit for an argument if none is specified.  An explicit scaling unit
+(not after a closing parenthesis) can override an undesirable default.
+Effectively, the default unit is suffixed to the expression if a scaling
+unit is not already present.  GNU @code{troff}'s use of integer
+arithmetic should also be kept in mind (@pxref{Numeric Expressions}).
 
 The @code{ll} request interprets its argument in ems by default.
 Consider several attempts to set a line length of 3.5@tie{}inches when
@@ -5885,7 +5885,6 @@ expressions become zero; the request clamps them to that quantum.
 @endExample
 
 @noindent
-As shown, a scaling unit after a closing parenthesis is ignored.
 @cindex measurements, specifying safely
 The safest way to specify measurements is to attach a scaling unit.  To
 multiply or divide by a dimensionless quantity, use @samp{u} as its

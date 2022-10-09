@@ -697,7 +697,7 @@ EOF
 
 
 sub version {
-  print "$program_name (groff) $groff_version";
+  print "GNU $program_name (groff) $groff_version";
   exit 0;
 } # version()
 

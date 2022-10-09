@@ -6208,8 +6208,8 @@ In the foregoing example, we've used the @code{\Z} escape sequence
 @cindex numeric expression, valid
 @cindex valid numeric expression
 Interpolate@tie{}1 if @var{anything} is a valid numeric expression,
-and@tie{}0 otherwise.  The delimiter need not be an apostrophe; see
-@ref{Using Escape Sequences}.
+and@tie{}0 otherwise.  The delimiter need not be a neutral apostrophe;
+see @ref{Delimiters}.
 @endDefesc
 
 You might use @code{\B} along with the @code{if} request to filter out
@@ -6344,7 +6344,7 @@ reference delimiters.
 
 @Defesc {\\A, @code{'}, ident, @code{'}}
 Interpolate@tie{}1 if @var{ident} is a valid identifier in GNU
-@code{troff}, and@tie{}0 otherwise.  The delimiter need not be an
+@code{troff}, and@tie{}0 otherwise.  The delimiter need not be a neutral
 apostrophe; see @ref{Delimiters}.  Because invalid input characters are
 removed (see above), invalid identifiers are empty or contain spaces,
 tabs, or newlines.
@@ -7200,8 +7200,8 @@ the @code{\R} escape sequence.
 @DefescListEndx {\\R, @code{'}, ident value, @code{'}}
 Set register @var{ident} to @var{value}.  If @var{ident} doesn't exist,
 GNU @code{troff} creates it.  In the @code{\R} escape sequence, the
-delimiter need not be an apostrophe; see @ref{Delimiters}.  It also does
-not produce an input token in GNU @code{troff}.  @xref{Gtroff
+delimiter need not be a neutral apostrophe; see @ref{Delimiters}.  It
+also does not produce an input token in GNU @code{troff}.  @xref{Gtroff
 Internals}.
 
 @Example
@@ -7260,7 +7260,9 @@ increment or decrement a register.
 @DefreqItem {nr, ident @t{-}@Var{value}}
 @DefescItemx {\\R, @code{'}, ident @t{+}value, @code{'}}
 @DefescListEnd {\\R, @code{'}, ident @t{-}value, @code{'}}
-Increment (decrement) register @var{ident} by @var{value}.
+Increment (decrement) register @var{ident} by @var{value}.  In the
+@code{\R} escape sequence, the delimiter need not be a neutral
+apostrophe; see @ref{Delimiters}.
 
 @Example
 .nr a 1
@@ -8747,8 +8749,8 @@ The @code{\x} escape sequence takes a delimited measurement (like
 measurement is positive, extra vertical space is inserted below the
 current line; a negative measurement adds space above.  If @code{\x} is
 used multiple times on the same output line, the maxima of the positive
-and negative adjustments are used.  @xref{Using Escape Sequences}, for
-more on delimiters.
+and negative adjustments are used.  The delimiter need not be a neutral
+apostrophe; see @ref{Delimiters}.
 
 @cindex extra post-vertical line space register (@code{.a})
 The @code{.a} read-only register contains the most recent (non-negative)
@@ -9732,11 +9734,10 @@ portion, a centered portion, and a right-justified portion.  The
 argument separator @samp{'} can be replaced with any character not
 occurring in the title line.  The @samp{%} character is replaced with
 the current page number.  This character can be changed with the
-@code{pc} request (see below).
-
-Without argument, @code{tl} is ignored.
-
-Some notes:
+@code{pc} request (see below).  The delimiter need not be a neutral
+apostrophe: @code{tl} accepts the same delimiters as most escape
+sequences; see @ref{Delimiters}.  Without an argument, @code{tl} is
+ignored.
 
 @itemize @bullet
 @item
@@ -9756,10 +9757,6 @@ It is not an error to omit closing delimiters.  For example,
 @w{@samp{.tl /foo}} is equivalent to @w{@samp{.tl /foo///}}: It prints a
 title line with the left-justified word @samp{foo}; the centered and
 right-justified parts are empty.
-
-@item
-@code{tl} accepts the same delimiters as the @code{\A} escape sequence;
-see @ref{Using Escape Sequences}.
 @end itemize
 @endDefreq
 
@@ -12469,10 +12466,11 @@ Versatec and Benson-Varian plotters.}
 @cindex output comparison operator
 @item @code{'}@var{xxx}@code{'}@var{yyy}@code{'}
 True if formatting the comparands @var{xxx} and @var{yyy} produces the
-same output commands.  Other delimiters can be used in place of the
-neutral apostrophes (@pxref{Using Escape Sequences}).  This @dfn{output
-comparison operator} formats @var{xxx} and @var{yyy} in separate
-environments; after the comparison, the resulting data are discarded.
+same output commands.  The delimiter need not be a neutral apostrophe:
+the output comparison operator accepts the same delimiters as most
+escape sequences; see @ref{Delimiters}.  This @dfn{output comparison
+operator} formats @var{xxx} and @var{yyy} in separate environments;
+after the comparison, the resulting data are discarded.
 
 @Example
 .ie "|"\fR|\fP" \

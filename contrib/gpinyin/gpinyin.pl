@@ -6,7 +6,8 @@
 
 # Written by Bernd Warken <groff-bernd.warken-72@web.de>.
 
-my $version = '1.0.4';
+my $version = '1.0.5';
+my $groff_version = '(groff @VERSION@) '; # with trailing space
 
 # This file is part of 'gpinyin', which is part of 'groff'.
 
@@ -54,34 +55,9 @@ use FindBin;
 
 $\ = "\n";	# final part for print command
 
-########################################################################
-# read-only variables with double-@ construct
-########################################################################
-
-our $File_split_env_sh;
-our $File_version_sh;
-our $Groff_Version;
-
-my $before_make;		# script before run of 'make'
 {
   my $at = '@';
-  $before_make = 1 if '@VERSION@' eq "${at}VERSION${at}";
-}
-
-my %at_at;
-my $file_gpinyin_test_pl;
-my $gpinyin_libdir;
-
-if ($before_make) {
-  my $gpinyin_source_dir = $FindBin::Bin;
-  $at_at{'BINDIR'} = $gpinyin_source_dir;
-  $at_at{'G'} = '';
-  $gpinyin_libdir = '@gpinyin_dir@';
-} else {
-  $at_at{'BINDIR'} = '@BINDIR@';
-  $at_at{'G'} = '@g@';
-  $gpinyin_libdir = '@gpinyin_dir@';
-  unshift(@INC, $gpinyin_libdir);
+  $groff_version = '' if '@VERSION@' eq "${at}VERSION${at}";
 }
 
 ########################################################################
@@ -651,7 +627,7 @@ foreach (@ARGV) {
       q(pinyin parts in 'roff' files.);
     exit;
   } elsif (/^(-v|--v|--ve|--ver|--vers|--versi|--versio|--version)$/) {
-    print q('gpinyin' version ) . $version;
+    print "gpinyin ${groff_version}version $version";
     exit;
   }
 }

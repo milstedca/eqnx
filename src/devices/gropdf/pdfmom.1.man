@@ -119,7 +119,7 @@ calls
 .IR pdfroff ,
 the
 .RS
-.B \-mpdfmark \-mom \-\-no-toc
+.B \-mpdfmark \-mom \-\-no\-toc
 .RE
 options are implied and should not be given on the
 command line.

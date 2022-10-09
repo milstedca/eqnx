@@ -43,13 +43,14 @@ gxditview \- display groff intermediate output files in X11
 .RB [ \-backingStore\~\c
 .IR backing-store-type ]
 .RB [ \-filename\~\c
-.IR string ]
+.IR file ]
+.RB [ \-noPolyText ]
 .RB [ \-page\~\c
-.IR n ]
+.IR page-number ]
 .RB [ \-printCommand\~\c
-.IR string ]
+.IR command ]
 .RB [ \-resolution\~\c
-.IR res ]
+.IR resolution ]
 .I file
 .YS
 .

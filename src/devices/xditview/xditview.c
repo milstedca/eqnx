@@ -50,6 +50,7 @@ static char rcsid[] = "$XConsortium: xditview.c,v 1.17 89/12/10 17:05:08 rws Exp
 #include <X11/Xaw/SimpleMenu.h>
 #include <X11/Xaw/SmeBSB.h>
 
+#include <stdbool.h>
 #include <stdlib.h>
 #include <signal.h>
 #include <stdio.h>
@@ -120,15 +121,25 @@ static FILE	*current_file;
  */
 
 static void
-Syntax(const char *call)
+Syntax(const char *progname, bool had_error)
 {
-	(void) printf ("Usage: %s [-fg <color>] [-bg <color>]\n", call);
-	(void) printf ("       [-bd <color>] [-bw <pixels>] [-help]\n");
-	(void) printf ("       [-display displayname] [-geometry geom]\n");
-	(void) printf ("       [-page <page-number>] [-backing <backing-store>]\n");
-	(void) printf ("       [-resolution <res>] [-print <command>]\n");
-	(void) printf ("       [-filename <file>] [filename]\n\n");
-	exit(1);
+	FILE *stream = stdout;
+	if (had_error)
+		stream = stderr;
+	(void) fprintf (stream, "usage: %s [X-toolkit-option]"
+			" [-backingStore backing-store-type]"
+			" [-filename file]"
+			" [-noPolyText]"
+			" [-page page-number]"
+			" [-printCommand command]"
+			" [-resolution resolution]"
+			" [file]\n", progname);
+	(void) fprintf (stream, "usage: %s {-help | --help}\n",
+			progname);
+	if (had_error)
+		exit(EXIT_FAILURE);
+	else
+		exit(EXIT_SUCCESS);
 }
 
 static void	NewFile (const char *);
@@ -205,10 +216,13 @@ int main(int argc, char **argv)
     toplevel = XtAppInitialize(&xtcontext, "GXditview",
 			    options, XtNumber (options),
  			    &argc, argv, fallback_resources, NULL, 0);
-    if (argc > 2
-	|| (argc == 2 && (!strcmp(argv[1], "-help")
-			  || !strcmp(argv[1], "--help"))))
-	Syntax(argv[0]);
+    if (argc > 2)
+	Syntax(argv[0], true /* had error */);
+    else if (argc == 2) {
+	if ((strcmp(argv[1], "-help") == 0)
+	    || (strcmp(argv[1], "--help") == 0))
+		Syntax(argv[0], false /* did not have error */);
+    }
 
     XtGetApplicationResources(toplevel, (XtPointer)&app_resources,
 			      resources, XtNumber(resources),

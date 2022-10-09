@@ -5817,23 +5817,15 @@ the horizontal and vertical directions are termed its @dfn{motion
 quanta}.  Measurements are rounded to applicable motion quanta.
 Half-quantum fractions round toward zero.
 
-@table @code
-@item \n[.H]
 @cindex horizontal motion quantum register (@code{.H})
 @cindex motion quantum, horizontal, register (@code{.H})
 @cindex horizontal resolution register (@code{.H})
 @cindex resolution, horizontal, register (@code{.H})
-@vindex .H
-Horizontal motion quantum of the output device in basic units.
-
-@item \n[.V]
-@cindex vertical motion quantum register (@code{.V})
-@cindex motion quantum, vertical, register (@code{.V})
-@cindex vertical resolution register (@code{.V})
-@cindex resolution, vertical, register (@code{.V})
-@vindex .V
-Vertical motion quantum of the output device in basic units.
-@end table
+@DefregList {.H}
+@DefregListEndx {.V}
+These read-only registers interpolate the horizontal and vertical motion
+quanta, respectively, of the output device in basic units.
+@endDefreg
 
 For example, we might draw short baseline rules on a terminal device as
 follows.  @xref{Drawing Requests}.

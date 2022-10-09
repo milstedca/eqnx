@@ -1,5 +1,4 @@
-#! /usr/bin/perl
-# -*- Perl -*-
+#!@PERL@
 # Copyright (C) 1989-2020 Free Software Foundation, Inc.
 #
 # This file is part of groff.

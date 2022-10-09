@@ -1,3 +1,17 @@
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[mm]: Refactor generation of "mmroff" script.
+
+	* mmroff.pl: Replace absolute filespec with `@PERL@` replacement
+	token.  This is documentary; the filespec was getting replaced
+	anyway.
+	* mm.am (mmroff): Use more idiomatic token replacement strategy.
+	Also create target as a .tmp-suffixed file at first since it is
+	not initially executable, so that we don't race against anything
+	needing to run it in a parallelized build.  (This is a
+	hypothetical concern; at present, nothing runs mmroff during the
+	build.)
+
 2022-10-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (pg@header): Add page length sufficiency check.

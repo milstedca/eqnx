@@ -74,10 +74,12 @@ EXTRA_DIST += \
   contrib/mm/tests/artifacts/60657.ref
 
 mmroff: $(mm_srcdir)/mmroff.pl
-	$(AM_V_GEN)$(SED) -e 's;/usr/bin/perl;$(PERL);' \
-	    $(mm_srcdir)/mmroff.pl \
-	    >$@ \
-	&& chmod +x $@
+	$(AM_V_GEN)$(SED) \
+	  -e 's;[@]PERL[@];$(PERL);' \
+	  $(mm_srcdir)/mmroff.pl \
+	  >$@.tmp \
+	  && chmod +x $@.tmp \
+	  && mv $@.tmp $@
 
 # special installation rules for m.tmac, mse.tmac, mmse.tmac, mm.tmac
 install-data-local: install_mm

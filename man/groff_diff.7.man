@@ -158,6 +158,27 @@ registers exercise color support.
 .SS "Fractional type sizes and new scaling units"
 .\" ====================================================================
 .
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Using Fractional
+.\" Type Sizes".
+AT&T
+.I troff \" AT&T
+interpreted all type size measurements in points.
+.
+Combined with integer arithmetic,
+this design choice made it impossible to support,
+for instance,
+ten and a half-point type.
+.
+In GNU
+.IR troff , \" GNU
+an output device can select a scaling factor that divides a point into
+subdivisions termed \[lq]scaled points\[rq].
+.
+A type size expressed in scaled points can thus represent a non-integral
+type size.
+.
+.
+.P
 A
 .I scaled point
 is equal to
@@ -165,34 +186,36 @@ is equal to
 points,
 where
 .I sizescale
-is a parameter specified in the device description file,
+is specified in the device description file,
 .IR DESC ,
 and defaults to\~1.
 .
-A new scaling
+(See
+.MR groff_font @MAN5EXT@ .)
+.
+The scaling
 .RB unit\~\[lq] z \[rq]
-has the effect of multiplying by
+has multiplies by
 .IR sizescale .
 .
-Requests and escape sequences in
-.I groff
-interpret arguments that represent a type size as being in units of
-scaled points;
+Requests and escape sequences in GNU
+.I troff \" GNU
+interpret arguments that represent a type size scaled points;
 that is,
-they evaluate such arguments using an implied default scaling unit
+they evaluate such arguments using a default scaling unit
 .RB of\~\[lq] z \[rq].
 .
 Arguments treated in this way comprise those to the escape sequences
-.B \eH
+.B \[rs]H
 and
-.BR \es ,
+.BR \[rs]s ,
 to the request
-.BR .ps ,
+.BR ps ,
 the third argument to the
-.B .cs
+.B cs
 request,
 and the second and fourth arguments to the
-.B .tkf
+.B tkf
 request.
 .
 .
@@ -201,17 +224,15 @@ For example,
 if
 .I sizescale
 is\~1000,
-then a scaled point is one one-thousandth of a point.
+then a scaled point is one thousandth of a point.
 .
 The request
-.RB \[lq] ".ps 10.25" \[rq]
+.RB \[lq] ".ps 10.5" \[rq]
 is synonymous with
-.RB \[lq] ".ps 10.25z" \[rq]
-and sets the type size to 10250\~scaled points,
-or 10.25\~points.
+.RB \[lq] ".ps 10.5z" \[rq]
+and sets the type size to 10,500\~scaled points,
+or 10.5\~points.
 .
-.
-.P
 Consequently,
 in
 .IR groff ,
@@ -219,7 +240,7 @@ the register
 .B \[rs]n[.s]
 can contain a non-integral type size.
 .
-The new register
+The register
 .B \[rs]n[.ps]
 returns the type size in scaled points.
 .
@@ -230,8 +251,8 @@ It makes no sense to use the
 unit in a numeric expression whose default scaling unit is neither
 .RB \[lq] u \[rq]
 .RB nor\~\[lq] z \[rq],
-so
-.I groff
+so GNU
+.I troff \" GNU
 disallows this.
 .
 Similarly,
@@ -240,8 +261,8 @@ it is nonsensical to use a scaling unit other
 .RB or\~\[lq] u \[rq]
 in a numeric expression whose default scaling unit
 .RB is\~\[lq] z \[rq],
-so
-.I groff
+so GNU
+.I troff
 disallows this as well.
 .
 .
@@ -250,7 +271,7 @@ Another new scaling unit,
 .RB \[lq] s \[rq],
 multiplies by the number of basic units in a scaled point.
 .
-For instance,
+Thus,
 .RB \[lq] \[rs]n[.ps]s \[rq]
 is equal to
 .RB \[lq] 1m \[rq]
@@ -261,6 +282,42 @@ Do not confuse the
 and
 .RB \[lq] z \[rq]
 scaling units.
+.
+.
+.P
+Output devices may be limited in the type sizes they can employ.
+.
+The
+.B .s
+and
+.B .ps
+registers represent the selected type size as fulfilled by output
+driver as it understands a device's capability.
+.
+The last
+.I requested
+type size is interpolated in scaled points by the read-only register
+.B .psr
+and in points as a decimal fraction by the read-only string-valued
+register
+.BR .sr .
+.
+Both are associated with the environment.
+.
+For example,
+if a type size of 10.95\~points is requested,
+and a
+.B sizes
+request
+(or a
+.B sizescale
+directive in the device's
+.I DESC
+file)
+permits only 11\~points instead,
+the latter value is used by the output driver.
+.\" END Keep (roughly) parallel with groff.texi node "Using Fractional
+.\" Type Sizes".
 .
 .
 .P

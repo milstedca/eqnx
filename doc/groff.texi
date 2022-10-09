@@ -1807,7 +1807,7 @@ can occur where not wanted, such as ``@w{mother- in}-law''.
 @code{gtroff} double-spaces output text automatically if you use the
 request @w{@samp{.ls 2}}.  Reactivate single-spaced mode by typing
 @w{@samp{.ls 1}}.@footnote{If you need finer granularity of the vertical
-space, use the @code{pvs} request (@pxref{Changing Type Sizes}).}
+space, use the @code{pvs} request (@pxref{Changing the Type Size}).}
 
 A number of requests allow you to change the way the output is arranged
 on the page, sometimes called the @dfn{layout} of the output page.
@@ -4792,7 +4792,7 @@ not interested in details.
 * Page Layout::
 * Page Control::
 * Fonts and Symbols::
-* Sizes::
+* Manipulating Type Size and Vertical Spacing::
 * Colors::
 * Strings::
 * Conditionals and Loops::
@@ -5751,7 +5751,7 @@ Pica; another typesetter's unit.  There are 6@tie{}picas to an inch and
 
 @item s
 @itemx z
-@xref{Fractional Type Sizes}, for a discussion of these units.
+@xref{Using Fractional Type Sizes}, for a discussion of these units.
 
 @item f
 GNU @code{troff} defines this unit to scale decimal fractions in the
@@ -8737,8 +8737,8 @@ setting.  The line spacing is associated with the environment
 (@pxref{Environments}).
 @endDefreq
 
-@xref{Changing Type Sizes}, for the requests @code{vs} and @code{pvs} as
-alternatives to @code{ls}.
+@xref{Changing the Type Size}, for the requests @code{vs} and @code{pvs}
+as alternatives to @code{ls}.
 
 @DefescList {\\x, @code{'}, spacing, @code{'}}
 @DefregListEndx {.a}
@@ -9947,7 +9947,7 @@ one.
 
 @c =====================================================================
 
-@node Fonts and Symbols, Sizes, Page Control, gtroff Reference
+@node Fonts and Symbols, Manipulating Type Size and Vertical Spacing, Page Control, gtroff Reference
 @section Fonts and Symbols
 @cindex fonts
 
@@ -11437,45 +11437,47 @@ This is a test.
 
 @c =====================================================================
 
-@node Sizes, Colors, Fonts and Symbols, gtroff Reference
-@section Sizes
-@cindex sizes
+@c TODO: Move the troff and nroff mode stuff here.  Try to keep stuff
+@c that isn't ignored in nroff above this point, and stuff for
+@c typesetters below, until we hit the programming/advanced concepts.
 
-@cindex baseline
+@node Manipulating Type Size and Vertical Spacing, Colors, Fonts and Symbols, gtroff Reference
+@section Manipulating Type Size and Vertical Spacing
+@cindex manipulating type size and vertical spacing
+
+@cindex text baseline
+@cindex baseline, text
 @cindex type size
-@cindex size of type
+@cindex size, size
 @cindex vertical spacing
 @cindex spacing, vertical
-GNU @code{troff} uses two dimensions with each line of text, type size
-and vertical spacing.  The @dfn{type size} is approximately the height
-of the tallest glyph.@footnote{This is usually the parenthesis.  In most
-cases the real dimensions of the glyphs in a font are @emph{not} related
-to its type size!  For example, the standard PostScript font families
-`Times', `Helvetica', and `Courier' can't be used together at
-10@dmn{pt}; to get acceptable output, the size of `Helvetica' has to be
-reduced by one point, and the size of `Courier' must be increased by one
-point.}  @dfn{Vertical spacing} is the amount of space @code{gtroff}
-allows for a line of text; normally, this is about 20%@tie{}larger than
-the current type size.  Ratios smaller than this can result in
-hard-to-read text; larger than this, it spreads the text out more
-vertically (useful for term papers).  By default, @code{gtroff} uses
-10@tie{}point type on 12@tie{}point spacing.
-
+These concepts were introduced in @ref{Page Geometry}.  The height of a
+font's tallest glyph is one em, which is equal to the type size in
+points.@footnote{This tallest glyph is typically the parenthesis.
+Unfortunately, in many cases the actual dimensions of the glyphs in a
+font do not closely match its declared its type size!  For example, in
+the standard PostScript font families, 10@dmn{pt} Times sets better with
+9@dmn{pt} Helvetica and 11@dmn{pt} Courier than if all three were used
+at 10@tie{}points.}  A vertical spacing of less than 120% of the type
+size can make a document hard to read.  Larger proportions can be useful
+to spread the text for annotations or proofreader's marks.  By default,
+GNU @code{troff} uses 10@tie{}point type on 12@tie{}point spacing.
 @cindex leading
-Typesetters call the difference between type size and vertical spacing
-@dfn{leading}.@footnote{This is pronounced to rhyme with ``sledding'',
-and refers to the use of lead metal (Latin: @emph{plumbum}) in
-traditional typesetting.}
+Typographers call the difference between type size and vertical spacing
+@dfn{leading}.@footnote{Pronounce ``leading'' to rhyme with
+``sledding''; it refers to the use of lead metal (Latin: @emph{plumbum})
+in traditional typesetting.}
 
 @menu
-* Changing Type Sizes::
-* Fractional Type Sizes::
+* Changing the Type Size::
+* Changing the Vertical Spacing::
+* Using Fractional Type Sizes::
 @end menu
 
 @c ---------------------------------------------------------------------
 
-@node Changing Type Sizes, Fractional Type Sizes, Sizes, Sizes
-@subsection Changing Type Sizes
+@node Changing the Type Size, Changing the Vertical Spacing, Manipulating Type Size and Vertical Spacing, Manipulating Type Size and Vertical Spacing
+@subsection Changing the Type Size
 
 @DefreqList {ps, [@Var{size}]}
 @DefreqItem {ps, @t{+}@Var{size}}
@@ -11485,20 +11487,20 @@ traditional typesetting.}
 @cindex changing type sizes (@code{ps}, @code{\s})
 @cindex type sizes, changing (@code{ps}, @code{\s})
 @cindex point sizes, changing (@code{ps}, @code{\s})
-Use the @code{ps} request or the @code{\s} escape to change (increase,
-decrease) the type size (in points).  Specify @var{size} as either an
-absolute type size, or as a relative change from the current size.
-@code{ps} with no argument restores the previous size.
-
-The default scaling indicator of @code{size} is @samp{z}.  If the
-resulting size is non-positive, it is set to 1@dmn{u}.
+Use the @code{ps} request or the @code{\s} escape sequence to change
+(increase, decrease) the type size (in points).  Specify @var{size} as
+either an absolute type size, or as a relative change from the current
+size.  @code{ps} with no argument restores the previous size.  The
+@code{size} request's default scaling unit is @samp{z}.  If the
+requested size is non-positive, it is set to 1@dmn{u}.
 
 @cindex type size registers (@code{.s}, @code{.ps})
 @cindex point size registers (@code{.s}, @code{.ps})
-The read-only string-valued register @code{.s} stores the type size in
-points as a decimal fraction; it is associated with the environment
-(@pxref{Environments}).  To get the type size in scaled points, use the
-@code{.ps} register instead (@pxref{Fractional Type Sizes}).
+The read-only string-valued register @code{.s} interpolates the type
+size in points as a decimal fraction; it is associated with the
+environment (@pxref{Environments}).  To obtain the type size in scaled
+points, interpolate the @code{.ps} register instead (@pxref{Using
+Fractional Type Sizes}).
 
 @Example
 snap, snap,
@@ -11533,13 +11535,14 @@ Increase or decrease the type size by @var{nn}@tie{}points.  @var{nn}
 must be exactly two digits.
 @end table
 
-@xref{Fractional Type Sizes}, for additional syntactical forms of
-the @code{\s} escape (which accept integers as well as fractions).
+@xref{Using Fractional Type Sizes}, for further syntactical forms of the
+@code{\s} escape sequence that additionally accept decimal fractions.
 @endDefreq
 
-Note that @code{\s} doesn't produce an input token in @code{gtroff}.  As
-a consequence, it can be used in requests like @code{mc} (which expects
-a single character as an argument) to change the font on the fly:
+The @code{\s} escape sequence affects the environment immediately and
+doesn't produce an input token.  Consequently, it can be used in
+requests like @code{mc}, which expects a single character as an
+argument, to change the type size on the fly.
 
 @Example
 .mc \s[20]x\s[0]
@@ -11561,6 +11564,10 @@ range of sizes (such as @samp{4000-72000}).  You can optionally end the
 list with a zero.
 @endDefreq
 
+@need 1000
+@node Changing the Vertical Spacing, Using Fractional Type Sizes, Changing the Type Size, Manipulating Type Size and Vertical Spacing
+@subsection Changing the Vertical Spacing
+
 @DefreqList {vs, [@Var{space}]}
 @DefreqItem {vs, @t{+}@Var{space}}
 @DefreqItem {vs, @t{-}@Var{space}}
@@ -11569,65 +11576,61 @@ list with a zero.
 @cindex vertical line spacing, changing (@code{vs})
 @cindex vertical line spacing register (@code{.v})
 Change (increase, decrease) the vertical spacing by @var{space}.  The
-default scaling indicator is @samp{p}.
-
-If @code{vs} is called without an argument, the vertical spacing is
-reset to the previous value before the last call to @code{vs}.
-
+default scaling unit is @samp{p}.  If @code{vs} is called without an
+argument, the vertical spacing is reset to the previous value before the
+last call to @code{vs}.
 @cindex @code{.V} register, and @code{vs}
-@code{gtroff} creates a warning in category @samp{range} if @var{space}
-is negative; the vertical spacing is then set to smallest positive
-value, the vertical motion quantum (as given in the @code{.V} register).
+GNU @code{gtroff} emits a warning in category @samp{range} if
+@var{space} is negative; the vertical spacing is then set to the
+smallest possible positive value, the vertical motion quantum (as found
+in the @code{.V} register).
 
 @w{@samp{.vs 0}} isn't saved in a diversion since it doesn't result in
-a vertical motion.  You explicitly have to repeat this command before
-inserting the diversion.
+a vertical motion.  You must explicitly issue this request before
+calling the diversion.
 
-The read-only register @code{.v} contains the current vertical spacing;
-it is associated with the environment (@pxref{Environments}).
+The read-only register @code{.v} contains the vertical spacing; it is
+associated with the environment (@pxref{Environments}).
 @endDefreq
 
 @cindex vertical line spacing, effective value
-The effective vertical line spacing consists of four components.
-Breaking a line causes the following actions (in the given order).
+@noindent
+When a break occurs, GNU @code{troff} performs the following actions.
 
 @itemize @bullet
 @item
 @cindex extra pre-vertical line space (@code{\x})
 @cindex line space, extra pre-vertical (@code{\x})
-Move the current point vertically by the @dfn{extra pre-vertical line
-space}.  This is the minimum value of all @code{\x} escape sequences
-with a negative argument in the current output line.
+Move the drawing position vertically by the @dfn{extra pre-vertical line
+space}, the minimum of all negative @code{\x} escape sequence arguments
+in the pending output line.
 
 @item
-Move the current point vertically by the vertical line spacing as set
-with the @code{vs} request.
+Move the drawing position vertically by the vertical line spacing.
 
 @item
-Output the current line.
+Write out the pending output line.
 
 @item
 @cindex extra post-vertical line space (@code{\x})
 @cindex line space, extra post-vertical (@code{\x})
-Move the current point vertically by the @dfn{extra post-vertical line
-space}.  This is the maximum value of all @code{\x} escape sequences
-with a positive argument in the line that has just been output.
+Move the drawing position vertically by the @dfn{extra post-vertical line
+space}, the maximum of all positive @code{\x} escape sequence arguments
+in the line that has just been output.
 
 @item
 @cindex post-vertical line spacing
 @cindex line spacing, post-vertical (@code{pvs})
-Move the current point vertically by the @dfn{post-vertical line
-spacing} as set with the @code{pvs} request.
+Move the drawing position vertically by the @dfn{post-vertical line
+spacing} (see below).
 @end itemize
 
 @cindex double-spacing (@code{vs}, @code{pvs})
-It is usually better to use @code{vs} or @code{pvs} instead of @code{ls}
-to produce double-spaced documents: @code{vs} and @code{pvs} have a
-finer granularity for the inserted vertical space than @code{ls};
-furthermore, certain preprocessors assume single spacing.
-
-@xref{Manipulating Spacing}, for more details on the @code{\x} escape
-and the @code{ls} request.
+Prefer @code{vs} or @code{pvs} over @code{ls} to produce double-spaced
+documents.  @code{vs} and @code{pvs} have finer granularity than
+@code{ls}; moreover, some preprocessors assume single spacing.
+@xref{Manipulating Spacing}, regarding the @code{\x} escape sequence and
+the @code{ls} request.
 
 @DefreqList {pvs, [@Var{space}]}
 @DefreqItem {pvs, @t{+}@Var{space}}
@@ -11637,27 +11640,34 @@ and the @code{ls} request.
 @cindex post-vertical line spacing, changing (@code{pvs})
 @cindex post-vertical line spacing register (@code{.pvs})
 Change (increase, decrease) the post-vertical spacing by @var{space}.
-The default scaling indicator is @samp{p}.
+The default scaling unit is @samp{p}.  If @code{pvs} is called without
+an argument, the post-vertical spacing is reset to the previous value
+before the last call to @code{pvs}.  GNU @code{troff} emits a warning in
+category @samp{range} if @var{space} is negative; the post-vertical
+spacing is then set to zero.
 
-If @code{pvs} is called without an argument, the post-vertical spacing
-is reset to the previous value before the last call to @code{pvs}.
-
-@code{gtroff} creates a warning in category @samp{range} if @var{space}
-is zero or negative; the vertical spacing is then set to zero.
-
-The read-only register @code{.pvs} contains the current post-vertical
-spacing; it is associated with the environment (@pxref{Environments}).
+The read-only register @code{.pvs} contains the post-vertical spacing;
+it is associated with the environment (@pxref{Environments}).
 @endDefreq
 
 @c ---------------------------------------------------------------------
 
-@node Fractional Type Sizes,  , Changing Type Sizes, Sizes
-@subsection Fractional Type Sizes
+@c BEGIN Keep (roughly) parallel with subsection "Fractional type sizes
+@c and new scaling units" of groff_diff(7).
+@node Using Fractional Type Sizes,  , Changing the Type Size, Manipulating Type Size and Vertical Spacing
+@subsection Using Fractional Type Sizes
 @cindex fractional type sizes
 @cindex fractional point sizes
 @cindex type sizes, fractional
 @cindex point sizes, fractional
-@cindex sizes, fractional
+@cindex sizes, fractional type
+
+AT&T @code{troff} interpreted all type size measurements in points.
+Combined with integer arithmetic, this design choice made it impossible
+to support, for instance, ten and a half-point type.  In GNU
+@code{troff}, an output device can select a scaling factor that divides
+a point into subdivisions termed ``scaled points''.  A type size
+expressed in scaled points can thus represent a non-integral type size.
 
 @cindex @code{s} scaling unit
 @cindex unit, scaling, @code{s}
@@ -11672,39 +11682,39 @@ spacing; it is associated with the environment (@pxref{Environments}).
 @cindex @code{\s}, with fractional type sizes
 A @dfn{scaled point} is equal to @math{1/@var{sizescale}} points, where
 @var{sizescale} is specified in the device description file @file{DESC},
-and defaults to@tie{}1.  A new scaling indicator @samp{z} has the effect
-of multiplying by @var{sizescale}.  Requests and escape sequences in GNU
-@code{troff} interpret arguments that represent a type size as being in
-units of scaled points; that is, they evaluate each such argument using
-a default scaling indicator of @samp{z}.  Arguments treated in this way
-comprise those to the escape sequences @code{\H} and @code{\s}, to the
-request @code{ps}, the third argument to the @code{cs} request, and the
-second and fourth arguments to the @code{tkf} request.
+and defaults to@tie{}1.@footnote{@xref{Device and Font Description
+Files}.}  The scaling unit @samp{z} multiplies by @var{sizescale}.
+Requests and escape sequences in GNU @code{troff} interpret arguments
+that represent a type size in scaled points; that is, they evaluate each
+such argument using a default scaling unit of @samp{z}.  Arguments
+treated in this way comprise those to the escape sequences @code{\H} and
+@code{\s}, to the request @code{ps}, the third argument to the @code{cs}
+request, and the second and fourth arguments to the @code{tkf} request.
 
-For example, if @var{sizescale} is@tie{}1000, then a scaled point
-is one one-thousandth of a point.  The request @samp{.ps 10.25} is
-synonymous with @samp{.ps 10.25z} and sets the type size to
-10250@tie{}scaled points, or 10.25@tie{}points.
-
-Consequently, in GNU @code{troff}, the register @code{.s} can contain a
-non-integral type size.
-
-It makes no sense to use the @samp{z} scaling indicator in a numeric
-expression whose default scaling indicator is neither @samp{u} nor
-@samp{z}, so GNU @code{troff} disallows this.  Similarly, it is
-nonsensical to use a scaling indicator other than @samp{z} or @samp{u}
-in a numeric expression whose default scaling indicator is @samp{z}, and
-so GNU @code{troff} disallows this as well.
-
-Another new scaling indicator @samp{s} multiplies by the number of basic
-units in a scaled point.  For instance, @samp{\n[.ps]s} is equal to
-@samp{1m} by definition.  Do not confuse the @samp{s} and @samp{z} scale
-indicators.
+For example, if @var{sizescale} is@tie{}1000, then a scaled point is one
+thousandth of a point.  The request @samp{.ps 10.5} is synonymous with
+@samp{.ps 10.5z} and sets the type size to 10,500@tie{}scaled points, or
+10.5@tie{}points.  Consequently, in GNU @code{troff}, the register
+@code{.s} can interpolate a non-integral type size.
 
 @Defreg {.ps}
-A read-only register returning the type size in scaled points; it is
-associated with the environment (@pxref{Environments}).
+This read-only register interpolates the type size in scaled points; it
+is associated with the environment (@pxref{Environments}).
 @endDefreg
+
+It makes no sense to use the @samp{z} scaling unit in a numeric
+expression whose default scaling unit is neither @samp{u} nor @samp{z},
+so GNU @code{troff} disallows this.  Similarly, it is nonsensical to use
+a scaling unit other than @samp{z} or @samp{u} in a numeric expression
+whose default scaling unit is @samp{z}, and so GNU @code{troff}
+disallows this as well.
+
+Another GNU @code{troff} scaling unit, @samp{s}, multiplies by the
+number of basic units in a scaled point.  Thus, @samp{\n[.ps]s} is equal
+to @samp{1m} by definition.  Do not confuse the @samp{s} and @samp{z}
+scaling units.
+@c END Keep (roughly) parallel with subsection "Fractional type sizes
+@c and new scaling units" of groff_diff(7).
 
 @DefregList {.psr}
 @DefregListEndx {.sr}
@@ -11714,28 +11724,30 @@ associated with the environment (@pxref{Environments}).
 @cindex point size registers, last-requested (@code{.psr}, @code{.sr})
 @cindex @code{.ps} register, in comparison with @code{.psr}
 @cindex @code{.s} register, in comparison with @code{.sr}
-The last-requested type size in scaled points is contained in the
-read-only register @code{.psr}.  The last-requested type size in points
-as a decimal fraction can be found in the read-only string-valued
-register @code{.sr}.  Both registers are associated with the environment
-(@pxref{Environments}).
+Output devices may be limited in the type sizes they can employ.  The
+@code{.s} and @code{.ps} registers represent the selected type size as
+fulfilled by output driver as it understands a device's capability.  The
+last @emph{requested} type size is interpolated in scaled points by the
+read-only register @code{.psr} and in points as a decimal fraction by
+the read-only string-valued register @code{.sr}.  Both are associated
+with the environment (@pxref{Environments}).
 
-The requested type sizes are device-independent, whereas the values
-returned by the @code{.ps} and @code{.s} registers are not.  For
-example, if a type size of 11@dmn{pt} is requested, and a @code{sizes}
-request (or a @code{sizescale} line in a @file{DESC} file) specifies
-10.95@dmn{pt} instead, this value is actually used.
-
+For example, if a type size of 10.95@dmn{pt} is requested, and a
+@code{sizes} request (or a @code{sizescale} directive in the device's
+@file{DESC} file) permits only 11@dmn{pt} instead, the latter value is
+used by the output driver.
 @endDefreg
 
-The @code{\s} escape has the following syntax for working with
-fractional type sizes:
+The @code{\s} escape sequence offers the following syntax for working
+with fractional type sizes.  You may of course give them integral
+arguments.  The delimited forms need not use the neutral apostrophe; see
+@ref{Delimiters}.
 
 @table @code
 @item \s[@var{n}]
 @itemx \s'@var{n}'
 Set the type size to @var{n}@tie{}scaled points; @var{n}@tie{}is a
-numeric expression with a default scaling indicator of @samp{z}.
+numeric expression with a default scaling unit of @samp{z}.
 
 @item \s[+@var{n}]
 @itemx \s[-@var{n}]
@@ -11747,16 +11759,14 @@ numeric expression with a default scaling indicator of @samp{z}.
 @itemx \s-'@var{n}'
 Increase or decrease the type size by @var{n}@tie{}scaled points;
 @var{n}@tie{}is a numeric expression (which may start with a minus sign)
-with a default scaling indicator of @samp{z}.
+with a default scaling unit of @samp{z}.
 @end table
-
-@xref{Device and Font Description Files}.
 
 
 @c =====================================================================
 
 @c BEGIN Keep (roughly) parallel with section "Colors" of groff(7).
-@node Colors, Strings, Sizes, gtroff Reference
+@node Colors, Strings, Manipulating Type Size and Vertical Spacing, gtroff Reference
 @section Colors
 @cindex colors
 
@@ -16845,7 +16855,7 @@ Fractional type sizes cause one noteworthy incompatibility.  In
 @acronym{AT&T} @code{troff} the @code{ps} request ignores scale
 indicators and thus @samp{.ps 10u} sets the type size to
 10@tie{}points, whereas in GNU @code{troff} it sets the type size to
-10@tie{}@emph{scaled} points.  @xref{Fractional Type Sizes}.
+10@tie{}@emph{scaled} points.  @xref{Using Fractional Type Sizes}.
 
 @cindex @code{ab} request, incompatibilities with @acronym{AT&T} @code{troff}
 The @code{ab} request differs from @acronym{AT&T} @code{troff}:
@@ -18024,7 +18034,7 @@ extend over more than one line.
 @item sizescale @var{n}
 @kindex sizescale
 Set the scale factor for type sizes to one divided by@tie{}@var{n}.  The
-default is@tie{}@code{1}.  @xref{Fractional Type Sizes}.
+default is@tie{}@code{1}.  @xref{Using Fractional Type Sizes}.
 
 @item styles @var{S1} @r{@dots{}} @var{Sm}
 @kindex styles

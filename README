@@ -36,11 +36,11 @@ The file 'NEWS' contains a history of user-visible changes to 'groff'.
 'groff' is free software.  See the file 'COPYING' for copying
 permissions, and 'LICENSES' for further detail.
 
-The file 'PROBLEMS' describes various problems that have been
-encountered in compiling, installing, and running 'groff'.
+The file 'PROBLEMS' describes various issues that users have encountered
+in compiling, installing, and running 'groff'.
 
-The file 'MORE.STUFF' contains information about add-on packages
-useful for 'groff'.
+The file 'MORE.STUFF' describes some third-party programming and
+documentary resources useful with 'groff'.
 
 Current and historical releases of 'groff' are available via HTTPS and
 anonymous FTP from the host 'ftp.gnu.org' in the directory 'gnu/groff'.

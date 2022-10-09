@@ -18,6 +18,9 @@
 
 use strict;
 use warnings;
+
+(my $progname = $0) =~s @.*/@@;
+
 # runs groff in safe mode, that seems to be the default
 # installation now. That means that I have to fix all nice
 # features outside groff. Sigh.
@@ -84,12 +87,17 @@ while(<MACRO>) {
 }
 close(MACRO);
 
+sub Die {
+	print STDERR "$progname: fatal error: @_\n";
+	exit 1;
+}
 
 if ($rfilename) {
 	push(@out, ".nr pict*max-height $max_height\n") if defined $max_height;
 	push(@out, ".nr pict*max-width $max_width\n") if defined $max_width;
 
-	open(OUT, ">$rfilename") || "create $rfilename:$!";
+	open(OUT, ">$rfilename")
+		or &Die("unable to create $rfilename:$!");
 	print OUT '.\" references', "\n";
 	my $i;
 	for $i (@out) {
@@ -104,7 +112,7 @@ exit system($run_macro);
 sub print_index {
 	my ($f, $ind, $macro) = @_;
 
-	open(OUT, ">$f") || "create $f:$!";
+	open(OUT, ">$f") or &Die("unable to create $f:$!");
 	my $i;
 	for $i (sort @$ind) {
 		if ($macro) {

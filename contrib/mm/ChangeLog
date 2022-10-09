@@ -1,5 +1,14 @@
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* mmroff.pl: Add proper diagnostic subroutine.  Add "progname"
+	scalar to store the name of the program.
+	(Die): New subroutine.
+	(print_index, top level): Call Die() when encountering
+	prohibitive problems instead of flinging a string into a void
+	context.
+
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* mmroff.pl: Enable Perl warnings.
 
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>

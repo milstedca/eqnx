@@ -1,7 +1,10 @@
 '\" e
 .TH groff_diff @MAN7EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-groff_diff \- differences between GNU roff and AT&T troff
+groff_diff \- differences between GNU
+.I roff
+and AT&T
+.I troff
 .
 .
 .\" ====================================================================
@@ -78,7 +81,7 @@ supports non-integral type sizes,
 adds new escape sequences and requests,
 provides new conditional expression operators,
 recognizes additional scaling units and numerical operators,
-and extends the function of some escape sequences and requests already
+and extends the function of some escape sequences and requests
 present in
 .RI AT&T\~ troff .
 .

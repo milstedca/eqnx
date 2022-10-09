@@ -5007,9 +5007,18 @@ characters shown here are ``dagger'', ``double dagger'', ``right
 \[lq]The idea that the poor should have leisure has always
 been shocking to the rich.\[rq]
 (Bertrand Russell, 1935)
+@c XXX: @iftex puts a blank line on the output.  This seems like a bug.
+@c @newline works around it.  But we need a weird inverse indent.
+@iftex @
+  @result{} @quotedblleft{}The idea that the poor should have
+    @result{} leisure has always been shocking to
+    @result{} the rich.@quotedblright{}  (Bertrand Russell, 1935)
+@end iftex
+@ifnottex
     @result{} "The idea that the poor should have
     @result{} leisure has always been shocking to
     @result{} the rich."  (Bertrand Russell, 1935)
+@end ifnottex
 @endExample
 
 The sets of characters that potentially end sentences or are transparent

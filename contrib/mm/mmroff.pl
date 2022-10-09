@@ -28,6 +28,12 @@ use warnings;
 # of security holes.
 
 my $no_exec;
+
+if (grep(/^--version$/, @ARGV)) {
+	print "mmroff (groff) @VERSION@\n";
+	exit;
+}
+
 # check for -x and remove it
 if (grep(/^-x$/, @ARGV)) {
 	$no_exec++;

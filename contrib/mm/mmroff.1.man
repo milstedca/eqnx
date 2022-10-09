@@ -40,6 +40,11 @@ mmroff \- cross-referencing front end for GNU roff mm macro package
 .YS
 .
 .
+.SY mmroff
+.B \-\-version
+.YS
+.
+.
 .\" ====================================================================
 .SH Description
 .\" ====================================================================
@@ -65,6 +70,13 @@ when the cross-reference file is up to date.
 .\" ====================================================================
 .SH Options
 .\" ====================================================================
+.
+If called with the
+.B \-\-version
+option,
+.I mmroff
+displays its version information and exits.
+.
 .
 .TP
 .B \-x

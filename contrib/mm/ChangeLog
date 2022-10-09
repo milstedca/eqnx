@@ -1,5 +1,13 @@
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mm]: Add `--version` option support to mmroff.
+
+	* mm.am (mmroff): Replace `@VERSION@` token in script.
+	* mmroff.pl: Recognize `--version` option.
+	* mmroff.1.man (Synopsis, Options): Document.
+
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* mmroff.pl: Add proper diagnostic subroutine.  Add "progname"
 	scalar to store the name of the program.
 	(Die): New subroutine.

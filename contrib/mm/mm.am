@@ -76,6 +76,7 @@ EXTRA_DIST += \
 mmroff: $(mm_srcdir)/mmroff.pl
 	$(AM_V_GEN)$(SED) \
 	  -e 's;[@]PERL[@];$(PERL);' \
+	  -e 's;[@]VERSION[@];$(VERSION);' \
 	  $(mm_srcdir)/mmroff.pl \
 	  >$@.tmp \
 	  && chmod +x $@.tmp \

@@ -1,5 +1,14 @@
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/gropdf/gropdf.pl (LoadFont): Clarify diagnostic.
+	gropdf opens "fonts" in two distinct ways.  On the one hand, it
+	opens groff font description files for essentially all
+	nontrivial output.  On the other, it may open actual Type 1 font
+	files for embedding in a PDF.  Make failure of the former case
+	less confusable with the latter.
+
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Document new XN/XH and related macros.
 
 	* doc/groff.texi (Creating a table of contents):

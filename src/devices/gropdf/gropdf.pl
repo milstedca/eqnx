@@ -2366,7 +2366,7 @@ sub LoadFont
         OpenFile(\$f,$fontdir,$fontnm);
     }
 
-    Die("failed to open font '$ofontnm'") if !defined($f);
+    Die("unable to open font '$ofontnm' for mounting") if !defined($f);
 
     my $foundry='';
     $foundry=$1 if $fontnm=~m/^(.*?)-/;

@@ -512,8 +512,8 @@ A
 .I page
 is a two-dimensional structure upon which a
 .I roff
-system imposes a coordinate system with its upper left corner as the
-origin.
+system imposes a rectangular coordinate system with its upper left
+corner as the origin.
 .
 Coordinate values are in basic units and increase down and to the right.
 Useful ones are therefore always positive and within numeric ranges
@@ -849,11 +849,11 @@ and Multics.
 ancestor
 .I RUNOFF
 was written in the MAD language by Jerry Saltzer
-to prepare his Ph.D.\& thesis using the Compatible Time Sharing System
+to prepare his Ph.D.\& thesis on the Compatible Time Sharing System
 (CTSS),
 a project of the Massachusetts Institute of Technology (MIT).
 .
-The program is generally referred to in full capitals,
+This program is referred to in full capitals,
 both to distinguish it from its many descendants,
 and because bits were expensive in those days;
 five- and six-bit character encodings were still in widespread usage,

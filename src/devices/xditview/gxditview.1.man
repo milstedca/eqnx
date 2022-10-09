@@ -63,6 +63,14 @@ gxditview \- display groff intermediate output files in X11
 .YS
 .
 .
+.SY gxditview
+.B \-version
+.
+.SY gxditview
+.B \-\-version
+.YS
+.
+.
 .\" ====================================================================
 .SH Description
 .\" ====================================================================
@@ -412,20 +420,28 @@ SS  \-adobe\-symbol\-medium\-r\-normal\-\-*\-100\" break
 .EE
 .
 .
-.if t .ne 4v \" force section heading to the next page for groff 1.23.0
+.br
+.ne 3v
 .\" ====================================================================
 .SH Options
 .\" ====================================================================
 .
+.B \-help
+and
+.B \-\-help
+display a usage message,
+while
+.B \-version
+and
+.B \-\-version
+show version information;
+all exit afterward.
+.
+.
+.P
 .I gxditview
 accepts all of the standard X\~Toolkit command-line options along with
 the additional options listed below.
-.
-.
-.TP
-.B \-help
-This option indicates that a brief summary of the allowed options should
-be printed.
 .
 .
 .TP

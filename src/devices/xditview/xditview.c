@@ -56,6 +56,7 @@ static char rcsid[] = "$XConsortium: xditview.c,v 1.17 89/12/10 17:05:08 rws Exp
 #include <stdio.h>
 
 #include "Dvi.h"
+#include "groff_version.h"
 
 #include "xdit.bm"
 #include "xdit_mask.bm"
@@ -135,6 +136,8 @@ Syntax(const char *progname, bool had_error)
 			" [-resolution resolution]"
 			" [file]\n", progname);
 	(void) fprintf (stream, "usage: %s {-help | --help}\n",
+			progname);
+	(void) fprintf (stream, "usage: %s {-version | --version}\n",
 			progname);
 	if (had_error)
 		exit(EXIT_FAILURE);
@@ -222,6 +225,12 @@ int main(int argc, char **argv)
 	if ((strcmp(argv[1], "-help") == 0)
 	    || (strcmp(argv[1], "--help") == 0))
 		Syntax(argv[0], false /* did not have error */);
+	else if ((strcmp(argv[1], "-version") == 0)
+	    || (strcmp(argv[1], "--version") == 0)) {
+		(void) printf("GNU gxditview (groff) version %s\n",
+			      Version_string);
+		exit(EXIT_SUCCESS);
+	}
     }
 
     XtGetApplicationResources(toplevel, (XtPointer)&app_resources,

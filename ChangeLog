@@ -1,5 +1,27 @@
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[gxditview]: Support `-version`, `--version` option.  As a C
+	program, gxditview had no access to the (C++) libgroff
+	`Version_string` symbol, so construct a header file to store
+	this datum at build time.  If groff gets other user-facing C
+	programs, we should consider generating this header in
+	src/include instead.
+
+	* src/devices/xditview/xditview.am: Generate "groff_version.h"
+	file.
+	(GXDITVIEW_GROFF_VERSION_H): Define new macro.
+	($(GXDITVIEW_GROFF_VERSION_H)): Define target to generate file.
+	(XDITVIEW_GENHDRS): Add $(GXDITVIEW_GROFF_VERSION_H).
+
+	* src/devices/xditview/xditview.c: Include new header file.
+	(Syntax): Report newly supported options.
+	(main): Recognize and handle new options.
+
+	* src/devices/xditview/gxditview.1.man (Synopsis): Document
+	them.
+
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[gxditview]: Update usage message production and contents.
 
 	* src/devices/xditview/xditview.c: Use C99 Boolean type.

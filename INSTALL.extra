@@ -128,6 +128,24 @@ requires the 'pkg-config' program to be installed on your system, as
 well as the library's C header files--on a package-based host system,
 this can mean installing uchardet's '-dev' or '-devel' package.
 
+The configure script searches for fonts originating with the URW
+foundry; these are metrically-compatible replacements for the Adobe
+PostScript Level 2 base 35 fonts required by that standard.  These URW
+fonts are packaged with Ghostscript and in various derivative versions.
+The Adobe fonts are not free software, but the replacements, named
+"Nimbus Roman", "Nimbus Sans", and "Nimbus Mono", and so forth, are.
+The PostScript standard and early versions of the PDF standard assumed
+that these base fonts will be supplied by the rendering device (a
+printer or PDF viewer).  Nowadays the PDF standard expects all fonts to
+be embedded in the document; if groff's gropdf(1) output driver knows
+where to find these fonts, you can use its "-e" option for this purpose.
+The configure script populates a "Foundry" file that tells gropdf where
+they reside after searching in several common locations.  If you have
+multiple versions of the URW fonts available on your system, or the
+configure script cannot locate them on its own, use its
+"--with-urw-fonts-dir" option to tell the script where to find them.  If
+you never use groff to generate PostScript or PDF documents, you can
+ignore any output from the configure script about URW fonts.
 
 Miscellaneous
 =============

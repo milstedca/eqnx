@@ -1,5 +1,11 @@
 2022-10-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* glilypond.pl (version): Report version information in format
+	recommended by GNU coding standards.  Bump micro version number
+	to reflect this and the restructuring immediately previous.
+
+2022-10-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Make glilypond script stand alone.
 
 	* args.pl:

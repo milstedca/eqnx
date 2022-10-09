@@ -24,7 +24,7 @@ use Data::Dumper;
 our $Legalese;
 
 {
-  use constant VERSION => 'v1.3.1'; # version of glilypond
+  use constant VERSION => '1.3.2'; # version of glilypond
 
 ### This constant 'LICENSE' is the license for this file 'GPL' >= 3
   use constant LICENSE => q*
@@ -541,17 +541,14 @@ The directories set are created when they do not exist.
 
   sub version { # for '--version'
     our ( $Globals, $Legalese, $stdout, $Args );
-    my $end;
+    my $groff_version = '';
     if ( $Globals->{'groff_version'} ) {
-      $end = " version $Globals->{'groff_version'}";
-    } else {
-      $end = '.';
+      $groff_version = "(groff $Globals->{'groff_version'}) ";
     }
 
     my $output = EMPTYSTRING;
-    $output = "###### version:\n" if ( $Args->{'verbose'} );
-    $output .= "'" . $Globals->{'prog'} . "' version '" .
-      $Legalese->{'version'} . "' is part of 'GNU groff'" . $end;
+    $output = "$Globals->{'prog'} ${groff_version}version "
+      .  $Legalese->{'version'};
 
     $stdout->print($output);
   } # end sub version()

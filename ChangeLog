@@ -1,5 +1,13 @@
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/afmtodit/afmtodit.pl: Recognize "--version" as
+	synonym for "-v".  To achieve this, use Getopt::Long instead of
+	Getopt::Std.
+	* src/utils/afmtodit/afmtodit.1.man (Synopsis, Options):
+	Document it.
+
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/gropdf/pdfmom.pl: Recognize "--version" as synonym
 	for "-v".
 	* src/devices/gropdf/pdfmom.1.man (Synopsis, Description):

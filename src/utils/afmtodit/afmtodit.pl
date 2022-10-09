@@ -28,11 +28,13 @@ $prog =~ s@.*/@@;
 
 my $groff_sys_fontdir = "@FONTDIR@";
 
-use Getopt::Std;
-getopts('a:cd:e:f:i:kmno:svx');
-
 our ($opt_a, $opt_c, $opt_d, $opt_e, $opt_f, $opt_i, $opt_k,
      $opt_m, $opt_n, $opt_o, $opt_s, $opt_v, $opt_x);
+
+use Getopt::Long qw(:config gnu_getopt);
+GetOptions( "a=s", "c", "d=s", "e=s", "f=s", "i=s", "k", "m", "n",
+  "o=s", "s", "v", "x", "version" => \$opt_v
+);
 
 my $afmtodit_version = "GNU afmtodit (groff) version @VERSION@";
 

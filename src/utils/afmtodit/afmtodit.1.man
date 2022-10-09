@@ -56,6 +56,9 @@ afmtodit \- adapt Adobe Font Metrics files for groff \-Tps and \-Tpdf
 .
 .SY afmtodit
 .B \-v
+.
+.SY afmtodit
+.B \-\-version
 .YS
 .
 .
@@ -265,6 +268,12 @@ will automatically mount it when it is first used.
 .SH Options
 .\" ====================================================================
 .
+.B \-v
+and
+.B \-\-version
+show version information and exit afterward.
+.
+.
 .TP
 .BI \-a\~ slant
 Use
@@ -424,11 +433,6 @@ use with monospaced (constant-width) fonts.
 Add the
 .B special
 directive to the font description file.
-.
-.
-.TP
-.B \-v
-Write version information to the standard output stream and exit.
 .
 .
 .TP

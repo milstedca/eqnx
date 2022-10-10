@@ -1,5 +1,12 @@
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* configure.ac: If URW fonts were located, add the directory
+	where they were found to the configuration report.
+
+	Attempts to fix <https://savannah.gnu.org/bugs/?62860> (2/2).
+
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4: Try to make gropdf's search for URW font files
 	more deterministic.  To disambiguate cases where multiple--not
 	necessarily identical--copies may be found on the system, search

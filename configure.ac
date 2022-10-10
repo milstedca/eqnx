@@ -243,7 +243,13 @@ else
 fi
 echo "\
  'groff -l' uses print spooler    : $groff_have_spooler
- use URW fonts for PDF output     : $groff_have_urw_fonts
+ use URW fonts for PDF output     : $groff_have_urw_fonts"
+if test "$groff_have_urw_fonts" = yes
+then
+ echo "\
+ URW fonts directory              : $urwfontsdir"
+fi
+echo "\
  preconv can use uchardet library : $groff_have_uchardet
  can build groff.dvi, groff.pdf   : $groff_use_tex
  tests can use poppler PDF tools  : $groff_have_pdftools

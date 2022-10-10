@@ -1,5 +1,11 @@
 2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tests/ec_works.sh: Add unit test to validate use of EC
+	fonts when "-mec" option given.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/latin2.tmac:
 	* tmac/latin5.tmac:
 	* tmac/latin9.tmac: Perform the character remapping shenanigans

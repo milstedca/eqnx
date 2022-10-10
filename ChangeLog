@@ -1,5 +1,11 @@
 2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tests/an_works-with-ec.sh: Add regression test for
+	Savannah #63194.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/tests/ec_works.sh: Add unit test to validate use of EC
 	fonts when "-mec" option given.
 	* tmac/tmac.am (tmac_TESTS): Run test.

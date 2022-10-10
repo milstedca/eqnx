@@ -177,6 +177,7 @@ tmac_TESTS = \
   tmac/tests/an_reset-hyphenation-correctly.sh \
   tmac/tests/an_title-abbreviation-works.sh \
   tmac/tests/an_use-input-traps-correctly.sh \
+  tmac/tests/an_works-with-ec.sh \
   tmac/tests/andoc_clear-doc-traps.sh \
   tmac/tests/andoc_flush-between-packages.sh \
   tmac/tests/doc_CS-works.sh \

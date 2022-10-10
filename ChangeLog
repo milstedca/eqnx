@@ -1,3 +1,9 @@
+2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/gropdf/gropdf.pl (GetType1): Clarify diagnostic.
+	When failing to open a font file for embedding in a PDF, mention
+	this context.
+
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/utils/afmtodit/afmtodit.tables: Update against Unicode 15.

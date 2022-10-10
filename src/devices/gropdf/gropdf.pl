@@ -2571,7 +2571,7 @@ sub GetType1
     my $f;
 
     OpenFile(\$f,$fontdir,"$file");
-    Die("failed to open '$file'") if !defined($f);
+    Die("unable to open font '$file' for embedding") if !defined($f);
 
     $head=GetChunk($f,1,"currentfile eexec");
     $body=GetChunk($f,2,"00000000") if !eof($f);

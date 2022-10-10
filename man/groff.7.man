@@ -3177,18 +3177,16 @@ until
 is called at the start of a control line in the current conditional
 block.
 .
-.
 .TPx
 .REQ .in
-Change to previous indentation value.
+Set indentation amount to previous value.
 .
 .TPx
 .REQ .in "\[+-]N"
-Change indentation according to
+Set indentation to
 .I \[+-]N
-(default scaling indicator\~\c
+(default scaling unit\~\c
 .scaleindicator m ).
-.
 .
 .TPx
 .REQ .it "n name"
@@ -3272,17 +3270,16 @@ Ligature mode on if
 .
 .TPx
 .REQ .ll
-Change to previous line length.
+Set length of subsequent output lines to previous value.
 .
 .TPx
 .REQ .ll "\[+-]N"
-Set line length according to
+Set length of subsequent output lines to
 .I \[+-]N
 (default length
 .scalednumber 6.5 i ,
-default scaling indicator\~\c
+default scaling unit\~\c
 .scaleindicator m ).
-.
 .
 .TPx
 .REQ .lsm
@@ -3310,8 +3307,15 @@ i.e.,
 blank lines are inserted after each text output line.
 .
 .TPx
+.REQ .lt
+Set length of title lines to previous value.
+.
+.TPx
 .REQ .lt "\[+-]N"
-Length of title (default scaling indicator\~\c
+Set length of title lines
+(default length
+.scalednumber 6.5 i ,
+default scaling unit\~\c
 .scaleindicator m ).
 .
 .TPx
@@ -3921,10 +3925,10 @@ Set tab repetition glyph
 .RI to\~ c
 (default: none).
 .
-.
 .TPx
 .REQ .ti "\[+-]N"
-Temporary indent next line (default scaling indicator\~\c
+Temporarily indent next output line
+(default scaling unit\~\c
 .scaleindicator m ).
 .
 .TPx
@@ -4964,7 +4968,7 @@ formatted in a dummy environment.
 .
 .TP
 .ESCq x N
-Increase vertical spacing of current output line by
+Increase vertical spacing of pending output line by
 .IR N \~vees
 (or specified units;
 negative before,
@@ -5403,11 +5407,14 @@ The hyphenation space adjustment threshold in the current environment.
 .
 .TPx
 .REG .i
-Current indentation.
+Indentation.
 .
 .TPx
 .REG .in
-The indentation that applies to the current output line.
+Indentation applicable to the pending output line;
+see
+.request .ti
+request.
 .
 .TPx
 .REG .int
@@ -5455,14 +5462,11 @@ request).
 .
 .TPx
 .REG .ll
-The line length that applies to the current output line.
+Line length of the pending output line.
 .
 .TPx
 .REG .lt
-The title length (as set by the
-.request .lt
-request).
-.
+Title length.
 .
 .TPx
 .REG .m

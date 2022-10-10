@@ -1,5 +1,12 @@
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/afmtodit/afmtodit.tables: Update against Unicode 15.
+	No substantive changes.
+
+	Fixes <https://savannah.gnu.org/bugs/?63188>.
+
+2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: If URW fonts were located, add the directory
 	where they were found to the configuration report.
 

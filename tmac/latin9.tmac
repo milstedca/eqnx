@@ -2,6 +2,8 @@
 .\"
 .do nr *groff_latin9_tmac_C \n[.cp]
 .cp 0
+.
+.if '\*[.T]'latin1' \{\
 .\" Replace characters that ISO Latin-1 has but Latin-9 doesn't.
 .char \[Cs] \ \" space
 .char \[bb] \ \" space
@@ -21,6 +23,8 @@
 .char \[OE] \N'188'
 .char \[oe] \N'189'
 .char \[:Y] \N'190'
+.\} \" using -Tlatin1
+.
 .\" Translate eight-bit input characters.
 .\" 0xA0
 .\" char160 (no-break space) is translated on input

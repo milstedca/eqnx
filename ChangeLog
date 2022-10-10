@@ -1,5 +1,18 @@
 2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/latin2.tmac:
+	* tmac/latin5.tmac:
+	* tmac/latin9.tmac: Perform the character remapping shenanigans
+	of the fix for Savannah #63112 only if the output device is
+	"latin1" (a terminal using an 8-bit character encoding).  Only
+	then can we be sure that Latin-1 glyphs will be unavailable when
+	other encodings are used and that `\N` escape sequences will
+	identify correct glyph indices in a font (because there is no
+	font per se accessible to groff--simply a terminal implementing
+	a character encoding).
+
+2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/gropdf/gropdf.pl (GetType1): Clarify diagnostic.
 	When failing to open a font file for embedding in a PDF, mention
 	this context.

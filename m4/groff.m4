@@ -284,14 +284,15 @@ AC_DEFUN([GROFF_URW_FONTS_PATH], [
     [AS_HELP_STRING([--with-urw-fonts-dir=DIR],
       [search for URW PostScript Type 1 fonts in DIR])],
     [urwfontsdir="$withval"])
-  AC_SUBST(urwfontsdir)])
 ])
 
-# Check availability of URW fonts in the search path given by 'gs -h'
-# supplemented with the paths where font/devpdf/Foundry.in expects them,
-# or in the custom directory passed to 'configure'.
+# Check for availability of URW fonts in the directory specified by the
+# user (see GROFF_URW_FONTS_PATH above); alternatively, use the search
+# path given by 'gs -h' (if possible) supplemented with the paths where
+# font/devpdf/Foundry.in expects them.
 
 AC_DEFUN([GROFF_URW_FONTS_CHECK], [
+  AC_REQUIRE([GROFF_URW_FONTS_PATH])
   AC_REQUIRE([GROFF_AWK_PATH])
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
   groff_have_urw_fonts=no
@@ -313,7 +314,7 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
 
   if test -n "$urwfontsdir"
   then
-    _list_paths="$ _list_paths $urwfontsdir"
+    _list_paths="$urwfontsdir"
   fi
 
   for k in $_list_paths
@@ -328,6 +329,7 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
       then
         AC_MSG_RESULT([found in $k])
         groff_have_urw_fonts=yes
+        urwfontsdir=$k
         break 2
       fi
     done
@@ -336,9 +338,11 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   if test $groff_have_urw_fonts = no
   then
     AC_MSG_RESULT([none found])
+    urwfontsdir=
   fi
 
   AC_SUBST([groff_have_urw_fonts])
+  AC_SUBST(urwfontsdir)
 ])
 
 AC_DEFUN([GROFF_URW_FONTS_NOTICE], [

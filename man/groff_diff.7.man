@@ -527,19 +527,16 @@ sequence or identifier.
 .
 .TP
 .BI \[rs]B\[aq] anything \[aq]
-This expands to
-.B 1
-or\~\c
-.BR 0 ,
-depending on whether
+Interpolate 1 if
 .I anything
-is or is not a valid numeric expression.
+is a valid numeric expression,
+and\~0 otherwise.
 .
-It returns\~\c
-.B 0
-if
-.I anything
-is empty.
+You might use
+.B \[rs]B
+along with the
+.RB \[lq] if \[rq]
+request to filter out invalid macro or string arguments.
 .
 .TP
 .BR \[rs]D\[aq] .\|.\|. \[aq]

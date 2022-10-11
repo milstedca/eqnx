@@ -1,5 +1,13 @@
 2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/dvi.tmac: Always render \[aq] as a neutral apostrophe.
+	Thanks to the TC fonts, we can do this even when the default CM
+	text fonts are in use.
+
+	Fixes <https://savannah.gnu.org/bugs/?63200>.
+
+2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/ec.tmac: Remove apparently unnecessary remappings of
 	styles (and reassertion of style slots in the font mounting
 	position list, albeit in an unusual order (RBI instead of RIB)).

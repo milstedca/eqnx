@@ -1,5 +1,20 @@
 2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/ec.tmac: Remove apparently unnecessary remappings of
+	styles (and reassertion of style slots in the font mounting
+	position list, albeit in an unusual order (RBI instead of RIB)).
+	This code frustrated the rendering of man pages with post-1.22.4
+	groff for the 'dvi' output device when using EC fonts.  Instead
+	remap the T and H family typefaces in all four styles
+	explicitly.  (The CW and CWI faces were already handled.)  Also
+	add remappings of groff+PostScriptish font names "CB" and "CBI"
+	to CW EC faces of normal weight, corresponding to dvi.tmac; see
+	commits 529e2ca0c4, 2002-03-23 and c9741da6c0, 2021-05-06.
+
+	Fixes <https://savannah.gnu.org/bugs/?63194>.
+
+2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/tests/an_works-with-ec.sh: Add regression test for
 	Savannah #63194.
 	* tmac/tmac.am (tmac_TESTS): Run test.

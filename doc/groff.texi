@@ -12062,10 +12062,8 @@ creeping into them during source document maintenance.
 @cindex leading spaces with @code{ds}
 @cindex spaces with @code{ds}
 @cindex @code{ds} request, and leading spaces
-To store leading space in a string, start it with a double quote.  A
-double quote is special only in that position; double quotes in any
-other location are included in the string (the effects of escape
-sequences notwithstanding).
+An initial neutral double quote is stripped to allow
+embedding of leading spaces.
 
 @c Examples should be more accessible than Unix nerd stuff like this,
 @c but in general document authors shouldn't want to use "straight"
@@ -15084,8 +15082,8 @@ at all; its argument is simply ignored.
 @Defreq {output, string}
 Emit @var{string} directly to GNU @code{troff}'s intermediate output
 (subject to copy mode interpretation); this is similar to @code{\!} used
-at the top level.  An initial double quote in @var{string} is stripped
-off to allow initial blanks.
+at the top level.  An initial neutral double quote in @var{string} is
+stripped to allow embedding of leading spaces.
 
 This request can't be used before the first page has started---if you
 get an error, simply insert @code{.br} before the @code{output} request.
@@ -15726,8 +15724,9 @@ enable unsafe mode.
 Write to the file associated with the specified @var{stream}.  The
 stream must previously have been the subject of an open request.  The
 remainder of the line is interpreted as the @code{ds} request reads its
-second argument: A leading @samp{"} is stripped, and it is read in
-copy mode.
+second argument: an initial neutral double quote is
+stripped to allow embedding of leading spaces, and it is read in copy
+mode.
 
 The @code{writec} request is like @code{write}, but only @code{write}
 appends a newline to the data.
@@ -15807,8 +15806,8 @@ other postprocessor.
 @cindex copy mode, and @code{device} request
 @cindex mode, copy, and @code{device} request
 The @code{device} request processes its arguments in copy mode
-(@pxref{Copy Mode}).  A leading @code{"} is stripped; this enables
-@var{xxx} to contain leading spaces.
+(@pxref{Copy Mode}).  An initial neutral double quote
+is stripped to allow embedding of leading spaces.
 @cindex @code{\&}, in @code{\X}
 @cindex @code{\)}, in @code{\X}
 @cindex @code{\%}, in @code{\X}
@@ -16253,8 +16252,9 @@ the standard error stream.
 @var{string} is read in copy mode.
 
 The @code{tm} request ignores leading spaces of @var{string}; @code{tm1}
-handles its argument similar to the @code{ds} request: a leading double
-quote in @var{string} is stripped to allow initial blanks.
+handles its argument similarly to the @code{ds} request: an
+initial neutral double quote is stripped to allow
+embedding of leading spaces.
 
 The @code{tmc} request is similar to @code{tm1} but does not append a
 newline (as is done in @code{tm} and @code{tm1}).

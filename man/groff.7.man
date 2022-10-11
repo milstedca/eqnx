@@ -436,9 +436,8 @@ In the
 and
 .request .as1
 requests,
-a leading double quote in the second argument is stripped off,
-enabling the inclusion of leading space characters in the string
-definition or appendment.
+an initial neutral double quote in the second argument is stripped off
+to allow embedding of leading spaces.
 .
 To include a double quote inside a quoted argument,
 use the
@@ -3951,11 +3950,10 @@ on stderr.
 .REQ .tm1 "anything"
 Print
 .I anything
-on stderr, allowing leading whitespace if
+on stderr,
+but an initial neutral double quote in
 .I anything
-starts with
-\&\f[CB]\[dq]\f[]
-(which is stripped off).
+is stripped off to allow embedding of leading spaces.
 .
 .TPx
 .REQ .tmc "anything"

@@ -10887,10 +10887,10 @@ after the character can't be suppressed since the neighboring character
 on the right doesn't get examined.
 @endDefreq
 
-@DefreqList {char, g [@Var{string}]}
-@DefreqItemx {fchar, g [@Var{string}]}
-@DefreqItemx {fschar, f g [@Var{string}]}
-@DefreqListEndx {schar, g [@Var{string}]}
+@DefreqList {char, c [@Var{contents}]}
+@DefreqItemx {fchar, c [@Var{contents}]}
+@DefreqItemx {fschar, f c [@Var{contents}]}
+@DefreqListEndx {schar, c [@Var{contents}]}
 @cindex defining character (@code{char})
 @cindex defining fallback character (@code{fchar}, @code{fschar}, @code{schar})
 @cindex character, defining (@code{char})
@@ -10912,23 +10912,23 @@ on the right doesn't get examined.
 @cindex @code{\&}, and glyph definitions
 @cindex @code{\e}, and glyph definitions
 @cindex @code{hcode} request, and glyph definitions
-Define a new character or glyph@tie{}@var{g} to be @var{string}, which
+Define a new character or glyph@tie{}@var{c} to be @var{contents}, which
 can be empty.  More precisely, @code{char} defines a @code{groff} object
 (or redefines an existing one) that is accessed with the
-name@tie{}@var{g} on input, and produces @var{string} on output.  Every
-time glyph@tie{}@var{g} needs to be printed, @var{string} is processed
-in a temporary environment and the result is wrapped up into a single
-object.  Compatibility mode is turned off and the escape character is
-set to@tie{}@code{\} while @var{string} is processed.  Any emboldening,
-constant spacing, or track kerning is applied to this object rather than
-to individual glyphs in @var{string}.
+name@tie{}@var{c} on input, and produces @var{contents} on output.
+Every time glyph@tie{}@var{c} needs to be printed, @var{contents} is
+processed in a temporary environment and the result is wrapped up into a
+single object.  Compatibility mode is turned off and the escape
+character is set to@tie{}@code{\} while @var{contents} is processed.
+Any emboldening, constant spacing, or track kerning is applied to this
+object rather than to individual glyphs in @var{contents}.
 
 An object defined by these requests can be used just like a normal glyph
 provided by the output device.  In particular, other characters can be
 translated to it with the @code{tr} or @code{trin} requests; it can be
 made the leader character with the @code{lc} request; repeated patterns
 can be drawn with it using the @code{\l} and @code{\L} escape sequences;
-and words containing@tie{}@var{g} can be hyphenated correctly if the
+and words containing@tie{}@var{c} can be hyphenated correctly if the
 @code{hcode} request is used to give the object a hyphenation code.
 
 There is a special anti-recursion feature: use of the object within its
@@ -11982,8 +11982,8 @@ name and contents and the @code{\*} escape sequence dereferences its
 name, retrieving the contents.  Dereferencing an undefined string name
 defines it as empty.
 
-@DefreqList {ds, name [@Var{string}]}
-@DefreqItemx {ds1, name [@Var{string}]}
+@DefreqList {ds, name [@Var{contents}]}
+@DefreqItemx {ds1, name [@Var{contents}]}
 @DefescItemx {\\*, , n, }
 @DefescItem {\\*, (, nm, }
 @c XXX: Can't mark the parameters with @Var because @Var gets called
@@ -11996,7 +11996,7 @@ defines it as empty.
 @cindex expansion of strings (@code{\*})
 @cindex string arguments
 @cindex arguments, of strings
-Define a string variable @var{name} with contents @var{string}.  If
+Define a string variable @var{name} with contents @var{contents}.  If
 @var{name} already exists, it is removed first (see @code{rm} below).
 The syntax form using brackets accepts arguments that are handled as
 macro arguments are; recall @ref{Calling Macros}.  In contrast to macro
@@ -12062,7 +12062,7 @@ creeping into them during source document maintenance.
 @cindex leading spaces with @code{ds}
 @cindex spaces with @code{ds}
 @cindex @code{ds} request, and leading spaces
-An initial neutral double quote is stripped to allow
+An initial neutral double quote in @var{contents} is stripped to allow
 embedding of leading spaces.
 
 @c Examples should be more accessible than Unix nerd stuff like this,
@@ -12248,11 +12248,11 @@ string, and a @dfn{compatibility restore} input token at the end.
     @result{} The value of xxx is 12345.
 @endExample
 
-@DefreqList {as, name [@Var{string}]}
-@DefreqListEndx {as1, name [@Var{string}]}
+@DefreqList {as, name [@Var{contents}]}
+@DefreqListEndx {as1, name [@Var{contents}]}
 @cindex appending to a string (@code{as})
 @cindex string, appending (@code{as})
-The @code{as} request is similar to @code{ds} but appends @var{string}
+The @code{as} request is similar to @code{ds} but appends @var{contents}
 to the string stored as @var{name} instead of redefining it.  If
 @var{name} doesn't exist yet, it is created.  If @code{as} is called
 with only one argument, no operation is performed (beyond dereferencing
@@ -13790,10 +13790,10 @@ centered, and the resulting spacing is the largest width of the affected
 glyphs.
 @endDefesc
 
-@Defesc {\\z, , g, }
+@Defesc {\\z, , c, }
 @cindex zero-width printing (@code{\z}, @code{\Z})
 @cindex printing, zero-width (@code{\z}, @code{\Z})
-Print glyph @var{g} with zero width, i.e., without spacing.  Use this to
+Print glyph @var{c} with zero width, i.e., without spacing.  Use this to
 overstrike glyphs left-aligned.
 @endDefesc
 
@@ -13838,7 +13838,7 @@ and it may be wise to use graphic preprocessors like @code{gpic} or
 All drawing is done via escape sequences.
 
 @DefescList {\\l, @code{'}, l, @code{'}}
-@DefescListEnd {\\l, @code{'}, lg, @code{'}}
+@DefescListEnd {\\l, @code{'}, lc, @code{'}}
 @cindex drawing horizontal lines (@code{\l})
 @cindex horizontal line, drawing (@code{\l})
 @cindex line, horizontal, drawing (@code{\l})
@@ -13856,7 +13856,7 @@ scaling indicator is @samp{m}.
 @cindex glyph, underscore (@code{\[ru]})
 @cindex line drawing glyph
 @cindex glyph, for line drawing
-The optional second parameter@tie{}@var{g} is a glyph to draw the line
+The optional second parameter@tie{}@var{c} is a glyph to draw the line
 with.  If this second argument is not specified, @code{gtroff} uses the
 underscore glyph, @code{\[ru]}.
 
@@ -14114,17 +14114,17 @@ Examples:
 @codequotebacktick on
 @codequoteundirected on
 
-@Defesc {\\b, @code{'}, string, @code{'}}
+@Defesc {\\b, @code{'}, contents, @code{'}}
 @cindex pile, glyph (@code{\b})
 @cindex glyph pile (@code{\b})
 @cindex stacking glyphs (@code{\b})
 Pile and center a sequence of glyphs vertically on the output line.
 @dfn{Piling} vertically stacks glyphs corresponding to each character in
-the argument @var{string}, read from left to right, and placed from top
-to bottom.  GNU @code{troff} separates the glyphs vertically by
-1@dmn{m}, and the pile itself is centered 0.5@dmn{m} above the text
-baseline.  The horizontal drawing position is then advanced by the width
-of the widest glyph in the pile.
+@var{contents}, read from left to right, and placed from top to bottom.
+GNU @code{troff} separates the glyphs vertically by 1@dmn{m}, and the
+pile itself is centered 0.5@dmn{m} above the text baseline.  The
+horizontal drawing position is then advanced by the width of the widest
+glyph in the pile.
 
 @cindex @code{\b}, limitations of
 @cindex limitations of @code{\b} escape sequence
@@ -15080,10 +15080,10 @@ at all; its argument is simply ignored.
 @cindex @code{output} request, and copy mode
 @cindex copy mode, and @code{output} request
 @cindex mode, copy, and @code{output} request
-@Defreq {output, string}
-Emit @var{string} directly to GNU @code{troff}'s intermediate output
+@Defreq {output, contents}
+Emit @var{contents} directly to GNU @code{troff}'s intermediate output
 (subject to copy mode interpretation); this is similar to @code{\!} used
-at the top level.  An initial neutral double quote in @var{string} is
+at the top level.  An initial neutral double quote in @var{contents} is
 stripped to allow embedding of leading spaces.
 
 This request can't be used before the first page has started---if you
@@ -15093,7 +15093,7 @@ Without argument, @code{output} is ignored.
 
 Use with caution!  It is normally only needed for mark-up used by a
 postprocessor that does something with the output before sending it to
-the output device, filtering out @var{string} again.
+the output device, filtering out @var{contents} again.
 @endDefreq
 
 @Defreq {asciify, div}
@@ -15725,7 +15725,7 @@ enable unsafe mode.
 Write to the file associated with the specified @var{stream}.  The
 stream must previously have been the subject of an open request.  The
 remainder of the line is interpreted as the @code{ds} request reads its
-second argument: an initial neutral double quote is
+second argument: an initial neutral double quote in @var{contents} is
 stripped to allow embedding of leading spaces, and it is read in copy
 mode.
 
@@ -15807,7 +15807,7 @@ other postprocessor.
 @cindex copy mode, and @code{device} request
 @cindex mode, copy, and @code{device} request
 The @code{device} request processes its arguments in copy mode
-(@pxref{Copy Mode}).  An initial neutral double quote
+(@pxref{Copy Mode}).  An initial neutral double quote in @var{contents}
 is stripped to allow embedding of leading spaces.
 @cindex @code{\&}, in @code{\X}
 @cindex @code{\)}, in @code{\X}
@@ -16233,12 +16233,12 @@ diagnostic messages emitted by @code{troff} correspond to the original
 source document.
 @endDefreq
 
-@DefreqList {tm, string}
-@DefreqItemx {tm1, string}
-@DefreqListEndx {tmc, string}
+@DefreqList {tm, contents}
+@DefreqItemx {tm1, contents}
+@DefreqListEndx {tmc, contents}
 @cindex printing to stderr (@code{tm}, @code{tm1}, @code{tmc})
 @cindex stderr, printing to (@code{tm}, @code{tm1}, @code{tmc})
-Send @var{string}, which consumes the remainder of the input line, to
+Send @var{contents}, which consumes the remainder of the input line, to
 the standard error stream.
 
 @cindex @code{tm} request, and copy mode
@@ -16250,22 +16250,22 @@ the standard error stream.
 @cindex @code{tmc} request, and copy mode
 @cindex copy mode, and @code{tmc} request
 @cindex mode, copy, and @code{tmc} request
-@var{string} is read in copy mode.
+@var{contents} is read in copy mode.
 
-The @code{tm} request ignores leading spaces of @var{string}; @code{tm1}
-handles its argument similarly to the @code{ds} request: an
-initial neutral double quote is stripped to allow
-embedding of leading spaces.
+The @code{tm} request ignores leading spaces of @var{contents};
+@code{tm1} handles its argument similarly to the @code{ds} request: an
+initial neutral double quote is stripped to allow embedding of leading
+spaces.
 
 The @code{tmc} request is similar to @code{tm1} but does not append a
 newline (as is done in @code{tm} and @code{tm1}).
 @endDefreq
 
-@Defreq {ab, [@Var{string}]}
+@Defreq {ab, [@Var{contents}]}
 @cindex aborting (@code{ab})
-Write any @var{string} to the standard error stream (like @code{tm}) and
-then abort GNU @code{troff}; that is, stop processing and terminate with
-a failure status.
+Write any @var{contents} to the standard error stream (like @code{tm})
+and then abort GNU @code{troff}; that is, stop processing and terminate
+with a failure status.
 @endDefreq
 
 @Defreq {ex, }

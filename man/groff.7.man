@@ -2348,18 +2348,17 @@ Same as
 but with compatibility mode switched off during macro expansion.
 .
 .TPx
-.REQ .as "name \fR[\fPstring\fR]\fP"
+.REQ .as "string \fR[\fPcontents\fR]\fP"
 Append
-.I string
-to the string
-.IR name ;
+.I contents
+to
+.IR string ;
 no operation if
-.I string
-is omitted.
-.
+.I contents
+omitted.
 .
 .TPx
-.REQ .as1 "name \fR[\fPstring\fR]\fP"
+.REQ .as1 "string \fR[\fPcontents\fR]\fP"
 Same as
 .request .as
 but with compatibility mode switched off during string expansion.
@@ -2513,11 +2512,11 @@ is absent.
 .
 .
 .TPx
-.REQ .char "c anything"
+.REQ .char "c contents"
 Define entity
 .I c
-as string
-.IR anything .
+as
+.IR contents .
 .
 .TPx
 .REQ .chop object
@@ -2898,11 +2897,11 @@ and pad glyph to\~\c
 .IR b .
 .
 .TPx
-.REQ .fchar "c anything"
+.REQ .fchar "c contents"
 Define fallback character (or glyph)
 .I c
-as string
-.IR anything .
+as
+.IR contents .
 .
 .
 .TPx
@@ -3474,10 +3473,11 @@ Output vertical distance that was saved by the
 request.
 .
 .TPx
-.REQ .output "string"
+.REQ .output contents
 Emit
-.I string
-directly to intermediate output, allowing leading whitespace if
+.I contents
+directly to intermediate output,
+allowing leading whitespace if
 .I string
 starts with
 \&\f[CB]\[dq]\f[]
@@ -3678,11 +3678,11 @@ indicator\~\c
 .scaleindicator v ).
 .
 .TPx
-.REQ .schar "c anything"
+.REQ .schar "c contents"
 Define global fallback character (or glyph)\~\c
 .I c
-as string
-.IR anything .
+as
+.IR contents .
 .
 .
 .TPx
@@ -3941,22 +3941,22 @@ Enable track kerning for
 Three-part title.
 .
 .TPx
-.REQ .tm "anything"
+.REQ .tm contents
 Print
-.I anything
+.I contents
 on stderr.
 .
 .TPx
-.REQ .tm1 "anything"
+.REQ .tm1 contents
 Print
 .I anything
 on stderr,
 but an initial neutral double quote in
-.I anything
+.I contents
 is stripped off to allow embedding of leading spaces.
 .
 .TPx
-.REQ .tmc "anything"
+.REQ .tmc contents
 Similar to
 .request .tm1
 without emitting a final newline.
@@ -4668,12 +4668,12 @@ Mark horizontal position in register with arbitrarily long
 .
 .
 .TP
-.ESCq l N\f[R][\f[]g\f[R]]
+.ESCq l N\f[R][\f[]c\f[R]]
 Draw horizontal line of length
 .IR N \~ems
 (or specified units),
 optionally using
-.RI glyph\~ g .
+.RI glyph\~ c .
 .
 .
 .TP

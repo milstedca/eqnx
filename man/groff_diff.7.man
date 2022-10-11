@@ -1280,7 +1280,7 @@ request but compatibility mode is switched off during execution.
 .
 .
 .TP
-.BI .as1\~ "name string"
+.BI .as1\~ "name contents"
 Similar to
 .BR .as ,
 but compatibility mode is switched off when the appended portion of the
@@ -1289,7 +1289,7 @@ string is later interpolated.
 To be more precise,
 a \[lq]compatibility save\[rq] token is inserted at the beginning of the
 appended string
-.IR string ,
+.IR contents ,
 and a \[lq]compatibility restore\[rq] token at the end.
 .
 As a consequence,
@@ -1638,11 +1638,11 @@ character on the right doesn't get examined.
 .
 .
 .TP
-.BI .char\~ "g string"
+.BI .char\~ "c contents"
 Define a new character or
-.RI glyph\~ g
+.RI glyph\~ c
 to be
-.IR string ,
+.IR contents ,
 which can be empty.
 .
 More precisely,
@@ -1652,16 +1652,16 @@ defines a
 object
 (or redefines an existing one)
 that is accessed with the
-.RI name\~ g
+.RI name\~ c
 on input,
 and produces
-.I string
+.I contents
 on output.
 .
 Every time
-.RI glyph\~ g
+.RI glyph\~ c
 needs to be printed,
-.I string
+.I contents
 is processed in a temporary environment and the result is wrapped up
 into a single object.
 .
@@ -1669,14 +1669,14 @@ Compatibility mode is turned off and the escape character is
 set
 .RB to\~ \[rs]
 while
-.I string
+.I contents
 is processed.
 .
 Any emboldening,
 constant spacing,
 or track kerning is applied to this object rather than to individual
 glyphs in
-.IR string .
+.IR contents .
 .
 .
 .IP
@@ -1696,7 +1696,7 @@ and
 .B \[rs]L
 escape sequences;
 and words
-.RI containing\~ g
+.RI containing\~ c
 can be hyphenated correctly,
 if the
 .B .hcode
@@ -2018,16 +2018,16 @@ is executed.
 .
 .
 .TP
-.BI .device\~ anything
+.BI .device\~ contents
 This request performs (almost) the same operation as the
 .B \[rs]X
 escape sequence.
 .
-.I anything
+.I contents
 is read in copy mode.
 .
 An initial neutral double quote in
-.I anything
+.I contents
 is stripped off to allow embedding of leading spaces.
 .
 .
@@ -2113,15 +2113,15 @@ as output.
 .
 .
 .TP
-.BI .ds1\~ "name string"
+.BI .ds1\~ "name contents"
 Similar to
 .BR .ds ,
 but compatibility mode is switched off when the string is later
 interpolated.
 .
 To be more precise,
-a \[lq]compatibility save\[rq] token is inserted at the beginning of the
-string,
+a \[lq]compatibility save\[rq] token is inserted at the beginning of
+.IR contents ,
 and a \[lq]compatibility restore\[rq] token at the end.
 .
 .
@@ -2214,11 +2214,11 @@ The current font family is associated with the environment.
 .
 .
 .TP
-.BI .fchar\~ c\~string
+.BI .fchar\~ c\~contents
 Define fallback character (or glyph)\~\c
 .I c
 to be
-.IR string .
+.IR contents .
 .
 The syntax of this request is the same as the
 .B char
@@ -2243,13 +2243,13 @@ restore the previous fill color.
 .
 .
 .TP
-.BI .fschar\~ f\~c\~string
+.BI .fschar\~ f\~c\~contents
 Define fallback character (or glyph)\~\c
 .I c
 for font\~\c
 .I f
 to be
-.IR string .
+.IR contents .
 .
 The syntax of this request is the same as the
 .B char
@@ -2936,9 +2936,9 @@ but if
 exists, append to it instead of truncating it.
 .
 .TP
-.BI .output\~ string
+.BI .output\~ contents
 Emit
-.I string
+.I contents
 directly to the intermediate output (subject to copy-mode
 interpretation);
 this is similar to
@@ -2946,7 +2946,7 @@ this is similar to
 used at the top level.
 .
 An initial neutral double quote in
-.I string
+.I contents
 is stripped off to allow embedding of leading spaces.
 .
 .
@@ -3102,11 +3102,11 @@ the request is ignored.
 .
 .
 .TP
-.BI .schar\~ c\~string
+.BI .schar\~ c\~contents
 Define global fallback character (or glyph)\~\c
 .I c
 to be
-.IR string .
+.IR contents .
 .
 The syntax of this request is the same as the
 .B char
@@ -3337,10 +3337,10 @@ file controls which font positions (if any) are initially associated
 with styles rather than fonts.
 .
 .TP
-.BI .substring\~ "str start\~"\c
+.BI .substring\~ "string start\~"\c
 .RI [ end ]
 Replace the string named
-.I str
+.I string
 with its substring bounded by the indices
 .I start
 and
@@ -3398,18 +3398,18 @@ and less than or equal to
 the increase in width is a linear function of the type size.
 .
 .TP
-.BI .tm1\~ string
+.BI .tm1\~ contents
 Similar to the
 .B tm
 request,
-.I string
+.I contents
 is read in copy mode and written on the standard error,
 but an initial neutral double quote in
-.I string
+.I contents
 is stripped off to allow embedding of leading spaces.
 .
 .TP
-.BI .tmc\~ string
+.BI .tmc\~ contents
 Similar to
 .B tm1
 but without writing a final newline.

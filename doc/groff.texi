@@ -6958,7 +6958,7 @@ neutral apostrophe @code{'} is a popular choice and shown in this
 document.  The neutral double quote @code{"} is also commonly seen.
 Letters, numerals, and leaders can be used.  Punctuation characters
 are likely better choices, except for those defined as infix operators
-in numerical expressions; see below.
+in numeric expressions; see below.
 
 @Example
 \l'1.5i\[bu]' \" draw 1.5 inches of bullet glyphs
@@ -10844,7 +10844,7 @@ combination with values 2 and@tie{}4 (initially, no characters have this
 property).
 
 For example, if you need an automatic break point after the en-dash in
-numerical ranges like ``3000--5000'', insert
+numeric ranges like ``3000--5000'', insert
 
 @Example
 .cflags 68 \[en]

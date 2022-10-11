@@ -80,7 +80,7 @@ features identifiers of arbitrary length,
 supports non-integral type sizes,
 adds new escape sequences and requests,
 provides new conditional expression operators,
-recognizes additional scaling units and numerical operators,
+recognizes additional scaling units and numeric operators,
 and extends the function of some escape sequences and requests
 present in
 .RI AT&T\~ troff .
@@ -1566,7 +1566,7 @@ no characters have this property.
 .IP
 For example,
 if you need an automatic break point after
-the en-dash in numerical ranges like \[lq]3000\[en]5000\[rq],
+the en-dash in numeric ranges like \[lq]3000\[en]5000\[rq],
 insert
 .RS
 .RS

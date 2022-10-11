@@ -86,7 +86,7 @@ language reference
 .    BR \\$*
 ..
 .
-.\" ========= numerical elements =========
+.\" ========= numeric elements =========
 .
 .\" number with a trailing unit
 .de scalednumber
@@ -1697,7 +1697,7 @@ numerals,
 and leaders can be used.
 .
 Punctuation characters are likely better choices,
-except for those defined as infix operators in numerical expressions,
+except for those defined as infix operators in numeric expressions,
 see below.
 .
 .
@@ -2153,11 +2153,11 @@ except when it is read in copy mode.
 .
 .TPx
 .I n
-is a numerical expression that evaluates to an integer value.
+is a numeric expression that evaluates to an integer value.
 .
 .TPx
 .I N
-is an optionally-signed numerical expression.
+is an optionally-signed numeric expression.
 .
 .TPx
 .I \[+-]N
@@ -2169,7 +2169,7 @@ depending on its sign.
 .
 .
 .P
-If a numerical expression presented as
+If a numeric expression presented as
 .I \[+-]N
 starts with a
 .squoted_char +
@@ -4519,7 +4519,7 @@ and center it vertically on the output line.
 .ESCq B anything
 Interpolate 1 if
 .I anything
-is a valid numerical expression,
+is a valid numeric expression,
 and\~0 otherwise.
 .
 .
@@ -5152,7 +5152,7 @@ and aliasing
 .SH Registers
 .\" ====================================================================
 .
-Most registers store numerical values
+Most registers store numeric values
 (see section \[lq]Numerical Expressions\[rq] above),
 but some
 (predefined,

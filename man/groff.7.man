@@ -5006,12 +5006,10 @@ as if it were zero-width.
 .
 .TP
 .ESCq Z anything
-Print
-.I anything
-and then restore the horizontal and vertical position;
-.I anything
-must not contain tabs or leaders.
-.
+Save the drawing position,
+format
+.IR anything ,
+then restore it.
 .LE
 .
 .

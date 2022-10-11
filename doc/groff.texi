@@ -13800,8 +13800,8 @@ overstrike glyphs left-aligned.
 @Defesc {\\Z, @code{'}, anything, @code{'}}
 @cindex zero-width printing (@code{\z}, @code{\Z})
 @cindex printing, zero-width (@code{\z}, @code{\Z})
-Print @var{anything}, then restore the horizontal and vertical position.
-The argument may not contain tabs or leaders.
+Save the drawing position, format @var{anything}, then restore it.  The
+argument may not contain tabs or leaders.
 
 An example of a strike-through macro follows.
 

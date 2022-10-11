@@ -899,7 +899,11 @@ and confuses drivers that do not know about this extension.
 .
 .TP
 .BI \[rs]Z\[aq] anything \[aq]
-Print anything and then restore the horizontal and vertical position;
+Save the drawing position,
+format
+.IR anything ,
+then restore it.
+.
 .I anything
 may not contain tabs or leaders.
 .

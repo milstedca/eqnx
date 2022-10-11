@@ -3348,7 +3348,7 @@ with its substring bounded by the indices
 .I start
 and
 .IR end ,
-inclusive.
+inclusively.
 .
 The first character in the string has index\~0.
 .

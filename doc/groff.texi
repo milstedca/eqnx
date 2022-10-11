@@ -11978,9 +11978,9 @@ Contains the name of the output device (for example, @samp{utf8} or
 @endDefmpstr
 
 The @code{ds} (or @code{ds1}) request creates a string with a specified
-name and contents and the @code{\*} escape dereferences its name,
-retrieving the contents.  Dereferencing an undefined string name defines
-it as empty.
+name and contents and the @code{\*} escape sequence dereferences its
+name, retrieving the contents.  Dereferencing an undefined string name
+defines it as empty.
 
 @DefreqList {ds, name [@Var{string}]}
 @DefreqItemx {ds1, name [@Var{string}]}
@@ -12018,8 +12018,8 @@ I see a \*[b].
     @result{} I see a big, hairy wildebeest.
 @endExample
 
-If the string named by the @code{\*} escape does not exist, it is
-defined as empty, and a warning in category @samp{mac} is produced.
+If the string named by the @code{\*} escape sequence does not exist, it
+is defined as empty, and a warning in category @samp{mac} is produced.
 @xref{Debugging}, for information about the enablement and suppression
 of warnings.
 
@@ -12041,7 +12041,7 @@ the material they annotate, as is conventional.
 
 @noindent
 Instead, place the comment on another line or put the comment escape
-immediately adjacent to the last character of the string.
+sequence immediately adjacent to the last character of the string.
 
 @Example
 .ds H2O H\v'+.3m'\s'-2'2\v'-.3m'\s0O\" water
@@ -12091,7 +12091,7 @@ of input.
 
 It is not possible to embed a newline in a string that will be
 interpreted as such when the string is interpolated.  To achieve that
-effect, use the @code{\*} escape to interpolate a macro instead.
+effect, use @code{\*} to interpolate a macro instead.
 
 Macros, strings, and diversions share a name space; see
 @ref{Identifiers}.  Internally, the same mechanism is used to store
@@ -12176,8 +12176,9 @@ interpolation system
 
 @noindent
 As the previous example shows, it is possible to store formatted output
-in strings.  The @code{\c} escape prevents the subsequent newline from
-being interpreted as a break (again, @pxref{Line Continuation}).
+in strings.  The @code{\c} escape sequence prevents the subsequent
+newline from being interpreted as a break (again,
+@pxref{Line Continuation}).
 
 Copying diversions longer than a single output line produces unexpected
 results.

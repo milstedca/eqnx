@@ -12004,13 +12004,11 @@ invocations, however, a closing bracket as a string argument must be
 enclosed in double quotes.  @code{\\*} is interpreted even in copy mode
 (@pxref{Copy Mode}).
 
-The @code{\*} escape @dfn{interpolates} (expands in place) a previously
-defined string variable @var{name} (one-character name@tie{}@var{n},
-two-character name @var{nm}).  More precisely, the stored string is
-pushed onto the input stack, which is then parsed normally.  Similarly
-to registers, it is possible to nest strings; i.e., string variables can
-be called within string variables.  An argument in a string definition
-must be escaped for correct behavior;
+The @code{\*} escape sequence @dfn{interpolates} (expands in place) a
+previously defined string variable @var{name} (one-character
+name@tie{}@var{n}, two-character name @var{nm}).  The delimited form
+need not use the neutral apostrophe; see @ref{Delimiters}.  An argument
+in a string definition must be escaped for correct behavior;
 @xref{Parameters}.
 
 @Example
@@ -18519,13 +18517,9 @@ They appear without the leading control character (normally @samp{.}).
 @node String Index, File Keyword Index, Macro Index, Top
 @appendix String Index
 
-The macro package or program a specific string belongs to is appended in
-brackets.
-
-A string name@tie{}@code{x} consisting of exactly one character can be
-accessed as @samp{\*x}.  A string name @code{xx} consisting of exactly
-two characters can be accessed as @samp{\*(xx}.  String names @code{xxx}
-of any length can be accessed as @samp{\*[xxx]}.
+The macro package or program a that defines or uses each string is
+appended in brackets. (Only one string, @code{.T}, is defined by the
+@code{troff} formatter itself.)  @xref{Strings}.
 
 
 @printindex st

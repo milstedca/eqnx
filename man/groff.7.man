@@ -4494,17 +4494,11 @@ and
 In copy mode,
 interpolate leader character.
 .
-.
 .TP
 .ESCq A anything
 Interpolate 1 if
 .I anything
-is an acceptable identifier for a string,
-macro,
-diversion,
-register,
-environment,
-or font,
+is a valid identifier,
 and\~0 otherwise.
 .
 .TP

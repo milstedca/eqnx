@@ -510,23 +510,20 @@ and then by symbol roughly in Unicode code point order.
 .
 .TP
 .BI \[rs]A\[aq] anything \[aq]
-This expands to
-.B 1
-or\~\c
-.BR 0 ,
-depending on whether
+Interpolate 1 if
 .I anything
-is or is not acceptable as the name of a string, macro, diversion,
-register, environment, font, or color.
+is a valid identifier,
+and\~0 otherwise.
 .
-It returns\~\c
-.B 0
-if
-.I anything
-is empty.
+Because invalid input characters are
+removed, invalid identifiers are empty or contain spaces,
+tabs,
+or newlines.
 .
-This is useful if you want to look up user input in some sort of
-associative table.
+You can employ
+.B \[rs]A
+to validate a macro argument before using it to construct another escape
+sequence or identifier.
 .
 .TP
 .BI \[rs]B\[aq] anything \[aq]

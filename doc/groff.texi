@@ -6400,12 +6400,12 @@ characters @samp{[} or @samp{]}, you foreclose use of the @code{grefer}
 preprocessor, which recognizes @samp{.[} and @samp{.]} as bibliographic
 reference delimiters.
 
-@Defesc {\\A, @code{'}, ident, @code{'}}
-Interpolate@tie{}1 if @var{ident} is a valid identifier in GNU
-@code{troff}, and@tie{}0 otherwise.  The delimiter need not be a neutral
-apostrophe; see @ref{Delimiters}.  Because invalid input characters are
-removed (see above), invalid identifiers are empty or contain spaces,
-tabs, or newlines.
+@Defesc {\\A, @code{'}, anything, @code{'}}
+Interpolate@tie{}1 if @var{anything} is a valid identifier, and@tie{}0
+otherwise.  The delimiter need not be a neutral apostrophe; see
+@ref{Delimiters}.  Because invalid input characters are removed (see
+above), invalid identifiers are empty or contain spaces, tabs, or
+newlines.
 
 You can employ @code{\A} to validate a macro argument before using it to
 construct another escape sequence or identifier.

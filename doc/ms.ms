@@ -622,6 +622,17 @@ and,
 at the rarefied heights,
 an abstract of its content.
 .
+By default,
+.I ms
+arranges most of the document description
+(the title,
+author names and institutions,
+and abstract,
+but not the date)
+at the top of the first page.
+.
+.
+.PP
 Define these data by calling the macros below in the order shown;
 .CW .DA
 or
@@ -661,13 +672,6 @@ Use the \[lq]report\[rq]
 (AT&T: \[lq]released paper\[rq])
 format for your document,
 creating a separate cover page.
-.
-The default arrangement is to place most of the document description
-(title,
-author names and institutions,
-and abstract,
-but not the date)
-at the top of the first page.
 .
 If the optional
 .CW no\-\:\%repeat\-\:\%info
@@ -3895,7 +3899,7 @@ macros,
 including those for paragraphs,
 headings,
 and displays,
-cause a reset of paragraph rendering parameters,
+cause a reset of formatting parameters,
 and may change the indentation;
 they do so not by incrementing or decrementing it,
 but by setting it absolutely.

@@ -416,6 +416,13 @@ o The s (ms) macro package's `RP` macro recognizes a new optional
   the latter will continue to be supported for backward compatibility.
   Optional arguments to `RP` can be given in any order.
 
+o The s (ms) macro package supports new macros `XN` and `XH` to ease the
+  input of numbered and unnumbered section headings, respectively.  They
+  internally call the `XS` and `XE` macros to produce table of contents
+  entries, and lay a foundation for inclusion of PDF bookmarks, all
+  without requiring retyping of the heading text as the package
+  previously encouraged.  Thanks to Keith Marshall.
+
 o The "a4.tmac" file has been dropped from the distribution.  Its
   successor, "papersize.tmac", has been present and documented for
   nearly 20 years.  See subsection "Paper size" of groff(1).

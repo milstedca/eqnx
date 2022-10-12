@@ -1330,16 +1330,16 @@ End
 table.
 .TL
 .b .PS
-.i w
 .i h
+.i w
 .DE
 Begin
 .i \%@g@pic (1)
 picture.
-.i w
+.i h
 [empty]
 and
-.i h
+.i w
 [empty],
 if present,
 scale the image.

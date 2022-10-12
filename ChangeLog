@@ -185,10 +185,7 @@
 
 2022-10-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	* doc/meref.me.in: Fix documentation errors.
-	(Preprocessor Support) <PS>: Swap argument order (width comes
-	first), note empty defaults, and (vaguely) describe their
-	purpose.  DWB and GNU pic semantics evidently diverge here.
+	* doc/meref.me.in: Fix documentation error.
 	(Summary) <\_>: Describe as "underrule", not "underscore".
 	These are distinct: the latter is a glyph; the former is drawn
 	by typesetters and rendered with SGR attributes on terminals.

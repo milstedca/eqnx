@@ -8706,8 +8706,8 @@ static void read_color_draw_node(token &start)
     curenv->set_fill_color(col);
   while (tok != start) {
     if (tok.is_newline() || tok.is_eof()) {
-      warning(WARN_DELIM, "missing closing delimiter in color drawing"
-	      " command (got %1)", tok.description());
+      warning(WARN_DELIM, "missing closing delimiter in color space"
+	      " drawing escape sequence (got %1)", tok.description());
       input_stack::push(make_temp_iterator("\n"));
       break;
     }

@@ -1,3 +1,8 @@
+2022-10-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (read_color_draw_node): Clarify
+	diagnostic.
+
 2022-10-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/dvi.tmac: Always render \[aq] as a neutral apostrophe.

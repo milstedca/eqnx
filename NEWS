@@ -267,7 +267,7 @@ o The an (man) and doc (mdoc) macro packages support a new `AD` string
 o The an (man) and doc (mdoc) macro packages support new `CS` and `CT`
   registers to control rendering of man page section headings and titles
   (seen in the page header), respectively, in full capitals.  These
-  default off (with no visible effect on pages which already fully
+  default off (with no visible effect on pages that already fully
   capitalize such text in man page sources).  The rationale is to
   encourage man page authors to preserve case distinction information in
   (or restore it to) their titles and section headings, while giving

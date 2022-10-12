@@ -203,6 +203,10 @@ o The an (man) and doc (mdoc) macro packages no longer remap the -, ',
   glyphs"; from the Linux man-pages project) contain such instructions.
   Doing so also improves man page typography when formatting for PDF.
 
+  If you maintain a generator of man(7) or mdoc(7) documents (such as a
+  tool that converts other formats to them), and need assistance, please
+  contact the groff@gnu.org mailing list and describe your situation.
+
 o The an (man) macro package can now produce clickable hyperlinks within
   terminal emulators, using the OSC 8 support added to grotty(1) (see
   below).  The groff man(7) extension macros `UR` and `MT`, present

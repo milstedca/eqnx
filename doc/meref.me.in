@@ -388,7 +388,7 @@ they are available in
 Automatic section numbering at all depths begins at 1.
 The heading is set in font
 .NR (sf
-[8]
+[3]
 at size
 .NR (sp
 [10p]
@@ -812,6 +812,7 @@ arguments are handled as with
 .b .)b
 .DE
 End block.
+.\" dead-tree pagination
 .br
 .ne 3v
 .TL
@@ -884,7 +885,9 @@ Endnotes are one application.
 .DE
 End delayed text.
 .NR ($d
-is incremented.
+and the associated string
+.ST #
+are incremented.
 .TL
 .b .pd
 .DE
@@ -1082,8 +1085,9 @@ Like
 but begin a column
 on a new page
 only if necessary.
-.nr bs 0
-.(b
+.\" dead-tree pagination
+.br
+.ne 4v
 .sh 1 "Type Size and Font Styles"
 .TL
 .b .sz
@@ -1096,9 +1100,9 @@ and the vertical spacing per
 .NR (tv .
 These do
 .i not
-persist beyond most \*(ME macro calls:
-when a paragraphing macro is called,
-the type size and vertical spacing are set.
+persist beyond many \*(ME macro calls:
+paragraph macros reset
+the type size and vertical spacing.
 Similarly,
 headers/footers,
 section headings,
@@ -1106,10 +1110,18 @@ long quotations,
 footnotes,
 and
 chapter titles
-alter these parameters.
-.)b
-.nr bs \n(ps
-.lp
+alter them.
+.pp
+\*(ME assumes that font positions 1 through 4 correspond to
+roman,
+italic,
+bold,
+and bold-italic typefaces,
+respectively.
+Use the
+.b .fp
+request to mount your preferred fonts in these positions.
+.pp
 The following macros
 style or decorate an argument
 .i W
@@ -1662,6 +1674,32 @@ stored in
 Titles and footnotes
 are unaffected.
 .TL
+.b .hl
+.DE
+Break and draw a horizontal line
+of the current line length.
+You might call
+.b .hl
+at the beginning and/or end
+of a floating keep
+to differentiate
+the text from a figure.
+.TL
+.b .ep
+.DE
+End this page,
+but do not begin the next page.
+Useful for forcing out footnotes,
+but other than
+that hardly ever used.
+Must be followed by a
+.b .bp
+or the end of input.
+.pp
+\*(ME uses \*T's environment 0 for body text,
+1 for keeps,
+and 2 for headers and footers.
+.TL
 .b .xl
 .i \(+-n
 .DE
@@ -1693,28 +1731,7 @@ and store it in
 This macro should not be used
 after output has begun,
 and particularly not in multi-column layouts.
-.TL
-.b .hl
-.DE
-Break and draw a horizontal line
-of the current line length.
-You might call
-.b .hl
-at the beginning and/or end
-of a floating keep
-to differentiate
-the text from a figure.
-.TL
-.b .ep
-.DE
-End this page,
-but do not begin the next page.
-Useful for forcing out footnotes,
-but other than
-that hardly ever used.
-Must be followed by a
-.b .bp
-or the end of input.
+.\" dead-tree pagination
 .br
 .ne 6v
 .sh 1 "\f(BIroff\fP Support\fR\**"
@@ -1913,8 +1930,10 @@ reverse the motion and type size change of
 .ST < .
 In \*N mode,
 output a right angle bracket.
+.\" dead-tree pagination
+.br
+.ne 6v
 .pp
-.ne 5v
 \*G \*(ME provides localized strings
 to support documents in several input languages;
 see the
@@ -1981,9 +2000,7 @@ see the
 .i groff_char (7)
 man page.
 .pp
-For rendering of legacy
-.i me
-documents,
+For rendering of legacy \*(ME documents,
 the macro package defines several strings that construct accent marks
 and two symbols from mathematical set theory.
 These strings are limited in multiple respects:
@@ -2277,6 +2294,7 @@ and a square \(sq labels \*G extensions.
 \en(fi	R	footnote indentation (first line only)
 \en(fm	R	footer margin
 \&.fo	M	set footer
+\&.fp	M	mount font at position
 \en(fp	R	footnote type size in points
 \en(fs	R	footnote prespace
 \en(fu	R	footnote undent (right indentation)

@@ -266,8 +266,10 @@ static char *delim_search(char *ptr, int delim)
 void usage(FILE *stream)
 {
   fprintf(stream,
-    "usage: %s [ -rvDCNR ] -dxx -fn -sn -pn -mn -Mdir -Ts [ files ... ]\n",
-    program_name);
+    "usage: %s [ -CNrR ] -dXY -fF -mN -Mdir -pN -sN -Tname"
+    " [ file ... ]\n"
+    "usage: %s { -v | --version }\n",
+    program_name, program_name);
 }
 
 int main(int argc, char **argv)
@@ -282,8 +284,8 @@ int main(int argc, char **argv)
     { "version", no_argument, 0, 'v' },
     { NULL, 0, 0, 0 }
   };
-  while ((opt = getopt_long(argc, argv, "CRvd:f:p:s:m:T:M:rN", long_options,
-			    NULL))
+  while ((opt = getopt_long(argc, argv, "CNrRd:f:m:M:p:s:T:v",
+			    long_options, NULL))
 	 != EOF)
     switch (opt) {
     case 'C':
@@ -297,7 +299,7 @@ int main(int argc, char **argv)
       break;
     case 'v':
       printf("GNU eqn (groff) version %s\n", Version_string);
-      exit(0);
+      exit(EXIT_SUCCESS);
       break;
     case 'd':
       if (optarg[0] == '\0' || optarg[1] == '\0')
@@ -356,7 +358,7 @@ int main(int argc, char **argv)
 	if (sscanf(optarg, "%d", &n) == 1)
 	  set_minimum_size(n);
 	else
-	  error("invalid size '%1' in '-n' option argument ", optarg);
+	  error("invalid size '%1' in '-n' option argument", optarg);
       }
       break;
     case 'r':
@@ -367,14 +369,14 @@ int main(int argc, char **argv)
       break;
     case CHAR_MAX + 1: // --help
       usage(stdout);
-      exit(0);
+      exit(EXIT_SUCCESS);
       break;
     case '?':
       usage(stderr);
-      exit(1);
+      exit(EXIT_FAILURE);
       break;
     default:
-      assert(0);
+      assert(0 == "unhandled getopt_long return value");
     }
   init_table(device);
   init_char_table();
@@ -417,12 +419,16 @@ int main(int argc, char **argv)
 	  fatal("can't open '%1': %2", argv[i], strerror(errno));
 	else {
 	  do_file(fp, argv[i]);
-	  fclose(fp);
+	  if (fclose(fp) < 0)
+	    fatal("unable to close '%1': %2", argv[i], strerror(errno));
 	}
       }
-  if (ferror(stdout) || fflush(stdout) < 0)
-    fatal("output error");
-  return 0;
+  if (ferror(stdout))
+    fatal("error status on standard output stream");
+  if (fflush(stdout) < 0)
+    fatal("unable to flush standard output stream: %1",
+	  strerror(errno));
+  exit(EXIT_SUCCESS);
 }
 
 // Local Variables:

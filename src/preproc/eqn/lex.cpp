@@ -689,7 +689,7 @@ void add_quoted_context(const string &s)
 
 void init_lex(const char *str, const char *filename, int lineno)
 {
- while (current_input != 0) {
+  while (current_input != 0) {
     input *tem = current_input;
     current_input = current_input->next;
     delete tem;

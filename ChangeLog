@@ -133,11 +133,11 @@
 	the usage message is to be issued due to an error.  Write
 	message to stderr if so, and stdout otherwise.  Stop presuming
 	length of output line; guessing where to wrap is unreliable due
-	variable terminal width and length of argv[0].  Write one line
-	per invocation mode of the program.  Stop duplicatively
-	documenting standard X Toolkit options.  Document "-noPolyText"
-	option.  Exit with standard C library `EXIT_FAILURE` status if
-	there was an error, and `EXIT_SUCCESS` otherwise.
+	to variable terminal width and length of argv[0].  Write one
+	line per invocation mode of the program.  Stop duplicatively
+	documenting standard X Toolkit options.  Exit with standard C
+	library `EXIT_FAILURE` status if there was an error, and
+	`EXIT_SUCCESS` otherwise.
 	(main): Refactor to prepare for `--version` support.
 
 	* src/devices/xditview/gxditview.1.man (Synopsis): Sync list of

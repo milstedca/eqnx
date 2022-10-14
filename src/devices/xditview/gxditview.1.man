@@ -44,7 +44,8 @@ gxditview \- display groff intermediate output files in X11
 .IR backing-store-type ]
 .RB [ \-filename\~\c
 .IR file ]
-.RB [ \-noPolyText ]
+.\" While recognized, the relevant logic is "#if 0"ed out in draw.c.
+.\" .RB [ \-noPolyText ]
 .RB [ \-page\~\c
 .IR page-number ]
 .RB [ \-printCommand\~\c

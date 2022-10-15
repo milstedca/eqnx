@@ -969,6 +969,7 @@
 .
 .
 .de 2c			\" *** double columned output
+.do if d |f .do @err changing columnation with footnote pending
 .br
 .if \\n($m>1 \
 .	1c\"				\" revert to 1c if already 2c
@@ -986,6 +987,7 @@
 ..
 .
 .de 1c			\" *** single columned output
+.do if d |f .do @err changing columnation with footnote pending
 .br
 .nr $c 1
 .nr $m 1

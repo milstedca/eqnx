@@ -1,3 +1,11 @@
+2022-10-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/e.tmac (2c, 1c): Throw diagnostic if changing columnation
+	with a footnote pending.  This isn't necessarily an error per
+	se, but it many cases it will flag an undesirable page layout
+	due to the limited flexibility of me(7)'s footnote support at
+	present.  See <https://savannah.gnu.org/bugs/?63176>.
+
 2022-10-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/eqn/main.cpp: Fix code style nits.

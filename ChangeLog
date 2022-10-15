@@ -1,3 +1,15 @@
+2022-10-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[eqn]: Improve diagnostics involving unprintable characters.
+
+	* src/preproc/eqn/main.cpp (input_char_description): New
+	function constructs a human-readable string describing
+	characters.
+	(read_line, inline_equation, main): Call new function and adjust
+	diagnostic message wording to accommodate the phrase it returns.
+
+	Fixes <https://savannah.gnu.org/bugs/?63218>.
+
 2022-10-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[eqn]: Improve diagnostics.

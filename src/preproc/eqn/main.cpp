@@ -46,6 +46,36 @@ int html = 0;
 int xhtml = 0;
 eqnmode_t output_format;
 
+static const char *input_char_description(int c)
+{
+  switch (c) {
+  case '\001':
+    return "a leader character";
+  case '\n':
+    return "a newline character";
+  case '\b':
+    return "a backspace character";
+  case '\t':
+    return "a tab character";
+  case ' ':
+    return "a space character";
+  case '\177':
+    return "a delete character";
+  }
+  size_t bufsz = sizeof "character code " + INT_DIGITS + 1;
+  // repeat expression; no VLAs in ISO C++
+  static char buf[sizeof "character code " + INT_DIGITS + 1];
+  (void) memset(buf, 0, bufsz);
+  if (csprint(c)) {
+    buf[0] = '\'';
+    buf[1] = c;
+    buf[2] = '\'';
+    return buf;
+  }
+  (void) sprintf(buf, "character code %d", c);
+  return buf;
+}
+
 int read_line(FILE *fp, string *p)
 {
   p->clear();
@@ -54,7 +84,7 @@ int read_line(FILE *fp, string *p)
     if (!is_invalid_input_char(c))
       *p += char(c);
     else
-      error("invalid input character code '%1'", c);
+      error("invalid input (%1)", input_char_description(c));
     if (c == '\n')
       break;
   }
@@ -151,8 +181,9 @@ static int inline_equation(FILE *fp, string &linebuf, string &str)
   inline_flag = 1;
   for (;;) {
     if (no_newline_in_delim_flag && strchr(start + 1, end_delim) == 0) {
-      error("unterminated inline equation; started with '%1',"
-	    " expecting '%2'", start_delim, end_delim);
+      error("unterminated inline equation; started with %1,"
+	    " expecting %2", input_char_description(start_delim),
+	    input_char_description(end_delim));
       char *nl = strchr(start + 1, '\n');
       if (nl != 0)
 	*nl = '\0';
@@ -174,8 +205,9 @@ static int inline_equation(FILE *fp, string &linebuf, string &str)
       }
       str += ptr;
       if (!read_line(fp, &linebuf))
-	fatal("unterminated inline equation; started with '%1',"
-	      " expecting '%2'", start_delim, end_delim);
+	fatal("unterminated inline equation; started with %1,"
+	      " expecting %2", input_char_description(start_delim),
+	      input_char_description(end_delim));
       linebuf += '\0';
       ptr = &linebuf[0];
     }
@@ -306,11 +338,11 @@ int main(int argc, char **argv)
       if (optarg[0] == '\0' || optarg[1] == '\0')
 	error("'-d' option requires a two-character argument");
       else if (is_invalid_input_char(optarg[0]))
-	error("invalid delimiter '%1' in '-d' option argument",
-	      optarg[0]);
+	error("invalid delimiter (%1) in '-d' option argument",
+	      input_char_description(optarg[0]));
       else if (is_invalid_input_char(optarg[1]))
-	error("invalid delimiter '%1' in '-d' option argument",
-	      optarg[1]);
+	error("invalid delimiter (%1) in '-d' option argument",
+	      input_char_description(optarg[1]));
       else {
 	start_delim = optarg[0];
 	end_delim = optarg[1];

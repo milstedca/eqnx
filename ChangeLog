@@ -1,3 +1,12 @@
+2022-10-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[eqn]: Improve diagnostics.
+
+	* src/preproc/eqn/lex.cpp (file_input::~file_input):
+	* src/preproc/eqn/main.cpp (main): Die if `fclose()` fails and
+	report underlying system error.
+	(inline_equation): Identify inline equation context.
+
 2022-10-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/e.tmac (2c, 1c): Throw diagnostic if changing columnation

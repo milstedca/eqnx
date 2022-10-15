@@ -401,8 +401,9 @@ file_input::file_input(FILE *f, const char *fn, input *p)
 
 file_input::~file_input()
 {
+  if (fclose(fp) < 0)
+    fatal("unable to close '%1': %2", filename, strerror(errno));
   delete[] filename;
-  fclose(fp);
 }
 
 int file_input::read_line()

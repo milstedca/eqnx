@@ -151,7 +151,8 @@ static int inline_equation(FILE *fp, string &linebuf, string &str)
   inline_flag = 1;
   for (;;) {
     if (no_newline_in_delim_flag && strchr(start + 1, end_delim) == 0) {
-      error("missing '%1'", end_delim);
+      error("unterminated inline equation; started with '%1',"
+	    " expecting '%2'", start_delim, end_delim);
       char *nl = strchr(start + 1, '\n');
       if (nl != 0)
 	*nl = '\0';
@@ -173,8 +174,8 @@ static int inline_equation(FILE *fp, string &linebuf, string &str)
       }
       str += ptr;
       if (!read_line(fp, &linebuf))
-	fatal("unterminated '%1' at line %2, looking for '%3'",
-	      start_delim, start_lineno, end_delim);
+	fatal("unterminated inline equation; started with '%1',"
+	      " expecting '%2'", start_delim, end_delim);
       linebuf += '\0';
       ptr = &linebuf[0];
     }
@@ -402,7 +403,9 @@ int main(int argc, char **argv)
     FILE *fp = config_macro_path.open_file(STARTUP_FILE, &path);
     if (fp) {
       do_file(fp, path);
-      fclose(fp);
+      if (fclose(fp) < 0)
+	fatal("unable to close '%1': %2", STARTUP_FILE,
+	      strerror(errno));
       free(path);
     }
   }

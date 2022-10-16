@@ -76,7 +76,7 @@ static const char *input_char_description(int c)
   return buf;
 }
 
-int read_line(FILE *fp, string *p)
+static bool read_line(FILE *fp, string *p)
 {
   p->clear();
   int c = -1;
@@ -88,8 +88,12 @@ int read_line(FILE *fp, string *p)
     if (c == '\n')
       break;
   }
-  current_lineno++;
-  return p->length() > 0;
+  bool is_end_of_file = (p->length() > 0);
+  if (is_end_of_file)
+    current_lineno++;
+  else
+    current_lineno = 0;
+  return is_end_of_file;
 }
 
 void do_file(FILE *fp, const char *filename)
@@ -132,7 +136,7 @@ void do_file(FILE *fp, const char *filename)
 	  else if (linebuf[2] == 'Q' && linebuf.length() > 3
 		   && (linebuf[3] == ' ' || linebuf[3] == '\n'
 		       || compatible_flag))
-	    fatal("nested .EQ");
+	    fatal("equations cannot be nested (.EQ within .EQ)");
 	}
 	str += linebuf;
       }
@@ -451,7 +455,7 @@ int main(int argc, char **argv)
 	errno = 0;
 	FILE *fp = fopen(argv[i], "r");
 	if (!fp)
-	  fatal("can't open '%1': %2", argv[i], strerror(errno));
+	  fatal("unable to open '%1': %2", argv[i], strerror(errno));
 	else {
 	  do_file(fp, argv[i]);
 	  if (fclose(fp) < 0)
@@ -459,7 +463,7 @@ int main(int argc, char **argv)
 	}
       }
   if (ferror(stdout))
-    fatal("error status on standard output stream");
+    fatal("standard output stream is in an error state");
   if (fflush(stdout) < 0)
     fatal("unable to flush standard output stream: %1",
 	  strerror(errno));

@@ -1,5 +1,18 @@
 2022-10-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/lex.cpp (get_delimited_text): Clear line
+	number when hitting EOF.
+	* src/preproc/eqn/main.cpp: Revise end-of-file handling.  Clear
+	line number upon reaching EOF so that we don't report a nonsense
+	value one greater than the number of lines in the input file.
+	(read_line): Boolify.  Make static (local linkage only), since
+	it has no external callers.  Introduce new Boolean variable
+	`is_end_of_file`.  Clear `current_lineno` if EOF, and increment
+	it otherwise.
+	(do_file, main): Clarify diagnostic messages.
+
+2022-10-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[eqn]: Improve diagnostics involving unprintable characters.
 
 	* src/preproc/eqn/main.cpp (input_char_description): New

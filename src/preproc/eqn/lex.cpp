@@ -710,6 +710,7 @@ void get_delimited_text()
     start = get_char();
   token_buffer.clear();
   if (start == EOF) {
+    current_lineno = 0;
     if (got_location)
       error_with_file_and_line(filename, lineno,
 			       "end of input while defining macro");
@@ -720,6 +721,7 @@ void get_delimited_text()
   for (;;) {
     int c = get_char();
     if (c == EOF) {
+      current_lineno = 0;
       if (got_location)
 	error_with_file_and_line(filename, lineno,
 				 "end of input while defining macro");

@@ -1,5 +1,10 @@
 2022-10-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/xtotroff/xtotroff.c (main): Annotate "xtotroff" as a
+	GNU program in version information.
+
+2022-10-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/xditview/xditview.am
 	($(GXDITVIEW_GROFF_VERSION_H): Perform correct substitution to
 	get groff version string into `Version_string` C symbol.

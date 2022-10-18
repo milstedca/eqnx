@@ -308,7 +308,7 @@ int main(int argc, char **argv)
       sscanf(optarg, "%u", &point_size);
       break;
     case 'v':
-      printf("xtotroff (groff) version %s\n", Version_string);
+      printf("GNU xtotroff (groff) version %s\n", Version_string);
       xtotroff_exit(EXIT_SUCCESS);
       break;
     case CHAR_MAX + 1: /* --help */

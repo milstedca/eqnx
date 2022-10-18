@@ -1,5 +1,10 @@
 2022-10-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/main.cpp (read_line): Fix switched test
+	consequents when updating `current_lineno`.
+
+2022-10-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/xtotroff/xtotroff.c (main): Annotate "xtotroff" as a
 	GNU program in version information.
 

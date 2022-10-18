@@ -90,9 +90,9 @@ static bool read_line(FILE *fp, string *p)
   }
   bool is_end_of_file = (p->length() > 0);
   if (is_end_of_file)
-    current_lineno++;
-  else
     current_lineno = 0;
+  else
+    current_lineno++;
   return is_end_of_file;
 }
 

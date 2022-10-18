@@ -83,7 +83,7 @@ output devices of
 .I map-file
 associates a
 .I groff
-glyph name with a PostScript glyph name.
+ordinary or special character name with a PostScript glyph name.
 .
 Output is written in
 .MR groff_font @MAN5EXT@
@@ -103,26 +103,27 @@ should contain a sequence of lines of the form
 .
 .RS
 .EX
-.I ps-glyph groff-glyph
+.I ps-glyph groff-char
 .EE
 .RE
 .
 where
 .I ps-glyph
 is the PostScript glyph name and
-.I groff-glyph
-is the
+.I groff-char
+is a
 .I groff
-special character identifier for the glyph
-(as used in the
-.I groff
-font description file).
+ordinary
+(if of unit length)
+or special
+(if longer)
+character identifier.
 .
 The same
 .I ps-glyph
 can occur multiple times in the file;
 each
-.I groff-glyph
+.I groff-char
 must occur at most once.
 .
 Lines starting with \[lq]#\[rq] and blank lines are ignored.
@@ -136,9 +137,9 @@ subdirectory of the default font directory.
 .LP
 If a PostScript glyph is not mentioned in
 .IR map-file ,
-and a generic
+and a
 .I groff
-glyph name can't be deduced using the Adobe Glyph List
+character name can't be deduced using the Adobe Glyph List
 (AGL,
 built into
 .IR afmtodit ),
@@ -171,9 +172,11 @@ Refer to section \[lq]Using Symbols\[rq] in
 the
 .I groff
 Texinfo manual,
-which describes how
+or
+.MR groff_char @MAN7EXT@ ,
+which describe how
 .I groff
-glyph names are constructed.
+character identifiers are constructed.
 .
 .
 .LP
@@ -190,7 +193,7 @@ in the
 font description file.
 .
 Unencoded glyph indices don't have a specific order;
-it is best to access them with glyph names only.
+it is best to access them only via special character identifiers.
 .
 .
 .P

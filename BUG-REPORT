@@ -6,25 +6,25 @@
 
 			   groff Bug Report
 
-Please read the PROBLEMS file before submitting a bug report.
+[Please read the 'PROBLEMS' file before submitting a bug report.
 
 Please fill in all fields, even if you think they are not relevant.
 
-Please delete the text in brackets before submitting it.
+Please delete the text in square brackets before submitting it.
 
 Please report distinguishable problems separately.
 
-Place the completed form in a new bug report at
+Place this completed form in a new bug report at
 <http://savannah.gnu.org/bugs/?group=groff>.  Click on the "Bugs" link,
-then select "Submit new" from the menu.
+then select "Submit new" from the menu.]
 
 GROFF VERSION:
 [Put the output of the failing command when run with the '--version'
-option here.  For example, "groff --version".]
+option here.  For example, "groff --version" or "indxbib --version".]
 
 PLATFORM:
-[Put the output of the 'uname -a' command here.  On non-POSIX systems,
-some alternative should be available; on Windows systems, use 'ver'.]
+[Put the output of the "uname -a" command here.  On non-POSIX systems,
+some alternative should be available; on Windows systems, use "ver".]
 
 CONFIGURATION REPORT:
 [If you compiled groff yourself, include the portion of the 'configure'
@@ -48,12 +48,12 @@ a concrete example.]
 
 COMMAND LINE:
 [The command line that we should run in order to observe the bug.  For
-example, 'groff -Tps bug.tr'.]
+example, "groff -Tps bug.tr".]
 
 DESCRIPTION OF INCORRECT BEHAVIOUR:
-[What goes wrong when that command line is run?  For example, 'groff
-gets a segmentation fault.', or 'The output looks bad because the bar
-over the x is too long and is too far over to the left.'  If you get an
+[What goes wrong when that command line is run?  For example, "groff
+gets a segmentation fault.", or "The output looks bad because the bar
+over the x is too long and is too far over to the left."  If you get an
 error message, include it here without modification: don't edit it to
 make it more readable.]
 

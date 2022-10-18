@@ -1,5 +1,15 @@
 2022-10-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Document a CSTR #54 erratum regarding \n(st and \n(sb.
+
+	* doc/groff.texi (Page Motions):
+	* man/groff.7.man (Writable registers):
+	* man/groff_diff.7.man (New registers): Do it.
+
+	* PROBLEMS: Further clarify.  Note DWB and Heirloom behavior.
+
+2022-10-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/eqn/main.cpp (read_line): Fix switched test
 	consequents when updating `current_lineno`.
 

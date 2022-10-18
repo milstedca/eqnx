@@ -13685,7 +13685,7 @@ Horizontal motions are not discarded at the end of an output line as
 word and supplementary inter-sentence spaces are.  @xref{Manipulating
 Filling and Adjustment}.
 
-@DefescList {\\w, @code{'}, text, @code{'}}
+@DefescList {\\w, @code{'}, anything, @code{'}}
 @DefregItemx {st}
 @DefregItemx {sb}
 @DefregItemx {rst}
@@ -13694,9 +13694,9 @@ Filling and Adjustment}.
 @DefregItemx {ssc}
 @DefregListEndx {skw}
 @cindex width escape (@code{\w})
-Interpolate the width of the specified @var{text} in basic units.  This
-allows horizontal movement based on the width of some arbitrary text
-(e.g., given as an argument to a macro).
+Interpolate the width of @var{anything} in basic units.  This escape
+sequence allows several properties of formatted output to be measured
+without writing it out.
 
 @Example
 The length of the string 'abc' is \w'abc'u.
@@ -13705,39 +13705,48 @@ The length of the string 'abc' is \w'abc'u.
 
 @cindex dummy environment, used by @code{\w} escape sequence
 @cindex environment, dummy, used by @code{\w} escape sequence
-The @var{text} argument to @code{\w} is processed in a dummy
-environment; font changes may occur within it without any affect on the
-surrounding output.
+@var{anything} is processed in a dummy environment:@: this means that
+font and type size changes, for example, may occur within it without
+affecting subsequent output.
 
-After use, @code{\w} sets several registers.
+@need 500
+After each use, @code{\w} sets several registers.
 
+@cindex CSTR@tie{}#54 errata
+@cindex CSTR@tie{}#54 erratum, @code{sb} register
+@cindex CSTR@tie{}#54 erratum, @code{st} register
 @table @code
 @item st
 @itemx sb
-The highest and lowest point of the baseline, respectively, in
-@var{text}.
+The maximum vertical displacements of the text baseline above and below,
+respectively.  The sign convention is opposite that of relative vertical
+motions; that is, depth below the (original) baseline is negative.
+These registers are incorrectly documented in the @acronym{AT&T}
+@code{troff} manual as ``the highest and lowest extent of [the argument
+to @code{\w}] relative to the baseline''.
 
 @item rst
 @itemx rsb
-Like the @code{st} and @code{sb} registers, but takes account of the
-heights and depths of glyphs.  In other words, this gives the highest
-and lowest point of @var{text}.  Values below the baseline are negative.
+Like @code{st} and @code{sb}, but taking account of the heights and
+depths of glyphs.  In other words, these registers store the highest and
+lowest vertical positions attained by @var{anything}, doing what
+@acronym{AT&T} @code{troff} documented @code{st} and @code{sb} as doing.
 
 @item ct
-Defines the kinds of glyphs occurring in @var{text}:
+Characterizes the geometry of glyphs occurring in @var{anything}.
 
 @table @asis
 @item 0
-only short glyphs, no descenders or tall glyphs.
+only short glyphs, no descenders or tall glyphs
 
 @item 1
-at least one descender.
+at least one descender
 
 @item 2
-at least one tall glyph.
+at least one tall glyph
 
 @item 3
-at least one each of a descender and a tall glyph.
+at least one each of a descender and a tall glyph
 @end table
 
 @item ssc

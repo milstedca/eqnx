@@ -229,11 +229,21 @@ You need version 1.42 or newer.
   them to the height and depth of its argument, but the registers
   always seem to be 0.
 
-\n(st and \n(sb aren't supposed to give the height and depth of the
-string rather they give the minimum and maximum vertical displacement
-of the baseline.  For example for \v'2u'\v'-3u', \n(st is 1 and \n(sb
-is -2.  The height and depth of the string is available in the \n[rst]
-and \n[rsb] registers: these are groff extensions.
+\n(st and \n(sb don't give the height and depth of the argument to \w,
+but the maximum vertical displacements of the text baseline above
+(\n(st) and below (\n(sb) its original position.  Consider an example
+where no text is formatted, but small vertical motions are used.
+
+  \w"\v'-1u'\v'3u'"
+  .tm st=\n(st, sb=\n(sb
+    st=1, sb=-2
+
+Observe that the sign convention of these registers is opposite that of
+relative vertical motion.  (This is how Documenter's Workbench troff
+and Heirloom Doctools troff work as well.)
+
+The height and depth of formatted text in the \w argument are available
+in the \n[rst] and \n[rsb] registers; these are groff extensions.
 
 ----------------------------------------------------------------------
 

@@ -4240,20 +4240,36 @@ These four read/\:write registers are set by the
 request and contain the bounding box values (in PostScript units) of a
 given PostScript image.
 .
+.
 .P
 The following read/\:write registers are set by the
 .B \[rs]w
-escape sequence:
+escape sequence.
+.
 .
 .TP
 .B \[rs]n[rst]
 .TQ
 .B \[rs]n[rsb]
-Like the
-.B st
+Like
+.B \[rs]n[st]
 and
-.B sb
-registers, but take account of the heights and depths of glyphs.
+.BR \[rs]n[sb] ,
+but taking account of the heights and depths of glyphs.
+.
+In other words,
+these registers store the highest and lowest vertical positions attained
+by the argument formatted by the
+.B \[rs]w
+escape sequence,
+doing what AT&T
+.I troff \" AT&T
+documented
+.B \[rs]n[st]
+and
+.B \[rs]n[sb]
+as doing.
+.
 .
 .TP
 .B \[rs]n[ssc]

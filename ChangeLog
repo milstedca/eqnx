@@ -1,5 +1,12 @@
 2022-10-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/xditview/xditview.am
+	($(GXDITVIEW_GROFF_VERSION_H): Perform correct substitution to
+	get groff version string into `Version_string` C symbol.
+	Continues commit c73decb58f, 9 October.
+
+2022-10-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/afmtodit/afmtodit.1.man (Files): Fix ordering error.
 
 	Fixes <https://savannah.gnu.org/bugs/?63228>.  Thanks to Bjarni

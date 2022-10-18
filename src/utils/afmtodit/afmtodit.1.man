@@ -1,6 +1,8 @@
 .TH afmtodit @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-afmtodit \- adapt Adobe Font Metrics files for groff \-Tps and \-Tpdf
+afmtodit \- adapt Adobe Font Metrics files for
+.I groff
+PostScript and PDF output
 .
 .
 .\" ====================================================================
@@ -481,10 +483,10 @@ special character identifiers for Zapf Dingbats
 .RB ( ZD ),
 reversed Zapf Dingbats
 .RB ( ZDR ),
-symbol
-.RB ( S ),
 slanted symbol
 .RB ( SS ),
+symbol
+.RB ( S ),
 and text fonts,
 respectively.
 .

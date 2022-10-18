@@ -36,7 +36,7 @@
 
 	* tmac/e.tmac (2c, 1c): Throw diagnostic if changing columnation
 	with a footnote pending.  This isn't necessarily an error per
-	se, but it many cases it will flag an undesirable page layout
+	se, but in many cases it will flag an undesirable page layout
 	due to the limited flexibility of me(7)'s footnote support at
 	present.  See <https://savannah.gnu.org/bugs/?63176>.
 

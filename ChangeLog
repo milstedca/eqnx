@@ -1,5 +1,14 @@
 2022-10-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-ditroff: Use groff-canonical typeface names in
+	font selection escape sequences.  Migrate 'C' to 'CR' and 'CO'
+	to 'CI'.  (Admittedly, "Courier oblique" is more pedantically
+	correct than "Courier italic".  But the iron ball of Unix troff
+	history and its style trio [later quartet] of "R", "I", "B"
+	{then "BI"} will not be ignored.)
+
+2022-10-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-ditroff: Drop nilpotent type size escape
 	sequences from string definitions.
 

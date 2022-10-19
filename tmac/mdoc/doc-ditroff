@@ -54,29 +54,29 @@
 .ds doc-caption-font \f[R]
 .ds doc-caption-font2 \f[R]
 .ds doc-Ad-font \f[I]
-.ds doc-Ar-font \f[CO]
+.ds doc-Ar-font \f[CI]
 .ds doc-Cm-font \f[CB]
 .ds doc-Em-font \f[I]
-.ds doc-Er-font \f[C]
-.ds doc-Ev-font \f[C]
-.ds doc-Fa-font \f[CO]
+.ds doc-Er-font \f[CR]
+.ds doc-Ev-font \f[CR]
+.ds doc-Fa-font \f[CI]
 .ds doc-Fd-font \f[CB]
 .ds doc-Fl-font \f[CB]
 .ds doc-Fn-font \f[CB]
-.ds doc-Ft-font \f[CO]
+.ds doc-Ft-font \f[CI]
 .ds doc-Ic-font \f[CB]
-.ds doc-Li-font \f[C]
+.ds doc-Li-font \f[CR]
 .ds doc-Lk-font \f[R]\"
 .ds doc-Me-font \f[B]
 .ds doc-Nm-font \f[CB]
 .ds doc-No-font \f[R]
-.ds doc-Pa-font \f[C]
+.ds doc-Pa-font \f[CR]
 .ds doc-Sh-font \f[B]
 .ds doc-Sy-font \f[B]
 .ds doc-Sx-font \f[B]
 .ds doc-Tn-font-shape \f[R]
 .ds doc-Va-font \f[I]
-.ds doc-Xr-font \f[C]
+.ds doc-Xr-font \f[CR]
 .
 .ds doc-left-parenthesis \f[R]\|(\|\f[]
 .ds doc-right-parenthesis \f[R]\|)\|\f[]
@@ -88,11 +88,11 @@
 .tr *\[**]
 .
 .\" miscellaneous
-.nr doc-subheader-indent (\w'\f[C],'u * 5u)
+.nr doc-subheader-indent (\w'\f[CR],'u * 5u)
 .nr doc-paragraph-space .4v
 .
 .nr doc-digit-width \w'\0'u
-.nr doc-fixed-width \w'\f[C]0'
+.nr doc-fixed-width \w'\f[CR]0'
 .
 .
 .\" NS doc-display-vertical global register
@@ -162,7 +162,7 @@
 .
 .eo
 .de doc-get-width
-.  nr doc-width \w'\f[C]\$1'
+.  nr doc-width \w'\f[CR]\$1'
 .  ie (\n[doc-width] >= \n[doc-fixed-width]) \{\
 .    ie (\n[doc-width] % \n[doc-fixed-width]) \
 .      nr doc-width ((\n[doc-width] / \n[doc-fixed-width]) + 1)
@@ -188,7 +188,7 @@
 .
 .eo
 .de doc-get-arg-width
-.  nr doc-width \w'\f[C]\*[doc-arg\$1]'
+.  nr doc-width \w'\f[CR]\*[doc-arg\$1]'
 .  ie (\n[doc-width] >= \n[doc-fixed-width]) \{\
 .    ie (\n[doc-width] % \n[doc-fixed-width]) \
 .      nr doc-width ((\n[doc-width] / \n[doc-fixed-width]) + 1)

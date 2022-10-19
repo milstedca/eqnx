@@ -468,7 +468,7 @@ developing GNU and promoting software freedom.''
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle September 2022
+@subtitle October 2022
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -11783,9 +11783,9 @@ scaling units.
 @cindex @code{.ps} register, in comparison with @code{.psr}
 @cindex @code{.s} register, in comparison with @code{.sr}
 Output devices may be limited in the type sizes they can employ.  The
-@code{.s} and @code{.ps} registers represent the selected type size as
-fulfilled by output driver as it understands a device's capability.  The
-last @emph{requested} type size is interpolated in scaled points by the
+@code{.s} and @code{.ps} registers represent the type size selected by
+the output driver as it understands a device's capability.  The last
+@emph{requested} type size is interpolated in scaled points by the
 read-only register @code{.psr} and in points as a decimal fraction by
 the read-only string-valued register @code{.sr}.  Both are associated
 with the environment (@pxref{Environments}).
@@ -11796,10 +11796,10 @@ For example, if a type size of 10.95@dmn{pt} is requested, and a
 used by the output driver.
 @endDefreg
 
-The @code{\s} escape sequence offers the following syntax for working
-with fractional type sizes.  You may of course give them integral
-arguments.  The delimited forms need not use the neutral apostrophe; see
-@ref{Delimiters}.
+The @code{\s} escape sequence offers the following syntax forms that
+work with fractional type sizes and accept scaling units.  You may of
+course give them integral arguments.  The delimited forms need not use
+the neutral apostrophe; see @ref{Delimiters}.
 
 @table @code
 @item \s[@var{n}]

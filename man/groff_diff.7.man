@@ -291,8 +291,8 @@ The
 .B .s
 and
 .B .ps
-registers represent the selected type size as fulfilled by output
-driver as it understands a device's capability.
+registers represent the type size as selected by the output driver as it
+understands a device's capability.
 .
 The last
 .I requested
@@ -378,7 +378,7 @@ ignore scaling units in the evaluation
 .
 .
 .\" ====================================================================
-.SS Conditional expressions
+.SS "Conditional expressions"
 .\" ====================================================================
 .
 More conditions can be tested with the
@@ -497,6 +497,7 @@ escape sequences
 .BR \[rs]f ,
 .BR \[rs]k ,
 .BR \[rs]n ,
+.BR \[rs]s ,
 .BR \[rs]$ ,
 and
 .BR \[rs]* ).

@@ -78,12 +78,12 @@
 .ds doc-Va-font \f[I]
 .ds doc-Xr-font \f[CR]
 .
-.ds doc-left-parenthesis \f[R]\|(\|\f[]
-.ds doc-right-parenthesis \f[R]\|)\|\f[]
+.ds doc-left-parenthesis \f[R](\f[]
+.ds doc-right-parenthesis \f[R])\f[]
 .ds lp \f[R](\f[]
 .ds rp \f[R])\f[]
-.ds doc-left-bracket \f[R]\^[\^\f[]
-.ds doc-right-bracket \f[R]\^]\f[]
+.ds doc-left-bracket \f[R][\f[]
+.ds doc-right-bracket \f[R]]\f[]
 .
 .tr *\[**]
 .

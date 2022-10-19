@@ -1,5 +1,20 @@
 2022-10-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-ditroff (doc-left-parenthesis)
+	(doc-right-parenthesis, doc-left-bracket, doc-right-bracket):
+	Drop thin and hair space escape sequences from these string
+	definitions.  (Also, doc-right-bracket was inconsistent with
+	doc-left-bracket, the former inserting horizontal motion only
+	before the bracket character.)  Eliminates excess space when
+	using Pq, Po, Pc and Bq, Bo, Bc macros and formatting for
+	typesetters, and aligns output with behavior of `Pq` and `Bq` as
+	documented in groff_mdoc(7).
+
+	Fixes <https://bugs.debian.org/1021795>.  Thanks to наб for the
+	report.
+
+2022-10-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-ditroff: Use groff-canonical typeface names in
 	font selection escape sequences.  Migrate 'C' to 'CR' and 'CO'
 	to 'CI'.  (Admittedly, "Courier oblique" is more pedantically

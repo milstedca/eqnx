@@ -9,11 +9,11 @@ What is groff?
 ==============
 
 Groff (GNU roff) is a typesetting system that reads plain text input
-files that include formatting commands to produce formatted output in
-PostScript, PDF, HTML, DVI formats or for display to the terminal.
-Formatting commands can be low-level typesetting primitives or macros
-from a supplied set.  Users may also write their own macros.  All three
-may be combined.
+files that include formatting commands to produce output in PostScript,
+PDF, HTML, or DVI formats or for display to a terminal.  Formatting
+commands can be low-level typesetting primitives or macros from a
+supplied set.  Users may also write their own macros.  All three may be
+combined.
 
 Present on most Unix systems owing to its long association with Unix
 manuals (including man pages), and notable for its use in the production
@@ -43,17 +43,17 @@ Headline features nominated by our development community include:
 
 For more on these and other feature changes, see "News" below.
 
-Much attention has been given to fixing bugs and improving
-documentation.
+Much attention has been given to fixing bugs, improving diagnostic
+messages, and correcting and expanding documentation.
 
 As of this writing, per the GNU Savannah bug tracker, the groff project
-has resolved 351 problems as fixed for the 1.23.0 release.  Some of the
+has resolved 379 problems as fixed for the 1.23.0 release.  Some of the
 bugs we've corrected were over 30 years old.
 
 Another way of capturing the amount of revision is as follows.
 
 $ git diff --stat 1.22.4 HEAD | tail -n 1
- 925 files changed, 110263 insertions(+), 64915 deletions(-)
+ 935 files changed, 117550 insertions(+), 69438 deletions(-)
 
 Obtaining groff
 ===============
@@ -92,5 +92,5 @@ form that most checksum tools default to.
 News
 ====
 
-[[ maintainer: insert "sed -n '/VERSION 1\.23/,/VERSION 1.22/p' NEWS"
-   and trim the ends a little ]]
+[[ maintainer: insert output of
+   "sed -n '/VERSION 1\.23/{:X;n;/VERSION 1\.22/q;p;bX}' NEWS" ]]

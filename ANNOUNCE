@@ -50,6 +50,38 @@ As of this writing, per the GNU Savannah bug tracker, the groff project
 has resolved 379 problems as fixed for the 1.23.0 release.  Some of the
 bugs we've corrected were over 30 years old.
 
+Classifying these issues by type and the component of the project to
+which they apply, we find the following.
+
+  Type                              Component
+  ----                              ---------
+  Build/installation           35   Core                           95
+  Crash/unresponsive           10   Driver: grohtml                 4
+  Documentation                95   Driver: gropdf                  7
+  Feature change               37   Driver: grops                   2
+  Incorrect behavior          115   Driver: grotty                  4
+  Lint                         12   Driver: others/general          4
+  Rendering/cosmetics          10   Font: devpdf                    1
+  Test                          4   Font: devps                     3
+  Warning/suspicious behavior  61   Font: others/general            4
+                                    General                        39
+                                    Macros: man                    32
+                                    Macros: mdoc                   10
+                                    Macros: me                     36
+                                    Macros: mm                     16
+                                    Macros: mom                     9
+                                    Macros: ms                     27
+                                    Macros: other/general          25
+                                    Preprocessor: eqn               3
+                                    Preprocessor: grn               3
+                                    Preprocessor: pic               5
+                                    Preprocessor: preconv           7
+                                    Preprocessor: refer             3
+                                    Preprocessor: tbl              15
+                                    Preprocessor: others/general    5
+                                    Preprocessor: others/general    5
+                                    Utilities                      17
+
 Another way of capturing the amount of revision is as follows.
 
 $ git diff --stat 1.22.4 HEAD | tail -n 1

@@ -615,12 +615,11 @@ accent over it should be placed.)
 .
 The macro must modify
 .B 0s
-so that it outputs the desired result and returns the drawing position
-to the text baseline at the beginning of
-.IR e .
-.
-Update these registers to correspond to the new dimensions of the
-result.
+so that it outputs the desired result,
+returns the drawing position to the text baseline at the beginning of
+.IR e ,
+and updates the foregoing registers to correspond to the new dimensions
+of the result.
 .
 .
 .IP

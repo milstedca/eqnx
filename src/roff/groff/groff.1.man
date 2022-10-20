@@ -1645,6 +1645,8 @@ would be installed as
 Besides
 .IR troff , \" GNU
 the prefix applies to
+the formatter
+.IR nroff ; \" GNU
 the preprocessors
 .IR eqn , \" generic
 .IR grn , \" generic

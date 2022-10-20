@@ -433,7 +433,7 @@ o The "a4.tmac" file has been dropped from the distribution.  Its
 
 o The "safer.tmac" file has been dropped from the distribution.  It was
   present only to support man(1) programs that unconditionally passed
-  the formatter the "-msafer" option, and has contained only comments
+  the formatter the "-msafer" option, and had contained only comments
   for over 20 years.  If your man(1) program has this requirement, you
   can create an empty file of this name in groff's macro file search
   path (see troff(1)) or consider migrating to man-db man(1).

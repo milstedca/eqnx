@@ -33,14 +33,14 @@ TODO
 
 extern "C" const char *Version_string;
 
-static int user_papersize = -1;		// papersize
-static int orientation = -1;		// orientation
+static int user_papersize = -1;
+static int orientation = -1;
 
 // custom paper format
 static double user_paperlength = 0;
 static double user_paperwidth = 0;
 
-static int ncopies = 1;			// Number of copies
+static int ncopies = 1;
 
 #define DEFAULT_LINEWIDTH_FACTOR 40	// 0.04em
 static int linewidth_factor = DEFAULT_LINEWIDTH_FACTOR;

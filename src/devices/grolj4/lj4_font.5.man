@@ -128,7 +128,7 @@ for which
 .
 Although HP PCL\~5 LaserJet printers support an internal resolution of
 7200 units per inch,
-they use a 16-bit signed integer for cursor positioning;
+they use a 16-bit signed integer for positioning;
 if
 .B devlj4
 is to support U.S.\& ledger paper (11\~in\~\[mu]\~17\~in;

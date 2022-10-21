@@ -185,11 +185,12 @@ This overrides the
 .BR paperlength ,
 and
 .B paperwidth
-commands in the
+directives in the
 .I DESC
-file; it accepts the same arguments as the
+file;
+it accepts the same arguments as the
 .B papersize
-command.
+directives.
 .
 See
 .MR groff_font @MAN5EXT@
@@ -802,7 +803,7 @@ where the
 .I paper-format
 parameter is the same as that to the
 .B papersize
-command.
+directive.
 .
 See
 .MR groff_font @MAN5EXT@ .

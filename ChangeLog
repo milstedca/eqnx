@@ -1,5 +1,11 @@
 2022-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/main.cpp (usage): Update usage message.
+	Present different modes of operation on separate output lines.
+	Sort options in English lexicographic order.
+
+2022-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/gropdf/gropdf.pl: Revise handling of argument 0.
 	Rename scalar `progname` to `prog` for brevity (and preparation
 	for writing a usage message).  Also stop stripping off directory

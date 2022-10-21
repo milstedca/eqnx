@@ -482,13 +482,15 @@ void do_whole_file(const char *filename)
 
 void usage(FILE *stream)
 {
-  fprintf(stream, "usage: %s [ -nvCSU ] [ filename ... ]\n", program_name);
+  fprintf(stream, "usage: %s [-CnSU] [file ...]\n", program_name);
 #ifdef TEX_SUPPORT
-  fprintf(stream, "       %s -t [ -cvzCSU ] [ filename ... ]\n", program_name);
+  fprintf(stream, "usage: %s -t [-cCSUz] [file ...]\n", program_name);
 #endif
 #ifdef FIG_SUPPORT
-  fprintf(stream, "       %s -f [ -v ] [ filename ]\n", program_name);
+  fprintf(stream, "usage: %s -f [-v] [file]\n", program_name);
 #endif
+  fprintf(stream, "usage: %s {-v | --version}\n", program_name);
+  fprintf(stream, "usage: %s --help\n", program_name);
 }
 
 #if defined(__MSDOS__) || defined(__EMX__)

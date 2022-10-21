@@ -429,7 +429,7 @@ o The s (ms) macro package supports new macros `XN` and `XH` to ease the
 
 o The "a4.tmac" file has been dropped from the distribution.  Its
   successor, "papersize.tmac", has been present and documented for
-  nearly 20 years.  See subsection "Paper size" of groff(1).
+  nearly 20 years.  See subsection "Paper format" of groff(1).
 
 o The "safer.tmac" file has been dropped from the distribution.  It was
   present only to support man(1) programs that unconditionally passed

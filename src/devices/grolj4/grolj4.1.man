@@ -53,7 +53,7 @@ output driver for HP LaserJet 4 family printers
 .RB [ \-F\~\c
 .IR font-directory ]
 .RB [ \-p\~\c
-.IR paper-size ]
+.IR paper-format ]
 .RB [ \-w\~\c
 .IR line-width ]
 .RI [ file\~ .\|.\|.]
@@ -578,9 +578,9 @@ Format the document in landscape orientation.
 .
 .
 .TP
-.BI \-p " paper-size"
-Set the paper size to
-.IR paper-size ,
+.BI \-p " paper-format"
+Set the paper format to
+.IR paper-format ,
 which must be a valid paper format as described above.
 .
 .

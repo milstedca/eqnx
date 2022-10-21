@@ -869,7 +869,7 @@ AC_DEFUN([GROFF_BROKEN_SPOOLER_FLAGS],
 
 
 AC_DEFUN([GROFF_PAGE], [
-  AC_MSG_CHECKING([default paper size])
+  AC_MSG_CHECKING([default paper format])
   groff_prefix=$prefix
   test "$prefix" = NONE && groff_prefix=$ac_default_prefix
   if test -z "$PAGE" && test -r /etc/papersize

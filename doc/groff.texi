@@ -903,7 +903,7 @@ exception.} (with more or less compatible changes).  Similarly, we say
 * Environment::
 * Macro Directories::
 * Font Directories::
-* Paper Size::
+* Paper Format::
 * Invocation Examples::
 @end menu
 
@@ -1504,7 +1504,7 @@ those directories during the installation process.
 
 @c =====================================================================
 
-@node Font Directories, Paper Size, Macro Directories, Invoking groff
+@node Font Directories, Paper Format, Macro Directories, Invoking groff
 @section Font Directories
 @cindex font directories
 @cindex directories for fonts
@@ -1561,8 +1561,10 @@ those directories during the installation process.
 
 @c =====================================================================
 
-@node Paper Size, Invocation Examples, Font Directories, Invoking groff
-@section Paper Size
+@node Paper Format, Invocation Examples, Font Directories, Invoking groff
+@section Paper Format
+@cindex paper format
+@cindex format, paper
 @cindex paper size
 @cindex size, paper
 @cindex landscape page orientation
@@ -1605,7 +1607,7 @@ groff -Tps -dpaper=a4l -P-pa4 -P-l -ms foo.ms > foo.ps
 @c =====================================================================
 
 @c BEGIN Keep parallel with groff(1), section "Examples".
-@node Invocation Examples,  , Paper Size, Invoking groff
+@node Invocation Examples,  , Paper Format, Invoking groff
 @section Invocation Examples
 @cindex invocation examples
 @cindex examples of invocation
@@ -18044,7 +18046,7 @@ Recognized paper formats are the ISO and DIN formats
 @code{executive}; and the envelope formats @code{com10}, @code{monarch},
 and @code{DL}.  Matching is performed without regard for lettercase.
 
-Alternatively, the argument can be a custom paper size in the format
+Alternatively, the argument can be a custom paper format in the format
 @code{@var{length},@var{width}} (with no spaces before or after the
 comma).  Both @var{length} and @var{width} must have a unit appended;
 valid units are @samp{i} for inches, @samp{c} for centimeters, @samp{p}
@@ -18183,8 +18185,8 @@ information about the device.
 @cindex format of font description files
 
 On typesetting output devices, each font is typically available at
-multiple sizes.  While paper size measurements in the device description
-file are in absolute units, measurements applicable to fonts must be
+multiple sizes.  While paper measurements in the device description file
+are in absolute units, measurements applicable to fonts must be
 proportional to the type size.  @code{groff} achieves this using the
 precedent set by @acronym{AT&T} device-independent @code{troff}: one
 font size is chosen as a norm, and all others are scaled linearly

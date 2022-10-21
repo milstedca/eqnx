@@ -141,8 +141,10 @@
 .  el \
 .    nr paper-w 1
 .
-.  ie \n[paper-w] \
-.    tm papersize.tmac: warning: unrecognized paper size '\*[paper-arg]'
+.  ie \n[paper-w] \{\
+.    tmc papersize.tmac: warning: ignoring unrecognized paper format
+.    tm1 " '\*[paper-arg]'
+.  \}
 .  el \
 .    if !r LL \
 .      nr LL \n[.l]u  \" for ms, mdoc, man

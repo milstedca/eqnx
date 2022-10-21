@@ -35,8 +35,11 @@ extern "C" const char *Version_string;
 
 static int user_papersize = -1;		// papersize
 static int orientation = -1;		// orientation
-static double user_paperlength = 0;	// Custom Paper size
+
+// custom paper format
+static double user_paperlength = 0;
 static double user_paperwidth = 0;
+
 static int ncopies = 1;			// Number of copies
 
 #define DEFAULT_LINEWIDTH_FACTOR 40	// 0.04em
@@ -83,8 +86,9 @@ private:
   unsigned short cur_symbol_set;
   int line_thickness;
   int req_linethickness; // requested line thickness
+  // custom paper format
   int papersize;
-  int paperlength;	// custom paper size
+  int paperlength;
   int paperwidth;
 };
 
@@ -154,10 +158,10 @@ lbp_printer::lbp_printer(int ps, double pw, double pl)
   lbpputs("\033c\033;\033[2&z\033[7 I\033[?32h\033[?33h\033[11h");
   wp54charset(); // Define the new symbol set
   lbpputs("\033[7 I\033[?32h\033[?33h\033[11h");
-  // Paper size handling
+  // Paper format handling
   if (orientation < 0)
     orientation = 0;	// Default orientation is portrait
-  papersize = 14;	// Default paper size is A4
+  papersize = 14;	// Default paper format is A4
   if (font::papersize) {
     papersize = set_papersize(font::papersize);
     paperlength = font::paperlength;
@@ -570,15 +574,15 @@ static struct {
 static int set_papersize(const char *paperformat)
 {
   unsigned int i;
-  // First test for a standard (i.e. supported directly by the printer)
-  // paper size
+  // First, test for a standard (i.e. supported directly by the printer)
+  // paper format.
   for (i = 0 ; i < sizeof(lbp_papersizes) / sizeof(lbp_papersizes[0]); i++)
   {
     if (strcasecmp(lbp_papersizes[i].name,paperformat) == 0)
       return lbp_papersizes[i].code;
   }
-  // Otherwise, we assume a custom paper size
-  return 82;
+  // Otherwise, we assume a custom paper format.
+  return 82; // XXX: magic number
 }
 
 static void handle_unknown_desc_command(const char *command, const char *arg,
@@ -658,7 +662,7 @@ int main(int argc, char **argv)
 	const char *s;
 	if (!font::scan_papersize(optarg, &s,
 				  &user_paperlength, &user_paperwidth))
-	  error("invalid paper size '%1' ignored", optarg);
+	  error("ignoring invalid paper format '%1'", optarg);
 	else
 	  user_papersize = set_papersize(s);
 	break;

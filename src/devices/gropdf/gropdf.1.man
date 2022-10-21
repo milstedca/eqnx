@@ -50,7 +50,7 @@ gropdf \- groff output driver for Portable Document Format
 .RB [ \-I\~\c
 .IR dir ]
 .RB [ \-p\~\c
-.IR paper-size ]
+.IR paper-format ]
 \#.RB [ \-w\~\c
 \#.IR n ]
 .RB [ \-u
@@ -177,8 +177,8 @@ it is otherwise searched last.
 Orient the document in landscape format.
 .
 .TP
-.BI \-p " paper-size"
-Set physical dimension of output medium.
+.BI \-p " paper-format"
+Set the physical dimensions of the output medium.
 .
 This overrides the
 .BR papersize ,
@@ -261,9 +261,9 @@ device uses a resolution of 72000 and a sizescale of 1000.
 .
 .
 .LP
-The device description file must contain a valid paper size; see
-.MR groff_font @MAN5EXT@
-for more information.
+The device description file must contain a valid paper format;
+see
+.MR groff_font @MAN5EXT@ .
 .
 .I gropdf
 uses the same Type\~1 Adobe PostScript fonts as the
@@ -797,23 +797,23 @@ One
 special used by the DVI driver is also recognised:
 .
 .TP
-.BI \[rs]X\[aq]papersize= paper-size \[aq]
+.BI \[rs]X\[aq]papersize= paper-format \[aq]
 where the
-.I paper-size
-parameter is the same as the
+.I paper-format
+parameter is the same as that to the
 .B papersize
 command.
 .
 See
-.MR groff_font @MAN5EXT@
-for details.
+.MR groff_font @MAN5EXT@ .
 .
 This means that you can alter the page size at will within the PDF file
 being created by
 .IR gropdf .
 .
-If you do want to change the paper size,
+If you do want to change the paper format,
 it must be done before you start creating the page.
+.
 .
 .LP
 In addition,

@@ -935,7 +935,7 @@ int main(int argc, char **argv)
     case 'p':
       if (!font::scan_papersize(optarg, 0,
 				&user_paper_length, &user_paper_width))
-	error("invalid custom paper size '%1' ignored", optarg);
+	error("ignoring invalid paper format '%1'", optarg);
       break;
     case 'v':
       {

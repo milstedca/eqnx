@@ -513,7 +513,7 @@ See
 .
 .TP
 .I papersize
-enables the paper size to be set on the command line by giving a
+enables the paper format to be set on the command line by giving a
 .BI "\-d \%paper=" size
 option to
 .IR @g@troff .
@@ -558,7 +558,7 @@ respectively,
 defined in its
 .I DESC
 file;
-see subsection \[lq]Paper sizes\[rq]
+see subsection \[lq]Paper format\[rq]
 of
 .MR groff @MAN1EXT@ .
 .

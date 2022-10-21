@@ -1,3 +1,30 @@
+2022-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Migrate terminology from "paper size" to "paper format" or
+	"paper dimensions" as appropriate in documentation and
+	diagnostic messages.  "Format" implies an orientation (which can
+	be overridden in many cases) whereas size does not.  When only
+	the magnitudes of measurements are at issue (mainly for internal
+	purposes), use the term "dimensions".
+
+	* NEWS:
+	* PROBLEMS:
+	* doc/groff.texi:
+	* m4/groff.m4 (GROFF_PAGE):
+	* man/groff_font.5.man:
+	* man/groff_tmac.5.man:
+	* src/devices/grodvi/dvi.cpp (main):
+	* src/devices/grolbp/grolbp.1.man:
+	* src/devices/grolbp/lbp.cpp (main):
+	* src/devices/grolj4/grolj4.1.man:
+	* src/devices/grolj4/lj4.cpp (lj4_printer::lj4_printer, main):
+	* src/devices/grolj4/lj4_font.5.man:
+	* src/devices/gropdf/gropdf.1.man:
+	* src/devices/grops/grops.1.man:
+	* src/devices/grops/ps.cpp (main):
+	* src/roff/groff/groff.1.man:
+	* tmac/papersize.tmac: Do it.
+
 2022-10-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/mdoc/doc-ditroff (doc-left-parenthesis)

@@ -50,7 +50,7 @@ output driver for Canon CaPSL printers
 .RB [ \-o\~\c
 .IR orientation ]
 .RB [ \-p\~\c
-.IR paper-size ]
+.IR paper-format ]
 .RB [ \-w\~\c
 .IR width ]
 .RI [ file\~ .\|.\|.]
@@ -67,7 +67,7 @@ output driver for Canon CaPSL printers
 ] [\c
 .BI \-\-orientation= orientation\c
 ] [\c
-.BI \-\-papersize= paper-size\c
+.BI \-\-papersize= paper-format\c
 ]
 .RI [ file\~ .\|.\|.]
 .YS
@@ -399,12 +399,12 @@ or
 .
 .
 .TP
-.BI \-p " paper-size"
+.BI \-p " paper-format"
 .TQ
-.BI \-\-papersize= paper-size
-Set the paper size to
-.IR paper-size ,
-which must be a valid paper size format as described above.
+.BI \-\-papersize= paper-format
+Set the paper format to
+.IR paper-format ,
+which must be a valid paper format as described above.
 .
 .
 .TP

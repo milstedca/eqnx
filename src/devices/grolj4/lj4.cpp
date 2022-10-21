@@ -58,7 +58,7 @@ static int user_paper_size = -1;
 static int landscape_flag = 0;
 static int duplex_flag = 0;
 
-// An upper limit on the paper size in centipoints,
+// An upper limit on the paper dimensions in centipoints,
 // used for setting HPGL picture frame.
 #define MAX_PAPER_WIDTH (12*720)
 #define MAX_PAPER_HEIGHT (17*720)
@@ -230,13 +230,13 @@ lj4_printer::lj4_printer(int ps)
   if (font::papersize) {
     int n = lookup_paper_size(font::papersize);
     if (n < 0)
-      error("unknown paper size '%1'", font::papersize);
+      error("ignoring invalid paper format '%1'", font::papersize);
     else
       paper_size = n;
   }
   if (ps >= 0)
     paper_size = ps;
-  printf("\033&l%dA"		// paper size
+  printf("\033&l%dA"		// paper format
 	 "\033&l%dO"		// orientation
 	 "\033&l0E",		// no top margin
 	 paper_table[paper_size].code,
@@ -640,7 +640,7 @@ int main(int argc, char **argv)
       {
 	int n = lookup_paper_size(optarg);
 	if (n < 0)
-	  error("unknown paper size '%1'", optarg);
+	  error("ignoring invalid paper format '%1'", font::papersize);
 	else
 	  user_paper_size = n;
 	break;

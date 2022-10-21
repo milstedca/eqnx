@@ -1261,13 +1261,14 @@ int ps_printer::media_width()
 {
   /*
    *  NOTE:
-   *  Although paper size is defined as real numbers, it seems to be
-   *  a common convention to round to the nearest postscript unit.
-   *  For example, a4 is really 595.276 by 841.89 but we use 595 by 842.
+   *  Although paper dimensions are defined as a pair of real numbers,
+   *  it seems to be a common convention to round to the nearest
+   *  PostScript unit.  For example, A4 is really 595.276 by 841.89 but
+   *  we use 595 by 842.
    *
    *  This is probably a good compromise, especially since the
-   *  Postscript definition specifies that media
-   *  matching should be done within a tolerance of 5 units.
+   *  PostScript definition specifies that media matching should be done
+   *  within a tolerance of 5 units.
    */
   return int(user_paper_width ? user_paper_width*72.0 + 0.5
 			      : font::paperwidth*72.0/font::res + 0.5);
@@ -1827,7 +1828,7 @@ int main(int argc, char **argv)
     case 'p':
       if (!font::scan_papersize(optarg, 0,
 				&user_paper_length, &user_paper_width))
-	error("invalid custom paper size '%1' ignored", optarg);
+	error("ignoring invalid custom paper format '%1'", optarg);
       break;
     case 'P':
       env = "GROPS_PROLOGUE";

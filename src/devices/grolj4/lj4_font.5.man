@@ -137,7 +137,7 @@ the maximum usable resolution is 32\|767\~\[di]\~17,
 or 1927 units per inch,
 which rounds down to 1200 units per inch.
 .
-If the largest required paper size is less
+If the largest required paper dimension is less
 (e.g.,
 8.5\~in\~\[mu]\~11\~in,
 or A5),

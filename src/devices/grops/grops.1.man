@@ -374,7 +374,7 @@ certain requirements.
 The device resolution must be an integer multiple of\~72 times the
 .BR sizescale .
 .
-The device description file must contain a valid paper size;
+The device description file must contain a valid paper format;
 see
 .MR groff_font @MAN5EXT@ .
 .

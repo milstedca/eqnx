@@ -272,8 +272,9 @@ static void usage(FILE *stream)
   fprintf(stream,
 	  "usage: %s [-d destination-directory] [-r resolution]"
 	  " [-s type-size] font-map\n"
-	  "usage: %s -v\n",
-	  program_name, program_name);
+	  "usage: %s {-v | --version}\n"
+	  "usage: %s --help\n",
+	  program_name, program_name, program_name);
 }
 
 int main(int argc, char **argv)

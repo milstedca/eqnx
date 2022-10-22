@@ -14,6 +14,7 @@
 	* src/roff/groff/groff.cpp (synopsis, help):
 	* src/utils/addftinfo/addftinfo.cpp (usage):
 	* src/utils/hpftodit/hpftodit.cpp (usage):
+	* src/utils/indxbib/indxbib.cpp (usage):
 	* src/utils/tfmtodit/tfmtodit.cpp (usage):
 	* src/utils/xtotroff/xtotroff.c (usage): Update usage message.
 	Present different modes of operation on separate output lines.

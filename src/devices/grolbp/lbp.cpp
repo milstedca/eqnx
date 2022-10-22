@@ -1,7 +1,6 @@
-// -*- C++ -*-
 /* Copyright (C) 1994-2020 Free Software Foundation, Inc.
-     Written by Francisco Andrés Verdú <pandres@dragonet.es> with many ideas
-     taken from the other groff drivers.
+     Written by Francisco Andrés Verdú <pandres@dragonet.es> with many
+     ideas taken from the other groff drivers.
 
 This file is part of groff.
 
@@ -625,18 +624,30 @@ static struct option long_options[] = {
 static void usage(FILE *stream)
 {
   fprintf(stream,
-	  "usage: %s [-lvh] [-c n] [-p paper_size] [-F dir] [-o or]\n"
-	  "       [-w width] [files ...]\n"
-	  "\n"
-	  "  -o --orientation=[portrait|landscape]\n"
-	  "  -v --version\n"
-	  "  -c --copies=numcopies\n"
-	  "  -l --landscape\n"
-	  "  -p --papersize=paper_size\n"
-	  "  -w --linewidth=width\n"
-	  "  -F --fontdir=dir\n"
-	  "  -h --help\n",
-	  program_name);
+"usage: %s [-l] [-c n] [-F dir] [-o ori] [-p fmt] [-w wid] [file ...]\n"
+"usage: %s {-v | --version}\n"
+"usage: %s {-h | --help}\n"
+"\n"
+"Translate the output of GNU troff(1) into a CaPSL and VDM format\n"
+"suitable for Canon LBP-4 and LBP-8 printers.\n"
+"\n"
+"Options:\n"
+"  --copies=N\n"
+"  -c N    Produce N copies of each page.\n"
+"  --fontdir=DIR\n"
+"  -F DIR  Search DIR for device and font description files.\n"
+"  --landscape\n"
+"  -l      Format document in landscape orientation.\n"
+"  --orientation=ORI\n"
+"  -o ORI  Format document in orientation ORI (\"portrait\","
+" \"landscape\").\n"
+"  --papersize=FMT\n"
+"  -p FMT  Set the paper format to FMT.\n"
+"  --linewidth=WID\n"
+"  -w WID  Set default line thickness to WID thousandths of an em.\n"
+"\n"
+"See the grolbp(1) manual page.\n",
+	  program_name, program_name, program_name);
 }
 
 int main(int argc, char **argv)
@@ -726,3 +737,9 @@ int main(int argc, char **argv)
     lbpputs("\033c\033<");
   return 0;
 }
+
+// Local Variables:
+// fill-column: 72
+// mode: C++
+// End:
+// vim: set cindent noexpandtab shiftwidth=2 textwidth=72:

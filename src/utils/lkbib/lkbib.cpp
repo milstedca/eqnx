@@ -34,8 +34,11 @@ extern "C" const char *Version_string;
 
 static void usage(FILE *stream)
 {
-  fprintf(stream, "usage: %s [-nv] [-p database] [-i XYZ] [-t N] keys ...\n",
-	  program_name);
+  fprintf(stream,
+          "usage: %s [-n] [-p database] [-i XYZ] [-t N] key ...\n"
+          "usage: %s {-v | --version}\n"
+          "usage: %s --help\n",
+	  program_name, program_name, program_name);
 }
 
 int main(int argc, char **argv)

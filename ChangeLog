@@ -7,9 +7,10 @@
 	* src/preproc/grn/main.cpp (usage):
 	* src/preproc/pic/main.cpp (usage):
 	* src/preproc/preconv/preconv.cpp (usage):
-	* src/preproc/soelim/soelim.cpp (usage): Update usage message.
-	Present different modes of operation on separate output lines.
-	Sort options in English lexicographic order.
+	* src/preproc/soelim/soelim.cpp (usage):
+	* src/roff/groff/groff.cpp (synopsis, help): Update usage
+	message.  Present different modes of operation on separate
+	output lines.  Sort options in English lexicographic order.
 
 2022-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 

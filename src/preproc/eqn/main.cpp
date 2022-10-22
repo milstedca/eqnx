@@ -303,10 +303,11 @@ static char *delim_search(char *ptr, int delim)
 void usage(FILE *stream)
 {
   fprintf(stream,
-    "usage: %s [ -CNrR ] -dXY -fF -mN -Mdir -pN -sN -Tname"
-    " [ file ... ]\n"
-    "usage: %s { -v | --version }\n",
-    program_name, program_name);
+    "usage: %s [-CNrR] [-d xy] [-f font] [-m n] [-M dir] [-p n] [-s n]"
+    " [-T name] [file ...]\n"
+    "usage: %s {-v | --version}\n"
+    "usage: %s --help\n",
+    program_name, program_name, program_name);
 }
 
 int main(int argc, char **argv)

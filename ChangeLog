@@ -3,6 +3,7 @@
 	* src/devices/grodvi/dvi.cpp (usage):
 	* src/devices/grolbp/lbp.cpp (usage):
 	* src/devices/grolj4/lj4.cpp (usage):
+	* src/preproc/eqn/main.cpp (usage):
 	* src/preproc/pic/main.cpp (usage): Update usage message.
 	Present different modes of operation on separate output lines.
 	Sort options in English lexicographic order.

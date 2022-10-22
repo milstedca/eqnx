@@ -135,9 +135,9 @@ Syntax(const char *progname, bool had_error)
 			" [-printCommand command]"
 			" [-resolution resolution]"
 			" [file]\n", progname);
-	(void) fprintf (stream, "usage: %s {-help | --help}\n",
-			progname);
 	(void) fprintf (stream, "usage: %s {-version | --version}\n",
+			progname);
+	(void) fprintf (stream, "usage: %s {-help | --help}\n",
 			progname);
 	if (had_error)
 		exit(EXIT_FAILURE);

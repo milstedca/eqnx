@@ -5,6 +5,7 @@
 	* src/devices/grolj4/lj4.cpp (usage):
 	* src/devices/grops/ps.cpp (usage):
 	* src/devices/grotty/tty.cpp (usage):
+	* src/devices/xditview/xditview.cpp (usage):
 	* src/preproc/eqn/main.cpp (usage):
 	* src/preproc/grn/main.cpp (usage):
 	* src/preproc/pic/main.cpp (usage):
@@ -15,7 +16,8 @@
 	* src/utils/tfmtodit/tfmtodit.cpp (usage):
 	* src/utils/xtotroff/xtotroff.c (usage): Update usage message.
 	Present different modes of operation on separate output lines.
-	Sort options in English lexicographic order.
+	Sort options in English lexicographic order.  Document help
+	option(s) as last mode of operation.
 
 2022-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 

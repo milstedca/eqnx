@@ -1,5 +1,14 @@
 2022-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/gropdf/gropdf.pl: Revise handling of argument 0.
+	Rename scalar `progname` to `prog` for brevity (and preparation
+	for writing a usage message).  Also stop stripping off directory
+	name components from it.  No other groff program does this, and
+	it might save users some confusion if they're working with
+	multiple copies of gropdf.
+
+2022-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Migrate terminology from "paper size" to "paper format" or
 	"paper dimensions" as appropriate in documentation and
 	diagnostic messages.  "Format" implies an orientation (which can

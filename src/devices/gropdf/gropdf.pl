@@ -32,7 +32,7 @@ use constant
     USED                => 4,
 };
 
-(my $progname=$0) =~s @.*/@@;
+my $prog=$0;
 
 my $gotzlib=0;
 
@@ -2220,7 +2220,7 @@ sub Msg
 {
     my ($fatal,$msg)=@_;
 
-    print STDERR "$progname:";
+    print STDERR "$prog:";
     print STDERR "$env{SourceFile}: " if exists($env{SourceFile});
 
     if ($fatal)

@@ -135,10 +135,10 @@ static void usage(FILE *stream)
   fprintf(stream, "usage: %s", program_name);
   size_t len = sizeof(param_table)/sizeof(param_table[0]);
   for (size_t i = 0; i < len; i++)
-    fprintf(stream, " [-%s N]", param_table[i].name);
-  fprintf(stream, " RESOLUTION UNIT-WIDTH FONT\n");
-  fprintf(stream, "usage: %s -v\n", program_name);
-  fprintf(stream, "usage: %s --version\n", program_name);
+    fprintf(stream, " [-%s n]", param_table[i].name);
+  fputs(" resolution unit-width font\n", stream);
+  fprintf(stream, "usage: %s {-v | --version}\n"
+	  "usage: %s --help\n", program_name, program_name);
 }
 
 static void usage()

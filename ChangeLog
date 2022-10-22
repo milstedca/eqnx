@@ -8,7 +8,8 @@
 	* src/preproc/pic/main.cpp (usage):
 	* src/preproc/preconv/preconv.cpp (usage):
 	* src/preproc/soelim/soelim.cpp (usage):
-	* src/roff/groff/groff.cpp (synopsis, help): Update usage
+	* src/roff/groff/groff.cpp (synopsis, help):
+	* src/utils/addftinfo/addftinfo.cpp (usage): Update usage
 	message.  Present different modes of operation on separate
 	output lines.  Sort options in English lexicographic order.
 

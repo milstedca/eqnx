@@ -393,9 +393,11 @@ int main(int argc, char **argv)
 static void usage(FILE *stream)
 {
   fprintf(stream,
-"usage: %s [-benCPRS] [-aN] [-cXYZ] [-fN] [-iXYZ] [-kX] [-lM,N]"
+"usage: %s [-bCenPRS] [-aN] [-cXYZ] [-fN] [-iXYZ] [-kX] [-lM,N]"
 " [-p db-file] [-sXYZ] [-tN] [-Bl.m] [file ...]\n"
-"usage: %s { -v | --version }\n", program_name, program_name);
+"usage: %s {-v | --version}\n"
+"usage: %s --help\n",
+	  program_name, program_name, program_name);
 }
 
 static void possibly_load_default_database()

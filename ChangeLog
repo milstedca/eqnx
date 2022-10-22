@@ -10,6 +10,7 @@
 	* src/preproc/grn/main.cpp (usage):
 	* src/preproc/pic/main.cpp (usage):
 	* src/preproc/preconv/preconv.cpp (usage):
+	* src/preproc/refer/refer.cpp (usage):
 	* src/preproc/soelim/soelim.cpp (usage):
 	* src/roff/groff/groff.cpp (synopsis, help):
 	* src/utils/addftinfo/addftinfo.cpp (usage):

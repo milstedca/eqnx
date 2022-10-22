@@ -4,6 +4,7 @@
 	* src/devices/grolbp/lbp.cpp (usage):
 	* src/devices/grolj4/lj4.cpp (usage):
 	* src/devices/grops/ps.cpp (usage):
+	* src/devices/grotty/tty.cpp (usage):
 	* src/preproc/eqn/main.cpp (usage):
 	* src/preproc/grn/main.cpp (usage):
 	* src/preproc/pic/main.cpp (usage):

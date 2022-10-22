@@ -1021,8 +1021,10 @@ int main(int argc, char **argv)
 
 static void usage(FILE *stream)
 {
-  fprintf(stream, "usage: %s [-bBcdfhioruUv] [-F dir] [files ...]\n",
-	  program_name);
+  fprintf(stream, "usage: %s [-bBcdfhioruUv] [-F dir] [file ...]\n"
+	  "usage: %s {-v | --version}\n"
+	  "usage: %s --help\n",
+	  program_name, program_name, program_name);
 }
 
 // Local Variables:

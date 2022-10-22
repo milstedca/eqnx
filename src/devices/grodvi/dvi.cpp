@@ -975,7 +975,9 @@ static void usage(FILE *stream)
 {
   fprintf(stream,
 "usage: %s [-dl] [-F dir] [-p paper-format] [-w n] [file ...]\n"
-"usage: %s {-v | --version}\n", program_name, program_name);
+"usage: %s {-v | --version}\n"
+"usage: %s --help\n",
+          program_name, program_name, program_name);
 }
 
 // Local Variables:

@@ -45,7 +45,10 @@ int do_file(const char *);
 
 void usage(FILE *stream)
 {
-  fprintf(stream, "usage: %s [ -Crtv ] [ -I dir ] [ files ]\n", program_name);
+  fprintf(stream, "usage: %s [-Crt] [-I dir] [file ...]\n"
+	  "usage: %s {-v | --version}\n"
+	  "usage: %s --help\n",
+	  program_name, program_name, program_name);
 }
 
 int main(int argc, char **argv)

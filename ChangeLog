@@ -6,7 +6,8 @@
 	* src/preproc/eqn/main.cpp (usage):
 	* src/preproc/grn/main.cpp (usage):
 	* src/preproc/pic/main.cpp (usage):
-	* src/preproc/preconv/preconv.cpp (usage): Update usage message.
+	* src/preproc/preconv/preconv.cpp (usage):
+	* src/preproc/soelim/soelim.cpp (usage): Update usage message.
 	Present different modes of operation on separate output lines.
 	Sort options in English lexicographic order.
 

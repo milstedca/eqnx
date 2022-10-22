@@ -18,6 +18,7 @@
 	* src/utils/indxbib/indxbib.cpp (usage):
 	* src/utils/lkbib/lkbib.cpp (usage):
 	* src/utils/lookbib/lookbib.cpp (usage):
+	* src/utils/pfbtops/pfbtops.c (usage):
 	* src/utils/tfmtodit/tfmtodit.cpp (usage):
 	* src/utils/xtotroff/xtotroff.c (usage): Update usage message.
 	Present different modes of operation on separate output lines.

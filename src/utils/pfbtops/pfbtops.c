@@ -49,7 +49,10 @@ static void error(const char *s)
 
 static void usage(FILE *stream)
 {
-  fprintf(stream, "usage: %s [-v] [pfb_file]\n", program_name);
+  fprintf(stream, "usage: %s [pfb-file]\n"
+	  "usage: %s {-v | --version}\n"
+	  "usage: %s --help\n",
+	  program_name, program_name, program_name);
 }
 
 static void get_text(int n)

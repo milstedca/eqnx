@@ -1204,17 +1204,27 @@ do_file(const char *filename)
 void
 usage(FILE *stream)
 {
-  fprintf(stream, "usage: %s [ option ] [ files ]\n"
-		  "\n"
-		  "-d           show debugging messages\n"
-		  "-D encoding  specify default encoding\n"
-		  "-e encoding  specify input encoding\n"
-		  "-h           print this message\n"
-		  "-r           don't add .lf requests\n"
-		  "-v           print version number\n"
-		  "\n"
-		  "The default encoding is '%s'.\n",
-		  program_name, default_encoding);
+  fprintf(stream,
+"usage: %s [-dr] [-D enc] [-e enc] [file ...]\n"
+"usage: %s {-v | --version}\n"
+"usage: %s {-h | --help}\n"
+"\n"
+"Read each file, convert its encoded characters to a form GNU troff\n"
+"can interpret, and send the result to the standard output stream.\n"
+"\n"
+"Options:\n"
+"  -d      show debugging messages\n"
+"  -D ENC  fall back to encoding ENC\n"
+"  -e ENC  assume input encoding of ENC\n"
+"  --help\n"
+"  -h      show this message and exit\n"
+"  -r      don't add 'lf' requests to output\n"
+"  --version\n"
+"  -v      show version information and exit\n"
+"\n"
+"The default fallback encoding is '%s'.  See the preconv(1) manual"
+" page.\n",
+	  program_name, program_name, program_name, default_encoding);
 }
 
 // ---------------------------------------------------------

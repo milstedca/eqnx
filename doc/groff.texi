@@ -974,7 +974,7 @@ The @code{grog} command can be used to guess the correct @code{groff}
 command to format a file.  See its man page @cite{grog@r{(1)}}; type
 @samp{man grog} at the command line to view it.
 
-Here's the description of the command-line options:
+@command{groff}'s command-line options are as follows.
 
 @cindex command-line options
 @table @samp
@@ -1011,74 +1011,82 @@ The above description should not be considered a specification; the
 details of @option{-a} output are subject to change.
 
 @item -b
-Print a backtrace with each warning or error message.  This backtrace
-should help track down the cause of the error.  The line numbers given
-in the backtrace may not always be correct: @code{gtroff} can get
-confused by @code{as} or @code{am} requests while counting line numbers.
+Write a backtrace reporting the state of @command{gtroff}'s input parser
+to the standard error stream with each diagnostic message.  The line
+numbers given in the backtrace might not always be correct, because
+@command{gtroff}'s idea of line numbers can be confused by requests that
+append to
+@c XXX: strings or (??? strings never contain newlines)
+macros.
 
 @item -c
-Suppress color output.
+Start with color output disabled.
 
 @item -C
-Enable compatibility mode.  @xref{Implementation Differences}, for the
-list of incompatibilities between @code{groff} and @acronym{AT&T}
-@code{troff}.
+Enable AT&T @command{troff} compatibility mode; implies @option{-c}.
+@xref{Implementation Differences}, for the list of incompatibilities
+between @command{groff} and @acronym{AT&T} @command{troff}.
 
-@item -d@var{c}@var{s}
-@itemx -d@var{name}=@var{s}
-Define @var{c} or @var{name} to be a string@tie{}@var{s}.
-@var{c}@tie{}must be a one-letter name; @var{name} can be of arbitrary
-length.  All string assignments happen before loading any macro file
-(including the startup file).
+@item -d@var{c}@var{text}
+@itemx -d@var{string}=@var{text}
+Define @code{roff} string @var{c} or @var{string} as@tie{}@var{t} or
+@var{text}.  @var{c}@tie{}must be one character; @var{string} can be
+of arbitrary length.  Such string assignments happen before any macro
+file is loaded, including the startup file.  Due to @code{getopt_long}
+limitations, @var{c}@tie{}cannot be, and @var{string} cannot contain, an
+equals sign, even though that is a valid character in a @code{roff}
+identifier.
 
-@item -D@var{arg}
-Set default input encoding used by @code{preconv} to @var{arg}.  Implies
-@option{-k}.
+@item -D@var{enc}
+Set default input encoding used by @command{preconv} to @var{enc};
+implies @option{-k}.
 
 @item -e
-Preprocess with @code{geqn}.
+Run @command{geqn} preprocessor.
 
 @item -E
-Inhibit all error messages.
+Inhibit @command{gtroff} error messages.  This option does @emph{not}
+suppress messages sent to the standard error stream by documents or
+macro packages using @code{tm} or related requests.
 
 @item -f@var{fam}
 Use @var{fam} as the default font family.  @xref{Font Families}.
 
 @item -F@var{dir}
-Search @file{@var{dir}} for subdirectories @file{dev@var{name}}
-(@var{name} is the name of the device), for the @file{DESC} file, and
-for font files before looking in the standard directories (@pxref{Font
-Directories}).  This option is passed to all pre- and postprocessors
-using the @env{GROFF_FONT_PATH} environment variable.
+Search in directory @file{@var{dir}} for the selected output device's
+directory of device and font description files.  See the description of
+@env{GROFF_FONT_PATH} in @ref{Environment} below for the default search
+locations and ordering.
 
 @item -g
-Preprocess with @code{ggrn}.
+Run @command{ggrn} preprocessor.
 
 @item -G
-Preprocess with @code{grap}.  Implies @option{-p}.
+Run @command{grap} preprocessor; implies @option{-p}.
 
 @item -h
-Print a help message.
+Display a usage message and exit.
 
 @item -i
 Read the standard input after all the named input files have been
 processed.
 
 @item -I@var{dir}
-Search @var{dir} for files named in several contexts; implies
-@option{-g} and @option{-s}.  Files are sought for several purposes.
+Search the directory @var{dir} for files named in several contexts;
+implies @option{-g} and @option{-s}.
 
 @itemize
 @item
-@code{gsoelim} replaces @code{so} requests with the contents of their
+@command{gsoelim} replaces @code{so} requests with the contents of their
 file name arguments.
 
 @item
-@code{gtroff} searches for files named as operands in its command line
-and as arguments to @code{psbb}, @code{so}, and @code{soquiet} requests.
+@command{gtroff} searches for files named as operands in its command
+line and as arguments to @code{psbb}, @code{so}, and @code{soquiet}
+requests.
 
 @item
-Output drivers may search for files; for instance, @code{grops} looks
+Output drivers may search for files; for instance, @command{grops} looks
 for files named in @samp{\X'ps: import @r{@dots{}}'}, @samp{\X'ps: file
 @r{@dots{}}'}, and @samp{\X'pdf: pdfpic @r{@dots{}}'} device control
 escape sequences.
@@ -1091,97 +1099,106 @@ current working directory is otherwise searched last.  @option{-I} works
 similarly to, and is named for, the ``include'' option of Unix C
 compilers.
 
-@option{-I} options are passed to @code{gsoelim}, @code{gtroff}, and
-output drivers; with the flag letter changed to @option{-M}, they are
-also passed to @code{ggrn}.
+@option{-I} options are passed to @command{gsoelim}, @command{gtroff},
+and output drivers; with the flag letter changed to @option{-M}, they
+are also passed to @command{ggrn}.
 
 @item -j
-Preprocess with @code{gchem}.  Implies @option{-p}.
+Run @command{gchem} preprocessor.  Implies @option{-p}.
 
 @item -k
-Preprocess with @code{preconv}.  This is run before any other
-preprocessor.  Please refer to @code{preconv}'s man page for its
-behaviour if no @option{-K} (or @option{-D}) option is specified.
+Run @command{preconv} preprocessor.  Refer to its man page for its
+behavior if neither of @command{groff}'s @option{-K} or @option{-D}
+options is also specified.
 
-@item -K@var{arg}
-Set input encoding used by preconv to @var{arg}.  Implies @option{-k}.
+@item -K@var{enc}
+Set input encoding used by @command{preconv} to @var{enc}; implies
+@option{-k}.
 
 @item -l
-Send the output to a spooler for printing.  The command used for this is
-specified by the @code{print} command in the device description file
-(@pxref{Device and Font Description Files}).  If not present,
-@option{-l} is ignored.
+Send the output to a spooler for printing.  The @code{print} directive
+in the device description file specifies the default command to be used;
+see @ref{Device and Font Description Files}.
+@c XXX: This document is not parameterized in configuration variables.
+@c If no such directive is present for the output device,
+@c .ie '@PSPRINT@'' \{\
+@c this option is ignored.
+@c .\}
+@c .el \{\
+@c output is piped to
+@c .MR @PSPRINT@ 1 .
+@c .\}
+See options @option{-L} and @option{-X}.
 
 @item -L@var{arg}
-Pass @var{arg} to the spooler.  Each argument should be passed with a
-separate @option{-L} option.  @code{groff} does not prepend a @samp{-}
-to @var{arg} before passing it to the postprocessor.  If the
-@code{print} keyword in the device description file is missing,
-@option{-L} is ignored.
+Pass @var{arg} to the print spooler program.  If multiple @var{arg}s are
+required, pass each with a separate @option{-L} option.  @command{groff}
+does not prefix an option dash to @var{arg} before passing it to the
+spooler program.
 
 @item -m@var{name}
-Read in the file @file{@var{name}.tmac}.  Normally @code{groff} searches
-for this in its macro directories.  If it isn't found, it tries
-@file{tmac.@var{name}} (searching in the same directories).
+Process the file @file{@var{name}.tmac} prior to any input files.
+If not found, @file{tmac.@var{name}} is attempted.  @var{name}
+(in both arrangements) is presumed to be a macro file; see the
+description of @env{GROFF_TMAC_PATH} in @ref{Environment} below for the
+default search locations and ordering.  This option and its argument are
+also passed to @command{geqn}, @command{grap}, and @command{ggrn}.
 
 @item -M@var{dir}
-Search directory @file{@var{dir}} for macro files before the standard
-directories (@pxref{Macro Directories}).  It is also passed to
-@code{geqn}, @code{grap}, and @code{ggrn}.
+Search directory @file{@var{dir}} for macro files;  see the description
+of @env{GROFF_TMAC_PATH} in @ref{Environment} below for the default
+search locations and ordering.  This option and its argument are also
+passed to @command{geqn}, @command{grap}, and @command{ggrn}.
 
 @item -n@var{num}
 Number the first page @var{num}.
 
 @item -N
-Don't allow newlines with @code{eqn} delimiters.  This is the same as
-the @option{-N} option in @code{geqn}.
+Prohibit newlines between @code{eqn} delimiters:@: pass @option{-N} to
+@command{geqn}.
 
 @item -o@var{list}
 @cindex print current page register (@code{.P})
 Output only pages in @var{list}, which is a comma-separated list of page
-ranges; @samp{@var{n}} means print page@tie{}@var{n},
-@samp{@var{m}-@var{n}} means print every page between @var{m}
-and@tie{}@var{n}, @samp{-@var{n}} means print every page up
-to@tie{}@var{n}, @samp{@var{n}-} means print every page beginning
-with@tie{}@var{n}.  @code{gtroff} exits after printing the last page in
-the list.  All the ranges are inclusive on both ends.
-
-Within @code{gtroff}, this information can be extracted with the
-@samp{.P} register.  @xref{Built-in Registers}.
-
-If your document restarts page numbering at the beginning of each
-chapter, then @code{gtroff} prints the specified page range for each
-chapter.
+ranges; @samp{@var{n}} means page@tie{}@var{n}, @samp{@var{m}-@var{n}}
+means every page between @var{m} and@tie{}@var{n}, @samp{-@var{n}} means
+every page up to@tie{}@var{n}, @samp{@var{n}-} means every page from
+@var{n}@tie{}on.  @command{gtroff} stops processing and exits after
+formatting the last page enumerated in @var{list}.
 
 @item -p
-Preprocess with @code{gpic}.
+Run @command{gpic} preprocessor.
 
 @item -P@var{arg}
-Pass @var{arg} to the postprocessor.  Each argument should be passed
-with a separate @option{-P} option.  Note that @code{groff} does not
-prepend @samp{-} to @var{arg} before passing it to the postprocessor.
+Pass @var{arg} to the postprocessor.  If multiple @var{arg}s are
+required, pass each with a separate @option{-P} option.  @command{groff}
+does not prefix an option dash to @var{arg} before passing it to the
+postprocessor.
 
-@item -r@var{c}@var{n}
-@itemx -r@var{name}=@var{n}
-Set register@tie{}@var{c} or @var{name} to the value@tie{}@var{n}.
-@var{c}@tie{}must be a one-letter name; @var{name} can be of arbitrary
-length.  @var{n}@tie{}can be any @code{gtroff} numeric expression.  All
-register assignments happen before loading any macro file (including the
-startup file).
+@item -r@var{c}@var{numeric-expression}
+@itemx -r@var{register}=@var{expr}
+Set @code{roff} register@tie{}@var{c} or @var{register} to the value
+@var{numeric-expression} (@pxref{Numeric Expressions}).
+@var{c}@tie{}must be one character; @var{regsiter} can be of arbitrary
+length.  Such register assignments happen before any macro file is
+loaded, including the startup file.  Due to @code{getopt_long}
+limitations, @var{c}@tie{}cannot be, and @var{register} cannot contain,
+an equals sign, even though that is a valid character in a @code{roff}
+identifier.
 
 @item -R
-Preprocess with @code{grefer}.  No mechanism is provided for passing
-arguments to @code{grefer} because most @code{grefer} options have
-equivalent commands that can be included in the file.
+Run @command{grefer} preprocessor.  No mechanism is provided for passing
+arguments to @command{grefer} because most @command{grefer} options have
+equivalent language elements that can be specified within the document.
 
 @pindex troffrc
 @pindex troffrc-end
-@code{gtroff} also accepts a @option{-R} option, which is not
-accessible via @code{groff}.  This option prevents the loading of the
+@command{gtroff} also accepts a @option{-R} option, which is not
+accessible via @command{groff}.  This option prevents the loading of the
 @file{troffrc} and @file{troffrc-end} files.
 
 @item -s
-Preprocess with @code{gsoelim}.
+Run @command{gsoelim} preprocessor.
 
 @item -S
 @cindex @code{open} request, and safer mode
@@ -1191,17 +1208,17 @@ Preprocess with @code{gsoelim}.
 @cindex @code{pi} request, and safer mode
 @cindex safer mode
 @cindex mode, safer
-Safer mode.  Pass the @option{-S} option to @code{gpic} and disable the
-@code{open}, @code{opena}, @code{pso}, @code{sy}, and @code{pi}
-requests.  For security reasons, this is enabled by default.
+Operate in ``safer'' mode; see @option{-U} below for its opposite.  For
+security reasons, safer mode is enabled by default.
 
 @item -t
-Preprocess with @code{gtbl}.
+Run @command{gtbl} preprocessor.
 
 @item -T@var{dev}
-Prepare output for device @var{dev}.  The default device is @samp{ps},
-unless changed when @code{groff} was configured and built.  The
-following are the output devices currently available:
+Direct @command{gtroff} to format the input for the output device
+@var{dev}.  @command{groff} then calls an output driver to convert
+@command{gtroff}'s output to a form appropriate for @var{dev}.  The
+following output devices are available.
 
 @table @code
 @item ps
@@ -1276,16 +1293,16 @@ printers).
 @item html
 @itemx xhtml
 To produce @acronym{HTML} and @acronym{XHTML} output, respectively.
-This driver consists of two parts, a preprocessor (@code{pre-grohtml})
-and a postprocessor (@code{post-grohtml}).
+This driver consists of two parts, a preprocessor
+(@command{pre-grohtml}) and a postprocessor (@command{post-grohtml}).
 @end table
 
 @cindex output device name string (@code{.T})
 @cindex output device usage register (@code{.T})
 The predefined GNU @code{troff} string @code{.T} contains the name of
 the output device; the read-only register @code{.T} is set to@tie{}1 if
-this option is used (which is always true if @code{groff} is used to
-call GNU @code{troff}).  @xref{Built-in Registers}.
+this option is used (which is always true if @command{groff} is used to
+call GNU @command{troff}).  @xref{Built-in Registers}.
 
 The postprocessor to be used for a device is specified by the
 @code{postpro} command in the device description file.  (@xref{Device
@@ -1300,37 +1317,43 @@ Operate in @dfn{unsafe mode}, which enables the @code{open},
 requests are disabled by default because they allow an untrusted input
 document to write to arbitrary file names and run arbitrary commands.
 This option also adds the current directory to the macro package search
-path; see the @option{-m} option above.
-
-@item -w@var{name}
-Enable warning @var{name}.  Available warnings are described in
-@ref{Debugging}.  Multiple @option{-w} options are allowed.
-
-@item -W@var{name}
-Inhibit warning @var{name}.  Multiple @option{-W} options are allowed.
+path; see the @option{-m} option above.  @option{-U} is passed to
+@command{gpic} and @command{gtroff}.
 
 @item -v
-Make programs run by @code{groff} print out their version number.
+Write version information for @command{groff} and all programs run by it
+to the standard output stream; that is, the given command line is
+processed in the usual way, passing @option{-v} to the formatter and any
+pre- or postprocessors invoked.
 
 @item -V
-Print the pipeline on @code{stdout} instead of executing it.  If
-specified more than once, print the pipeline on @code{stderr} and
-execute it.
+Output the pipeline that would be run by @command{groff}
+(as a wrapper program) to the standard output stream, but do not execute
+it.  If given more than once, the pipeline is both written to the
+standard error stream and run.
+
+@item -w@var{category}
+Enable warnings in @var{category}.  Categories are listed in
+@ref{Warnings}.
+
+@item -W@var{category}
+Inhibit warnings in @var{category}.  Categories are listed in
+@ref{Warnings}.
 
 @item -X
-Preview with @code{gxditview} instead of using the usual postprocessor.
-This is unlikely to produce good results except with @option{-Tps}.
-
-This is not the same as using @option{-TX75} or @option{-TX100} to view
-a document with @code{gxditview}: the former uses the metrics of the
-specified device, whereas the latter uses X-specific fonts and metrics.
+Use @command{gxditview} instead of the usual postprocessor to (pre)view
+a document on an X11 display.  Combining this option with
+@option{-Tps} uses the font metrics of the PostScript device, whereas
+the @option{-TX75} and @option{-TX100} options use the metrics of X11
+fonts.
 
 @item -z
-Suppress output from @code{gtroff}.  Only error messages are printed.
+Suppress formatted output from @command{gtroff}.
 
 @item -Z
-Do not postprocess the output of @code{gtroff}.  Normally @code{groff}
-automatically runs the appropriate postprocessor.
+Disable postprocessing.  @command{gtroff} output will appear on the
+standard output stream (unless suppressed with @option{-z}; see
+@ref{gtroff Output} for a description of this format.
 @end table
 
 

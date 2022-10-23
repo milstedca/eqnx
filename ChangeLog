@@ -1,6 +1,7 @@
 2022-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grodvi/dvi.cpp (usage):
+	* src/devices/grohtml/post-html.cpp (usage):
 	* src/devices/grolbp/lbp.cpp (usage):
 	* src/devices/grolj4/lj4.cpp (usage):
 	* src/devices/grops/ps.cpp (usage):

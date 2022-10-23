@@ -111,7 +111,7 @@ capable of handling this standardized version of the language.  The C++
 source files use a suffix of '.cpp'; your C++ compiler must be able to
 handle this.  A C/C++ preprocessor that conforms to ISO C90 is also
 required.  If you don't already have a C++ compiler, we suggest GCC 9.4
-or later.  To override the configure script's choice of C++ compiler,
+or later.  To override the 'configure' script's choice of C++ compiler,
 you can set the CXX environment variable to the name of its executable.
 
 A few components of groff are written in ISO C99.  Features later made
@@ -128,7 +128,7 @@ requires the 'pkg-config' program to be installed on your system, as
 well as the library's C header files--on a package-based host system,
 this can mean installing uchardet's '-dev' or '-devel' package.
 
-The configure script searches for fonts originating with the URW
+The 'configure' script searches for fonts originating with the URW
 foundry; these are metrically-compatible replacements for the Adobe
 PostScript Level 2 base 35 fonts required by that standard.  These URW
 fonts are packaged with Ghostscript and in various derivative versions.
@@ -139,18 +139,19 @@ that these base fonts will be supplied by the rendering device (a
 printer or PDF viewer).  Nowadays the PDF standard expects all fonts to
 be embedded in the document; if groff's gropdf(1) output driver knows
 where to find these fonts, you can use its "-e" option for this purpose.
-The configure script populates a "Foundry" file that tells gropdf where
-they reside after searching in several common locations.  If you have
-multiple versions of the URW fonts available on your system, or the
-configure script cannot locate them on its own, use its
-"--with-urw-fonts-dir" option to tell the script where to find them.  If
-you never use groff to generate PostScript or PDF documents, you can
-ignore any output from the configure script about URW fonts.
+The build process populates "Foundry" and "download" files that tell
+gropdf where to find their groff font descriptions and the font files
+themselves, respectively.  If you have multiple versions of the URW
+fonts available on your system, or the 'configure' script cannot locate
+them on its own, use its "--with-urw-fonts-dir" option to tell the
+script where to find them.  If you never use groff to generate
+PostScript or PDF documents, you can ignore any output from the
+'configure' script about URW fonts.
 
 Miscellaneous
 =============
 
-If you want A4 or U.S. letter paper format and the configure script
+If you want A4 or U.S. letter paper format and the 'configure' script
 produces an incorrect guess, say
 
   PAGE=xxx ./configure

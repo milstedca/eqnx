@@ -202,6 +202,9 @@ compatibility mode;
 implies
 .BR \-c .
 .
+See
+.MR groff_diff @MAN7EXT@ .
+.
 .
 .TP
 .BI \-d\~ ctext
@@ -319,9 +322,9 @@ option of Unix C compilers.
 .
 .TP
 .BI \-m\~ name
-Process
+Process the file
 .RI name .tmac
-before input files.
+prior to any input files.
 .
 If not found,
 .IR tmac. name

@@ -1523,12 +1523,14 @@ static char_buffer inputFile;
 
 static void usage(FILE *stream)
 {
-  fprintf(stream, "usage: %s [-epV] [-a ANTI-ALIASING-TEXT-BITS]"
-	  " [-D IMAGE-DIRECTORY] [-F FONT-DIRECTORY]"
-	  " [-g ANTI-ALIASING-GRAPHICS-BITS] [-i RESOLUTION]"
-	  " [-I IMAGE-STEM] [-o IMAGE-VERTICAL-OFFSET]"
-	  " [-x HTML-DIALECT] [TROFF-COMMAND] [TROFF-ARGUMENT] ...\n"
-	  "usage: %s -v\n", program_name, program_name);
+  fprintf(stream,
+"usage: %s [-epV] [-a anti-aliasing-text-bits] [-D image-directory]"
+" [-F font-directory] [-g anti-aliasing-graphics-bits] [-i resolution]"
+" [-I image-stem] [-o image-vertical-offset] [-x html-dialect]"
+" troff-command troff-argument ...\n"
+"usage: %s {-v | --version}\n"
+"usage: %s --help\n",
+	 program_name, program_name, program_name);
   fputs(
 "\n"
 "This program is not intended to be executed standalone; it is\n"

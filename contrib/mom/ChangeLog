@@ -1,3 +1,8 @@
+2022-10-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* om.tmac (FORCE_RECTO): Use backslash before newline when
+	starting multi-line conditional block.
+
 2022-09-02
 
 	* examples/mom-pdf.mom: Fixes missing parameter to \*[SIZE] at

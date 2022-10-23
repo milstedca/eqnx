@@ -236,7 +236,7 @@ Run
 .MR preconv @MAN1EXT@
 preprocessor.
 .
-Refer to its manual page for its behavior if neither of
+Refer to its man page for its behavior if neither of
 .IR groff 's
 .B \-K
 or
@@ -289,7 +289,7 @@ to the print spooler program.
 If multiple
 .IR arg s
 are required,
-each should be passed with a separate
+pass each with a separate
 .B \-L
 option.
 .
@@ -314,7 +314,7 @@ and
 .
 .TP
 .B \-N
-Prohibit newlines within
+Prohibit newlines between
 .I eqn \" language
 delimiters:
 pass
@@ -339,7 +339,7 @@ to the postprocessor.
 If multiple
 .IR arg s
 are required,
-each should be passed with a separate
+pass each with a separate
 .B \-P
 option.
 .
@@ -413,9 +413,6 @@ option to
 and
 .IR @g@troff .
 .
-See
-.BR \-S .
-.
 .
 .TP
 .B \-v
@@ -449,6 +446,15 @@ Use
 .MR gxditview @MAN1EXT@
 instead of the usual postprocessor to (pre)view a document on an X11
 display.
+.
+Combining this option with
+.B \-Tps
+uses the font metrics of the PostScript device,
+whereas the
+.B \-TX75
+and
+.B \-TX100
+options use the metrics of X11 fonts.
 .
 .
 .TP

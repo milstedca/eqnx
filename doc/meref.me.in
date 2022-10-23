@@ -214,8 +214,8 @@ any user-defined register,
 string,
 or macro
 names should be single numerals or uppercase letters,
-or any longer sequence of numerals and/or
-letters as long as at least one letter is uppercase.\**
+or any longer character sequence
+including at least one uppercase letter.\**
 .(f
 \**
 For portability between BSD and \*G \*(ME,
@@ -244,7 +244,7 @@ to
 .NR (pp
 [10p],
 and vertical spacing
-(text baseline distance)
+(text baseline spacing)
 to
 .NR (tv
 [120]%
@@ -287,7 +287,7 @@ to the first output line.
 Like
 .b .lp ,
 but set the paragraph
-with a hanging tag
+with an optional hanging tag
 .i T
 [empty]
 and the remainder indented by
@@ -306,10 +306,11 @@ Any spaces in
 must be unbreakable.
 If
 .i T
-will not fit in the space
+does not fit in the space
 .i i,
 .b .ip
-puts the text after the tag on a new line.
+breaks the line after
+.i T .
 .TL
 .b .np
 .DE
@@ -698,8 +699,7 @@ and long quotations
 are preceded and followed
 by an extra
 .NR (bs
-[same as
-.NR (ps ]
+[0.35v]
 of vertical space
 and use a vertical spacing of
 .NR (dv
@@ -766,8 +766,7 @@ by
 preceded and followed
 by
 .NR (qs
-[same as
-.NR (bs ]
+[0.35v]
 space,
 and set at type size
 .NR (qp

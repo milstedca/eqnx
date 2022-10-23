@@ -1297,7 +1297,7 @@ contains unsupported escape sequence
 .  if \n[cR] \
 .    ds an-msg when continuously rendering
 .\}
-.if d an-msg \{
+.if d an-msg \{\
 .  tm \*[an]: ignoring starting page number \*[an-msg]
 .  rr P
 .  rm an-msg
@@ -1336,7 +1336,7 @@ contains unsupported escape sequence
 .  if \n[cR] \
 .    ds an-msg when continuously rendering
 .\}
-.if d an-msg \{
+.if d an-msg \{\
 .  tm \*[an]: ignoring page number suffix \*[an-msg]
 .  rr X
 .  rm an-msg
@@ -1355,7 +1355,7 @@ contains unsupported escape sequence
 .substring an-heading-style -1 -1
 .ds an-heading-family \" empty
 .length an-HF-length \*[HF]
-.if (\n[an-HF-length] > 1) \{
+.if (\n[an-HF-length] > 1) \{\
 .  as an-heading-family \*[HF]\"
 .  substring an-heading-family 0 -2
 .\}

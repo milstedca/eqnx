@@ -11548,10 +11548,10 @@ in traditional typesetting.}
 @cindex type sizes, changing (@code{ps}, @code{\s})
 @cindex point sizes, changing (@code{ps}, @code{\s})
 Use the @code{ps} request or the @code{\s} escape sequence to change
-(increase, decrease) the type size (in points).  Specify @var{size} as
-either an absolute type size, or as a relative change from the current
-size.  @code{ps} with no argument restores the previous size.  The
-@code{size} request's default scaling unit is @samp{z}.  If the
+(increase, decrease) the type size (in scaled points).  Specify
+@var{size} as either an absolute type size, or as a relative change from
+the current size.  @code{ps} with no argument restores the previous
+size.  The @code{ps} request's default scaling unit is @samp{z}.  If the
 requested size is non-positive, it is set to 1@dmn{u}.
 
 @cindex type size registers (@code{.s}, @code{.ps})
@@ -11725,9 +11725,9 @@ it is associated with the environment (@pxref{Environments}).
 AT&T @code{troff} interpreted all type size measurements in points.
 Combined with integer arithmetic, this design choice made it impossible
 to support, for instance, ten and a half-point type.  In GNU
-@code{troff}, an output device can select a scaling factor that divides
-a point into subdivisions termed ``scaled points''.  A type size
-expressed in scaled points can thus represent a non-integral type size.
+@code{troff}, an output device can select a scaling factor that
+subdivides a point into ``scaled points''.  A type size expressed in
+scaled points can thus represent a non-integral type size.
 
 @cindex @code{s} scaling unit
 @cindex unit, scaling, @code{s}
@@ -11792,10 +11792,10 @@ read-only register @code{.psr} and in points as a decimal fraction by
 the read-only string-valued register @code{.sr}.  Both are associated
 with the environment (@pxref{Environments}).
 
-For example, if a type size of 10.95@dmn{pt} is requested, and a
-@code{sizes} request (or a @code{sizescale} directive in the device's
-@file{DESC} file) permits only 11@dmn{pt} instead, the latter value is
-used by the output driver.
+For example, if a type size of 10.95@dmn{pt} is requested, and the
+nearest size permitted by a @code{sizes} request (or a @code{sizescale}
+directive in the device's @file{DESC} file) is 11@dmn{pt}, the latter
+value is used by the output driver.
 @endDefreg
 
 The @code{\s} escape sequence offers the following syntax forms that

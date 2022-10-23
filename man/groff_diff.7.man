@@ -171,8 +171,8 @@ ten and a half-point type.
 .
 In GNU
 .IR troff , \" GNU
-an output device can select a scaling factor that divides a point into
-subdivisions termed \[lq]scaled points\[rq].
+an output device can select a scaling factor that subdivides a point
+into \[lq]scaled points\[rq].
 .
 A type size expressed in scaled points can thus represent a non-integral
 type size.
@@ -306,7 +306,7 @@ Both are associated with the environment.
 .
 For example,
 if a type size of 10.95\~points is requested,
-and a
+and the nearest size permitted by a
 .B sizes
 request
 (or a
@@ -314,7 +314,7 @@ request
 directive in the device's
 .I DESC
 file)
-permits only 11\~points instead,
+is 11\~points,
 the latter value is used by the output driver.
 .\" END Keep (roughly) parallel with groff.texi node "Using Fractional
 .\" Type Sizes".

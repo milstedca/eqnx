@@ -15,6 +15,7 @@
 	* src/preproc/refer/refer.cpp (usage):
 	* src/preproc/soelim/soelim.cpp (usage):
 	* src/roff/groff/groff.cpp (synopsis, help):
+	* src/roff/nroff/nroff.sh:
 	* src/roff/troff/input.cpp (usage):
 	* src/utils/addftinfo/addftinfo.cpp (usage):
 	* src/utils/hpftodit/hpftodit.cpp (usage):

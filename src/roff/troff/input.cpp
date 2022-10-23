@@ -8031,11 +8031,15 @@ static void add_string(const char *s, string_list **p)
 void usage(FILE *stream, const char *prog)
 {
   fprintf(stream,
-"usage: %s [-abcCEiRUz] [-dCS] [-dNAME=STRING] [-fFAM] [-Fdir]"
-" [-Idir] [-mNAME] [-Mdir] [-nNUM] [-oLIST] [-rCN] [-rREG=EXPR]"
-" [-Tdev] [-wNAME] [-Wname] [file ...]\n"
-"usage: %s {-h | --help | -v | --version}\n",
-	  prog, prog);
+"usage: %s [-abcCEiRUz] [-d ct] [-d string=text] [-f font-family]"
+" [-F font-directory] [-I inclusion-directory] [-m macro-package]"
+" [-M macro-directory] [-n page-number] [-o page-list]"
+" [-r cnumeric-expression] [-r register=numeric-expression]"
+" [-T output-device] [-w warning-category] [-W warning-category]"
+" [file ...]\n"
+"usage: %s {-v | --version}\n"
+"usage: %s {-h | --help}\n",
+	  prog, prog, prog);
 }
 
 int main(int argc, char **argv)

@@ -1,5 +1,21 @@
 2022-10-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/fallbacks.tmac: Define fallback characters for many code
+	points from the Unicode General Punctuation Block.  This is to
+	ease migration from other documentation formats; in many cases
+	there are more idiomatic *roff ways of getting results that
+	typeset better and are amenable to fine tuning.  For instance,
+	Unicode defines spaces and dashes of various discrete widths;
+	when typesetting with *roff, you can have a space or dash (among
+	other things) of any length achievable by the output device.
+	* tmac/ps.tmac: Migrate non-breaking hyphen fallback character
+	definition from here to the foregoing.
+
+	Fixes <https://savannah.gnu.org/?58930>.  Thanks to Dave Kemper
+	for the report and discussion.
+
+2022-10-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac:
 	* tmac/s.tmac: Escape newlines when opening conditional blocks.
 

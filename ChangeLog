@@ -14,6 +14,7 @@
 	* src/preproc/preconv/preconv.cpp (usage):
 	* src/preproc/refer/refer.cpp (usage):
 	* src/preproc/soelim/soelim.cpp (usage):
+	* src/preproc/tbl/main.cpp (usage):
 	* src/roff/groff/groff.cpp (synopsis, help):
 	* src/roff/nroff/nroff.sh:
 	* src/roff/troff/input.cpp (usage):

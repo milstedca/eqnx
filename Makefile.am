@@ -180,7 +180,7 @@ oldfontdir=$(datasubdir)/oldfont
 # `localfontdir' says where local fonts will be installed (as dev*/*).
 localfontdir=$(dataprogramdir)/site-font
 
-# `legacyfontdir' is for compatibility with non-GNU troff.
+# `legacyfontdir' is for compatibility with AT&T/DWB troff.
 legacyfontdir=/usr/lib/font
 
 # `fontpath' says where to look for dev*/*.

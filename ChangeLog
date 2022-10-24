@@ -1,5 +1,21 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[pfbtops]: Fix code style and diagnostic nits.
+
+	* src/utils/pfbtops/pfbtops.c (error): Exit with `EXIT_FAILURE`
+	status (from standard C library) instead of status 2.
+	(main): Exit with `EXIT_SUCCESS` status when writing version or
+	help information.  Exit with status 2 when dying due to usage
+	error.  Use `fprintf()` and `strerror()` to construct error
+	message when dying due to inability to open input file instead
+	of using `perror()`, which anonymizes its caller and thus should
+	never be used in serious work.  Avoid it like `gets()`.
+	* NEWS: Add item for exit status changes.
+
+	Continues the long process of fixing Savannah #52463.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man pages]: Don't document macro package compatibility wrapper
 	directory if it's not used.
 

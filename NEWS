@@ -601,6 +601,10 @@ o The "afmtodit" utility no longer writes file names with directory
   it generates.  (The `fp` request no longer accepts such names; see
   "troff" above.)
 
+o pfbtops now exits with status 2 upon usage errors and the standard C
+  library's `EXIT_FAILURE` status (usually 1) on operational failures
+  instead of vice versa.
+
 o groffer has been deleted from the distribution.
 
 o grog no longer supports the "--warnings" option; the one diagnostic

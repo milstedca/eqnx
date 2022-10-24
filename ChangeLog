@@ -1,5 +1,13 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp: Fix code style nits.
+	(main): Use standard C library symbols `EXIT_SUCCESS` and
+	`EXIT_FAILURE` instead of integer literals as arguments to
+	`exit()`.  Replace `assert(0)` call with communicative
+	predicate.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/groff.cpp: Alter usage message handling.
 	(synopsis, help): Coalesce these two functions...
 	(usage): ...into this one.  Summarize purpose of program and

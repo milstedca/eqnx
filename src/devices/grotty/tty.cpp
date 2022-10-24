@@ -947,7 +947,7 @@ int main(int argc, char **argv)
     switch(c) {
     case 'v':
       printf("GNU grotty (groff) version %s\n", Version_string);
-      exit(0);
+      exit(EXIT_SUCCESS);
       break;
     case 'i':
       // Use italic font instead of underlining.
@@ -1000,14 +1000,14 @@ int main(int argc, char **argv)
       break;
     case CHAR_MAX + 1: // --help
       usage(stdout);
-      exit(0);
+      exit(EXIT_SUCCESS);
       break;
     case '?':
       usage(stderr);
-      exit(1);
+      exit(EXIT_FAILURE);
       break;
     default:
-      assert(0);
+      assert(0 == "unhandled getopt_long return value");
     }
   update_options();
   if (optind >= argc)

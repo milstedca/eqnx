@@ -8766,7 +8766,7 @@ static void enable_warning(const char *name)
   if (mask)
     warning_mask |= mask;
   else
-    error("unknown warning '%1'", name);
+    error("unrecognized warning category '%1'", name);
 }
 
 static void disable_warning(const char *name)
@@ -8775,7 +8775,7 @@ static void disable_warning(const char *name)
   if (mask)
     warning_mask &= ~mask;
   else
-    error("unknown warning '%1'", name);
+    error("unrecognized warning category '%1'", name);
 }
 
 static void copy_mode_error(const char *format,

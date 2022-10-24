@@ -1,5 +1,10 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (enable_warning, disable_warning):
+	Recast diagnostic messages for clarity.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[pfbtops]: Fix code style and diagnostic nits.
 
 	* src/utils/pfbtops/pfbtops.c (error): Exit with `EXIT_FAILURE`

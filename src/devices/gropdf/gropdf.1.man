@@ -46,15 +46,15 @@ gropdf \- groff output driver for Portable Document Format
 .SY gropdf
 .RB [ \-dels ]
 .RB [ \-F\~\c
-.IR dir ]
+.IR font-directory ]
 .RB [ \-I\~\c
-.IR dir ]
+.IR inclusion-directory ]
 .RB [ \-p\~\c
 .IR paper-format ]
 \#.RB [ \-w\~\c
 \#.IR n ]
 .RB [ \-u
-.RI [ cmapfile ]]
+.RI [ cmap-file ]]
 .RB [ \-y\~\c
 .IR foundry ]
 .RI [ file\~ .\|.\|.]
@@ -190,7 +190,7 @@ directives in the
 file;
 it accepts the same arguments as the
 .B papersize
-directives.
+directive.
 .
 See
 .MR groff_font @MAN5EXT@
@@ -209,15 +209,15 @@ complains about this line if it is included, but works anyway.
 .
 .TP
 .BR \-u \~[\c
-.IR cmapfile ]
-.B Gropdf
+.IR cmap-file ]
+.B gropdf
 normally includes a ToUnicode CMap with any font created using
 .I text.enc
 as the encoding file,
 this makes it easier to search for words which contain ligatures.
 .
 You can include your own CMap by specifying a
-.I cmapfile
+.I cmap-file
 or have no CMap at all by omitting the argument.
 .
 .

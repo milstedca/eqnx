@@ -5536,17 +5536,19 @@ required by the document.  @xref{Font Positions}.
 @pindex ec.tmac
 Due to the importance of the Euro glyph in Europe, @code{groff} is
 distributed with a PostScript font called @file{freeeuro.pfa}, which
-provides various glyph shapes for the Euro.  Thus, the
-@w{Latin-9} encoding is supported for the @option{ps} and @option{pdf}
-drivers out of the box, while @w{Latin-2} is not.
+provides various glyph shapes for the Euro.  Because standard PostScript
+fonts contain the other glyphs from @w{Latin-5} and @w{Latin-9} that
+@w{Latin-1} lacks, these encodings are supported for the @option{ps} and
+@option{pdf} output devices as @code{groff} ships, while @w{Latin-2} is
+not.
 
 Unicode supports characters from all other input encodings; the
 @option{utf8} output driver for terminals therefore does as well.  The
-DVI output driver supports both the @w{Latin-2} and @w{Latin-9}
-encodings if the command-line option @option{-mec} is used as well.
-@footnote{The DVI output device defaults to using the Computer Modern
-(CM) fonts; @file{ec.tmac} loads the EC fonts instead, which provide
-Euro @samp{\[Eu]} and per mille @samp{\[%0]} glyphs.}
+DVI output driver supports the @w{Latin-2} and @w{Latin-9} encodings if
+the command-line option @option{-mec} is used as well.  @footnote{The
+DVI output device defaults to using the Computer Modern (CM) fonts;
+@file{ec.tmac} loads the EC fonts instead, which provide Euro
+@samp{\[Eu]} and per mille @samp{\[%0]} glyphs.}
 
 @c ---------------------------------------------------------------------
 

@@ -1712,10 +1712,14 @@ are equivalent.
 @cindex user's tutorial for macros
 @cindex user's macro tutorial
 
-Most users tend to use a macro package to format their papers.  This
-means that the whole breadth of @code{groff} is not necessary for most
-people.  This chapter covers the material needed to efficiently use a
-macro package.
+Most users of the @code{roff} language employ a macro package to format
+their documents.  Successful macro packages tend to ease the composition
+process; their users need not have mastered the full formatting
+language, nor even some of its major features like diversions, traps,
+and environments.  A familiarity with some basic concepts and mechanisms
+common to macro packages (like ``displays'') remains helpful; this
+chapter aims to bring you to this level.  If you prefer a meticulous and
+comprehensive presentation, try @ref{gtroff Reference} instead.
 
 @menu
 * Basics::

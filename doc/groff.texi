@@ -2178,6 +2178,12 @@ arguments; the above (failing) sample is thus reordered to
 groff -m man -m ms foo.man bar.doc
 @endExample
 
+@cindex minor macro package
+@cindex package, macro, minor
+@cindex macro package, minor
+@cindex auxiliary macro package
+@cindex package, macro, auxiliary
+@cindex macro package, auxiliary
 Many auxiliary, or ``minor'' macro packages are also available.  They
 may in general be used with any full-service macro package and handle a
 variety of tasks from character encoding selection, to language

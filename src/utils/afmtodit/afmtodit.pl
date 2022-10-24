@@ -1,5 +1,4 @@
 #!@PERL@
-# -*- Perl -*-
 # Copyright (C) 1989-2020 Free Software Foundation, Inc.
 #      Written by James Clark (jjc@jclark.com)
 #
@@ -24,16 +23,15 @@ use strict;
 @afmtodit.tables@
 
 my $prog = $0;
-$prog =~ s@.*/@@;
-
 my $groff_sys_fontdir = "@FONTDIR@";
+my $want_help;
 
 our ($opt_a, $opt_c, $opt_d, $opt_e, $opt_f, $opt_i, $opt_k,
      $opt_m, $opt_n, $opt_o, $opt_s, $opt_v, $opt_x);
 
 use Getopt::Long qw(:config gnu_getopt);
 GetOptions( "a=s", "c", "d=s", "e=s", "f=s", "i=s", "k", "m", "n",
-  "o=s", "s", "v", "x", "version" => \$opt_v
+  "o=s", "s", "v", "x", "version" => \$opt_v, "help" => \$want_help
 );
 
 my $afmtodit_version = "GNU afmtodit (groff) version @VERSION@";
@@ -43,12 +41,30 @@ if ($opt_v) {
     exit 0;
 }
 
-if ($#ARGV != 2) {
-    die "usage: $prog [-ckmnsx] [-a slant]" .
+sub usage {
+    my $stream = *STDOUT;
+    my $had_error = shift;
+    $stream = *STDERR if $had_error;
+    print $stream "usage: $prog [-ckmnsx] [-a slant]" .
 	" [-d device-description-file] [-e encoding-file]" .
 	" [-f internal-name] [-i italic-correction-factor]" .
 	" [-o output-file] afm-file map-file font-description-file\n" .
-	"usage: $prog -v\n";
+	"usage: $prog {-v | --version}\n" .
+	"usage: $prog --help\n";
+    unless ($had_error) {
+	print $stream "\n" .
+"Adapt an Adobe Font Metric file, afm-file, for use with the 'ps'\n" .
+"and 'pdf' output devices of groff(1).  See the afmtodit(1) manual " .
+"page.\n";
+    }
+    exit($had_error);
+}
+
+&usage(0) if ($want_help);
+
+if ($#ARGV != 2) {
+    print STDERR "$prog: usage error: insufficient arguments\n";
+    &usage(1);
 }
 
 my $afm = $ARGV[0];

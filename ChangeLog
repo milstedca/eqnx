@@ -1,5 +1,20 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[afmtodit]: Give program a usage message.
+
+	* src/utils/afmtodit/afmtodit.pl: Add new scalar `want_help` of
+	Boolean sense.  Recognize new long option `--help`, attached to
+	`$want_help`.  Stop stripping off directory name components from
+	program name when emitting diagnostics.  No other groff program
+	does this (well, gropdf did until recently), and it might save
+	users some confusion if they're working with multiple copies of
+	afmtodit.
+	(usage): New subroutine reports usage message.  If help was
+	explicitly requested, summarize purpose of program and steer
+	reader to man page.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[afmtodit]: Migrate expansion of Perl interpreter in shebang.
 	Use the same technique as mmroff, gropdf, and pdfmom.
 

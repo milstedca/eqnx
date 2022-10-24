@@ -51,8 +51,8 @@ should be constructed.
 
 As an example, we will imagine that groff's source code is in
 '/usr/local/src/groff' and that the build should happen within the
-directory '/home/my/groff-build'.  You can choose your own name for the
-build directory.
+directory '/home/my/groff-build'.  These directory names can be anything
+valid on the operating system.
 
   0. Create '/home/my/groff-build' and 'cd' to that directory.
 
@@ -88,9 +88,9 @@ with options like '--prefix' that select an alternative directory that
 is writable by the user conducting the build.  Type './configure --help'
 from the groff source tree for documentation of relevant options.
 Running groff commands from such a directory may require you to set the
-'GROFF_FONT_PATH' and 'GROFF_TMAC_PATH' environment variables.  See the
-groff(1) man page.  See "Evaluation" below for instructions on viewing
-this man page without having groff installed.
+'GROFF_BIN_PATH', 'GROFF_FONT_PATH', and 'GROFF_TMAC_PATH' environment
+variables.  See the groff(1) man page.  See "Evaluation" below for
+instructions on viewing this man page without having groff installed.
 
 
 Non-POSIX Platforms
@@ -139,6 +139,7 @@ that these base fonts will be supplied by the rendering device (a
 printer or PDF viewer).  Nowadays the PDF standard expects all fonts to
 be embedded in the document; if groff's gropdf(1) output driver knows
 where to find these fonts, you can use its "-e" option for this purpose.
+
 The build process populates "Foundry" and "download" files that tell
 gropdf where to find their groff font descriptions and the font files
 themselves, respectively.  If you have multiple versions of the URW
@@ -229,7 +230,7 @@ I can view the test log as follows.
 
   cat build/tmac/tests/localization-works.sh.log
 
-Many known issues are documented in the PROBLEMS file; some apply to
+Many known issues are documented in the 'PROBLEMS' file; some apply to
 historical systems.  You can also browse groff bug reports via the GNU
 Savannah issue tracker to see if your issue has already been reported.
 
@@ -237,7 +238,7 @@ Savannah issue tracker to see if your issue has already been reported.
 
 If that doesn't help and you need support, please contact the groff
 mailing list at groff@gnu.org.  If you think that you have found a bug,
-please submit a ticket.
+please submit a ticket using the 'BUG-REPORT' file as a template.
 
   https://savannah.gnu.org/bugs/?group=groff&func=additem
 
@@ -247,15 +248,16 @@ Uninstalling
 
 If you are dissatisfied with groff, or to prepare for a new installation
 from source, you can uninstall it to ensure that no stale files persist
-on the system.  Run the command 'make uninstall'.  (If you used 'sudo
-make install', run 'sudo make uninstall'.)  At a minimum, some
-directories not particular to groff, like 'bin' and (depending on
-configuration) an X11 'app-defaults' directory will remain, as will one
-plain file called 'dir', created by GNU Texinfo's 'install-info'
-command.  (As of this writing, 'install-info' offers no provision for
-removing an effectively empty 'dir' file, and groff does not attempt to
-parse this file to determine whether it can be safely removed.)  All
-other groff artifacts will be deleted from the installation hierarchy.
+on the system.  Run the command 'sudo make uninstall'.  (If you
+successfully used 'make install', simply run 'make uninstall'.)  At a
+minimum, some directories not particular to groff, like 'bin' and
+(depending on configuration) an X11 'app-defaults' directory will
+remain, as will one plain file called 'dir', created by GNU Texinfo's
+'install-info' command.  (As of this writing, 'install-info' offers no
+provision for removing an effectively empty 'dir' file, and groff does
+not attempt to parse this file to determine whether it can be safely
+removed.)  All other groff artifacts will be deleted from the
+installation hierarchy.
 
 
 ##### Editor settings

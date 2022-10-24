@@ -24,17 +24,10 @@
 # along with this program.  If not, see
 # <http://www.gnu.org/licenses/gpl-2.0.html>.
 
-require v5.6;
-
 use warnings;
 use strict;
 
 use File::Spec;
-
-# for running shell based programs within Perl; use `` instead of
-# use IPC::System::Simple qw(capture capturex run runx system systemx);
-
-$\ = "\n";
 
 my $groff_version = 'DEVELOPMENT';
 

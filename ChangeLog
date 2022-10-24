@@ -1,5 +1,9 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/grog/grog.pl: Drop relic code and comments.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grog]: Migrate expansion of Perl interpreter in shebang.
 	Use the same technique as afmtodit, mmroff, gropdf, and pdfmom.
 

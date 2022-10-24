@@ -18,6 +18,7 @@ Place this completed form in a new bug report at
 <http://savannah.gnu.org/bugs/?group=groff>.  Click on the "Bugs" link,
 then select "Submit new" from the menu.]
 
++verbatim+
 GROFF VERSION:
 [Put the output of the failing command when run with the '--version'
 option here.  For example, "groff --version" or "indxbib --version".]
@@ -61,6 +62,7 @@ SUGGESTED FIX [optional]:
 [If you can suggest a fix for the problem, you might include a unified
 diff here.  But don't delay submitting a bug report in the hope of
 finding a fix.  A guess about a bug's cause is not usually helpful.]
+-verbatim-
 
 ##### Editor settings
 Local Variables:

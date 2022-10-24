@@ -1,5 +1,16 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[gropdf] Give program a usage message.
+
+	* src/devices/gropdf/gropdf.pl: Add new scalar `want_help` of
+	Boolean sense.  Recognize new long option `--help`, attached to
+	`$want_help`.
+	(usage): New subroutine reports usage message.  If help was
+	explicitly requested, summarize purpose of program and steer
+	reader to man page.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/xditview/xditview.c (Syntax): "#if 0" out
 	reference to `-noPolyText` option, whose effect is likewise
 	bracketed in another file.

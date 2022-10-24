@@ -203,19 +203,48 @@ end
 end
 EOF
 
+sub usage
+{
+    my $stream = *STDOUT;
+    my $had_error = shift;
+    $stream = *STDERR if $had_error;
+    print $stream
+"usage: $prog [-dels] [-F font-directory] [-I inclusion-directory]" .
+" [-p paper-format] [-u [cmap-file]] [-y foundry] [file ...]\n" .
+"usage: $prog {-v | --version}\n" .
+"usage: $prog --help\n";
+    if (!$had_error)
+    {
+	print $stream "\n" .
+"Translate the output of troff(1) into Portable Document Format.\n" .
+"See the gropdf(1) manual page.\n";
+    }
+    exit($had_error);
+}
+
 my $fd;
 my $frot;
 my $fpsz;
 my $embedall=0;
 my $debug=0;
+my $want_help=0;
 my $version=0;
 my $stats=0;
 my $unicodemap;
 my @idirs;
 
-GetOptions("F=s" => \$fd, 'I=s' => \@idirs, 'l' => \$frot, 'p=s' => \$fpsz, 'd!' => \$debug, 'v' => \$version, 'version' => \$version, 'e' => \$embedall, 'y=s' => \$Foundry, 's' => \$stats, 'u:s' => \$unicodemap);
+if (!GetOptions('F=s' => \$fd, 'I=s' => \@idirs, 'l' => \$frot,
+		'p=s' => \$fpsz, 'd!' => \$debug, 'help' => \$want_help,
+		'v' => \$version, 'version' => \$version,
+		'e' => \$embedall, 'y=s' => \$Foundry, 's' => \$stats,
+		'u:s' => \$unicodemap))
+{
+    &usage(1);
+}
 
 unshift(@idirs,'.');
+
+&usage(0) if ($want_help);
 
 if ($version)
 {

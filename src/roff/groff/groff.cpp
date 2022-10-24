@@ -111,7 +111,6 @@ void handle_unknown_desc_command(const char *command, const char *arg,
 const char *xbasename(const char *);
 
 void usage(FILE *stream);
-void help();
 
 static char *xstrdup(const char *s) {
   if (0 /* nullptr */ == s)
@@ -281,7 +280,7 @@ int main(int argc, char **argv)
       commands[EQN_INDEX].append_arg(buf);
       break;
     case 'h':
-      help();
+      usage(stdout);
       break;
     case 'E':
     case 'b':
@@ -817,7 +816,7 @@ char **possible_command::get_argv()
   return argv;
 }
 
-void synopsis(FILE *stream)
+void usage(FILE *stream)
 {
   // Add `J` to the cluster if we ever get ideal(1) support.
   fprintf(stream,
@@ -832,73 +831,16 @@ void synopsis(FILE *stream)
 "usage: %s {-v | --version}\n"
 "usage: %s {-h | --help}\n",
 	  program_name, program_name, program_name);
-}
-
-void help()
-{
-  synopsis(stdout);
-  fputs(
+  if (stdout == stream) {
+    fputs(
 "\n"
 "groff (GNU roff) is a typesetting system that reads plain text input\n"
 "files that include formatting commands to produce output in\n"
 "PostScript, PDF, HTML, or DVI formats or for display to a terminal.\n"
-"\n"
-"Options:\n"
-"  -a\tproduce approximate description of output\n"
-"  -b\treport backtraces with errors or warnings\n"
-"  -c\tstart with color output disabled\n"
-"  -C\tstart with AT&T troff compatibility mode enabled; implies -c\n"
-"  -d CT\tstore text T to string C (one character)\n"
-"  -d NAME=TEXT\n\tstore TEXT to string NAME\n"
-"  -D ENC\tfall back to ENC as default input encoding; implies -k\n"
-"  -e\tpreprocess with eqn\n"
-"  -E\tsuppress error diagnostics; implies -Ww\n"
-"  -f FAM\tuse FAM as the default font family\n"
-"  -F DIR\tsearch DIR for device and font description files\n"
-"  -g\tpreprocess with grn\n"
-"  -G\tpreprocess with grap; implies -p\n"
-"  --help\n"
-"  -h\toutput this usage message and exit\n"
-"  -i\tread standard input after all FILEs\n"
-"  -I DIR\tsearch DIR for input files; implies -s\n"
-"  -j\tpreprocess with chem; implies -p\n"
-// "-J\tpreprocess with gideal\n"
-"  -k\tpreprocess with preconv\n"
-"  -K ENC\tuse ENC as input encoding; implies -k\n"
-"  -l\tsend postprocessed output to print spooler\n"
-"  -L ARG\tpass ARG to print spooler\n"
-"  -m MAC\tread macro file MAC.tmac\n"
-"  -M DIR\tsearch DIR for macro files\n"
-"  -N\tdon't allow newlines within eqn delimiters\n"
-"  -n NUM\tnumber first page NUM\n"
-"  -o LIST\n\toutput only pages in LIST (\"1\"; \"2,4\"; \"3,7-11\")\n"
-"  -p\tpreprocess with pic\n"
-"  -P ARG\tpass ARG to the postprocessor\n"
-"  -r CN\tstore numeric expression N in register C (one character)\n"
-"  -r REG=EXPR\n\tstore numeric expression EXPR in register REG\n"
-"  -R\tpreprocess with refer\n"
-"  -s\tpreprocess with soelim\n"
-"  -S\tenable safer mode (default)\n"
-"  -t\tpreprocess with tbl\n"
-"  -T DEV\tprepare output for device DEV\n"
-"  -U\taccept unsafe input (disable safer mode)\n"
-"  --version\n"
-"  -v\toutput version information and pass -v to commands to be run\n"
-"  -V\twrite commands to standard output instead of running them\n"
-"  -w CAT\tenable warning category CAT\n"
-"  -W CAT\tinhibit warning category CAT\n"
-"  -X\trun gxditview previewer instead of normal postprocessor\n"
-"  -z\tsuppress formatted output\n"
-"  -Z\tdo not run postprocessor\n"
-"\n"
 "See the groff(1) manual page.\n",
-	stdout);
-  exit(EXIT_SUCCESS);
-}
-
-void usage(FILE *stream)
-{
-  synopsis(stream);
+	  stream);
+    exit(EXIT_SUCCESS);
+  }
 }
 
 extern "C" {

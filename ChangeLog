@@ -1,5 +1,15 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.cpp: Alter usage message handling.
+	(synopsis, help): Coalesce these two functions...
+	(usage): ...into this one.  Summarize purpose of program and
+	steer reader to man page only if help was explicitly requested,
+	rather than blitzing user with text upon a usage error.  Also
+	drop option summary from usage message, as it duplicates
+	groff(1).
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/grog/grog.pl: Alter usage message handling.
 	(help): Rename this subroutine...
 	(usage): ...to this.  Summarize purpose of program and steer

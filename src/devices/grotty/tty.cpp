@@ -1000,7 +1000,6 @@ int main(int argc, char **argv)
       break;
     case CHAR_MAX + 1: // --help
       usage(stdout);
-      exit(EXIT_SUCCESS);
       break;
     case '?':
       usage(stderr);
@@ -1021,10 +1020,20 @@ int main(int argc, char **argv)
 
 static void usage(FILE *stream)
 {
-  fprintf(stream, "usage: %s [-bBcdfhioruUv] [-F dir] [file ...]\n"
-	  "usage: %s {-v | --version}\n"
-	  "usage: %s --help\n",
+  fprintf(stream,
+"usage: %s [-bBcdfhioruU] [-F font-directory] [file ...]\n"
+"usage: %s {-v | --version}\n"
+"usage: %s --help\n",
 	  program_name, program_name, program_name);
+  if (stdout == stream) {
+    fputs(
+"\n"
+"Translate the output of troff(1) into a form suitable for\n"
+"typewriter‐like devices, including terminal emulators.  See the\n"
+"grotty(1) manual page.\n",
+	  stream);
+    exit(EXIT_SUCCESS);
+  }
 }
 
 // Local Variables:

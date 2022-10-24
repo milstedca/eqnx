@@ -1,5 +1,13 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tty.cpp: Alter usage message handling.
+	(usage): Summarize purpose of program and steer reader to man
+	page (only) if help was explicitly requested, and exit
+	successfully from here...
+	(main): ...instead of calling scope.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grotty/tty.cpp: Fix code style nits.
 	(main): Use standard C library symbols `EXIT_SUCCESS` and
 	`EXIT_FAILURE` instead of integer literals as arguments to

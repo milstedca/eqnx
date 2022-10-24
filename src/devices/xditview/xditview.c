@@ -130,7 +130,10 @@ Syntax(const char *progname, bool had_error)
 	(void) fprintf (stream, "usage: %s [X-toolkit-option]"
 			" [-backingStore backing-store-type]"
 			" [-filename file]"
+// See draw.c:FlushCharCache().
+#if 0
 			" [-noPolyText]"
+#endif
 			" [-page page-number]"
 			" [-printCommand command]"
 			" [-resolution resolution]"

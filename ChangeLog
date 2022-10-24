@@ -1,5 +1,11 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/xditview/xditview.c (Syntax): "#if 0" out
+	reference to `-noPolyText` option, whose effect is likewise
+	bracketed in another file.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (enable_warning, disable_warning):
 	Recast diagnostic messages for clarity.
 

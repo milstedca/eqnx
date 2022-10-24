@@ -2034,11 +2034,13 @@ see
 PDF documentation directory.
 .
 .
+.if !'@COMPATIBILITY_WRAPPERS@'no' \{\
 .TP
 .I @SYSTEMMACRODIR@
 System macro package
 .RI ( tmac
 file) directory.
+.\}
 .
 .
 .\" ====================================================================

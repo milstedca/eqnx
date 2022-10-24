@@ -1,3 +1,20 @@
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man pages]: Don't document macro package compatibility wrapper
+	directory if it's not used.
+
+	* Makefile.am (.man): Use sed to replace
+	'@COMPATIBILITY_WRAPPERS@' in man page text with value of
+	`compatibility_wrappers` shell variable.  Document its purpose.
+	* src/preproc/eqn/eqn.1.man (Description):
+	* src/preproc/grn/grn.1.man (Options):
+	* src/roff/groff/groff.1.man (Installation directories):
+	* src/roff/troff/troff.1.man (Environment): Mention
+	`@SYSTEMMACRODIR` only if `@COMPATIBILITY_WRAPPERS` expands to
+	something other than "no" (it could be "yes" or "manual").
+
+	Thanks to Alexander Kanavin and Jeremy Puhlman for the report.
+
 2022-10-21  Robert Yang <liezhi.yang@windriver.com>
 
 	* font/devpdf/util/BuildFoundries.pl:

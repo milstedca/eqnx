@@ -148,7 +148,7 @@ in the directories given with the
 .B \-M
 option first,
 then in
-.IR @SYSTEMMACRODIR@ ,
+.if !'@COMPATIBILITY_WRAPPERS@'no' .IR @SYSTEMMACRODIR@ ,
 .IR @LOCALMACRODIR@ ,
 and finally in the standard macro directory
 .IR @MACRODIR@ .

@@ -881,7 +881,7 @@ files.
 .
 The default search path is the current directory,
 the home directory,
-.IR @SYSTEMMACRODIR@ ,
+.if !'@COMPATIBILITY_WRAPPERS@'no' .IR @SYSTEMMACRODIR@ ,
 .IR @LOCALMACRODIR@ ,
 and
 .IR @MACRODIR@ ,

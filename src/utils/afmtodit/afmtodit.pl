@@ -1,4 +1,4 @@
-#! /usr/bin/env perl
+#!@PERL@
 # -*- Perl -*-
 # Copyright (C) 1989-2020 Free Software Foundation, Inc.
 #      Written by James Clark (jjc@jclark.com)

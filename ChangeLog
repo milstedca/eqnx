@@ -1,5 +1,14 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[afmtodit]: Migrate expansion of Perl interpreter in shebang.
+	Use the same technique as mmroff, gropdf, and pdfmom.
+
+	* src/utils/afmtodit/afmtodit.am (afmtodit): Replace "@PERL@"
+	instead of "/usr/bin/perl".
+	* src/utils/afmtodit/afmtodit.pl: Use "@PERL@" in shebang.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[gropdf] Give program a usage message.
 
 	* src/devices/gropdf/gropdf.pl: Add new scalar `want_help` of

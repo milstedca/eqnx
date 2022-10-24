@@ -876,7 +876,7 @@ contributed much of the material on the @file{ms} macro package.
 @cindex invoking @code{groff}
 @cindex @code{groff} invocation
 
-This section focuses on how to invoke the @code{groff} front end.  This
+This chapter focuses on how to invoke the @code{groff} front end.  This
 front end takes care of the details of constructing the pipeline among
 the preprocessors, @code{gtroff} and the postprocessor.
 

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 #
 # BuildFoundries: Given a Foundry file, generate groff font description
 # files and a "download" file so gropdf can embed fonts in PDF output.
@@ -23,6 +23,7 @@
 
 use strict;
 use Getopt::Long;
+use warnings;
 
 my $pathsep='@PATH_SEPARATOR@';
 

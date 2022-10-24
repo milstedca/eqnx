@@ -1,4 +1,4 @@
-#!@PERL@ -w
+#!@PERL@
 #
 #       gropdf          : PDF post processor for groff
 #
@@ -21,6 +21,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 use strict;
+use warnings;
 use Getopt::Long qw(:config bundling);
 
 use constant

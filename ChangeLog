@@ -1,3 +1,10 @@
+2022-10-21  Robert Yang <liezhi.yang@windriver.com>
+
+	* font/devpdf/util/BuildFoundries.pl:
+	* src/devices/gropdf/gropdf.pl:
+	* src/devices/gropdf/pdfmom.pl: Replace use of '-w' in shebang
+	line with "use warnings;".
+
 2022-10-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/fallbacks.tmac: Define fallback characters for many code

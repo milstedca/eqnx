@@ -1,4 +1,4 @@
-#!@PERL@ -w
+#!@PERL@
 #
 #	pdfmom		: Frontend to run groff -mom to produce PDFs
 #	Deri James	: Friday 16 Mar 2012
@@ -23,6 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 use strict;
+use warnings;
 use File::Temp qw/tempfile/;
 my @cmd;
 my $dev='pdf';

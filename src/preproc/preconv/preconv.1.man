@@ -136,9 +136,7 @@ use it.
 .
 .
 .IP 2.
-Check whether the input starts with a Unicode Byte Order Mark.
-.
-If so,
+If the input starts with a Unicode Byte Order Mark,
 determine the encoding as UTF-8,
 UTF-16,
 or UTF-32 accordingly.

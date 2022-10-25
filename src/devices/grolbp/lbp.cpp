@@ -23,6 +23,8 @@ TODO
  - Add X command to include bitmaps
 */
 
+#include "assert.h"
+
 #include "driver.h"
 #include "lbp.h"
 #include "charset.h"
@@ -683,7 +685,7 @@ int main(int argc, char **argv)
       break;
     case 'v':
       printf("GNU grolbp (groff) version %s\n", Version_string);
-      exit(0);
+      exit(EXIT_SUCCESS);
       break;
     case 'o':
       if (strcasecmp(optarg, "portrait") == 0)
@@ -721,12 +723,14 @@ int main(int argc, char **argv)
       }
     case 'h':
       usage(stdout);
-      exit(0);
+      exit(EXIT_SUCCESS);
       break;
     case '?':
       usage(stderr);
-      exit(1);
+      exit(EXIT_FAILURE);
       break;
+    default:
+      assert(0 == "unhandled getopt_long return value");
     }
   }
   if (optind >= argc)

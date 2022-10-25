@@ -626,30 +626,20 @@ static struct option long_options[] = {
 static void usage(FILE *stream)
 {
   fprintf(stream,
-"usage: %s [-l] [-c n] [-F dir] [-o ori] [-p fmt] [-w wid] [file ...]\n"
+"usage: %s [-l] [-c num-copies] [-F font-directory] [-o orientation]"
+" [-p paper-format] [-w width] [file ...]\n"
 "usage: %s {-v | --version}\n"
-"usage: %s {-h | --help}\n"
+"usage: %s {-h | --help}\n",
+	  program_name, program_name, program_name);
+  if (stdout == stream) {
+    fputs(
 "\n"
 "Translate the output of GNU troff(1) into a CaPSL and VDM format\n"
-"suitable for Canon LBP-4 and LBP-8 printers.\n"
-"\n"
-"Options:\n"
-"  --copies=N\n"
-"  -c N    Produce N copies of each page.\n"
-"  --fontdir=DIR\n"
-"  -F DIR  Search DIR for device and font description files.\n"
-"  --landscape\n"
-"  -l      Format document in landscape orientation.\n"
-"  --orientation=ORI\n"
-"  -o ORI  Format document in orientation ORI (\"portrait\","
-" \"landscape\").\n"
-"  --papersize=FMT\n"
-"  -p FMT  Set the paper format to FMT.\n"
-"  --linewidth=WID\n"
-"  -w WID  Set default line thickness to WID thousandths of an em.\n"
-"\n"
-"See the grolbp(1) manual page.\n",
-	  program_name, program_name, program_name);
+"suitable for Canon LBP-4 and LBP-8 printers.  See the grolbp(1) manual"
+" page.\n",
+	  stream);
+    exit(EXIT_SUCCESS);
+  }
 }
 
 int main(int argc, char **argv)
@@ -723,7 +713,6 @@ int main(int argc, char **argv)
       }
     case 'h':
       usage(stdout);
-      exit(EXIT_SUCCESS);
       break;
     case '?':
       usage(stderr);

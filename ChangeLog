@@ -1,5 +1,10 @@
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grolbp/lbp.cpp (main): Handle `getopt_long()`
+	return value more idiomatically.
+
+2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grolbp/lbp.cpp: Fix code style nits.
 	(main): Use standard C library symbols `EXIT_SUCCESS` and
 	`EXIT_FAILURE` instead of integer literals as arguments to

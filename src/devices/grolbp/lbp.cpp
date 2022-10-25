@@ -658,11 +658,11 @@ int main(int argc, char **argv)
     program_name = strsave(argv[0]);
   font::set_unknown_desc_command_handler(handle_unknown_desc_command);
   // command line parsing
-  int c = 0;
+  int c;
   int option_index = 0;
-  while (c >= 0) {
-    c = getopt_long (argc, argv, "c:F:hI:lo:p:vw:",
-		     long_options, &option_index);
+  while ((c = getopt_long(argc, argv, "c:F:hI:lo:p:vw:", long_options,
+			  &option_index))
+	 != EOF) {
     switch (c) {
     case 'F':
       font::command_line_font_dir(optarg);

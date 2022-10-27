@@ -37,7 +37,7 @@ preconv \- prepare files for typesetting with groff
 .SY preconv
 .RB [ \-dr ]
 .RB [ \-D\~\c
-.IR default-encoding ]
+.IR fallback-encoding ]
 .RB [ \-e\~\c
 .IR encoding ]
 .RI [ file\~ .\|.\|.]
@@ -498,9 +498,9 @@ Emit debugging messages to the standard error stream.
 .
 .
 .TP
-.BI \-D\~ default-encoding
+.BI \-D\~ fallback-encoding
 Report
-.I default-encoding
+.I fallback-encoding
 if all detection methods fail.
 .
 .

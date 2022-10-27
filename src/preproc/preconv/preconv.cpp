@@ -1205,7 +1205,7 @@ void
 usage(FILE *stream)
 {
   fprintf(stream,
-"usage: %s [-dr] [-D enc] [-e enc] [file ...]\n"
+"usage: %s [-dr] [-D fallback-encoding] [-e encoding] [file ...]\n"
 "usage: %s {-v | --version}\n"
 "usage: %s {-h | --help}\n"
 "\n"

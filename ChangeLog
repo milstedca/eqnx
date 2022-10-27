@@ -1,3 +1,10 @@
+2022-10-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/preconv/preconv.cpp (usage): Use more
+	communicative metasyntactic variable names.
+	* src/preproc/preconv/preconv.1.man (Synopsis, Options): Align
+	with updated usage message.
+
 2022-10-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/html/pre-html.cpp: Alter usage message handling.

@@ -1207,24 +1207,19 @@ usage(FILE *stream)
   fprintf(stream,
 "usage: %s [-dr] [-D fallback-encoding] [-e encoding] [file ...]\n"
 "usage: %s {-v | --version}\n"
-"usage: %s {-h | --help}\n"
+"usage: %s {-h | --help}\n",
+	  program_name, program_name, program_name);
+  if (stdout == stream) {
+    fprintf(stream,
 "\n"
-"Read each file, convert its encoded characters to a form GNU troff\n"
+"Read each file, convert its encoded characters to a form GNU"
+" troff(1)\n"
 "can interpret, and send the result to the standard output stream.\n"
-"\n"
-"Options:\n"
-"  -d      show debugging messages\n"
-"  -D ENC  fall back to encoding ENC\n"
-"  -e ENC  assume input encoding of ENC\n"
-"  --help\n"
-"  -h      show this message and exit\n"
-"  -r      don't add 'lf' requests to output\n"
-"  --version\n"
-"  -v      show version information and exit\n"
-"\n"
 "The default fallback encoding is '%s'.  See the preconv(1) manual"
 " page.\n",
-	  program_name, program_name, program_name, default_encoding);
+	  default_encoding);
+    exit(EXIT_SUCCESS);
+  }
 }
 
 // ---------------------------------------------------------
@@ -1295,7 +1290,6 @@ main(int argc, char **argv)
       break;
     case 'h':
       usage(stdout);
-      exit(0);
       break;
     case '?':
       usage(stderr);

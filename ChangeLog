@@ -1,5 +1,13 @@
 2022-10-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/preconv/preconv.cpp: Alter usage message handling.
+	(usage): Summarize purpose of program and steer reader to man
+	page (only) if help was explicitly requested, and exit
+	successfully from here...
+	(main): ...instead of calling scope.
+
+2022-10-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/preconv/preconv.cpp (usage): Use more
 	communicative metasyntactic variable names.
 	* src/preproc/preconv/preconv.1.man (Synopsis, Options): Align

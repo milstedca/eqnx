@@ -553,6 +553,14 @@
 
 	* src/utils/grog/grog.pl (version): Identify as a GNU program.
 
+2022-10-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grolj4/grolj4.1.man (Typefaces): Add new
+	subsection.
+
+	Fixes <https://savannah.gnu.org/bugs/?60929>.  Thanks to T. Kurt
+	Bond for the report.
+
 2022-10-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grolj4/grolj4.1.man (Typefaces): Add new

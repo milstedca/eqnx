@@ -45,7 +45,7 @@ For more on these and other feature changes, see "News" below.
 
 Much attention has been given to fixing bugs, improving diagnostic
 messages, and correcting and expanding documentation.  The previous
-relesae shipped with three automated unit tests; this one ships with
+release shipped with three automated unit tests; this one ships with
 over 130 unit and regression tests.
 
 As of this writing, per the GNU Savannah bug tracker, the groff project
@@ -80,7 +80,6 @@ which they apply, we find the following.
                                     Preprocessor: preconv           7
                                     Preprocessor: refer             3
                                     Preprocessor: tbl              15
-                                    Preprocessor: others/general    5
                                     Preprocessor: others/general    5
                                     Utilities                      17
 

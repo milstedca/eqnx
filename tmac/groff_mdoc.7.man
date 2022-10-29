@@ -4668,6 +4668,15 @@ devices.
 .
 .
 .Pp
+The paragraph indentation amount can be changed by setting the register
+.Ql \&IN .
+.
+.Dl groff \-Tutf8 \-rIN=5n \-mdoc foo.man | less \-R
+.
+The default is 7.2 ens on typesetters and 7 ens on terminals.
+.
+.
+.Pp
 The line and title length can be changed by setting the registers
 .Ql LL
 and
@@ -4713,7 +4722,6 @@ and
 .\" mis-handles them.  Why this is not true of AD, cR, D, HF, HY, P, SN,
 .\" or X is a mystery.
 .Ql \&FT ,
-.Ql \&IN ,
 .Ql P ,
 .Ql SN ,
 and

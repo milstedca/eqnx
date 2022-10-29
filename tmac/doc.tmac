@@ -116,7 +116,14 @@
 .\" andoc.tmac and man(1); see \n[doc-hyphen-flags] in doc-common.
 .if !r HY .nr HY 1
 .
-.\" TODO: Implement IN register.
+.\" Use -rIN=<xxx> to set the paragraph indentation amount.
+.if !r IN \{\
+.  \" We select an integer indentation value in nroff mode because this
+.  \" value is used additively for multiple purposes; rounding of
+.  \" accumulating fractions would produce inconsistent results.
+.  ie t .nr IN 7.2n
+.  el   .nr IN 7n
+.\}
 .
 .\" LL and LT registers are handled by the doc-setup-page-layout macro.
 .

@@ -1,5 +1,26 @@
 2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Support `IN` register to configure paragraph
+	indentation.
+
+	* tmac/doc.tmac: Recognize `IN` register if set on command line
+	and use groff man(7)-compatible defaults if it is not.
+	* tmac/mdoc/doc-common (Sh): Use this register instead of
+	`doc-paragraph-indentation`.
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Stop setting pargraph indentation
+	defaults here.
+	* tmac/groff_mdoc.7.man (Formatting with groff, troff, and
+	nroff): Document it.
+	* NEWS: Update item.
+
+	* tmac/tests/doc_Mt-works.sh:
+	* tmac/tests/doc_indents-correctly.sh: Update test expectations.
+
+	Fixes part of <https://savannah.gnu.org/bugs/?62926>.
+
+2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common (Sh): Fix code style nit.  Set paragraph
 	indentation absolutely rather than incrementally.  mdoc(7)
 	doesn't have relative inset macros like man(7)'s `RS`/`RE`, so

@@ -53,8 +53,8 @@ then
 fi
 
 # Verify that paragraph indentation after section heading is correct.
-# 5 spaces in string literal.
-if ! echo "$output" | grep -Eq '^     Discussion should be indented'
+# 7 spaces in string literal.
+if ! echo "$output" | grep -Eq '^       Discussion should be indented'
 then
     fail=yes
     echo "'Pp' indentation after 'Sh' check failed" >&2
@@ -76,8 +76,8 @@ then
 fi
 
 # Verify that paragraph indentation after subsection heading is correct.
-# 5 spaces in string literal.
-if ! echo "$output" | grep -Eq '^     Further discussion should be'
+# 7 spaces in string literal.
+if ! echo "$output" | grep -Eq '^       Further discussion should be'
 then
     fail=yes
     echo "'Pp' indentation after 'Ss' check failed" >&2

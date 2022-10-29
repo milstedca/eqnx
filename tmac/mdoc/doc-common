@@ -1440,7 +1440,7 @@
 .    if t \
 .      ss \n[doc-reg-Sh] \n[doc-reg-Sh1]
 .
-.    in \n[doc-paragraph-indentation]u
+.    in \n[IN]u
 .    ns
 .
 .    doc-check-depth

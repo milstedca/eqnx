@@ -1,5 +1,15 @@
 2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Fix misleading register name.
+
+	* tmac/mdoc/doc-common (Sh):
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Rename `doc-subheader-indent` to
+	`doc-paragraph-indentation`, because the latter is what it's
+	used for.
+
+2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_POPPLER): Improve shell code portability.
 	Per the GNU Autoconf manual, "The -a, -o, '(', and ')' operands
 	are not present in all implementations, and have been marked

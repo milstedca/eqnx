@@ -78,7 +78,7 @@
 .ds doc-right-bracket \f[R]]\f[]
 .
 .\" miscellaneous
-.nr doc-subheader-indent .5i
+.nr doc-paragraph-indentation .5i
 .nr doc-paragraph-space 1v
 .
 .nr doc-digit-width \w'\0\0'u

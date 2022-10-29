@@ -88,7 +88,7 @@
 .tr *\[**]
 .
 .\" miscellaneous
-.nr doc-subheader-indent (\w'\f[CR],'u * 5u)
+.nr doc-paragraph-indentation (\w'\f[CR],'u * 5u)
 .nr doc-paragraph-space .4v
 .
 .nr doc-digit-width \w'\0'u

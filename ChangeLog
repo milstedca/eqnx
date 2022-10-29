@@ -1,3 +1,12 @@
+2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m4/groff.m4 (GROFF_POPPLER): Improve shell code portability.
+	Per the GNU Autoconf manual, "The -a, -o, '(', and ')' operands
+	are not present in all implementations, and have been marked
+	obsolete by Posix 2008.  ...portable uses of test should never
+	have more than four arguments, and scripts should use shell
+	constructs like '&&' and '||' instead."
+
 2022-10-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/preconv/preconv.cpp: Alter usage message handling.

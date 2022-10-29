@@ -1780,8 +1780,8 @@ AC_DEFUN([GROFF_POPPLER], [
   AC_CHECK_PROG([PDFFONTS], [pdffonts], [found], [missing])
   AC_CHECK_PROG([PDFIMAGES], [pdfimages], [found], [missing])
   if test "$PDFINFO" = found \
-    -a "$PDFFONTS" = found \
-    -a "$PDFIMAGES" = found
+    && test "$PDFFONTS" = found \
+    && test "$PDFIMAGES" = found
   then
     groff_have_pdftools=yes
   fi

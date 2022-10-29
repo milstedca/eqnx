@@ -1,5 +1,21 @@
 2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[grolj4]: Absorb lj4_font(5) man page into grolj4(1).
+
+	* src/devices/grolj4/lj4_font.5.man: Delete, moving content...
+	* src/devices/grolj4/grolj4.1.man (Fonts): ...hither.
+
+	* doc/doc.am (GROFF_MAN_PAGES1):
+	* src/devices/grolj4/grolj4.am (man5_MANS, EXTRA_DIST): Stop
+	formatting and shipping removed page.
+
+	* src/roff/groff/groff.1.man:
+	* src/utils/hpftodit/hpftodit.1.man: Drop references to page.
+
+	Fixes <https://savannah.gnu.org/bugs/index.php?61819>.
+
+2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Support `SN` register to configure subsection heading
 	indentation.
 

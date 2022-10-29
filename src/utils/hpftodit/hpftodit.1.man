@@ -443,8 +443,7 @@ special character identifiers.
 .MR groff @MAN1EXT@ ,
 .MR groff_diff @MAN1EXT@ ,
 .MR grolj4 @MAN1EXT@ ,
-.MR groff_font @MAN5EXT@ ,
-.MR lj4_font @MAN5EXT@
+.MR groff_font @MAN5EXT@
 .
 .
 .\" Restore compatibility mode (for, e.g., Solaris 10/11).

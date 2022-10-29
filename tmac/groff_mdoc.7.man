@@ -4707,7 +4707,7 @@ register to zero.
 .
 .
 .Pp
-.Dl groff \-Tutf8 -rHY=0 \-mdoc foo.man | less \-R
+.Dl groff \-Tutf8 \-rHY=0 \-mdoc foo.man | less \-R
 .
 .
 .Pp

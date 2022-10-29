@@ -1498,7 +1498,7 @@
 .    sp \n[doc-paragraph-space]u
 .    if !\n[cR] \
 .      ne 3
-.    ti -.25i
+.    in 3n
 .
 .    if '\*[.T]'pdf' \
 .      pdfbookmark 3 "\*[doc-subsection-heading]"
@@ -1515,6 +1515,7 @@
 .    ss \n[doc-reg-Ss] \n[doc-reg-Ss1]
 .
 .    ta T .5i
+.    in
 .    if !\n[cR] \
 .      ne 2
 .    br

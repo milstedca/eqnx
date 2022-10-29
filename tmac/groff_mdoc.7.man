@@ -4676,7 +4676,7 @@ respectively:
 .
 .
 .Pp
-.Dl groff \-Tutf8 \-rLL=100n \-rLT=100n \-mdoc foo.man | less
+.Dl groff \-Tutf8 \-rLL=100n \-rLT=100n \-mdoc foo.man | less \-R
 .
 .
 .Pp
@@ -4698,7 +4698,7 @@ register to zero.
 .
 .
 .Pp
-.Dl groff \-Tutf8 -rHY=0 \-mdoc foo.man | less
+.Dl groff \-Tutf8 -rHY=0 \-mdoc foo.man | less \-R
 .
 .
 .Pp

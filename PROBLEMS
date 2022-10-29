@@ -502,7 +502,8 @@ This is a defect in pageview.  Change the `broken' parameter in
 * With groff -TX75, -TX100 or -X, I can only view the first page.
 
 The left mouse button brings up a menu that allows you to view other
-pages.
+pages.  You can also press <space> and <backspace> to advance and
+retreat the current page view, respectively.
 
 ----------------------------------------------------------------------
 

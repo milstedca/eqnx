@@ -1,5 +1,12 @@
 2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tests/doc_indents-correctly.sh: Add regression test for
+	Debian #1022179.
+
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Fix misleading register name.
 
 	* tmac/mdoc/doc-common (Sh):

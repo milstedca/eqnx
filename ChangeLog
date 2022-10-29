@@ -1,5 +1,20 @@
 2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Support `SN` register to configure subsection heading
+	indentation.
+
+	* tmac/doc.tmac: Recognize `SN` register if set on command line
+	and use groff man(7)-compatible default if it is not.
+	* tmac/mdoc/doc-common (Ss): Use this register instead of a
+	literal.
+	* tmac/groff_mdoc.7.man (Formatting with groff, troff, and
+	nroff): Document it.
+	* NEWS: Update item.
+
+	Fixes part of <https://savannah.gnu.org/bugs/?62926>.
+
+2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Support `IN` register to configure paragraph
 	indentation.
 

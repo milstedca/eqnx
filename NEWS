@@ -304,7 +304,7 @@ o The groff_man(7) man page documenting the groff implementation of the
   material supplemented with explanations, examples, and advice for the
   reader who is not an expert in *roff systems or in writing man pages.
 
-o The doc (mdoc) macro package now honors the `C`, `HY`, and `IN`
+o The doc (mdoc) macro package now honors the `C`, `HY`, `IN`, and `SN`
   registers as the an (man) package does.
 
 o The e (me) macro package has changed its support for output line

@@ -4668,12 +4668,19 @@ devices.
 .
 .
 .Pp
-The paragraph indentation amount can be changed by setting the register
-.Ql \&IN .
+The paragraph and subsection heading indentation amounts can be changed
+by setting the registers
+.Ql \&IN
+and
+.Ql SN ,
 .
-.Dl groff \-Tutf8 \-rIN=5n \-mdoc foo.man | less \-R
+.Dl groff \-Tutf8 \-rIN=5n \rSN=2n \-mdoc foo.man | less \-R
 .
-The default is 7.2 ens on typesetters and 7 ens on terminals.
+The default paragraph indentation is 7.2 ens on typesetters and 7 ens on
+terminals.
+.
+The default subsection heading indentation amount is 3\~ens;
+section headings are always set flush left.
 .
 .
 .Pp
@@ -4723,7 +4730,6 @@ and
 .\" or X is a mystery.
 .Ql \&FT ,
 .Ql P ,
-.Ql SN ,
 and
 .Ql X
 registers,

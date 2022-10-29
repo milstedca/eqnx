@@ -1,5 +1,13 @@
 2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-common (Sh): Fix code style nit.  Set paragraph
+	indentation absolutely rather than incrementally.  mdoc(7)
+	doesn't have relative inset macros like man(7)'s `RS`/`RE`, so
+	the relative measurement could mislead the reader.  (The
+	subsection heading itself uses an indentation of 0.)
+
+2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Fix Debian #1022179.
 
 	* tmac/mdoc/doc-common (Ss): Indent entire subsection heading by

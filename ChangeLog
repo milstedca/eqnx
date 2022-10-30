@@ -56,7 +56,7 @@
 	indentation absolutely rather than incrementally.  mdoc(7)
 	doesn't have relative inset macros like man(7)'s `RS`/`RE`, so
 	the relative measurement could mislead the reader.  (The
-	subsection heading itself uses an indentation of 0.)
+	section heading itself uses an indentation of 0.)
 
 2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -262,7 +262,7 @@
 	* src/preproc/grn/grn.1.man (Options):
 	* src/roff/groff/groff.1.man (Installation directories):
 	* src/roff/troff/troff.1.man (Environment): Mention
-	`@SYSTEMMACRODIR` only if `@COMPATIBILITY_WRAPPERS` expands to
+	`@SYSTEMMACRODIR@` only if `@COMPATIBILITY_WRAPPERS@` expands to
 	something other than "no" (it could be "yes" or "manual").
 
 	Thanks to Alexander Kanavin and Jeremy Puhlman for the report.

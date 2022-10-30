@@ -1038,7 +1038,7 @@ equals sign, even though that is a valid character in a @code{roff}
 identifier.
 
 @item -D@var{enc}
-Set default input encoding used by @command{preconv} to @var{enc};
+Set fallback input encoding used by @command{preconv} to @var{enc};
 implies @option{-k}.
 
 @item -e

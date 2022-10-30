@@ -167,7 +167,7 @@ or are interpreted differently by
 .
 .TP
 .BI \-D\~ enc
-Set default input encoding used by
+Set fallback input encoding used by
 .MR preconv @MAN1EXT@
 to
 .IR enc ;

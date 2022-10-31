@@ -617,6 +617,9 @@ o The groff_filenames(5) man page has been deleted.  It had inaccuracies
   and spurious content.  The "File name conventions" section of roff(7)
   covers the same subject.
 
+o The lj4_font(5) man page has been deleted.  Its content has moved into
+  the "Fonts" subsection of grolj4(1).
+
 
 VERSION 1.22.4
 ==============

@@ -79,14 +79,14 @@ my $have_any_valid_arguments = 0;
 
 sub fail {
   my $text = shift;
-  print STDERR "$program_name: error: $text";
+  print STDERR "$program_name: error: $text\n";
   $had_processing_problem = 1;
 }
 
 
 sub warn {
   my $text = shift;
-  print STDERR "$program_name: warning: $text";
+  print STDERR "$program_name: warning: $text\n";
 }
 
 
@@ -658,11 +658,11 @@ sub construct_command {
   #########
   # execute the 'groff' command here with option '--run'
   if ( $do_run ) { # with --run
-    print STDERR "@command";
+    print STDERR "@command\n";
     my $cmd = join ' ', @command;
     system($cmd);
   } else {
-    print "@command";
+    print "@command\n";
   }
 } # construct_command()
 
@@ -686,7 +686,7 @@ sub usage {
 
 
 sub version {
-  print "GNU $program_name (groff) $groff_version";
+  print "GNU $program_name (groff) $groff_version\n";
   exit 0;
 } # version()
 

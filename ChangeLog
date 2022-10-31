@@ -1,5 +1,13 @@
 2022-10-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/grog/grog.pl (fail, warn, construct_command)
+	(version): Restore trailing newlines to `print`ed output.  They
+	went missing when I removed the assignment of the output record
+	separator in commit 6f2e367836, 24 October.  Thanks to Dave
+	Kemper for catching this.
+
+2022-10-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/preconv/preconv.cpp: Trivially refactor.  Rename
 	`default_encoding` to `fallback_encoding` for clarity.  Update
 	comments and debugging diagnostic messages accordingly.

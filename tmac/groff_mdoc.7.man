@@ -805,58 +805,67 @@ macros are preferable.
 .
 .Sh "Title macros"
 .
-The title macros are part of the page structure domain but are presented
-first and separately for someone who wishes to start writing a man page
-yesterday.
-Three header macros designate the document title or manual page title, the
-operating system, and the date of authorship.
-These macros are called once at the very beginning of the document and are
-used to construct headers and footers only.
+We present the
+.Sy mandatory
+title macros first due to their importance even though they formally
+belong to the page structure domain macros.
+.\" XXX: This was formerly "...for someone who wishes to start writing a
+.\" man page yesterday."
+.\"
+.\" Cute joke, but we're 800+ lines into this page source and four pages
+.\" into the document when formatted for U.S. letter paper.  We lost
+.\" that kind of reader last _week_.
+.
+They designate the date of last revision,
+topic,
+and the operating system or software project associated with the page.
+.
+Call each once at the beginning of the document.
+.
+They populate the page headers and footers,
+which are in
+.Xr roff
+parlance termed
+.Dq titles .
+.
 .
 .Bl -tag -width 6n
 .It Li .Dd Xo
-.Aq Month
-.Aq day ,
-.Aq year
+.Ar date
 .Xc
-The document date for display in the page footer.
+This first macro of any
+.Xr mdoc
+manual records the last modification date of the document source.
 .
-This is the mandatory first macro of any
-.Nm mdoc
-manual.
-The
-.Aq Month
-is the full English month name,
-the
-.Aq day
-is an integer number without a leading zero,
-and the
-.Aq year
-is the full four-digit year,
-for example:
+Arguments are concatenated and separated with space characters.
 .
 .
 .Pp
-.Dl .Dd January 25, 2001
-.Pp
-The arguments are concatenated,
-separated with space characters,
-even if they do not match the recommended format.
+Historically,
+.Ar date
+was written in U.S.\& traditional format,
+.Do
+.Em Month day , year
+.Dc
+where
+.Em Month
+is the full month name in English,
+.Em day
+an integer without a leading zero,
+and
+.Ar year
+the full four-digit year.
 .
+This localism is not enforced,
+however.
 .
-.Pp
-As a special exception,
-the format
-.Bd -filled -offset indent
-.Li .Dd $Mdocdate:
-.Aq Month
-.Aq day
-.Aq year
-.Li $
-.Ed
+You may prefer ISO 8601 format,
+.Em YYYY-MM-DD.
 .
-.
-.Pp
+A
+.Ar date
+of the form
+.Sq Li $Mdocdate: Ar Month day year Li $
 is also recognized.
 .
 It is used in
@@ -868,34 +877,36 @@ manuals to automatically insert the current date when committing.
 This macro is neither callable nor parsed.
 .
 .
-.It Li .Dt Xo
-.Op Aq document title
-.Op Aq section number
-.Op Aq volume
-.Xc
-The document title is the subject of the man page.
-If omitted,
-.Sq Tn UNTITLED
-is used.
-The section number may be a number in the range
-.No 1,\~ Ns ... Ns ,\~9
-or
+.It Li .Dt Ar page-topic Op Ar section-number Op Ar section-name
+.
+.Ar page-topic
+is the subject of the man page.
+.
+A
+.Ar section-number
+that is an integer in the range 1\[en]9
+or one of the words
 .Ql unass ,
 .Ql draft ,
 or
-.Ql paper .
-If it is specified, and no volume name is given, a default volume name is
-used.
+.Ql paper
+selects a predefined section name.
+.
+.Ar section-name ,
+if present,
+overrides such predefinitions.
 .
 .
+.br
+.ne 3v
 .Pp
 In this implementation,
-the following sections are defined:
+the following names are defined for integral section numbers.
 .
 .
-.Pp
+.Bd -unfilled -offset indent
 .TS
-l l.
+Lf(CR) L.
 1	\*[doc-volume-ds-1]
 2	\*[doc-volume-ds-2]
 3	\*[doc-volume-ds-3]
@@ -906,15 +917,16 @@ l l.
 8	\*[doc-volume-ds-8]
 9	\*[doc-volume-ds-9]
 .TE
+.Ed
 .
 .
 .Pp
-A volume name may be arbitrary or one of the following:
+A section name may be arbitrary or one of the following abbreviations.
 .
 .
-.Pp
+.Bd -unfilled -offset indent
 .TS
-l l.
+Lf(CR) L.
 USD	\*[doc-volume-ds-USD]
 PS1	\*[doc-volume-ds-PS1]
 AMD	\*[doc-volume-ds-AMD]
@@ -926,6 +938,7 @@ IND	\*[doc-volume-ds-IND]
 LOCAL	\*[doc-volume-ds-LOCAL]
 CON	\*[doc-volume-ds-CON]
 .TE
+.Ed
 .
 .
 .Pp
@@ -937,11 +950,15 @@ and
 .Ql LOC
 for
 .Ql LOCAL .
-Values from the previous table will specify a new volume name.
+.
+Values from the previous table will specify a new section name.
+.
 If the third parameter is a keyword designating a computer architecture,
-its value is prepended to the default volume name as specified by the
+its value is prepended to the default section name as specified by the
 second parameter.
-By default, the following architecture keywords are defined:
+.
+By default,
+the following architecture keywords are defined.
 .
 \# we use 'No' to avoid hyphenation
 .Bd -ragged -offset indent
@@ -950,21 +967,14 @@ By default, the following architecture keywords are defined:
 .No beagle , bebox , cats , cesfic , cobalt , dreamcast ,
 .No emips , evbarm , evbmips , evbppc , evbsh3 , ews4800mips ,
 .No hp300 , hp700 , hpcarm , hpcmips , hpcsh , hppa , hppa64 ,
-.No i386 , ia64 , ibmnws , iyonix , landisk , loongson , luna68k , luna88k ,
-.No m68k , mac68k , macppc , mips , mips64 , mipsco , mmeye ,
-.No mvme68k , mvme88k , mvmeppc , netwinder , news68k , newsmips , next68k ,
-.No ofppc , palm , pc532 , playstation2 , pmax , pmppc , powerpc , prep ,
-.No rs6000 , sandpoint , sbmips , sgi , sgimips , sh3 , shark ,
-.No socppc , solbourne , sparc , sparc64 , sun2 , sun3 ,
+.No i386 , ia64 , ibmnws , iyonix , landisk , loongson , luna68k ,
+.No luna88k , m68k , mac68k , macppc , mips , mips64 , mipsco , mmeye ,
+.No mvme68k , mvme88k , mvmeppc , netwinder , news68k , newsmips ,
+.No next68k , ofppc , palm , pc532 , playstation2 , pmax , pmppc ,
+.No powerpc , prep , rs6000 , sandpoint , sbmips , sgi , sgimips , sh3 ,
+.No shark , socppc , solbourne , sparc , sparc64 , sun2 , sun3 ,
 .No tahoe , vax , x68k , x86_64 , xen , zaurus
 .Ed
-.
-.
-.Pp
-If the section number is neither a numeric expression in the range 1
-to\~9
-nor one of the above described keywords,
-the third parameter is used verbatim as the volume name.
 .
 .
 .br
@@ -997,17 +1007,23 @@ Lf(CR) | L C R.
 .
 .
 .Pp
-Local,
-OS-specific additions might be found in the file
+Site-specific additions might be found in the file
 .Pa mdoc.local ;
-look for strings named
-.Ql volume\-ds\-XXX
-(for the former type) and
-.Ql volume\-as\-XXX
-(for the latter type);
-.Ql XXX
-then denotes the keyword to be used with the
-.Ql .Dt
+see section
+.Sx Files
+below.
+.
+.Xr roff
+strings named
+.\" XXX: We should really rename these.
+.Ql volume\-ds\- Ns Ar XXX
+define section names
+and
+.Ql volume\-as\- Ns Ar XXX
+architecture names;
+.Ar XXX
+denotes the arguments to be recognized by the
+.Ql \&Dt
 macro.
 .
 .
@@ -1015,52 +1031,52 @@ macro.
 This macro is neither callable nor parsed.
 .
 .
-.It Li .Os Xo
-.Op Aq operating system or package name
-.Op Aq version or release
-.Xc
-This is the mandatory third macro of every
-.Xr mdoc 7
-document.
+.It Li .Os Op Ar operating-system-or-package-name \
+Op Ar version-or-release
 .
-In man pages supplied by the base installation of an operating system,
-do not provide an argument.
+This macro associates the document with a software distribution.
+.
+When composing a man page to be included in the base installation of an
+operating system,
+do not provide an argument;
+.Xr mdoc
+will supply it.
+.
+In this implementation,
+that default is
+.Dq "\*[doc-default-operating-system]" .
+.
+It may be overridden in the site configuration file,
+.Pa mdoc.local ;
+see section
+.Sx Files
+below.
 .
 A portable software package maintaining its own man pages can supply
 its name and version number or release identifier as optional arguments.
 .
-If the first parameter is empty,
-the default
-.Sq Tn "\*[doc-default-operating-system]"
-is used.
-.
-This default may be overridden in the local configuration file,
-.Pa mdoc.local .
-.
-Historically,
-the name of the operating system was one of the common initialisms
-.Tn BSD
-or
-.Tn ATT .
-.
-The release should be the standard release nomenclature for the system
+A
+.Em version-or-release
+argument should use the standard nomenclature for the software
 specified.
 .
 In the following table,
-possible second arguments for some predefined operating systems are
-listed.
+recognized
+.Em version-or-release
+arguments for some predefined operating systems are listed.
 .
-Similarly to
-.Ql .Dt ,
-local additions might be defined in
-.Pa mdoc.local ;
-look for strings named
-.Ql operating\-system\-XXX\-YYY ,
+As with
+.Ql \&Dt ,
+site additions might be defined in
+.Pa mdoc.local .
+.
+Look for strings named
+.Ql operating\-system\- Ns Ar XXX Ns \- Ns Ar YYY ,
 where
-.Ql XXX
-is the acronym for the operating system and
-.Ql YYY
-the release ID.
+.Ar XXX
+is an abbreviation for the operating system and
+.Ar YYY
+the release identifier.
 .
 .Bd -ragged -compact
 .Bl -tag -width ".No DragonFly" -offset indent
@@ -1113,42 +1129,30 @@ the release ID.
 .
 .
 .Pp
-For
-.Tn ATT ,
-an unrecognized second parameter will be replaced with the string
+Historically,
+the first argument used with
+.Li \&Dt
+was
+.Li BSD
+or
+.Li ATT .
+.
+An unrecognized version argument after
+.Li ATT
+is replaced with
 .Dq Ux ;
-for the other predefined acronyms it will be ignored and a warning
-message emitted.
+for other predefined abbreviations,
+it is ignored and a warning diagnostic emitted.
 .
-Unrecognized arguments are displayed as given in the page footer.
+Otherwise,
+unrecognized arguments are displayed verbatim in the page footer.
+.
 For instance,
-a typical footer might be:
-.
-.
-.Pp
-.Dl .Os BSD 4.3
-.
-.
-.Pp
-giving
-.Ql 4.3\~Berkeley Distribution ,
-or for a locally produced set
-.
-.
-.Pp
-.Dl .Os CS Department
-.
-.
-.Pp
-which will produce
-.Ql CS\~Department .
-.
-.
-.Pp
-If the
-.Ql .Os
-macro is not present,
-the bottom left corner of the manual page will be ugly.
+this page uses
+.Sq Li .Os groff @VERSION@
+whereas a locally produced page might employ
+.Sq Li .Os \[dq]UXYZ CS Department\[dq]
+without versioning information.
 .
 .
 .Pp

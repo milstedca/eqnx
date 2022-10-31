@@ -1,6 +1,7 @@
 .TH preconv @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-preconv \- prepare files for typesetting with groff
+preconv \- prepare files for typesetting with
+.I groff
 .
 .
 .\" ====================================================================

@@ -1,6 +1,8 @@
 .TH groff @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-groff \- front end to the GNU roff document formatting system
+groff \- front end to the GNU
+.I roff
+document formatting system
 .
 .
 .\" ====================================================================

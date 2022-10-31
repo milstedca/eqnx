@@ -1,6 +1,8 @@
 .TH grops @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-grops \- groff output driver for PostScript
+grops \-
+.I groff
+output driver for PostScript
 .
 .
 .\" ====================================================================

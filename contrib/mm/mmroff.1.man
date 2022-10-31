@@ -1,6 +1,8 @@
 .TH mmroff @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-mmroff \- cross-referencing front end for GNU roff mm macro package
+mmroff \- cross-referencing front end for GNU
+.I roff mm
+macro package
 .
 .
 .\" ====================================================================

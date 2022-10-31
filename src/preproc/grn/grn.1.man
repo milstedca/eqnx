@@ -1,7 +1,9 @@
 '\" t
 .TH @g@grn @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-@g@grn \- embed gremlin images in groff documents
+@g@grn \- embed Gremlin images in
+.I groff
+documents
 .
 .
 .\" ====================================================================

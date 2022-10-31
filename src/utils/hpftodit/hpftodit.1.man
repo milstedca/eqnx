@@ -1,6 +1,9 @@
 .TH hpftodit @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-hpftodit \- create font description files for use with groff \-Tlj4
+hpftodit \- create font description files for use with
+.I groff
+and
+.I grolj4
 .
 .
 .\" ====================================================================

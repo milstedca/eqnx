@@ -1,7 +1,9 @@
 '\" t
 .TH groff_char @MAN7EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-groff_char \- GNU roff special character and glyph repertoire
+groff_char \- GNU
+.I roff
+special character and glyph repertoire
 .
 .
 .\" ====================================================================

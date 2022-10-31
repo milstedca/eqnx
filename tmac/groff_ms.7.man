@@ -1,7 +1,9 @@
 '\" t
 .TH groff_ms @MAN7EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-groff_ms \- GNU roff manuscript macro package for formatting documents
+groff_ms \- GNU
+.I roff
+manuscript macro package for formatting documents
 .
 .
 .\" ====================================================================

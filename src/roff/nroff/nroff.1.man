@@ -1,6 +1,8 @@
 .TH @g@nroff @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-@g@nroff \- format documents with groff for TTY (terminal) devices
+@g@nroff \- format documents with
+.I groff
+for TTY (terminal) devices
 .
 .
 .\" ====================================================================

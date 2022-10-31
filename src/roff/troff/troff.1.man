@@ -1,7 +1,9 @@
 '\" t
 .TH @g@troff @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-@g@troff \- GNU roff typesetter and document formatter
+@g@troff \- GNU
+.I roff
+typesetter and document formatter
 .
 .
 .\" ====================================================================

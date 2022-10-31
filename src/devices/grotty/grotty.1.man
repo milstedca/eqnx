@@ -1,6 +1,8 @@
 .TH grotty @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-grotty \- groff output driver for typewriter-like (terminal) devices
+grotty \-
+.I groff
+output driver for typewriter-like (terminal) devices
 .
 .
 .\" ====================================================================

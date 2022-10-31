@@ -1,7 +1,8 @@
 '\" t
 .TH groff_mm @MAN7EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-groff_mm \- memorandum macros for GNU roff
+groff_mm \- memorandum macros for GNU
+.I roff
 .
 .
 .\" ====================================================================

@@ -1,6 +1,8 @@
 .TH gropdf @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
-gropdf \- groff output driver for Portable Document Format
+gropdf \-
+.I groff
+output driver for Portable Document Format
 .
 .
 .\" ====================================================================

@@ -532,11 +532,11 @@ o m4 is now required to build.  Any m4 that implements the features
   documented in the Version 7 Unix m4(1) man page, and the `-D` option,
   should suffice.
 
-o New 'configure' options --{en,dis}able-groff-allocator control whether
-  groff uses its own malloc/free-wrapping allocator to implement all C++
-  new/delete operations.  groff has used this allocator for over 30
-  years; C++ implementations are more mature now.  The default is now to
-  rely on C++ language runtime support for new/delete.  When building
+o New 'configure' options '--{en,dis}able-groff-allocator' control
+  whether groff uses its own malloc/free-wrapping allocator to implement
+  all C++ new/delete operations.  groff has used this allocator for over
+  30 years; C++ implementations are more mature now.  The default is now
+  to rely on C++ language runtime support for new/delete.  When building
   groff, use
     configure --enable-groff-allocator
   to re-enable groff's traditional allocator.
@@ -569,7 +569,7 @@ o The semantics of the environment variable SOURCE_DATE_EPOCH (support
 o xtotroff now supports a "-d" option to specify the directory in which
   to generate font description files.
 
-o The 'configure' option --with-doc that was introduced in version
+o The 'configure' option '--with-doc' that was introduced in version
   1.22.3 has been deleted again.  Its basic idea was misguided because
   each of the documents is only available in a subset of the output
   formats, so in contrast to the documentation, the option not only

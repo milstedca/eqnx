@@ -4719,10 +4719,8 @@ register to zero.
 .
 .Pp
 The
-.Ql AD
-and
 .Ql HF
-strings,
+string
 and
 .\" XXX: FT and IN have to be protected with ampersands because when
 .\" rendering via andoc and having already seen a man(7) page, .Ql
@@ -4732,7 +4730,7 @@ and
 .Ql P ,
 and
 .Ql X
-registers,
+registers
 are reserved for potential future compatibility with
 .Xr groff_man @MAN7EXT@
 page rendering options.

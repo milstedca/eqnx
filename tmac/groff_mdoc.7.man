@@ -814,6 +814,60 @@ These macros are called once at the very beginning of the document and are
 used to construct headers and footers only.
 .
 .Bl -tag -width 6n
+.It Li .Dd Xo
+.Aq Month
+.Aq day ,
+.Aq year
+.Xc
+The document date for display in the page footer.
+.
+This is the mandatory first macro of any
+.Nm mdoc
+manual.
+The
+.Aq Month
+is the full English month name,
+the
+.Aq day
+is an integer number without a leading zero,
+and the
+.Aq year
+is the full four-digit year,
+for example:
+.
+.
+.Pp
+.Dl .Dd January 25, 2001
+.Pp
+The arguments are concatenated,
+separated with space characters,
+even if they do not match the recommended format.
+.
+.
+.Pp
+As a special exception,
+the format
+.Bd -filled -offset indent
+.Li .Dd $Mdocdate:
+.Aq Month
+.Aq day
+.Aq year
+.Li $
+.Ed
+.
+.
+.Pp
+is also recognized.
+.
+It is used in
+.Ox
+manuals to automatically insert the current date when committing.
+.
+.
+.Pp
+This macro is neither callable nor parsed.
+.
+.
 .It Li .Dt Xo
 .Op Aq document title
 .Op Aq section number
@@ -1094,59 +1148,6 @@ If the
 .Ql .Os
 macro is not present,
 the bottom left corner of the manual page will be ugly.
-.
-.
-.Pp
-This macro is neither callable nor parsed.
-.
-.It Li .Dd Xo
-.Aq Month
-.Aq day ,
-.Aq year
-.Xc
-The document date for display in the page footer.
-.
-This is the mandatory first macro of any
-.Xr mdoc
-manual.
-The
-.Aq Month
-is the full English month name,
-the
-.Aq day
-is an integer number without a leading zero,
-and the
-.Aq year
-is the full four-digit year,
-for example:
-.
-.
-.Pp
-.Dl .Dd January 25, 2001
-.Pp
-The arguments are concatenated,
-separated with space characters,
-even if they do not match the recommended format.
-.
-.
-.Pp
-As a special exception,
-the format
-.Bd -filled -offset indent
-.Li .Dd $Mdocdate:
-.Aq Month
-.Aq day
-.Aq year
-.Li $
-.Ed
-.
-.
-.Pp
-is also recognized.
-.
-It is used in
-.Ox
-manuals to automatically insert the current date when committing.
 .
 .
 .Pp

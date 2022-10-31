@@ -173,15 +173,13 @@ Miscellaneous
     www.science.uva.nl/~bobd/useful/gpresent/
 
 
-documentation
+Documentation
 -------------
 
-Many documents related to the original versions of troff, ditroff, pic,
-and others can be accessed from the following web pages:
+Documentation of the AT&T implementations of the troff, tbl, pic, eqn,
+and refer programs can be found at the following site.
 
-  http://www.cs.bell-labs.com/cm/cs/cstr.html
-  http://www.cs.bell-labs.com/cm/cs/papers.html
-  http://troff.org
+  https://www.troff.org/papers.html
 
 ##### Editor settings
 Local Variables:

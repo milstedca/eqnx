@@ -4672,9 +4672,9 @@ The paragraph and subsection heading indentation amounts can be changed
 by setting the registers
 .Ql \&IN
 and
-.Ql SN ,
+.Ql SN .
 .
-.Dl groff \-Tutf8 \-rIN=5n \rSN=2n \-mdoc foo.man | less \-R
+.Dl groff \-Tutf8 \-rIN=5n \-rSN=2n \-mdoc foo.man | less \-R
 .
 The default paragraph indentation is 7.2 ens on typesetters and 7 ens on
 terminals.

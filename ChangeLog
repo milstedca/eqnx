@@ -15,8 +15,8 @@
 	the number of the _next_ input line.  Increment line number at
 	end of outer `read_line()` loop.
 
-	Fixes <https://savannah.gnu.org/bugs/index.php?63299>.  Thanks
-	to Alex Colomar for the report.
+	Fixes <https://savannah.gnu.org/bugs/?63299>.  Thanks to Alex
+	Colomar for the report.
 
 2022-10-31  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -55,7 +55,7 @@
 	* src/roff/groff/groff.1.man:
 	* src/utils/hpftodit/hpftodit.1.man: Drop references to page.
 
-	Fixes <https://savannah.gnu.org/bugs/index.php?61819>.
+	Fixes <https://savannah.gnu.org/bugs/?61819>.
 
 2022-10-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -1629,7 +1629,7 @@
 	* src/roff/groff/groff.1.man: Drop cross reference to it.
 	* NEWS: Add item.
 
-	Fixes <https://savannah.gnu.org/bugs/index.php?61818>.
+	Fixes <https://savannah.gnu.org/bugs/?61818>.
 
 2022-09-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 

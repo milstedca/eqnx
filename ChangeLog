@@ -1,3 +1,13 @@
+2022-11-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/xditview/xditview.am
+	($(GXDITVIEW_GROFF_VERSION_H)): Run `$(MKDIR_P)` and `printf` as
+	separate rule commands in order to use them with `$(AM_V_at)`
+	and `$(AM_V_GEN)`, respectively.  Prevents noise from build.
+
+	Fixes <https://savannah.gnu.org/bugs/?63302>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
 2022-10-31  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[eqn]: Fix Savannah #63299.

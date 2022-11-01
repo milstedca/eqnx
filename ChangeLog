@@ -1,3 +1,12 @@
+2022-10-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[eqn]: Regression-test Savannah #63299.
+
+	* src/preproc/eqn/tests/\
+	diagnostics-report-correct-line-numbers.sh: Do it.
+	* src/preproc/eqn/eqn.am (eqn_TESTS, TESTS, EXTRA_DIST): Run
+	test.
+
 2022-10-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/utils/grog/grog.pl (fail, warn, construct_command)

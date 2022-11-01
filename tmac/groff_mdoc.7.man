@@ -4738,29 +4738,81 @@ page rendering options.
 .
 .Sh Files
 .
-.Bl -tag -width mdoc/doc-ditroff -compact
-.It Pa doc.tmac
-The main manual macro package.
-.It Pa mdoc.tmac
-A wrapper file to call
-.Pa doc.tmac .
-.It Pa mdoc/doc-common
-Common strings, definitions, stuff related typographic output.
-.It Pa mdoc/doc-nroff
-Definitions used for a
-.Tn TTY
-output device.
-.It Pa mdoc/doc-ditroff
-Definitions used for all other devices.
-.It Pa mdoc.local
-Local additions and customizations.
-.It Pa andoc.tmac
-Use this file if you don't know whether the
-.Nm mdoc
-or the
+.Bl -tag
+.It Pa @MACRODIR@/\:andoc\:.tmac
+This brief
+.Nm groff
+program detects whether the
 .Nm man
-package should be used.
-Multiple man pages (in either format) can be handled.
+or
+.Nm mdoc
+macro package is being used by a document and loads the correct macro
+definitions,
+taking advantage of the fact that pages using them must call
+.Li TH
+or
+.Li Dd ,
+respectively,
+before any other macros.
+.
+A
+.Xr man
+program or user typing,
+for example,
+.Dl groff \-mandoc page.1
+need not know which package the file
+.Pa page.1
+uses.
+.
+Multiple man pages,
+in either format,
+can be handled;
+.Pa \%andoc\:.tmac
+reloads each macro package as necessary.
+.
+.
+.It Pa @MACRODIR@/\:doc\:.tmac
+implements the bulk of the
+.Nm groff mdoc
+package and loads further components as needed from the
+.Pa mdoc
+subdirectory.
+.
+.
+.It Pa @MACRODIR@/\:mdoc\:.tmac
+is a wrapper that loads
+.Pa doc.tmac .
+.
+.
+.It Pa @MACRODIR@/\:mdoc/\:doc\-common
+defines macros,
+registers,
+and strings
+primarily concerned with the production of formatted output.
+.\" XXX: This is a weak explanation.  The boundary between doc.tmac's
+.\" concerns and doc-common's is not at all clear to GBR.  Further, many
+.\" operating system-related strings are defined here that would seem
+.\" more appropriately placed in doc-syms.  Possibly all three of these
+.\" files should be merged.
+.
+.
+.It Pa @MACRODIR@/\:mdoc/\:doc\-nroff
+defines parameters appropriate for rendering to terminal devices.
+.
+.
+.It Pa @MACRODIR@/\:mdoc/\:doc\-ditroff
+defines parameters appropriate for rendering to typesetter devices.
+.
+.
+.It Pa @MACRODIR@/\:mdoc/\:doc\-syms
+defines many strings and macros that interpolate formatted text,
+such as names of operating systems and standards documents.
+.
+.
+.It Pa @LOCALMACRODIR@/\:mdoc\:.local
+This file houses local additions and customizations to the package.
+.
+It can be empty.
 .El
 .
 .

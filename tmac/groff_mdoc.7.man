@@ -4583,6 +4583,8 @@ for less-common choices.
 .
 .D1 Li groff \-Tutf8 \-dAD=l \-mdoc groff_mdoc.7 | less \-R
 .
+.
+.Pp
 Setting register
 .Ql C
 to\~1 numbers output pages consecutively,
@@ -4609,8 +4611,6 @@ output by setting the continuous rendering register
 to zero while calling
 .Xr groff @MAN1EXT@ .
 .
-.
-.Pp
 .Dl groff \-Tlatin1 \-rcR=0 \-mdoc foo.man > foo.txt
 .
 .
@@ -4644,8 +4644,6 @@ and at the bottom left on even-numbered (verso) pages,
 swapping places with the arguments to
 .Ql .Os .
 .
-.
-.Pp
 .Dl groff \-Tps \-rD1 \-mdoc foo.man > foo.ps
 .
 .
@@ -4654,17 +4652,11 @@ To change the document font size to 11pt or 12pt, set register
 .Ql S
 accordingly:
 .
-.
-.Pp
 .Dl groff \-Tdvi \-rS11 \-mdoc foo.man > foo.dvi
 .
-.
-.Pp
 Register
 .Ql S
-is ignored for
-.Tn TTY
-devices.
+is ignored when formatting for terminal devices.
 .
 .
 .Pp
@@ -4690,12 +4682,8 @@ and
 .Ql LT ,
 respectively:
 .
-.
-.Pp
 .Dl groff \-Tutf8 \-rLL=100n \-rLT=100n \-mdoc foo.man | less \-R
 .
-.
-.Pp
 If not set,
 both registers default to 78n for terminal devices and 6.5i otherwise.
 .
@@ -4712,8 +4700,6 @@ It can be disabled by setting the
 .Ql HY
 register to zero.
 .
-.
-.Pp
 .Dl groff \-Tutf8 \-rHY=0 \-mdoc foo.man | less \-R
 .
 .

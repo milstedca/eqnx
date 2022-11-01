@@ -88,12 +88,7 @@ static bool read_line(FILE *fp, string *p)
     if (c == '\n')
       break;
   }
-  bool is_end_of_file = (p->length() > 0);
-  if (is_end_of_file)
-    current_lineno = 0;
-  else
-    current_lineno++;
-  return is_end_of_file;
+  return (p->length() > 0);
 }
 
 void do_file(FILE *fp, const char *filename)
@@ -106,13 +101,15 @@ void do_file(FILE *fp, const char *filename)
   current_filename = fn.contents();
   if (output_format == troff)
     printf(".lf 1 %s\n", current_filename);
-  current_lineno = 0;
+  current_lineno = 1;
   while (read_line(fp, &linebuf)) {
     if (linebuf.length() >= 4
 	&& linebuf[0] == '.' && linebuf[1] == 'l' && linebuf[2] == 'f'
-	&& (linebuf[3] == ' ' || linebuf[3] == '\n' || compatible_flag)) {
+	&& (linebuf[3] == ' ' || linebuf[3] == '\n' || compatible_flag))
+    {
       put_string(linebuf, stdout);
       linebuf += '\0';
+      // In GNU roff, `lf` assigns the number of the _next_ line.
       if (interpret_lf_args(linebuf.contents() + 3))
 	current_lineno--;
     }
@@ -126,17 +123,23 @@ void do_file(FILE *fp, const char *filename)
       int start_lineno = current_lineno + 1;
       str.clear();
       for (;;) {
-	if (!read_line(fp, &linebuf))
+	if (!read_line(fp, &linebuf)) {
+	  current_lineno = 0; // suppress report of line number
 	  fatal("end of file before .EN");
-	if (linebuf.length() >= 3 && linebuf[0] == '.' && linebuf[1] == 'E') {
+	}
+	if (linebuf.length() >= 3
+	    && linebuf[0] == '.'
+	    && linebuf[1] == 'E') {
 	  if (linebuf[2] == 'N'
 	      && (linebuf.length() == 3 || linebuf[3] == ' '
 		  || linebuf[3] == '\n' || compatible_flag))
 	    break;
 	  else if (linebuf[2] == 'Q' && linebuf.length() > 3
 		   && (linebuf[3] == ' ' || linebuf[3] == '\n'
-		       || compatible_flag))
+		       || compatible_flag)) {
+	    current_lineno++; // We just read another line.
 	    fatal("equations cannot be nested (.EQ within .EQ)");
+	  }
 	}
 	str += linebuf;
       }
@@ -151,12 +154,15 @@ void do_file(FILE *fp, const char *filename)
 	if (output_format == mathml)
 	  putchar('\n');
         else {
-	  printf(".lf %d\n", current_lineno - 1);
+	  current_lineno++;
+	  printf(".lf %d\n", current_lineno);
 	  output_string();
 	}
       }
-      if (output_format == troff)
+      if (output_format == troff) {
+	current_lineno++;
 	printf(".lf %d\n", current_lineno);
+      }
       put_string(linebuf, stdout);
     }
     else if (start_delim != '\0' && linebuf.search(start_delim) >= 0
@@ -164,6 +170,7 @@ void do_file(FILE *fp, const char *filename)
       ;
     else
       put_string(linebuf, stdout);
+    current_lineno++;
   }
   current_filename = 0;
   current_lineno = 0;

@@ -1,5 +1,25 @@
 2022-10-31  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[eqn]: Fix Savannah #63299.
+
+	* src/preproc/eqn/main.cpp: Revise input file line number
+	handling.
+	(read_line): Stop dealing with `current_lineno` here; it's now
+	up to its caller (`do_file()`) to manipulate the line number.
+	(do_file): When reading new file, initialize `current_lineno` to
+	1 instead of 0.  Reset it to zero when encountering EOF (so that
+	diagnostics will not include a line number at all).  When
+	performing nested call to `read_line()` to gather '.EN' from
+	input, increment the line number.  Write correct line number in
+	output groff `lf` requests; in groff, its first argument assigns
+	the number of the _next_ input line.  Increment line number at
+	end of outer `read_line()` loop.
+
+	Fixes <https://savannah.gnu.org/bugs/index.php?63299>.  Thanks
+	to Alex Colomar for the report.
+
+2022-10-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[eqn]: Regression-test Savannah #63299.
 
 	* src/preproc/eqn/tests/\

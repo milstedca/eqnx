@@ -1112,18 +1112,17 @@
 .
 .eo
 .de doc-end-macro
-.  \" We may still have a partial line in the environment.  If this is
-.  \" the case, and we happen to be on the last line of the page, the
-.  \" '.fl' request will cause the page to be ejected and troff will
-.  \" immediately exit.  If we are in nroff mode, this would be
-.  \" unfortunate, since we would never get a chance to output the
-.  \" footer.  So we fudge the page length to make sure that the last
-.  \" page is never ejected until we want it to be.
-.
-.  fl
 .  doc-check-depth
 .
 .  if \n[cR] \{\
+.    \" We might have a pending output line that is not yet broken, and
+.    \" also be 1v from the bottom of the page.  If we break (or flush)
+.    \" the output line now, the page will get ejected afterward and
+.    \" troff will exit because we're in an end-of-input macro--our
+.    \" footer will never be output.  So, if that is the case, further
+.    \" extend the page length by 1v.
+.    if ((\n[.p] - \n[nl]) <= \n[.V]) .pl +1v
+.    br
 .    pl +1v
 .    sp 1v
 .    doc-footer

@@ -1,5 +1,17 @@
 2022-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (an-end):
+	* tmac/mdoc/doc-common (doc-end-macro): Ensure that document
+	footer appears in continuous rendering mode even when a final
+	pending output line in the document is 1v from the page bottom.
+	Replace `fl` call with `br`, which IMO has clearer semantics.
+	Extend page length by 1v before doing so if the current vertical
+	position is within 1v of the page bottom.
+
+	Thanks to Alex Colomar for the report.
+
+2022-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man, mdoc]: Regression-test special case of continuous
 	rendering when the last pending output line in the document is
 	1v from the (notional) page bottom.

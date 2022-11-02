@@ -111,7 +111,14 @@
 .de1 an-end
 .  if !r an-TH-was-called .return
 .  if \\n[cR] \{\
-.    fl
+.    \" We might have a pending output line that is not yet broken, and
+.    \" also be 1v from the bottom of the page.  If we break (or flush)
+.    \" the output line now, the page will get ejected afterward and
+.    \" troff will exit because we're in an end-of-input macro--our
+.    \" footer will never be output.  So, if that is the case, further
+.    \" extend the page length by 1v.
+.    if ((\\n[.p] - \\n[nl]) <= \\n[.V]) .pl +1v
+.    br
 .    pl +1v
 .    sp 1v
 .    an-footer

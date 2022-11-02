@@ -1081,7 +1081,7 @@ contains unsupported escape sequence
 .  HTML-IMAGE-END
 .  if \\n[an-is-output-html] .ll \\n[an-TS-ll]u
 .  if !r TW .if !\\n[an-was-tbl-failure-reported] \{\
-.    ds an-msg tbl preprocessor failed or was not run;\"
+.    ds an-msg tbl preprocessor failed, or it or soelim was not run;\"
 .    as an-msg " table(s) likely not rendered\"
 .    as an-msg " (TE macro called with TW register undefined)\"
 .    an-warn \\*[an-msg]

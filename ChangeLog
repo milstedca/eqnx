@@ -1,3 +1,9 @@
+2022-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/an.tmac (TE): Update diagnostic to mention another
+	failure mode: a man page that is simply a `so` request requires
+	soelim(1) to be run if the sourced page uses tbl(1).
+
 2022-11-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/xditview/xditview.am

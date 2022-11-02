@@ -1,5 +1,16 @@
 2022-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man, mdoc]: Regression-test special case of continuous
+	rendering when the last pending output line in the document is
+	1v from the (notional) page bottom.
+
+	* tmac/tests/an_output-footer-when-continuously-rendering.sh:
+	* tmac/tests/doc_output-footer-when-continuously-rendering.sh:
+	Do it.
+	* tmac/tmac.am (tmac_TESTS): Run tests.
+
+2022-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac (TE): Update diagnostic to mention another
 	failure mode: a man page that is simply a `so` request requires
 	soelim(1) to be run if the sourced page uses tbl(1).

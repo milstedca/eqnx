@@ -172,6 +172,7 @@ tmac_TESTS = \
   tmac/tests/an_handle-degenerate-input-quietly.sh \
   tmac/tests/an_inner-footer-abbreviation-works.sh \
   tmac/tests/an_no-break-after-short-paragraph-tags.sh \
+  tmac/tests/an_output-footer-when-continuously-rendering.sh \
   tmac/tests/an_page-footers-present.sh \
   tmac/tests/an_page-header-has-current-data.sh \
   tmac/tests/an_reset-hyphenation-correctly.sh \
@@ -188,6 +189,7 @@ tmac_TESTS = \
   tmac/tests/doc_accept-mixed-case-section-headings.sh \
   tmac/tests/doc_do-not-loop-infinitely-when-shortening-headers.sh \
   tmac/tests/doc_indents-correctly.sh \
+  tmac/tests/doc_output-footer-when-continuously-rendering.sh \
   tmac/tests/doc_smoke-test.sh \
   tmac/tests/e_chapter-titles-work.sh \
   tmac/tests/e_columns-work-on-long-pages.sh \

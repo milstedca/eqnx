@@ -781,6 +781,8 @@ nor one of the above described keywords,
 the third parameter is used verbatim as the volume name.
 .
 .
+.br
+.ne 10v \" Keep explanatory paragraph with the following table.
 .Pp
 The effects of varying
 .Ql .Dt

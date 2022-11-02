@@ -795,7 +795,9 @@ prevents the digit\~2 from being treated as a manual section number.
 .
 .
 .Pp
-.\" XXX: Figure out how to indent this.
+.\" On terminals, 2n is as far as we can offset without overrunning a
+.\" 78n width.
+.Bd -unfilled -offset 2n
 .TS
 tab(@);
 Lf(CR) | L C R.
@@ -805,6 +807,7 @@ Lf(CR) | L C R.
 \&.Dt foo \[rs]&2 baz@foo(2)@baz@foo(2)
 \&.Dt foo \[dq]\[dq] baz@foo@baz@foo
 .TE
+.Ed
 .
 .
 .Pp

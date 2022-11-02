@@ -11,7 +11,8 @@ This file summarizes the structure of the groff source distribution.
 
   ANNOUNCE      Release announcement template.
   BUG-REPORT    A template for bug reports.
-  ChangeLog     Log of the changes in the different groff versions.
+  ChangeLog     Log of changes since last groff minor version release.
+  ChangeLog.*   Log of changes in past groff versions.
   COPYING       The GNU General Public License (GPL).
   FDL           The GNU Free Documentation License (FDL).
   FOR-RELEASE   Release procedures for groff maintainer(s) to follow.

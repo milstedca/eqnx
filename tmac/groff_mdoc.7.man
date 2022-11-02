@@ -60,7 +60,7 @@
 .
 .Sh Synopsis
 .
-.Nm groff Fl m Ns Cm doc Ar
+.Nm groff Fl m Ns Cm doc Ar file No ...
 .
 .
 .Sh Description
@@ -1128,7 +1128,7 @@ Some command-line argument lists are quite long:
 .Op Fl j Ar max_jobs
 .Op Ar variable Ns = Ns Ar value
 .Bk
-.Op Ar target ...
+.Op Ar target No ...
 .Ek
 .El
 .Ed
@@ -1364,24 +1364,36 @@ To turn splitting back on, write
 .Ed
 .
 .
-.Ss "Arguments"
+.Ss Arguments
 .
 The
 .Li .Ar
 argument macro may be used whenever an argument is referenced.
-If called without arguments, the
+.
+If called without arguments,
 .Sq Ar
-string is output.
+is output.
+.
+This places the ellipsis in italics,
+which is ugly and incorrect,
+and will be noticed on terminals that underline text instead of using an
+oblique typeface.
+.
+We recommend using
+.Ql ".Ar file \&No ..."
+instead.
 .
 .
 .Pp
-.Dl Usage: .Ar Oo Ao argument Ac Oc ...
+.Dl Usage: .Ar Oo Ao argument Ac Oc No ...
 .
 .
 .Pp
 .Bl -tag -width ".Li .Ar\ file1\ file2" -compact -offset 15n
 .It Li .Ar
 .Ar
+.It Li .Ar file \&No ...
+.Ar file No ...
 .It Li ".Ar file1"
 .Ar file1
 .It Li ".Ar file1 ."
@@ -3036,7 +3048,7 @@ and enclosure macros: Test the value of a variable.
 \&.It Xo
 \&.Ic .ifndef
 \&.Oo \e&! Oc Ns Ar variable Oo
-\&.Ar operator variable ...
+\&.Ar operator variable No ...
 \&.Oc Xc
 .Ed
 .Pp
@@ -3048,7 +3060,7 @@ produces
 .It Xo
 .Ic .ifndef
 .Oo \&! Oc Ns Ar variable Oo
-.Ar operator variable ...
+.Ar operator variable No ...
 .Oc Xc
 .El
 .Ed
@@ -3142,7 +3154,7 @@ below:
 .Nm cat
 .Op Fl benstuv
 .Op Fl
-.Ar
+.Ar file No ...
 .Ed
 .Pp
 .
@@ -3151,7 +3163,7 @@ The following macros were used:
 .Dl ".Nm cat"
 .Dl ".Op Fl benstuv"
 .Dl ".Op Fl"
-.Dl .Ar
+.Dl ".Ar file No ..."
 .
 .It Li ".Sh Description"
 In most cases the first text in the

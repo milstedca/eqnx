@@ -6843,8 +6843,8 @@ problem because it tracks the nesting depth of interpolations.
 
 @c ---------------------------------------------------------------------
 
-@c BEGIN Keep (roughly) parallel with section "Escape sequences" of
-@c groff(7).
+@c BEGIN Keep (roughly) parallel with section "Using escape sequences"
+@c of groff(7).
 @node Using Escape Sequences, Delimiters, Calling Macros, Formatter Instructions
 @subsection Using Escape Sequences
 @cindex using escape sequences
@@ -6931,17 +6931,18 @@ character escape sequence.  In macro and string definitions, two further
 input sequences @code{\\} and @code{\E} come into play, permitting
 deferred interpretation of escape sequences.  @xref{Copy Mode}.
 
-Escape sequence interpretation can be switched off and back on.  This
-procedure can obviate the need to double the escape character inside
-macro definitions.  @xref{Writing Macros}.  (This approach is not
-available  if your macro needs to interpolate values at the time it is
-@emph{defined}---but many do not.)
+Outside of copy mode, escape sequence interpretation can be switched off
+and back on.  This procedure can obviate the need to double the escape
+character inside macro definitions.  @xref{Writing Macros}.  (This
+approach is not available if your macro needs to interpolate values at
+the time it is @emph{defined}---but many do not.)
 
 @Defreq {eo, }
 @cindex disabling @code{\} (@code{eo})
 @cindex @code{\}, disabling (@code{eo})
-Disable the escape mechanism.  Once this request is invoked, no input
-character is recognized as starting an escape sequence.
+Disable the escape mechanism except in copy mode.  Once this request is
+invoked, no input character is recognized as starting an escape
+sequence in interpretation mode.
 @endDefreq
 
 @Defreq {ec, [@Var{c}]}
@@ -8931,8 +8932,7 @@ any.
 @cindex @code{\t}, and copy mode
 @cindex copy mode, and @code{\t}
 @cindex mode, copy, and @code{\t}
-This escape sequence is a non-interpreted tab character.  In copy mode
-(@pxref{Copy Mode}), @code{\t} is the same as a real tab character.
+Interpolate a tab in copy mode.
 @endDefesc
 
 @DefreqList {ta, [[@Var{n1} @Var{n2} @dots{} @Var{nn} ]@t{T} @Var{r1} @
@@ -9157,9 +9157,7 @@ period @samp{.}.
 @cindex @code{\a}, and copy mode
 @cindex copy mode, and @code{\a}
 @cindex mode, copy, and @code{\a}
-This escape sequence is a non-interpreted leader character.  In copy
-mode (@pxref{Copy Mode}), @code{\a} is the same as a real leader
-character.
+Interpolate a leader in copy mode.
 @endDefesc
 
 @Defreq {lc, [@Var{fill-glyph}]}
@@ -16296,17 +16294,6 @@ source document.
 @cindex stderr, printing to (@code{tm}, @code{tm1}, @code{tmc})
 Send @var{contents}, which consumes the remainder of the input line, to
 the standard error stream.
-
-@cindex @code{tm} request, and copy mode
-@cindex copy mode, and @code{tm} request
-@cindex mode, copy, and @code{tm} request
-@cindex @code{tm1} request, and copy mode
-@cindex copy mode, and @code{tm1} request
-@cindex mode, copy, and @code{tm1} request
-@cindex @code{tmc} request, and copy mode
-@cindex copy mode, and @code{tmc} request
-@cindex mode, copy, and @code{tmc} request
-@var{contents} is read in copy mode.
 
 The @code{tm} request ignores leading spaces of @var{contents};
 @code{tm1} handles its argument similarly to the @code{ds} request: an

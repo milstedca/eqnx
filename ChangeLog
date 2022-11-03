@@ -1,5 +1,12 @@
 2022-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/groff.texi (Debugging): Fix misleading claim.  The
+	arguments to the `tm`, `tmc`, and `tm1` requests are not read in
+	copy mode.  For example, you don't need to double backslashes to
+	get them to interpolate registers or strings.
+
+2022-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac (an-end):
 	* tmac/mdoc/doc-common (doc-end-macro): Ensure that document
 	footer appears in continuous rendering mode even when a final

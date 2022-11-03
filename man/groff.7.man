@@ -2843,7 +2843,7 @@ after the end of input.
 .
 .TPx
 .REQ .eo
-Disable the escape mechanism.
+Disable the escape mechanism in interpretation mode.
 .
 .
 .TPx
@@ -4492,8 +4492,7 @@ and
 .
 .TP
 .ESC a
-In copy mode,
-interpolate leader character.
+Interpolate a leader in copy mode.
 .
 .TP
 .ESCq A anything
@@ -4553,7 +4552,7 @@ see
 .
 .TP
 .ESC e
-Interpolate the glyph corresponding to the escape character.
+Interpolate the escape character.
 .
 .
 .TP
@@ -4909,8 +4908,7 @@ the direction of text flow is positive.
 .
 .TP
 .ESC t
-In copy mode,
-interpolate tab character.
+Interpolate a tab in copy mode.
 .
 .
 .TP

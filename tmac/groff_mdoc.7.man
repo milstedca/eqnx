@@ -66,12 +66,12 @@
 .Sh Description
 .
 The GNU implementation of the
-.Nm mdoc
+.Xr mdoc
 macro package is part of the
-.Nm groff
+.Xr groff
 document formatting system.
 .
-.Nm mdoc
+.Xr mdoc
 is a
 .Em content Ns -based
 and
@@ -89,7 +89,7 @@ addressed page layout leaving the manipulation of fonts and other
 typesetting details to the individual author.
 .
 In
-.Nm mdoc ,
+.Xr mdoc ,
 page layout macros make up the
 .Em "page structure domain"
 which consists of macros for titles,
@@ -132,7 +132,7 @@ and irrespective of the macro package selected for its composition.
 .Sh "Getting started"
 .
 The
-.Nm mdoc
+.Xr mdoc
 package attempts to simplify the process of writing a man page.
 .
 Theoretically,
@@ -140,7 +140,7 @@ one should not have to learn the tricky details of
 .Tn GNU
 .Xr @g@troff @MAN1EXT@
 to use
-.Nm mdoc ;
+.Xr mdoc ;
 however,
 there are a few limitations which are unavoidable and best gotten out of
 the way.
@@ -258,7 +258,7 @@ throughout this document.
 This is a technical
 .Em faux pas
 as almost all of the macros in
-.Nm mdoc
+.Xr mdoc
 are parsed, but as it was cumbersome to constantly refer to macros as
 being callable and being able to call other macros, the term parsed
 has been used.
@@ -267,7 +267,7 @@ has been used.
 .Pp
 In the following,
 we call an
-.Nm mdoc
+.Xr mdoc
 macro which starts a line
 (with a leading dot)
 a
@@ -285,7 +285,7 @@ items in the argument list.
 .
 Additionally,
 it makes
-.Nm mdoc
+.Xr mdoc
 work faster.
 .
 For example,
@@ -417,7 +417,7 @@ Use
 instead.
 .
 (It is even better to use
-.Nm mdoc
+.Xr mdoc
 macros to avoid the usage of low-level commands.)
 .
 .
@@ -502,7 +502,7 @@ test
 .
 .Pp
 As can be seen in the first and third line,
-.Nm mdoc
+.Xr mdoc
 handles punctuation characters specially in macro arguments.
 This will be explained in section
 .Sx General Syntax
@@ -671,7 +671,7 @@ and
 macros.
 It is recommended not to use this rather obscure feature to avoid
 dependencies on local modifications of the
-.Nm mdoc
+.Xr mdoc
 package.
 .
 .
@@ -979,7 +979,7 @@ This macro is neither callable nor parsed.
 The document date for display in the page footer.
 .
 This is the mandatory first macro of any
-.Nm mdoc
+.Xr mdoc
 manual.
 The
 .Aq Month
@@ -1036,13 +1036,13 @@ language used to describe commands, subroutines and related files.
 Slightly different variations of this language are used to describe the
 three different aspects of writing a man page.
 First, there is the description of
-.Nm mdoc
+.Xr mdoc
 macro command usage.
 Second is the description of a
 .Ux
 command
 .Em with
-.Nm mdoc
+.Xr mdoc
 macros, and third, the description of a command to a user in the verbal
 sense; that is, discussion of a command in the text of a man page.
 .
@@ -1088,7 +1088,7 @@ is a
 .Em flag
 argument designated as optional by the option brackets.
 In
-.Nm mdoc
+.Xr mdoc
 terms,
 .Ao Ar infile Ac
 and
@@ -1098,7 +1098,7 @@ are called
 in this example, the user has to replace the meta expressions given in angle
 brackets with real file names.
 Note that in this document meta arguments are used to describe
-.Nm mdoc
+.Xr mdoc
 commands; in most man pages, meta variables are not specifically written
 with angle brackets.
 The macros which formatted the above example:
@@ -1145,7 +1145,7 @@ Some command-line argument lists are quite long:
 .
 .Pp
 Here one might talk about the command
-.Nm make
+.Xr make
 and qualify the argument,
 .Ar makefile ,
 as an argument to the flag,
@@ -1153,7 +1153,7 @@ as an argument to the flag,
 or discuss the optional file operand
 .Ar target .
 In the verbal context, such detail can prevent confusion, however the
-.Nm mdoc
+.Xr mdoc
 package does not have a macro for an argument
 .Em to
 a flag.
@@ -1254,7 +1254,7 @@ escape it with
 .
 .Pp
 The following punctuation characters are recognized by
-.Nm mdoc :
+.Xr mdoc :
 .
 .Bl -column -offset indent-two XXXXXX XXXXXX XXXXXX XXXXXX
 .It Li .\& Ta Li ,\& Ta Li :\& Ta Li ;\& Ta Li (\&
@@ -3628,7 +3628,7 @@ and
 using the selected display type.
 .
 Any
-.Xr @g@troff/ Ns Nm mdoc
+.Xr @g@troff/ Ns Xr mdoc
 commands in the file will be processed.
 .
 .It Fl offset Ao Ar string Ac
@@ -3697,7 +3697,7 @@ both scaling indicators give the same values).
 If
 .Ao string Ac
 isn't a numeric expression, it is tested whether it is an
-.Nm mdoc
+.Xr mdoc
 macro name, and the default offset value associated with this macro is used.
 Finally, if all tests fail,
 the width of
@@ -4092,7 +4092,7 @@ Overhanging labels are nice when space is constrained.
 .It Em Inset
 Inset labels are useful for controlling blocks of
 paragraphs and are valuable for converting
-.Nm mdoc
+.Xr mdoc
 manuals to other formats.
 .El
 .
@@ -4117,7 +4117,7 @@ Overhanging labels are nice when space is constrained.
 \&.It Em Inset
 Inset labels are useful for controlling blocks of
 paragraphs and are valuable for converting
-\&.Nm mdoc
+\&.Xr mdoc
 manuals to other formats.
 \&.El
 .Ed
@@ -4139,7 +4139,7 @@ If
 starts with a
 .Ql .\&
 (dot) immediately followed by a valid
-.Nm mdoc
+.Xr mdoc
 macro name, interpret
 .Aq Ar stringN
 and use the width of the result.
@@ -4200,7 +4200,7 @@ If
 starts with a
 .Ql .\&
 (dot) immediately followed by a valid
-.Nm mdoc
+.Xr mdoc
 macro name, interpret
 .Aq Ar string
 and use the width of the result.
@@ -4234,7 +4234,7 @@ flag works in combination with a tag list.
 .
 .Pp
 (Note that the current state of
-.Nm mdoc
+.Xr mdoc
 is saved before
 .Aq Ar string
 is interpreted;
@@ -4290,7 +4290,7 @@ both scaling indicators give the same values).
 If
 .Aq Ar string
 isn't a numeric expression, it is tested whether it is an
-.Nm mdoc
+.Xr mdoc
 macro name, and the default width value associated with this macro is used.
 Finally, if all tests fail,
 the width of
@@ -4342,7 +4342,7 @@ both scaling indicators give the same values).
 If
 .Aq Ar string
 isn't a numeric expression, it is tested whether it is an
-.Nm mdoc
+.Xr mdoc
 macro name, and the default offset value associated with this macro is used.
 Finally, if all tests fail,
 the width of
@@ -4422,7 +4422,7 @@ Embed hyperlink.
 .It Li .Me
 Exact usage unknown.
 The documentation in the
-.Nm mdoc
+.Xr mdoc
 source file describes it as a macro for
 .Dq "menu entries" .
 .
@@ -4441,7 +4441,7 @@ Embed email address.
 .It Li .Ot
 Exact usage unknown.
 The documentation in the
-.Nm mdoc
+.Xr mdoc
 source file describes it as
 .Dq old function type (fortran) .
 .
@@ -4478,7 +4478,7 @@ It is neither callable nor parsed and takes no arguments.
 .Sh "Predefined strings"
 .
 The following strings are predefined for compatibility with legacy
-.Nm mdoc
+.Xr mdoc
 documents.
 .
 Contemporary ones should use the alternatives shown in the
@@ -4541,7 +4541,7 @@ Old typesetters lacked directional double quotes, \" like the C/A/T
 and would produce repeated directional single quotes,
 \[oq]\[oq]like this\[cq]\[cq];
 early versions of
-.Nm mdoc
+.Xr mdoc
 in fact defined the
 .Ql Lq
 and
@@ -4575,7 +4575,7 @@ extension).
 The debugging macro
 .Ql .Db
 available in previous versions of
-.Nm mdoc
+.Xr mdoc
 has been removed since
 .Tn GNU
 .Xr @g@troff @MAN1EXT@
@@ -4608,7 +4608,7 @@ for left alignment
 (ragged right margin).
 .
 Any valid argument to
-.Nm groff Ns No 's
+.Xr groff Ns No 's
 .Li .ad
 request may be used.
 .
@@ -4624,7 +4624,7 @@ Setting register
 .Ql C
 to\~1 numbers output pages consecutively,
 rather than resetting the page number to\~1 with each new
-.Nm mdoc
+.Xr mdoc
 document.
 .
 .
@@ -4726,7 +4726,7 @@ both registers default to 78n for terminal devices and 6.5i otherwise.
 .Pp
 Normally,
 automatic hyphenation is enabled using a mode appropriate to the
-.Nm groff
+.Xr groff
 locale;
 see section \[lq]Localization\[lq] of
 .Xr groff @MAN7EXT@ .
@@ -4762,11 +4762,11 @@ page rendering options.
 .Bl -tag
 .It Pa @MACRODIR@/\:andoc\:.tmac
 This brief
-.Nm groff
+.Xr groff
 program detects whether the
-.Nm man
+.Xr man
 or
-.Nm mdoc
+.Xr mdoc
 macro package is being used by a document and loads the correct macro
 definitions,
 taking advantage of the fact that pages using them must call
@@ -4794,7 +4794,7 @@ reloads each macro package as necessary.
 .
 .It Pa @MACRODIR@/\:doc\:.tmac
 implements the bulk of the
-.Nm groff mdoc
+.Xr groff Xr mdoc
 package and loads further components as needed from the
 .Pa mdoc
 subdirectory.

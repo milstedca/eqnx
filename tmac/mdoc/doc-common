@@ -251,30 +251,13 @@
 .ds doc-section \" empty
 .
 .
-.\" NS doc-pageref global string
-.\" NS   the man page identifier formatted for cross-reference
-.
-.ds doc-pageref \" empty
-.
-.
 .\" NS doc-set-up-titles macro
 .\" NS   install and initialize header and footer support
-.\" NS
-.\" NS modifies:
-.\" NS   doc-pageref
 .\"
 .\" TODO: Support man(7)'s `FT` register.
-.\" TODO: support man(7)'s `MF` string.  Embed the font selection escape
-.\"   sequences in `doc-pageref` here; `doc-header` and `doc-footer` can
-.\"   treat it atomically and strings are already defined for the
-.\"   separate components; see below.
 .
 .eo
 .de doc-set-up-titles
-.  ds doc-pageref "\*[doc-page-topic]
-.  if !"\*[doc-section]"" \
-.    as doc-pageref \|(\*[doc-section])
-.
 .  br
 .
 .  if !\n[cR] \{\
@@ -1072,6 +1055,8 @@
 .\"
 .\" NS local variables:
 .\" NS   doc-xref
+.\"
+.\" TODO: Support man(7)'s `X` register.
 .
 .eo
 .de doc-footer
@@ -1673,7 +1658,6 @@
 .  tm doc-operating-system == '\*[doc-operating-system]'
 .  tm doc-date-string == '\*[doc-date-string]'
 .  tm doc-display-vertical == \n[doc-display-vertical]
-.  tm doc-pageref == '\*[doc-pageref]'
 .  tm doc-in-synopsis-section == \n[doc-in-synopsis-section]
 .  tm doc-in-library-section == \n[doc-in-library-section]
 .  tm doc-in-see-also-section == \n[doc-in-see-also-section]

@@ -1,5 +1,13 @@
 2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Drop now-unused `doc-pageref` string.  It was nowhere
+	interpolated outside of state management macros.
+
+	* tmac/doc.tmac (doc-save-global-vars, doc-restore-global-vars):
+	* tmac/mdoc/doc-common: Do it.
+
+2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common (doc-header, doc-footer): Revise for
 	clarity and to use correct typefaces for titles.
 	(doc-header): Add new strings to ease title construction.

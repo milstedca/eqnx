@@ -2910,7 +2910,7 @@ macro to cite a (sub)section heading within the given document.
 .Pp
 .Bl -tag -width ".Li .Sx\ Files" -offset 15n
 .It Li ".Sx Files"
-.\"\[->]
+\[->]
 .Sx Files
 .El
 .
@@ -2923,31 +2923,44 @@ The default width is 16n.
 .
 The symbolic emphasis macro is generally a boldface macro in either the
 symbolic sense or the traditional English usage.
+.
+.
 .Pp
 .Dl Usage: .Sy Ao symbol Ac ...
+.
+.
 .Pp
 .Bl -tag -width ".Li .Sy\ Important\ Notice" -compact -offset 15n
 .It Li ".Sy Important Notice"
+\[->]
 .Sy Important Notice
 .El
-.Pp
 .
+.
+.Pp
 The default width is 6n.
 .
 .
 .Ss "Mathematical Symbols"
 .
 Use this macro for mathematical symbols and similar things.
+.
+.
 .Pp
 .Dl Usage: .Ms Ao math symbol Ac ...
+.
+.
 .Pp
 .Bl -tag -width ".Li .Ms\ sigma" -compact -offset 15n
 .It Li ".Ms sigma"
+\[->]
 .Ms sigma
 .El
-.Pp
 .
+.
+.Pp
 The default width is 6n.
+.
 .
 .Ss "References and Citations"
 .

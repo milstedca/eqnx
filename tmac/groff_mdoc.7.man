@@ -640,10 +640,12 @@ of which
 and
 .Em Description
 are mandatory.
+.
 The headers are discussed in
 .Sx "Page structure domain" ,
 after presentation of
 .Sx "Manual domain" .
+.
 Several content macros are used to demonstrate page layout macros; reading
 about content macros before page layout macros is recommended.
 .
@@ -1610,7 +1612,10 @@ For interactive command flags that are not prepended with a dash,
 the
 .Ql .Cm
 (command modifier)
-macro is identical, but without the dash.
+macro is identical,
+but without the dash.
+.
+.
 .Pp
 .Dl Usage: .Fl Ao argument Ac ...
 .Pp
@@ -1736,8 +1741,12 @@ conventions.
 Note that any call to another macro signals the end of the
 .Ql .Fn
 call (it will insert a closing parenthesis at that point).
+.
+.
 .Pp
-For functions with many parameters (which is rare), the macros
+For functions with many parameters
+(which is rare),
+the macros
 .Ql .Fo
 (function open)
 and
@@ -2171,11 +2180,12 @@ The default width is 10n.
 .
 .
 .Ss Options
-.
 The
 .Ql .Op
 macro places option brackets around any remaining arguments on the
-command line, and places any trailing punctuation outside the brackets.
+command line,
+and places any trailing punctuation outside the brackets.
+.
 The macros
 .Ql .Oo
 and

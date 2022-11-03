@@ -233,10 +233,10 @@
 .
 .\" header assembly macros
 .
-.\" NS doc-document-title global string
+.\" NS doc-page-topic global string
 .\" NS   the title of the manual page
 .
-.ds doc-document-title UNTITLED\"
+.ds doc-page-topic UNTITLED\"
 .
 .
 .\" NS doc-volume global string
@@ -246,7 +246,7 @@
 .
 .
 .\" NS doc-section global string
-.\" NS   the manual section
+.\" NS   the manual section (1, 2, 3, ..., 3perl, 9)
 .
 .ds doc-section \" empty
 .
@@ -271,7 +271,7 @@
 .
 .eo
 .de doc-set-up-titles
-.  ds doc-pageref "\*[doc-document-title]
+.  ds doc-pageref "\*[doc-page-topic]
 .  if !"\*[doc-section]"" \
 .    as doc-pageref \|(\*[doc-section])
 .
@@ -336,7 +336,7 @@
 .\" NS   document title
 .\" NS
 .\" NS modifies:
-.\" NS   doc-document-title
+.\" NS   doc-page-topic
 .\" NS   doc-section
 .\" NS   doc-volume
 .\" NS
@@ -462,10 +462,10 @@
 .    tm mdoc warning: .Dt directive expects one or more arguments \
 (#\n[.c])
 .  if !"\$1"" \
-.    ds doc-document-title "\$1
+.    ds doc-page-topic "\$1
 .
 .  if \n[CT] \
-.    stringup doc-document-title
+.    stringup doc-page-topic
 .
 .  if !"\$2"" \{\
 .    ds doc-section \$2
@@ -990,7 +990,7 @@
 .  doc-set-up-titles
 .
 .  if '\*[.T]'pdf' \
-.    pdfbookmark 1 "\*[doc-document-title](\*[doc-section])"
+.    pdfbookmark 1 "\*[doc-page-topic](\*[doc-section])"
 .
 .  doc-header
 .  nr doc-is-first-page-of-document 0
@@ -1144,7 +1144,7 @@
 .
 .  \" Reset strings to reduce info leaks from one man page to the next.
 .  ds doc-date-string UNDATED\"
-.  ds doc-document-title UNTITLED\"
+.  ds doc-page-topic UNTITLED\"
 .  ds doc-volume LOCAL\"
 .  ds doc-section \" empty
 .  ds doc-operating-system \" empty
@@ -1652,7 +1652,7 @@
 .  tm doc-volume-name == '\*[doc-volume-name]'
 .  tm doc-have-author == \n[doc-have-author]
 .
-.  tm doc-document-title == '\*[doc-document-title]'
+.  tm doc-page-topic == '\*[doc-page-topic]'
 .  tm doc-volume == '\*[doc-volume]'
 .  tm doc-section == '\*[doc-section]'
 .  tm doc-operating-system == '\*[doc-operating-system]'

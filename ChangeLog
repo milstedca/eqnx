@@ -1,5 +1,13 @@
 2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/doc.tmac:
+	* tmac/mdoc/doc-common: Rename strings for clarity.
+	- doc-document-title -> doc-page-topic
+	- doc-document-title-saved -> doc-page-topic-saved
+	* tmac/mdoc/doc-common: Use new name.
+
+2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-ditroff (doc-page-topic-font):
 	* tmac/mdoc/doc-nroff (doc-page-topic-font): Set man page topic
 	names in italics.

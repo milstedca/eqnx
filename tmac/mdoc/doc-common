@@ -1011,6 +1011,8 @@
 .\" NS   print page header
 .\" NS
 .\" NS local variables:
+.\" NS   doc-xref
+.\" NS   doc-abbv
 .\" NS   doc-reg-dh
 .\" NS   doc-reg-dh1
 .\" NS   doc-hs-len
@@ -1018,27 +1020,32 @@
 .
 .eo
 .de doc-header
+.  ds doc-xref \*[doc-page-topic-font]\*[doc-page-topic]\f[]\"
+.  as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
+.  ds doc-abbv \*[doc-page-topic]\"
 .  ev doc-env-dh
 .  doc-setup-page-layout
 .  ie \n[cR] .pl +1v
 .  el        .sp .5i
-.  nr doc-reg-dh \w'\*[doc-page-topic-font]\*[doc-pageref]\f[]'
-.  nr doc-reg-dh1 \w'\*[doc-page-section-font]\*[doc-volume]\f[]'
+.  nr doc-reg-dh \w'\*[doc-page-topic-font]\*[doc-xref]\f[]'
+.  nr doc-reg-dh1 \w'\*[doc-volume]'
 .  if (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
 .    while (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
-.      length doc-hs-len-prev \*[doc-pageref]
-.      substring doc-pageref 0 -2
-.      length doc-hs-len \*[doc-pageref]
-.      nr doc-reg-dh \w'\*[doc-page-topic-font]\*[doc-pageref]\|.\|.\|.\f[]'
+.      ds doc-xref \*[doc-page-topic-font]\*[doc-abbv]\f[]\"
+.      as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
+.      length doc-abbv-len-prev \*[doc-abbv]
+.      substring doc-abbv 0 -2
+.      length doc-abbv-len \*[doc-abbv]
+.      nr doc-reg-dh \w'\*[doc-page-topic-font]\*[doc-abbv]\|.\|.\|.\f[]'
 .      \" If header string didn't actually get shorter, stop trying.
-.      if (\n[doc-hs-len-prev] <= \n[doc-hs-len]) \
+.      if (\n[doc-abbv-len-prev] <= \n[doc-abbv-len]) \
 .        break
 .    \}
-.    rr doc-hs-len
-.    rr doc-hs-len-prev
-.    as doc-pageref "\|.\|.\|.
+.    rr doc-abbv-len
+.    rr doc-abbv-len-prev
+.    as doc-abbv \|.\|.\|.
 .  \}
-.  tl '\*[doc-page-topic-font]\*[doc-pageref]\f[]'\*[doc-page-section-font]\*[doc-volume]\f[]'\*[doc-page-topic-font]\*[doc-pageref]\f[]'
+.  tl '\*[doc-xref]'\*[doc-volume]\f[]'\*[doc-xref]'
 .  ie \n[cR] \{\
 .    pl +1v
 .    sp 1v
@@ -1046,6 +1053,8 @@
 .  el .sp |1i
 .  ev
 .  ns
+.  rm doc-xref
+.  rm doc-abbv
 ..
 .ec
 .
@@ -1060,25 +1069,31 @@
 .
 .\" NS doc-footer macro
 .\" NS   print page footer
+.\"
+.\" NS local variables:
+.\" NS   doc-xref
 .
 .eo
 .de doc-footer
+.  ds doc-xref \*[doc-page-topic-font]\*[doc-page-topic]\f[]\"
+.  as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
 .  ev doc-caption-enviroment
 .  doc-setup-page-layout
 .  ie \n[D] \{\
 .    ie e \
-.      tl '%'\*[doc-page-section-font]\*[doc-date-string]\f[]'\*[doc-page-topic-font]\*[doc-operating-system]\f[]'
+.      tl '%'\*[doc-date-string]'\*[doc-operating-system]'
 .    el \
-.      tl '\*[doc-page-topic-font]\*[doc-operating-system]\f[]'\*[doc-page-section-font]\*[doc-date-string]\f[]'%'
+.      tl '\*[doc-operating-system]'\*[doc-date-string]'%'
 .  \}
 .  el \{\
 .    ie \n[cR] \
-.      tl '\*[doc-page-topic-font]\*[doc-operating-system]\f[]'\*[doc-page-section-font]\*[doc-date-string]\f[]'\*[doc-pageref]'
+.      tl '\*[doc-operating-system]'\*[doc-date-string]'\*[doc-xref]'
 .    el \
-.      tl '\*[doc-page-topic-font]\*[doc-operating-system]\f[]'\*[doc-page-section-font]\*[doc-date-string]\f[]'%'
+.      tl '\*[doc-operating-system]'\*[doc-date-string]'%'
 .  \}
 .  if !\n[cR] .bp
 .  ev
+.  rm doc-xref
 ..
 .ec
 .

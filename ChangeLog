@@ -1,5 +1,18 @@
 2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-common (doc-header, doc-footer): Revise for
+	clarity and to use correct typefaces for titles.
+	(doc-header): Add new strings to ease title construction.
+	`doc-xref` stores the fully formatted page topic and section
+	number, e.g., "troff(1)"; `doc-abbv` stores the its potentially
+	abbreviated form when it is too long to fit.
+	(doc-footer): Use `doc-xref` as above.  Stop setting the `Os`
+	and `Dd` parameters in an unusual font (probably unnoticed all
+	these years because the font used to render them was (Times)
+	roman).
+
+2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/doc.tmac:
 	* tmac/mdoc/doc-common: Rename strings for clarity.
 	- doc-document-title -> doc-page-topic

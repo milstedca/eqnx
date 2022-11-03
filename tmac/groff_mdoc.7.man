@@ -169,36 +169,47 @@ As in
 .Xr @g@troff ,
 a macro is called by placing a
 .Ql .\&
-(dot character) at the beginning of a line followed by the two-character
-(or three-character) name for the macro.
-There can be space or tab characters between the dot and the macro name.
-Arguments may follow the macro separated by spaces (but
-.Em no
-tabs).
-It is the dot character at the beginning of the line which causes
+(dot)
+at the beginning of a line followed by the two-
+or three-character macro name.
+.
+Space or tab characters can separate the dot from the macro name.
+.
+Arguments may follow,
+separated from the macro name and each other by spaces,
+but
+.Em not
+tabs.
+.
+The dot at the beginning of the line prepares
 .Tn GNU
 .Xr @g@troff
-to interpret the next two (or more) characters as a macro name.
-A single starting dot followed by nothing is ignored.
+to expect a macro name.
+.
+A dot followed immediately by a newline is ignored;
+this is called the
+.Em "empty request" .
+.
 To place a
 .Ql .\&
-(dot character) at the beginning of an input line in some context other than
-a macro invocation, precede the
+(dot character) at the beginning of an input line in some context other
+than a macro invocation,
+precede the
 .Ql .\&
 (dot) with the
 .Ql \e&
-escape sequence which causes a non-printing input break, and is never
-displayed in the output.
+escape sequence which causes a non-printing input break,
+and is never displayed in the output.
 .
 .
 .Pp
 In general,
 .Tn GNU
 .Xr @g@troff
-macros accept an unlimited number of arguments
-(contrary to other versions of
+macros accept an unlimited number of arguments,
+in contrast to other versions of
 .Xr troff
-which can't handle more than nine arguments).
+that can't handle more than nine arguments.
 .
 In limited cases,
 arguments may be continued or extended on the next line
@@ -214,19 +225,26 @@ below).
 .
 .Pp
 Most of the
-.Nm mdoc
+.Xr mdoc
 general text domain and manual domain macros are special in that their
 argument lists are
 .Em parsed
 for callable macro names.
-This means an argument on the argument list which matches a general text or
-manual domain macro name (and which is defined to be callable) will be
-executed or called when it is processed.
-In this case the argument, although the name of a macro, is not preceded by
-a
+.
+This means that an argument on the argument list which matches a general
+text or manual domain macro name
+(and which is defined to be callable)
+will be executed or called when it is processed.
+.
+In this case the argument,
+although the name of a macro,
+is not preceded by a
 .Ql .\&
 (dot).
-This makes it possible to nest macros; for example the option macro,
+.
+This makes it possible to nest macros;
+for example,
+the option macro,
 .Ql .Op ,
 may
 .Em call
@@ -234,28 +252,27 @@ the flag and argument macros,
 .Ql \&Fl
 and
 .Ql \&Ar ,
-to specify an optional flag with an argument:
+to specify an optional flag with an argument.
 .
-.Bl -tag -width ".Op Fl s Ar bytes" -offset indent
-.It Op Fl s Ar bytes
+For example,
+.\"Bl -tag -width ".Op Fl s Ar bytes" -offset indent
+.D1 Op Fl s Ar bytes
+.\"It Op Fl s Ar bytes
 is produced by
-.Ql ".Op Fl s Ar bytes"
-.El
+.Ql ".Op Fl s Ar bytes" .
+.\"El
 .
+To prevent a word from being interpreted as a macro name,
+precede it with the escape sequence
+.Ql \e& .
 .
-.Pp
-To prevent a string from being interpreted as a macro name,
-precede the string with the escape sequence
-.Ql \e& :
-.
-.Bl -tag -width ".Op \&Fl s \&Ar bytes" -offset indent
-.It Op \&Fl s \&Ar bytes
+.\"Bl -tag -width ".Op \&Fl s \&Ar bytes" -offset indent
+.\"It Op \&Fl s \&Ar bytes
+.D1 Op \&Fl s \&Ar bytes
 is produced by
-.Ql ".Op \e&Fl s \e&Ar bytes"
-.El
+.Ql ".Op \e&Fl s \e&Ar bytes" .
+.\"El
 .
-.
-.Pp
 Here the strings
 .Ql \&Fl
 and

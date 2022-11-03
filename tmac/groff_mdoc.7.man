@@ -100,8 +100,8 @@ page layout macros make up the
 that comprises macros for titles,
 section headings,
 displays,
-and lists\[em]essentially items which affect the physical position of
-text on a formatted page.
+and lists\[em]essentially items that affect the position of text on a
+formatted page.
 .
 The
 .Em "general text domain"
@@ -156,7 +156,7 @@ one should not have to learn the tricky details of
 to use
 .Xr mdoc ;
 however,
-there are a few limitations which are unavoidable and best gotten out of
+there are a few limitations that are unavoidable and best gotten out of
 the way.
 .
 And, too, be forewarned, this package is
@@ -246,9 +246,9 @@ argument lists are
 .Em parsed
 for callable macro names.
 .
-This means that an argument on the argument list which matches a general
+This means that an argument on the argument list matching a general
 text or manual domain macro name
-(and which is defined to be callable)
+(and that is defined to be callable)
 will be executed or called when it is processed.
 .
 In this case the argument,
@@ -294,7 +294,7 @@ are not interpreted as macros.
 Macros whose argument lists are parsed for callable arguments are
 referred to as
 .Em parsed ,
-and those which may be called from an argument list are referred to as
+and those that may be called from an argument list are referred to as
 .Em callable
 throughout this document.
 .
@@ -314,7 +314,7 @@ has been used.
 In the following,
 we call an
 .Xr mdoc
-macro which starts a line
+macro that starts a line
 (with a leading dot)
 a
 .Em command
@@ -326,7 +326,7 @@ if this distinction is necessary.
 Sometimes it is desirable to give as an argument a string containing one
 or more blank space characters,
 say,
-to specify arguments to commands which expect particular arrangement of
+to specify arguments to commands that expect a particular arrangement of
 items in the argument list.
 .
 Additionally,
@@ -351,7 +351,7 @@ For example,
 .
 .
 .Pp
-There are two possible ways to pass an argument which contains an
+There are two possible ways to pass an argument that contains an
 embedded space.
 .
 One way of passing a string containing blank spaces is to use the hard
@@ -369,7 +369,7 @@ sees the hard space as if it were any other printable character and
 cannot split the string into blank or newline separated pieces as one
 would expect.
 .
-This method is useful for strings which are not expected to overlap a
+This method is useful for arguments that are not expected to overlap a
 line boundary.
 .
 An alternative is to use
@@ -703,7 +703,7 @@ is produced by
 .
 .
 .Pp
-Most macros have a default width value which can be used to specify a
+Most macros have a default width value that can be used to specify a
 label width
 .Pf ( Fl width )
 or offset
@@ -1145,7 +1145,8 @@ Note that in this document meta arguments are used to describe
 .Xr mdoc
 commands; in most man pages, meta variables are not specifically written
 with angle brackets.
-The macros which formatted the above example:
+.
+The macros that formatted the above example:
 .
 .Bd -literal -offset indent
 \&.Nm filter
@@ -1521,7 +1522,7 @@ The default width is 10n.
 .
 A variable
 (or constant)
-which is defined in an include file is specified by the macro
+that is defined in an include file is specified by the macro
 .Ql .Dv .
 .
 .
@@ -1604,7 +1605,9 @@ macro handles command-line flags.
 It prepends a dash,
 .Ql \- ,
 to the flag.
-For interactive command flags, which are not prepended with a dash, the
+.
+For interactive command flags that are not prepended with a dash,
+the
 .Ql .Cm
 (command modifier)
 macro is identical, but without the dash.
@@ -2090,7 +2093,7 @@ command causes a line break before and after its arguments are printed.
 The
 .Ql .Li
 literal macro may be used for special characters, variable constants, etc.\&
-\- anything which should be displayed as it would be typed.
+\- anything that should be displayed as it would be typed.
 .Pp
 .Dl Usage: .Li Ao argument Ac ...
 .Pp
@@ -2667,8 +2670,10 @@ document.
 Most of the one-line enclosure macros end in small letter
 .Ql q
 to give a hint of quoting, but there are a few irregularities.
-For each enclosure macro there is also a pair of open and close macros which
-end in small letters
+.
+For each enclosure macro,
+there is a pair of opening and closing macros that end with the
+lowercase letters
 .Ql o
 and
 .Ql c
@@ -2708,7 +2713,7 @@ respectively.
 .It Li .Es , .En
 Due to the nine-argument limit in the original
 .Xr troff
-program two other macros have been implemented which are now rather
+program two other macros have been implemented that are now rather
 obsolete:
 .Ql .Es
 takes the first and second parameter as the left and right enclosure
@@ -2818,7 +2823,7 @@ extended argument list macros are discussed below.
 .
 The
 .Ql .No
-macro can be used in a macro command line for parameters which should
+macro can be used in a macro command line for parameters that should
 .Em not
 be formatted.
 Be careful to add

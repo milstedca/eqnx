@@ -2100,9 +2100,12 @@ command causes a line break before and after its arguments are printed.
 .Ss Literals
 .
 The
-.Ql .Li
-literal macro may be used for special characters, variable constants, etc.\&
-\- anything that should be displayed as it would be typed.
+.Ql \&Li
+literal macro may be used for special characters,
+symbolic constants,
+and other syntactical items that should be typed exactly as displayed.
+.
+.
 .Pp
 .Dl Usage: .Li Ao argument Ac ...
 .Pp
@@ -2190,9 +2193,12 @@ The macros
 .Ql .Oo
 and
 .Ql .Oc
-(which produce an opening and a closing option bracket respectively) may be used
-across one or more lines or to specify the exact position of the closing
-parenthesis.
+(which produce an opening and a closing option bracket,
+respectively)
+may be used across one or more lines or to specify the exact position of
+the closing parenthesis.
+.
+.
 .Pp
 .Dl Usage: .Op Oo Ao option Ac Oc ...
 .Pp
@@ -2254,10 +2260,15 @@ are 14n and 10n, respectively.
 .
 The
 .Ql .Pa
-macro formats path or file names.
-If called without arguments, the
+macro formats file specifications.
+.
+If called without arguments,
 .Sq Pa
-string is output, which represents the current user's home directory.
+(recognized by many shells)
+is output,
+representing the user's home directory.
+.
+.
 .Pp
 .Dl Usage: .Pa Oo Ao pathname Ac Oc ...
 .Pp
@@ -2721,14 +2732,15 @@ strings,
 respectively.
 .
 .It Li .Es , .En
-Due to the nine-argument limit in the original
-.Xr troff
-program two other macros have been implemented that are now rather
-obsolete:
+To work around the nine-argument limit in the original
+.Xr troff \" generic
+program,
+.Xr mdoc
+supports two other macros that are now obsolete.
+.
 .Ql .Es
-takes the first and second parameter as the left and right enclosure
-string,
-which are then used to enclose the arguments of
+uses its first and second parameters as opening and closing marks which
+are then used to enclose the arguments of
 .Ql .En .
 .
 The default width value is 12n for both macros.
@@ -2738,16 +2750,17 @@ The first and second arguments of this macro are the opening and
 closing strings respectively, followed by the arguments to be enclosed.
 .It Li .Ql
 The quoted literal macro behaves differently in
-.Xr troff
+.Xr troff \" mode
 and
-.Xr nroff
-mode.
+.Xr nroff \" mode
+modes.
+.
 If formatted with
 .Xr @g@nroff @MAN1EXT@ ,
 a quoted literal is always quoted.
 .
 If formatted with
-.Xr troff ,
+.Xr @g@troff ,
 an item is only quoted if the width of the item is less than three
 constant-width characters.
 .

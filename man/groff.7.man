@@ -2766,7 +2766,7 @@ of
 is interpreted.
 .
 .TPx
-.REQ .ds "name \fR[\fPstring\fR]\fP"
+.REQ .ds "name \fR[\fPcontents\fR]\fP"
 Define a string variable
 .I name
 with contents
@@ -2777,7 +2777,7 @@ is omitted.
 .
 .
 .TPx
-.REQ .ds1 "name \fR[\fPstring\fR]\fP"
+.REQ .ds1 "name \fR[\fPcontents\fR]\fP"
 Same as
 .request .ds
 but with compatibility mode switched off during string expansion.

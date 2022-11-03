@@ -4358,7 +4358,8 @@ by the postprocessor
 Transparently embed
 .IR anything ,
 read in copy mode,
-in a diversion.
+in a diversion,
+or unformatted as an output comparand in a conditional expression.
 .
 .
 .\" ========= spaces and fixed-width horizontal motions =========

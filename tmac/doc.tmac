@@ -3593,7 +3593,6 @@
 .    nr doc-reg-dsgv +1
 .  \}
 .
-.  ds doc-saved-Pa-font-saved "\*[doc-saved-Pa-font]
 .  nr doc-curr-type-saved \n[doc-curr-type]
 .  ds doc-curr-arg-saved "\*[doc-curr-arg]
 .  nr doc-diag-list-input-line-count-saved \n[doc-diag-list-input-line-count]
@@ -3735,7 +3734,6 @@
 .    nr doc-reg-drgv +1
 .  \}
 .
-.  ds doc-saved-Pa-font "\*[doc-saved-Pa-font-saved]
 .  nr doc-curr-type \n[doc-curr-type-saved]
 .  ds doc-curr-arg "\*[doc-curr-arg-saved]
 .  nr doc-diag-list-input-line-count \n[doc-diag-list-input-line-count-saved]
@@ -3842,13 +3840,6 @@
 .ec
 .
 .
-.\" NS doc-saved-Pa-font global string
-.\" NS   saved doc-Pa-font string for section FILES (no underline if
-.\" NS   nroff)
-.
-.ds doc-saved-Pa-font
-.
-.
 .\" NS doc-curr-type global register
 .\" NS   current argument type
 .
@@ -3879,7 +3870,6 @@
 .\" NS   doc-in-list
 .\" NS   doc-macro-name
 .\" NS   doc-num-args
-.\" NS   doc-saved-Pa-font
 .\" NS
 .\" NS local variables:
 .\" NS   doc-reg-It
@@ -3956,12 +3946,6 @@
 .        nr doc-curr-type \n[doc-type1]
 .        ds doc-curr-arg "\*[doc-arg1]
 .
-.        if \n[doc-in-files-section] \{\
-.          ds doc-saved-Pa-font "\*[doc-Pa-font]
-.          if n \
-.            ds doc-Pa-font "\*[doc-No-font]
-.        \}
-.
 .        ie (\n[doc-type1] == 1) \
 .          \*[doc-arg1]
 .        el \{\
@@ -4003,10 +3987,6 @@
 .  nh
 .  doc-item-box\n[doc-list-depth]
 .
-.  if \n[doc-in-files-section] \
-.    if n \
-.      ds doc-Pa-font "\*[doc-saved-Pa-font]
-.
 .  nr doc-in-list 0
 .  doc-reset-args
 ..
@@ -4047,10 +4027,6 @@
 .    nr doc-have-space 1
 .  \}
 .
-.  if \n[doc-in-files-section] \
-.    if n \
-.      ds doc-Pa-font "\*[doc-saved-Pa-font]
-.
 .  nr doc-in-list 0
 .  doc-reset-args
 ..
@@ -4075,10 +4051,6 @@
 .  nh
 .  doc-item-box\n[doc-list-depth]
 .  br
-.
-.  if \n[doc-in-files-section] \
-.    if n \
-.      ds doc-Pa-font "\*[doc-saved-Pa-font]
 .
 .  nr doc-in-list 0
 .  doc-reset-args
@@ -4257,10 +4229,6 @@
 .    nop \&\c
 .    nr doc-have-space 1
 .  \}
-.
-.  if \n[doc-in-files-section] \
-.    if n \
-.      ds doc-Pa-font "\*[doc-saved-Pa-font]
 .
 .  nr doc-in-list 0
 .  doc-reset-args

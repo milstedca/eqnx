@@ -1,5 +1,10 @@
 2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/doc.tmac: Delete suppression of `Pa` font selection in a
+	"Files" section.  This special handling was not documented.
+
+2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-ditroff (doc-Pa-font): Set file specifications
 	in italics on typesetters.  (Terminals already use italics.)
 

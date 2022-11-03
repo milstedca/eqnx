@@ -6933,8 +6933,9 @@ deferred interpretation of escape sequences.  @xref{Copy Mode}.
 
 Escape sequence interpretation can be switched off and back on.  This
 procedure can obviate the need to double the escape character inside
-macro definitions.  @xref{Writing Macros}.  (On the other hand, it
-prevents use of @code{\"} or @code{\#} to internally comment them.)
+macro definitions.  @xref{Writing Macros}.  (This approach is not
+available  if your macro needs to interpolate values at the time it is
+@emph{defined}---but many do not.)
 
 @Defreq {eo, }
 @cindex disabling @code{\} (@code{eo})

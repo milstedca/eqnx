@@ -187,11 +187,15 @@ macros accept an unlimited number of arguments
 (contrary to other versions of
 .Xr troff
 which can't handle more than nine arguments).
-In limited cases, arguments may be continued or extended on the next
-line (See
+.
+In limited cases,
+arguments may be continued or extended on the next line
+(see
 .Sx Extended Arguments
 below).
-Almost all macros handle quoted arguments (see
+.
+Almost all macros handle quoted arguments
+(see
 .Sx Passing Space Characters in an Argument
 below).
 .

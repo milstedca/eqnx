@@ -2068,47 +2068,34 @@ The default width is 16n.
 .Ss Names
 .
 The
-.Ql .Nm
-macro is used for the document title or subject name.
-It has the peculiarity of remembering the first argument it was called with,
-which should always be the subject name of the page.
-When called without arguments,
-.Ql .Nm
-regurgitates this initial name for the sole purpose of making less work for
-the author.
-.Ql .Nm
-causes a line break within the
-.Sx Synopsis
-section.
-.Pp
-Note: A section two or three document function name is addressed with the
-.Ql .Nm
-in the
-.Em Name
-section, and with
-.Ql .Fn
-in the
-.Sx Synopsis
-and remaining sections.
-For interactive commands, such as the
-.Ql while
-command keyword in
-.Xr csh 1 ,
-the
-.Ql .Ic
-macro should be used.
-While
-.Ql .Ic
-is nearly identical
-to
-.Ql .Nm ,
-it can not recall the first argument it was invoked with.
-.Pp
-.Dl Usage: .Nm Oo Ao argument Ac Oc ...
+.Ql \&Nm
+macro is used for the document title or page topic.
+.
+Upon its first call,
+it has the peculiarity of remembering its argument,
+which should always be the topic of the man page.
+.
+When subsequently called without arguments,
+.Ql \&Nm
+regurgitates this initial name for the sole purpose of making less work
+for the author.
+.
+Use of
+.Ql \&Nm
+is also appropriate when presenting a command synopsis for the topic of
+a man page in section 1,
+6,
+or 8.
+.
+Its behavior changes when presented with arguments of various forms.
+.
+.
 .Pp
 .Bl -tag -width ".Li .Nm\ groff_mdoc" -compact -offset 15n
 .It Li ".Nm groff_mdoc"
 .Nm groff_mdoc
+.It Li ".Nm"
+.Nm
 .It Li ".Nm \e\-mdoc"
 .Nm \-mdoc
 .It Li ".Nm foo ) ) ,"
@@ -2116,8 +2103,23 @@ it can not recall the first argument it was invoked with.
 .It Li ".Nm :"
 .Nm :
 .El
-.Pp
 .
+.
+.Pp
+By default,
+the topic is set in boldface to reflect its prime importance in the
+discussion.
+.
+Cross references to other man page topics should use
+.Ql \&Xr ;
+including a second argument for the section number enables them to be
+hyperlinked.
+.
+By default,
+these are set in italics to avoid cluttering the page with boldface.
+.
+.
+.Pp
 The default width is 10n.
 .
 .

@@ -2998,11 +2998,13 @@ Here is an example of
 using the space mode macro to turn spacing off:
 .
 .Bd -literal -offset indent
+\&.Bd \-literal \-offset indent
 \&.Sm off
 \&.It Xo Sy I Ar operation
 \&.No \een Ar count No \een
 \&.Xc
 \&.Sm on
+\&.Ed
 .Ed
 .Pp
 .
@@ -3022,12 +3024,14 @@ produces
 Another one:
 .
 .Bd -literal -offset indent
+\&.Bd \-literal \-offset indent
 \&.Sm off
 \&.It Cm S No / Ar old_pattern Xo
 \&.No / Ar new_pattern
 \&.No / Op Cm g
 \&.Xc
 \&.Sm on
+\&.Ed
 .Ed
 .Pp
 .
@@ -3050,11 +3054,13 @@ Another example of
 and enclosure macros: Test the value of a variable.
 .
 .Bd -literal -offset indent
+\&.Bd \-literal \-offset indent
 \&.It Xo
 \&.Ic .ifndef
 \&.Oo \e&! Oc Ns Ar variable Oo
 \&.Ar operator variable No ...
 \&.Oc Xc
+\&.Ed
 .Ed
 .Pp
 .

@@ -4443,9 +4443,23 @@
 .\" NS   cross section reference
 .\" NS
 .\" NS width register 'Sx' set in doc-common
+.\"
+.\" TODO: This duplicates the definition of `Dq`; figure out how to
+.\" simply wrap that macro if possible.  (It's not trivial to do so
+.\" because of mdoc's design feature of recursively calling macro
+.\" arguments as macros.)
 .
-.als Sx doc-generic-macro
-.ds doc-Sx-usage section_header
+.eo
+.de Sx
+.  if !\n[doc-arg-count] \
+.    ds doc-macro-name Sx
+.
+.  ds doc-quote-left "\*[Lq]
+.  ds doc-quote-right "\*[Rq]
+.
+.  doc-enclose-string \$@
+..
+.ec
 .
 .
 .\" NS doc-end-column-list macro

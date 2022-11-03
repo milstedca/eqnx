@@ -73,7 +73,6 @@
 .ds doc-Pa-font \f[I]
 .ds doc-Sh-font \f[B]
 .ds doc-Sy-font \f[B]
-.ds doc-Sx-font \f[B]
 .ds doc-Tn-font \f[R]
 .ds doc-Va-font \f[I]
 .ds doc-Xr-font \f[I]

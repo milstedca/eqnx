@@ -2822,20 +2822,26 @@ is identical to
 .Ql .No .
 .
 .
-.Ss "Section Cross References"
+.Ss "(Sub)section cross references"
 .
-The
+Use the
 .Ql .Sx
-macro designates a reference to a section header within the same document.
+macro to cite a (sub)section heading within the given document.
+.
+.
 .Pp
-.Dl Usage: .Sx Ao section reference Ac ...
+.Dl Usage: .Sx Ao section-reference Ac ...
+.
+.
 .Pp
 .Bl -tag -width ".Li .Sx\ Files" -offset 15n
 .It Li ".Sx Files"
+.\"\[->]
 .Sx Files
 .El
-.Pp
 .
+.
+.Pp
 The default width is 16n.
 .
 .

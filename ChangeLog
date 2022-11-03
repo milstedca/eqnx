@@ -1,5 +1,20 @@
 2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Make `Sx` macro perform quotation, not italicization.
+	It's thorougly inconsistent with English composition practices
+	to refer to (sub)section titles within a document as if they
+	were major works.
+
+	* tmac/doc.tmac (Sx): Implement.
+	* tmac/mdoc/doc-ditroff (doc-Sx-font):
+	* tmac/mdoc/doc-nroff (doc-Sx-font): Delete.
+	* tmac/groff_mdoc.7.man (Section Cross References): Rename...
+	((Sub)section cross references): ...to this.  Recognize
+	existence of `Ss` macro, curiously overlooked before.
+	* NEWS: Add item.
+
+2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Drop now-unused `doc-pageref` string.  It was nowhere
 	interpolated outside of state management macros.
 

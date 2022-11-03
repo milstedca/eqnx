@@ -307,6 +307,10 @@ o The groff_man(7) man page documenting the groff implementation of the
 o The doc (mdoc) macro package now honors the `C`, `HY`, `IN`, and `SN`
   registers as the an (man) package does.
 
+o The doc (mdoc) macro package now renders man page (sub)section cross
+  references cited with the `Sx` macro by quoting them instead of
+  setting them in italics.
+
 o The e (me) macro package has changed its support for output line
   numbering with the `n1` and `n2` macros to resolve several bugs in the
   previous implementation.  The `n1` macro now accepts an optional `C`

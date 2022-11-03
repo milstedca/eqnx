@@ -68,7 +68,7 @@
 .ds doc-Sx-font \f[I]
 .ds doc-Tn-font \f[R]
 .ds doc-Va-font \f[I]
-.ds doc-Xr-font \f[R]
+.ds doc-Xr-font \f[I]
 .
 .ds doc-left-parenthesis \f[R](\f[]
 .ds doc-right-parenthesis \f[R])\f[]

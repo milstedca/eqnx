@@ -1,5 +1,13 @@
 2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Rename strings for clarity.
+	- doc-caption-font -> doc-page-topic-font
+	- doc-caption-font2 -> doc-page-section-font
+	* tmac/mdoc/doc-common (doc-header, doc-footer): Use new names.
+
+2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/doc.tmac: Delete suppression of `Pa` font selection in a
 	"Files" section.  This special handling was not documented.
 

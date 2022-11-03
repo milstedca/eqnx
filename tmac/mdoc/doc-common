@@ -1022,14 +1022,14 @@
 .  doc-setup-page-layout
 .  ie \n[cR] .pl +1v
 .  el        .sp .5i
-.  nr doc-reg-dh \w'\*[doc-caption-font]\*[doc-pageref]\f[]'
-.  nr doc-reg-dh1 \w'\*[doc-caption-font2]\*[doc-volume]\f[]'
+.  nr doc-reg-dh \w'\*[doc-page-topic-font]\*[doc-pageref]\f[]'
+.  nr doc-reg-dh1 \w'\*[doc-page-section-font]\*[doc-volume]\f[]'
 .  if (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
 .    while (\n[doc-reg-dh] + \n[doc-reg-dh1] + \n[doc-reg-dh] >= \n[.lt]) \{\
 .      length doc-hs-len-prev \*[doc-pageref]
 .      substring doc-pageref 0 -2
 .      length doc-hs-len \*[doc-pageref]
-.      nr doc-reg-dh \w'\*[doc-caption-font]\*[doc-pageref]\|.\|.\|.\f[]'
+.      nr doc-reg-dh \w'\*[doc-page-topic-font]\*[doc-pageref]\|.\|.\|.\f[]'
 .      \" If header string didn't actually get shorter, stop trying.
 .      if (\n[doc-hs-len-prev] <= \n[doc-hs-len]) \
 .        break
@@ -1038,7 +1038,7 @@
 .    rr doc-hs-len-prev
 .    as doc-pageref "\|.\|.\|.
 .  \}
-.  tl '\*[doc-caption-font]\*[doc-pageref]\f[]'\*[doc-caption-font2]\*[doc-volume]\f[]'\*[doc-caption-font]\*[doc-pageref]\f[]'
+.  tl '\*[doc-page-topic-font]\*[doc-pageref]\f[]'\*[doc-page-section-font]\*[doc-volume]\f[]'\*[doc-page-topic-font]\*[doc-pageref]\f[]'
 .  ie \n[cR] \{\
 .    pl +1v
 .    sp 1v
@@ -1067,15 +1067,15 @@
 .  doc-setup-page-layout
 .  ie \n[D] \{\
 .    ie e \
-.      tl '%'\*[doc-caption-font2]\*[doc-date-string]\f[]'\*[doc-caption-font]\*[doc-operating-system]\f[]'
+.      tl '%'\*[doc-page-section-font]\*[doc-date-string]\f[]'\*[doc-page-topic-font]\*[doc-operating-system]\f[]'
 .    el \
-.      tl '\*[doc-caption-font]\*[doc-operating-system]\f[]'\*[doc-caption-font2]\*[doc-date-string]\f[]'%'
+.      tl '\*[doc-page-topic-font]\*[doc-operating-system]\f[]'\*[doc-page-section-font]\*[doc-date-string]\f[]'%'
 .  \}
 .  el \{\
 .    ie \n[cR] \
-.      tl '\*[doc-caption-font]\*[doc-operating-system]\f[]'\*[doc-caption-font2]\*[doc-date-string]\f[]'\*[doc-pageref]'
+.      tl '\*[doc-page-topic-font]\*[doc-operating-system]\f[]'\*[doc-page-section-font]\*[doc-date-string]\f[]'\*[doc-pageref]'
 .    el \
-.      tl '\*[doc-caption-font]\*[doc-operating-system]\f[]'\*[doc-caption-font2]\*[doc-date-string]\f[]'%'
+.      tl '\*[doc-page-topic-font]\*[doc-operating-system]\f[]'\*[doc-page-section-font]\*[doc-date-string]\f[]'%'
 .  \}
 .  if !\n[cR] .bp
 .  ev

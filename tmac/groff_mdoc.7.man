@@ -98,24 +98,36 @@ displays,
 and lists\[em]essentially items which affect the physical position of
 text on a formatted page.
 .
-In addition to the page structure domain, there are two more domains, the
+In addition to the page structure domain,
+there are two more domains,
+the
 .Em manual
 domain and the
 .Em general
 text domain.
 The general text domain is defined as macros which perform tasks such as
 quoting or emphasizing pieces of text.
-The manual domain is defined as macros that are a subset of the day to day
-informal language used to describe commands, routines and related
+.
+The manual domain is defined as macros that are a subset of the day to
+day informal language used to describe commands,
+routines and related
 .Ux
 files.
-Macros in the manual domain handle command names, command-line arguments and
-options, function names, function parameters, pathnames, variables, cross
-references to other manual pages, and so on.
-These domain items have value for both the author and the future user of the
-manual page.
-Hopefully, the consistency gained across the manual set will provide easier
-translation to future documentation tools.
+.
+Macros in the manual domain handle command names,
+command-line arguments and options,
+function names,
+function parameters,
+pathnames,
+variables,
+cross references to other manual pages,
+and so on.
+.
+These domain items have value for both the author and the future user of
+the manual page.
+.
+It is hoped that the resulting increased consistency of the man page
+corpus will enable easier translation to future documentation tools.
 .
 .
 .Pp

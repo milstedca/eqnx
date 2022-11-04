@@ -711,7 +711,7 @@ which follows section
 .Sx "Manual domain" .
 .
 Familiarize yourself with manual domain macros first;
-we use them to illustrate the use of page layout domain macros.
+we use them to illustrate the use of page structure domain macros.
 .
 .
 .Sh Conventions
@@ -1177,7 +1177,8 @@ is a macro command, and anything following it are arguments to
 be processed.
 In the second case, the description of a
 .Ux
-command using the content macros is a bit more involved; a typical
+command using the manual domain macros is a bit more involved;
+a typical
 .Sx Synopsis
 command line might be displayed as:
 .
@@ -1316,8 +1317,8 @@ and
 .Ql .Xr
 impose an order on their argument lists.
 .
-All content macros are capable of recognizing and properly handling
-punctuation,
+All manual domain macros are capable of recognizing and properly
+handling punctuation,
 provided each punctuation character is separated by a leading space.
 .
 If a command is given:
@@ -1397,7 +1398,8 @@ To prevent the accidental evaluation of these characters,
 escape them with
 .Ql \e& .
 .
-Typical syntax is shown in the first content macro displayed below,
+Typical syntax is shown in the first manual domain macro displayed
+below,
 .Ql .Ad .
 .
 .
@@ -3242,12 +3244,13 @@ produces
 .Sh "Page structure domain"
 .
 .
-.Ss "Section Headers"
+.Ss "Section headings"
 .
 The following
 .Ql .Sh
-section header macros are required in every man page.
-The remaining section headers are recommended at the discretion of the
+section heading macros are required in every man page.
+.
+The remaining section headings are recommended at the discretion of the
 author writing the manual page.
 The
 .Ql .Sh
@@ -3264,8 +3267,13 @@ The default width is 8n.
 The
 .Ql ".Sh Name"
 macro is mandatory.
-If not specified, headers, footers and page layout defaults will not be set
-and things will be rather unpleasant.
+.
+If not specified,
+headers,
+footers,
+and page layout defaults will not be set and things will be rather
+unpleasant.
+.
 The
 .Em Name
 section consists of at least three items.
@@ -3370,8 +3378,8 @@ see
 .
 The following
 .Ql .Sh
-section headers are part of the preferred manual page layout and must be
-used appropriately to maintain consistency.
+section headings are part of the preferred manual page layout and must
+be used appropriately to maintain consistency.
 They are listed in the order in which they would be used.
 .
 .Bl -tag -width ".Li .Sh\ Compatibility"
@@ -3391,9 +3399,9 @@ section.
 .
 .It Li ".Sh Examples"
 There are several ways to create examples.
-See the
+See subsection
 .Sx "Examples and Displays"
-section below for details.
+below for details.
 .
 .It Li ".Sh Diagnostics"
 Diagnostic messages from a command should be placed in this section.
@@ -3488,9 +3496,9 @@ sections may be added; for example, this section was set with:
 .Ed
 .
 .
-.Ss "Subsection Headers"
+.Ss "Subsection headings"
 .
-Subsection headers have exactly the same syntax as section headers:
+Subsection headings have exactly the same syntax as section headings:
 .Ql .Ss
 is parsed but not generally callable.
 It can be used as an argument in a call to
@@ -4849,10 +4857,10 @@ and
 .
 .Dl groff \-Tutf8 \-rIN=5n \-rSN=2n \-mdoc foo.man | less \-R
 .
-The default paragraph indentation is 7.2 ens on typesetters and 7 ens on
+The default paragraph indentation is 7.2n on typesetters and 7n on
 terminals.
 .
-The default subsection heading indentation amount is 3\~ens;
+The default subsection heading indentation amount is 3n;
 section headings are always set flush left.
 .
 .

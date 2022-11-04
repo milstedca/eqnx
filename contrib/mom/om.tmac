@@ -22284,10 +22284,8 @@ does not fit on page \\n[pgnum]\\*[col-num].
 \# up to +8.  User's sentence spacing is reset in FOOTNOTES and ENDNOTES.
 \#
 .de ref*build
-.if \\n[#PRINT_STYLE]=2 \{\
-.   ds $RESTORE_SS_VAR \\*[$SS_VAR]
-.   SS +8
-.\}
+.if \\n[#PRINT_STYLE]=2 \
+.   if (\\n[#FN_REF]+\\n[#EN_REF])>0 .SS +8
 .rm ref*string
 .while \\n[.$] \{\
 .   if d [\\$1 \{\

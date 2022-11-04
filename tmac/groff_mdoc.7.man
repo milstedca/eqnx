@@ -4652,9 +4652,6 @@ A general syntax for a string name of any length is
 extension).
 .
 .
-\#
-\#=====================================================================
-\#
 .Sh Diagnostics
 .
 The debugging macro

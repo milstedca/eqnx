@@ -1,3 +1,15 @@
+2022-11-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/mdoc/doc-nroff (doc-Li-Font): Switch from roman to bold.
+	On typesetters, the use of Courier (roman) plainly distinguishes
+	unquoted literals from their context.  On terminals there was no
+	such visible distinction.  Fortunately, in groff_mdoc(7) itself,
+	this does not result in a blinding blitz of boldface because the
+	`Ql` (quoted literal) macro is so often used, and it maintains
+	the roman style.  This change further aligns groff mdoc(7) with
+	groff man(7) style conventions.  (Also see how we handle
+	literals for typesetters and terminals in the "ms.ms" document.)
+
 2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mdoc]: Make `Sx` macro perform quotation, not italicization.

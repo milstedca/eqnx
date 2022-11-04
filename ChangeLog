@@ -1,5 +1,14 @@
 2022-11-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Use font CR, not CB, for `Cm` ("command modifier") and
+	`Fl` ("flag") macros on typesetters.
+
+	* tmac/mdoc/doc-diroff (doc-Cm-font, doc-Fl-Font): Switch from
+	Courier roman to Courier bold.  This congrues better with other
+	`Li` literals, which were not in boldface.
+
+2022-11-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-nroff (doc-Li-Font): Switch from roman to bold.
 	On typesetters, the use of Courier (roman) plainly distinguishes
 	unquoted literals from their context.  On terminals there was no

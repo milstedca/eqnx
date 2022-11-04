@@ -637,43 +637,41 @@ extension);
 the remainder of any such line is ignored.
 .
 .
-.Sh "A manual page template"
+.Sh "A man page template"
 .
-The body of a man page is easily constructed from a basic template:
+Use
+.Xr mdoc
+to construct a man page from the following template.
 .
 .Bd -literal -offset indent
 \&.\e" The following commands are required for all man pages.
 \&.Dd date
-\&.Dt document-title [section number] [architecture/volume]
-\&.Os [package or operating system] [version/release]
+\&.Dt page-topic [section-number [volume-name]]
+\&.Os [package-or-operating system [version-or-release]]
 \&.Sh Name
-\&.Nm name
-\&.Nd one line description of name
-\&.\e" This next command is for sections 2 and 3 only.
+\&.Nm page-topic
+\&.Nd summary-description
+\&.\e" The next heading is used in sections 2 and 3.
 \&.\e" .Sh Library
+\&.\e" The next heading is used in sections 1-4, 6, 8, and 9.
 \&.Sh Synopsis
 \&.Sh Description
-\&.\e" The following commands should be uncommented and
-\&.\e" used where appropriate.
-\&.\e" .Sh Implementation notes
-\&.\e" This next command is for sections 2, 3, and 9 only
-\&.\e"     (function return values).
-\&.\e" .Sh Return values
-\&.\e" This next command is for sections 1, 6, 7, and 8 only.
+\&.\e" Uncomment and populate the following sections where appropriate.
+\&.\e" .Sh \[dq]Implementation notes\[dq]
+\&.\e" The next heading is used in sections 2, 3, and 9.
+\&.\e" .Sh \[dq]Return values\[dq]
+\&.\e" The next heading is used in sections 1, 3, 6, and 8.
 \&.\e" .Sh Environment
 \&.\e" .Sh Files
-\&.\e" This next command is for sections 1, 6, and 8 only
-\&.\e"     (command return values to the shell).
-\&.\e" .Sh Exit status
+\&.\e" The next heading is used in sections 1, 6, and 8.
+\&.\e" .Sh \[dq]Exit status\[dq]
 \&.\e" .Sh Examples
-\&.\e" This next command is for sections 1, 4, 6, 7, 8, and 9 only
-\&.\e"     (fprintf/stderr type diagnostics).
+\&.\e" The next heading is used in sections 1, 4, 6, 8, and 9.
 \&.\e" .Sh Diagnostics
 \&.\e" .Sh Compatibility
-\&.\e" This next command is for sections 2, 3, 4, and 9 only
-\&.\e"     (settings of the errno variable).
+\&.\e" The next heading is used in sections 2, 3, 4, and 9.
 \&.\e" .Sh Errors
-\&.\e" .Sh See also
+\&.\e" .Sh \[dq]See also\[dq]
 \&.\e" .Sh Standards
 \&.\e" .Sh History
 \&.\e" .Sh Authors
@@ -684,36 +682,36 @@ The body of a man page is easily constructed from a basic template:
 .
 .Pp
 The first items in the template are the commands
-.Ql .Dd ,
-.Ql .Dt ,
+.Ql \&Dd ,
+.Ql \&Dt ,
 and
-.Ql .Os ;
-the document date,
-the document title and section of the manual the page belongs in,
-and either the project or package supplying the page or the operating
-system it is developed or modified for.
+.Ql \&Os .
 .
-These commands identify the page and are discussed below in
-.Sx Title macros .
+These correspond to the document date;
+the page topic and section of the manual to which the page belongs;
+and the project or package supplying the page,
+or the operating system for which it is developed.
+.
+These commands identify the page and are discussed below in section
+.Sx "Title macros" .
 .
 .
 .Pp
 The remaining items in the template are section headings
 .Pf ( Ql \&Sh ) ;
 of which
-.Em Name ,
-.Em Synopsis ,
+.Sx Name
 and
-.Em Description
+.Sx Description
 are mandatory.
 .
-The headers are discussed in
+These headings are discussed in section
 .Sx "Page structure domain" ,
-after presentation of
+which follows section
 .Sx "Manual domain" .
 .
-Several content macros are used to demonstrate page layout macros; reading
-about content macros before page layout macros is recommended.
+Familiarize yourself with manual domain macros first;
+we use them to illustrate the use of page layout domain macros.
 .
 .
 .Sh Conventions

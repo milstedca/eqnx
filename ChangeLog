@@ -1,5 +1,20 @@
 2022-11-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Set page topic in roman in "Name" section.
+
+	* tmac/doc.tmac (Nm): If in the "Name" section of the page, set
+	argument(s) with the `No` (normal formatting) macro instead of
+	handling them...normally.  Since `Nm`'s usual behavior is to set
+	the next argument in boldface, in this circumstance it is set in
+	roman.  Aligns page rendering with man(7) and fixes a bug
+	documented in the 4.3BSD-Reno mdoc.samples(7) page (1990-06-22),
+	upon which the groff_mdoc(7) page is based.
+	* tmac/groff_mdoc.7.man (Bugs): De-document bug.
+
+	Fixes part of <https://savannah.gnu.org/bugs/?62926>.
+
+2022-11-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common: Add internal register
 	`doc-in-name-section` to keep track of whether a macro is called
 	within the "Name" section of the document, to prepare a means of

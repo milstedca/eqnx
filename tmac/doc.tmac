@@ -1039,8 +1039,13 @@
 .de Nm
 .  if !\n[doc-arg-count] \{\
 .    ds doc-macro-name Nm
-.    ie \n[.$] \
-.      doc-parse-args \$@
+.    ie \n[.$] \{\
+.      \" Handle '.Nm ...' in "Name" section: don't use a special font.
+.      ie \n[doc-in-name-section] \
+.        No \$@
+.      el \
+.        doc-parse-args \$@
+.    \}
 .    el \{\
 .      ie "\*[doc-topic-name]"" \
 .        tm Usage: .Nm name ... (#\n[.c])
@@ -1082,7 +1087,7 @@
 .        doc-parse-space-vector
 .    \}\}
 .    el \{\
-.      \" handle '.Nm ...' in SYNOPSIS
+.      \" Handle '.Nm ...' in "Synopsis" section.
 .      if \n[doc-in-synopsis-section] \{\
 .        if "\*[doc-macro-name]"Nm" \{\
 .          br

@@ -5040,14 +5040,6 @@ Section 3f has not been added to the header routines.
 .
 .
 .Pp
-The font used by
-.Ql .Nm
-should be changed in the
-.Em Name
-section.
-.
-.
-.Pp
 .Ql .Fn
 needs to have a check to prevent splitting up the line if its length is
 too short.

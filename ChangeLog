@@ -1,3 +1,15 @@
+2022-11-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/mdoc/doc-common: Add internal register
+	`doc-in-name-section` to keep track of whether a macro is called
+	within the "Name" section of the document, to prepare a means of
+	fixing a long-standing bug with `Nm`.
+	(Sh): Canonicalize capitalization of section heading sooner.
+	Set or clear `doc-in-name-section` based on result.
+	(Rd): Add new register to dump.
+	* tmac/doc.tmac (doc-save-global-vars, doc-restore-global-vars):
+	Handle new register.
+
 2022-11-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mdoc]: Use font CR, not CB, for `Cm` ("command modifier") and

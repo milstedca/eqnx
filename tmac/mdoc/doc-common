@@ -1222,6 +1222,12 @@
 .ec
 .
 .
+.\" NS doc-in-name-section global register (bool)
+.\" NS   whether we are in the 'name' section
+.
+.nr doc-in-name-section 0
+.
+.
 .\" NS doc-in-synopsis-section global register (bool)
 .\" NS   whether we are in the 'synopsis' section
 .
@@ -1313,6 +1319,7 @@
 .\" NS   doc-in-authors-section
 .\" NS   doc-in-files-section
 .\" NS   doc-in-library-section
+.\" NS   doc-in-name-section
 .\" NS   doc-in-see-also-section
 .\" NS   doc-in-synopsis-section
 .\" NS   doc-indent-synopsis
@@ -1339,6 +1346,14 @@
 .de Sh
 .  \" Tell doc-print-recursive whether to force capitalization.
 .  nr doc-do-capitalize \n[CS]
+.
+.  \" Normalize capitalization of section heading.
+.  doc-prepare-section-heading \$*
+.
+.  ie "\*[doc-sec-head]"\*[doc-section-name]" \
+.    nr doc-in-name-section 1
+.  el \
+.    nr doc-in-name-section 0
 .
 .  ie \n[doc-arg-count] \{\
 .    \" we only allow 'Sh' within 'Sh'; it will change the font back to
@@ -1369,14 +1384,12 @@
 .
 .    ad \*[AD]
 .
-.    \" this resolves, e.g., '.Sh "SEE ALSO"'
-.    doc-prepare-section-heading \$*
-.
 .    ie "\*[doc-sec-head]"\*[doc-section-name]" \{\
 .      doc-set-up-titles
 .      in 0
 .    \}
 .    el \{\
+.      nr doc-in-name-section 0
 .      nr doc-in-synopsis-section 0
 .      nr doc-in-library-section 0
 .      nr doc-in-see-also-section 0
@@ -1658,6 +1671,7 @@
 .  tm doc-operating-system == '\*[doc-operating-system]'
 .  tm doc-date-string == '\*[doc-date-string]'
 .  tm doc-display-vertical == \n[doc-display-vertical]
+.  tm doc-in-name-section == \n[doc-in-name-section]
 .  tm doc-in-synopsis-section == \n[doc-in-synopsis-section]
 .  tm doc-in-library-section == \n[doc-in-library-section]
 .  tm doc-in-see-also-section == \n[doc-in-see-also-section]

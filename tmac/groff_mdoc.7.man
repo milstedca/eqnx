@@ -716,73 +716,91 @@ we use them to illustrate the use of page structure domain macros.
 .
 .Sh Conventions
 .
-In the description of all macros below, optional arguments are put into
-brackets.
+In the descriptions of macros below,
+square brackets surround optional arguments.
+.
 An ellipsis
 .Pf ( Sq ... )
-represents zero or more additional arguments.
-Alternative values for a parameter are separated with
+represents repetition of the preceding argument zero or more times.
+.
+Alternative values of a parameter are separated with
 .Ql | .
-If there are alternative values for a mandatory parameter, braces are used
-(together with
-.Ql | )
-to enclose the value set.
-Meta-variables are specified within angles.
+.
+If a mandatory parameter can take one of several alternative values,
+use braces to enclose the set,
+with spaces and
+.Ql |
+separating the items.
+.
+.\" XXX: Angle brackets should only be necessary when space doesn't
+.\" separate parameters.
+.\" .
+.\" Metasyntactic variables are specified within angle brackets.
+.\"Bl -tag -width 6n -offset indent -compact
+.Bl -tag -offset indent -compact
+.It Nm ztar Xo
+.Brq Cm c | Cm x
+.Op Fl w Op Fl y | Fl z
+.Op Fl f Ar archive
+.Ar member No ...
+.Xc
+.El
+.
+Except where explicitly stated,
+all
+.Xr mdoc
+macros are parsed and callable.
 .
 .
 .Pp
-Example:
+Most macros affect subsequent arguments until another macro or a newline
+is encountered.
 .
-.Bl -tag -width 6n -offset indent
-.It Li .Xx Xo
-.Aq foo
-.Brq bar1 | bar2
-.Op \-test1 Op \-test2 | \-test3
-.No ...
-.Xc
+For example,
+.Sq Li ".Li ls Bq Ar file"
+doesn't produce
+.Sq Li "ls [file]" ,
+but
+.Sq Li ls Bq Ar file .
+.
+Consequently,
+a warning message is emitted for most commands if the first argument is
+itself a macro,
+since it cancels the effect of the preceding one.
+.
+On rare occasions,
+you might want to format a word along with surrounding brackets as a
+literal.
+.
+.\" XXX: Why do we need the extra "\ " for the width parameter?  Without
+.\" it, the line breaks before the arrow on a 78n terminal.  But there
+.\" should be room anyway...bug?
+.Bl -tag -width "Li\ \[dq]ls\ [file]\[dq]\ " -offset indent -compact
+.It Li ".Li \[dq]ls [file]\[dq]"
+\[->]
+.Li "ls [file]"
+.Em "# list any files named e, f, i, or l"
 .El
 .
 .
 .Pp
-Except where explicitly stated,
-all macros are parsed and callable.
+Many macros possess an implicit width,
+used when they are contained in lists and displays.
 .
-.
-.Pp
-Note that a macro takes effect up to the next nested macro.
-.
-For example,
-.Ql ".Ic foo Aq bar"
-doesn't produce
-.Sq Ic "foo <bar>"
-but rather
-.Sq Ic foo Aq bar .
-.
-Consequently,
-a warning message is emitted for most commands if the first argument is
-a macro itself since it cancels the effect of the calling command
-completely.
-.
-.Sq Ic "foo <bar>"
-is produced by
-.Ql ".Ic \[dq]foo <bar>\[dq]" .
-.
-.
-.Pp
-Most macros have a default width value that can be used to specify a
-label width
-.Pf ( Fl width )
-or offset
-.Pf ( Fl offset )
-for the
-.Ql .Bl
-and
-.Ql .Bd
-macros.
-It is recommended not to use this rather obscure feature to avoid
-dependencies on local modifications of the
+If you avoid relying on these default measurements,
+you escape potential conflicts with site-local modifications of the
 .Xr mdoc
 package.
+.
+Explicit
+.Fl width
+and
+.Fl offset
+arguments to the
+.Ql \&Bl
+and
+.Ql \&Bd
+macros are preferable.
 .
 .
 .Sh "Title macros"

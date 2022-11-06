@@ -2574,7 +2574,7 @@ preprocessor.
 box center;
 Lf(CR).
 \&.EQ C (\[rs]*[SN\-NO\-DOT]a)
-p \[ti] = \[ti] q sqrt { ( 1 + \[ti] ( x / q sup 2 ) }
+p \[ti] = \[ti] q sqrt { 1 + \[ti] ( x / q sup 2 ) }
 \&.EN
 .TE
 .
@@ -2588,7 +2588,7 @@ giving us more flexibility to reorganize the document.
 .
 .
 .EQ C (\*[SN-NO-DOT]a)
-p ~ = ~ q sqrt { ( 1 + ~ ( x / q sup 2 ) }
+p ~ = ~ q sqrt { 1 + ~ ( x / q sup 2 ) }
 .EN
 .
 .

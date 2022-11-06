@@ -8,18 +8,19 @@ alpha FTP site.  You may download the distribution archive from there.
 What is groff?
 ==============
 
-Groff (GNU roff) is a typesetting system that reads plain text input
+groff (GNU roff) is a typesetting system that reads plain text input
 files that include formatting commands to produce output in PostScript,
 PDF, HTML, or DVI formats or for display to a terminal.  Formatting
 commands can be low-level typesetting primitives or macros from a
-supplied set.  Users may also write their own macros.  All three may be
-combined.
+supplied package.  Users may also write their own macros.  All three
+approaches can be combined.
 
-Present on most Unix systems owing to its long association with Unix
-manuals (including man pages), and notable for its use in the production
-of several best-selling software engineering texts, groff is capable of
-producing typographically sophisticated documents while consuming
-minimal system resources.
+A reimplementation and extension of the typesetter from AT&T Unix, groff
+is present on most POSIX systems owing to its long association with Unix
+manuals (including man pages).  It and its predecessor are notable for
+their production of several best-selling software engineering texts.
+groff is capable of producing typographically sophisticated documents
+while consuming minimal system resources.
 
   https://www.gnu.org/software/groff/
 

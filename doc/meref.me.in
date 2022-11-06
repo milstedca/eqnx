@@ -484,7 +484,7 @@ and
 .b .sx
 all three,
 but the first two
-are empty strings.
+are empty.
 If
 .i n
 is present,
@@ -1693,7 +1693,7 @@ but other than
 that hardly ever used.
 Must be followed by a
 .b .bp
-or the end of input.
+request or the end of input.
 .pp
 \*(ME uses \*T's environment 0 for body text,
 1 for keeps,
@@ -2226,6 +2226,7 @@ and a square \(sq labels \*G extensions.
 \en(.$	R\(sc	macro parameter count
 \en(.i	R\(sc	current indentation
 \en(.l	R\(sc	current line length
+\en(.p	R\(sc	current page length
 \en(.s	R\(sc	current type size in points
 \e0	F\(sc	unadjustable digit-width space
 \&.1c	M	end multi-column layout
@@ -2365,8 +2366,8 @@ and a square \(sq labels \*G extensions.
 \&.rr	M\(sc	remove register
 \&.rs	M\(sc	restore spacing (end no-space mode)
 \&.rt	M\(sc	return to vertical position set by \fB.mk\fP
-\es\(aq\fI\,\(+-S\/\fP\(aq	F\(sc\(de	inline type size change\
- to/by \fIS\fP points
+\es\(aq\fI\,\(+-n\/\fP\(aq	F\(sc\(de	inline type size change\
+ to/by \fIn\fP points
 \en(sf	R	section title font
 \&.sh	M	begin numbered section
 \en(si	R	section indentation per level of depth

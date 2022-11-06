@@ -173,7 +173,8 @@ Except on title pages
 (produced by calling
 .BR tp ),
 .I me
-suppresses the output of vertical space at the tops of pages;
+suppresses the output of vertical space at the tops of pages
+(after the output of any page header);
 the
 .B sp
 request will thus not work there.
@@ -194,18 +195,6 @@ see the
 .RI \[lq] me
 Reference Manual\[rq]
 for details.
-.
-.
-.P
-Output of the
-.IR grn ,
-.IR pic ,
-.IR eqn ,
-.IR refer ,
-and
-.I tbl
-preprocessors
-is acceptable as input.
 .
 .
 .\" ====================================================================

@@ -607,47 +607,6 @@ resources.
 @c END Keep parallel with groff(1), section "Description" (after the
 @c first sentence).
 
-@code{groff} belongs to an older generation of document preparation
-systems, which operate more like compilers than the more recent
-interactive @acronym{WYSIWYG}@footnote{What You See Is What You Get}
-systems.  @code{groff} and its contemporary counterpart, @TeX{}, both
-work using a @dfn{batch} paradigm: The input (or @dfn{source}) files are
-normal text files with embedded formatting commands.  These files can
-then be processed by @code{groff} to produce a typeset document on a
-variety of devices.
-
-@code{groff} should not be confused with a @dfn{word processor}, an
-integrated system of editor and text formatter.  Also, many word
-processors follow the @acronym{WYSIWYG} paradigm discussed earlier.
-
-Although @acronym{WYSIWYG} systems may be easier to use, they have a
-number of disadvantages compared to @code{troff}:
-
-@itemize @bullet
-@item
-They must be used on a graphics display to work on a document.
-
-@item
-Most of the @acronym{WYSIWYG} systems are either non-free or are not
-very portable.
-
-@item
-@code{troff} is firmly entrenched in all Unix systems.
-
-@item
-It is difficult to have a wide range of capabilities within the confines
-of a GUI/window system.
-
-@item
-It is more difficult to make global changes to a document.
-@end itemize
-
-@quotation
-``GUIs normally make it simple to accomplish simple actions and
-impossible to accomplish complex actions.''  --Doug Gwyn (22/Jun/91 in
-@code{comp.unix.wizards})
-@end quotation
-
 
 @c =====================================================================
 

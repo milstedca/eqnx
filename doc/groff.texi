@@ -468,7 +468,7 @@ developing GNU and promoting software freedom.''
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle October 2022
+@subtitle November 2022
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -585,6 +585,27 @@ man page.
 @section What Is @code{groff}?
 @cindex what is @code{groff}?
 @cindex @code{groff}---what is it?
+
+@c BEGIN Keep parallel with groff(1), section "Description" (after the
+@c first sentence).
+@c This language is slightly expanded from that in the "ANNOUNCE" file
+@c and on the groff home page.
+@code{groff} (GNU @code{roff}) is a typesetting system that reads plain
+text input files that include formatting commands to produce output in
+PostScript, PDF, HTML, DVI, or other formats, or for display to a
+terminal.  Formatting commands can be low-level typesetting primitives
+or macros from a supplied package.  Users may also write their own
+macros.  All three approaches can be combined.
+
+A reimplementation and extension of the typesetter from @acronym{AT&T}
+Unix, @code{groff} is present on most @acronym{POSIX} systems owing to
+its long association with Unix manuals (including man pages).  It and
+its predecessor are notable for their production of several best-selling
+software engineering texts.  @code{groff} is capable of producing
+typographically sophisticated documents while consuming minimal system
+resources.
+@c END Keep parallel with groff(1), section "Description" (after the
+@c first sentence).
 
 @code{groff} belongs to an older generation of document preparation
 systems, which operate more like compilers than the more recent

@@ -9,7 +9,7 @@ document formatting system
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1989-2021 Free Software Foundation, Inc.
+.\" Copyright (C) 1989-2022 Free Software Foundation, Inc.
 .\"
 .\" This file is part of groff, the GNU roff type-setting system.
 .\"
@@ -108,13 +108,44 @@ is the primary front end to the GNU
 .I roff
 document formatting system.
 .
+.\" BEGIN Keep parallel with groff.texi node "What Is groff?".
+.\" This language is slightly expanded from that in the "ANNOUNCE" file
+.\" and on the groff home page.
 GNU
 .I roff
-transforms text input files into typeset output in a variety of formats,
-such as PDF and HTML.
+is a typesetting system that reads plain text input files that include
+formatting commands to produce output in PostScript,
+PDF,
+HTML,
+DVI,
+or other formats,
+or for display to a terminal.
 .
-It is also used to format man pages for viewing on terminals.
+Formatting commands can be low-level typesetting primitives or macros
+from a supplied package.
 .
+Users may also write their own macros.
+.
+All three approaches may be combined.
+.
+.
+.P
+A reimplementation and extension of the typesetter from AT&T Unix,
+.I groff
+is present on most POSIX systems owing to its long association with Unix
+manuals
+(including man pages).
+.
+It and its predecessor are notable for their production of several
+best-selling software engineering texts.
+.
+.I groff
+is capable of producing typographically sophisticated documents while
+consuming minimal system resources.
+.\" END Keep parallel with groff.texi node "What Is groff?".
+.
+.
+.P
 The
 .I groff
 command orchestrates the execution of preprocessors,

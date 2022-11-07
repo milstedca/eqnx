@@ -27,19 +27,21 @@ while consuming minimal system resources.
 Changes
 =======
 
-groff 1.23.0.rc2 represents nearly 2 years of development since the
-previous release candidate, and nearly four since the last release.
+groff 1.23.0.rc2 represents two years of development since the previous
+release candidate, and nearly four since the last release.
 
 Headline features nominated by our development community include:
   * a new 'man' macro, "MR", for formatting man page cross references;
   * hyperlinked text in terminals via the ECMA-48 OSC 8 escape sequence;
-  * a new "rfc1345" macro package, contributed by Dorai Sitaram,
+  * a new 'rfc1345' macro package, contributed by Dorai Sitaram,
     enabling use of RFC 1345 mnemonics as groff special characters;
-  * a new "sboxes" macro package, contributed by Deri James, enabling
+  * a new 'sboxes' macro package, contributed by Deri James, enabling
     'ms' documents to place shaded and/or bordered rectangles underneath
     any groff page elements (PDF output only);
-  * version 2.5 of Peter Schaffter's "mom" macro package;
-  * the 'ms' package's new strings to assist subscripting; and
+  * 'mom' 2.5, a macro package contributed by Peter Schaffter;
+  * the 'ms' package's new strings to assist subscripting;
+  * Italian localization, including hyphenation patterns and macro
+    package string translations, thanks to Edmond Orignac; and
   * new hyphenation patterns for English.
 
 For more on these and other feature changes, see "News" below.

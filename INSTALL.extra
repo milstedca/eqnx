@@ -128,17 +128,20 @@ requires the 'pkg-config' program to be installed on your system, as
 well as the library's C header files--on a package-based host system,
 this can mean installing uchardet's '-dev' or '-devel' package.
 
-The 'configure' script searches for fonts originating with the URW
-foundry; these are metrically-compatible replacements for the Adobe
-PostScript Level 2 base 35 fonts required by that standard.  These URW
-fonts are packaged with Ghostscript and in various derivative versions.
-The Adobe fonts are not free software, but the replacements, named
-"Nimbus Roman", "Nimbus Sans", and "Nimbus Mono", and so forth, are.
-The PostScript standard and early versions of the PDF standard assumed
-that these base fonts will be supplied by the rendering device (a
-printer or PDF viewer).  Nowadays the PDF standard expects all fonts to
-be embedded in the document; if groff's gropdf(1) output driver knows
-where to find these fonts, you can use its "-e" option for this purpose.
+URW fonts
+---------
+
+The 'configure' script searches for PostScript Type 1 fonts originating
+with the URW foundry; these are metrically compatible replacements for
+the Adobe PostScript Level 2 base 35 fonts required by that standard.
+These URW fonts are packaged with Ghostscript and in various derivative
+versions.  The Adobe fonts are not free software, but the replacements,
+often named "Nimbus Roman", "Nimbus Sans", and "Nimbus Mono", and so
+forth, are.  The PostScript and early PDF standards assumed that these
+base fonts would be supplied by the rendering device (a printer or PDF
+viewer).  Nowadays the PDF standard expects all fonts to be embedded in
+the document; if groff's gropdf(1) output driver knows where to find
+these fonts, you can use its "-e" option for this purpose.
 
 The build process populates "Foundry" and "download" files that tell
 gropdf where to find their groff font descriptions and the font files
@@ -148,6 +151,7 @@ them on its own, use its "--with-urw-fonts-dir" option to tell the
 script where to find them.  If you never use groff to generate
 PostScript or PDF documents, you can ignore any output from the
 'configure' script about URW fonts.
+
 
 Miscellaneous
 =============
@@ -174,7 +178,7 @@ to run it.
 You can also try it out from the directory you used to build it.  A
 script called 'test-groff' is supplied for this purpose.  It sets up
 environment variables to allow groff to run without being installed.
-For example, the command
+For example, from the directory where you built groff, the command
 
   ./test-groff -man -Tascii src/roff/groff/groff.1 | less -R
 

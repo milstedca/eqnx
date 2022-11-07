@@ -1,3 +1,11 @@
+2022-11-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/doc.tmac (Fl, doc-flag-recursion, doc-print-recursive)
+	(doc-print-prefixes, Ar, Nm, Pa, Xr, doc-do-func, Fn)
+	(doc-do-func-args, Fo): Remove now-relic resets of type size to
+	previous value.  Since commit 5125754cdf, 23 February, no mdoc
+	macro ever changes the type size.
+
 2022-11-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/gropdf/gropdf.pl: Provide more information in

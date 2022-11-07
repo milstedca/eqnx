@@ -438,7 +438,7 @@
 .
 .    \" no arguments
 .    if !\n[.$] \
-.      nop \|\-\|\f[]\s[0]
+.      nop \|\-\|\f[]
 .  \}
 .
 .  if !\n[doc-arg-count] \
@@ -447,12 +447,12 @@
 .  nr doc-arg-ptr +1
 .  ie (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
 .    \" last argument
-.    nop \|\-\f[]\s[0]\c
+.    nop \|\-\f[]\c
 .    doc-print-and-reset
 .  \}
 .  el \{\
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 1) \{\
-.      nop \|\-\f[]\s[0]\c
+.      nop \|\-\f[]\c
 .      \*[doc-arg\n[doc-arg-ptr]]
 .    \}
 .    el \{\
@@ -483,7 +483,7 @@
 .  ds doc-str-dfr "\*[doc-arg\n[doc-arg-ptr]]
 .
 .  ie (\n[doc-reg-dfr1] == 1) \{\
-.    nop \f[]\s[0]\c
+.    nop \f[]\c
 .    \*[doc-str-dfr]
 .  \}
 .  el \{\
@@ -513,7 +513,7 @@
 .    \}\}\}
 .    el \{\
 .      nop \f[\n[doc-curr-font]]\c
-.      nop \)\*[doc-str-dfr]\f[]\s[0]\c
+.      nop \)\*[doc-str-dfr]\f[]\c
 .    \}
 .
 .    ie (\n[doc-arg-count] == \n[doc-arg-ptr]) \{\
@@ -573,7 +573,7 @@
 .    el \{\
 .      \" punctuation character
 .      nop \f[\n[doc-curr-font]]\c
-.      nop \)\*[doc-str-dpr]\f[]\s[0]\c
+.      nop \)\*[doc-str-dpr]\f[]\c
 .    \}
 .
 .    nr doc-arg-ptr +1
@@ -602,7 +602,7 @@
 .    if !(\n[doc-type\n[doc-arg-ptr]] == 4) \
 .      break
 .    nop \f[\n[doc-curr-font]]\c
-.    nop \)\*[doc-arg\n[doc-arg-ptr]]\f[]\s[0]\c
+.    nop \)\*[doc-arg\n[doc-arg-ptr]]\f[]\c
 .    nr doc-arg-ptr +1
 .  \}
 ..
@@ -685,7 +685,7 @@
 .
 .    \" no argument
 .    if !\n[.$] \
-.      nop \)\*[doc-str-Ar-default]\&\f[]\s[0]
+.      nop \)\*[doc-str-Ar-default]\&\f[]
 .  \}
 .
 .  if !\n[doc-arg-count] \
@@ -694,7 +694,7 @@
 .  nr doc-arg-ptr +1
 .  doc-print-prefixes
 .  ie (\n[doc-arg-count] < \n[doc-arg-ptr]) \{\
-.    nop \)\*[doc-str-Ar-default]\&\f[]\s[0]\c
+.    nop \)\*[doc-str-Ar-default]\&\f[]\c
 .    doc-print-and-reset
 .  \}
 .  el \{\
@@ -1065,7 +1065,7 @@
 .      doc-reset-args
 .    \}
 .    el \{\
-.      nop \*[doc-Nm-font]\*[doc-topic-name]\f[]\s[0]\c
+.      nop \*[doc-Nm-font]\*[doc-topic-name]\f[]\c
 .      doc-print-and-reset
 .  \}\}
 .  el \{\
@@ -1077,7 +1077,7 @@
 .      el \{\
 .        \" replace previous argument (Nm) with default value
 .        nr doc-arg-ptr -1
-.        ds doc-arg\n[doc-arg-ptr] "\*[doc-Nm-font]\*[doc-topic-name]\f[]\s[0]
+.        ds doc-arg\n[doc-arg-ptr] "\*[doc-Nm-font]\*[doc-topic-name]\f[]
 .        nr doc-type\n[doc-arg-ptr] 2
 .        ds doc-space\n[doc-arg-ptr] "\*[doc-space]
 .
@@ -1130,7 +1130,7 @@
 .
 .    \" default value
 .    if !\n[.$] \
-.      nop \*[doc-Pa-font]\[ti]\f[]\s[0]
+.      nop \*[doc-Pa-font]\[ti]\f[]
 .  \}
 .
 .  if !\n[doc-arg-count] \
@@ -1156,7 +1156,7 @@
 .    doc-print-recursive
 .  \}
 .  el \{\
-.    nop \*[doc-Pa-font]\[ti]\f[]\s[0]\c
+.    nop \*[doc-Pa-font]\[ti]\f[]\c
 .    doc-print-and-reset
 .  \}
 ..
@@ -4414,7 +4414,7 @@
 .    \" first argument must be a string
 .    ie (\n[doc-type\n[doc-arg-ptr]] == 2) \{\
 .      nr doc-curr-font \n[.f]
-.      ds doc-arg\n[doc-arg-ptr] \*[doc-Xr-font]\*[doc-arg\n[doc-arg-ptr]]\f[]\s[0]
+.      ds doc-arg\n[doc-arg-ptr] \*[doc-Xr-font]\*[doc-arg\n[doc-arg-ptr]]\f[]
 .
 .      if (\n[doc-arg-count] > \n[doc-arg-ptr]) \{\
 .        nr doc-reg-Xr (\n[doc-arg-ptr] + 1)
@@ -4939,12 +4939,12 @@
 .      if !"\*[doc-arg\n[doc-arg-ptr]]"*/" \
 .        nop ,\)\c
 .    nop \)\*[doc-space\n[doc-arg-ptr]]\*[doc-Fa-font]\c
-.    nop \)\*[doc-arg\n[doc-arg-ptr]]\f[]\s[0]\c
+.    nop \)\*[doc-arg\n[doc-arg-ptr]]\f[]\c
 .  \}
 .
 .  if (\n[doc-func-arg-count] == 1) \{\
 .    nop \)\*[doc-Fa-font]\*[doc-arg\n[doc-arg-ptr]]\c
-.    nop \f[]\s[0]\c
+.    nop \f[]\c
 .  \}
 .  nr doc-func-arg-count +1
 .  doc-do-func
@@ -5033,7 +5033,7 @@
 .
 .  nr doc-curr-font \n[.f]
 .  nop \*[doc-Fn-font]\*[doc-arg\n[doc-arg-ptr]]\c
-.  nop \f[]\s[0]\*[lp]\)\c
+.  nop \f[]\*[lp]\)\c
 .
 .  nr doc-arg-ptr +1
 .  if (\n[doc-arg-count] >= \n[doc-arg-ptr]) \{\
@@ -5100,7 +5100,7 @@
 .      if !"\*[doc-arg\n[doc-arg-ptr]]"/*" \
 .        if !"\*[doc-arg\n[doc-arg-ptr]]"*/" \
 .          nop ,\)\c
-.      nop \)\*[doc-space\n[doc-reg-ddfa]]\f[]\s[0]\|\c
+.      nop \)\*[doc-space\n[doc-reg-ddfa]]\f[]\|\c
 .      doc-do-func-args
 .  \}\}
 ..
@@ -5201,7 +5201,7 @@
 .    nr doc-curr-font \n[.f]
 .
 .    nop \*[doc-Fn-font]\*[doc-arg\n[doc-arg-ptr]]\c
-.    nop \f[]\s[0]\*[lp]\)\c
+.    nop \f[]\*[lp]\)\c
 .    doc-reset-args
 .  \}
 ..

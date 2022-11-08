@@ -126,6 +126,7 @@ my $thislev=1;
 my $mark=undef;
 my $suspendmark=undef;
 my $boxmax=0;
+my %missing;    # fonts in download files which are not found/readable
 
 
 
@@ -667,7 +668,16 @@ sub LoadDownload
 		$file=substr($file,1);
 	    }
 
-	    $download{"$foundry $name"}=$file;
+            my $pth=$file;
+            $pth=$dir."/$devnm/$file" if substr($file,0,1) ne '/';
+
+            if (!-r $pth)
+            {
+                $missing{"$foundry $name"}="$dir/$devnm";
+                next;
+            }
+
+            $download{"$foundry $name"}=$file if !exists($download{"$foundry $name"});
 	}
 
         close($f);
@@ -2538,9 +2548,17 @@ sub LoadFont
     }
     else
     {
-        Warn("unable to embed font file for '$fnt{internalname}'"
+        if (exists($missing{$fontkey}))
+        {
+            Warn("The download file in '$missing{$fontkey}' "
+            . " has erroneous entry for '$fnt{internalname} ($ofontnm)'");
+        }
+        else
+        {
+            Warn("unable to embed font file for '$fnt{internalname}'"
             . " ($ofontnm) (missing entry in 'download' file?)")
             if $embedall;
+        }
         $fno=++$objct;
         $fontlst{$fontno}->{OBJ}=BuildObj($objct,
                         {'Type' => '/Font',

@@ -1056,14 +1056,14 @@ which should be a string as described in
 .MR printf 3
 appropriate for the number of arguments supplied.
 .
-Only the flags
+Only the modifiers
 .RB \[lq] # \[rq],
 .RB \[lq] \- \[rq],
 .RB \[lq] + \[rq],
-and \[lq]\~\[rq] [sp]ace),
+and \[lq]\~\[rq] [space]),
 a minimum field width,
 an optional precision,
-and the conversion specifications
+and the conversion specifiers
 .BR %e ,
 .BR %E ,
 .BR %f ,

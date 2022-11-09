@@ -1,3 +1,7 @@
+2022-11-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* configure.ac: Rechristen self "GNU roff".
+
 2022-11-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/pic/pic.ypp: Slightly refactor.  Rename parameter

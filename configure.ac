@@ -18,7 +18,7 @@
 #
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([GNU Troff],
+AC_INIT([GNU roff],
         m4_esyscmd([build-aux/git-version-gen --prefix "" .tarball-version]),
         http://savannah.gnu.org/bugs/?group=groff,
         [groff])

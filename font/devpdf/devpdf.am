@@ -33,7 +33,84 @@ MOSTLYCLEANFILES += \
 devpdffontdir = $(fontdir)/devpdf
 devpdffont_DATA = \
   font/devpdf/DESC \
-  font/devpdf/Foundry
+  font/devpdf/Foundry \
+  font/devpdf/AB \
+  font/devpdf/ABI \
+  font/devpdf/AI \
+  font/devpdf/AR \
+  font/devpdf/BMB \
+  font/devpdf/BMBI \
+  font/devpdf/BMI \
+  font/devpdf/BMR \
+  font/devpdf/CB \
+  font/devpdf/CBI \
+  font/devpdf/CI \
+  font/devpdf/CR \
+  font/devpdf/HB \
+  font/devpdf/HBI \
+  font/devpdf/HI \
+  font/devpdf/HNB \
+  font/devpdf/HNBI \
+  font/devpdf/HNI \
+  font/devpdf/HNR \
+  font/devpdf/HR \
+  font/devpdf/NB \
+  font/devpdf/NBI \
+  font/devpdf/NI \
+  font/devpdf/NR \
+  font/devpdf/PB \
+  font/devpdf/PBI \
+  font/devpdf/PI \
+  font/devpdf/PR \
+  font/devpdf/S \
+  font/devpdf/TB \
+  font/devpdf/TBI \
+  font/devpdf/TI \
+  font/devpdf/TR \
+  font/devpdf/ZCMI \
+  font/devpdf/ZD \
+  font/devpdf/EURO \
+  font/devpdf/freeeuro.afm \
+  font/devpdf/freeeuro.pfa
+
+if HAVE_URW_FONTS
+devpdffont_DATA += \
+  font/devpdf/U-AB \
+  font/devpdf/U-ABI \
+  font/devpdf/U-AI \
+  font/devpdf/U-AR \
+  font/devpdf/U-BMB \
+  font/devpdf/U-BMBI \
+  font/devpdf/U-BMI \
+  font/devpdf/U-BMR \
+  font/devpdf/U-CB \
+  font/devpdf/U-CBI \
+  font/devpdf/U-CI \
+  font/devpdf/U-CR \
+  font/devpdf/U-HB \
+  font/devpdf/U-HBI \
+  font/devpdf/U-HI \
+  font/devpdf/U-HNB \
+  font/devpdf/U-HNBI \
+  font/devpdf/U-HNI \
+  font/devpdf/U-HNR \
+  font/devpdf/U-HR \
+  font/devpdf/U-NB \
+  font/devpdf/U-NBI \
+  font/devpdf/U-NI \
+  font/devpdf/U-NR \
+  font/devpdf/U-PB \
+  font/devpdf/U-PBI \
+  font/devpdf/U-PI \
+  font/devpdf/U-PR \
+  font/devpdf/U-S \
+  font/devpdf/U-TB \
+  font/devpdf/U-TBI \
+  font/devpdf/U-TI \
+  font/devpdf/U-TR \
+  font/devpdf/U-ZCMI \
+  font/devpdf/U-ZD
+endif
 
 devpdffontencdir = $(devpdffontdir)/enc
 devpdffontenc_DATA = font/devpdf/enc/text.enc
@@ -95,6 +172,21 @@ font/devpdf/DESC: $(devpdf_srcdir)/DESC.in
 	     echo "papersize letter" \
 	       >>$(top_builddir)/font/devpdf/DESC; \
 	   fi
+
+MOSTLYCLEANFILES += font/devpdf/freeeuro.afm
+font/devpdf/freeeuro.afm: $(devps_srcdir)/freeeuro.afm
+	$(AM_V_GEN)$(MKDIR_P) $(top_builddir)/font/devpdf \
+	&& cp -f $(devps_srcdir)/freeeuro.afm $@
+
+font/devpdf/EURO: font/devpdf/freeeuro.afm
+	$(AM_V_GEN) ./afmtodit -d font/devpdf/DESC -o font/devpdf/EURO \
+	  -w 333 font/devpdf/freeeuro.afm font/devpdf/map/symbol.map \
+	  EURO
+
+MOSTLYCLEANFILES += font/devpdf/freeeuro.pfa
+font/devpdf/freeeuro.pfa: $(devps_srcdir)/freeeuro.pfa
+	$(AM_V_GEN)$(MKDIR_P) $(top_builddir)/font/devpdf \
+	&& cp -f $(devps_srcdir)/freeeuro.pfa $@
 
 font/devpdf/Foundry: $(devpdf_srcdir)/Foundry.in
 	$(AM_V_at)$(MKDIR_P) $(top_builddir)/font/devpdf/

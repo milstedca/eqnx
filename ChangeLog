@@ -1,5 +1,24 @@
 2022-11-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Do more explicit work and less magic for PDF fonts.
+
+	* font/devpdf/devpdf.am (devpdffont_DATA): Add all of the
+	PostScript Level 2 base 35 font descriptions (from the default
+	foundry).  Also add the "EURO" font description file and the
+	"FreeEuro" PFA and AFM files, making these explicit targets and
+	dependencies.
+	(devpdffont_DATA) [HAVE_URW_FONTS]: Also add the URW foundry's
+	version of the base 35 fonts.
+	(font/devpdf/freeeuro.afm): Add new target, a simple file copy
+	from the devps font directory.
+	(font/devpdf/EURO): Generate font description file
+	from the devps font directory.
+	(font/devpdf/freeeuro.pfa): Add new target, a simple file copy
+	from the devps font directory.
+	(MOSTLYCLEANFILES): Clean freeeuro.{afm,pfa}.
+
+2022-11-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/afmtodit/afmtodit.pl: Add new command-line option to
 	specify the generated font description's "spacewidth" parameter;
 	in commit bf7f6862c3, 2021-09-24, I made libgroff complain if

@@ -143,7 +143,7 @@ my $transition={PAGE => {Type => '/Trans', S => '', D => 1, Dm => '/H', M => '/I
 		BLOCK => {Type => '/Trans', S => '', D => 1, Dm => '/H', M => '/I', Di => 0, SS => 1.0, B => 0}};
 my $firstpause=0;
 my $present=0;
-my @bgstack; 		# Stack of background boxes
+my @bgstack;		# Stack of background boxes
 my $bgbox='';		# Draw commands for boxes on this page
 
 $noslide=1 if exists($ENV{GROPDF_NOSLIDE}) and $ENV{GROPDF_NOSLIDE};
@@ -334,7 +334,7 @@ while (<>)
     s/\r$//;
     $lct++;
 
-    do 	# The ahead buffer behaves like 'ungetc'
+    do	# The ahead buffer behaves like 'ungetc'
     {{
 	if (scalar(@ahead))
 	{
@@ -868,12 +868,12 @@ sub do_x
 		IsGraphic();
 		my ($curangle,$hyp)=RtoP($xpos,GraphY($ypos));
 		my ($x,$y)=PtoR($theta+$curangle,$hyp);
- 		my ($tx, $ty) = ($xpos - $x, GraphY($ypos) - $y);
- 		if ($frot) {
- 		  ($tx, $ty) = ($tx *  sin($theta) + $ty * -cos($theta),
- 				$tx * -cos($theta) + $ty * -sin($theta));
- 		}
- 		$stream.="q\n".sprintf("%.3f %.3f %.3f %.3f %.3f %.3f cm",cos($theta),sin($theta),-sin($theta),cos($theta),$tx,$ty)."\n";
+		my ($tx, $ty) = ($xpos - $x, GraphY($ypos) - $y);
+		if ($frot) {
+		  ($tx, $ty) = ($tx *  sin($theta) + $ty * -cos($theta),
+				$tx * -cos($theta) + $ty * -sin($theta));
+		}
+		$stream.="q\n".sprintf("%.3f %.3f %.3f %.3f %.3f %.3f cm",cos($theta),sin($theta),-sin($theta),cos($theta),$tx,$ty)."\n";
 		$InPicRotate=1;
 	    }
 	    elsif ($par=~m/exec grestore/ and $InPicRotate)
@@ -1040,10 +1040,10 @@ sub do_x
 				$thislev--;
 			    }
 
-    			    $curoutlevno=$#{$curoutlev};
+			    $curoutlevno=$#{$curoutlev};
 			}
 
-# 			push(@{$curoutlev},$this);
+#			push(@{$curoutlev},$this);
 			splice(@{$curoutlev},++$curoutlevno,0,$this);
 			$curoutlev->[0]->[2]++;
 		    }
@@ -1338,7 +1338,7 @@ sub do_x
 	    {
 		splice(@xprm,0,2);
 		my $type=shift(@xprm);
-# 		print STDERR "ypos=$ypos\n";
+#		print STDERR "ypos=$ypos\n";
 
 		if (lc($type) eq 'off')
 		{
@@ -1511,11 +1511,11 @@ sub GetPoints
 
 # sub BuildRef
 # {
-# 	my $fil=shift;
-# 	my $bbox=shift;
-# 	my $mat=shift;
-# 	my $wid=($bbox->[2]-$bbox->[0])*$mat->[0];
-# 	my $hgt=($bbox->[3]-$bbox->[1])*$mat->[3];
+#	my $fil=shift;
+#	my $bbox=shift;
+#	my $mat=shift;
+#	my $wid=($bbox->[2]-$bbox->[0])*$mat->[0];
+#	my $hgt=($bbox->[3]-$bbox->[1])*$mat->[3];
 #
 #       if (!open(PDF,"<$fil"))
 #       {
@@ -1523,27 +1523,27 @@ sub GetPoints
 #               return(undef);
 #       }
 #
-# 	my (@f)=(<PDF>);
+#	my (@f)=(<PDF>);
 #
-# 	close(PDF);
+#	close(PDF);
 #
-# 	$objct++;
-# 	my $xonm="XO$objct";
+#	$objct++;
+#	my $xonm="XO$objct";
 #
-# 	$pages->{'Resources'}->{'XObject'}->{$xonm}=BuildObj($objct,{'Type' => '/XObject',
-# 								    'Subtype' => '/Form',
-# 								    'BBox' => $bbox,
-# 								    'Matrix' => $mat,
-# 								    'Resources' => $pages->{'Resources'},
-# 								    'Ref' => {'Page' => '1',
-# 										'F' => BuildObj($objct+1,{'Type' => '/Filespec',
-# 													  'F' => "($fil)",
-# 													  'EF' => {'F' => BuildObj($objct+2,{'Type' => '/EmbeddedFile'})}
-# 										})
-# 								    }
-# 								});
+#	$pages->{'Resources'}->{'XObject'}->{$xonm}=BuildObj($objct,{'Type' => '/XObject',
+#								    'Subtype' => '/Form',
+#								    'BBox' => $bbox,
+#								    'Matrix' => $mat,
+#								    'Resources' => $pages->{'Resources'},
+#								    'Ref' => {'Page' => '1',
+#										'F' => BuildObj($objct+1,{'Type' => '/Filespec',
+#													  'F' => "($fil)",
+#													  'EF' => {'F' => BuildObj($objct+2,{'Type' => '/EmbeddedFile'})}
+#										})
+#								    }
+#								});
 #
-# 	$obj[$objct]->{STREAM}="q 1 0 0 1 0 0 cm
+#	$obj[$objct]->{STREAM}="q 1 0 0 1 0 0 cm
 # q BT
 # 1 0 0 1 0 0 Tm
 # .5 g .5 G
@@ -1554,12 +1554,12 @@ sub GetPoints
 # Q\n";
 #
 # #	$obj[$objct]->{STREAM}=PutXY($xpos,$ypos)." m ".PutXY($xpos+$wid,$ypos)." l ".PutXY($xpos+$wid,$ypos+$hgt)." l ".PutXY($xpos,$ypos+$hgt)." l f\n";
-# 	$obj[$objct+2]->{STREAM}=join('',@f);
-# 	PutObj($objct);
-# 	PutObj($objct+1);
-# 	PutObj($objct+2);
-# 	$objct+=2;
-# 	return($xonm);
+#	$obj[$objct+2]->{STREAM}=join('',@f);
+#	PutObj($objct);
+#	PutObj($objct+1);
+#	PutObj($objct+2);
+#	$objct+=2;
+#	return($xonm);
 # }
 
 sub LoadSWF
@@ -1613,7 +1613,7 @@ sub LoadSWF
 			'P' => "$cpageno 0 R",
 			'RichMediaSettings' => { 'Deactivation' => { 'Condition' => '/PI',
 						'Type' => '/RichMediaDeactivation'},
-				    'Activation' => { 	'Condition' => '/PV',
+				    'Activation' => {	'Condition' => '/PV',
 						'Type' => '/RichMediaActivation'}},
 			'F' => 68,
 			'Subtype' => '/RichMedia',
@@ -2451,7 +2451,7 @@ sub LoadFont
 	    $stg=3,next if lc($_) eq 'charset';
 
 	    my ($ch1,$ch2,$k)=split;
-# 	    $fnt{KERN}->{$ch1}->{$ch2}=$k;
+#	    $fnt{KERN}->{$ch1}->{$ch2}=$k;
 	}
 	else
 	{
@@ -3468,22 +3468,22 @@ sub PutLine
 	    }
 	    else
 	    {
-    # 			$stream.="\%dg  0 Tw [";
+    #			$stream.="\%dg  0 Tw [";
     #
-    # 			foreach my $wd (@lin)
-    # 			{
-    #  				$stream.="($wd->[0]) " if defined($wd->[0]);
-    # 				$stream.="$wd->[1] " if defined($wd->[1]) and $wd->[1] != 0;
-    # 			}
+    #			foreach my $wd (@lin)
+    #			{
+    #				$stream.="($wd->[0]) " if defined($wd->[0]);
+    #				$stream.="$wd->[1] " if defined($wd->[1]) and $wd->[1] != 0;
+    #			}
     #
-    # 			$stream.="] TJ\n";
+    #			$stream.="] TJ\n";
     #
     #				my $wt=$lin[0]->[1]||0;
 
-    # 			while ($wt < -$whtsz/$cftsz)
-    # 			{
-    # 				$wt+=$whtsz/$cftsz;
-    # 			}
+    #			while ($wt < -$whtsz/$cftsz)
+    #			{
+    #				$wt+=$whtsz/$cftsz;
+    #			}
 
 		$stream.=sprintf( "%.3f Tw ",-($whtsz+$wt*$cftsz)/$unitwidth-$curkern );
 		if (!defined($lin[0]->[0]) and defined($lin[0]->[1]))
@@ -3688,12 +3688,12 @@ sub do_t
 
     $stream.="% --- wht=$whtsz, pend=$pendmv, nomv=$nomove\n" if $debug;
 
-# 	if ($w_flg && $#lin > -1)
-# 	{
-# 		$lin[$#lin]->[0].=' ';
-# 		$pendmv-=$whtsz;
-# 		$dontglue=1 if $pendmv==0;
-# 	}
+#	if ($w_flg && $#lin > -1)
+#	{
+#		$lin[$#lin]->[0].=' ';
+#		$pendmv-=$whtsz;
+#		$dontglue=1 if $pendmv==0;
+#	}
 
     $wt=-$pendmv/$cftsz if $w_flg and $wt==-1;
     $pendmv-=$nomove;

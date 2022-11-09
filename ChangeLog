@@ -1,3 +1,20 @@
+2022-11-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/gropdf/gropdf.pl: Provide more information in
+	diagnostic issued when an embeddable font is required by the
+	document and listed in the "download" file, but can't be opened.
+	(LoadDownload): Construct a "path" of each file specification
+	attempted.  Store this as the value for the hash `missing` keyed
+	on the tuple of scalars `foundry` and `name`, instead of the
+	name of the device description directory, which isn't very
+	helpful for troubleshooting.  Also: don't start message clause
+	with a capital letter (per GNU Coding Standards); double quote
+	file name references; and move parenthesized groff font name
+	outside of single quotes.
+	(LoadFont): Recast diagnostic message to communicate the
+	foregoing information.  Also make embedding failure messages
+	more consistent in style.
+
 2022-11-08  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[gropdf]: Cater for invalid entries in download file.

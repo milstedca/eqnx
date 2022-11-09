@@ -673,7 +673,14 @@ sub LoadDownload
 
             if (!-r $pth)
             {
-                $missing{"$foundry $name"}="$dir/$devnm";
+		if (exists($missing{"$foundry $name"}))
+		{
+		    $missing{"$foundry $name"}.=":$pth";
+		}
+		else
+		{
+		    $missing{"$foundry $name"}="$pth";
+		}
                 next;
             }
 
@@ -2550,14 +2557,15 @@ sub LoadFont
     {
         if (exists($missing{$fontkey}))
         {
-            Warn("The download file in '$missing{$fontkey}' "
-            . " has erroneous entry for '$fnt{internalname} ($ofontnm)'");
+	    Warn("unable to embed font file for '$fnt{internalname}'"
+	      . " ($ofontnm); check \"download\" file(s) (tried: "
+	      . "\"$missing{$fontkey}\")");
         }
         else
         {
-            Warn("unable to embed font file for '$fnt{internalname}'"
-            . " ($ofontnm) (missing entry in 'download' file?)")
-            if $embedall;
+	    Warn("unable to embed font file for '$fnt{internalname}'"
+	      . " ($ofontnm); no entry for it in \"download\" file(s)")
+	      if $embedall;
         }
         $fno=++$objct;
         $fontlst{$fontno}->{OBJ}=BuildObj($objct,

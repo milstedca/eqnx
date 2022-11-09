@@ -1,13 +1,13 @@
 2022-11-08  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
-        [gropdf]: Cater for invalid entries in download file.
+	[gropdf]: Cater for invalid entries in download file.
 
-        * src/devices/gropdf/gropdf.pl: Test if path in the download
-        file points to a readable file. Also change order so that the
-        first valid entry is used as the font to embed. This replaces
-        previous order where last found entry is used.
+	* src/devices/gropdf/gropdf.pl: Test if path in the "download"
+	file points to a readable file.  Also change order so that the
+	first valid entry is used as the font to embed.  This replaces
+	previous order where last found entry is used.
 
-        This change is discussed in <https://savannah.gnu.org/bugs/?62950>.
+	Fixes <https://savannah.gnu.org/bugs/?62950>.
 
 2022-11-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 

@@ -1,3 +1,11 @@
+2022-11-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devpdf/util/BuildFoundries.pl (LoadFoundry): Stop
+	capitalizing beginning of diagnostic message (per GNU Coding
+	Standards).  Drop ellipsis from end since no further diagnostics
+	relevant to that message are expected.  Trim trailing slashes
+	from font path elements.
+
 2022-11-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* font/devps/devps.am: Refactor.  Turn two identical target

@@ -141,7 +141,7 @@ sub LoadFoundry
 			    unlink $gfont;
 			}
 		    }
-		    Notice("Copied grops font $gfont...") if $gotf;
+		    Notice("copied grops font $gfont") if $gotf;
 
 		}
 		else
@@ -169,7 +169,7 @@ sub LoadFoundry
 		    }
 		    else
 		    {
-			Notice("Generated $gfont...");
+			Notice("generated $gfont");
 		    }
 		}
 		else
@@ -266,6 +266,7 @@ sub LocateFile
         next if !defined($p) or $p eq ';' or $p eq ':';
         $p=~s/^\s+//;
         $p=~s/\s+$//;
+        $p=~s@/+$@@;
 
         next if $p=~m/^\%rom\%/;	# exclude %rom% paths (from (gs))
 

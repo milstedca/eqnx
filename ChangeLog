@@ -61,7 +61,7 @@
 
 	[mdoc]: Make `Sx` macro perform quotation, not italicization.
 	It's thorougly inconsistent with English composition practices
-	to refer to (sub)section titles within a document as if they
+	to refer to (sub)section headings within a document as if they
 	were major works.
 
 	* tmac/doc.tmac (Sx): Implement.

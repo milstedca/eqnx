@@ -25,13 +25,15 @@ use strict;
 my $prog = $0;
 my $groff_sys_fontdir = "@FONTDIR@";
 my $want_help;
+my $space_width = 0;
 
 our ($opt_a, $opt_c, $opt_d, $opt_e, $opt_f, $opt_i, $opt_k,
      $opt_m, $opt_n, $opt_o, $opt_s, $opt_v, $opt_x);
 
 use Getopt::Long qw(:config gnu_getopt);
 GetOptions( "a=s", "c", "d=s", "e=s", "f=s", "i=s", "k", "m", "n",
-  "o=s", "s", "v", "x", "version" => \$opt_v, "help" => \$want_help
+  "o=s", "s", "v", "w=i" => \$space_width, "x", "version" => \$opt_v,
+  "help" => \$want_help
 );
 
 my $afmtodit_version = "GNU afmtodit (groff) version @VERSION@";
@@ -54,7 +56,8 @@ sub usage {
     print $stream "usage: $prog [-ckmnsx] [-a slant]" .
 	" [-d device-description-file] [-e encoding-file]" .
 	" [-f internal-name] [-i italic-correction-factor]" .
-	" [-o output-file] afm-file map-file font-description-file\n" .
+	" [-o output-file] [-w space-width] afm-file map-file" .
+	" font-description-file\n" .
 	"usage: $prog {-v | --version}\n" .
 	"usage: $prog --help\n";
     unless ($had_error) {
@@ -479,11 +482,15 @@ print("\n");
 my $name = $fontfile;
 $name =~ s@.*/@@;
 
+my $sw = 0;
+$sw = conv($width{"space"}) if defined $width{"space"};
+$sw = $space_width if ($space_width);
+
 print("name $name\n");
 print("internalname $psname\n") if $psname;
 print("special\n") if $opt_s;
 printf("slant %g\n", $italic_angle) if $italic_angle != 0;
-printf("spacewidth %d\n", conv($width{"space"})) if defined $width{"space"};
+printf("spacewidth %d\n", $sw) if $sw;
 
 if ($opt_e) {
     my $e = $opt_e;

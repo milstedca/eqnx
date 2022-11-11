@@ -606,6 +606,13 @@ o afmtodit no longer writes file names with directory information in
 
 o afmtodit now exits with status 2 (not 1) upon usage errors.
 
+o afmtodit now recognizes a '-w' option to specify the generated font
+  description's "spacewidth" parameter (see groff_font(5)).  The
+  internal library "libgroff" now emits a diagnostic if a font
+  description file is missing such a directive.  Adding this option
+  enables a well-formed font description to be produced by the tool
+  (without requiring editing by hand).
+
 o pfbtops now exits with status 2 upon usage errors and the standard C
   library's `EXIT_FAILURE` status (usually 1) on operational failures
   instead of vice versa.

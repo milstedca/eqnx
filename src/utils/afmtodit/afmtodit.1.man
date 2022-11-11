@@ -50,6 +50,8 @@ PostScript and PDF output
 .IR italic-correction-factor ]
 .RB [ \-o\~\c
 .IR output-file ]
+.RB [ \-w\~\c
+.IR space-width ]
 .I afm-file
 .I map-file
 .I font-description-file
@@ -438,6 +440,13 @@ use with monospaced (constant-width) fonts.
 Add the
 .B special
 directive to the font description file.
+.
+.
+.TP
+.BI \-w\~ space-width
+Use
+.I space-width
+as the with of inter-word spaces.
 .
 .
 .TP

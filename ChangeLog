@@ -1,5 +1,20 @@
 2022-11-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/afmtodit/afmtodit.pl: Add new command-line option to
+	specify the generated font description's "spacewidth" parameter;
+	in commit bf7f6862c3, 2021-09-24, I made libgroff complain if
+	this directive is missing (since any font, even a "special" one,
+	can be selected as current and the formatter's behavior when
+	encountering an input space should be well-defined under that
+	circumstance).  Adding this option enables a well-formed font
+	description to be produced.
+	* src/utils/afmtodit/afmtodit.pl (usage):
+	* src/utils/afmtodit/afmtodit.1.man (Synopsis, Options):
+	Document it.
+	* NEWS: Add item.
+
+2022-11-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/afmtodit/afmtodit.pl: Use our own fatal exit
 	function instead of Perl's "die".
 	(croak): New subroutine emits argument as part of diagnostic

@@ -1,5 +1,12 @@
 2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an-ext.tmac: Refactor to reduce code size.  `UR` and `MT`
+	have identical implementations so...
+	(mV): Define new macro to perform the requisite actions, and...
+	(UR, MT): Make these into wrappers calling mV.
+
+2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an-ext.tmac (UR, MT): Fix problem with incorrect line
 	lengths and occasional "can't adjust" warnings when using
 	hyperlinks.  Reduce the line length within the diversion by the

@@ -41,6 +41,12 @@ if ($opt_v) {
     exit 0;
 }
 
+sub croak {
+  my $msg = shift;
+  print STDERR "$prog: error: $msg";
+  exit(1);
+}
+
 sub usage {
     my $stream = *STDOUT;
     my $had_error = shift;
@@ -57,7 +63,9 @@ sub usage {
 "and 'pdf' output devices of groff(1).  See the afmtodit(1) manual " .
 "page.\n";
     }
-    exit($had_error);
+    my $status = 0;
+    $status = 2 if ($had_error);
+    exit($status);
 }
 
 &usage(0) if ($want_help);
@@ -89,7 +97,7 @@ my (@encoding, %in_encoding);
 my (%width, %height, %depth);
 my (%left_side_bearing, %right_side_bearing);
 
-open(AFM, $afm) || die "$prog: can't open '$ARGV[0]': $!\n";
+open(AFM, $afm) || croak("unable to open '$ARGV[0]': $!\n");
 
 while (<AFM>) {
     chomp;
@@ -203,7 +211,7 @@ my ($sizescale, $resolution, $unitwidth);
 $sizescale = 1;
 
 open(DESC, $desc) || open(DESC, $sys_desc) ||
-    die "$prog: can't open '$desc' or '$sys_desc': $!\n";
+    croak("unable to open '$desc' or '$sys_desc': $!\n");
 while (<DESC>) {
     next if /^#/;
     chop;
@@ -227,7 +235,7 @@ if ($opt_e) {
 
     my $sys_opt_e = $groff_sys_fontdir . "/devps/" . $opt_e;
     open(ENCODING, $opt_e) || open(ENCODING, $sys_opt_e) ||
-	die "$prog: can't open '$opt_e' or '$sys_opt_e': $!\n";
+	croak("unable to open '$opt_e' or '$sys_opt_e': $!\n");
     while (<ENCODING>) {
 	next if /^#/;
 	chop;
@@ -248,7 +256,7 @@ if ($opt_e) {
 my (%nmap, %map);
 
 open(MAP, $map) || open(MAP, $sys_map) ||
-    die "$prog: can't open '$map' or '$sys_map': $!\n";
+    croak("unable to open '$map' or '$sys_map': $!\n");
 while (<MAP>) {
     next if /^#/;
     chop;
@@ -441,7 +449,8 @@ foreach my $lig (sort keys %default_ligatures) {
 
 # print it all out
 
-open(FONT, ">$outfile") || die "$prog: can't open '$outfile' for output: $!\n";
+open(FONT, ">$outfile") ||
+  croak("unable to open '$outfile' for writing: $!\n");
 select(FONT);
 
 print("# This file was generated with $afmtodit_version.\n");

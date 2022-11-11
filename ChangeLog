@@ -1,5 +1,15 @@
 2022-11-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/utils/afmtodit/afmtodit.pl: Use our own fatal exit
+	function instead of Perl's "die".
+	(croak): New subroutine emits argument as part of diagnostic
+	message and exits with status 1.
+	(usage): Exit with status 2, not 1, on usage errors.
+
+	* NEWS: Document new exit behavior.
+
+2022-11-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/devpdf.am (font/devpdf/download): Improve
 	comprehensibility of comments in generated "download" file.
 	Stop bracketing path element separator with spaces.

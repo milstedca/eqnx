@@ -604,6 +604,8 @@ o afmtodit no longer writes file names with directory information in
   them to the "name" directives of the font descriptions it generates.
   (The `fp` request no longer accepts such names; see "troff" above.)
 
+o afmtodit now exits with status 2 (not 1) upon usage errors.
+
 o pfbtops now exits with status 2 upon usage errors and the standard C
   library's `EXIT_FAILURE` status (usually 1) on operational failures
   instead of vice versa.

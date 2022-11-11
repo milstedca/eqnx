@@ -1,5 +1,14 @@
 2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man]: Add test to ensure that link text (when the hyperlink
+	itself is not formatted because the device supports
+	hyperlinking) uses the correct line length and is adjusted.
+
+	* tmac/tests/an_adjust-link-text-correctly.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run tests.
+
+2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Refactor handling of FreeEuro font for PDF device.
 
 	* font/devpdf/Foundry.in: Drop "EURO" entry from file.

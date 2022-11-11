@@ -600,10 +600,9 @@ o The 'doc' Make target has been eliminated.  'all' (the default Make
   manual's sources are modified; the distribution archive now provides
   copies of the manual in Info, plain text, HTML, DVI, and PDF.
 
-o The "afmtodit" utility no longer writes file names with directory
-  information in them to the "name" directives of the font descriptions
-  it generates.  (The `fp` request no longer accepts such names; see
-  "troff" above.)
+o afmtodit no longer writes file names with directory information in
+  them to the "name" directives of the font descriptions it generates.
+  (The `fp` request no longer accepts such names; see "troff" above.)
 
 o pfbtops now exits with status 2 upon usage errors and the standard C
   library's `EXIT_FAILURE` status (usually 1) on operational failures

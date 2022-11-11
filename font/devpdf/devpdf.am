@@ -214,6 +214,7 @@ font/devpdf/download: $(devpdffontmapdata) font/devpdf/DESC \
 	       --strict $(abs_top_builddir)/font/devpdf \
 	       '$(abs_top_srcdir)/font/devps:$(abs_top_builddir)/font/devps' \
 	       >>$@.tmp \
+	&& printf "\tFreeEuro\tfreeeuro.pfa\n" >>$@.tmp \
 	&& mv $@.tmp $@
 
 # PDFs to be produced by troff should depend on this stamp file to

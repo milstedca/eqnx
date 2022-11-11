@@ -1,5 +1,19 @@
 2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Refactor handling of FreeEuro font for PDF device.
+
+	* font/devpdf/Foundry.in: Drop "EURO" entry from file.
+	* font/devpdf/devpdf.am (font/devpdf/download): Add it here.
+	* font/devpdf/util/BuildFoundries.pl: Add list `base35Fonts` to
+	store the groff font names of the PostScript Level 2 base fonts.
+	(LoadFoundry): ...so that we copy their descriptions (and _only_
+	these) from the `ps` device's font description directory.
+	* doc/doc.am (doc/groff-man-pages.pdf): Declare dependency on
+	"freeeuro.pfa" file in `pdf` device's font description
+	directory.
+
+2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/devpdf.am: Refactor.
 	(MOSTLYCLEANFILES): Populate macro incrementally, adjacent to
 	the targets that build the files to be cleaned.  This will

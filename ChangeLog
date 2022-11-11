@@ -1,3 +1,23 @@
+2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devpdf/devpdf.am: Refactor.
+	(MOSTLYCLEANFILES): Populate macro incrementally, adjacent to
+	the targets that build the files to be cleaned.  This will
+	enable cleaner refactoring in the future.
+	(DEFAULT_BASE35_FONTS): Add new macro storing the targets of the
+	PostScript Level 2 standard base 35 font descriptions.
+	(devpdffont_DATA): Populate using `DEFAULT_BASE35_FONTS`.
+	(URW_BASE35_FONTS): Add new macro, empty if [!HAVE_URW_FONTS];
+	and [HAVE_URW_FONTS] otherwise naming the `U` foundry font
+	description counterparts of the `DEFAULT_BASE35_FONTS`.
+	(devpdffont_DATA): Append `URW_BASE35_FONTS`.
+	($(DEFAULT_BASE35_FONTS) $(URW_BASE35_FONTS)): Assert dependency
+	on "font/devpdf/download".  This isn't literally true, but
+	BuildFoundries generates all of these together, so if the
+	"font/devpdf/download" target rule runs successfully, the font
+	description files named in these macro expansions will be
+	generated too.
+
 2022-11-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: Do more explicit work and less magic for PDF fonts.

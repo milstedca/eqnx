@@ -1,5 +1,20 @@
 2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac: Trivially refactor for congruence with
+	documentary terminology.  Rename strings and macros.
+	- an-title                 -> an*topic
+	- an-abbreviate-page-title -> an*abbreviate-page-topic
+	- an-title-abbv            -> an*topic-abbv
+	- an-title-string          -> an*topic-string
+	- an-title-length          -> an*topic-length
+	- an-title-length-prev     -> an*topic-length-prev
+	- an-title-new-length      -> an*topic-new-length
+	- an-page-title-style      -> an*topic-style
+	(TH): Recast diagnostic message to refer to "section", not
+	"volume" title.
+
+2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an-ext.tmac: Refactor to reduce code size.  `UR` and `MT`
 	have identical implementations so...
 	(mV): Define new macro to perform the requisite actions, and...

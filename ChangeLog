@@ -1,5 +1,15 @@
 2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an-ext.tmac (UR, MT): Fix problem with incorrect line
+	lengths and occasional "can't adjust" warnings when using
+	hyperlinks.  Reduce the line length within the diversion by the
+	amount of indentation used in the context.  Without this, lines
+	were getting set too short.  (You might think they'd be too
+	long, but when creating a new environment, the _formatter's_
+	default line length is used; that's 65n on terminal devices.)
+
+2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Add test to ensure that link text (when the hyperlink
 	itself is not formatted because the device supports
 	hyperlinking) uses the correct line length and is adjusted.

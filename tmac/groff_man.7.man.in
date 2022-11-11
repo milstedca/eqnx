@@ -364,13 +364,13 @@ macros.
 .
 .
 .TP
-.BI .TH " title section"\c
+.BI .TH " topic section"\c
 .RI " [" footer-middle ]\c
 .RI " [" footer-inside ]\c
 .RI " [" header-middle ]
-Define the title of the man page as
-.I title
-and the volume of the manual to which it belongs as
+Define the subject of the man page as
+.I topic
+and the section of the manual to which it belongs as
 .I section.
 _ifstyle()dnl
 .
@@ -385,14 +385,14 @@ See
 for details on the section numbers and suffixes applicable to your
 system.
 .
-.I title
+.I topic
 and
 .I section
 are positioned together at the left and right in the header line
 (with
 .I section
 in parentheses immediately appended to
-.IR title ).
+.IR topic ).
 .
 .I footer-middle
 is centered in the footer line.
@@ -414,7 +414,7 @@ The outside footer is the page number,
 except in the continuous-rendering mode enabled by the option
 .BR \-rcR=1 ,
 in which case it is the
-.I title
+.I topic
 and
 .I section,
 as in the header.
@@ -431,7 +431,7 @@ there is no need to specify
 will supply text for it.
 .
 The macro package may also abbreviate
-.I title
+.I topic
 and
 .I footer-inside
 with ellipses
@@ -778,8 +778,6 @@ if specified,
 and by a default amount otherwise;
 see subsection \(lqHorizontal and vertical spacing\(rq below.
 .
-.
-.IP
 If the tag is not as wide as the indentation,
 the paragraph starts on the same line as the tag,
 at the applicable indentation,
@@ -1288,12 +1286,12 @@ for hyperlink-aware output drivers.
 .
 .
 .TP
-.BI .MR "\~page-title manual-section"\c
+.BI .MR "\~topic manual-section"\c
 .RI \~[ trailing-text ]
 .IR (since\~ groff \~1.23) \" TODO: remove note once novelty dies down
 Set a man page cross reference as
 \[lq]\c
-.IB page-title ( manual-section )\c
+.IB topic ( manual-section )\c
 \[rq].
 .
 If
@@ -1304,14 +1302,14 @@ it follows the closing parenthesis without intervening space.
 .
 Hyphenation is disabled while the cross reference is set.
 .
-.I page-title
+.I topic
 is set in the font specified by the
 .B MF
 string.
 .
 The cross reference hyperlinks to a URI of the form
 .RB \[lq] man:\c
-.IR page-title ( manual-section )\[rq].
+.IR topic ( manual-section )\[rq].
 _ifstyle()dnl
 .
 .
@@ -2218,7 +2216,7 @@ the above strings should be avoided.
 .SS Portability
 .\" ====================================================================
 .
-It is wise to quote multi-word section and subsection titles;
+It is wise to quote multi-word section and subsection headings;
 the
 .B .SH
 and
@@ -3249,8 +3247,7 @@ document.
 .
 .TP
 .B \-rCS=1
-Capitalize section headings,
-setting section headings
+Set section headings
 (the argument(s) to
 .BR .SH )
 in full capitals.
@@ -3261,8 +3258,7 @@ distinction information.
 .
 .TP
 .B \-rCT=1
-Capitalize titles,
-setting the man page title
+Set the man page topic
 (the first argument to
 .BR .TH )
 in full capitals in headers and footers.
@@ -3369,8 +3365,8 @@ above).
 .
 .
 .TP
-.BI \-dMF= man-page-title-font
-Set the font used for man page titles named in
+.BI \-dMF= man-page-topic-font
+Set the font used for man page topics named in
 .B .TH
 and
 .B .MR
@@ -3389,7 +3385,7 @@ If the
 .B MF
 string ends in \[lq]I\[rq],
 it is assumed to be an oblique typeface,
-and italic corrections are applied before and after man page titles.
+and italic corrections are applied before and after man page topics.
 .
 .
 .TP

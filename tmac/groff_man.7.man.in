@@ -189,6 +189,14 @@ Macros whose use we discourage
 and
 .BR .UC )
 are described in subsection \(lqDeprecated features\(rq below.
+.
+.
+.P
+Throughout Unix documentation,
+a manual entry is referred simply to as a \(lqman page\(rq,
+regardless of its length,
+without gendered implication,
+and irrespective of the macro package selected for its composition.
 _ifstyle()dnl
 .
 .
@@ -368,9 +376,16 @@ macros.
 .RI " [" footer-middle ]\c
 .RI " [" footer-inside ]\c
 .RI " [" header-middle ]
-Define the subject of the man page as
+Determine the contents of the page header and footer.
+_ifstyle()dnl
+.
+.I roff
+systems refer to these collectively as \(lqtitles\(rq.
+_endif()dnl
+.
+The subject of the man page is
 .I topic
-and the section of the manual to which it belongs as
+and the section of the manual to which it belongs is
 .I section.
 _ifstyle()dnl
 .
@@ -388,14 +403,14 @@ system.
 .I topic
 and
 .I section
-are positioned together at the left and right in the header line
+are positioned together at the left and right in the header
 (with
 .I section
 in parentheses immediately appended to
 .IR topic ).
 .
 .I footer-middle
-is centered in the footer line.
+is centered in the footer.
 .
 The arrangement of the rest of the footer depends on whether
 double-sided layout is enabled with the option
@@ -420,7 +435,7 @@ and
 as in the header.
 .
 .I header-middle
-is centered in the header line.
+is centered in the header.
 .
 If
 .I section
@@ -2920,7 +2935,7 @@ _ifstyle()dnl
 _endif()dnl
 .
 .IP
-Use of this presentation-level macro is deprecated.
+Use of this presentation-oriented macro is deprecated.
 .
 It translates poorly to HTML,
 under which exact space control and tabulation are not readily
@@ -2951,7 +2966,7 @@ is handled as with
 .
 .
 .IP
-Use of this presentation-level macro is deprecated.
+Use of this presentation-oriented macro is deprecated.
 .
 A hanging indentation cannot be expressed naturally under HTML,
 and HTML-based man page processors may interpret it as starting an
@@ -3016,7 +3031,7 @@ see subsection \(lqHorizontal and vertical spacing\(rq above.
 .
 .
 .IP
-Use of this presentation-level macro is deprecated.
+Use of this presentation-oriented macro is deprecated.
 .
 It translates poorly to HTML,
 under which exact control of inter-paragraph spacing is not readily

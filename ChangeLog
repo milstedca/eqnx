@@ -1,5 +1,10 @@
 2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tmac.am (TMAC_PACKAGE_MAN, TMAC_PACKAGE_MDOC): Define
+	convenience macros for in-tree documents to depend on.
+
+2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac: Trivially refactor.  Rename `an-section` to
 	`an*section`.
 

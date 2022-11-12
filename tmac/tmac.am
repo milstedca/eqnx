@@ -357,6 +357,12 @@ uninstall_tmac_hook:
 	  rmdir $(DESTDIR)$(localtmacdir); \
 	fi
 
+# Define convenience macros for in-tree documents to depend on.  Don't
+# use these above.
+TMAC_PACKAGE_MAN = tmac/an.tmac tmac/an-ext.tmac
+TMAC_PACKAGE_MDOC = tmac/doc.tmac tmac/mdoc/doc-common \
+  tmac/mdoc/doc-ditroff tmac/mdoc/doc-nroff tmac/mdoc/doc-syms
+
 
 # Local Variables:
 # mode: makefile-automake

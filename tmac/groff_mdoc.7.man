@@ -646,7 +646,7 @@ to construct a man page from the following template.
 .Bd -literal -offset indent
 \&.\e" The following commands are required for all man pages.
 \&.Dd date
-\&.Dt page-topic [section-number [volume-name]]
+\&.Dt page-topic [section-identifier [volume-name]]
 \&.Os [package-or-operating system [version-or-release]]
 \&.Sh Name
 \&.Nm page-topic
@@ -877,15 +877,15 @@ manuals to automatically insert the current date when committing.
 This macro is neither callable nor parsed.
 .
 .
-.It Li .Dt Ar page-topic Op Ar section-number Op Ar section-name
+.It Li .Dt Ar page-topic Op Ar section-identifier Op Ar section-name
 .
 .Ar page-topic
 is the subject of the man page.
 .
 A
-.Ar section-number
-that is an integer in the range 1\[en]9
-or one of the words
+.Ar section-identifier
+that begins with an integer in the range 1\[en]9
+or is one of the words
 .Ql unass ,
 .Ql draft ,
 or

@@ -634,9 +634,9 @@ static void usage(FILE *stream)
   if (stdout == stream) {
     fputs(
 "\n"
-"Translate the output of GNU troff(1) into a CaPSL and VDM format\n"
-"suitable for Canon LBP-4 and LBP-8 printers.  See the grolbp(1) manual"
-" page.\n",
+"Translate the output of troff(1) into a CaPSL and VDM format suitable"
+"\n"
+"for Canon LBP-4 and LBP-8 printers.  See the grolbp(1) manual page.\n",
 	  stream);
     exit(EXIT_SUCCESS);
   }

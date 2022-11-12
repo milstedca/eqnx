@@ -1,5 +1,11 @@
 2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grolbp/lbp.cpp (usage): Tweak usage message.  The
+	output driver should be perfectly capable of handling output
+	from non-GNU (but device-independent) troffs.
+
+2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grops/ps.cpp (usage): Employ more informative
 	metasyntactic variable names in usage message.  Also summarize
 	program's function and direct reader to man page if help

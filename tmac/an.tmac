@@ -1,4 +1,4 @@
-.\" an.tmac
+.\" groff implementation of man(7) package
 .\"
 .\" Copyright (C) 1989-2022 Free Software Foundation, Inc.
 .\"      Written by James Clark (jjc@jclark.com)
@@ -278,7 +278,7 @@
 .
 .  ds an*topic "\\$1\"
 .  if \\n[CT] .stringup an*topic
-.  ds an-section "\\$2\"
+.  ds an*section "\\$2\"
 .  ie (\\n[.$] > 4) .ds an-extra3 "\\$5\"
 .  el \{\
 .    \" Simulate switch/case in roff.
@@ -446,8 +446,8 @@
 .  ds an-ellipsis \|.\|.\|.\|\"
 .  \" an*page-ref-string is left unmodified for internal use, such as
 .  \" PDF bookmarks.
-.  ds an*page-ref-string \\*[an*topic](\\*[an-section])\"
-.  ds an-pageref \\*[an*topic-abbv](\\*[an-section])\"
+.  ds an*page-ref-string \\*[an*topic](\\*[an*section])\"
+.  ds an-pageref \\*[an*topic-abbv](\\*[an*section])\"
 .  nr an-header-width \\w'\\*[an-pageref]\\*[an-extra3]\\*[an-pageref]'
 .  while (\\n[an-header-width] >= \\n[.lt]) \{\
 .    \" The page topic is too long; trim some bits out of the middle.
@@ -470,12 +470,12 @@
 .    length an*topic-new-length \\*[an*topic-string]
 .    ie (\\n[an*topic-new-length] >= \\n[an*topic-length]) \
 .      break
-.    ds an-pageref \\*[an*topic-abbv](\\*[an-section])\"
+.    ds an-pageref \\*[an*topic-abbv](\\*[an*section])\"
 .    nr an-header-width \
        \\w'\\*[an-pageref]\\*[an-extra3]\\*[an-pageref]'
 .  \}
 .  ds an-pageref \\*[an-lic]\f[\\*[MF]]\\*[an*topic-abbv]\\*[an-ic]\
-\f[R](\\*[an-section])\"
+\f[R](\\*[an*section])\"
 .  rr an*topic-length-prev
 .  rr an-mark1
 .  rr an-mark2

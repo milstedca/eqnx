@@ -1,5 +1,10 @@
 2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac: Trivially refactor.  Rename `an-section` to
+	`an*section`.
+
+2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grolbp/lbp.cpp (usage): Tweak usage message.  The
 	output driver should be perfectly capable of handling output
 	from non-GNU (but device-independent) troffs.

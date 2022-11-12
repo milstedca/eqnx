@@ -1,5 +1,11 @@
 2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/doc.am (doc/groff-man-pages.pdf)
+	(doc/groff-man-pages.utf8.txt): Add dependencies on new
+	`TMAC_PACKAGE_MAN` and `TMAC_PACKAGE_MDOC` convenience macros.
+
+2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/tmac.am (TMAC_PACKAGE_MAN, TMAC_PACKAGE_MDOC): Define
 	convenience macros for in-tree documents to depend on.
 

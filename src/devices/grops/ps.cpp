@@ -1873,11 +1873,18 @@ int main(int argc, char **argv)
 static void usage(FILE *stream)
 {
   fprintf(stream,
-"usage: %s [-glm] [-b n] [-c n] [-F dir] [-I dir] [-p paper-format]"
-" [-P prologue-file] [-w n] [file ...]\n"
+"usage: %s [-glm] [-b brokenness-flags] [-c num-copies]"
+" [-F font-directory] [-I inclusion-directory] [-p paper-format]"
+" [-P prologue-file] [-w rule-thickness] [file ...]\n"
 "usage: %s {-v | --version}\n"
 "usage: %s --help\n",
 	  program_name, program_name, program_name);
+  if (stdout == stream)
+    fputs(
+"\n"
+"Translate the output of troff(1) into PostScript.  See the grops(1)\n"
+"manual page.\n",
+	  stream);
 }
 
 // Local Variables:

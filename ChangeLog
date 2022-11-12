@@ -1,3 +1,10 @@
+2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/devices/grops/ps.cpp (usage): Employ more informative
+	metasyntactic variable names in usage message.  Also summarize
+	program's function and direct reader to man page if help
+	explicitly requested (inferred from identity of output stream).
+
 2022-11-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac: Trivially refactor for congruence with

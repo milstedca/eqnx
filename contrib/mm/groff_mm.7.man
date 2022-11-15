@@ -4365,9 +4365,19 @@ l l.
 .IP
 Default is\~0.
 .
+.
 .TP
 .B O
-Page offset, only for command-line settings.
+defines the page offset of the document,
+and must be set from the command line.
+.
+A scaling unit should be appended.
+.
+The default
+.RB is\~ \&.75i
+on terminal devices and
+.B \&.963i
+on typesetters.
 .
 .
 .TP

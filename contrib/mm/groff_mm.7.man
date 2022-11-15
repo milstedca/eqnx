@@ -4705,7 +4705,7 @@ of Lund, Sweden.
 .SH "See also"
 .\" ====================================================================
 .
-.UR https://tkurtbond\:.github\:.io/\:troff/\:mm-all\:.pdf
+.UR https://tkurtbond\:.github\:.io/\:troff/\:mm\-all\:.pdf
 .I MM \- A Macro Package for Generating Documents
 .UE ,
 the DWB\~3.3

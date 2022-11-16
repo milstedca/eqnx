@@ -318,6 +318,11 @@ elsif (exists($ppsz{$papersz}))
 {
     @defaultmb=@mediabox=(0,0,$ppsz{$papersz}->[0],$ppsz{$papersz}->[1]);
 }
+elsif (substr($papersz,-1) eq 'l' and exists($ppsz{substr($papersz,0,-1)}))
+{
+    # Note 'legal' ends in 'l' but will be caught above
+    @defaultmb=@mediabox=(0,0,$ppsz{substr($papersz,0,-1)}->[1],$ppsz{substr($papersz,0,-1)}->[0]);
+}
 
 my (@dt)=localtime($ENV{SOURCE_DATE_EPOCH} || time);
 my $dt=PDFDate(\@dt);

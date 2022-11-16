@@ -1,5 +1,12 @@
 2022-11-16  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
+	* src/devices/gropdf/gropdf.pl: If the argument to the paper
+	format option '-p' matches a recognized format but includes a
+	trailing 'L' or 'l' ("legalL" or "a4l", for example), rotate the
+	document's MediaBox.
+
+2022-11-16  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
 	* src/devices/gropdf/gropdf.pl: Fix incorrect hotspot placement
 	if page is in landscape orientation.
 	(FixRect): Perform coordinate transform if page is rotated.

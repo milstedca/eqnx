@@ -179,7 +179,7 @@
 	(do_sprintf): Declare lists of valid format conversion
 	specifiers and modifiers explicitly instead of as happenstance
 	literals.  Recast diagnostic messages to refer to "invalid", not
-	"bad" input; refer to input keyword correct as "sprintf" (not
+	"bad" input; refer to input keyword correctly as "sprintf" (not
 	"snprintf"); and report the identity of the invalid conversion
 	specifier we reject.
 

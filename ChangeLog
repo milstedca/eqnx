@@ -1,3 +1,13 @@
+2022-11-16  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	* src/devices/gropdf/gropdf.pl: Fix incorrect hotspot placement
+	if page is in landscape orientation.
+	(FixRect): Perform coordinate transform if page is rotated.
+	(Rotate): New function performs relevant trigonometry.
+
+	Fixes <https://savannah.gnu.org/bugs/?63380>.  Thanks to Blake
+	McBride for the report.
+
 2022-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/e.tmac: Integrate better with papersize.tmac by no longer

@@ -1491,6 +1491,22 @@ sub FixRect
     return if !defined($rect);
     $rect->[1]=GraphY($rect->[1]);
     $rect->[3]=GraphY($rect->[3]);
+
+    if ($rot)
+    {
+	($rect->[0],$rect->[1])=Rotate($rect->[0],$rect->[1]);
+	($rect->[2],$rect->[3])=Rotate($rect->[2],$rect->[3]);
+    }
+}
+
+sub Rotate
+{
+    my ($tx,$ty)=(@_);
+    my $theta=rad($rot);
+
+    ($tx,$ty)=(d3($tx * cos(-$theta) - $ty * sin(-$theta)),
+	       d3($tx * sin( $theta) + $ty * cos( $theta)));
+    return($tx,$ty);
 }
 
 sub GetPoints

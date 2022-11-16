@@ -1,3 +1,7 @@
+2022-11-16
+
+	* om.tmac (PAPER): Adjust #R_MARGIN to work with papersize.tmac.
+
 2022-10-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* om.tmac (FORCE_RECTO): Use backslash before newline when

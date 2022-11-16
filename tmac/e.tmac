@@ -2187,7 +2187,7 @@
 .nr es 0.5v			\" equation pre/postspacing
 .if \n(es<\n(.V .nr es \n(.V
 .wh 0 @h			\" set header
-.nr $l \n(.lu			\" line length
+.nr $l \n(.lu			\" line length (of column)
 .nr _L \n(.lu			\" line length of page
 .nr $c 1			\" current column number
 .nr $f 1			\" footnote number
@@ -2199,6 +2199,9 @@
 .ds rq \(rq\"			\" right quote
 .em @z
 .
+.\" Set line length and get .lt side effect.
+.if t .ll \n(_Lu
+.if n .ll 6.0i
 .
 .\"		*** FOREIGN LETTERS AND SPECIAL CHARACTERS ***
 .
@@ -2228,8 +2231,6 @@
 .ds qe \s-2\v'0.45m'\z\(em\v'-0.625m'\z\(em\v'-0.625m'\(em\v'0.8m'\s0\h'-0.1m'\v'-0.05m'\(br\v'0.05m'\h'0.1m'
 .ds qa \z\e\h'0.35m'\z\(sl\h'-0.33m'\v'-0.3m'\s-4\(em\s0\v'0.3m'\h'0.15m'
 .rm #h #v
-.ll 6.0i
-.lt 6.0i
 .
 .de @U
 .do @err the '\\$1' macro is not supported by this version of 'me'

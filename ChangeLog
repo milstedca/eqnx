@@ -1,3 +1,12 @@
+2022-11-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/e.tmac: Integrate better with papersize.tmac by no longer
+	forcing line (and title) length to 6 inches for typesetters on
+	initialization.  Gather default line length from output device
+	description, possibly modified later (by other macro file or
+	input).  No change to terminal ("nroff mode") output.
+	* NEWS: Add item.
+
 2022-11-16  Peter Schaffter <peter@schaffter.ca>
 
 	* tmac/papersize.tmac: If a paper format has been selected,

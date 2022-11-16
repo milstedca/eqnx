@@ -121,12 +121,11 @@ DVI,
 or other formats,
 or for display to a terminal.
 .
-Formatting commands can be low-level typesetting primitives or macros
-from a supplied package.
+Formatting commands can be low-level typesetting primitives,
+macros from a supplied package,
+or user-defined macros.
 .
-Users may also write their own macros.
-.
-All three approaches may be combined.
+All three approaches can be combined.
 .
 .
 .P

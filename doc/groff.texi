@@ -593,9 +593,9 @@ man page.
 @code{groff} (GNU @code{roff}) is a typesetting system that reads plain
 text input files that include formatting commands to produce output in
 PostScript, PDF, HTML, DVI, or other formats, or for display to a
-terminal.  Formatting commands can be low-level typesetting primitives
-or macros from a supplied package.  Users may also write their own
-macros.  All three approaches can be combined.
+terminal.  Formatting commands can be low-level typesetting primitives,
+macros from a supplied package, or user-defined macros.  All three
+approaches can be combined.
 
 A reimplementation and extension of the typesetter from @acronym{AT&T}
 Unix, @code{groff} is present on most @acronym{POSIX} systems owing to

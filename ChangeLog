@@ -1,3 +1,10 @@
+2022-11-16  Peter Schaffter <peter@schaffter.ca>
+
+	* tmac/papersize.tmac: If a paper format has been selected,
+	smuggle right margin setting to mom(7) if not overridden by the
+	user.  See discussion in <https://lists.gnu.org/archive/html/\
+	groff/2022-11/msg00081.html> and (some) follow-ups.
+
 2022-11-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (doc/groff-man-pages.pdf)

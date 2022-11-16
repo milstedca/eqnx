@@ -145,9 +145,12 @@
 .    tmc papersize.tmac: warning: ignoring unrecognized paper format
 .    tm1 " '\*[paper-arg]'
 .  \}
-.  el \
+.  el \{\
 .    if !r LL \
 .      nr LL \n[.l]u  \" for ms, mdoc, man
+.    if !r #R_MARGIN \
+.      nr R_MARGIN 1i \" for mom
+.  \}
 .\}
 .
 .cp \n[*groff_papersize_tmac_C]

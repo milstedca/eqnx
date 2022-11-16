@@ -2932,27 +2932,48 @@ and
 extended argument list macros are discussed below.
 .
 .
-.Ss "No-Op or Normal Text Macro"
+.Ss "Normal text macro"
 .
-The
-.Ql .No
-macro can be used in a macro command line for parameters that should
-.Em not
-be formatted.
-Be careful to add
-.Ql \e&
-to the word
 .Ql \&No
-if you really want that English word (and not the macro) as a parameter.
-.Pp
-.Dl Usage: .No Ao argument Ac ...
-.Pp
-.Bl -tag -width ".Li .No\ test\ Ta\ with\ Ta\ tabs" -compact -offset 15n
-.It Li ".No test Ta with Ta tabs"
-.No test Ta with Ta tabs
-.El
-.Pp
+formats subsequent argument(s) normally,
+ending the effect of
+.Ql \&Em
+and similar.
 .
+Parsing is
+.Em not
+suppressed,
+so you must prefix words like
+.Ql \&No
+with
+.Ql \e&
+to avoid their interpretation as
+.Xr mdoc
+macros.
+.
+.
+.Pp
+.Dl Usage: .No Ar argument No ...
+.
+.
+.Pp
+.Bl -tag -width ".Li .Em\ Use\ caution\ No\ here\ ." \
+-compact -offset 15n
+.It Li ".Em Use caution No here ."
+\[->]
+.Em Use caution No here .
+.It Li ".Em No dogs allowed ."
+\[->]
+.\" We cheat here to prevent a diagnostic warning.  We want to
+.\" illustrate output that may surprise the novice.
+.Em \&No No dogs allowed .
+.It Li ".Em \e&No dogs allowed ."
+\[->]
+.Em \&No dogs allowed .
+.El
+.
+.
+.Pp
 The default width is 12n.
 .
 .

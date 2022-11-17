@@ -360,6 +360,16 @@ o The e (me) and s (ms) macro packages now offer a `PF` macro,
   supporting the pic(1) preprocessor's "flyback" feature.  Thanks to
   Dave Kemper.
 
+o The m (mm) macro package now adapts to the paper format selected when
+  the macro file "papersize.tmac" is used (by specifying the groff "-d
+  paper" command-line option).  A consequence is that "groff -mm" and
+  "groff -d paper=letter -mm" are _not_ synonymous (when groff is
+  configured to use U.S. letter as the default paper format), because
+  groff mm(7) uses a page offset of 0.963 inches on typesetters for
+  compatibility with DWB mm.  If the `W` or `O` registers are also set
+  on the command line, the line length and page offset, respectively,
+  are not overridden.
+
 o The m (mm) macro package now recognizes a `V` register to set the
   vertical spacing for the document.  Like the existing `S`, it must be
   set from the command line.  Further, both registers are interpreted

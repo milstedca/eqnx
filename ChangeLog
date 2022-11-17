@@ -1,3 +1,19 @@
+2022-11-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/papersize.tmac: Improve integration with mm(7) macro
+	package.  If a paper format has been selected, set `W` register
+	to new line length (if not already set on command line).
+	Similarly, set `O` register to 1 inch for the symmetric
+	horizontal margins otherwise assumed by this macro file.  This
+	means that "groff -mm" and "groff -dpaper=letter -mm" are _not_
+	synonymous (when groff is configured to use U.S. letter as the
+	default paper format), because groff mm(7) uses a page offset of
+	0.963 inches on typesetters for compatibility with DWB mm.
+	* NEWS: Add item.
+
+	See discussion in <https://lists.gnu.org/archive/html/\
+	groff/2022-11/msg00081.html> and (some) follow-ups.
+
 2022-11-16  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	* src/devices/gropdf/gropdf.pl: If the argument to the paper

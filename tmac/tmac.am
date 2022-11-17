@@ -187,6 +187,7 @@ tmac_TESTS = \
   tmac/tests/doc_D-places-page-numbers-correctly.sh \
   tmac/tests/doc_Lk-respect-sentence-ending-punctuation.sh \
   tmac/tests/doc_Mt-works.sh \
+  tmac/tests/doc_Nm-works.sh \
   tmac/tests/doc_accept-mixed-case-section-headings.sh \
   tmac/tests/doc_do-not-loop-infinitely-when-shortening-headers.sh \
   tmac/tests/doc_indents-correctly.sh \

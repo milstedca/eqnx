@@ -1,5 +1,15 @@
 2022-11-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Add tests for `Nm` macro.
+
+	* tmac/tests/doc_Nm-works.sh: Do it.  Test regression reported
+	in Savannah #63377.  Also ensure that we handle the case where
+	multiple `Nm` items are declared in the "Name" section (as might
+	happen in library man pages).
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-11-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/papersize.tmac: Improve integration with mm(7) macro
 	package.  If a paper format has been selected, set `W` register
 	to new line length (if not already set on command line).

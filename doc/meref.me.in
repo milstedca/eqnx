@@ -34,9 +34,6 @@
 .\" Modified by jjc@jclark.com and g.branden.robinson@gmail.com for
 .\" groff.
 .\"UC 7
-.if t .ll 6.5i
-.if t .lt 6.5i
-.nr pp 10
 .nr fi 1n
 .nr sx 0
 .\"pn 0
@@ -2013,6 +2010,8 @@ Vietnamese.
 Preferable \*G alternatives
 are presented alongside them in the following table.
 .sp
+.\" dead-tree pagination
+.ne 2v
 .ta 5n +\w'There exists'u+2n +\w'Usage'u+3n +\w'Example'u+3n \
 +\w'Output'u+3n +\w'groff'u+3n +\w'Output'u+3n
 .nf

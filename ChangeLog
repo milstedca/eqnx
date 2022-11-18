@@ -1,5 +1,13 @@
 2022-11-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/meref.me.in: Drop unnecessary initialization parameters
+	from document.  The line and title length do not need to be set
+	in troff mode; the document lays out fine for a variety of paper
+	formats if these are not forced to 6.5 inches.  Also drop
+	redundant initialization of `pp` register.
+
+2022-11-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Fix Savannah #63377.
 
 	* tmac/doc.tmac (Nm): Properly leverage new

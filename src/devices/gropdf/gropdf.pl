@@ -2289,7 +2289,8 @@ sub Msg
     my ($fatal,$msg)=@_;
 
     print STDERR "$prog:";
-    print STDERR "$env{SourceFile}: " if exists($env{SourceFile});
+    print STDERR "$env{SourceFile}:" if exists($env{SourceFile});
+    print STDERR " ";
 
     if ($fatal)
     {

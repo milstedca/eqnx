@@ -45,15 +45,6 @@ my $lct=0;
 my $foundry='';	# the default foundry
 my $notFoundFont=0;
 
-# We hard-code the PostScript Level 2 base 35 fonts because we don't
-# want to copy any others from the devps font directory to devpdf's.
-my @base35Fonts = (
-    "AB", "ABI", "AI", "AR", "BMB", "BMBI", "BMI", "BMR", "CB", "CBI",
-    "CI", "CR", "HB", "HBI", "HI", "HNB", "HNBI", "HNI", "HNR", "HR",
-    "NB", "NBI", "NI", "NR", "PB", "PBI", "PI", "PR", "S", "TB", "TBI",
-    "TI", "TR", "ZCMI", "ZD",
-);
-
 if ($check)
 {
     CheckFoundry("Foundry.in");
@@ -124,7 +115,7 @@ sub LoadFoundry
 
 	    my $gfont=($foundry eq '')?$r[0]:"$foundry-$r[0]";
 
-	    if ($r[2] eq '' && grep /^$r[0]$/, @base35Fonts)
+	    if ($r[2] eq '')
 	    {
 		# Don't run afmtodit; just copy the groff font
 		# description file for grops.
@@ -151,6 +142,7 @@ sub LoadFoundry
 			}
 		    }
 		    Notice("copied grops font $gfont") if $gotf;
+
 		}
 		else
 		{

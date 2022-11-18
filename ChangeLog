@@ -1,5 +1,20 @@
 2022-11-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Fix Savannah #63377.
+
+	* tmac/doc.tmac (Nm): Properly leverage new
+	`doc-in-name-section` variable.  Set page topic `doc-topic-name`
+	to the first encountered argumentful `Nm` call in the "Name"
+	section while handling other "Name" section concerns, instead of
+	later after deciding we're not in the "Synopsis" section.
+	Problem caused by me when fixing antediluvian mdoc bug in commit
+	0d85615c62, 5 November.
+
+	Fixes <https://savannah.gnu.org/bugs/?63380>.  Thanks to John
+	Gardner for the report.
+
+2022-11-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Add tests for `Nm` macro.
 
 	* tmac/tests/doc_Nm-works.sh: Do it.  Test regression reported

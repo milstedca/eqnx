@@ -1041,8 +1041,11 @@
 .    ds doc-macro-name Nm
 .    ie \n[.$] \{\
 .      \" Handle '.Nm ...' in "Name" section: don't use a special font.
-.      ie \n[doc-in-name-section] \
+.      ie \n[doc-in-name-section] \{\
+.        ie "\*[doc-topic-name]"" \
+.          ds doc-topic-name "\$1\"
 .        No \$@
+.      \}
 .      el \
 .        doc-parse-args \$@
 .    \}
@@ -1101,8 +1104,6 @@
 .          \}
 .          ti -\n[doc-indent-synopsis]u
 .      \}\}
-.      if "\*[doc-topic-name]"" \
-.        ds doc-topic-name "\*[doc-arg\n[doc-arg-ptr]]
 .
 .      nop \*[doc-Nm-font]\c
 .    \}

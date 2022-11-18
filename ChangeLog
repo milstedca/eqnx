@@ -1,5 +1,10 @@
 2022-11-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/gropdf/gropdf.pl: Throw warning if paper format is
+	unrecognized.
+
+2022-11-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/gropdf/gropdf.pl (Msg): Align more closely with
 	diagnostic message format prescribed by GNU Coding Standards:
 	emit space (only) prior to message severity.

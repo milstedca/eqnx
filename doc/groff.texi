@@ -5799,8 +5799,12 @@ after the decimal point are optional.  Measurement expressions include
 @cindex units, basic, converstion to
 @cindex conversion to basic units
 Measurements are scaled by the scaling unit and stored internally (with
-any fractional part discarded) in basic units.  The only constraint
-on the basic unit is that it is at least as small as any other unit.
+any fractional part discarded) in basic units.
+@cindex device resolution, obtaining in the formatter
+@cindex resolution, device, obtaining in the formatter
+The device resolution can therefore be obtained by storing a value of
+@samp{1i} to a register.  The only constraint on the basic unit is that
+it is at least as small as any other unit.
 @c That's a fib.  A device resolution of around 2^31 would surely also
 @c cause problems.  But nobody does that.
 

@@ -752,6 +752,10 @@ Measurements are scaled by the scaling unit and stored internally
 (with any fractional part discarded)
 in basic units.
 .
+The device resolution can therefore be obtained by storing a value of
+.RB \[lq] 1i \[rq]
+to a register.
+.
 The only constraint on the basic unit is that it is at least as small as
 any other unit.
 .\" That's a fib.  A device resolution of around 2^31 would surely also

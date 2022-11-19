@@ -94,6 +94,11 @@
 .ul
 Eric P. Allman
 .sp
+Project INGRES
+Electronics Research Laboratory
+University of California, Berkeley
+Berkeley, California  94720
+.sp 2
 .i "Adapted for \fR\*(UG\fP by James Clark and G.\& Branden Robinson"
 .ce 0
 .sp 4
@@ -191,17 +196,13 @@ but should not be changed.
 Macros with names of the form
 .b $ \c
 .bi x
-are
-.i hooks,
-called internally by \*(ME,
+are called internally by \*(ME
 and can be redefined
 to alter their function.
 This may be a sensitive operation;
 look at the macro definition in the
 .i e.tmac
 file before changing it.
-If you don't require a given hook,
-(re)define it as empty instead of removing it.
 .pp
 Objects in \*(ME
 follow a rigid naming convention.
@@ -224,9 +225,6 @@ and avoid names starting with
 The names employed
 by any preprocessors in use
 should also not be repurposed.
-.\" dead-tree pagination
-.br
-.ne 8v
 .sh 1 "Paragraphing"
 .TL
 .b .lp
@@ -497,8 +495,10 @@ times\~\c
 .i B
 .i n
 .DE
-This hook macro,
-normally empty,
+This
+.i hook
+macro,
+normally undefined,
 is called automatically
 by
 .b .sh
@@ -2414,11 +2414,12 @@ and a square \(sq labels \*G extensions.
 \e\(ti	F\(sc\(sq	unbreakable word space
 .)l
 .if n .)c
-.ds $H \" empty
 .\" If we add material after this point, leave multi-column mode.  But
 .\" don't do so if there is no further content, because if one column is
-.\" already full, `1c` will produce an unnecessary empty page.
+.\" already full, `1c` will produce an unnecessary empty page with the
+.\" `$H` table header.
 .\"if t .1c
+.rm $H
 .\" Local Variables:
 .\" mode: nroff
 .\" End:

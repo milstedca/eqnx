@@ -2171,39 +2171,17 @@ see
 .SH Availability
 .\" ====================================================================
 .
-Information on how to get
+Obtain links to
 .I groff
-and related information is available at the
+releases for download,
+its source repository,
+discussion mailing lists,
+a support ticket tracker,
+and further information from the
 .UR http://\:www\:.gnu\:.org/\:software/\:groff
-groff page of the GNU website
+.I groff
+page of the GNU website
 .UE .
-.
-.
-.P
-Three
-.I groff
-mailing lists are available
-for
-.MT bug\-groff@\:gnu\:.org
-bug tracker activity
-.ME
-(read-only),
-.
-.MT groff@\:gnu\:.org
-general discussion
-.ME ,
-and
-.
-.MT groff\-commit@\:gnu\:.org
-source code repository commit activity
-.ME
-(read-only).
-.
-Details of repository access and more can be found in the file
-.I README
-in the top-level directory of the
-.I groff
-source distribution.
 .
 .
 .P

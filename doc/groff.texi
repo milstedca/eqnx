@@ -12072,9 +12072,9 @@ sequence immediately adjacent to the last character of the string.
 .ds H2O H\v'+.3m'\s'-2'2\v'-.3m'\s0O\" water
 @endExample
 
-It is good style to end string definitions (and appendments; see below)
-with a comment, even an empty one, to prevent unwanted space from
-creeping into them during source document maintenance.
+Ending string definitions (and appendments) with a comment, even an
+empty one, prevents unwanted space from creeping into them during source
+document maintenance.
 
 @Example
 .ds author Alice Pleasance Liddell\"

@@ -754,6 +754,8 @@ in basic units.
 .
 The only constraint on the basic unit is that it is at least as small as
 any other unit.
+.\" That's a fib.  A device resolution of around 2^31 would surely also
+.\" cause problems.  But nobody does that.
 .
 .
 .P
@@ -1211,6 +1213,8 @@ The
 escape sequence tests its argument for validity as a numeric expression.
 .
 .
+.br
+.ne 2v
 .P
 A register interpolated as an operand in a numeric expression must have
 an Arabic format;
@@ -1428,12 +1432,11 @@ and
 requests,
 respectively.
 .
-When writing a macro,
+Within a macro definition,
 .\" you might wish to know
-use the
+register
 .B .br
-register to determine
-which control character was used to call it.
+indicates the control character used to call it.
 .\" END Keep (roughly) parallel with groff.texi node "Control
 .\" Characters".
 .
@@ -5079,11 +5082,11 @@ the second argument to these requests consumes the remainder of the
 input line,
 including trailing spaces.
 .
-It is good style to end string definitions
+Ending string definitions
 (and appendments)
 with a comment,
 even an empty one,
-to prevent unwanted space from creeping into them during source document
+prevents unwanted space from creeping into them during source document
 maintenance.
 .
 .
@@ -6736,8 +6739,6 @@ and device-independent intermediate output formats described by
 CSTR\~#54 are documented in
 .MR groff_diff @MAN7EXT@ .
 .
-.
-.P
 .I groff
 provides an AT&T compatibility mode;
 see

@@ -29,7 +29,7 @@
 	Problem caused by me when fixing antediluvian mdoc bug in commit
 	0d85615c62, 5 November.
 
-	Fixes <https://savannah.gnu.org/bugs/?63380>.  Thanks to John
+	Fixes <https://savannah.gnu.org/bugs/?63377>.  Thanks to John
 	Gardner for the report.
 
 2022-11-17  G. Branden Robinson <g.branden.robinson@gmail.com>

@@ -1050,7 +1050,7 @@ preprocessor is not yet available in
 .TS
 box, center, tab (^);
 c | c | c
-CfCB | CfCB | CfCB.
+CfCR | CfCR | CfCR.
 preprocessor^starting token^ending token
 =
 @g@chem^.cstart^.cend

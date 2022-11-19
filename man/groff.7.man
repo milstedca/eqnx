@@ -4135,63 +4135,6 @@ to the stream named
 .LE
 .
 .
-.\" TODO: This doesn't really belong here; these aren't part of the
-.\" (g)roff _language_.  groff(1) may be a better place.
-.br
-.ne 6v
-.\" ====================================================================
-.SH "Preprocessor tokens"
-.\" ====================================================================
-.
-Most preprocessors enclose content between a pair of characteristic
-tokens.
-.
-Such a token must occur at the beginning of an input line and use the
-dot control character.
-.
-Spaces and tabs must not follow the control character or precede the
-end of the input line.
-.
-Deviating from these rules defeats a token's recognition by the
-preprocessor.
-.
-Tokens are generally preserved in preprocessor output and interpreted as
-macro calls subsequently by
-.IR @g@troff .
-.
-The
-.I @g@ideal
-preprocessor is not yet available in
-.IR groff .
-.
-.
-.P
-.TS
-box, center, tab (^);
-c | c | c
-CfCB | CfCB | CfCB.
-preprocessor^starting token^ending token
-=
-@g@chem^.cstart^.cend
-@g@eqn^.EQ^.EN
-grap^.G1^.G2
-@g@grn^.GS^.GE
-.\" Keep the .IF line below the @g@ideal line.
-@g@ideal^.IS^.IE
-^^.IF
-.\" Keep the .PF line below the @g@pic line.
-@g@pic^.PS^.PE
-^^.PF
-^^.PY
-@g@refer^.R1^.R2
-@g@tbl^.TS^.TE
-_
-glilypond^.lilypond start^.lilypond stop
-gperl^.Perl start^.Perl stop
-gpinyin^.pinyin start^.pinyin stop
-.TE
-.
-.
 .\" ====================================================================
 .SH "Escape sequence short reference"
 .\" ====================================================================

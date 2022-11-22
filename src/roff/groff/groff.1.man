@@ -2209,17 +2209,23 @@ supports only this
 .\" ====================================================================
 .
 .I groff
-was written by
+(both the front-end command and the overall system)
+was primarily written by
 .MT jjc@\:jclark\:.com
 James Clark
 .ME .
 .
-This document was rewritten,
-enhanced,
-and put under the GNU FDL license in
-2002 by
+Contributors to this document include Clark,
+Trent A.\& Fisher,
+.MT wl@gnu.org
+Werner Lemberg
+.ME ,
 .MT groff\-bernd.warken\-72@\:web\:.de
 Bernd Warken
+.ME ,
+and
+.MT g.branden\:.robinson@\:gmail\:.com
+G.\& Branden Robinson
 .ME .
 .
 .

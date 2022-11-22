@@ -220,9 +220,9 @@ the default line thickness is 8\~milliinches.
 .
 The line thickness thus specified takes effect only when a
 non-negative line thickness has not been specified by use of the
-.B thickness
+.B \%thickness
 attribute or by setting the
-.B linethick
+.B \%linethick
 variable.
 .
 .
@@ -447,7 +447,7 @@ tab,
 or newline)
 .\" XXX even crazy control characters, ugh--src/preproc/pic/lex.cpp:1266
 may be used as alternative delimiters,
-in which case any given pair must be identical.
+in which case the members of a given pair must be identical.
 .
 Strings are recognized within delimiters of either kind;
 they may contain the delimiter character or unbalanced braces.
@@ -524,9 +524,10 @@ can be any character not occurring in
 .IR if-false .
 .
 .TP
-\fBprint\fR \fIarg\fR\|.\|.\|.
-Concatenate the arguments and print as a line on the standard error
-stream.
+.BI print\~ arg\c
+\~.\|.\|.
+Concatenate and write arguments to the standard error stream followed by
+a newline.
 .
 Each
 .I arg
@@ -537,12 +538,13 @@ or text.
 This is useful for debugging.
 .
 .TP
-\fBcommand\fR \fIarg\fR\|.\|.\|.
+.BI command\~ arg\c
+\~.\|.\|.
 .\" Move right margin to indentation since we must indent more later.
 .RS
-Concatenate the arguments
-and pass them through as a line to
-.I troff
+Concatenate arguments
+and pass them as a line to
+.I troff \" generic
 or \*[tx].
 .
 Each
@@ -551,11 +553,8 @@ must be an expression,
 a position,
 or text.
 .
-This has a similar effect to a line beginning with
-.B .\&
-or
-.BR \[rs] ,
-but allows the values of
+.B command
+allows the values of
 .I pic
 variables to be passed to the formatter.
 .
@@ -578,6 +577,8 @@ produces
 x is 14.
 .EE
 .RE
+when formatted with
+.IR troff . \" generic
 .RE
 .
 .
@@ -586,10 +587,6 @@ x is 14.
 Pass
 .I command
 to a shell.
-.
-.I X
-can be any character not occurring in
-.IR command .
 .
 .
 .TP
@@ -692,24 +689,28 @@ its first character is interpreted as a delimiter.
 .RE
 .
 .
-.LP
-.B reset
-.br
-.ns
 .TP
-\fBreset\fI variable1\/\fR[\fB,\fR]\fI variable2 .\|.\|.
-Reset pre-defined variables
-.IR variable1 ,
-.I variable2
-\&.\|.\|.\& to their default values.
+.B reset
+.TQ
+.BI reset\~ pvar1\c
+.RB [ , ]\~\c
+.IR pvar2 \~.\|.\|.
+Reset predefined variables
+.IR pvar1 ,
+.I pvar2
+\&.\|.\|.\& to their default values;
+if no arguments are given,
+reset all predefined variables to their default values.
 .
-If no arguments are given,
-reset all pre-defined variables to their default values.
+Variable names may be separated by commas,
+spaces,
+or both.
 .
 Assigning a value to
 .B scale
-also causes all pre-defined variables that control dimensions to be
-reset to their default values times the new value of scale.
+also causes all predefined variables that control dimensions to be reset
+to their default values times the new value of
+.BR scale .
 .
 .
 .TP
@@ -736,30 +737,29 @@ This is deprecated in favour of
 .BR sprintf .
 .
 .TP
-.IB variable\  := \ expr
-This is similar to
+.IB var \~:=\~ expr
+.RS
+This syntax resembles variable assignment with
 .B =
-except
-.I variable
+except that
+.I var
 must already be defined,
 and
 .I expr
 will be assigned to
-.I variable
+.I var
 without creating a variable local to the current block.
 .
 (By contrast,
 .B =
-defines the variable in the current block if it is not already defined
-there,
+defines
+.I var
+in the current block if it is not already defined there,
 and then changes the value in the current block only.)
 .
 For example,
-the following:
-.
 .
 .RS
-.IP
 .EX
 .B .PS
 .B x = 3
@@ -773,16 +773,15 @@ the following:
 .EE
 .RE
 .
-.
-.IP
-prints
-.
+writes
 .
 .RS
-.IP
 .EX
-.B 5 3
+5 3
 .EE
+.RE
+.
+to the standard error stream.
 .RE
 .
 .
@@ -790,10 +789,10 @@ prints
 .SS Expressions
 .\" ====================================================================
 .
-The syntax for expressions has been significantly extended:
+The syntax for expressions has been significantly extended.
 .
 .
-.LP
+.P
 .IB  x\  \[ha]\  y
 (exponentiation)
 .br
@@ -1045,7 +1044,7 @@ an expression of the form
 .
 .
 .IP
-.BI sprintf(\[dq] format \[dq],\  arg ,\fR.\|.\|.\fB)
+.BI sprintf(\[dq] format \[dq],\~ arg ,\fR\~.\|.\|.\fB)
 .
 .
 .LP

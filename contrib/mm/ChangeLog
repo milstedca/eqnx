@@ -1,3 +1,12 @@
+2022-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* mse.tmac: Set `pg*footer-size` to four vees, not four basic
+	units; the latter is too small by orders of magnitude on
+	typesetting output devices.
+
+	Fixes <https://savannah.gnu.org/bugs/?63398>.  Thanks to Hans
+	Bezemer for the report.
+
 2022-11-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Regression-test Savannah #63398.

@@ -1,3 +1,12 @@
+2022-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Add unit tests for `MT/ME` and `UR/UE`.
+
+	* tmac/tests/an-ext_MT-works.sh:
+	* tmac/tests/an-ext_UR-works.sh: Do it.
+
+	* tmac/tmac.am (tmac_TESTS): Run tests.
+
 2022-11-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/gropdf/gropdf.pl: Throw warning if paper format is

@@ -1359,7 +1359,7 @@ calls as the link text.
 .
 An argument to
 .B .ME
-is placed at the end of the link text without intervening space.
+is placed after the link text without intervening space.
 .
 .I address
 may not be visible in the rendered document if hyperlinks are enabled
@@ -1369,6 +1369,12 @@ If they are not,
 .I address
 is set in angle brackets after the link text and before
 .I trailing-text.
+.
+If hyperlinking is enabled but there is no link text,
+.I address
+is formatted and hyperlinked
+.I without
+angle brackets.
 _ifstyle()dnl
 .
 .
@@ -1406,7 +1412,7 @@ as the link text.
 .
 An argument to
 .B .UE
-is placed at the end of the link text without intervening space.
+is placed after the link text without intervening space.
 .
 .I uri
 may not be visible in the rendered document if hyperlinks are enabled
@@ -1416,6 +1422,12 @@ If they are not,
 .I uri
 is set in angle brackets after the link text and before
 .I trailing-text.
+.
+If hyperlinking is enabled but there is no link text,
+.I uri
+is formatted and hyperlinked
+.I without
+angle brackets.
 _ifstyle()dnl
 .
 .

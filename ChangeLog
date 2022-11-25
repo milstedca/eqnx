@@ -1,5 +1,10 @@
 2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an-ext.tmac (SY, YS, mV): Remove `mA`, `mI`, and `mT`
+	registers when done with them.
+
+2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.h (character_exists):
 	* src/roff/troff/node.cpp (character_exists): Boolify.
 

@@ -1,5 +1,16 @@
 2022-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	tmac/an-ext.tmac: Refactor to reduce code size.
+
+	* tmac/an-ext.tmac: Refactor to reduce code size.  `UE` and `ME`
+	have nearly identical implementations so...
+
+	(mQ): Define new macro to perform the requisite actions, and...
+
+	(UE, ME): Make these into wrappers calling mQ.
+
+2022-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Add unit tests for `MT/ME` and `UR/UE`.
 
 	* tmac/tests/an-ext_MT-works.sh:

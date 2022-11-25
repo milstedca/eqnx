@@ -119,14 +119,17 @@
 .  rr mK
 ..
 .
-.\" Start URL.
-.de UR
-.  mV \\$1 \\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9
-..
 .
+.\" Emit hyperlink.  The first argument prefixes a URI scheme and colon
+.\" (e.g., "mailto:") but since Web URLs generally supply their own,
+.\" it is not used for those (but must be present to keep the argument
+.\" count consistent).  An optional second argument supplies trailing
+.\" punctuation after link text.  `ME` and `UE` call this.
+.de mQ
+.  ds mO mailto:\"
+.  if !'\\$1'\\*(mO' \
+.    ds mO \" empty
 .
-.\" End URL.
-.de UE
 .  ie \\n(mD&\\nU&\\n(mU \{\
 .    br
 .    di
@@ -135,9 +138,9 @@
 .    \" Has there been at least one input line of hyperlinked text?
 .    ie \\n(dn \{\
 .      if \\n(mH \
-\X^html:<a href="\\*(m1">^\c
+\X^html:<a href="\\*(mO\\*(m1">^\c
 .      if \\n(mY \
-\X^tty: link \\*(m1^\c
+\X^tty: link \\*(mO\\*(m1^\c
 .      \" Strip off the final newline of the diversion and emit it.
 .      do chop link-text-div
 .      do link-text-div
@@ -147,23 +150,40 @@
 .      if \\n(mY \
 \X^tty: link^\c
 .    \}
+.    \" If there was no link text, format and link the URI.
 .    el \{\
 .      if \\n(mH \
-\X^html:<a href="\\*(m1">\\*(m1</a>^\c
+\X^html:<a href="\\*(mO\\*(m1">\\*(m1</a>^\c
 .      if \\n(mY \
-\X^tty: link \\*(m1^\\*(m1\X^tty: link^\c
+\X^tty: link \\*(mO\\*(m1^\\*(m1\X^tty: link^\c
 .    \}
+.    do shift
 \&\\$*\"
 .  \}
+.  \" If no link support, format URI in angle brackets.  (The link text
+.  \" was already formatted normally by `mV`.)
 .  el \{\
 .    nh
-\\*(mL\\*(m1\\*(mR\\$1
-.    do shift
+\\*(mL\\*(m1\\*(mR\\$2
+.    do shift 2
 .    ie \n(.g .if \\n(.$ \&\\$*\"
-.    el .if \\n(.$>1 \&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9\"
+.    el .if \\n(.$>2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9\"
 .    hy \\n(mJ
 .  \}
 .  rr mD
+.  rm mO
+..
+.
+.
+.\" Start URL.
+.de UR
+.  mV \\$1 \\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9
+..
+.
+.
+.\" End URL.
+.de UE
+.  mQ https: \\$1 \\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9
 ..
 .
 .
@@ -175,43 +195,7 @@
 .
 .\" End email address.
 .de ME
-.  ie \\n(mD&\\nU&\\n(mU \{\
-.    br
-.    di
-.    ev
-.
-.    \" Has there been at least one input line of hyperlinked text?
-.    ie \\n(dn \{\
-.      if \\n(mH \
-\X^html:<a href="mailto:\\*(m1">^\c
-.      if \\n(mY \
-\X^tty: link mailto:\\*(m1^\c
-.      \" Strip off the final newline of the diversion and emit it.
-.      do chop link-text-div
-.      do link-text-div
-\c
-.      if \\n(mH \
-\X^html:</a>^\c
-.      if \\n(mY \
-\X^tty: link^\c
-.    \}
-.    el \{\
-.      if \\n(mH \
-\X^html:<a href="mailto:\\*(m1">\\*(m1</a>^\c
-.      if \\n(mY \
-\X^tty: link mailto:\\*(m1^\\*(m1\X^tty: link^\c
-.    \}
-\&\\$*\"
-.  \}
-.  el \{\
-.    nh
-\\*(mL\\*(m1\\*(mR\\$1
-.    do shift
-.    ie \n(.g .if \\n(.$ \&\\$*\"
-.    el .if \\n(.$>1 \&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9\"
-.    hy \\n(mJ
-.  \}
-.  rr mD
+.  mQ mailto: \\$1 \\$2 \\$3 \\$4 \\$5 \\$6 \\$7 \\$8 \\$9
 ..
 .
 .

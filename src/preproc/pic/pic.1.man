@@ -1159,41 +1159,34 @@ has been filled,
 so that the text will not be obscured by the filling.
 .
 .
-.LP
-Three additional modifiers are available to specify colored objects:
+.P
+Additional modifiers are available to draw colored objects:
 .BR outline [ d ]
 sets the color of the outline,
 .B shaded
 the fill color,
 and
-.B colo\fR[\fPu\fR]\fPr\fR[\fPed\fR]
+.BR colo [ u ] r [ ed ]
 sets both.
 .
-All three keywords expect a suffix specifying the color,
-as shown below.
-.
+All expect a subsequent string argument specifying the color.
 .
 .RS
-.LP
-.B circle shaded """green""" outline """black"""
+.EX
+circle shaded \[dq]green\[dq] outline \[dq]black\[dq]
+.EE
 .RE
 .
+Color is not yet supported in \*[tx] mode.
 .
-.LP
-Currently,
-color support isn't available in \*[tx] mode.
-.
-Predefined color names for
-.I groff
-are in the device macro files,
-for example
-.BR ps.tmac ;
-additional colors can be defined with the
-.B .defcolor
+Device macro files like
+.I ps.tmac
+declare color names;
+you can define additional ones with the
+.B defcolor
 request
-(see the manual page of
-.MR @g@troff @MAN1EXT@
-for more details).
+(see
+.MR groff @MAN7EXT@ ).
 .
 .
 .LP

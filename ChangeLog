@@ -1,5 +1,22 @@
 2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Refactor generation of "freeeuro.pfa" to make more
+	economical use of existing infrastructure, per a suggestion from
+	Deri James.  This also puts the file where gropdf's "download"
+	file can find it when running it in a separate build directory.
+	We use it to generate "groff-man-pages.pdf".
+
+	* font/devps/freeeuro.pfa: Rename this...
+	* font/devps/freeeuro.ps: ...to this.  We can now use the suffix
+	rule that also applies to "symbolsl.ps" and "zapfdr.ps".
+
+	* font/devps/devps.am (DEVPSFONTFILES): Move "freeeuro.pfa" from
+	here...
+	(DEVPSFONTFILES_GENERATED): ...to here.
+	(EXTRA_DIST): Ship the "new" "freeeuro.ps" file.
+
+2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devps/psstrip.sed: Stop stripping comment lines, in
 	general instead of preserving only ones that use the form in the
 	Document Structuring Coventions.  This way we won't strip

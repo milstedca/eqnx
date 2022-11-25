@@ -1,3 +1,11 @@
+2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devps/psstrip.sed: Stop stripping comment lines, in
+	general instead of preserving only ones that use the form in the
+	Document Structuring Coventions.  This way we won't strip
+	copyright notices, like Werner Lemberg's in the FreeEuro font.
+	Thanks to Deri James for pointing this out.
+
 2022-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	tmac/an-ext.tmac: Refactor to reduce code size.

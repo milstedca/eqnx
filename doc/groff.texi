@@ -5024,13 +5024,13 @@ Barnum.
 
 ``Barnum'' doesn't begin a sentence!  What to do?  Let us meet our first
 @dfn{escape sequence}, a series of input characters that give
-instructions to GNU @code{troff} instead of being copied as-is to output
-device glyphs.@footnote{This statement oversimplifes; there are escape
-sequences whose purpose is precisely to produce glyphs on the output
-device, and input characters that @emph{aren't} part of escape sequences
-can undergo a great deal of processing before getting to the output.}
-An escape sequence begins with the backslash character @code{\} by
-default, an uncommon character in natural language text, and is
+instructions to GNU @code{troff} instead of being used to construct
+output device glyphs.@footnote{This statement oversimplifes; there are
+escape sequences whose purpose is precisely to produce glyphs on the
+output device, and input characters that @emph{aren't} part of escape
+sequences can undergo a great deal of processing before getting to the
+output.} An escape sequence begins with the backslash character @code{\}
+by default, an uncommon character in natural language text, and is
 @emph{always} followed by at least one other character, hence the term
 ``sequence''.
 

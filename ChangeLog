@@ -1,5 +1,12 @@
 2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[doc]: Add make(1) dependency.
+
+	* doc/doc.am (doc/groff-man-pages.pdf): Add dependency on our
+	FreeEuro font since we embed it.
+
+2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Refactor generation of "freeeuro.pfa" to make more
 	economical use of existing infrastructure, per a suggestion from
 	Deri James.  This also puts the file where gropdf's "download"

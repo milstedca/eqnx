@@ -248,13 +248,14 @@ man-all: $(GROFF_MAN_PAGES_ALL)
 man-clean:
 	$(RM) $(GROFF_MAN_PAGES_ALL)
 
-# Many pages use tbl, a few use eqn, and soelim(1) uses pic.
+# Many pages use tbl, a few use eqn, and soelim(1) uses pic.  We also
+# need groff's FreeEuro font so we can embed it.
 #
 # We embed the fonts (-P-e) to (1) honor the current PDF standard, (2)
 # ensure consistent rendering of the document, and (3) exercise this
 # feature of gropdf.
 doc/groff-man-pages.pdf: $(GROFF_MAN_PAGES_ALL) eqn pic tbl \
-  $(TMAC_PACKAGE_MAN) $(TMAC_PACKAGE_MDOC)
+  $(TMAC_PACKAGE_MAN) $(TMAC_PACKAGE_MDOC) font/devps/freeeuro.pfa
 	$(GROFF_V)$(DOC_GROFF) -pet -mandoc -rC1 -rCHECKSTYLE=3 \
 	  -Tpdf -P-e \
 	  $(GROFF_MAN_PAGES1) \

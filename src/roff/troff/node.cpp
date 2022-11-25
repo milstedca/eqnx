@@ -5026,21 +5026,21 @@ node *make_node(charinfo *ci, environment *env)
     return make_glyph_node(ci, env);
 }
 
-int character_exists(charinfo *ci, environment *env)
+bool character_exists(charinfo *ci, environment *env)
 {
   if (ci->get_special_translation() != charinfo::TRANSLATE_NONE)
-    return 1;
+    return true;
   charinfo *tem = ci->get_translation();
   if (tem)
     ci = tem;
   if (ci->get_macro())
-    return 1;
+    return true;
   node *nd = make_glyph_node(ci, env, false /* don't want warnings */);
   if (nd) {
     delete nd;
-    return 1;
+    return true;
   }
-  return 0;
+  return false;
 }
 
 node *node::add_char(charinfo *ci, environment *env,

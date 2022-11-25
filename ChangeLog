@@ -1,5 +1,10 @@
 2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.h (character_exists):
+	* src/roff/troff/node.cpp (character_exists): Boolify.
+
+2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[doc]: Add make(1) dependency.
 
 	* doc/doc.am (doc/groff-man-pages.pdf): Add dependency on our

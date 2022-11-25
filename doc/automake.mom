@@ -214,7 +214,7 @@ various tools in the correct order.
 .PP
 Automake defines a set of special variables that are used to
 generate various build rules in the final Makefile.  Note however
-that if Automake's pre-defined rules are not enough, you still have
+that if Automake's predefined rules are not enough, you still have
 the possibility of adding handwritten standard `make' rules in a
 Makefile.am; these rules will be copied verbatim in the Makefile.in
 and then in the final Makefile.

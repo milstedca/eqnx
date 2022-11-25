@@ -924,7 +924,7 @@ An overview of GNU
 language syntax and features,
 including lists of all supported escape sequences,
 requests,
-and pre-defined registers,
+and predefined registers,
 can be found in
 .MR groff @MAN7EXT@ .
 .

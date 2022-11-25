@@ -484,7 +484,7 @@ is moved down if
 has a descender.
 .
 .B utilde
-is pre-defined using
+is predefined using
 .B uaccent
 as a tilde accent below the baseline.
 .

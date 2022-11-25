@@ -654,7 +654,8 @@ output devices support such inclusions;
 for all other drivers,
 the image is replaced with a rectangular border of the same size.
 .
-This macro file is automatically loaded at startup by the
+.I pspic.tmac
+is loaded at startup by the
 .I troffrc
 file.
 .

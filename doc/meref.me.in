@@ -2354,7 +2354,7 @@ and a square \(sq labels \*G extensions.
 \&.pl	M\(sc	set page length
 \&.pn	M\(sc	set next page number
 \&.po	M\(sc	set page offset
-\en(po	R	page offset
+\en(po	R	paragraph offset
 \&.pp	M	begin first-line indented paragraph
 \en(pp	R	paragraph type size in points
 \en(ps	R	paragraph prespace

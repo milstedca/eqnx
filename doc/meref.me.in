@@ -1695,13 +1695,20 @@ request or the end of input.
 \*(ME uses \*T's environment 0 for body text,
 1 for keeps,
 and 2 for headers and footers.
+The default line length is two inches less than the page width
+(e.g.,
+6.5i on U.S.\& letter paper).
+The default page offset
+(left margin)
+is determined by the output device;
+it is usually 1.0i on typesetting devices and 0 on terminals.
 .TL
 .b .xl
 .i \(+-n
 .DE
 Set line length to
 .i n
-[6.0i]
+[see above]
 only in the current environment.
 .TL
 .b .ll
@@ -1710,7 +1717,7 @@ only in the current environment.
 Set line length to
 to
 .i n
-[6.0i]
+[see above]
 in all environments used by \*(ME,\**
 .(f
 \**

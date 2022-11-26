@@ -34,7 +34,7 @@
 
 2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	* font/devps/psstrip.sed: Stop stripping comment lines, in
+	* font/devps/psstrip.sed: Stop stripping comment lines in
 	general instead of preserving only ones that use the form in the
 	Document Structuring Coventions.  This way we won't strip
 	copyright notices, like Werner Lemberg's in the FreeEuro font.

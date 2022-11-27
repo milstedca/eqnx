@@ -5159,21 +5159,11 @@ part of the register name.
 .SS "Read-only registers"
 .\" ====================================================================
 .
-The following registers have predefined values that should not be
-modified by the user (usually, registers starting with a dot are
-read-only).
-.
-Mostly, they provide information on the current settings or store
-results from request calls.
+Predefined registers whose identifiers start with a dot are read-only.
 .
 .
 .P
 .LS
-.
-.TPx
-.REG $$
-The process ID of
-.IR @g@troff .
 .
 .TPx
 .REG .$
@@ -5644,6 +5634,12 @@ customizing a document.
 .
 .P
 .LS
+.
+.TPx
+.REG $$
+The process ID of
+.IR @g@troff .
+.
 .TPx
 .REG %
 Current page number.

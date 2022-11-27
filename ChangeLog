@@ -1,3 +1,17 @@
+2022-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/fallbacks.tmac: Comment out four of the fallback
+	character definitions for (preconv'd) Unicode character input
+	added to address Savannah #58930 (corresponding to \[dg], \[dd],
+	\[%0], and \[rn]; they are failing for not yet understood
+	reasons involving "macros" attached to groff character info
+	structs, and the semantics of what it means for a character to
+	"exist" per the 'c' conditional operator.  Fixes regression when
+	using "tty-char.tmac" (which nroff loads by default).  Problem
+	introduced by me in commit 132182bd71, 23 October.  The hope is
+	to resolve this issue post-groff 1.23.0.  Thanks to Dave Kemper
+	for the report and discussion in Savannah #63332.
+
 2022-11-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an-ext.tmac (SY, YS, mV): Remove `mA`, `mI`, and `mT`

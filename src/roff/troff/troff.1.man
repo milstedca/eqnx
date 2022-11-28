@@ -635,8 +635,8 @@ When such an object is dereferenced,
 an empty one of that name is automatically created.
 .
 So,
-in most cases,
-at most one warning is given for each name.
+unless it is later deleted,
+at most one warning is given for each.
 .
 .
 .IP
@@ -674,7 +674,9 @@ An undefined register was used.
 When an undefined register is dereferenced,
 it is automatically defined with a value of\~0.
 .
-So, in most cases, at most one warning is given for each name.
+So,
+unless it is later deleted,
+at most one warning is given for each.
 .
 .
 .TP
@@ -686,7 +688,8 @@ was encountered where a number was expected.
 .
 .TP
 .BR scale "\t32"
-An inappropriate scaling unit was used in a numeric expression.
+A scaling unit inappropriate to its context was used in a numeric
+expression.
 .
 .
 .TP

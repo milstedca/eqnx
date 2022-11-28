@@ -16516,7 +16516,8 @@ The @code{el} request was encountered with no prior corresponding
 
 @item scale
 @itemx 32
-An inappropriate scaling unit was used in a numeric expression.
+A scaling unit inappropriate to its context was used in a numeric
+expression.
 
 @item range
 @itemx 64
@@ -16551,7 +16552,7 @@ without an argument when there was no current diversion.
 @cindex @code{\*}, and warnings
 An undefined string, macro, or diversion was used.  When such an object
 is dereferenced, an empty one of that name is automatically created.
-So, in most cases, at most one warning is given for each name.
+So, unless it is later deleted, at most one warning is given for each.
 
 This warning is also emitted upon an attempt to move an unplanted trap
 macro (@pxref{Page Location Traps}).  In such cases, the unplanted macro
@@ -16564,7 +16565,7 @@ is @emph{not} dereferenced, so it is not created if it does not exist.
 @cindex @code{\n}, and warnings
 An undefined register was used.  When an undefined register is
 dereferenced, it is automatically defined with a value of@tie{}0.  So,
-in most cases, at most one warning is given for each name.
+unless it is later deleted, at most one warning is given for each.
 
 @item tab
 @itemx 2048

@@ -355,8 +355,11 @@ and ordering.
 .
 .TP
 .BI \-n\~ num
-Number the first page
+Begin numering pages at
 .I num.
+.
+The default
+.RB is\~ 1 .
 .
 .
 .TP
@@ -429,8 +432,9 @@ and
 .TP
 .BI \-T\~ dev
 Prepare output for device
-.I dev,
-rather than the default,
+.I dev.
+.
+The default is
 .BR @DEVICE@ ;
 see
 .MR groff @MAN1EXT@ .

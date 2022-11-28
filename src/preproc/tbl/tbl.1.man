@@ -1208,7 +1208,7 @@ distinctly from other text in the document.
 .
 As with other table entries,
 when a text block ends,
-any alterations to its formatting are discarded.
+any alterations to formatting parameters are discarded.
 .
 They do not affect subsequent table entries,
 not even other text blocks.
@@ -1296,6 +1296,23 @@ a trap planted near the bottom of the page.
 See section \[lq]Limitations\[rq] below for more on multi-page tables.
 .
 .
+.P
+GNU
+.I tbl \" GNU
+.\" AT&T tbl used all kinds of registers; many began with "3".
+internally employs register,
+string,
+macro,
+and diversion names beginning with the
+.RB numeral\~ 3 .
+.
+A document to be preproccessed with GNU
+.I tbl \" GNU
+should not use any such identifiers.
+.\" XXX: Why are they not named starting with "gtbl*" or something?  GNU
+.\" tbl turns AT&T troff compatibility mode off anyway.
+.
+.
 .\" ====================================================================
 .SS "Interaction with \f[I]@g@eqn\f[]"
 .\" ====================================================================
@@ -1358,23 +1375,6 @@ Numeric and alphabetic entries may appear in the same column.
 .
 .IP \[bu]
 Numeric and alphabetic entries may span horizontally.
-.
-.
-.IP \[bu]
-GNU
-.I tbl \" GNU
-.\" AT&T tbl used all kinds of registers.
-internally employs register,
-string,
-macro,
-and diversion names beginning with the
-.RB digit\~ 3 .
-.
-A document to be preproccessed with GNU
-.I tbl \" GNU
-should not use any such identifiers.
-.\" XXX: Why are they not named starting with "gtbl*" or something?  GNU
-.\" tbl turns AT&T troff compatibility mode off anyway.
 .
 .
 .\" ====================================================================

@@ -1,3 +1,30 @@
+2022-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Implement new `.nn` register to report the remaining
+	count of lines to have their numbering suppressed.
+
+	* src/roff/troff/env.h (class environment): Declare new member
+	function `get_no_number_count()`.
+	* src/roff/troff/env.cpp (get_no_number_count): Define new
+	member function, returning value of member variable
+	`no_number_count`.
+	(init_env_requests): Define new ".nn" register and attach it to
+	`get_no_number_count()`.
+
+	* doc/groff.texi (Miscellaneous): Document it.  Include example
+	of use to determine whether current output line will be
+	numbered.  Also clarify meaning of register; `.nn` is not
+	decremented except when output line numbering is enabled.
+	* man/groff.7.man (Read-only registers): Document it.
+
+	* src/roff/groff/tests/dot-nn_register_works.sh: Test it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+	* NEWS: Add item.
+
+	See <https://lists.gnu.org/archive/html/groff/2022-11/\
+	msg00153.html>.
+
 2022-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/fallbacks.tmac: Comment out four of the fallback

@@ -3413,14 +3413,15 @@ In line number mode, set number, multiple, spacing, and indentation.
 .
 .TPx
 .REQ .nn
-Do not number next line.
+Suppress numbering of the next line to be numbered with
+.BR nm .
 .
 .TPx
-.REQ .nn "N"
-Do not number next
-.I N
+.REQ .nn n
+Suppress numbering next
+.I n
+.BR nm -numbered
 lines.
-.
 .
 .TPx
 .REQ .nop "anything"
@@ -5420,13 +5421,15 @@ request that caused a trap to be sprung.
 Useful in conjunction with register
 .BR .trunc .
 .
-.
 .TPx
 .REG .nm
 1\~if output line numbering is enabled
 (even if temporarily suppressed),
 0\~otherwise.
 .
+.TPx
+.REG .nn
+The count of output lines remaining to have numbering suppressed.
 .
 .TPx
 .REG .ns

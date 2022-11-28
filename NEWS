@@ -22,12 +22,15 @@ o A new read-only register `.cp` is implemented.  Within a `do` request,
   groff_diff(7) or the groff Texinfo manual for rationale, use case, and
   example.
 
-o A new read-only register `.nm` is implemented.  It reports the
-  enablement status of output line numbering (caused by the `nm`
-  request) irrespective of the temporary suspension of numbering with
-  the `nn` request.  This register was introduced because there was no
-  way to introspect its state, tbl(1) needs to be able to do so, and the
-  writable line number register `ln` is not a reliable proxy for it.
+o New read-only registers `.nm` and `.nn` are implemented.  `.nm` is of
+  Boolean sense, reporting the enablement status of output line
+  numbering (caused by the `nm` request) irrespective of the temporary
+  suspension of numbering with the `nn` request.  `.nn` holds the count
+  of numbered output lines still to have that numbering suppressed.
+  These registers were introduced because there was no way for the
+  formatter (and thus a document) to introspect their state, tbl(1)
+  needs to be able to do so, and the writable line number register `ln`
+  is not a reliable proxy for this information.
 
 o Type size escape sequences of the form "\sNN", where NN is in the
   range 10-39, are now recognized only in compatibility mode ("groff

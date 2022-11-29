@@ -219,10 +219,8 @@ but
 .Em not
 tabs.
 .
-The dot at the beginning of the line prepares
-.Tn GNU
-.Xr @g@troff
-to expect a macro name.
+The dot at the beginning of the line prepares the formatter to expect a
+macro name.
 .
 A dot followed immediately by a newline is ignored;
 this is called the
@@ -249,8 +247,8 @@ their interpretation by
 .
 .
 .Pp
-Macros in
-.Xr groff
+Macros in GNU
+.Xr troff
 accept an unlimited number of arguments,
 in contrast to other
 .Xr troff Ns No s
@@ -987,7 +985,8 @@ are shown below.
 .
 Observe how
 .Ql \[rs]&
-prevents the digit\~2 from being treated as a manual section number.
+prevents the numeral\~2 from being used to look up a predefined section
+name.
 .
 .
 .Pp
@@ -996,12 +995,12 @@ prevents the digit\~2 from being treated as a manual section number.
 .Bd -unfilled -offset 2n
 .TS
 tab(@);
-Lf(CR) | L C R.
-\&.Dt foo 2@foo(2)@System Calls Manual@foo(2)
-\&.Dt foo 2 m68k@foo(2)@m68k System Calls Manual@foo(2)
-\&.Dt foo 2 baz@foo(2)@System Calls Manual@foo(2)
-\&.Dt foo \[rs]&2 baz@foo(2)@baz@foo(2)
-\&.Dt foo \[dq]\[dq] baz@foo@baz@foo
+Lf(CR)1 L2 L C R.
+\&.Dt foo 2@\[->]@foo(2)@System Calls Manual@foo(2)
+\&.Dt foo 2 m68k@\[->]@foo(2)@m68k System Calls Manual@foo(2)
+\&.Dt foo 2 baz@\[->]@foo(2)@System Calls Manual@foo(2)
+\&.Dt foo \[rs]&2 baz@\[->]@foo(2)@baz@foo(2)
+\&.Dt foo \[dq]\[dq] baz@\[->]@foo@baz@foo
 .TE
 .Ed
 .
@@ -2265,7 +2264,8 @@ including a second argument for the section number enables them to be
 hyperlinked.
 .
 By default,
-these are set in italics to avoid cluttering the page with boldface.
+cross-referenced topics are set in italics to avoid cluttering the page
+with boldface.
 .
 .
 .Pp

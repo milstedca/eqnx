@@ -1876,17 +1876,17 @@ and control of execution flow.
 The theoretically-minded will observe that a
 .I roff
 is not a mere markup language,
-but Turing-complete,
-and would be even stripped of its macro-definition facility.
+but Turing-complete.
 .
 It has storage
 (registers);
 it can perform tests
 (as in conditional expressions like
 .RB \[lq] "(\[rs]n[i] >= 1)" \[rq]);
-and it can jump or branch using the
+it can jump or branch using the
 .B .if
-request.
+request;
+and macro definition permits unbounded recursion.
 .
 .
 .P
@@ -2569,8 +2569,11 @@ For GNU
 .IR roff ,
 the
 .MR groff @MAN1EXT@
-man page offers a survey of all the documentation distributed with the
-system.
+man page enumerates all man pages distributed with the system,
+and individual pages frequently refer to external resources as well as
+manuals distributed with
+.I groff
+on a variety of topics.
 .
 .
 .P

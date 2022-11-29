@@ -8375,8 +8375,8 @@ below for details), and at which positions within that word
 automatically determined hyphenation points are permissible.  The places
 within a word that are eligible for hyphenation are determined by
 language-specific data and lettercase relationships.  Furthermore,
-hyphenation of a word might be suppressed because too many previous
-lines have been hyphenated (@code{hlm}), the line has not reached a
+hyphenation of a word might be suppressed due to a limit on
+consecutive hyphenated lines (@code{hlm}), the line has not reached a
 certain minimum length (@code{hym}), or the line can instead be adjusted
 with up to a certain amount of additional inter-word space (@code{hys}).
 

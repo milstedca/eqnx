@@ -5986,8 +5986,8 @@ and
 .BR .hpfcode ).
 .
 Furthermore,
-hyphenation of a word might be suppressed because too many previous
-lines have been hyphenated
+hyphenation of a word might be suppressed due to a limit on
+consecutive hyphenated lines
 .RB ( .hlm ),
 the line has not reached a certain minimum length
 .RB ( .hym ),

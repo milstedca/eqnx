@@ -1,3 +1,11 @@
+2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Regression-test Savannah #61040.
+
+	* src/preproc/tbl/tests/save-and-restore-line-numbering.sh: Do
+	it.
+	* src/preproc/tbl/tbl.am (tbl_TESTS): Run test.
+
 2022-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Implement new `.nn` register to report the remaining

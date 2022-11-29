@@ -6027,6 +6027,8 @@ English
 French
 .RI ( fr ),
 Japanese
+.RI ( it ),
+Italian
 .RI ( ja ),
 Swedish
 .RI ( sv ),

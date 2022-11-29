@@ -466,6 +466,8 @@ A Winter\[aq]s Tale@A Winter\[aq]s Tale
 \[ga]\[ga]U.S.\& \[ga]inner\[aq] quotes\[aq]\[aq]\
 @\[rs][lq]U.S.\& \[rs][oq]inner\[rs][cq] quotes\[rs][rq]
 .TE
+.\" Keep bottom border of box from sitting on the ascenders below.
+.if t .sp 0.2v
 .
 If you frequently require quotation marks in your document,
 see if the macro package you're using supplies strings or macros to

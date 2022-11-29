@@ -93,7 +93,8 @@ formatter as well as those descended from AT&T
 .
 .
 .P
-Some formatter requests are unsafe in conjunction with this package;
+Some formatter requests affect page layout unpredictably when used in
+conjunction with this package;
 however,
 the following may be used with impunity after the first call to a
 paragraphing macro like
@@ -469,12 +470,16 @@ is a wrapper enabling the package to be loaded with
 .
 Early
 .I roff
-macro packages limited themselves to a single-letter namespace
-.RI ( mm ,
+macro packages often limited their names to a single letter,
+which followed the formatter's
+.B m
+flag letter,
+resulting in
+.IR mm ,
 .IR ms ,
 .IR mv ,
 .IR mn ,
-and so on).
+and so on.
 .
 .\" 'When I started writing the -me macros it began as something in my
 .\" private tree (I don't remember what I called it).  Then some other

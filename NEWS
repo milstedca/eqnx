@@ -137,6 +137,14 @@ o The token `.PY` is now recognized as a synonym of `.PF` to work around
   to use `.PF` to end pictures with flyback unless a similar problem
   faces your document.
 
+tbl
+---
+
+o GNU tbl now saves and restores the status of output line numbering
+  when formatting tables, including the count of lines for which
+  numbering is suppressed.  Historical tbl implementations did not, with
+  bizarre consequences when text blocks were used in tables.
+
 Macro packages
 --------------
 

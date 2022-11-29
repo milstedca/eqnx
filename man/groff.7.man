@@ -3200,7 +3200,7 @@ calling macro
 .IR name ,
 after the next
 .IR n\~ lines
-lines of input that directly produce formatted output have been read.
+of input that directly produce formatted output have been read.
 .
 .
 .TPx
@@ -6259,9 +6259,9 @@ to obtain a backslash glyph,
 and
 .B \[rs]&
 before
-.RB \[lq] .\& \[rq]
+.B .\&
 and
-.RB \[lq] \[aq] \[rq]
+.B \[aq]
 where
 .I @g@troff
 expects them as control characters if you mean to use them literally.

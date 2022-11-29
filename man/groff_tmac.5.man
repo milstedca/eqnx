@@ -774,14 +774,14 @@ macro.
 .
 .TP
 .I ptx
-provides a single macro,
+provides a macro,
 .BR xx ,
 to format permuted index entries as produced by the GNU
 .MR ptx 1
 program.
 .
-If you need different formatting, copy the macro into your document and
-adapt it to your needs.
+If your formatting needs differ,
+copy the macro into your document and adapt it to your needs.
 .
 .
 .TP
@@ -795,7 +795,7 @@ See
 .
 .TP
 .I sboxes
-offers a simple interface to the
+offers an interface to the
 .RB \[lq] "pdf: background" \[rq]
 device control command supported by
 .MR gropdf @MAN1EXT@ .
@@ -975,8 +975,8 @@ commands permit space between an option and its argument.
 .
 The syntax
 .RB \[lq] "groff \-m s" \[rq]
-makes the macro file name more clear but may be jarring to users
-familiar with the original convention,
+makes the macro file name more clear but may surprise users familiar
+with the original convention,
 unaware that the package's \[lq]real\[rq] name was \[lq]s\[rq] all
 along.
 .
@@ -998,15 +998,9 @@ serve to load the manuscript macros.
 .
 .
 .P
-Wrappers are not provided for packages of more recent vintage.
-.
-For example,
-the
-.I www
-package may be requested at the command line only with
-.RB \[lq] "groff \-m www" \[rq]
-or
-.RB \[lq] "groff \-mwww" \[rq].
+Wrappers are not provided for packages of more recent vintage,
+like
+.IR www.tmac .
 .
 .
 .P
@@ -1018,15 +1012,6 @@ named macro files in the form
 .
 It has since become conventional in operating systems to use a suffixed
 file name extension to suggest a file type or format.
-.
-.IR @g@troff 's
-.B \-m
-option
-and
-.B mso
-request attempt to load a macro package using either naming convention;
-if one fails,
-the other is tried.
 .
 .
 .\" ====================================================================

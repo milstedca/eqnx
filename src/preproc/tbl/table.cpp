@@ -49,6 +49,8 @@ const int DEFAULT_COLUMN_SEPARATION = 3;
 #define SAVED_INDENT_REG PREFIX "ind"
 #define SAVED_CENTER_REG PREFIX "cent"
 #define SAVED_TABS_NAME PREFIX "tabs"
+#define SAVED_INTER_WORD_SPACE_SIZE PREFIX "ss"
+#define SAVED_INTER_SENTENCE_SPACE_SIZE PREFIX "sss"
 #define TABLE_DIVERSION_NAME PREFIX "table"
 #define TABLE_DIVERSION_FLAG_REG PREFIX "tflag"
 #define TABLE_KEEP_MACRO_NAME PREFIX "tkeep"
@@ -726,6 +728,8 @@ void block_entry::do_divert(int alphabetic, int ncols, const string *mw,
   if (alphabetic)
     prints("-2n");
   prints("\n");
+  prints(".ss \\n[" SAVED_INTER_WORD_SPACE_SIZE "]"
+      " \\n[" SAVED_INTER_SENTENCE_SPACE_SIZE "]\n");
   prints(".cp \\n(" COMPATIBLE_REG "\n");
   set_modifier(mod);
   set_location();
@@ -1791,12 +1795,16 @@ void table::init_output()
 	 ".el .nf\n"
 	 ".ce \\n[.ce]\n"
 	 ".ta \\\\*[" SAVED_TABS_NAME "]\n"
+	 ".ss \\\\n[" SAVED_INTER_WORD_SPACE_SIZE "]"
+	 " \\\\n[" SAVED_INTER_SENTENCE_SPACE_SIZE "]\n"
 	 "..\n"
 	 ".nr " SAVED_INDENT_REG " \\n[.i]\n"
 	 ".nr " SAVED_FONT_REG " \\n[.f]\n"
 	 ".nr " SAVED_SIZE_REG " \\n[.s]\n"
 	 ".nr " SAVED_FILL_REG " \\n[.u]\n"
 	 ".ds " SAVED_TABS_NAME " \\n[.tabs]\n"
+	 ".nr " SAVED_INTER_WORD_SPACE_SIZE " \\n[.ss]\n"
+	 ".nr " SAVED_INTER_SENTENCE_SPACE_SIZE " \\n[.sss]\n"
 	 ".nr " SAVED_HYPHENATION_MODE_REG " \\n[.hy]\n"
 	 ".ds " SAVED_HYPHENATION_LANG_NAME " \\n[.hla]\n"
 	 ".nr " SAVED_HYPHENATION_MAX_LINES_REG " (\\n[.hlm])\n"
@@ -2923,6 +2931,7 @@ void table::do_row(int r)
 
 void table::do_top()
 {
+  prints(".ss \\n[" SAVED_INTER_WORD_SPACE_SIZE "]\n");
   prints(".fc \002\003\n");
   if (!(flags & NOKEEP) && (flags & (BOX | DOUBLEBOX | ALLBOX)))
     prints("." TABLE_KEEP_MACRO_NAME "\n");

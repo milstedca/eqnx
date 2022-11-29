@@ -1,5 +1,23 @@
 2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Fix Savannah #61909.
+
+	* src/preproc/tbl/table.cpp (SAVED_INTER_WORD_SPACE_SIZE)
+	(SAVED_INTER_SENTENCE_SPACE_SIZE): Add new preprocessor macros.
+	(block_entry::do_divert): Restore saved inter-word and
+	inter-sentence space when formatting a text entry.
+	(table::init_output): When a table region begions, save the
+	values of inter-word and inter-sentence space.  Add request to
+	the reset macro to restore saved inter-word and inter-sentence
+	space when leaving table region.
+	(table::do_top): Set inter-sentence space to be equal to
+	inter-word space.  This way spaces are "literal" in ordinary
+	table extries (but not text blocks).
+
+	Fixes <https://savannah.gnu.org/bugs/?61909>.
+
+2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Regression-test Savannah #61909.
 
 	* src/preproc/tbl/tests/\

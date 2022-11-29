@@ -1,5 +1,13 @@
 2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Regression-test Savannah #61909.
+
+	* src/preproc/tbl/tests/\
+	save-and-restore-inter-sentence-space.sh: Do it.
+	* src/preproc/tbl/tbl.am (tbl_TESTS): Run test.
+
+2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Suppress line numbering when formatting tables, and
 	restore it afterward.
 

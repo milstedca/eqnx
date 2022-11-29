@@ -35,6 +35,7 @@ tbl_TESTS = \
   src/preproc/tbl/tests/do-not-segv-when-backslash-R-in-text-block.sh \
   src/preproc/tbl/tests/format-time-diagnostics-work.sh \
   src/preproc/tbl/tests/save-and-restore-hyphenation-parameters.sh \
+  src/preproc/tbl/tests/save-and-restore-inter-sentence-space.sh \
   src/preproc/tbl/tests/save-and-restore-line-numbering.sh \
   src/preproc/tbl/tests/save-and-restore-tab-stops.sh \
   src/preproc/tbl/tests/table-lacks-spurious-top-border.sh

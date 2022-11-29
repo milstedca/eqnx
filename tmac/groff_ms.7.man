@@ -2777,9 +2777,13 @@ The GNU version of the
 .I ms
 macro package was written by James Clark and contributors.
 .
-This document was (re-)written by
+This document was written by Clark,
 .MT lkollar@\:despammed\:.com
 Larry Kollar
+.ME ,
+and
+.MT g.branden\:.robinson@\:gmail\:.com
+G.\& Branden Robinson
 .ME .
 .
 .

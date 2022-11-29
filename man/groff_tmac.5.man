@@ -1033,105 +1033,93 @@ the other is tried.
 .SH Inclusion
 .\" ====================================================================
 .
-There are several ways to use a macro package in a document.
-.
-The classical way is to specify the troff/groff option
+The traditional method of employing a macro package is to specify the
 .B \-m
-.I name
-at run time; this makes the contents of the macro package
-.I name
-available.
+.I package
+option to the formatter,
+which then reads
+.IR package 's
+macro file prior to any input files.
 .
-In groff, the file
-.RI name .tmac
-is searched within the tmac path; if not found,
-.IR tmac. name
-is searched for instead.
+Historically,
+.I package
+was sought in a file named
+.IR tmac. package
+(that is,
+with a
+.RB \[lq] tmac.\& \[rq]
+prefix).
+.
+GNU
+.I troff \" GNU
+searches for
+.RI package .tmac
+in the macro path;
+if not found,
+it looks for
+.IR tmac. package
+instead,
+and vice versa.
 .
 .
 .P
-Alternatively, it is also possible to include a macro file by adding
-the request
+Alternatively,
+one could include a macro file by using the request
 .B .so
-.I filename
-to the document; the argument must be the full file name of an
-existing file, possibly with the directory where it is kept.
+.I file-name
+in the document;
+.I file-name
+is resolved relative to the location of the input document.
 .
-In groff, this was improved by the similar request
-.B .mso
-.IR package ,
-which added searching in the tmac path, just like option
-.B \-m
-does.
+GNU
+.I troff \" GNU
+offers an improved feature in the similar request
+.B mso
+.IR package-file-name ,
+which searches the macro path for
+.IR package-file-name .
+.
+Because its argument is a file name,
+its
+.RB \[lq] .tmac \[rq]
+component must be included for the file to be found;
+however,
+as a convenience,
+if opening it fails,
+.B mso
+strips any such suffix and tries again with a
+.RB \[lq] tmac.\& \[rq]
+prefix,
+and vice versa.
 .
 .
 .P
-In order to resolve the
-.B .so
-and
-.B .mso
-requests,
-the roff preprocessor
+If a sourced file requires preprocessing,
+for example if it includes
+.I tbl \" generic
+tables
+or
+.I eqn \" generic
+equations,
+the preprocessor
 .MR @g@soelim @MAN1EXT@
-must be called if the files to be included need preprocessing.
+must be used.
 .
-This can be done either directly by a pipeline on the command line or
-by giving the formatter the
+This can be achieved with a pipeline or,
+in
+.IR groff ,
+by specifying
+the
 .B \-s
-option.
+option to the formatter
+(or front end).
 .
 .MR man 1
-calls
+librarian programs generally call
 .I @g@soelim
 automatically.
 .
-.
-.P
-For example, suppose a macro file is stored as
-.
-.IP
-.I @MACRODIR@/\:\%macros\:.tmac
-.
-.P
-and is used in some document called
-.IR docu.roff .
-.
-.
-.P
-At run time, the formatter call for this is
-.
-.IP
-.EX
-\fIsh#\fP groff \-m macros docu.roff
-.EE
-.
-.
-.P
-To include the macro file directly in the document, use either
-.
-.IP
-.EX
-\&.mso macros.tmac
-.EE
-.
-.P
-or
-.
-.IP
-.EX
-\&.so @MACRODIR@/macros.tmac
-.EE
-.
-.
-.P
-In both cases, the formatter should be called with option
-.B \-s
-to invoke
-.IR @g@soelim .
-.IP
-.EX
-\fIsh#\fP groff \-s docu.roff
-.EE
+(Macro packages themselves generally do not require preprocessing.)
 .
 .
 .ig

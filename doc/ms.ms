@@ -2077,6 +2077,8 @@ Indented regions
 You may need to indent a region of text while otherwise formatting it
 normally.
 .
+Indented regions can be nested.
+.
 .
 .TS
 box;
@@ -2091,7 +2093,7 @@ and displays are indented (further) by
 .CW \[rs]n[PI] .
 T}
 \&.RE	T{
-End the most recent indented region.
+End the (next) most recent indented region.
 T}
 .TE
 .

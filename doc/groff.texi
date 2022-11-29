@@ -3752,7 +3752,7 @@ money
 @subsubsection Indented regions
 
 You may need to indent a region of text while otherwise formatting it
-normally.
+normally.  Indented regions can be nested.
 
 @Defmac {RS, , ms}
 Begin a region where headings, paragraphs, and displays are indented
@@ -3760,7 +3760,7 @@ Begin a region where headings, paragraphs, and displays are indented
 @endDefmac
 
 @Defmac {RE, , ms}
-End the most recent indented region.
+End the (next) most recent indented region.
 @endDefmac
 
 Indented regions can be nested; you can change @code{\n[PI]} before each

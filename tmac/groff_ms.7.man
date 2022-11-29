@@ -1208,6 +1208,8 @@ respectively.
 You may need to indent a region of text while otherwise formatting it
 normally.
 .
+Indented regions can be nested.
+.
 .
 .TP
 .B .RS
@@ -1219,7 +1221,7 @@ and displays are indented (further) by
 .
 .TP
 .B .RE
-End the most recent indented region.
+End the (next) most recent indented region.
 .
 .
 .\" ====================================================================

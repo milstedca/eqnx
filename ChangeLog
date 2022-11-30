@@ -7808,7 +7808,7 @@
 	* src/preproc/tbl/main.cpp (process_input_file)
 	(entry_format::debug_print, process_data, main): Replace
 	`assert(0)` calls with communicative predicates.
-	(struct input_entry_format, input_entry_foramt::debug_print,
+	(struct input_entry_format, input_entry_format::debug_print,
 	process_format): Boolify.  Demote and rename `int`s
 	`last_column` and `equal` to `bool`s named `is_last_column` and
 	`is_equal_width`.  Assign them Boolean literals.

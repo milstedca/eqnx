@@ -1164,8 +1164,8 @@ void vertical_rule::contribute_to_bottom_macro(table *tbl)
   if (end_row != tbl->get_nrows() - 1)
     printfs("&(\\n[" CURRENT_ROW_REG "]<%1)",
 	    as_string(end_row));
-  prints(" \\{");
-  printfs(".if %1<=\\n[" LAST_PASSED_ROW_REG "] .nr %2 \\n[#T]\n",
+  prints(" \\{\\\n");
+  printfs(".  if %1<=\\n[" LAST_PASSED_ROW_REG "] .nr %2 \\n[#T]\n",
 	  as_string(start_row),
 	  row_top_reg(start_row));
   const char *offset_table[3];
@@ -1179,7 +1179,7 @@ void vertical_rule::contribute_to_bottom_macro(table *tbl)
     offset_table[1] = 0;
   }
   for (const char **offsetp = offset_table; *offsetp; offsetp++) {
-    prints(".sp -1\n"
+    prints(".  sp -1\n"
 	   "\\v'" BODY_DEPTH);
     if (!bot_adjust.empty())
       printfs("+%1", bot_adjust);
@@ -1696,9 +1696,9 @@ void table::print()
   determine_row_type();
   compute_widths();
   if (!(flags & CENTER))
-    prints(".if \\n[" SAVED_CENTER_REG "] \\{");
-  prints(".in +(u;\\n[.l]-\\n[.i]-\\n[TW]/2>?-\\n[.i])\n"
-	 ".nr " SAVED_INDENT_REG " \\n[.i]\n");
+    prints(".if \\n[" SAVED_CENTER_REG "] \\{\\\n");
+  prints(".  in +(u;\\n[.l]-\\n[.i]-\\n[TW]/2>?-\\n[.i])\n"
+	 ".  nr " SAVED_INDENT_REG " \\n[.i]\n");
   if (!(flags & CENTER))
     prints(".\\}\n");
   build_vrule_list();
@@ -1776,26 +1776,25 @@ void table::init_output()
   if (compatible_flag)
     prints(".ds " LEADER_REG " \\a\n");
   if (!(flags & NOKEEP))
-    prints(".if !r " USE_KEEPS_REG " \\\n"
-	   ".  nr " USE_KEEPS_REG " 1\n");
+    prints(".if !r " USE_KEEPS_REG " .nr " USE_KEEPS_REG " 1\n");
   prints(".de " RESET_MACRO_NAME "\n"
-	 ".ft \\n[.f]\n"
-	 ".ps \\n[.s]\n"
-	 ".vs \\n[.v]u\n"
-	 ".in \\n[.i]u\n"
-	 ".ll \\n[.l]u\n"
-	 ".ls \\n[.L]\n"
-	 ".hy \\\\n[" SAVED_HYPHENATION_MODE_REG "]\n"
-	 ".hla \\\\*[" SAVED_HYPHENATION_LANG_NAME "]\n"
-	 ".hlm \\\\n[" SAVED_HYPHENATION_MAX_LINES_REG "]\n"
-	 ".hym \\\\n[" SAVED_HYPHENATION_MARGIN_REG "]\n"
-	 ".hys \\\\n[" SAVED_HYPHENATION_SPACE_REG "]\n"
-	 ".ad \\n[.j]\n"
-	 ".ie \\n[.u] .fi\n"
-	 ".el .nf\n"
-	 ".ce \\n[.ce]\n"
-	 ".ta \\\\*[" SAVED_TABS_NAME "]\n"
-	 ".ss \\\\n[" SAVED_INTER_WORD_SPACE_SIZE "]"
+	 ".  ft \\n[.f]\n"
+	 ".  ps \\n[.s]\n"
+	 ".  vs \\n[.v]u\n"
+	 ".  in \\n[.i]u\n"
+	 ".  ll \\n[.l]u\n"
+	 ".  ls \\n[.L]\n"
+	 ".  hy \\\\n[" SAVED_HYPHENATION_MODE_REG "]\n"
+	 ".  hla \\\\*[" SAVED_HYPHENATION_LANG_NAME "]\n"
+	 ".  hlm \\\\n[" SAVED_HYPHENATION_MAX_LINES_REG "]\n"
+	 ".  hym \\\\n[" SAVED_HYPHENATION_MARGIN_REG "]\n"
+	 ".  hys \\\\n[" SAVED_HYPHENATION_SPACE_REG "]\n"
+	 ".  ad \\n[.j]\n"
+	 ".  ie \\n[.u] .fi\n"
+	 ".  el .nf\n"
+	 ".  ce \\n[.ce]\n"
+	 ".  ta \\\\*[" SAVED_TABS_NAME "]\n"
+	 ".  ss \\\\n[" SAVED_INTER_WORD_SPACE_SIZE "]"
 	 " \\\\n[" SAVED_INTER_SENTENCE_SPACE_SIZE "]\n"
 	 "..\n"
 	 ".nr " SAVED_INDENT_REG " \\n[.i]\n"
@@ -1820,21 +1819,22 @@ void table::init_output()
 	 ".nr " SUPPRESS_BOTTOM_REG " 0\n"
 	 ".eo\n"
 	 ".de " REPEATED_MARK_MACRO "\n"
-	 ".mk \\$1\n"
-	 ".if !'\\n(.z'' \\!." REPEATED_MARK_MACRO " \"\\$1\"\n"
+	 ".  mk \\$1\n"
+	 ".  if !'\\n(.z'' \\!." REPEATED_MARK_MACRO " \"\\$1\"\n"
 	 "..\n"
 	 ".de " REPEATED_VPT_MACRO "\n"
-	 ".vpt \\$1\n"
-	 ".if !'\\n(.z'' \\!." REPEATED_VPT_MACRO " \"\\$1\"\n"
+	 ".  vpt \\$1\n"
+	 ".  if !'\\n(.z'' \\!." REPEATED_VPT_MACRO " \"\\$1\"\n"
 	 "..\n");
   if (!(flags & NOKEEP)) {
     prints(".de " KEEP_MACRO_NAME "\n"
-	   ".if '\\n[.z]'' \\{.ds " QUOTE_STRING_NAME " \\\\\n"
-	   ".ds " TRANSPARENT_STRING_NAME " \\!\n"
-	   ".di " SECTION_DIVERSION_NAME "\n"
-	   ".nr " SECTION_DIVERSION_FLAG_REG " 1\n"
-	   ".in 0\n"
-	   ".\\}\n"
+	   ".  if '\\n[.z]'' \\{\\\n"
+	   ".    ds " QUOTE_STRING_NAME " \\\\\n"
+	   ".    ds " TRANSPARENT_STRING_NAME " \\!\n"
+	   ".    di " SECTION_DIVERSION_NAME "\n"
+	   ".    nr " SECTION_DIVERSION_FLAG_REG " 1\n"
+	   ".    in 0\n"
+	   ".  \\}\n"
 	   "..\n"
 	   // Protect '#' in macro name from being interpreted by eqn.
 	   ".ig\n"
@@ -1843,38 +1843,38 @@ void table::init_output()
 	   ".EN\n"
 	   "..\n"
 	   ".de " RELEASE_MACRO_NAME "\n"
-	   ".if \\n[" SECTION_DIVERSION_FLAG_REG "] \\{"
-	   ".di\n"
-	   ".in \\n[" SAVED_INDENT_REG "]u\n"
-	   ".nr " SAVED_DN_REG " \\n[dn]\n"
-	   ".ds " QUOTE_STRING_NAME "\n"
-	   ".ds " TRANSPARENT_STRING_NAME "\n"
-	   ".nr " SECTION_DIVERSION_FLAG_REG " 0\n"
-	   ".if \\n[.t]<=\\n[dn] \\{"
-	   ".nr T. 1\n"
-	   ".T#\n"
-	   ".nr " SUPPRESS_BOTTOM_REG " 1\n"
-	   ".sp \\n[.t]u\n"
-	   ".nr " SUPPRESS_BOTTOM_REG " 0\n"
-	   ".mk #T\n"
-	   ".\\}\n");
+	   ".  if \\n[" SECTION_DIVERSION_FLAG_REG "] \\{\\\n"
+	   ".    di\n"
+	   ".    in \\n[" SAVED_INDENT_REG "]u\n"
+	   ".    nr " SAVED_DN_REG " \\n[dn]\n"
+	   ".    ds " QUOTE_STRING_NAME "\n"
+	   ".    ds " TRANSPARENT_STRING_NAME "\n"
+	   ".    nr " SECTION_DIVERSION_FLAG_REG " 0\n"
+	   ".    if \\n[.t]<=\\n[dn] \\{\\\n"
+	   ".      nr T. 1\n"
+	   ".      T#\n"
+	   ".      nr " SUPPRESS_BOTTOM_REG " 1\n"
+	   ".      sp \\n[.t]u\n"
+	   ".      nr " SUPPRESS_BOTTOM_REG " 0\n"
+	   ".      mk #T\n"
+	   ".    \\}\n");
     if (!(flags & NOWARN)) {
-      prints(".if \\n[.t]<=\\n[" SAVED_DN_REG "] \\{\\\n");
+      prints(".    if \\n[.t]<=\\n[" SAVED_DN_REG "] \\{\\\n");
       // eqn(1) delimiters have already been switched off.
       entry_list->set_location();
       // Since we turn off traps, troff won't go into an infinite loop
       // when we output the table row; it will just flow off the bottom
       // of the page.
-      prints(".  tmc \\n[.F]:\\n[.c]: warning:\n"
-	     ".  tm1 \" table row will not fit on page \\n%\n");
-      prints(".\\}\n");
+      prints(".      tmc \\n[.F]:\\n[.c]: warning:\n"
+	     ".      tm1 \" table row will not fit on page \\n%\n");
+      prints(".    \\}\n");
     }
-    prints(".nf\n"
-	   ".ls 1\n"
-	   "." SECTION_DIVERSION_NAME "\n"
-	   ".ls\n"
-	   ".rm " SECTION_DIVERSION_NAME "\n"
-	   ".\\}\n"
+    prints(".    nf\n"
+	   ".    ls 1\n"
+	   ".    " SECTION_DIVERSION_NAME "\n"
+	   ".    ls\n"
+	   ".    rm " SECTION_DIVERSION_NAME "\n"
+	   ".  \\}\n"
 	   "..\n"
 	   ".ig\n"
 	   ".EQ\n"
@@ -1883,43 +1883,45 @@ void table::init_output()
 	   "..\n"
 	   ".nr " TABLE_DIVERSION_FLAG_REG " 0\n"
 	   ".de " TABLE_KEEP_MACRO_NAME "\n"
-	   ".if '\\n[.z]'' \\{"
-	   ".di " TABLE_DIVERSION_NAME "\n"
-	   ".nr " TABLE_DIVERSION_FLAG_REG " 1\n"
-	   ".\\}\n"
+	   ".  if '\\n[.z]'' \\{\\\n"
+	   ".    di " TABLE_DIVERSION_NAME "\n"
+	   ".    nr " TABLE_DIVERSION_FLAG_REG " 1\n"
+	   ".  \\}\n"
 	   "..\n"
 	   ".de " TABLE_RELEASE_MACRO_NAME "\n"
-	   ".if \\n[" TABLE_DIVERSION_FLAG_REG "] \\{.br\n"
-	   ".di\n"
-	   ".nr " SAVED_DN_REG " \\n[dn]\n"
-	   ".ne \\n[dn]u+\\n[.V]u\n"
-	   ".ie \\n[.t]<=\\n[" SAVED_DN_REG "] \\{\\\n");
+	   ".  if \\n[" TABLE_DIVERSION_FLAG_REG "] \\{\\\n"
+	   ".    br\n"
+	   ".    di\n"
+	   ".    nr " SAVED_DN_REG " \\n[dn]\n"
+	   ".    ne \\n[dn]u+\\n[.V]u\n"
+	   ".    ie \\n[.t]<=\\n[" SAVED_DN_REG "] \\{\\\n");
     // Protect characters in diagnostic message (especially :, [, ])
     // from being interpreted by eqn.
-    prints(".  ds " NOP_NAME " \\\" empty\n");
-    prints(".  ig " NOP_NAME "\n"
-	   ".  EQ\n"
-	   "   delim off\n"
-	   ".  EN\n"
-	   ".  " NOP_NAME "\n");
+    prints(".      ds " NOP_NAME " \\\" empty\n");
+    prints(".      ig " NOP_NAME "\n"
+	   ".EQ\n"
+	   "delim off\n"
+	   ".EN\n"
+	   ".      " NOP_NAME "\n");
     entry_list->set_location();
-    prints(".  tmc \\n[.F]:\\n[.c]: error:\n"
-	   ".  tmc \" boxed table will not fit on page \\n%;\n"
-	   ".  tm1 \" use .TS H/.TH with a supporting macro package\n");
-    prints(".  ig " NOP_NAME "\n"
-	   ".  EQ\n"
-	   "   delim on\n"
-	   ".  EN\n"
-	   ".  " NOP_NAME "\n");
-    prints(".\\}\n"
-	   ".el \\{"
-	   ".in 0\n"
-	   ".ls 1\n"
-	   ".nf\n"
-	   "." TABLE_DIVERSION_NAME "\n"
-	   ".\\}\n"
-	   ".rm " TABLE_DIVERSION_NAME "\n"
-	   ".\\}\n"
+    prints(".      tmc \\n[.F]:\\n[.c]: error:\n"
+	   ".      tmc \" boxed table will not fit on page \\n%;\n"
+	   ".      tm1 \" use .TS H/.TH with a supporting macro package"
+	   "\n");
+    prints(".      ig " NOP_NAME "\n"
+	   ".EQ\n"
+	   "delim on\n"
+	   ".EN\n"
+	   ".      " NOP_NAME "\n");
+    prints(".    \\}\n"
+	   ".  el \\{\\\n"
+	   ".    in 0\n"
+	   ".    ls 1\n"
+	   ".    nf\n"
+	   ".    " TABLE_DIVERSION_NAME "\n"
+	   ".  \\}\n"
+	   ".  rm " TABLE_DIVERSION_NAME "\n"
+	   ".  \\}\n"
 	   "..\n");
   }
   prints(".ec\n"
@@ -2049,9 +2051,9 @@ void compute_span_width(int start_col, int end_col)
 	  span_alphabetic_width_reg(start_col, end_col));
 }
 
-// Increase the widths of columns so that the width of any spanning entry
-// is not greater than the sum of the widths of the columns that it spans.
-// Ensure that the widths of columns remain equal.
+// Increase the widths of columns so that the width of any spanning
+// entry is not greater than the sum of the widths of the columns that
+// it spans.  Ensure that the widths of columns remain equal.
 
 void table::divide_span(int start_col, int end_col)
 {
@@ -2069,9 +2071,9 @@ void table::divide_span(int start_col, int end_col)
   prints(")\n");
   printfs(".nr " NEEDED_REG " \\n[" NEEDED_REG "]/%1\n",
 	  as_string(end_col - start_col + 1));
-  prints(".if \\n[" NEEDED_REG "] \\{");
+  prints(".if \\n[" NEEDED_REG "] \\{\\\n");
   for (i = start_col; i <= end_col; i++)
-    printfs(".nr %1 +\\n[" NEEDED_REG "]\n",
+    printfs(".  nr %1 +\\n[" NEEDED_REG "]\n",
 	    span_width_reg(i, i));
   int equal_flag = 0;
   for (i = start_col; i <= end_col && !equal_flag; i++)
@@ -2080,7 +2082,7 @@ void table::divide_span(int start_col, int end_col)
   if (equal_flag) {
     for (i = 0; i < ncolumns; i++)
       if (i < start_col || i > end_col)
-	printfs(".nr %1 +\\n[" NEEDED_REG "]\n",
+	printfs(".  nr %1 +\\n[" NEEDED_REG "]\n",
 	    span_width_reg(i, i));
   }
   prints(".\\}\n");
@@ -2167,20 +2169,21 @@ void table::compute_expand_width()
   if ((!(flags & NOWARN)) && (!(flags & EXPAND))) {
     // Protect characters in diagnostic message (especially :, [, ])
     // from being interpreted by eqn.
-    prints(".ig\n"
+    prints(".  ig\n"
 	   ".EQ\n"
 	   "delim off\n"
 	   ".EN\n"
-	   "..\n");
+	   ".  .\n");
     entry_list->set_location();
-    prints(".tmc \\n[.F]:\\n[.c]: warning:\n"
-	   ".tm1 \" table wider than line length minus indentation\n");
-    prints(".ig\n"
+    prints(".  tmc \\n[.F]:\\n[.c]: warning:\n"
+	   ".  tm1 \" table wider than line length minus indentation"
+	   "\n");
+    prints(".  ig\n"
 	   ".EQ\n"
 	   "delim on\n"
 	   ".EN\n"
-	   "..\n");
-    prints(".nr " EXPAND_REG " 0\n");
+	   ".  .\n");
+    prints(".  nr " EXPAND_REG " 0\n");
   }
   prints(".\\}\n");
   // Now, iterate through the columns again, spreading any excess line
@@ -2694,36 +2697,37 @@ void table::define_bottom_macro()
 	 ".EN\n"
 	 "..\n"
 	 ".de T#\n"
-	 ".if !\\n[" SUPPRESS_BOTTOM_REG "] \\{"
-	 "." REPEATED_VPT_MACRO " 0\n"
-	 ".mk " SAVED_VERTICAL_POS_REG "\n");
+	 ".  if !\\n[" SUPPRESS_BOTTOM_REG "] \\{\\\n"
+	 ".    " REPEATED_VPT_MACRO " 0\n"
+	 ".    mk " SAVED_VERTICAL_POS_REG "\n");
   if (flags & (BOX | ALLBOX | DOUBLEBOX)) {
-    prints(".if \\n[T.]&\\n[" NEED_BOTTOM_RULE_REG "] \\{");
+    prints(".    if \\n[T.]&\\n[" NEED_BOTTOM_RULE_REG "] \\{\\\n");
     print_single_hline(0);
-    prints(".\\}\n");
+    prints(".    \\}\n");
   }
-  prints(".ls 1\n");
+  prints(".    ls 1\n");
   for (vertical_rule *p = vrule_list; p; p = p->next)
     p->contribute_to_bottom_macro(this);
   if (flags & DOUBLEBOX)
-    prints(".if \\n[T.] \\{.vs " DOUBLE_LINE_SEP ">?\\n[.V]u\n"
+    prints(".  if \\n[T.] \\{\\\n"
+	   ".    vs " DOUBLE_LINE_SEP ">?\\n[.V]u\n"
 	   "\\v'" BODY_DEPTH "'\\s[\\n[" LINESIZE_REG "]]"
 	   "\\D'l \\n[TW]u 0'\\s0\n"
-	   ".vs\n"
-	   ".\\}\n"
-	   ".if \\n[" LAST_PASSED_ROW_REG "]>=0 "
+	   ".    vs\n"
+	   ".  \\}\n"
+	   ".  if \\n[" LAST_PASSED_ROW_REG "]>=0 "
 	   ".nr " TOP_REG " \\n[#T]-" DOUBLE_LINE_SEP "\n"
-	   ".sp -1\n"
+	   ".  sp -1\n"
 	   "\\v'" BODY_DEPTH "'\\s[\\n[" LINESIZE_REG "]]"
 	   "\\D'l 0 |\\n[" TOP_REG "]u-1v'\\s0\n"
-	   ".sp -1\n"
+	   ".  sp -1\n"
 	   "\\v'" BODY_DEPTH "'\\h'|\\n[TW]u'\\s[\\n[" LINESIZE_REG "]]"
 	   "\\D'l 0 |\\n[" TOP_REG "]u-1v'\\s0\n");
-  prints(".ls\n");
-  prints(".nr " LAST_PASSED_ROW_REG " \\n[" CURRENT_ROW_REG "]\n"
-	 ".sp |\\n[" SAVED_VERTICAL_POS_REG "]u\n"
-	 "." REPEATED_VPT_MACRO " 1\n"
-	 ".\\}\n"
+  prints(".    ls\n");
+  prints(".    nr " LAST_PASSED_ROW_REG " \\n[" CURRENT_ROW_REG "]\n"
+	 ".    sp |\\n[" SAVED_VERTICAL_POS_REG "]u\n"
+	 ".    " REPEATED_VPT_MACRO " 1\n"
+	 ".  \\}\n"
 	 "..\n"
 	 ".ig\n"
 	 ".EQ\n"
@@ -2997,8 +3001,8 @@ void table::do_bottom()
     prints(".if n .sp\n");
   prints("." RESET_MACRO_NAME "\n"
 	 ".nn \\n[" SAVED_NUMBERING_SUPPRESSION_COUNT "]\n"
-	 ".ie \\n[" SAVED_NUMBERING_LINENO "] \\\n"
-	 ".    nm \\n[" SAVED_NUMBERING_LINENO "]\n"
+	 ".ie \\n[" SAVED_NUMBERING_LINENO "] "
+	 ".nm \\n[" SAVED_NUMBERING_LINENO "]\n"
 	 ".el .nm\n"
 	 ".fc\n"
 	 ".cp \\n(" COMPATIBLE_REG "\n");

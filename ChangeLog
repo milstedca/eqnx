@@ -1,5 +1,21 @@
 2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/table.cpp
+	(vertical_rule::contribute_to_bottom_macro, table::print)
+	(table::init_output, table::divide_span)
+	(table::compute_expand_width, table::define_bottom_macro)
+	(table::do_bottom): Produce roff output that is more readable,
+	for maintainability.  Indent control lines inside macro
+	definitions.  Standardize form of `if`, `ie`, and `el` requests.
+	Some output will not be indented because it is produced within
+	narrowly-scoped C++ functions (set_troff_location,
+	table::print_single_hline, table::print_double_line,
+	table::do_row), I haven't verified that each one is called from
+	a consistent troff indentation level, and I'm not sure it's a
+	win to parameterize those functions in the indentation level.
+
+2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Fix Savannah #61909.
 
 	* src/preproc/tbl/table.cpp (SAVED_INTER_WORD_SPACE_SIZE)

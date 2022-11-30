@@ -1,5 +1,12 @@
 2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/main.cpp (struct input_entry_format)
+	(input_entry_format::input_entry_format)
+	free_input_entry_format_list, process_format): Trivially
+	refactor.  Rename `pre_vline` to `vline_count`.
+
+2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/table.cpp
 	(vertical_rule::contribute_to_bottom_macro, table::print)
 	(table::init_output, table::divide_span)

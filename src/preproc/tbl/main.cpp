@@ -707,7 +707,7 @@ struct input_entry_format : public entry_format {
   string width;
   int separation;
   int vline;
-  int pre_vline;
+  int vline_count;
   bool is_last_column;
   bool is_equal_width;
   int expand;
@@ -722,7 +722,7 @@ input_entry_format::input_entry_format(format_type t, input_entry_format *p)
   separation = -1;
   is_last_column = false;
   vline = 0;
-  pre_vline = 0;
+  vline_count = 0;
   is_equal_width = false;
   expand = 0;
 }
@@ -743,7 +743,7 @@ void free_input_entry_format_list(input_entry_format *list)
 void input_entry_format::debug_print()
 {
   int i;
-  for (i = 0; i < pre_vline; i++)
+  for (i = 0; i < vline_count; i++)
     putc('|', stderr);
   entry_format::debug_print();
   if (!width.empty()) {
@@ -775,7 +775,7 @@ format *process_format(table_input &in, options *opt,
   bool have_expand = false;
   int c = in.get();
   for (;;) {
-    int pre_vline = 0;
+    int vline_count = 0;
     bool got_format = false;
     bool got_period = false;
     format_type t = FORMAT_LEFT;
@@ -834,7 +834,7 @@ format *process_format(table_input &in, options *opt,
 	got_period = true;
 	break;
       case '|':
-	pre_vline++;
+	vline_count++;
 	break;
       case ' ':
       case '\t':
@@ -856,8 +856,8 @@ format *process_format(table_input &in, options *opt,
     if (got_period)
       break;
     list = new input_entry_format(t, list);
-    if (pre_vline)
-      list->pre_vline = pre_vline;
+    if (vline_count)
+      list->vline_count = vline_count;
     int success = 1;
     do {
       switch (c) {
@@ -1219,9 +1219,9 @@ format *process_format(table_input &in, options *opt,
 	error("multiple widths for column %1", col + 1);
       f->width[col] = tem->width;
     }
-    if (tem->pre_vline) {
+    if (tem->vline_count) {
       assert(col == 0);
-      f->vline[row][col] = tem->pre_vline;
+      f->vline[row][col] = tem->vline_count;
     }
     f->vline[row][col + 1] = tem->vline;
     if (tem->is_last_column) {

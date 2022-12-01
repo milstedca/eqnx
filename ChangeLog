@@ -1,3 +1,11 @@
+2022-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Regression-test Savannah #63449.
+
+	* src/preproc/tbl/tests/\
+	do-not-overdraw-page-top-in-nroff-mode.sh: Do it.
+	* src/preproc/tbl/tbl.am (tbl_TESTS): Run test.
+
 2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/tbl/main.cpp (struct input_entry_format)

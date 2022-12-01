@@ -6672,7 +6672,7 @@ t after
 .
 .
 .\" ====================================================================
-.SH Compatibility
+.SH "Compatibility mode"
 .\" ====================================================================
 .
 The differences between the
@@ -6688,9 +6688,15 @@ CSTR\~#54 are documented in
 .MR groff_diff @MAN7EXT@ .
 .
 .I groff
-provides an AT&T compatibility mode;
-see
-.MR groff @MAN1EXT@ .
+provides an AT&T compatibility mode.
+.
+The
+.request .cp
+request and registers
+.B .C
+and
+.B .cp
+set and test the enablement of this mode.
 .
 .
 .\" ====================================================================

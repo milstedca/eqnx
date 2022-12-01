@@ -1,5 +1,27 @@
 2022-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Fix Savannah #63449.
+
+	* src/preproc/tbl/table.h (class table): Add new enumeration
+	constants for use with `flags` member variable: `HAS_TOP_VLINE`
+	and `HAS_TOP_HLINE`, which track properties of the table.
+	Unlike others, these have no correspondence to table region
+	options.
+	* src/preproc/tbl/main.cpp (process_format): Add new local
+	Boolean to track whether we're interpreting a format for the
+	first row.  Use this to "or" on the `HAS_TOP_VLINE` or
+	`HAS_TOP_HLINE` flags if "|" or [_-] are encountered in the
+	first row's format, as appropriate.
+	(process_data): "Or" on `HAS_TOP_HLINE` if a single or double
+	horizontal line is used as the first row's data.
+	* src/preproc/tbl/table.cpp (do_top): On nroff mode devices, add
+	one 1v of space above the table if we're going to be drawing an
+	unintersected vertical rule above the table's top.
+
+	Fixes <https://savannah.gnu.org/bugs/?63449>.
+
+2022-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Regression-test Savannah #63449.
 
 	* src/preproc/tbl/tests/\

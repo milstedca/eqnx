@@ -132,15 +132,18 @@ class table {
 public:
   unsigned flags;
   enum {
-    CENTER       = 0x00000001,
-    EXPAND       = 0x00000002,
-    BOX          = 0x00000004,
-    ALLBOX       = 0x00000008,
-    DOUBLEBOX    = 0x00000010,
-    NOKEEP       = 0x00000020,
-    NOSPACES     = 0x00000040,
-    NOWARN       = 0x00000080,
-    EXPERIMENTAL = 0x80000000	// undocumented; use as a hook for experiments
+    CENTER        = 0x00000001,
+    EXPAND        = 0x00000002,
+    BOX           = 0x00000004,
+    ALLBOX        = 0x00000008,
+    DOUBLEBOX     = 0x00000010,
+    NOKEEP        = 0x00000020,
+    NOSPACES      = 0x00000040,
+    NOWARN        = 0x00000080,
+    // The next two properties help manage nroff mode output.
+    HAS_TOP_VLINE = 0x00000100,
+    HAS_TOP_HLINE = 0x00000200,
+    EXPERIMENTAL  = 0x80000000 // undocumented
     };
   char *expand;
   table(int nc, unsigned flags, int linesize, char decimal_point_char);

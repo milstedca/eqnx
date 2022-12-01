@@ -2959,6 +2959,13 @@ void table::do_top()
   }
   else if (flags & (ALLBOX | BOX))
     print_single_hline(0);
+  // On terminal devices, a vertical rule on the first row of the table
+  // will stick out 1v above it if it the table is unboxed or lacks a
+  // horizontal rule on the first row.  This is necessary for grotty's
+  // rule intersection detection.  We also make room for it so that the
+  // vertical rule is not drawn above the top of the page.
+  else if ((flags & HAS_TOP_VLINE) && !(flags & HAS_TOP_HLINE))
+    prints(".if n .sp\n");
   //printfs(".mk %1\n", row_top_reg(0));
 }
 

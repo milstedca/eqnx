@@ -773,6 +773,7 @@ format *process_format(table_input &in, options *opt,
 {
   input_entry_format *list = 0;
   bool have_expand = false;
+  bool is_first_row = true;
   int c = in.get();
   for (;;) {
     int vline_count = 0;
@@ -825,6 +826,8 @@ format *process_format(table_input &in, options *opt,
       case '-':			// tbl also accepts this
 	got_format = true;
 	t = FORMAT_HLINE;
+	if (is_first_row)
+	  opt->flags |= table::HAS_TOP_HLINE;
 	break;
       case '=':
 	got_format = true;
@@ -1099,6 +1102,8 @@ format *process_format(table_input &in, options *opt,
 	list->zero_width = 1;
 	break;
       case '|':
+	if (is_first_row)
+	  opt->flags |= table::HAS_TOP_VLINE;
 	c = in.get();
 	list->vline++;
 	break;
@@ -1119,6 +1124,7 @@ format *process_format(table_input &in, options *opt,
       error("more than 2 vertical bars between column descriptors");
     }
     if (c == '\n' || c == ',') {
+      is_first_row = false;
       c = in.get();
       list->is_last_column = true;
     }
@@ -1287,6 +1293,8 @@ table *process_data(table_input &in, format *f, options *opt)
 	  type = SINGLE_HLINE;
 	else
 	  type = DOUBLE_HLINE;
+	if (0 == current_row)
+	  tbl->flags |= table::HAS_TOP_HLINE;
       }
       else {
 	in.unget(d);

@@ -15127,8 +15127,6 @@ stripped to allow embedding of leading spaces.
 This request can't be used before the first page has started---if you
 get an error, simply insert @code{.br} before the @code{output} request.
 
-Without argument, @code{output} is ignored.
-
 Use with caution!  It is normally only needed for mark-up used by a
 postprocessor that does something with the output before sending it to
 the output device, filtering out @var{contents} again.

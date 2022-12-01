@@ -15,7 +15,7 @@
 	(process_data): "Or" on `HAS_TOP_HLINE` if a single or double
 	horizontal line is used as the first row's data.
 	* src/preproc/tbl/table.cpp (do_top): On nroff mode devices, add
-	one 1v of space above the table if we're going to be drawing an
+	one vee of space above the table if we're going to be drawing an
 	unintersected vertical rule above the table's top.
 
 	Fixes <https://savannah.gnu.org/bugs/?63449>.
@@ -46,7 +46,7 @@
 	definitions.  Standardize form of `if`, `ie`, and `el` requests.
 	Some output will not be indented because it is produced within
 	narrowly-scoped C++ functions (set_troff_location,
-	table::print_single_hline, table::print_double_line,
+	table::print_single_hline, table::print_double_hline,
 	table::do_row), I haven't verified that each one is called from
 	a consistent troff indentation level, and I'm not sure it's a
 	win to parameterize those functions in the indentation level.
@@ -84,7 +84,7 @@
 
 	* src/preproc/tbl/table.cpp: Revert much of commit b69062693's
 	{2011-07-20} changes to this file.  They were too complex for me
-	to understand, and permitted Savannah #61040 to persist (or
+	to understand, and permitted Savannah #60140 to persist (or
 	caused it).
 	(ROW_START_LINE_REG, ROW_SAVE_LINE_REG, ROW_MAX_LINE_REG)
 	(REPEATED_NM_SET_MACRO, REPEATED_NM_SUS_MACRO): Drop
@@ -106,12 +106,12 @@
 	If it wasn't, disable it, in case it was turned on inside the
 	table region.
 
-	Fixes <https://savannah.gnu.org/bugs/?61040>.  Thanks to Hans
+	Fixes <https://savannah.gnu.org/bugs/?60140>.  Thanks to Hans
 	Bezemer for noting the practical significance of this bug.
 
 2022-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[tbl]: Regression-test Savannah #61040.
+	[tbl]: Regression-test Savannah #60140.
 
 	* src/preproc/tbl/tests/save-and-restore-line-numbering.sh: Do
 	it.
@@ -516,9 +516,9 @@
 	[mdoc]: Use font CR, not CB, for `Cm` ("command modifier") and
 	`Fl` ("flag") macros on typesetters.
 
-	* tmac/mdoc/doc-diroff (doc-Cm-font, doc-Fl-Font): Switch from
-	Courier roman to Courier bold.  This congrues better with other
-	`Li` literals, which were not in boldface.
+	* tmac/mdoc/doc-ditroff (doc-Cm-font, doc-Fl-Font): Switch to
+	Courier roman from Courier bold.  This congrues better with
+	other `Li` literals, which were not in boldface.
 
 2022-11-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -10320,7 +10320,7 @@
 	* tmac/tests/s_IP-indents-using-paragraph-type-size.sh: Export
 	an empty $GROFF_TYPESETTER to the environment.
 
-	Fixes <https://savannah.gnu.org/bugs/?61040>.  Thanks to Bjarni
+	Fixes <https://savannah.gnu.org/bugs/?60140>.  Thanks to Bjarni
 	Ingi Gislason for the report.
 
 2021-08-21  G. Branden Robinson <g.branden.robinson@gmail.com>

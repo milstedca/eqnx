@@ -11683,7 +11683,7 @@ associated with the environment (@pxref{Environments}).
 
 @cindex vertical line spacing, effective value
 @noindent
-When a break occurs, GNU @code{troff} performs the following actions.
+When a break occurs, GNU @code{troff} performs the following procedure.
 
 @itemize @bullet
 @item

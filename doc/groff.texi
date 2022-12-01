@@ -4884,6 +4884,7 @@ not interested in details.
 * Deferring Output::
 * Traps::
 * Diversions::
+* Punning Names::
 * Environments::
 * Suppressing Output::
 * I/O::
@@ -12121,141 +12122,6 @@ of input.
 It is not possible to embed a newline in a string that will be
 interpreted as such when the string is interpolated.  To achieve that
 effect, use @code{\*} to interpolate a macro instead.
-
-Macros, strings, and diversions share a name space; see
-@ref{Identifiers}.  Internally, the same mechanism is used to store
-them.  You can thus call a macro with string interpolation syntax and
-vice versa.
-
-@Example
-.de subject
-Typesetting
-..
-.de predicate
-rewards attention to detail
-..
-\*[subject] \*[predicate].
-Truly.
-    @result{} Typesetting
-    @result{}  rewards attention to detail Truly.
-@endExample
-
-@noindent
-What went wrong?  Strings don't contain newlines, but macros do.  String
-interpolation placed a newline at the end of @samp{\*[subject]}, and the
-next thing on the input was a space.  Similarly, when
-@samp{\*[predicate]} was interpolated, it was followed by the empty
-request @samp{.} on a line by itself.  If we want to use macros as
-strings, we must take interpolation behavior into account.
-
-@Example
-.de subject
-Typesetting\\
-..
-.de predicate
-rewards attention to detail\\
-..
-\*[subject] \*[predicate].
-Truly.
-    @result{} Typesetting rewards attention to detail.  Truly.
-@endExample
-
-@noindent
-By ending each text line of the macros with an escaped
-@samp{\@key{RET}}, we get the desired effect (@pxref{Line
-Continuation}).@footnote{The backslash is doubled.  @xref{Copy Mode}.}
-What would have happened if we had used only one backslash at a time
-instead?
-
-Interpolating a string does not hide existing macro arguments.  We can
-also place the escaped newline outside the string interpolation instead
-of within the string definition.  Thus, in a macro, a more efficient way
-of doing
-
-@Example
-.xx \\$@@
-@endExample
-
-@noindent
-is
-
-@Example
-\\*[xx]\\
-@endExample
-
-@noindent
-The latter calling syntax doesn't change the value of @code{\$0}, which
-is then inherited from the calling macro (@pxref{Parameters}).
-
-Diversions can be also called with string syntax.  It is sometimes
-convenient to copy one-line diversions to a string.
-
-@Example
-.di xx
-the
-.ft I
-interpolation system
-.ft
-.br
-.di
-.ds yy This is a test of \*(xx\c
-\*(yy.
-    @result{} This is a test of the @i{interpolation system}.
-@endExample
-
-@noindent
-As the previous example shows, it is possible to store formatted output
-in strings.  The @code{\c} escape sequence prevents the subsequent
-newline from being interpreted as a break (again,
-@pxref{Line Continuation}).
-
-Copying diversions longer than a single output line produces unexpected
-results.
-
-@Example
-.di xxx
-a funny
-.br
-test
-.br
-.di
-.ds yyy This is \*[xxx]\c
-\*[yyy].
-    @result{} test This is a funny.
-@endExample
-
-Usually, it is not predictable whether a diversion contains one or more
-output lines, so this mechanism should be avoided.  With @acronym{AT&T}
-@code{troff}, this was the only solution to strip off a final newline
-from a diversion.  Another disadvantage is that the spaces in the copied
-string are already formatted, preventing their adjustment.  This can
-cause ugly results.
-
-@cindex stripping final newline in diversions
-@cindex diversion, stripping final newline
-@cindex final newline, stripping in diversions
-@cindex newline, final, stripping in diversions
-@cindex horizontal space, unformatting
-@cindex space, horizontal, unformatting
-@cindex unformatting horizontal space
-A clean solution to this problem is available in GNU @code{troff}, using
-the requests @code{chop} to remove the final newline of a diversion, and
-@code{unformat} to make the horizontal spaces adjustable again.
-
-@Example
-.box xxx
-a funny
-.br
-test
-.br
-.box
-.chop xxx
-.unformat xxx
-This is \*[xxx].
-    @result{} This is a funny test.
-@endExample
-
-@xref{Gtroff Internals}.
 @endDefreq
 
 The @code{ds1} request defines a string such that compatibility mode is
@@ -14861,7 +14727,7 @@ end-of-input macro using the @code{am} request.
 
 @c =====================================================================
 
-@node Diversions, Environments, Traps, gtroff Reference
+@node Diversions, Punning Names, Traps, gtroff Reference
 @section Diversions
 @cindex diversions
 
@@ -15172,6 +15038,146 @@ of lines are not preserved, but glyph information (font, type size,
 space width, and so on) is retained.
 @endDefreq
 
+
+@c =====================================================================
+
+@node Punning Names, Environments, Diversions, gtroff Reference
+@section Punning Names
+@cindex diversions
+
+Macros, strings, and diversions share a name space; recall
+@ref{Identifiers}.  Internally, the same mechanism is used to store
+them.  You can thus call a macro with string interpolation syntax and
+vice versa.
+
+@Example
+.de subject
+Typesetting
+..
+.de predicate
+rewards attention to detail
+..
+\*[subject] \*[predicate].
+Truly.
+    @result{} Typesetting
+    @result{}  rewards attention to detail Truly.
+@endExample
+
+@noindent
+What went wrong?  Strings don't contain newlines, but macros do.  String
+interpolation placed a newline at the end of @samp{\*[subject]}, and the
+next thing on the input was a space.  Then when @samp{\*[predicate]} was
+interpolated, it was followed by the empty request @samp{.} on a line by
+itself.  If we want to use macros as strings, we must take interpolation
+behavior into account.
+
+@Example
+.de subject
+Typesetting\\
+..
+.de predicate
+rewards attention to detail\\
+..
+\*[subject] \*[predicate].
+Truly.
+    @result{} Typesetting rewards attention to detail.  Truly.
+@endExample
+
+@noindent
+By ending each text line of the macros with an escaped
+@code{\@key{RET}}, we get the desired effect (@pxref{Line
+Continuation}).@footnote{The backslash is doubled.  @xref{Copy Mode}.}
+What would have happened if we had used only one backslash at a time
+instead?
+
+Interpolating a string does not hide existing macro arguments.  We can
+also place the escaped newline outside the string interpolation instead
+of within the string definition.  Thus, in a macro, a more efficient way
+of doing
+
+@Example
+.xx \\$@@
+@endExample
+
+@noindent
+is
+
+@Example
+\\*[xx]\\
+@endExample
+
+@noindent
+The latter calling syntax doesn't change the value of @code{\$0}, which
+is then inherited from the calling macro (@pxref{Parameters}).
+
+Diversions can be also called with string syntax.  It is sometimes
+convenient to copy one-line diversions to a string.
+
+@Example
+.di xx
+the
+.ft I
+interpolation system
+.ft
+.br
+.di
+.ds yy This is a test of \*(xx\c
+\*(yy.
+    @result{} This is a test of the @i{interpolation system}.
+@endExample
+
+@noindent
+As the previous example shows, it is possible to store formatted output
+in strings.  The @code{\c} escape sequence prevents the subsequent
+newline from being interpreted as a break (again,
+@pxref{Line Continuation}).
+
+Copying multi-output line diversions produces unexpected results.
+
+@Example
+.di xxx
+a funny
+.br
+test
+.br
+.di
+.ds yyy This is \*[xxx]\c
+\*[yyy].
+    @result{} test This is a funny.
+@endExample
+
+Usually, it is not predictable whether a diversion contains one or more
+output lines, so this mechanism should be avoided.  With @acronym{AT&T}
+@code{troff}, this was the only solution to strip off a final newline
+from a diversion.  Another disadvantage is that the spaces in the copied
+string are already formatted, preventing their adjustment.  This can
+cause ugly results.
+
+@cindex stripping final newline in diversions
+@cindex diversion, stripping final newline
+@cindex final newline, stripping in diversions
+@cindex newline, final, stripping in diversions
+@cindex horizontal space, unformatting
+@cindex space, horizontal, unformatting
+@cindex unformatting horizontal space
+A clean solution to this problem is available in GNU @code{troff}, using
+the requests @code{chop} to remove the final newline of a diversion, and
+@code{unformat} to make the horizontal spaces adjustable again.
+
+@Example
+.box xxx
+a funny
+.br
+test
+.br
+.box
+.chop xxx
+.unformat xxx
+This is \*[xxx].
+    @result{} This is a funny test.
+@endExample
+
+@xref{Gtroff Internals}.
 
 @c =====================================================================
 

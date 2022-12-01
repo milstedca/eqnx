@@ -11993,12 +11993,15 @@ string-valued register @samp{.M}; it is associated with the environment
 
 @c =====================================================================
 
+@c BEGIN Keep (roughly) parallel with section "Strings" of groff(7).
 @node Strings, Conditionals and Loops, Colors, gtroff Reference
 @section Strings
 @cindex strings
 
 GNU @code{troff} has string variables primarily for user convenience.
-Only one string is predefined by the language.
+Conventionally, if a macro definition needs only to interpolate text,
+without invoking any requests or calling any other macros, a string is
+defined instead.  Only one string is predefined by the language.
 
 @Defstr {.T}
 @stindex .T
@@ -12007,10 +12010,12 @@ Contains the name of the output device (for example, @samp{utf8} or
 @samp{pdf}).
 @endDefmpstr
 
-The @code{ds} (or @code{ds1}) request creates a string with a specified
-name and contents and the @code{\*} escape sequence dereferences its
-name, retrieving the contents.  Dereferencing an undefined string name
-defines it as empty.
+The @code{ds} request creates a string with a specified name and
+contents and the @code{\*} escape sequence dereferences its name,
+interpolating its contents.  If the string named by the @code{\*} escape
+sequence does not exist, it is defined as empty, nothing is
+interpolated, and a warning in category @samp{mac} is emitted.
+@xref{Warnings}.
 
 @DefreqList {ds, name [@Var{contents}]}
 @DefreqItemx {ds1, name [@Var{contents}]}
@@ -12026,35 +12031,37 @@ defines it as empty.
 @cindex expansion of strings (@code{\*})
 @cindex string arguments
 @cindex arguments, of strings
-Define a string variable @var{name} with contents @var{contents}.  If
+Define a string called @var{name} with contents @var{contents}.  If
 @var{name} already exists, it is removed first (see @code{rm} below).
-The syntax form using brackets accepts arguments that are handled as
-macro arguments are; recall @ref{Calling Macros}.  In contrast to macro
-invocations, however, a closing bracket as a string argument must be
-enclosed in double quotes.  @code{\\*} is interpreted even in copy mode
-(@pxref{Copy Mode}).
-
-The @code{\*} escape sequence @dfn{interpolates} (expands in place) a
-previously defined string variable @var{name} (one-character
-name@tie{}@var{n}, two-character name @var{nm}).  The delimited form
-need not use the neutral apostrophe; see @ref{Delimiters}.  An argument
-in a string definition must be escaped for correct behavior;
-@xref{Parameters}.
-
-@Example
-.ds a \\$1 wildebeest
-.ds b big, \*[a hairy]
-I see a \*[b].
-    @result{} I see a big, hairy wildebeest.
-@endExample
-
-If the string named by the @code{\*} escape sequence does not exist, it
-is defined as empty, and a warning in category @samp{mac} is produced.
-@xref{Debugging}, for information about the enablement and suppression
-of warnings.
-
 If @code{ds} is called with only one argument, @var{name} is defined as
 an empty string.
+
+The @code{\*} escape sequence interpolates a previously defined string
+variable @var{name} (one-character name@tie{}@var{n}, two-character name
+@var{nm}).  The bracketed interpolation form accepts arguments that are
+handled as macro arguments are; recall @ref{Calling Macros}.  In
+contrast to macro calls, however, if a closing bracket @samp{]} occurs
+in a string argument, that argument must be enclosed in double quotes.
+@code{\\*} is interpreted even in copy mode (@pxref{Copy Mode}).  When
+defining strings, argument interpolations must be escaped if they are to
+reference parameters from the calling context; @xref{Parameters}.
+
+@Example
+.ds cite (\\$1, \\$2)
+Gray codes are explored in \*[cite Morgan 1998].
+    @result{} Gray codes are explored in (Morgan, 1998).
+@endExample
+
+@c TODO: Consider examples of recursive string calls, particularly where
+@c one interpolation is constructed from the argument of an enclosing
+@c macro, to illustrate ".ds a \$1 \\$1".
+@c
+@c @Example
+@c .ds a \\$1 wildebeest
+@c .ds b big, \*[a hairy]
+@c I see a \*[b].
+@c     @result{} I see a big, hairy wildebeest.
+@c @endExample
 
 @cindex trailing spaces in string definitions and appendments
 @cindex comments, with @code{ds}
@@ -12092,8 +12099,8 @@ document maintenance.
 @cindex leading spaces with @code{ds}
 @cindex spaces with @code{ds}
 @cindex @code{ds} request, and leading spaces
-An initial neutral double quote in @var{contents} is stripped to allow
-embedding of leading spaces.
+An initial neutral double quote @code{"} in @var{contents} is stripped
+to allow embedding of leading spaces.
 
 @c Examples should be more accessible than Unix nerd stuff like this,
 @c but in general document authors shouldn't want to use "straight"
@@ -12109,9 +12116,9 @@ embedding of leading spaces.
 @cindex strings, multi-line
 @cindex newline character, in strings, escaping
 @cindex escaping newline characters, in strings
-Strings are not limited to a single line of input text.  A string can
-span several lines by escaping the newlines with a backslash.  The
-resulting string is stored @emph{without} the newlines.
+Strings are not limited to a single input line of text.
+@code{\@key{RET}} works just as it does elsewhere.  The resulting string
+is stored @emph{without} the newlines.
 
 @Example
 .ds foo This string contains \
@@ -12121,13 +12128,16 @@ of input.
 
 It is not possible to embed a newline in a string that will be
 interpreted as such when the string is interpolated.  To achieve that
-effect, use @code{\*} to interpolate a macro instead.
-@endDefreq
+effect, use @code{\*} to interpolate a macro instead; see @ref{Punning
+Names}.
 
-The @code{ds1} request defines a string such that compatibility mode is
-off when the string is later interpolated.  To be more precise, a
-@dfn{compatibility save} input token is inserted at the beginning of the
-string, and a @dfn{compatibility restore} input token at the end.
+Because strings are similar to macros, they too can be defined so as to
+suppress AT&T @code{troff} compatibility mode when used; see
+@ref{Writing Macros} and @ref{Compatibility Mode}.  The @code{ds1}
+request defines a string such that compatibility mode is off when the
+string is later interpolated.  To be more precise, a @dfn{compatibility
+save} input token is inserted at the beginning of the string, and a
+@dfn{compatibility restore} input token at the end.
 
 @Example
 .nr xxx 12345
@@ -12142,6 +12152,7 @@ string, and a @dfn{compatibility restore} input token at the end.
 \*(bb
     @result{} The value of xxx is 12345.
 @endExample
+@endDefreq
 
 @DefreqList {as, name [@Var{contents}]}
 @DefreqListEndx {as1, name [@Var{contents}]}
@@ -12333,6 +12344,7 @@ an error.  @xref{Writing Macros}.
 To remove an alias, call @code{rm} on its name.  The object itself is
 not destroyed until it has no more names.
 @endDefreq
+@c END Keep (roughly) parallel with section "Strings" of groff(7).
 
 
 @c =====================================================================

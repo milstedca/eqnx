@@ -1246,8 +1246,8 @@ table::table(int nc, unsigned f, int ls, char dpc)
 : nrows(0), ncolumns(nc), linesize(ls), decimal_point_char(dpc),
   vrule_list(0), stuff_list(0), span_list(0),
   entry_list(0), entry_list_tailp(&entry_list), entry(0),
-  vline(0), row_is_all_lines(0), left_separation(0), right_separation(0),
-  total_separation(0), allocated_rows(0), flags(f)
+  vline(0), row_is_all_lines(0), left_separation(0),
+  right_separation(0), total_separation(0), allocated_rows(0), flags(f)
 {
   minimum_width = new string[ncolumns];
   column_separation = ncolumns > 1 ? new int[ncolumns - 1] : 0;
@@ -2957,9 +2957,8 @@ void table::do_top()
     prints(".ls\n"
 	   ".vs\n");
   }
-  else if (flags & (ALLBOX | BOX)) {
+  else if (flags & (ALLBOX | BOX))
     print_single_hline(0);
-  }
   //printfs(".mk %1\n", row_top_reg(0));
 }
 

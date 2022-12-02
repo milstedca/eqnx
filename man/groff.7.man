@@ -5243,17 +5243,17 @@ exceptions are noted.
 .P
 .LS
 .
-.TPx
+.TP 15n
 .REG .$
 Count of arguments passed to currently interpolated macro or string.
 .
-.TPx
+.TP
 .REG .a
 Amount of extra post-vertical line space;
 see
 .esc x .
 .
-.TPx
+.TP
 .REG .A
 Approximate output is being formatted (Boolean-valued);
 see
@@ -5261,22 +5261,22 @@ see
 .option \-a
 option.
 .
-.TPx
+.TP
 .REG .b
 Font emboldening offset;
 see
 .request .bd .
 .
-.TPx
+.TP
 .REG .br
 The normal control character was used to call the currently interpolated
 macro (Boolean-valued).
 .
-.TPx
+.TP
 .REG .c
 Input line number.
 .
-.TPx
+.TP
 .REG .C
 Compatibility mode is enabled (Boolean-valued);
 see
@@ -5287,27 +5287,27 @@ Always false when processing
 see
 .register .cp .
 .
-.TPx
+.TP
 .REG .cdp
 Depth of last glyph formatted in the environment;
 .\" TODO: Give page a discussion of glyph properties and move this.
 positive if glyph extends below the baseline.
 .
-.TPx
+.TP
 .REG .ce
 Count of output lines remaining to be centered.
 .
-.TPx
+.TP
 .REG .cht
 Height of last glyph formatted in the environment;
 .\" TODO: Give page a discussion of glyph properties and move this.
 positive if glyph extends above the baseline.
 .
-.TPx
+.TP
 .REG .color
 Color output is enabled (Boolean-valued).
 .
-.TPx
+.TP
 .REG .cp
 Within
 .request .do ,
@@ -5315,105 +5315,105 @@ the saved value of compatibility mode;
 see
 .register .C .
 .
-.TPx
+.TP
 .REG .csk
 Skew of the last glyph formatted in the environment;
 .\" TODO: Give page a discussion of glyph properties and move this.
 skew is how far to the right of the center of a glyph the center of an
 accent over that glyph should be placed.
 .
-.TPx
+.TP
 .REG .d
 Vertical drawing position in diversion.
 .
-.TPx
+.TP
 .REG .ev
 Name of environment (string-valued).
 .
-.TPx
+.TP
 .REG .f
 Mounting position of selected font.
 .
-.TPx
+.TP
 .REG .F
 Name of input file (string-valued).
 .
-.TPx
+.TP
 .REG .fam
 Nmae of font family (string-valued).
 .
-.TPx
+.TP
 .REG .fn
 Resolved name of selected font (string-valued).
 .
-.TPx
+.TP
 .REG .fp
 Next free font mounting position index.
 .
-.TPx
+.TP
 .REG .g
 Always true in GNU
 .I troff \" GNU
 (Boolean-valued).
 .
-.TPx
+.TP
 .REG .h
 Text baseline high-water mark on page or in diversion.
 .
-.TPx
+.TP
 .REG .H
 Horizontal motion quantum of output device in basic units.
 .
-.TPx
+.TP
 .REG .height
 Font height;
 see
 .esc H .
 .
-.TPx
+.TP
 .REG .hla
 Hyphenation language in environment (string-valued).
 .
-.TPx
+.TP
 .REG .hlc
 Count of immediately preceding consecutive hyphenated lines in
 environment.
 .
-.TPx
+.TP
 .REG .hlm
 Maximum quantity of consecutive hyphenated lines allowed in environment.
 .
-.TPx
+.TP
 .REG .hy
 Automatic hyphenation mode in environment.
 .
-.TPx
+.TP
 .REG .hym
 Hyphenation margin in environment.
 .
-.TPx
+.TP
 .REG .hys
 Hyphenation space adjustment threshold in environment.
 .
-.TPx
+.TP
 .REG .i
 Indentation amount;
 see
 .request .in .
 .
-.TPx
+.TP
 .REG .in
 Indentation amount applicable to the pending output line;
 see
 .request .ti .
 .
-.TPx
+.TP
 .REG .int
 Previous output line was \[lq]interrupted\[rq] or continued with
 .esc c
 (Boolean-valued).
 .
-.TPx
+.TP
 .REG .j
 Adjustment mode encoded as an integer;
 see
@@ -5423,43 +5423,43 @@ and
 .
 Do not interpret or perform arithmetic on its value.
 .
-.TPx
+.TP
 .REG .k
 Horizontal drawing position relative to indentation.
 .
-.TPx
+.TP
 .REG .kern
 Enablement status of pairwise kerning (Boolean-valued).
 .
-.TPx
+.TP
 .REG .l
 Line length;
 see
 .request .ll .
 .
-.TPx
+.TP
 .REG .L
 Line spacing;
 see
 .request .ls .
 .
-.TPx
+.TP
 .REG .lg
 Ligature mode enablement (Boolean-valued).
 .
-.TPx
+.TP
 .REG .linetabs
 Line-tabs mode enablement (Boolean-valued).
 .
-.TPx
+.TP
 .REG .ll
 Length of pending output line.
 .
-.TPx
+.TP
 .REG .lt
 Title length.
 .
-.TPx
+.TP
 .REG .m
 Stroke color (string-valued);
 see
@@ -5467,7 +5467,7 @@ see
 and
 .esc m .
 .
-.TPx
+.TP
 .REG .M
 Fill color (string-valued);
 see
@@ -5475,11 +5475,11 @@ see
 and
 .esc M .
 .
-.TPx
+.TP
 .REG .n
 Length of formatted output on previous output line.
 .
-.TPx
+.TP
 .REG .ne
 Amount of vertical space required by last
 .request .ne
@@ -5487,37 +5487,37 @@ that caused a trap to be sprung;
 also see
 .register .trunc .
 .
-.TPx
+.TP
 .REG .nm
 Output line numbering enablement (Boolean-valued).
 .
-.TPx
+.TP
 .REG .nn
 Count of output lines remaining to have numbering suppressed.
 .
-.TPx
+.TP
 .REG .ns
 No-space mode enablement (Boolean-valued).
 .
-.TPx
+.TP
 .REG .o
 Page offset;
 see
 .request .po .
 .
-.TPx
+.TP
 .REG .O
 suppression nesting level;
 see
 .esc O .
 .
-.TPx
+.TP
 .REG .p
 Page length;
 see
 .request .pl .
 .
-.TPx
+.TP
 .REG .P
 Printing selection status of page (Boolean-valued);
 see
@@ -5525,70 +5525,70 @@ see
 .option \-o
 option.
 .
-.TPx
+.TP
 .REG .pe
 Page ejection status (Boolean-valued).
 .
-.TPx
+.TP
 .REG .pn
 Number of the next page.
 .
-.TPx
+.TP
 .REG .ps
 Type size in scaled points.
 .
-.TPx
+.TP
 .REG .psr
 Last-requested type size in scaled points.
 .
-.TPx
+.TP
 .REG .pvs
 Post-vertical line spacing.
 .
-.TPx
+.TP
 .REG .R
 Count of available unused registers;
 always 10,000 in GNU
 .IR troff . \" GNU
 .
-.TPx
+.TP
 .REG .rj
 Count of lines remaining to be right-aligned.
 .
-.TPx
+.TP
 .REG .s
 Type size in points as a decimal fraction (string-valued).
 .
-.TPx
+.TP
 .REG .slant
 Slant of font;
 see
 .esc S .
 .
-.TPx
+.TP
 .REG .sr
 Last-requested type size in points as a decimal fraction
 (string-valued).
 .
-.TPx
+.TP
 .REG .ss
 Size of minimal inter-word spacing in twelfths of the space width of
 selected font.
 .
-.TPx
+.TP
 .REG .sss
 Size of additional inter-sentence space in twelfths of the space width
 of selected font.
 .
-.TPx
+.TP
 .REG .sty
 Font style (string-valued).
 .
-.TPx
+.TP
 .REG .t
 Distance to next vertical position trap.
 .
-.TPx
+.TP
 .REG .T
 Indicator of output device selection (Boolean-valued);
 see
@@ -5596,13 +5596,13 @@ see
 .option \-T
 option.
 .
-.TPx
+.TP
 .REG .tabs
 Representation of tab settings suitable for use as argument to
 .request .ta
 (string-valued).
 .
-.TPx
+.TP
 .REG .trunc
 Amount of vertical space truncated by the most recently sprung
 vertical position trap,
@@ -5614,7 +5614,7 @@ minus the amount of vertical motion produced by
 also see
 .register .ne .
 .
-.TPx
+.TP
 .REG .u
 Filling enablement (Boolean-valued);
 see
@@ -5622,7 +5622,7 @@ see
 and
 .request .nf .
 .
-.TPx
+.TP
 .REG .U
 Unsafe mode enablement (Boolean-valued);
 see
@@ -5630,51 +5630,51 @@ see
 .option \-U
 option.
 .
-.TPx
+.TP
 .REG .v
 Vertical line spacing;
 see
 .request .vs .
 .
-.TPx
+.TP
 .REG .V
 Vertical motion quantum of the output device in basic units.
 .
-.TPx
+.TP
 .REG .vpt
 Vertical position trap enablement (Boolean-valued).
 .
-.TPx
+.TP
 .REG .w
 Width of previous glyph formatted in the environment.
 .
-.TPx
+.TP
 .REG .warn
 Sum of the numeric codes of enabled warning categories.
 .
-.TPx
+.TP
 .REG .x
 Major version number of the running
 .I @g@troff
 formatter.
 .
-.TPx
+.TP
 .REG .y
 Minor version number of the running
 .I @g@troff
 formatter.
 .
-.TPx
+.TP
 .REG .Y
 Revision number of the running
 .I @g@troff
 formatter.
 .
-.TPx
+.TP
 .REG .z
 Name of diversion (string-valued).
 .
-.TPx
+.TP
 .REG .zoom
 Zoom multiplier of current font
 (in thousandths;

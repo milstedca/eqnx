@@ -1,5 +1,9 @@
 2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an-ext.tmac: Initialize `mX` register.
+
+2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an-ext.tmac: Define `mC` string (constant-width typeface
 	used by `EX`/`EE` macros) as `R` in nroff mode.  Thanks to
 	Russ Allbery for prompting me to think more about the

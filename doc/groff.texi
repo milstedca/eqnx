@@ -7443,9 +7443,10 @@ Register contents are interpolated with the @code{\n} escape sequence.
 Interpolate register with name @var{ident} (one-character
 name@tie{}@var{i}, two-character name @var{id}).  @code{\n} is
 interpreted even in copy mode (@pxref{Copy Mode}).  If the register is
-undefined, it is created, assigned a value of@tie{}@samp{0}, and a
-warning in category @samp{reg} is produced.  @xref{Debugging}, for
-information about the enablement and suppression of warnings.
+undefined, it is created, assigned a value of@tie{}@samp{0}, that value
+is interpolated, and a warning in category @samp{reg} is emitted.
+@xref{Debugging}, for information about the enablement and suppression
+of warnings.
 
 @Example
 .nr a 5

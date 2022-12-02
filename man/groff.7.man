@@ -5224,237 +5224,236 @@ part of the register name.
 .
 Predefined registers whose identifiers start with a dot are read-only.
 .
+Many are Boolean-valued,
+interpolating a true or false value testable with
+.request .if ,
+.request .ie ,
+or
+.request .while .
+.
+Some are string-valued,
+meaning that they interpolate text.
+.
+A register name
+(without the dot)
+is often associated with a request of the same name;
+exceptions are noted.
+.
 .
 .P
 .LS
 .
 .TPx
 .REG .$
-Number of arguments in the current macro or string.
+Count of arguments passed to currently interpolated macro or string.
 .
 .TPx
 .REG .a
-Post-line extra line-space most recently utilized using
+Amount of extra post-vertical line space;
+see
 .esc x .
 .
 .TPx
 .REG .A
-Set to\~1 in
+Approximate output is being formatted (Boolean-valued);
+see
 .I @g@troff
-if option
-.option \-A
-is used; always\~1 in
-.IR @g@nroff .
+.option \-a
+option.
 .
 .TPx
 .REG .b
-The emboldening offset while
-.request .bd
-is active.
+Font emboldening offset;
+see
+.request .bd .
 .
 .TPx
 .REG .br
-Interpolates\~1 if the currently executing macro was called using the
-normal control character and\~0 otherwise.
+The normal control character was used to call the currently interpolated
+macro (Boolean-valued).
 .
 .TPx
 .REG .c
-Current input line number.
+Input line number.
 .
 .TPx
 .REG .C
-1\~if compatibility mode is in effect, 0\~otherwise.
-.
-Always\~0 in a
-.request .do
-request;
+Compatibility mode is enabled (Boolean-valued);
 see
-.register .cp
-below.
+.request .cp .
+.
+Always false when processing
+.request .do ;
+see
+.register .cp .
 .
 .TPx
 .REG .cdp
-The depth of the last glyph added to the current environment.
-.
-It is positive if the glyph extends below the baseline.
-.
+Depth of last glyph formatted in the environment;
+.\" TODO: Give page a discussion of glyph properties and move this.
+positive if glyph extends below the baseline.
 .
 .TPx
 .REG .ce
-The count of lines remaining to be centered.
-.
+Count of output lines remaining to be centered.
 .
 .TPx
 .REG .cht
-The height of the last glyph added to the current environment.
-.
-It is positive if the glyph extends above the baseline.
-.
+Height of last glyph formatted in the environment;
+.\" TODO: Give page a discussion of glyph properties and move this.
+positive if glyph extends above the baseline.
 .
 .TPx
 .REG .color
-1\~if colors are enabled,
-0\~otherwise.
-.
+Color output is enabled (Boolean-valued).
 .
 .TPx
 .REG .cp
-Within a
-.request .do
-request,
-the saved value of compatibility mode (see
-.register .C
-above).
+Within
+.request .do ,
+the saved value of compatibility mode;
+see
+.register .C .
 .
 .TPx
 .REG .csk
-The skew of the last glyph added to the current environment.
-.
-The skew of a glyph is how far to the right of the center of a glyph
-the center of an accent over that glyph should be placed.
+Skew of the last glyph formatted in the environment;
+.\" TODO: Give page a discussion of glyph properties and move this.
+skew is how far to the right of the center of a glyph the center of an
+accent over that glyph should be placed.
 .
 .TPx
 .REG .d
-Current vertical place in current diversion; equal to register
-.BR nl .
+Vertical drawing position in diversion.
 .
 .TPx
 .REG .ev
-The name of the current environment (string-valued).
-.
+Name of environment (string-valued).
 .
 .TPx
 .REG .f
-Mounting position index of the current font.
-.
+Mounting position of selected font.
 .
 .TPx
 .REG .F
-The name of the current input file (string-valued).
+Name of input file (string-valued).
 .
 .TPx
 .REG .fam
-The current font family (string-valued).
+Nmae of font family (string-valued).
 .
 .TPx
 .REG .fn
-The current (internal) real font name (string-valued).
-.
+Resolved name of selected font (string-valued).
 .
 .TPx
 .REG .fp
-The next free font mounting position index.
-.
+Next free font mounting position index.
 .
 .TPx
 .REG .g
-Always 1 in GNU
-.IR troff . \" GNU
-.
-Use to test if running under
-.IR groff .
-.
+Always true in GNU
+.I troff \" GNU
+(Boolean-valued).
 .
 .TPx
 .REG .h
 Text baseline high-water mark on page or in diversion.
 .
-.
 .TPx
 .REG .H
-Horizontal motion quantum of the output device in basic units.
+Horizontal motion quantum of output device in basic units.
 .
 .TPx
 .REG .height
-The current font height as set with
+Font height;
+see
 .esc H .
 .
 .TPx
 .REG .hla
-The hyphenation language in the current environment.
+Hyphenation language in environment (string-valued).
 .
 .TPx
 .REG .hlc
-The count of immediately preceding consecutive hyphenated lines in the
-current environment.
-.
+Count of immediately preceding consecutive hyphenated lines in
+environment.
 .
 .TPx
 .REG .hlm
-The maximum quantity of consecutive hyphenated lines allowed in the
-current environment.
-.
+Maximum quantity of consecutive hyphenated lines allowed in environment.
 .
 .TPx
 .REG .hy
-The automatic hyphenation mode in the current environment.
+Automatic hyphenation mode in environment.
 .
 .TPx
 .REG .hym
-The hyphenation margin in the current environment.
+Hyphenation margin in environment.
 .
 .TPx
 .REG .hys
-The hyphenation space adjustment threshold in the current environment.
+Hyphenation space adjustment threshold in environment.
 .
 .TPx
 .REG .i
-Indentation.
+Indentation amount;
+see
+.request .in .
 .
 .TPx
 .REG .in
-Indentation applicable to the pending output line;
+Indentation amount applicable to the pending output line;
 see
-.request .ti
-request.
+.request .ti .
 .
 .TPx
 .REG .int
-Positive if last output line contains
-.esc c .
-.
+Previous output line was \[lq]interrupted\[rq] or continued with
+.esc c
+(Boolean-valued).
 .
 .TPx
 .REG .j
-Adjustment mode encoded as an integer.
+Adjustment mode encoded as an integer;
+see
+.request .ad
+and
+.request .na .
 .
 Do not interpret or perform arithmetic on its value.
 .
-.
 .TPx
 .REG .k
-The current horizontal output position (relative to the current
-indentation).
-.
+Horizontal drawing position relative to indentation.
 .
 .TPx
 .REG .kern
-1\~if pairwise kerning is enabled, 0\~otherwise.
+Enablement status of pairwise kerning (Boolean-valued).
 .
 .TPx
 .REG .l
-Current line length.
+Line length;
+see
+.request .ll .
 .
 .TPx
 .REG .L
-The current line spacing setting as set by
+Line spacing;
+see
 .request .ls .
 .
 .TPx
 .REG .lg
-The current ligature mode (as set by the
-.request .lg
-request).
+Ligature mode enablement (Boolean-valued).
 .
 .TPx
 .REG .linetabs
-The current line-tabs mode (as set by the
-.request .linetabs
-request).
+Line-tabs mode enablement (Boolean-valued).
 .
 .TPx
 .REG .ll
-Line length of the pending output line.
+Length of pending output line.
 .
 .TPx
 .REG .lt
@@ -5462,229 +5461,224 @@ Title length.
 .
 .TPx
 .REG .m
-Stroke color (string-valued).
-.
+Stroke color (string-valued);
+see
+.request .gcolor
+and
+.esc m .
 .
 .TPx
 .REG .M
-Fill color (string-valued).
-.
+Fill color (string-valued);
+see
+.request .fcolor
+and
+.esc M .
 .
 .TPx
 .REG .n
-Length of text portion on previous output line.
+Length of formatted output on previous output line.
 .
 .TPx
 .REG .ne
-The amount of space that was needed in the last
+Amount of vertical space required by last
 .request .ne
-request that caused a trap to be sprung.
-.
-Useful in conjunction with register
-.BR .trunc .
+that caused a trap to be sprung;
+also see
+.register .trunc .
 .
 .TPx
 .REG .nm
-1\~if output line numbering is enabled
-(even if temporarily suppressed),
-0\~otherwise.
+Output line numbering enablement (Boolean-valued).
 .
 .TPx
 .REG .nn
-The count of output lines remaining to have numbering suppressed.
+Count of output lines remaining to have numbering suppressed.
 .
 .TPx
 .REG .ns
-1\~if in no-space mode, 0\~otherwise.
+No-space mode enablement (Boolean-valued).
 .
 .TPx
 .REG .o
-Current page offset.
+Page offset;
+see
+.request .po .
 .
 .TPx
 .REG .O
-The suppression nesting level (see
-.esc O ).
+suppression nesting level;
+see
+.esc O .
 .
 .TPx
 .REG .p
-Current page length.
+Page length;
+see
+.request .pl .
 .
 .TPx
 .REG .P
-1\~if the current page is being printed, 0\~otherwise (as determined by
-the
+Printing selection status of page (Boolean-valued);
+see
+.I @g@troff
 .option \-o
-command-line option).
+option.
 .
 .TPx
 .REG .pe
-1\~during page ejection, 0\~otherwise.
+Page ejection status (Boolean-valued).
 .
 .TPx
 .REG .pn
-The number of the next page: either the value set by a
-.request .pn
-request, or the number of the current page plus\ 1.
+Number of the next page.
 .
 .TPx
 .REG .ps
-The current type size in scaled points.
-.
+Type size in scaled points.
 .
 .TPx
 .REG .psr
-The last-requested type size in scaled points.
-.
+Last-requested type size in scaled points.
 .
 .TPx
 .REG .pvs
-The current post-vertical line spacing.
-.
+Post-vertical line spacing.
 .
 .TPx
 .REG .R
-The count of available unused registers;
+Count of available unused registers;
 always 10,000 in GNU
 .IR troff . \" GNU
 .
-.
 .TPx
 .REG .rj
-The count of lines remaining to be right-aligned.
-.
+Count of lines remaining to be right-aligned.
 .
 .TPx
 .REG .s
-Current type size in points as a decimal fraction
-(string-valued).
-.
+Type size in points as a decimal fraction (string-valued).
 .
 .TPx
 .REG .slant
-The slant of the current font as set with
+Slant of font;
+see
 .esc S .
-.
 .
 .TPx
 .REG .sr
-The last requested type size in points as a decimal fraction
+Last-requested type size in points as a decimal fraction
 (string-valued).
-.
 .
 .TPx
 .REG .ss
-Size of minimal inter-word spacing in twelfths of the space width of the
-current font.
+Size of minimal inter-word spacing in twelfths of the space width of
+selected font.
 .
 .TPx
 .REG .sss
 Size of additional inter-sentence space in twelfths of the space width
-of the current font.
+of selected font.
 .
 .TPx
 .REG .sty
-The current font style (string-valued).
-.
+Font style (string-valued).
 .
 .TPx
 .REG .t
-Distance to the next vertical position trap.
-.
+Distance to next vertical position trap.
 .
 .TPx
 .REG .T
-Set to\~1
-if option
+Indicator of output device selection (Boolean-valued);
+see
+.I @g@troff
 .option \-T
-is used.
+option.
 .
 .TPx
 .REG .tabs
-A string representation of the current tab settings suitable for use
-as an argument to the
+Representation of tab settings suitable for use as argument to
 .request .ta
-request.
+(string-valued).
 .
 .TPx
 .REG .trunc
-The amount of vertical space truncated by the most recently sprung
+Amount of vertical space truncated by the most recently sprung
 vertical position trap,
 or,
 if the trap was sprung by an
-.request .ne
-request,
+.request .ne ,
 minus the amount of vertical motion produced by
-.request .ne .
-.
-Useful in conjunction with the
+.request .ne ;
+also see
 .register .ne .
-.
 .
 .TPx
 .REG .u
-Equal to 1 if filling is enabled,
-0 otherwise.
-.
+Filling enablement (Boolean-valued);
+see
+.request .fi
+and
+.request .nf .
 .
 .TPx
 .REG .U
-1\~in unsafe mode and 0\~otherwise.
-.
+Unsafe mode enablement (Boolean-valued);
+see
+.I @g@troff
+.option \-U
+option.
 .
 .TPx
 .REG .v
-Current vertical line spacing.
+Vertical line spacing;
+see
+.request .vs .
 .
 .TPx
 .REG .V
 Vertical motion quantum of the output device in basic units.
 .
-.
 .TPx
 .REG .vpt
-1\~if vertical position traps are enabled, 0\~otherwise.
-.
+Vertical position trap enablement (Boolean-valued).
 .
 .TPx
 .REG .w
-Width of previous glyph.
-.
+Width of previous glyph formatted in the environment.
 .
 .TPx
 .REG .warn
-The sum of the numeric codes of currently enabled warning categories.
-.
+Sum of the numeric codes of enabled warning categories.
 .
 .TPx
 .REG .x
-The major version number of the running
+Major version number of the running
 .I @g@troff
 formatter.
-.
 .
 .TPx
 .REG .y
-The minor version number of the running
+Minor version number of the running
 .I @g@troff
 formatter.
-.
 .
 .TPx
 .REG .Y
-The revision number of the running
+Revision number of the running
 .I @g@troff
 formatter.
 .
-.
 .TPx
 .REG .z
-Name of current diversion.
+Name of diversion (string-valued).
 .
 .TPx
 .REG .zoom
-Zoom factor for current font (in multiples of 1/1000th; zero if no
-magnification).
+Zoom multiplier of current font
+(in thousandths;
+zero if no magnification).
 .LE
 .
 .
@@ -5693,8 +5687,9 @@ magnification).
 .\" ====================================================================
 .
 The following registers can be read and written by the user.
-They have predefined default values, but these can be modified for
-customizing a document.
+.
+They have predefined default values,
+but can be modified to customize a document.
 .
 .
 .P

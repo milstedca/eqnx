@@ -1,5 +1,15 @@
 2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an-ext.tmac: Support `mG` register: clear it to force the
+	loading of this file's macros even if they have an
+	implementation in tmac/an.tmac and the formatter claims groff
+	compatibility.  This is to ease these macros' testing under
+	groff and keep the implementations here simple.
+	* tmac/an.tmac: Initialize `mG` register to 1 if not set on
+	command line.
+
+2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an-ext.tmac: Initialize `mX` register.
 
 2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>

@@ -207,7 +207,7 @@
 .
 .\" Set a man page cross reference.
 .\" .MR page-topic page-section [trailing-text]
-.if \n(.g .ig
+.if \n(.g-\n(mG \{\
 .de MR
 .  nh
 .  ie \\n(.$=1 \
@@ -216,6 +216,7 @@
 .    IR \\$1 (\\$2)\\$3
 .  hy \\n(mJ
 ..
+.\}
 .
 .
 .\" Continuation line for .TP header.
@@ -227,7 +228,7 @@
 .
 .
 .\" Start example.
-.if \n(.g .ig
+.if \n(.g-\n(mG \{\
 .de EX
 .  br
 .  if !\\n(mX \{\
@@ -239,10 +240,11 @@
 .    nr mX 1
 .  \}
 ..
+.\}
 .
 .
 .\" End example.
-.if \n(.g .ig
+.if \n(.g-\n(mG \{\
 .de EE
 .  br
 .  if \\n(mX \{\
@@ -252,6 +254,7 @@
 .    nr mX 0
 .  \}
 ..
+.\}
 .
 .
 .\" Start display.

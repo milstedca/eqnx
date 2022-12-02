@@ -5150,11 +5150,9 @@ the effect of a newline.
 .\" ====================================================================
 .
 Most registers store numeric values
-(see section \[lq]Numerical Expressions\[rq] above),
-but some
-(predefined,
-read-only ones)
-interpolate text.
+(see section \[lq]Numeric expressions\[rq] above),
+but some interpolate text;
+see subsection \[lq]Read-only registers\[rq] below.
 .
 Each register has a name.
 .

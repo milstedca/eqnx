@@ -1,3 +1,12 @@
+2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/an-ext.tmac: Define `mC` string (constant-width typeface
+	used by `EX`/`EE` macros) as `R` in nroff mode.  Thanks to
+	Russ Allbery for prompting me to think more about the
+	limitations of Solaris troff.  Implementations do varying
+	things with the "previous" font restored by `\fP` or an
+	unargumented `.ft` if a requested font is not found.
+
 2022-11-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tbl]: Fix Savannah #63449.

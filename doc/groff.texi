@@ -12162,7 +12162,7 @@ The @code{as} request is similar to @code{ds} but appends @var{contents}
 to the string stored as @var{name} instead of redefining it.  If
 @var{name} doesn't exist yet, it is created.  If @code{as} is called
 with only one argument, no operation is performed (beyond dereferencing
-it).
+the string).
 
 @Example
 .as salutation " with shallots, onions and garlic,\"

@@ -2769,7 +2769,7 @@ is interpreted.
 .
 .TPx
 .REQ .ds "name \fR[\fPcontents\fR]\fP"
-Define a string variable
+Define a string
 .I name
 with contents
 .IR string ,
@@ -4964,7 +4964,7 @@ then restore it.
 .
 .\" BEGIN Keep (roughly) parallel with groff.texi node "Strings".
 .I groff
-has string variables primarily for user convenience.
+supports strings primarily for user convenience.
 .
 Conventionally,
 if a macro definition needs only to interpolate text,
@@ -5012,7 +5012,7 @@ see section \[lq]Calling Macros\[rq] above.
 In contrast to macro calls,
 however,
 if a closing bracket
-.B }
+.B ]
 occurs in a string argument,
 that argument must be enclosed in double quotes.
 .
@@ -5023,7 +5023,7 @@ is interpreted even in copy mode
 When defining strings,
 argument interpolations must be escaped if they are to reference
 parameters from the calling context;
-(see section \[lq]Parameters\[rq] below).
+see section \[lq]Parameters\[rq] below.
 .
 .
 .P
@@ -5074,7 +5074,7 @@ If
 .request .as
 is called with only one argument,
 no operation is performed
-(beyond dereferencing it).
+(beyond dereferencing the string).
 .
 .
 .P

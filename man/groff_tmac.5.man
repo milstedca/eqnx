@@ -1050,8 +1050,8 @@ and vice versa.
 .P
 Alternatively,
 one could include a macro file by using the request
-.B .so
-.I file-name
+.RB \[lq] .so
+.IR file-name \[rq]
 in the document;
 .I file-name
 is resolved relative to the location of the input document.
@@ -1059,8 +1059,8 @@ is resolved relative to the location of the input document.
 GNU
 .I troff \" GNU
 offers an improved feature in the similar request
-.B mso
-.IR package-file-name ,
+.RB \[lq] mso
+.IR package-file-name \[rq],
 which searches the macro path for
 .IR package-file-name .
 .

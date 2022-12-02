@@ -5149,20 +5149,27 @@ the effect of a newline.
 .SH Registers
 .\" ====================================================================
 .
-Most registers store numeric values
-(see section \[lq]Numeric expressions\[rq] above),
-but some interpolate text;
-see subsection \[lq]Read-only registers\[rq] below.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Registers".
+In the
+.I roff
+language,
+numbers can be stored in
+.I registers.
 .
-Each register has a name.
+Many built-in registers exist,
+supplying anything from the date to details of formatting parameters.
 .
-A register is defined and assigned with the
-.request .nr
+You can also define your own.
+.
+See section \[lq]Identifiers\[rq] above for information on constructing
+a valid name for a register.
+.
+.
+.P
+Define registers and update their values with the
+.B nr
 request or the
-.esc R
-escape sequence;
-its value is interpolated with the
-.esc n
+.B \[rs]R
 escape sequence.
 .
 .
@@ -5207,6 +5214,7 @@ Bear in mind that the symbols
 are
 .I not
 part of the register name.
+.\" END Keep (roughly) parallel with groff.texi node "Registers".
 .
 .
 .\" ====================================================================

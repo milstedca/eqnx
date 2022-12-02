@@ -51,13 +51,6 @@ language reference
 .  nop \)\\$*
 ..
 .
-.\" ========= command=line option =========
-.
-.de option
-.  Text \f[CB]\\$*
-.  ft P
-..
-.
 .\" ========= characters =========
 .
 .de squoted_char
@@ -5258,7 +5251,7 @@ see
 Approximate output is being formatted (Boolean-valued);
 see
 .I @g@troff
-.option \-a
+.B \-a
 option.
 .
 .TP
@@ -5522,7 +5515,7 @@ see
 Printing selection status of page (Boolean-valued);
 see
 .I @g@troff
-.option \-o
+.B \-o
 option.
 .
 .TP
@@ -5593,7 +5586,7 @@ Distance to next vertical position trap.
 Indicator of output device selection (Boolean-valued);
 see
 .I @g@troff
-.option \-T
+.B \-T
 option.
 .
 .TP
@@ -5627,7 +5620,7 @@ and
 Unsafe mode enablement (Boolean-valued);
 see
 .I @g@troff
-.option \-U
+.B \-U
 option.
 .
 .TP

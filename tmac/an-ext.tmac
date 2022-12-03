@@ -41,12 +41,12 @@
 .\" and no way to save and restore it.  Set this to a reasonable value
 .\" for your implementation and preference.
 .ie !\n(.g \
-.  nr mJ 14
+.  nr mH 14
 .el \
-.  do nr mJ \n[.hy]
+.  do nr mH \n[.hy]
 .
-.nr mS 0 \" not in a SY/YS synopsis
-.nr mX 0 \" not in an EX/EE example
+.nr mS 0 \" in a SY/YS synopsis?
+.nr mE 0 \" in an EX/EE example?
 .
 .
 .\" Declare start of command synopsis.  Sets up hanging indentation.
@@ -74,7 +74,7 @@
 .de YS
 .  in \\n(mIu
 .  ad \\n(mA
-.  hy \\n(mJ
+.  hy \\n(mH
 .  rr mA
 .  rr mI
 .  nr mS 0
@@ -91,7 +91,7 @@
 .de mQ
 .  nh
 <\\*(m1>\\$1
-.  hy \\n(mJ
+.  hy \\n(mH
 ..
 .
 .
@@ -136,7 +136,7 @@
 .    I \\$1
 .  el \
 .    IR \\$1 (\\$2)\\$3
-.  hy \\n(mJ
+.  hy \\n(mH
 ..
 .\}
 .
@@ -153,13 +153,13 @@
 .if \n(.g-\n(mG \{\
 .de EX
 .  br
-.  if !\\n(mX \{\
+.  if !\\n(mE \{\
 .    nr mF \\n(.f
 .    nr mP \\n(PD
 .    nr PD 1v
 .    nf
 .    ft \\*(mC
-.    nr mX 1
+.    nr mE 1
 .  \}
 ..
 .\}
@@ -169,11 +169,11 @@
 .if \n(.g-\n(mG \{\
 .de EE
 .  br
-.  if \\n(mX \{\
+.  if \\n(mE \{\
 .    ft \\n(mF
 .    nr PD \\n(mP
 .    fi
-.    nr mX 0
+.    nr mE 0
 .  \}
 ..
 .\}

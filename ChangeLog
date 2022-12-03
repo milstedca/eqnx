@@ -7,6 +7,13 @@
 
 2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an-ext.tmac: Use more mnemonic register names, thanks to
+	the recent freeing up of some name space.
+	- mJ -> mH: saved automatic hyphenation mode
+	- mX -> mE: formatting in EX/EE context (Boolean)
+
+2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/pdf.tmac: Drop deletion of unused string `PDFHREF.TEXT`.
 
 2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>

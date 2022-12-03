@@ -332,7 +332,7 @@
 .  ev
 .
 .  \" HTML gets the topic without any abbreviation, since it's metadata.
-.  if \\n[an-is-output-html] \{\
+.  if \\n[an*is-output-html] \{\
 .    DEVTAG-TL
 .    nop \\*[an*topic]
 .    DEVTAG-EO-TL
@@ -1072,7 +1072,7 @@ contains unsupported escape sequence
 .  \" If continuous rendering, tell tbl not to use keeps.
 .  ie \\n[cR] .nr 3usekeeps 0
 .  el         .nr 3usekeeps 1
-.  if \\n[an-is-output-html] \{\
+.  if \\n[an*is-output-html] \{\
 .    nr an-TS-ll \\n[.l]
 .    ll 1000n
 .  \}
@@ -1086,7 +1086,7 @@ contains unsupported escape sequence
 .\" End table.
 .de1 TE
 .  HTML-IMAGE-END
-.  if \\n[an-is-output-html] .ll \\n[an-TS-ll]u
+.  if \\n[an*is-output-html] .ll \\n[an-TS-ll]u
 .  if !r TW .if !\\n[an-was-tbl-failure-reported] \{\
 .    ds an-msg tbl preprocessor failed, or it or soelim was not run;\"
 .    as an-msg " table(s) likely not rendered\"
@@ -1101,7 +1101,7 @@ contains unsupported escape sequence
 .
 .\" Start equation.
 .de1 EQ
-.  if \\n[an-is-output-html] \{\
+.  if \\n[an*is-output-html] \{\
 .    nr an-EQ-ll \\n[.l]
 .    ll 1000n
 .  \}
@@ -1111,7 +1111,7 @@ contains unsupported escape sequence
 .\" End equation.
 .de1 EN
 .  HTML-IMAGE-END
-.  if \\n[an-is-output-html] .ll \\n[an-EQ-ll]u
+.  if \\n[an*is-output-html] .ll \\n[an-EQ-ll]u
 ..
 .
 .\" Define R "string".  Some ms(7) veterans confusedly use '.R' in man
@@ -1159,8 +1159,8 @@ contains unsupported escape sequence
 .
 .nr an-is-first-page-of-document 1
 .
-.nr an-is-output-html 0
-.if '\*[.T]'html' .nr an-is-output-html 1
+.nr an*is-output-html 0
+.if '\*[.T]'html' .nr an*is-output-html 1
 .
 .ds an*body-family T \" Times
 .ds an*example-family C \" Courier
@@ -1208,11 +1208,11 @@ contains unsupported escape sequence
 .  nr C 0
 .el \
 .  if !\n[C] \
-.    if \n[an-is-output-html] \{\
+.    if \n[an*is-output-html] \{\
 .       tm \*[an]: consecutive page numbering required for HTML output
 .       nr C 1
 .    \}
-.if \n[an-is-output-html] \
+.if \n[an*is-output-html] \
 .  nr C 1
 .if r ps4html \
 .  nr C 1
@@ -1234,7 +1234,7 @@ contains unsupported escape sequence
 .  nr D 0
 .el \
 .  if \n[D] \
-.    if \n[an-is-output-html] \{\
+.    if \n[an*is-output-html] \{\
 .       tm \*[an]: ignoring double-sided layout in HTML output
 .       nr D 0
 .    \}
@@ -1302,7 +1302,7 @@ contains unsupported escape sequence
 .\" internal purposes like image embedding.  Page numbers are not
 .\" rendered at all in continuous rendering mode.
 .if r P \{\
-.  if \n[an-is-output-html] \
+.  if \n[an*is-output-html] \
 .    if !(\n[P] = 1) \
 .      ds an-msg in HTML output\"
 .  if \n[cR] \
@@ -1342,7 +1342,7 @@ contains unsupported escape sequence
 .\" in continuous rendering mode.
 .if r X \{\
 .  af an-page-letter a
-.  if \n[an-is-output-html] \
+.  if \n[an*is-output-html] \
 .    ds an-msg in HTML output\"
 .  if \n[cR] \
 .    ds an-msg when continuously rendering
@@ -1397,7 +1397,7 @@ contains unsupported escape sequence
 .
 .\" If rendering HTML, suppress headers and footers.
 .nr an-suppress-header-and-footer 0
-.if \n[an-is-output-html] .nr an-suppress-header-and-footer 1
+.if \n[an*is-output-html] .nr an-suppress-header-and-footer 1
 .if r ps4html             .nr an-suppress-header-and-footer 1
 .
 .cp \n[*groff_an_tmac_C]

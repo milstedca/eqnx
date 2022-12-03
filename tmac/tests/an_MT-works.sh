@@ -40,15 +40,46 @@ Complaints to
 .MT nobody@\:example\:.com
 .ME .'
 
-output=$(printf "%s\n" "$input" \
-    | "$groff" -rmG=0 -Tascii -P-cbou -man -rU0)
+output=$(printf "%s\n" "$input" | "$groff" -Tascii -P-cbou -man -rU0)
 echo "$output"
 
-echo "checking formatting of mail URI with link text" >&2
+echo "checking formatting of mail URI with link text" \
+    "(hyperlinks disabled)" >&2
 echo "$output" | grep -Fq 'Mail the boss <modok@example.com>.' || wail
 
-echo "checking formatting of mail URI with no link text" >&2
+echo "checking formatting of mail URI with no link text" \
+    "(hyperlinks disabled)" >&2
 echo "$output" | grep -Fq 'Complaints to <nobody@example.com>.' || wail
+
+output=$(printf "%s\n" "$input" | "$groff" -Tascii -P-cbou -man -rU1)
+echo "$output"
+
+echo "checking formatting of mail URI with link text" \
+    "(hyperlinks enabled)" >&2
+echo "$output" | grep -Fq 'Mail the boss.' || wail
+
+echo "checking formatting of mail URI with no link text" \
+    "(hyperlinks enabled)" >&2
+echo "$output" | grep -Fq 'Complaints to nobody@example.com.' || wail
+
+input='.TH foo 1 2022-12-04 "groff test suite"
+.SH Name
+foo \- frobnicate a bar
+.SH Authors
+The GNU version of
+.I foo
+was written by
+.MT q@\:example\:.com
+Quiller
+.ME .'
+
+output=$(printf "%s\n" "$input" | "$groff" -man -Thtml)
+echo "$output"
+
+echo "checking HTML output of mail URI" >&2
+echo "$output" \
+    | grep -Fqx '<a href="mailto:q@example.com">Quiller</a>.</p>' \
+    || wail
 
 test -z "$fail"
 

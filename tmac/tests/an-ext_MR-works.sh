@@ -22,33 +22,35 @@ groff="${abs_top_builddir:-.}/test-groff"
 
 fail=
 
-wail() {
+wail () {
     echo ...FAILED >&2
-    fail=yes
+    fail=YES
 }
 
-input='.TH foo 1 2022-11-22 "groff test suite"
+input='.TH foo 1 2021-10-06 "groff test suite"
 .SH Name
-foo \- frobnicate a bar
+.ec @
+foo @- a command with a very short name
+.ec
 .SH Description
-Mail
-.MT modok@\:example\:.com
-the boss
-.ME .
-.
-Complaints to
-.MT nobody@\:example\:.com
-.ME .'
+The real work is done by
+.MR bar 1 .'
 
-output=$(printf "%s\n" "$input" \
-    | "$groff" -rmG=0 -Tascii -P-cbou -man -rU0)
-echo "$output"
+output=$(echo "$input" | "$groff" -rmG=0 -Tascii -man -Z | nl)
 
-echo "checking formatting of mail URI with link text" >&2
-echo "$output" | grep -Fq 'Mail the boss <modok@example.com>.' || wail
+# Expected:
+#   88  wf2
+#   89  h24
+#   90  tbar
+#   91  f1
+#   92  t(1).
 
-echo "checking formatting of mail URI with no link text" >&2
-echo "$output" | grep -Fq 'Complaints to <nobody@example.com>.' || wail
+echo "checking for correct man page topic font style" >&2
+echo "$output" | grep -Eq '88[[:space:]]+wf2' || wail
+echo "$output" | grep -Eq '90[[:space:]]+tbar' || wail
+echo "checking for correct man page section font style" >&2
+echo "$output" | grep -Eq '91[[:space:]]+f1' || wail
+echo "$output" | grep -Eq '92[[:space:]]+t\(1\)' || wail
 
 test -z "$fail"
 

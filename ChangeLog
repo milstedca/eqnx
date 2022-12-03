@@ -1,5 +1,39 @@
 2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an-ext.tmac: Remove groff-feature-dependent code for
+	hyperlink management, greatly reducing the size of the file,
+	which we permissively license and encourage people to copy
+	around.  Drop register definitions corresponding to
+	groff-specific output device names.  Drop definition and use of
+	`mL` and `mR` strings for angle brackets; no observable change
+	on non-groff formatters.  Recognize `mG` register to enable
+	testing of these macros even if the formatter is groff.
+	(mV): Radically simplify.  This internal "back-end" for `MT` and
+	`UR` now just stores its argument in a string, `m1`.
+	(mQ): Radically simplify.  This internal "back-end" for `ME` and
+	`UE` now just disables automatic hyphenation, formats the saved
+	`m1` string between angle brackets, suffixes it with the
+	optional argument, and restores automatic hyphenation.
+	(UR, MT): Call `mV` with one argument, not nine.
+	(UE, ME): Call `mQ` with one argument, not nine.
+
+	* tmac/tests/an-ext_MR-works.sh: Add test of this file's
+	simplified `MR` implementation.
+	* tmac/tests/an-ext_MT-works.sh:
+	* tmac/tests/an-ext_UR-works.sh: Move tests of groff-specific
+	hyperlink output from here...
+	* tmac/tests/an_MT-works.sh:
+	* tmac/tests/an_UR-works.sh: ...to these new files.
+	* tmac/tests/an_MR-works.sh:
+	* tmac/tests/an_MT-works.sh:
+	* tmac/tests/an_UR-works.sh: Add tests for valid HTML formatting
+	of hyperlinks, which experience shows is a bit fragile in the
+	face of diversion manipulation and output line continuation.
+
+	* tmac/tmac.am (tmac_TESTS): Run new tests.
+
+2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an-ext.tmac: Support `mG` register: clear it to force the
 	loading of this file's macros even if they have an
 	implementation in tmac/an.tmac and the formatter claims groff

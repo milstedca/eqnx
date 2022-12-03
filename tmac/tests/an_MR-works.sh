@@ -51,4 +51,21 @@ echo "$OUTPUT" | grep -Eq '95[[:space:]]+t\(1\)'
 echo "checking for closing 'link' device control command" >&2
 echo "$OUTPUT" | grep -Eq '98[[:space:]]+x X tty: link$'
 
+set +e
+
+fail=
+
+wail () {
+    echo ...FAILED >&2
+    fail=yes
+}
+
+output=$(echo "$INPUT" | "$groff" -man -Thtml)
+echo "$output"
+
+echo "checking for correctly formatted man URI in HTML output" >&2
+echo "$output" | grep -Fq '<a href="man:bar(1)"><i>bar</i>(1)</a>.'
+
+test -z "$fail"
+
 # vim:set ai et sw=4 ts=4 tw=72:

@@ -31,7 +31,7 @@ pneumonoultramicroscopicsilicovolcanoconiosis
 without machine assistance
 .ME .'
 
-printf "%s\n" "$EXAMPLE" | "$groff" -Tascii -P-cbou -man \
+printf "%s\n" "$EXAMPLE" | "$groff" -rmG=0 -Tascii -P-cbou -man \
     | grep -qE 'pn.*-'
 
 # vim:set ai et sw=4 ts=4 tw=72:

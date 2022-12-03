@@ -40,16 +40,46 @@ Or
 .UR http://\:bar\:.example\:.com
 .UE .'
 
-output=$(printf "%s\n" "$input" \
-    | "$groff" -rmG=0 -Tascii -P-cbou -man -rU0)
+output=$(printf "%s\n" "$input" | "$groff" -Tascii -P-cbou -man -rU0)
 echo "$output"
 
-echo "checking formatting of web URI with link text" >&2
+echo "checking formatting of web URI with link text" \
+    "(hyperlinks disabled)" >&2
 echo "$output" | grep -Fq 'See figure 1 <http://foo.example.com>.' \
     || wail
 
-echo "checking formatting of web URI with no link text" >&2
+echo "checking formatting of web URI with no link text" \
+    "(hyperlinks disabled)" >&2
 echo "$output" | grep -Fq 'Or <http://bar.example.com>.' || wail
+
+output=$(printf "%s\n" "$input" | "$groff" -Tascii -P-cbou -man -rU1)
+echo "$output"
+
+echo "checking formatting of web URI with link text" \
+    "(hyperlinks enabled)" >&2
+echo "$output" | grep -Fq 'See figure 1.' || wail
+
+echo "checking formatting of web URI with no link text" \
+    "(hyperlinks enabled)" >&2
+echo "$output" | grep -Fq 'Or http://bar.example.com.' || wail
+
+input='.TH foo 1 2022-12-04 "groff test suite"
+.SH Name
+foo \- frobnicate a bar
+.SH "See also"
+For our SOSP presentation,
+check our
+.UR https://\:example\:.com
+website
+.UE .'
+
+output=$(printf "%s\n" "$input" | "$groff" -man -Thtml)
+echo "$output"
+
+echo "checking HTML output of web URI" >&2
+echo "$output" \
+    | grep -Fqx '<a href="https://example.com">website</a>.</p>' \
+    || wail
 
 test -z "$fail"
 

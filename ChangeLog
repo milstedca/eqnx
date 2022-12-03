@@ -7,6 +7,10 @@
 
 2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/pdf.tmac: Drop deletion of unused string `PDFHREF.TEXT`.
+
+2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac (an-end, AT, UC, DT, PD, SH, IP, BI, BR, IB, IR)
 	(RB, RI, OP, an*end-hyperlink, MR): Refactor; "nop"ify macros
 	that produce formatted output or call other macros using string

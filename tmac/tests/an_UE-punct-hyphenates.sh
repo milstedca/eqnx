@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (C) 2020 Free Software Foundation, Inc.
+# Copyright (C) 2020, 2022 Free Software Foundation, Inc.
 #
 # This file is part of groff.
 #
@@ -20,7 +20,14 @@
 
 groff="${abs_top_builddir:-.}/test-groff"
 
-EXAMPLE='.TH ue\-punct 1 2020-08-15 "groff test suite"
+fail=
+
+wail () {
+    echo ...FAILED >&2
+    fail=YES
+}
+
+input='.TH ue\-punct 1 2020-08-15 "groff test suite"
 .SH Name
 ue\-punct \- URL trailing material is subject to hyphenation
 .SH Description
@@ -30,7 +37,17 @@ hyphenate a ridiculous word* without machine assistance
 .UE (*pneumonoultramicroscopicsilicovolcanoconiosis).'
 
 # Turn off break warnings; we expect an adjustment problem.
-printf "%s\n" "$EXAMPLE" | "$groff" -Tascii -Wbreak -P-cbou -man \
-    | grep -qE 'pn.*-'
+echo "testing hyphenation of trailing text by an.tmac's UE macro"
+output=$(printf "%s\n" "$input" | "$groff" -Tascii -Wbreak -P-cbou -man)
+echo "$output"
+echo "$output" | grep -qE 'pn.*-'
+
+echo "testing hyphenation of trailing text by an-ext.tmac's UE macro"
+output=$(printf "%s\n" "$input" \
+    | "$groff" -rmG=0 -Tascii -Wbreak -P-cbou -man)
+echo "$output"
+echo "$output" | grep -qE 'pn.*-'
+
+test -z "$fail"
 
 # vim:set ai et sw=4 ts=4 tw=72:

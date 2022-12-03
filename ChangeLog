@@ -1,3 +1,15 @@
+2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Update test coverage and expectations.
+
+	* tmac/tests/an_ME-punct-hyphenates.sh: Test both "an.tmac" and
+	"an-ext.tmac" implementations of `ME`.
+	* tmac/tests/an_UE-punct-hyphenates.sh: Test both "an.tmac" and
+	"an-ext.tmac" implementations of `UE`.
+	* tmac/tests/an_UE-breaks-before-long-URIs.sh: Update test
+	expectations.  I appear to have inadvertently fixed some
+	inelegant rendering.
+
 2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tests]: Rename to reflect code reorganization.

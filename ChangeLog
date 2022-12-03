@@ -1,5 +1,22 @@
 2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tests]: Rename to reflect code reorganization.
+
+	* tmac/tests/an-ext_ME-punct-hyphenates.sh:
+	* tmac/tests/an-ext_MT-body-hyphenates.sh:
+	* tmac/tests/an-ext_UE-breaks-before-long-URIs.sh:
+	* tmac/tests/an-ext_UE-punct-hyphenates.sh:
+	* tmac/tests/an-ext_UR-body-hyphenates.sh: Rename these...
+	* tmac/tests/an_ME-punct-hyphenates.sh:
+	* tmac/tests/an_MT-body-hyphenates.sh:
+	* tmac/tests/an_UE-breaks-before-long-URIs.sh:
+	* tmac/tests/an_UE-punct-hyphenates.sh:
+	* tmac/tests/an_UR-body-hyphenates.sh: ...to these.
+
+	* tmac/tmac.am (tmac_TESTS): Reflect renames.
+
+2022-12-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an-ext.tmac: Remove groff-feature-dependent code for
 	hyperlink management, greatly reducing the size of the file,
 	which we permissively license and encourage people to copy

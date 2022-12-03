@@ -128,7 +128,7 @@
 .      pl +1v
 .      nf
 .      ti 0
-\D'l \\n[LL]u 0'
+.      nop \D'l \\n[LL]u 0'
 .      fi
 .    \}
 .  \}
@@ -360,7 +360,7 @@
 .\" Designate an AT&T Unix man page.
 .\" .AT [system-id[ release-id]]
 .de1 AT
-\\*[an-deprecation-warn]\\
+.  nop \\*[an-deprecation-warn]\\
 .  ds an-extra2 "7th Edition\"
 .  if "\\$1"3" .ds an-extra2 "7th Edition\"
 .  if "\\$1"4" .ds an-extra2 "System III\"
@@ -376,7 +376,7 @@
 .\" Designate a BSD Unix man page.
 .\" .UC [system-id]
 .de1 UC
-\\*[an-deprecation-warn]\\
+.  nop \\*[an-deprecation-warn]\\
 .  ds an-extra2 "3rd Berkeley Distribution\"
 .  if "\\$1"3" .ds an-extra2 "3rd Berkeley Distribution\"
 .  if "\\$1"4" .ds an-extra2 "4th Berkeley Distribution\"
@@ -390,15 +390,15 @@
 .
 .\" Restore tab stops to defaults.
 .de1 DT
-\\*[an-deprecation-warn]\\
+.  nop \\*[an-deprecation-warn]\\
 .  an-reset-tab-stops
 ..
 .
 .\" Restore inter-paragraph spacing to default (or set it to argument).
 .\" .PD [distance]
 .de1 PD
-\\*[an-deprecation-warn]\\
-\\*[an-reset-paragraph-spacing]\\
+.  nop \\*[an-deprecation-warn]\\
+.  nop \\*[an-reset-paragraph-spacing]\\
 ..
 .
 .\" Write the page header; can be redefined by man.local.
@@ -686,7 +686,7 @@ contains unsupported escape sequence
 .    ds an-section-heading \\$*\"
 .    if \\n[CS] .stringup an-section-heading
 .    an*bookmark 2 \E*[an-section-heading]
-\&\\*[an-section-heading]
+.    nop \&\\*[an-section-heading]
 .  \}
 .  if \\n[an-remap-I-style-in-headings] .ftr I I
 ..
@@ -789,7 +789,7 @@ contains unsupported escape sequence
 .  el \{\
 .    ie (\\n[.$] > 1) .TP "\\$2"
 .    el               .TP
-\&\\$1
+.    nop \&\\$1
 .  \}
 ..
 .
@@ -847,7 +847,7 @@ contains unsupported escape sequence
 .      shift 2
 .    \}
 .    if \\n[.$] .as an-result \f[B]\\$1\"
-\\*[an-result]
+.    nop \\*[an-result]
 .    rm an-result
 .    ft R
 .  \}
@@ -864,7 +864,7 @@ contains unsupported escape sequence
 .      shift 2
 .    \}
 .    if \\n[.$] .as an-result \f[B]\\$1\"
-\\*[an-result]
+.    nop \\*[an-result]
 .    rm an-result
 .    ft R
 .  \}
@@ -881,7 +881,7 @@ contains unsupported escape sequence
 .      shift 2
 .    \}
 .    if \\n[.$] .as an-result \,\f[I]\\$1\/\"
-\\*[an-result]
+.    nop \\*[an-result]
 .    rm an-result
 .    ft R
 .  \}
@@ -898,7 +898,7 @@ contains unsupported escape sequence
 .      shift 2
 .    \}
 .    if \\n[.$] .as an-result \,\f[I]\\$1\/\"
-\\*[an-result]
+.    nop \\*[an-result]
 .    rm an-result
 .    ft R
 .  \}
@@ -915,7 +915,7 @@ contains unsupported escape sequence
 .      shift 2
 .    \}
 .    if \\n[.$] .as an-result \f[R]\\$1\"
-\\*[an-result]
+.    nop \\*[an-result]
 .    rm an-result
 .    ft R
 .  \}
@@ -932,7 +932,7 @@ contains unsupported escape sequence
 .      shift 2
 .    \}
 .    if \\n[.$] .as an-result \f[R]\\$1\"
-\\*[an-result]
+.    nop \\*[an-result]
 .    rm an-result
 .    ft R
 .  \}
@@ -983,7 +983,7 @@ contains unsupported escape sequence
 .\" specified) for a command synopsis.
 .\" .OP flag [option-parameter]
 .de1 OP
-\\*[an-deprecation-warn]\\
+.  nop \\*[an-deprecation-warn]\\
 .  if ((\\n[.$] < 1) : (\\n[.$] > 2)) \
 .    an-style-warn .\\$0 expects 1 or 2 arguments, got \\n[.$]
 .  ie (\\n[.$] > 1) \
@@ -1081,33 +1081,33 @@ contains unsupported escape sequence
 .    \" Was any link text present?
 .    ie \\n[dn] \{\
 .      if \\n[an*is-output-html] \
-\X^html:<a href="\\*[an*prefix]\\*[an*hyperlink]">^\c
+.        nop \X^html:<a href="\\*[an*prefix]\\*[an*hyperlink]">^\c
 .      if \\n[an*is-output-terminal] \
-\X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\c
+.        nop \X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\c
 .      \" Strip off the final newline of the diversion and emit it.
 .      chop an*link-text-div
 .      an*link-text-div
-\c
+\c\" XXX: If we .nop this, HTML output is corrupted (Savannah #63470).
 .      if \\n[an*is-output-html] \
-\X^html:</a>^\c
+.        nop \X^html:</a>^\c
 .      if \\n[an*is-output-terminal] \
-\X^tty: link^\c
+.        nop \X^tty: link^\c
 .    \}
 .    \" If there was no link text, format URI as its own link text.  We
 .    \" don't add angle brackets here.
 .    el \{\
 .      if \\n[an*is-output-html] \
-\X^html:<a href="\\*[an*prefix]\\*[an*hyperlink]">\\*[an*hyperlink]</a>^\c
+.        nop \X^html:<a href="\\*[an*prefix]\\*[an*hyperlink]">\\*[an*hyperlink]</a>^\c
 .      if \\n[an*is-output-terminal] \
-\X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\\*[an*hyperlink]\X^tty: link^\c
+.        nop \X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\\*[an*hyperlink]\X^tty: link^\c
 .    \}
-\&\\$1\"
+.    nop \&\\$1\"
 .  \}
 .  \" If not hyperlinking, format URI in angle brackets.  There was no
 .  \" diversion, so the link text has already been formatted normally.
 .  el \{\
 .    nh
-\\[la]\\*[an*hyperlink]\\[ra]\\$1
+.    nop \\[la]\\*[an*hyperlink]\\[ra]\\$1
 .    hy \\n[an*hyphenation-mode]
 .  \}
 .
@@ -1154,18 +1154,18 @@ contains unsupported escape sequence
 .  nh
 .  if \\n[an*do-hyperlink] \{\
 .    if \\n[an*is-output-html] \
-\X^html:<a href="man:\\$1(\\$2)">^\c
+.      nop \X^html:<a href="man:\\$1(\\$2)">^\c
 .    if \\n[an*is-output-terminal] \
-\X^tty: link man:\\$1(\\$2)^\c
+.      nop \X^tty: link man:\\$1(\\$2)^\c
 .  \}
-\&\\*[an-lic]\f[\\*[MF]]\\$1\\*[an-ic]\f[R](\\$2)\c
+.      nop \&\\*[an-lic]\f[\\*[MF]]\\$1\\*[an-ic]\f[R](\\$2)\c
 .  if \\n[an*do-hyperlink] \{\
 .    if \\n[an*is-output-html] \
-\X^html:</a>^\c
+.      nop \X^html:</a>^\c
 .    if \\n[an*is-output-terminal] \
-\X^tty: link^\c
+.      nop \X^tty: link^\c
 .  \}
-\&\\$3
+.  nop \&\\$3
 .  hy \\n[an*hyphenation-mode]
 ..
 .

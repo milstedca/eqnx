@@ -1,5 +1,15 @@
 2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (R): Drop macro definition, which implements a
+	hack for people who try to use "R" as a font style macro.  This
+	doesn't seem to happen much in actual practice (though perhaps
+	the diagnostic this hack produces is responsible for suppression
+	of the mistake).  Retaining it interferes with the
+	"nop"-ification of this macro file.
+	* NEWS: Add item.
+
+2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an-ext.tmac: Use truly traditional hyphenation mode on
 	non-groff-compatible formatters.
 

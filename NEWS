@@ -308,6 +308,10 @@ o The an (man) macro package's `TS` macro no longer inserts vertical
   2002).  Man page authors may freely use paragraphing macros around
   tables if vertical space is desired.
 
+o The an (man) macro package no longer attempts to detect misuse of the
+  `R` string as a macro.  The `R` string itself is a legacy feature, not
+  required in modern man pages; see groff_man_style(7).
+
 o The groff_man(7) man page documenting the groff implementation of the
   an (man) macro package has been split into two pages.  The original
   page remains as a terser reference for experienced users.  A new page,

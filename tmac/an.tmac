@@ -1218,29 +1218,14 @@ contains unsupported escape sequence
 .  if \\n[an*is-output-html] .ll \\n[an-EQ-ll]u
 ..
 .
-.\" Define R "string".  Some ms(7) veterans confusedly use '.R' in man
-.\" pages to try to switch to the roman font style.  Attempt to catch
-.\" this misuse by checking for arguments and warning about it.
-.de1 R
-\c
-.  ie \\n[.$] \{\
-.    ds an-msg 'R' is a string (producing the registered sign),\"
-.    as an-msg " not a macro\"
-.    an-warn \\*[an-msg]
-.    rm an-msg
-.    nop \\$*
-.  \}
-.  el \{\
-.    ie c\[rg] .nop \[rg]\c
-.    el        .nop (Reg.)\c
-.  \}
-..
 .
 .\" === Define strings. ===
 .\"
 .\" These strings must work in compatibility mode also.
 .
 .ds S \s'\\n(PSu'\"
+.ie c\[rg] .ds R \(rg\"
+.el        .ds R (Reg.)\"
 .ie c\[tm] .ds Tm \(tm\"
 .el        .ds Tm (TM)\"
 .ie c\[lq] .ds lq \(lq\"

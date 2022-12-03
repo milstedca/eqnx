@@ -200,7 +200,7 @@
 .
 .\" Write a bookmark/anchor/link target $2 at hierarchical depth $1.
 .de an*bookmark
-.  if '\\*[.T]'pdf' .pdfbookmark \\$1 \\$2
+.  if \\n[an*is-output-pdf] .pdfbookmark \\$1 \\$2
 ..
 .
 .\" Begin man page.
@@ -1042,23 +1042,127 @@ contains unsupported escape sequence
 .  nr an*is-in-example 0
 ..
 .
+.\" Store the argument and begin a diversion for link text.
+.de an*begin-hyperlink
+.  ds an*hyperlink \\$1\"
+.  \" We want the diversion to format as if it has an indentation of
+.  \" zero (that comes for free when we switch environments), and we
+.  \" want the line length reduced by the amount of indentation that
+.  \" obtains when we output it.
+.  nr an*saved-line-length \\n[.l]
+.  nr an*saved-indentation \\n[.i]
+.  \" We can only hyperlink if we're not in a diversion.
+.  \" XXX: There's no fundamental reason for that, just a simple matter
+.  \" of macro programming.
+.  nr an*is-in-link-text-diversion 0
+.  if '\\n(.z'' .nr an*is-in-link-text-diversion 1
+.  if (\\n[an*is-in-link-text-diversion] & \\n[an*do-hyperlink]) \{\
+.    \" Start diversion in a new environment.
+.    ev an*link-text-env
+.    di an*link-text-div
+.    ll (\\n[an*saved-line-length]u - \\n[an*saved-indentation]u)
+.  \}
+.  rr an*saved-indentation
+.  rr an*saved-line-length
+..
+.
+.\" Emit hyperlinked text with optional trailing text.
+.\"
+.\" The caller should set the `an*prefix` string if the hyperlink should
+.\" be prefixed with a scheme; for example, email addresses get
+.\" "mailto:", but this need not be visible when rendering an email
+.\" address on a device incapable of hyperlinking.
+.de an*end-hyperlink
+.  ie (\\n[an*is-in-link-text-diversion] & \\n[an*do-hyperlink]) \{\
+.    br
+.    di
+.    ev
+.
+.    \" Was any link text present?
+.    ie \\n[dn] \{\
+.      if \\n[an*is-output-html] \
+\X^html:<a href="\\*[an*prefix]\\*[an*hyperlink]">^\c
+.      if \\n[an*is-output-terminal] \
+\X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\c
+.      \" Strip off the final newline of the diversion and emit it.
+.      chop an*link-text-div
+.      an*link-text-div
+\c
+.      if \\n[an*is-output-html] \
+\X^html:</a>^\c
+.      if \\n[an*is-output-terminal] \
+\X^tty: link^\c
+.    \}
+.    \" If there was no link text, format URI as its own link text.  We
+.    \" don't add angle brackets here.
+.    el \{\
+.      if \\n[an*is-output-html] \
+\X^html:<a href="\\*[an*prefix]\\*[an*hyperlink]">\\*[an*hyperlink]</a>^\c
+.      if \\n[an*is-output-terminal] \
+\X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\\*[an*hyperlink]\X^tty: link^\c
+.    \}
+\&\\$1\"
+.  \}
+.  \" If not hyperlinking, format URI in angle brackets.  There was no
+.  \" diversion, so the link text has already been formatted normally.
+.  el \{\
+.    nh
+\\[la]\\*[an*hyperlink]\\[ra]\\$1
+.    hy \\n[an*hyphenation-mode]
+.  \}
+.
+.  rr an*is-in-link-text-diversion
+..
+.
+.\" Begin email hyperlink.  Input until the next `ME` call is stored in
+.\" a diversion; it becomes the link text for the hyperlinked address.
+.\" .MT nobody@example.com
+.de1 MT
+.  ds an*prefix mailto:
+.  an*begin-hyperlink \\$1
+..
+.
+.\" End email hyperlink.  The optional argument supplies trailing
+.\" punctuation (or, rarely, other text) after link text.
+.\" .ME [trailing-text]
+.de1 ME
+.  an*end-hyperlink \\$1
+.  rm an*prefix
+..
+.
+.\" Begin web hyperlink.  Input until the next `UE` call is stored in
+.\" a diversion; it becomes the link text for the hyperlinked address.
+.\" .UR nobody@example.com
+.de1 UR
+.  ds an*prefix \" empty
+.  an*begin-hyperlink \\$1
+..
+.
+.\" End web hyperlink.  The optional argument supplies trailing
+.\" punctuation (or, rarely, other text) after link text.
+.\" .UE [trailing-text]
+.de1 UE
+.  an*end-hyperlink \\$1
+.  rm an*prefix
+..
+.
 .\" Set a man page cross reference.
 .\" .MR page-topic page-section [trailing-text]
 .de1 MR
 .  if ((\\n[.$] < 2) : (\\n[.$] > 3)) \
 .    an-style-warn .\\$0 expects 2 or 3 arguments, got \\n[.$]
 .  nh
-.  if (\\n[U] & \\n[mU]) \{\
-.    if \\n(mH \
+.  if \\n[an*do-hyperlink] \{\
+.    if \\n[an*is-output-html] \
 \X^html:<a href="man:\\$1(\\$2)">^\c
-.    if \\n(mY \
+.    if \\n[an*is-output-terminal] \
 \X^tty: link man:\\$1(\\$2)^\c
 .  \}
 \&\\*[an-lic]\f[\\*[MF]]\\$1\\*[an-ic]\f[R](\\$2)\c
-.  if (\\n[U] & \\n[mU]) \{\
-.    if \\n(mH \
+.  if \\n[an*do-hyperlink] \{\
+.    if \\n[an*is-output-html] \
 \X^html:</a>^\c
-.    if \\n(mY \
+.    if \\n[an*is-output-terminal] \
 \X^tty: link^\c
 .  \}
 \&\\$3
@@ -1161,6 +1265,19 @@ contains unsupported escape sequence
 .
 .nr an*is-output-html 0
 .if '\*[.T]'html' .nr an*is-output-html 1
+.nr an*is-output-pdf 0
+.if '\*[.T]'pdf' .nr an*is-output-pdf 1
+.nr an*is-output-terminal 0
+.if '\*(.T'ascii'  .nr an*is-output-terminal 1
+.if '\*(.T'cp1047' .nr an*is-output-terminal 1
+.if '\*(.T'latin1' .nr an*is-output-terminal 1
+.if '\*(.T'utf8'   .nr an*is-output-terminal 1
+.
+.nr an*can-hyperlink 0
+.if (  \n[an*is-output-html] \
+     : \n[an*is-output-pdf] \
+     : \n[an*is-output-terminal]) \
+.  nr an*can-hyperlink 1
 .
 .ds an*body-family T \" Times
 .ds an*example-family C \" Courier
@@ -1186,7 +1303,7 @@ contains unsupported escape sequence
 .\" Set each rendering parameter only if its -[dr] option or man.local
 .\" did not.
 .
-.if '\*[.T]'pdf' \{\
+.if \n[an*is-output-pdf] \{\
 .  \" FIXME: The following registers are documented only in pdf.tmac.
 .  if !r PDFOUTLINE.FOLDLEVEL .nr PDFOUTLINE.FOLDLEVEL 1
 .  if !r PDFHREF.VIEW.LEADING .nr PDFHREF.VIEW.LEADING 10p
@@ -1331,9 +1448,12 @@ contains unsupported escape sequence
 .if !r SN \
 .  nr SN 3n
 .
-.\" URI enablement
+.\" URI enablement desired
 .if !r U \
 .  nr U 1
+.
+.nr an*do-hyperlink 0
+.if (\n[U] & \n[an*can-hyperlink]) .nr an*do-hyperlink 1
 .
 .\" page number after which to apply letter suffixes
 .\"

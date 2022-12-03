@@ -1406,7 +1406,7 @@ The
 primitive uses the current italic font set by
 .BR gfont ;
 the
-.B roman
+.B \%roman
 primitive uses the current roman font set by
 .BR grfont .
 .

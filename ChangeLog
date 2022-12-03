@@ -1,5 +1,10 @@
 2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an-ext.tmac: Use truly traditional hyphenation mode on
+	non-groff-compatible formatters.
+
+2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Update test coverage and expectations.
 
 	* tmac/tests/an_ME-punct-hyphenates.sh: Test both "an.tmac" and

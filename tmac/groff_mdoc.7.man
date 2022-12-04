@@ -537,21 +537,11 @@ below.
 .
 .
 .Pp
-The formatter attempts to detect the endings of sentences and puts the
-equivalent of two spaces between sentences on the same output line.
-.
-Characters like
-.Ql \&)
-or
-.Ql \&\[aq]
-after sentence-ending punctuation are ignored for this purpose.
-.
-Sometimes you will want to end an input line with a
-.Ql \&. ,
-.Ql \&? ,
-or
-.Ql \&!
-that does not end a sentence.
+The formatter attempts to detect the ends of sentences and by default
+puts the equivalent of two spaces between sentences on the same output
+line;
+see
+.Xr roff @MAN7EXT@ .
 .
 In a list of macro arguments,
 put
@@ -602,22 +592,13 @@ test
 .
 as output.
 .
-As can be seen in the first and third lines,
+As can be seen in the first and third output lines,
 .Xr mdoc
 handles punctuation characters specially in macro arguments.
 .
 This will be explained in section
 .Sx "General syntax"
 below.
-.
-Similarly,
-sentence-ending punctuation characters at the end of an input line that
-isn't an
-.Xr mdoc
-command must
-be suffixed with
-.Ql \[rs]&
-to keep them from being interpreted as sentence endings.
 .
 .
 .Pp

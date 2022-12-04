@@ -1,3 +1,10 @@
+2022-12-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Add regression test.
+
+	* tmac/tests/an_link-trailing-text-hugs-previous.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
 2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (an-end, AT, UC, DT, PD, SH, IP, BI, BR, IB, IR)

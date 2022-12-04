@@ -177,6 +177,7 @@ tmac_TESTS = \
   tmac/tests/an_handle-degenerate-input-quietly.sh \
   tmac/tests/an_inner-footer-abbreviation-works.sh \
   tmac/tests/an_link-macros-work-in-paragraph-tags.sh \
+  tmac/tests/an_link-trailing-text-hugs-previous.sh \
   tmac/tests/an_no-break-after-short-paragraph-tags.sh \
   tmac/tests/an_output-footer-when-continuously-rendering.sh \
   tmac/tests/an_page-footers-present.sh \

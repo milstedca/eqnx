@@ -880,14 +880,6 @@ font.
 .
 To return to normal printing repeat the command again.
 .
-.TP
-.BI "\[rs]X'pdf: markstart " "/ANN definition" '
-The macros which support PDF Bookmarks use this call internally to
-start the definition of bookmark hotspot (user will have called
-\[oq].pdfhref\~L\[cq] with the text which will become the \[oq]hot
-spot\[cq] region).
-.
-Normally this is never used except from within the pdfmark macros.
 .
 .TP
 .BI "\[rs]X\[aq]pdf: markstart " "/ANN-definition" \[aq]

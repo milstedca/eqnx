@@ -6002,8 +6002,8 @@ enables hyphenation after the first character of a word.
 Apart from value\~2,
 restrictions imposed by the hyphenation mode are
 .I not
-respected for words whose hyphenations have been explicitly specified
-with the hyphenation character
+respected for words whose hyphenations have been specified with the
+hyphenation character
 .RB (\[lq] \|\[rs]% \[rq]
 by default)
 or the
@@ -6012,10 +6012,10 @@ request.
 .
 .
 .P
-The nonzero values above are additive.
+Nonzero values are additive.
 .
 For example,
-value\~12 causes
+mode\~12 causes
 .I groff
 to hyphenate neither the last two nor the first two characters of a
 word.
@@ -6045,10 +6045,10 @@ Furthermore,
 hyphenation of a word might be suppressed due to a limit on
 consecutive hyphenated lines
 .RB ( .hlm ),
-the line has not reached a certain minimum length
+a minimum line length threshold
 .RB ( .hym ),
-or the line can instead be adjusted with up to a certain amount of
-additional inter-word space
+or because the line can instead be adjusted with additional inter-word
+space
 .RB ( .hys ).
 .
 .
@@ -6599,9 +6599,12 @@ to
 .SS "Underlining without macro definitions"
 .\" ====================================================================
 .
-If one does not want to use macro definitions, e.g., when
-.B doclifter
-gets lost, use the following:
+If one does not want to use macro definitions,
+e.g.,
+when
+.I doclifter
+gets lost,
+use the following.
 .
 .RS
 .EX
@@ -6616,7 +6619,7 @@ gets lost, use the following:
 .RE
 .
 When using
-.BR doclifter ,
+.IR doclifter ,
 it might be necessary to change syntax forms such as
 .B \e[xy]
 and
@@ -6656,75 +6659,63 @@ after
 .
 .
 .\" ====================================================================
-.SS "Underlining with overstriking \ez and \e(ul"
+.SS "Underlining by overstriking with \e(ul"
 .\" ====================================================================
 .
-There is another possibility for underlining by using overstriking
-with
-.BI \ez c
-(print
+You can use the
+.B \[rs]z
+escape sequence to format a glyph while suppressing advancement of its
+drawing position;
+this is another form of overstriking.
+.
+Thus,
+.BI \[rs]z c \[rs](ul
+formats
 .I c
-with zero width without spacing) and
-.B \e(ul
-(underline character).
+without advancement,
+then draws the underrule glyph on top of it.
 .
-This produces the underlining of 1 character, both in
-.B nroff
-and in
-.BR troff .
-.
-.
-.P
-For example the underlining of a character say
-.B t
-looks like
-.B \ez\e[ul]t
-or
-.B \ez\e(ult
+Because video terminals implement the underrule glyph by setting the
+underline attribute on the character cell,
+this works in both
+.I nroff \" mode
+and
+.I troff \" mode
+modes.
 .
 .
 .P
-Longer words look then a bit strange, but a useful mode is to write
-each character into a whole own line.
+Long words may then look intimidating in the input;
+a clarifying approach might be to use the input line continuation escape
+sequence
+.BI \[rs] newline
+to place each underlined character on its own input line.
 .
-To underlines the 3 character part "tar" of the word "start":
+Thus,
 .
 .RS
 .EX
-.br
-before s\[rs]
-\[rs]z\[rs][ul]t\[rs]
-\[rs]z\[rs][ul]a\[rs]
-\[rs]z\[rs][ul]r\[rs]
-t after
+\&.nf
+\[rs]&\[rs]fB: ${\[rs]fIvar\[rs]fR\[rs]c
+\[rs]zo\[rs](ul\[rs]
+\[rs]zp\[rs](ul\[rs]c
+\[rs]&\[rs]fIvalue\[rs]fB}
+\&.fi
 .EE
 .RE
 .
-or
+produces
 .
 .RS
 .EX
-.br
-before s\[rs]
-\[rs]z\[rs](ult\[rs]
-\[rs]z\[rs](ula\[rs]
-\[rs]z\[rs](ulr\[rs]
-t after
+.BI ": ${" var \c
+\zo\(ul\
+\zp\(ul\c
+.IB value }
 .EE
 .RE
 .
-.
-.P
-The result looks like
-.RS
-.ft CR
-before s\
-\z\[ul]t\
-\z\[ul]a\
-\z\[ul]r\
-t after
-.ft R
-.RE
+as output.
 .
 .
 .\" ====================================================================

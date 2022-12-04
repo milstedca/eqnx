@@ -8381,9 +8381,9 @@ automatically determined hyphenation points are permissible.  The places
 within a word that are eligible for hyphenation are determined by
 language-specific data and lettercase relationships.  Furthermore,
 hyphenation of a word might be suppressed due to a limit on
-consecutive hyphenated lines (@code{hlm}), the line has not reached a
-certain minimum length (@code{hym}), or the line can instead be adjusted
-with up to a certain amount of additional inter-word space (@code{hys}).
+consecutive hyphenated lines (@code{hlm}), a minimum line length
+threshold, certain minimum length (@code{hym}), or because the line can
+instead be adjusted with additional inter-word space (@code{hys}).
 
 @cindex hyphenation mode register (@code{.hy})
 @DefreqList {hy, [@Var{mode}]}
@@ -8452,11 +8452,11 @@ enables hyphenation after the first character of a word.
 
 Apart from value@tie{}2, restrictions imposed by the hyphenation mode
 are @emph{not} respected for words whose hyphenations have been
-explicitly specified with the hyphenation character (@samp{\%} by
-default) or the @code{hw} request.
+specified with the hyphenation character (@samp{\%} by default) or the
+@code{hw} request.
 
-The nonzero values in the previous table are additive.  For example,
-value@tie{}12 causes GNU @code{troff} to hyphenate neither the last two
+Nonzero values in the previous table are additive.  For example,
+mode@tie{}12 causes GNU @code{troff} to hyphenate neither the last two
 nor the first two characters of a word.  Some values cannot be used
 together because they contradict; for instance, values 4 and@tie{}16,
 and values 8 and@tie{}32.  As noted, it is superfluous to add 1 to any

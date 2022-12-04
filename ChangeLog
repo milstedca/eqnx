@@ -7,6 +7,13 @@
 
 2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/fallbacks.tmac: Really use troff-mode fallbacks only on
+	typesetting devices; because this macro file is loaded so early,
+	we cannot rely on ".if t".  Thanks to Dave Kemper for the
+	discussion in Savannah #63354.
+
+2022-12-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an-ext.tmac: Use more mnemonic register names, thanks to
 	the recent freeing up of some name space.
 	- mJ -> mH: saved automatic hyphenation mode

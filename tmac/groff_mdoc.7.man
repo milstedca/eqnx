@@ -625,10 +625,10 @@ to construct a man page from the following template.
 .Bd -literal -offset indent
 \&.\e" The following commands are required for all man pages.
 \&.Dd date
-\&.Dt page-topic [section-identifier [volume-name]]
+\&.Dt topic [section-identifier [volume-name]]
 \&.Os [package-or-operating system [version-or-release]]
 \&.Sh Name
-\&.Nm page-topic
+\&.Nm topic
 \&.Nd summary-description
 \&.\e" The next heading is used in sections 2 and 3.
 \&.\e" .Sh Library
@@ -825,7 +825,7 @@ Historically,
 .Ar date
 was written in U.S.\& traditional format,
 .Do
-.Em Month day , year
+.Em Month day Li , Em year
 .Dc
 where
 .Em Month
@@ -834,7 +834,7 @@ is the full month name in English,
 an integer without a leading zero,
 and
 .Ar year
-the full four-digit year.
+the four-digit year.
 .
 This localism is not enforced,
 however.
@@ -857,9 +857,9 @@ manuals to automatically insert the current date when committing.
 This macro is neither callable nor parsed.
 .
 .
-.It Li .Dt Ar page-topic Op Ar section-identifier Op Ar section-name
+.It Li .Dt Ar topic Op Ar section-identifier Op Ar section-name
 .
-.Ar page-topic
+.Ar topic
 is the subject of the man page.
 .
 A

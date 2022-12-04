@@ -795,8 +795,9 @@ belong to the page structure domain macros.
 .\" into the document when formatted for U.S. letter paper.  We lost
 .\" that kind of reader last _week_.
 .
-They designate the date of last revision,
+They designate the
 topic,
+date of last revision,
 and the operating system or software project associated with the page.
 .
 Call each once at the beginning of the document.

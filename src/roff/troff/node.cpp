@@ -4035,7 +4035,7 @@ int tag_node::ends_sentence()
 static int get_register(const char *p)
 {
   assert(p != 0 /* nullptr */);
-  reg *r = (reg *)number_reg_dictionary.lookup(p);
+  reg *r = (reg *)register_dictionary.lookup(p);
   assert(r != 0 /* nullptr */);
   units value;
   assert(r->get_value(&value));
@@ -4047,7 +4047,7 @@ static int get_register(const char *p)
 static const char *get_string(const char *p)
 {
   assert(p != 0 /* nullptr */);
-  reg *r = (reg *)number_reg_dictionary.lookup(p);
+  reg *r = (reg *)register_dictionary.lookup(p);
   assert(r != 0 /* nullptr */);
   return r->get_string();
 }
@@ -6640,12 +6640,12 @@ void init_node_requests()
   init_request("sty", style);
   init_request("tkf", track_kern);
   init_request("uf", underline_font);
-  number_reg_dictionary.define(".fp", new next_available_font_position_reg);
-  number_reg_dictionary.define(".kern",
+  register_dictionary.define(".fp", new next_available_font_position_reg);
+  register_dictionary.define(".kern",
 			       new constant_int_reg(&global_kern_mode));
-  number_reg_dictionary.define(".lg",
+  register_dictionary.define(".lg",
 			       new constant_int_reg(&global_ligature_mode));
-  number_reg_dictionary.define(".P", new printing_reg);
+  register_dictionary.define(".P", new printing_reg);
   soft_hyphen_char = get_charinfo(HYPHEN_SYMBOL);
 }
 

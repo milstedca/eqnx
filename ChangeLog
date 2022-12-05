@@ -1,3 +1,22 @@
+2022-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Trivially refactor.  Rename `number_reg_dictionary` to
+	`register_dictionary`.  It's shorter _and_ non-abbreviated _and_
+	matches our documentation.
+
+	* src/roff/troff/column.cpp (init_column_requests):
+	* src/roff/troff/div.cpp (page_number, init_div_requests):
+	* src/roff/troff/env.cpp (print_env, init_env_requests)
+	(init_hyphen_requests):
+	* src/roff/troff/input.cpp (length_request)
+	(interpolate_number_format, do_register, do_if_request, main)
+	(init_registers, init_input_requests):
+	* src/roff/troff/node.cpp (get_register, init_node_requests):
+	* src/roff/troff/reg.cpp (top level, define_number_reg)
+	(inline_define_reg, alter_format, remove_reg, alias_reg)
+	(rename_reg, print_number_regs):
+	* src/roff/troff/reg.h: Do it.
+
 2022-12-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[man]: Add regression test.

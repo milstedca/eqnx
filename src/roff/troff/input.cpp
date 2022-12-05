@@ -7543,18 +7543,18 @@ const char *break_flag_reg::get_string()
   return i_to_a(input_stack::get_break_flag());
 }
 
-class constant_reg : public reg {
+class readonly_text_register : public reg {
   const char *s;
 public:
-  constant_reg(const char *);
+  readonly_text_register(const char *);
   const char *get_string();
 };
 
-constant_reg::constant_reg(const char *p) : s(p)
+readonly_text_register::readonly_text_register(const char *p) : s(p)
 {
 }
 
-const char *constant_reg::get_string()
+const char *readonly_text_register::get_string()
 {
   return s;
 }
@@ -8245,7 +8245,7 @@ int main(int argc, char **argv)
   init_column_requests();
 #endif /* COLUMN */
   init_node_requests();
-  register_dictionary.define(".T", new constant_reg(tflag ? "1" : "0"));
+  register_dictionary.define(".T", new readonly_text_register(tflag ? "1" : "0"));
   init_registers();
   init_reg_requests();
   init_hyphen_requests();
@@ -8314,7 +8314,7 @@ static void init_registers()
   set_number_reg("yr", int(tt->tm_year));
   set_number_reg("$$", getpid());
   register_dictionary.define(".A",
-			       new constant_reg(ascii_output_flag
+			       new readonly_text_register(ascii_output_flag
 						? "1"
 						: "0"));
 }
@@ -8466,18 +8466,18 @@ void init_input_requests()
   register_dictionary.define(".c", new lineno_reg);
   register_dictionary.define(".color", new constant_int_reg(&color_flag));
   register_dictionary.define(".F", new filename_reg);
-  register_dictionary.define(".g", new constant_reg("1"));
+  register_dictionary.define(".g", new readonly_text_register("1"));
   register_dictionary.define(".H", new constant_int_reg(&hresolution));
-  register_dictionary.define(".R", new constant_reg("10000"));
+  register_dictionary.define(".R", new readonly_text_register("10000"));
   register_dictionary.define(".U", new constant_int_reg(&unsafe_flag));
   register_dictionary.define(".V", new constant_int_reg(&vresolution));
   register_dictionary.define(".warn", new constant_int_reg(&warning_mask));
   extern const char *major_version;
-  register_dictionary.define(".x", new constant_reg(major_version));
+  register_dictionary.define(".x", new readonly_text_register(major_version));
   extern const char *revision;
-  register_dictionary.define(".Y", new constant_reg(revision));
+  register_dictionary.define(".Y", new readonly_text_register(revision));
   extern const char *minor_version;
-  register_dictionary.define(".y", new constant_reg(minor_version));
+  register_dictionary.define(".y", new readonly_text_register(minor_version));
   register_dictionary.define("c.", new writable_lineno_reg);
   register_dictionary.define("llx", new variable_reg(&llx_reg_contents));
   register_dictionary.define("lly", new variable_reg(&lly_reg_contents));

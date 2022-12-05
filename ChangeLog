@@ -1,5 +1,21 @@
 2022-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename class `constant_reg` to
+	`readonly_text_register`.  Say "readonly" instead of "const" to
+	try to avoid confusion with C++ constness.  Say "text" because
+	this class is _mostly_ used for interpolation of string-valued
+	registers like the version registers `.x`, `.y` and `.Y`.
+	Nevertheless there are some abuses (apparently because the
+	constructors for register classes don't accept integer
+	parameters for initialization--why?).
+
+	* src/roff/troff/input.cpp (top level)
+	(readonly_text_register::readonly_text_register)
+	(readonly_text_register::get_string)
+	(main, init_registers, init_requests): Do it.
+
+2022-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.  Rename `number_reg_dictionary` to
 	`register_dictionary`.  It's shorter _and_ non-abbreviated _and_
 	matches our documentation.

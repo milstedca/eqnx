@@ -725,7 +725,7 @@ void init_column_requests()
   register_dictionary.define(".colx", new column_extra_space_reg);
   register_dictionary.define(".cola", new column_active_reg);
   register_dictionary.define(".nvj",
-			       new constant_int_reg(&no_vjustify_mode));
+			       new readonly_register(&no_vjustify_mode));
 }
 
 #endif /* COLUMN */

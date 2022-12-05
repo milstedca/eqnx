@@ -7559,11 +7559,11 @@ const char *readonly_text_register::get_string()
   return s;
 }
 
-constant_int_reg::constant_int_reg(int *q) : p(q)
+readonly_register::readonly_register(int *q) : p(q)
 {
 }
 
-const char *constant_int_reg::get_string()
+const char *readonly_register::get_string()
 {
   return i_to_a(*p);
 }
@@ -8460,18 +8460,18 @@ void init_input_requests()
   init_request("writem", write_macro_request);
   register_dictionary.define(".$", new nargs_reg);
   register_dictionary.define(".br", new break_flag_reg);
-  register_dictionary.define(".C", new constant_int_reg(&compatible_flag));
-  register_dictionary.define(".cp", new constant_int_reg(&do_old_compatible_flag));
+  register_dictionary.define(".C", new readonly_register(&compatible_flag));
+  register_dictionary.define(".cp", new readonly_register(&do_old_compatible_flag));
   register_dictionary.define(".O", new variable_reg(&begin_level));
   register_dictionary.define(".c", new lineno_reg);
-  register_dictionary.define(".color", new constant_int_reg(&color_flag));
+  register_dictionary.define(".color", new readonly_register(&color_flag));
   register_dictionary.define(".F", new filename_reg);
   register_dictionary.define(".g", new readonly_text_register("1"));
-  register_dictionary.define(".H", new constant_int_reg(&hresolution));
+  register_dictionary.define(".H", new readonly_register(&hresolution));
   register_dictionary.define(".R", new readonly_text_register("10000"));
-  register_dictionary.define(".U", new constant_int_reg(&unsafe_flag));
-  register_dictionary.define(".V", new constant_int_reg(&vresolution));
-  register_dictionary.define(".warn", new constant_int_reg(&warning_mask));
+  register_dictionary.define(".U", new readonly_register(&unsafe_flag));
+  register_dictionary.define(".V", new readonly_register(&vresolution));
+  register_dictionary.define(".warn", new readonly_register(&warning_mask));
   extern const char *major_version;
   register_dictionary.define(".x", new readonly_text_register(major_version));
   extern const char *revision;

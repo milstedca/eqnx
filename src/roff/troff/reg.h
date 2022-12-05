@@ -30,10 +30,10 @@ public:
   virtual void set_value(units);
 };
 
-class constant_int_reg : public reg {
+class readonly_register : public reg {
   int *p;
 public:
-  constant_int_reg(int *);
+  readonly_register(int *);
   const char *get_string();
 };
 

@@ -1,5 +1,18 @@
 2022-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename class `constant_int_reg` to
+	`readonly_register`.  Say "readonly" instead of "const" to
+	try to avoid confusion with C++ constness.  Drop "int" because
+	integer-valued registers are the norm, not the exception.
+
+	* src/roff/troff/column.cpp (init_column_requests):
+	* src/roff/troff/div.cpp (init_div_requests):
+	* src/roff/troff/input.cpp (top level, init_input_requests):
+	* src/roff/troff/node.cpp (init_node_requests):
+	* src/roff/troff/reg.h: Do it.
+
+2022-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.  Rename class `constant_reg` to
 	`readonly_text_register`.  Say "readonly" instead of "const" to
 	try to avoid confusion with C++ constness.  Say "text" because

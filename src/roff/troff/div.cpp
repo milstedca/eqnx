@@ -1181,7 +1181,7 @@ void init_div_requests()
   init_request("vpt", vertical_position_traps);
   init_request("wh", when_request);
   register_dictionary.define(".a",
-		       new constant_int_reg(&last_post_line_extra_space));
+		       new readonly_register(&last_post_line_extra_space));
   register_dictionary.define(".d", new vertical_position_reg);
   register_dictionary.define(".h", new high_water_mark_reg);
   register_dictionary.define(".ne",
@@ -1195,7 +1195,7 @@ void init_div_requests()
   register_dictionary.define(".trunc",
 			       new constant_vunits_reg(&truncated_space));
   register_dictionary.define(".vpt",
-		       new constant_int_reg(&vertical_position_traps_flag));
+		       new readonly_register(&vertical_position_traps_flag));
   register_dictionary.define(".z", new diversion_name_reg);
   register_dictionary.define("dl", new variable_reg(&dl_reg_contents));
   register_dictionary.define("dn", new variable_reg(&dn_reg_contents));

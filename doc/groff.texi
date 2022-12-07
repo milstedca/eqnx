@@ -6152,7 +6152,7 @@ Furthermore, @code{!} is recognized only at the beginning of a numeric
 expression not contained by another numeric expression.  In other words,
 it must be the ``outermost'' operator.  Including it elsewhere in the
 expression produces a warning in the @samp{number} category
-(@pxref{Debugging}), and its expression evaluates false.  This
+(@pxref{Warnings}), and its expression evaluates false.  This
 unfortunate limitation maintains compatibility with @acronym{AT&T}
 @code{troff}.  You can test a numeric expression for falsity by
 comparing it to a false value.
@@ -7413,7 +7413,7 @@ exist, the request is ignored.
 Create an alias @var{new} for an existing register @var{old}, causing
 the names to refer to the same stored object.  If @var{old} is
 undefined, a warning in category @samp{reg} is produced and the request
-is ignored.  @xref{Debugging}, for information about the enablement and
+is ignored.  @xref{Warnings}, for information about the enablement and
 suppression of warnings.
 
 @cindex alias, register, removing (@code{aln})
@@ -7445,7 +7445,7 @@ name@tie{}@var{i}, two-character name @var{id}).  @code{\n} is
 interpreted even in copy mode (@pxref{Copy Mode}).  If the register is
 undefined, it is created, assigned a value of@tie{}@samp{0}, that value
 is interpolated, and a warning in category @samp{reg} is emitted.
-@xref{Debugging}, for information about the enablement and suppression
+@xref{Warnings}, for information about the enablement and suppression
 of warnings.
 
 @Example
@@ -7572,8 +7572,9 @@ Uppercase letters: 0, A, B, C, @dots{},@tie{}Z, AA, AB,@tie{}@enddots{}
 Lowercase letters: 0, a, b, c, @dots{},@tie{}z, aa, ab,@tie{}@enddots{}
 @end table
 
-Omitting @var{fmt} causes a warning in category @samp{missing}; see
-@ref{Debugging}.  Specifying an unrecognized format is an error.
+Omitting @var{fmt} causes a warning in category @samp{missing}.
+@xref{Warnings}, for information about the enablement and suppression of
+warnings.  Specifying an unrecognized format is an error.
 
 Zero values are interpolated as @samp{0} in non-Arabic formats.
 Negative quantities are prefixed with @samp{-} irrespective of format.
@@ -10661,7 +10662,7 @@ ordinary input character: that is, the character @code{a} is not the
 same as @code{\[a]}.
 
 If @var{name} is undefined, a warning in category @samp{char} is
-produced and the escape is ignored.  @xref{Debugging}, for information
+produced and the escape is ignored.  @xref{Warnings}, for information
 about the enablement and suppression of warnings.
 
 GNU @code{troff} resolves @code{\[@r{@dots{}}]} with more than a single
@@ -12019,7 +12020,8 @@ contents and the @code{\*} escape sequence dereferences its name,
 interpolating its contents.  If the string named by the @code{\*} escape
 sequence does not exist, it is defined as empty, nothing is
 interpolated, and a warning in category @samp{mac} is emitted.
-@xref{Warnings}.
+@xref{Warnings}, for information about the enablement and suppression of
+warnings.
 
 @DefreqList {ds, name [@Var{contents}]}
 @DefreqItemx {ds1, name [@Var{contents}]}
@@ -12301,7 +12303,7 @@ been defined.
 Create an alias @var{new} for the existing request, string, macro, or
 diversion object named @var{old}, causing the names to refer to the same
 stored object.  If @var{old} is undefined, a warning in category
-@samp{mac} is produced, and the request is ignored.  @xref{Debugging},
+@samp{mac} is produced, and the request is ignored.  @xref{Warnings},
 for information about the enablement and suppression of warnings.
 
 To understand how the @code{als} request works, consider two different
@@ -14766,11 +14768,12 @@ For orthogonality it is said that GNU @code{troff} is in the
 output is being ``diverted'' immediately to the output device).
 
 Dereferencing an undefined diversion will create an empty one of that
-name and cause a warning in category @samp{mac} to be emitted
-(@pxref{Debugging}).  A diversion does not exist for the purpose of
-testing with the @code{d} conditional operator until its initial
-definition ends (@pxref{Operators in Conditionals}).  The following
-requests are used to create and alter diversions.
+name and cause a warning in category @samp{mac} to be emitted.
+@xref{Warnings}, for information about the enablement and suppression of
+warnings.  A diversion does not exist for the purpose of testing with
+the @code{d} conditional operator until its initial definition ends
+(@pxref{Operators in Conditionals}).  The following requests are used to
+create and alter diversions.
 
 @DefreqList {di, [@Var{name}]}
 @DefreqListEndx {da, [@Var{name}]}
@@ -14791,7 +14794,7 @@ Invoking @code{di} or @code{da} without an argument stops diverting
 output to the diversion named by the most recent corresponding request.
 If @code{di} or @code{da} is called without an argument when there is no
 current diversion, a warning in category @samp{di} is produced.
-@xref{Debugging}, for information about the enablement and suppression
+@xref{Warnings}, for information about the enablement and suppression
 of warnings.
 
 @Example
@@ -15485,7 +15488,7 @@ Replace the @code{so} request's control line with the contents of the
 file named by the argument, ``sourcing'' it.  @var{file} is sought in
 the directories specified by @option{-I} command-line option.  If
 @var{file} does not exist, a warning in category @samp{file} is produced
-and the request has no further effect.  @xref{Debugging}, for
+and the request has no further effect.  @xref{Warnings}, for
 information about the enablement and suppression of warnings.
 
 @code{so} can be useful for large documents; e.g., allowing each chapter

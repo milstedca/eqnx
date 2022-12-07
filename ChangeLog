@@ -1,5 +1,15 @@
 2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Fix off-by-one error in generated diagnostic message.
+
+	* src/preproc/tbl/table.cpp: Define new preprocessor macro,
+	`PREVIOUS_PAGE_REG`.
+	(table::init_output): Compute value for register named using
+	`PREVIOUS_PAGE_REG`, use it in diagnostic, and then remove it.
+	Also fix verb tense in message.
+
+2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Expose the fact of a table's boxedness via a troff
 	register so that macro packages can make more intelligent
 	decisions about space requirements (since box borders occupy

@@ -69,6 +69,7 @@ const int DEFAULT_COLUMN_SEPARATION = 3;
 #define SAVED_NUMBERING_SUPPRESSION_COUNT PREFIX "linenumbersuppresscnt"
 #define STARTING_PAGE_REG PREFIX "startingpage"
 #define IS_BOXED_REG PREFIX "is-boxed"
+#define PREVIOUS_PAGE_REG PREFIX "previous-page"
 
 // this must be one character
 #define COMPATIBLE_REG PREFIX "c"
@@ -1907,10 +1908,13 @@ void table::init_output()
 	   ".EN\n"
 	   ".      " NOP_NAME "\n");
     entry_list->set_location();
-    prints(".      tmc \\n[.F]:\\n[.c]: error:\n"
-	   ".      tmc \" boxed table will not fit on page \\n%;\n"
+    prints(".      nr " PREVIOUS_PAGE_REG " (\\n% - 1)\n"
+	   ".      tmc \\n[.F]:\\n[.c]: error:\n"
+	   ".      tmc \" boxed table does not fit on page"
+	   " \\n[" PREVIOUS_PAGE_REG "];\n"
 	   ".      tm1 \" use .TS H/.TH with a supporting macro package"
-	   "\n");
+	   "\n"
+	   ".      rr " PREVIOUS_PAGE_REG "\n");
     prints(".      ig " NOP_NAME "\n"
 	   ".EQ\n"
 	   "delim on\n"

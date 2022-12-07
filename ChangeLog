@@ -1,5 +1,9 @@
 2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/s.tmac (TH): Clarify computation and diagnostic message.
+
+2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Fix Savannah #61878.
 
 	* src/preproc/tbl/table.cpp: Define new preprocessor macro,

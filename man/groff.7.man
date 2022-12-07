@@ -5377,7 +5377,11 @@ Name of environment (string-valued).
 .
 .TP
 .REG .f
-Mounting position of selected font.
+Mounting position of selected font;
+see
+.request .ft
+and
+.esc f .
 .
 .TP
 .REG .F
@@ -5389,7 +5393,11 @@ Nmae of font family (string-valued).
 .
 .TP
 .REG .fn
-Resolved name of selected font (string-valued).
+Resolved name of selected font (string-valued);
+see
+.request .ft
+and
+.esc f .
 .
 .TP
 .REG .fp
@@ -5552,7 +5560,7 @@ see
 .
 .TP
 .REG .O
-suppression nesting level;
+Output suppression nesting level;
 see
 .esc O .
 .
@@ -5564,7 +5572,7 @@ see
 .
 .TP
 .REG .P
-Printing selection status of page (Boolean-valued);
+Output page selection status (Boolean-valued);
 see
 .I @g@troff
 .B \-o
@@ -5584,7 +5592,11 @@ Type size in scaled points.
 .
 .TP
 .REG .psr
-Last-requested type size in scaled points.
+Most recently requested type size in scaled points;
+see
+.request .ps
+and
+.esc s .
 .
 .TP
 .REG .pvs
@@ -5603,17 +5615,25 @@ Count of lines remaining to be right-aligned.
 .TP
 .REG .s
 Type size in points as a decimal fraction (string-valued).
+see
+.request .ps
+and
+.esc s .
 .
 .TP
 .REG .slant
-Slant of font;
+Slant of font in degrees;
 see
 .esc S .
 .
 .TP
 .REG .sr
-Last-requested type size in points as a decimal fraction
-(string-valued).
+Most recently requested type size in points as a decimal fraction
+(string-valued);
+see
+.request .ps
+and
+.esc s .
 .
 .TP
 .REG .ss
@@ -5627,11 +5647,19 @@ of selected font.
 .
 .TP
 .REG .sty
-Font style (string-valued).
+Font style (string-valued);
+see
+.request .ft
+and
+.esc f .
 .
 .TP
 .REG .t
-Distance to next vertical position trap.
+Distance to next vertical position trap;
+see
+.request .wh
+and
+.request .ch .
 .
 .TP
 .REG .T

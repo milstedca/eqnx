@@ -1,5 +1,16 @@
 2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Expose the fact of a table's boxedness via a troff
+	register so that macro packages can make more intelligent
+	decisions about space requirements (since box borders occupy
+	significant space on nroff devices).
+
+	* src/preproc/tbl/table.cpp: Define new preprocessor macro,
+	`IS_BOXED_REG`.
+	(table::do_top): Initialize "boxedness" register.
+
+2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/s.tmac (TH): Clarify computation and diagnostic message.
 
 2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>

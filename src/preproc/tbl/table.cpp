@@ -68,6 +68,7 @@ const int DEFAULT_COLUMN_SEPARATION = 3;
 #define SAVED_NUMBERING_LINENO PREFIX "linenumber"
 #define SAVED_NUMBERING_SUPPRESSION_COUNT PREFIX "linenumbersuppresscnt"
 #define STARTING_PAGE_REG PREFIX "startingpage"
+#define IS_BOXED_REG PREFIX "is-boxed"
 
 // this must be one character
 #define COMPATIBLE_REG PREFIX "c"
@@ -2949,6 +2950,10 @@ void table::do_top()
   prints(".\\\" do top\n");
   prints(".ss \\n[" SAVED_INTER_WORD_SPACE_SIZE "]\n");
   prints(".fc \002\003\n");
+  if (flags & (BOX | DOUBLEBOX | ALLBOX))
+    prints(".nr " IS_BOXED_REG " 1\n");
+  else
+    prints(".nr " IS_BOXED_REG " 0\n");
   if (!(flags & NOKEEP) && (flags & (BOX | DOUBLEBOX | ALLBOX)))
     prints("." TABLE_KEEP_MACRO_NAME "\n");
   if (flags & DOUBLEBOX) {

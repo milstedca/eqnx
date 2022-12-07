@@ -1765,6 +1765,7 @@ int table::count_expand_columns()
 
 void table::init_output()
 {
+  prints(".\\\" initialize output\n");
   prints(".nr " COMPATIBLE_REG " \\n(.C\n"
 	 ".cp 0\n");
   if (linesize > 0)
@@ -2320,6 +2321,7 @@ void table::make_columns_equal()
 
 void table::compute_widths()
 {
+  prints(".\\\" compute widths\n");
   build_span_list();
   int i;
   horizontal_span *p;
@@ -2689,6 +2691,7 @@ void table::build_vrule_list()
 
 void table::define_bottom_macro()
 {
+  prints(".\\\" define bottom macro\n");
   prints(".eo\n"
 	 // protect # in macro name against eqn
 	 ".ig\n"
@@ -2769,6 +2772,7 @@ int table::row_ends_section(int r)
 
 void table::do_row(int r)
 {
+  printfs(".\\\" do row %1\n", i_to_a(r));
   if (!(flags & NOKEEP) && row_begins_section(r))
     prints(".if \\n[" USE_KEEPS_REG "] ." KEEP_MACRO_NAME "\n");
   int had_line = 0;
@@ -2935,6 +2939,7 @@ void table::do_row(int r)
 
 void table::do_top()
 {
+  prints(".\\\" do top\n");
   prints(".ss \\n[" SAVED_INTER_WORD_SPACE_SIZE "]\n");
   prints(".fc \002\003\n");
   if (!(flags & NOKEEP) && (flags & (BOX | DOUBLEBOX | ALLBOX)))
@@ -2971,6 +2976,7 @@ void table::do_top()
 
 void table::do_bottom()
 {
+  prints(".\\\" do bottom\n");
   // print stuff after last row
   for (stuff *p = stuff_list; p; p = p->next)
     if (p->row > nrows - 1)

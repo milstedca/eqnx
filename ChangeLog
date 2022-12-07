@@ -1,3 +1,11 @@
+2022-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/tbl/table.cpp: Write comments to generated output;
+	these correspond to functions in this file and to major
+	operations of table construction.
+	(init_output, compute_widths, define_bottom_macro, do_row)
+	(do_top, do_bottom): Do it.
+
 2022-12-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Trivially refactor.  Rename class `constant_int_reg` to

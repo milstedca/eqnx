@@ -1869,7 +1869,7 @@ void table::init_output()
       // when we output the table row; it will just flow off the bottom
       // of the page.
       prints(".      tmc \\n[.F]:\\n[.c]: warning:\n"
-	     ".      tm1 \" table row will not fit on page \\n%\n");
+	     ".      tm1 \" table row does not fit on page \\n%\n");
       prints(".    \\}\n");
     }
     prints(".    nf\n"

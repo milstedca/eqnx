@@ -1,3 +1,11 @@
+2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Regression-test Savannah #61878.
+
+	* src/preproc/tbl/tests/\
+	warn-on-long-boxed-unkept-table.sh: Do it.
+	* src/preproc/tbl/tbl.am (tbl_TESTS): Run test.
+
 2022-12-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/tbl/table.cpp: Write comments to generated output;

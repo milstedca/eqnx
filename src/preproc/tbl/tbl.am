@@ -39,7 +39,8 @@ tbl_TESTS = \
   src/preproc/tbl/tests/save-and-restore-inter-sentence-space.sh \
   src/preproc/tbl/tests/save-and-restore-line-numbering.sh \
   src/preproc/tbl/tests/save-and-restore-tab-stops.sh \
-  src/preproc/tbl/tests/table-lacks-spurious-top-border.sh
+  src/preproc/tbl/tests/table-lacks-spurious-top-border.sh \
+  src/preproc/tbl/tests/warn-on-long-boxed-unkept-table.sh
 TESTS += $(tbl_TESTS)
 EXTRA_DIST += $(tbl_TESTS)
 

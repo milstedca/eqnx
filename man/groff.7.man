@@ -1108,7 +1108,8 @@ In other words,
 it must be the \[lq]outermost\[rq] operator.
 .
 Including it elsewhere in the expression produces a warning in the
-\[lq]number\[rq] category
+.RB \%\[lq] number \[rq]
+category
 (see
 .MR @g@troff @MAN1EXT@ ),
 and its expression evaluates false.

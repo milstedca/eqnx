@@ -13253,10 +13253,10 @@ processed immediately upon recognition, can be termed
 @dfn{interpretation mode}.
 
 @Defesc {\\\\, , , }
-The escape character, @code{\} by default, can escape a backslash.  This
+The escape character, @code{\} by default, can escape itself.  This
 enables you to control whether a given @code{\n}, @code{\g}, @code{\$},
-@code{\*}, @code{\V}, or @code{\?} escape sequence is interpreted at
-the time the macro containing it is defined, or later when the macro is
+@code{\*}, @code{\V}, or @code{\?} escape sequence is interpreted at the
+time the macro containing it is defined, or later when the macro is
 called.@footnote{Compare this to the @code{\def} and @code{\edef}
 commands in @TeX{}.}
 
@@ -13276,8 +13276,9 @@ character followed by a backslash from which the escape character has
 removed its special meaning.  Consequently, @samp{\\} is not an escape
 sequence in the usual sense.  In any escape sequence @samp{\@var{X}}
 that GNU @code{troff} does not recognize, the escape character is
-ignored and @var{X} is output, with two exceptions---@samp{\\} is the
-first.
+ignored and @var{X} is output.  An unrecognized escape sequence causes
+a warning in category @samp{escape}, with two exceptions---@samp{\\} is
+the first.
 @endDefesc
 
 @cindex @code{\\}, when reading text for a macro
@@ -13335,11 +13336,11 @@ This understeer is getting
 @endExample
 
 Each escape character is interpreted twice---once in copy mode, when the
-macro is defined, and once outside of it, when the macro is called.  As
-seen above, this fact leads to exponential growth in the quantity of
-escape characters required to delay interpolation of @code{\n},
-@code{\g}, @code{\$}, @code{\*}, @code{\V}, and @code{\?} at each
-nesting level, which can be daunting.  GNU @code{troff} offers a
+macro is defined, and once in interpretation mode, when the macro is
+called.  As seen above, this fact leads to exponential growth in the
+quantity of escape characters required to delay interpolation of
+@code{\n}, @code{\g}, @code{\$}, @code{\*}, @code{\V}, and @code{\?} at
+each nesting level, which can be daunting.  GNU @code{troff} offers a
 solution.
 
 @Defesc {\\E, , , }

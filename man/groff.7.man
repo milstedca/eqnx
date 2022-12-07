@@ -6339,7 +6339,7 @@ can be termed
 The escape character,
 .B \[rs]
 by default,
-can escape a backslash.
+can escape itself.
 .
 This enables you to control whether a given
 .BR \[rs]n ,
@@ -6372,7 +6372,10 @@ that
 does not recognize,
 the escape character is ignored and
 .IR X \~is
-output,
+output.
+.
+An unrecognized escape sequence causes a warning in category
+.RB \%\[lq] escape \[rq],
 with two exceptions,
 .B \[rs]\[rs]
 being one.
@@ -6418,7 +6421,7 @@ In
 .RB \[lq] \|\[rs]\[rs] \[rq],
 each escape character is interpreted twice\[em]once in copy mode,
 when the macro is defined,
-and once outside of it,
+and once in interpretation mode,
 when the macro is called.
 .
 This fact leads to exponential growth in the quantity of escape

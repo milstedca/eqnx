@@ -2155,7 +2155,24 @@ except when it is read in copy mode.
 .
 .TPx
 .I n
-is a numeric expression that evaluates to an integer value.
+is a numeric expression.
+.
+.TPx
+.I npl
+is a numeric expression constituting a count of subsequent
+.I productive
+input lines;
+that is,
+those that directly produce formatted output.
+.
+Text lines produce output,
+as do control lines containing requests like
+.request .tl
+or escape sequences like
+.esc D .
+.
+Macro calls are not themselves productive,
+but their interpolated contents can be.
 .
 .TPx
 .I N
@@ -2478,13 +2495,21 @@ Set control character to
 .
 .TPx
 .REQ .ce
-Center the next input line.
+Break,
+center the output of the next productive input line without filling,
+and break again.
 .
 .TPx
-.REQ .ce "N"
-Center following
-.I N
-input lines.
+.REQ .ce npl
+Break,
+center the output of the next
+.I npl
+productive input lines without filling,
+then break again.
+.
+If
+.IR npl =0,
+stop centering.
 .
 .TPx
 .REQ .cf "filename"
@@ -3189,23 +3214,26 @@ Set indentation to
 .scaleindicator m ).
 .
 .TPx
-.REQ .it "n name"
+.REQ .it "npl name"
 Set an input trap,
 calling macro
 .IR name ,
 after the next
-.IR n\~ lines
-of input that directly produce formatted output have been read.
+.I npl
+productive input lines have been read.
 .
+Lines interrupted with the
+.B \[rs]c
+escape sequence are counted separately.
 .
 .TPx
-.REQ .itc "n name"
-As
-.request .it ,
-but lines interrupted with the
-.B \[rs]c
-escape sequence are not applied to the line count.
-.
+.REQ .itc "npl name"
+Set an input trap,
+calling macro
+.IR name ,
+after the next
+.I npl
+productive input lines have been read.
 .
 .TPx
 .REQ .kern
@@ -3408,15 +3436,20 @@ In line number mode, set number, multiple, spacing, and indentation.
 .
 .TPx
 .REQ .nn
-Suppress numbering of the next line to be numbered with
+Suppress numbering of the next output line to be numbered with
 .BR nm .
 .
 .TPx
 .REQ .nn n
-Suppress numbering next
+Suppress numbering of the next
 .I n
-.BR nm -numbered
-lines.
+output lines to be numbered with
+.BR nm .
+.
+If
+.IR n =0,
+cancel suppression.
+.
 .
 .TPx
 .REQ .nop "anything"
@@ -3629,10 +3662,23 @@ Remove the font-specific definitions of glyphs
 .RI font\~ f .
 .
 .TPx
-.REQ .rj "n"
-Right justify the next
-.I n
-input lines.
+.REQ .rj npl
+Break,
+right-align the output of the next productive input line without
+filling,
+then break again.
+.
+.TPx
+.REQ .rj npl
+Break,
+right-align the output of the next
+.I npl
+productive input lines without filling,
+then break again.
+.
+If
+.IR npl =0,
+stop right-aligning.
 .
 .TPx
 .REQ .rm "name"
@@ -6384,7 +6430,7 @@ at a blank line
 .RB ( .blm );
 at a line with leading space characters
 .RB ( .lsm );
-after a certain number of input lines
+after a certain number of productive input lines
 .RB ( .it ,\~ .itc );
 or at the end of input
 .RB ( .em ).

@@ -8085,15 +8085,50 @@ This is an uninteresting sentence.
 @endExample
 @endDefreq
 
+@cindex productive input line
+@cindex input line, productive
+@cindex line, productive input
+To clearly present the next couple of requests, we must introduce the
+concept of ``productive'' input lines.  A @dfn{productive input line} is
+one that directly produces formatted output.  Text lines produce output,
+as do control lines containing requests like @code{tl} or escape
+sequences like @code{\D}.  Macro calls are not themselves productive,
+but their interpolated contents can be; macro calls may therefore be
+@emph{indirectly} productive.  An empty request, and requests and escape
+sequences that define registers or strings or alter the formatting
+environment (such as typeface changes) are @emph{not} productive.  The
+output line continuation escape sequence @code{\c} ``connects'' two
+input lines that would otherwise be counted separately.  @xref{Line
+Continuation}.
+
+@Example
+@c .ll 56n
+.de hello
+Hello, world!
+..
+.ce \" center output of next productive input line
+.
+.nr junk-reg 1
+.ft I
+Chorus: \c
+.ft
+.hello
+Went the day well?
+  @result{}                  @slanted{Chorus:} Hello, world!
+  @result{} Went the day well?
+@endExample
+
 @DefreqList {ce, [@Var{nnn}]}
 @DefregListEndx {.ce}
 @cindex centered text (unfilled)
 @cindex centering lines (@code{ce})
 @cindex lines, centering (@code{ce})
-Center the next @var{nnn} input text lines without filling them.  A
-pending output line is broken.  The count of lines remaining to be
-centered is stored in the read-only register @code{.ce} and is
-associated with the environment (@pxref{Environments}).
+Break (unless the no-break control character is used), center the output
+of the next @var{nnn} productive input lines without filling, then break
+again (regardless of the control character).  The count of lines
+remaining to be centered is stored in the read-only register @code{.ce}
+and is associated with the environment
+(@pxref{Environments}).
 
 @cindex @code{ce} request, difference from @w{@samp{.ad c}}
 While the @w{@samp{.ad c}} request also centers text, it fills the text
@@ -8140,10 +8175,11 @@ argument.
 @cindex justifying text (@code{rj})
 @cindex text, justifying (@code{rj})
 @cindex right-justifying (@code{rj})
-Align the next @var{nnn} input text lines to the right margin without
-filling them.  A pending output line is broken.  The count of lines
-remaining to be right-justified is stored in the read-only register
-@code{.rj} and is associated with the environment
+Break (unless the no-break control character is used), align the output
+of the next @var{nnn} productive input lines to the right margin without
+filling, then break again (regardless of the control character).  The
+count of lines remaining to be centered is stored in the read-only
+register @code{.rj} and is associated with the environment
 (@pxref{Environments}).
 @endDefreq
 
@@ -14469,10 +14505,8 @@ error to invoke @code{dt} in the top-level diversion.
 @cindex input line trap, setting (@code{it})
 @cindex trap, input line, setting (@code{it})
 Set an input line trap, calling macro @var{name} after processing the
-next @var{n}@tie{}lines of input that directly produce written output.
-Only text lines and (some) requests produce output directly.  Macro
-calls of themselves do not---requests or text lines they interpolate
-can.
+next @var{n}@tie{}productive input lines (@pxref{Manipulating Filling
+and Adjustment}).
 
 Consider a macro @samp{.ST @var{s n}} which sets the next
 @var{n}@tie{}input lines in the font style@tie{}@var{s}.
@@ -14499,10 +14533,10 @@ face
 @cindex interrupted lines and input line traps (@code{itc})
 @cindex traps, input line, and interrupted lines (@code{itc})
 @cindex lines, interrupted, and input line traps (@code{itc})
-The @code{itc} request is similar, except that lines interrupted with
-the @code{\c} escape sequence are not applied to the line count.
-@xref{Line Continuation}.  To see the difference, let's change the
-previous example to use @code{itc} instead.
+Unlike the @code{ce} and @code{rj} requests, @code{it} counts lines
+interrupted with the @code{\c} escape sequence separately (@pxref{Line
+Continuation}); @code{itc} does not.  To see the difference, let's
+change the previous example to use @code{itc} instead.
 
 @Example
 @r{@dots{}}
@@ -14512,10 +14546,26 @@ previous example to use @code{itc} instead.
 @r{(second ``face'' oblique)}
 @endExample
 
-Text lines are easily understood as input lines that produce written
-output, but escape sequences like @code{\D}, @code{\l}, and @code{\L},
-do as well; they thus increment the internal line counter tested for
-fulfillment of the input trap line count.  @xref{Drawing Requests}.
+You can think of the @code{ce} and @code{rj} requests as implicitly
+creating an input line trap with @code{itc} that schedules a break when
+the trap is sprung.
+
+@Example
+.de BR
+.  br
+.  @slanted{internal: disable centering-without-filling}
+..
+.
+.de ce
+.  if \\n[.br] .br
+.  itc \\$1 BR
+.  @slanted{internal: enable centering-without-filling}
+..
+@endExample
+
+@need 500
+Let us consider in more detail the sorts of input lines that are or are
+not ``productive''.
 
 @Example
 .de Trap

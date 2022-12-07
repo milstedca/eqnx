@@ -6461,7 +6461,7 @@ use end macros.
 are locations in the output,
 or conditions on the input that,
 when reached or fulfilled,
-cause a specified macro to be called.
+call a specified macro.
 .
 These traps can occur at a given location on the page
 .RB ( .wh ,\~ .ch );

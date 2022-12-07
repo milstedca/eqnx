@@ -14157,9 +14157,9 @@ Environments save us considerable effort.
 @cindex traps
 
 @dfn{Traps} are locations in the output or conditions on the input that,
-when reached or fulfilled, cause a specified macro to be called.  These
-traps can occur at a given location on the page, at a given location in
-the current diversion (together, these are known as @emph{vertical
+when reached or fulfilled, call a specified macro.  These traps can
+occur at a given location on the page, at a given location in the
+current diversion (together, these are known as @slanted{vertical
 position traps}), at a blank line, at a line with leading space
 characters, after a quantity of input lines, or at the end of input.
 Macros called by traps are passed no arguments.
@@ -14404,7 +14404,7 @@ it is useful in conjunction with the @code{.trunc} register.  @xref{Page
 Control}.
 
 Since the @code{.ne} register is set only by traps, it doesn't make
-sense to use it outside of trap macros.
+sense to interpolate it outside of macros called by traps.
 @endDefreg
 
 @Defreg {.trunc}
@@ -14419,7 +14419,7 @@ represents the difference of what the vertical position would have
 been but for the trap, and what the vertical position actually is.
 
 Since the @code{.trunc} register is set only by traps, it doesn't make
-sense to use it outside of trap macros.
+sense to interpolate it outside of macros called by traps.
 @endDefreg
 
 @Defreg {.pe}
@@ -14701,22 +14701,27 @@ Date:\t\t\a
 @endExample
 
 The @code{\c} in the above example needs explanation.  For historical
-reasons (and for compatibility with @acronym{AT&T} @code{troff}), the
-end-of-input macro exits as soon as it causes a page break and nothing
-remains in the partially collected line.
+reasons (compatibility with @acronym{AT&T} @code{troff}), the
+end-of-input macro exits as soon as it causes a page break if no
+partially collected line remains.@footnote{While processing an
+end-of-input macro, the formatter assumes that the next page break must
+be the last; it goes into ``sudden death overtime''.}
 
 Let us assume that there is no @code{\c} in the above @code{approval}
-macro, and that the page is full and has been ended with, say, a
-@code{br} request.  The @code{ne} request now causes the start of a new
-page, which in turn makes @code{troff} exit immediately for the reasons
-just described.  In most situations this is not intended.
+macro, that the page is full, and last output line has been broken with,
+say, a @code{br} request.  Because there is no more room, a @code{ne}
+request at this point causes a page ejection, which in turn makes
+@code{troff} exit immediately as just described.  In most situations,
+this is not desired; people generally want to format the input after
+@code{ne}.
 
 To force processing of the whole end-of-input macro independently of
-this behavior, it is thus advisable to insert something that starts an
-empty partially collected line (@code{\c}) whenever there is a chance
-that a page break can happen.  In the above example, the call of the
-@code{ne} request assures that the remaining code stays on the same
-page, so we have to insert @code{\c} only once.
+this behavior, it is thus advisable to (invisibly) ensure the existence
+of a partially collected line (@code{\c}) whenever there is a chance
+that a page break can happen.  In the above example, invoking the
+@code{ne} request ensures that there is room for the subsequent
+formatted output on the same page, so we need insert @code{\c} only
+once.
 
 The next example shows how to append three lines, then start a new page
 unconditionally.  Since @w{@samp{.ne 1}} doesn't give the desired

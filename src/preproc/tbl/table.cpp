@@ -67,6 +67,7 @@ const int DEFAULT_COLUMN_SEPARATION = 3;
 #define SAVED_HYPHENATION_SPACE_REG PREFIX "hyphspace"
 #define SAVED_NUMBERING_LINENO PREFIX "linenumber"
 #define SAVED_NUMBERING_SUPPRESSION_COUNT PREFIX "linenumbersuppresscnt"
+#define STARTING_PAGE_REG PREFIX "startingpage"
 
 // this must be one character
 #define COMPATIBLE_REG PREFIX "c"
@@ -2729,8 +2730,14 @@ void table::define_bottom_macro()
   prints(".    ls\n");
   prints(".    nr " LAST_PASSED_ROW_REG " \\n[" CURRENT_ROW_REG "]\n"
 	 ".    sp |\\n[" SAVED_VERTICAL_POS_REG "]u\n"
-	 ".    " REPEATED_VPT_MACRO " 1\n"
-	 ".  \\}\n"
+	 ".    " REPEATED_VPT_MACRO " 1\n");
+  if ((flags & NOKEEP) && (flags & (BOX | DOUBLEBOX | ALLBOX)))
+    prints(".    if (\\n% > \\n[" STARTING_PAGE_REG "]) \\{\\\n"
+	   ".      tmc \\n[.F]:\\n[.c]: warning:\n"
+	   ".      tmc \" boxed, unkept table does not fit on page\n"
+	   ".      tm1 \" \\n[" STARTING_PAGE_REG "]\n"
+	   ".    \\}\n");
+  prints(".  \\}\n"
 	 "..\n"
 	 ".ig\n"
 	 ".EQ\n"
@@ -2971,6 +2978,7 @@ void table::do_top()
   // vertical rule is not drawn above the top of the page.
   else if ((flags & HAS_TOP_VLINE) && !(flags & HAS_TOP_HLINE))
     prints(".if n .sp\n");
+  prints(".nr " STARTING_PAGE_REG " \\n%\n");
   //printfs(".mk %1\n", row_top_reg(0));
 }
 

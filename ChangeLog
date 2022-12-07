@@ -1,5 +1,18 @@
 2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Fix Savannah #61878.
+
+	* src/preproc/tbl/table.cpp: Define new preprocessor macro,
+	`STARTING_PAGE_REG`.
+	(table::define_bottom_macro): Have the formatter issue a warning
+	if an unkept, boxed table ends on a different page than it
+	began.
+	(table::do_top): Save current page number when table begins.
+
+	Fixes <https://savannah.gnu.org/bugs/?61878>.
+
+2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Regression-test Savannah #61878.
 
 	* src/preproc/tbl/tests/\

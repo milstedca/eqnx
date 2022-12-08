@@ -140,10 +140,11 @@ o The token `.PY` is now recognized as a synonym of `.PF` to work around
 tbl
 ---
 
-o GNU tbl now saves and restores the status of output line numbering
-  when formatting tables, including the count of lines for which
-  numbering is suppressed.  Historical tbl implementations did not, with
-  bizarre consequences when text blocks were used in tables.
+o GNU tbl now suspends output line numbering while formatting tables,
+  saving and restoring its status before and after each table region,
+  including the count of lines for which numbering is suppressed.
+  Historical tbl implementations did not, with bizarre consequences when
+  text blocks were used in tables.
 
 Macro packages
 --------------

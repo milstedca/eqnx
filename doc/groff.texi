@@ -7829,11 +7829,6 @@ this to ask the formatter if it claims @code{groff} compatibility.
 Approximate output is being formatted (Boolean-valued); see
 @command{groff} @option{-a} option (@ref{Groff Options}).
 
-@item \n[.O]
-@vindex .O
-Output suppression nesting level applied by @code{\O} escape sequences;
-see @ref{Suppressing Output}.
-
 @item \n[.P]
 @vindex .P
 Output page selection status (Boolean-valued); see @command{groff}
@@ -15494,9 +15489,6 @@ crossing a page boundary.
 End a nesting level.
 @end table
 
-The current nesting level is accessible via the read-only register
-@code{.O}.  @xref{Built-in Registers}.
-
 @table @samp
 @item \O[5@var{P}@var{file}]
 Provided that this sequence occurs at the outermost level, write the
@@ -15508,6 +15500,13 @@ production of the next image.
 @end table
 @endDefesc
 
+@Defreg {.O}
+@cindex suppression nesting level register
+@cindex nesting level, suppression, register
+@cindex level, suppression nesting, register
+Output suppression nesting level applied by @code{\O3} and @code{\O4}
+escape sequences.
+@endDefreg
 
 @c =====================================================================
 

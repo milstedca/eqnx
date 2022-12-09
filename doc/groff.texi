@@ -7784,13 +7784,6 @@ Input line number.  @samp{c.} is a writable synonym,
 @c introduced in AT&T device-independent troff (CSTR #54, 1981-01)
 affecting subsequent interpolations of both @samp{.c} and @samp{c.}.
 
-@item \n[ln]
-@vindex ln
-@cindex output line number register (@code{ln})
-@cindex line number, output, register (@code{ln})
-Output line number associated with the @code{nm} request to activate
-line numbering.  @xref{Miscellaneous}.
-
 @item \n[.x]
 @vindex .x
 @cindex major version number register (@code{.x})
@@ -15982,6 +15975,7 @@ This section documents parts of @code{gtroff} that cannot (yet) be
 categorized elsewhere in this manual.
 
 @DefreqList {nm, [@Var{start} [@Var{inc} [@Var{space} [@Var{indent}]]]]}
+@DefregItemx {ln}
 @DefregListEndx {.nm}
 @cindex printing line numbers (@code{nm})
 @cindex line numbers, printing (@code{nm})
@@ -16014,8 +16008,15 @@ argument, it can be reactivated with @samp{.nm +0}, using the previously
 active line numbering parameters.
 
 The parameters of @code{nm} are associated with the environment
-(@pxref{Environments}).  The current output line number is available in
-the register @code{ln}.
+(@pxref{Environments}).
+
+@cindex output line number register (@code{ln})
+@cindex line number, output, register (@code{ln})
+While line numbering is enabled, the output line number register
+@code{ln} is updated as each line is output, even if no line number is
+formatted with it because it is being skipped (it is not a multiple of
+@var{inc}) or because numbering is suppressed (see the @code{nn} request
+below).
 
 The @code{.nm} register tracks the enablement status of line numbering.
 Temporary suspension of numbering with the @code{nn} request does

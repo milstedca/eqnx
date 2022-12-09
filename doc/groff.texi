@@ -10387,8 +10387,13 @@ A solution to this problem is to use a dummy font like the following:
 @cindex positions, font
 
 To support typeface indirection through styles, and for compatibility
-with @acronym{AT&T} @code{troff}, GNU @code{troff} has the concept of
-font @dfn{positions}, at which various fonts are @dfn{mounted}.
+with @acronym{AT&T} @code{troff}, the formatter maintains a list of font
+@dfn{positions} at which fonts required by a document are @dfn{mounted}.
+An output device's description file @file{DESC} typically configures a
+set of pre-mounted fonts; see @ref{Device and Font Description Files}.
+A font need not be explicitly mounted before it is selected; GNU
+@code{troff} will automatically search for it by name and mount it on
+demand.
 
 @DefreqList {fp, pos font [@Var{external-name}]}
 @DefregItemx {.f}
@@ -10404,7 +10409,7 @@ position@tie{}1.  Position@tie{}0 is unused by default.  Unless the
 that of a font description file stored in a directory corresponding to
 the selected output device.@footnote{In other words, the font
 description file must be located in the same directory as the output
-device's @file{DESC} file; see @ref{Device and Font Description Files}.}
+device's @file{DESC} file.}
 
 @cindex font position register (@code{.f})
 The position of the currently selected font (or style) is available in
@@ -10431,16 +10436,23 @@ position explicitly with the @code{fp} request, this same practice
 should be followed, although GNU @code{troff} does not enforce this
 strictly.
 
+If there is no third argument, the font description is sought in the
+file system under the name @var{font}.
+
+@c The third argument was a late revisions to device-independent troff.
+@c It wasn't in the "Unix 4.0" version of CSTR #54 (January 1981), which
+@c featured Kernighan's device-independent rewrite, but appeared by the
+@c time of its 1992 revision.
 The optional third argument @var{external-name} is the name of a font
 description file in the operating environment.  GNU @code{troff} refuses
 to traverse directories to locate the font description.  The second
 argument @var{font} is then the internal name of the font, which
-identifies it to GNU @code{troff} once it has been mounted.  If there is
-no third argument, the font description is sought in the file system
-under its internal name.  This feature enables font names to be aliased,
-which can be necessary in compatibility mode since AT&T @code{troff}
-syntax affords no means of loading fonts with names longer than two
-characters, like @samp{TBI} or @samp{ZCMI}.  @xref{Compatibility Mode}.
+identifies it to GNU @code{troff} once it has been mounted.  This
+feature enables font names to be aliased, which can be necessary in
+compatibility mode since AT&T @code{troff} syntax affords no means of
+identifying fonts with names longer than two characters, like @samp{TBI}
+or @samp{ZCMI}, in a font selection escape sequence.
+@xref{Compatibility Mode}.
 @endDefreq
 
 The @code{ft} request and @code{\f} escape sequence accept mounting

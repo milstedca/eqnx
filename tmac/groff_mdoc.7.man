@@ -4666,8 +4666,12 @@ The following strings are predefined for compatibility with legacy
 documents.
 .
 Contemporary ones should use the alternatives shown in the
-.Ql Prefer
+.Dq Prefer
 column below.
+.
+See
+.Xr groff_char @MAN7EXT@
+for a full discussion of these special character escape sequences.
 .
 .
 .Pp
@@ -4678,51 +4682,46 @@ column below.
 .\" written out in full, which in turn pushes the >= and Ge rows past
 .\" the 78n norm.  Update with caution.  See Savannah #59424.
 .TS
-lb lb2 lb2 lb lb lb
-l l2 l2 l l l.
+Cb Lb2 Lb2 Lb Lb Lb
+Lf(CR) L2 L2 L Lf(CR) L.
 String	7-bit	8-bit	UCS	Prefer	Meaning
-<=	<=  	<=	\*[<=]	\[rs](<=	less than or equal to
->=	>=  	>=	\*[>=]	\[rs](>=	greater than or equal to
-Rq	"  	"	\*[Rq]	\[rs](rq	right double quote
-Lq	"  	"	\*[Lq]	\[rs](lq	left double quote
-ua	\[ha]	\[ha]	\*[ua]	\[rs](ua	vertical arrow up
-aa	\[aq]	\'	\*[aa]	\[rs](aa	acute accent
-ga	\`  	\`	\*[ga]	\[rs](ga	grave accent
-q 	\&" 	\&"	\*[q] 	\[rs](dq	neutral double quote
-Pi	pi  	pi	\*[Pi]	\[rs](*p	lowercase pi
-Ne	!=  	!=	\*[Ne]	\[rs](!=	not equals
-Le	<=  	<=	\*[Le]	\[rs](<=	less than or equal to
-Ge	>=  	>=	\*[Ge]	\[rs](>=	greater than or equal to
-Lt	<   	<	\*[Lt]	<	less than
-Gt	>   	>	\*[Gt]	>	greater than
-Pm	+\- 	\[+-]	\*[Pm]	\[rs](+\-	plus or minus
-If	infinity	infinity	\*[If]	\[rs](if	infinity
-Am	\*[Am]	\*[Am]	\*[Am]	&	ampersand
-Na	\*[Na]	\*[Na]	\*[Na]	NaN	not a number
-Ba	\*[Ba]	\*[Ba]	\*[Ba]	|	bar
+\[rs]*(<=	<=  	<=	\*[<=]	\[rs](<=	less than or equal to
+\[rs]*(>=	>=  	>=	\*[>=]	\[rs](>=	greater than or equal to
+\[rs]*(Rq	"  	"	\*[Rq]	\[rs](rq	right double quote
+\[rs]*(Lq	"  	"	\*[Lq]	\[rs](lq	left double quote
+\[rs]*(ua	\[ha]	\[ha]	\*[ua]	\[rs](ua	vertical arrow up
+\[rs]*(aa	\[aq]	\'	\*[aa]	\[rs](aa	acute accent
+\[rs]*(ga	\`  	\`	\*[ga]	\[rs](ga	grave accent
+\[rs]*(q 	\&" 	\&"	\*[q] 	\[rs](dq	neutral double quote
+\[rs]*(Pi	pi  	pi	\*[Pi]	\[rs](*p	lowercase pi
+\[rs]*(Ne	!=  	!=	\*[Ne]	\[rs](!=	not equals
+\[rs]*(Le	<=  	<=	\*[Le]	\[rs](<=	less than or equal to
+\[rs]*(Ge	>=  	>=	\*[Ge]	\[rs](>=	greater than or equal to
+\[rs]*(Lt	<   	<	\*[Lt]	<	less than
+\[rs]*(Gt	>   	>	\*[Gt]	>	greater than
+\[rs]*(Pm	+\- 	\[+-]	\*[Pm]	\[rs](+\-	plus or minus
+\[rs]*(If	infinity	infinity	\*[If]	\[rs](if	infinity
+\[rs]*(Am	\*[Am]	\*[Am]	\*[Am]	&	ampersand
+\[rs]*(Na	\*[Na]	\*[Na]	\*[Na]	NaN	not a number
+\[rs]*(Ba	\*[Ba]	\*[Ba]	\*[Ba]	|	bar
 .TE
 .
 .
 .Pp
-The names of the columns are shorthand for standard character encodings;
+Some column headings are shorthand for standardized character encodings;
 \[lq]7-bit\[rq] for ISO 646:1991 IRV (US-ASCII),
 \[lq]8-bit\[rq] for ISO 8859-1 (Latin-1) and IBM code page 1047,
 and
 \[lq]UCS\[rq] for ISO 10646 (Unicode character set).
 .
-The strings were originally defined
-(circa 1989)
-such that the best available representation would be used.
+Historically, \" (\[ti]1989)
+.Xr mdoc
+configured the string definitions to fit the capabilities expected of
+the the output device.
 .
-For example,
-a Unicode-enabled terminal device using a well-chosen font will have
-optimal glyph representations for all of the above,
-whereas a Latin-1 terminal's only advantage over an ASCII one
-(for these glyphs)
-is the plus-minus sign.
-.
-Old typesetters lacked directional double quotes, \" like the C/A/T
-and would produce repeated directional single quotes,
+Old typesetters \" like the C/A/T
+lacked directional double quotes,
+producing repeated directional single quotes
 \[oq]\[oq]like this\[cq]\[cq];
 early versions of
 .Xr mdoc
@@ -4732,44 +4731,35 @@ and
 .Ql Rq
 strings this way. \" thanks to Ingo Schwarze for the research
 .
-In the years since,
-output drivers have taken on the responsibility of glyph substitution;
-they are the part of the formatting process with relevant knowledge of
-the available repertoire.
-.
-.
-.Pp
-String names which consist of two characters can be written as
-.Ql \[rs]*(xx ;
-string names which consist of one character can be written as
-.Ql \[rs]*x .
-A general syntax for a string name of any length is
-.Ql \[rs]*[xxx]
-(this is a
-.Tn GNU
-.Xr @g@troff @MAN1EXT@
-extension).
+Nowadays,
+output drivers \" technically, their macro files or font descriptions
+take on the responsibility of glyph substitution,
+as they possess relevant knowledge of their available repertoires.
 .
 .
 .Sh Diagnostics
 .
 The debugging macro
 .Ql .Db
-available in previous versions of
+offered by
+previous versions of
 .Xr mdoc
-has been removed since
+is unavailable in
 .Tn GNU
 .Xr @g@troff @MAN1EXT@
-provides better facilities to check parameters;
+since the latter provides better facilities to check parameters;
 additionally,
-many error and warning messages have been added to this macro package,
-making it both more robust and verbose.
+.Xr "groff mdoc"
+implements many error and warning messages,
+making the package more robust and more verbose.
 .
 .
 .Pp
-The only remaining debugging macro is
-.Ql .Rd
-which yields a register dump of all global registers and strings.
+The remaining debugging macro is
+.Ql .Rd ,
+which dumps the package's global register and string contents to the
+standard error stream.
+.
 A normal user will never need it.
 .
 .

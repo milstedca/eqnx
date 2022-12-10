@@ -5739,7 +5739,7 @@ top to the bottom of the page.
 @dfn{Vertical spacing} is the distance between adjacent text baselines.
 Typographic tradition sets this quantity to 120% of the type size.  The
 initial drawing position is one unit of vertical spacing below the page
-top.  Typographers have a name for this unit:@: ``vee''.
+top.  Typographers this unit a @slanted{vee}.
 
 @cindex page break
 @cindex break, page
@@ -5789,7 +5789,7 @@ footers, or at least bear vertical margins larger than one vee.
 
 @cindex units of measurement
 @cindex measurement units
-GNU @code{troff} sometimes requires the input of numeric parameters to
+The formatter sometimes requires the input of numeric parameters to
 specify measurements.  These are specified as integers or decimal
 fractions with an optional @dfn{scaling unit} suffixed.  A scaling unit
 is a letter that immediately follows the last digit of a number.  Digits
@@ -6597,8 +6597,8 @@ used to call it.
 This read-only register interpolates@tie{}1 if the currently executing
 macro was called using the normal control character and@tie{}0
 otherwise.  If a macro is interpolated as a string, the @code{.br}
-register's value is inherited from context of the string interpolation.
-@xref{Strings}.
+register's value is inherited from the context of the string
+interpolation.  @xref{Strings}.
 
 @cindex intercepting requests
 @cindex requests, intercepting

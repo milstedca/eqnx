@@ -585,8 +585,8 @@ Typographic tradition sets this quantity to 120% of the type size.
 The initial vertical drawing position is one unit of vertical spacing
 below the page top.
 .
-Typographers have a name for this unit:
-\[lq]vee\[rq].
+Typographers term this unit a
+.I vee.
 .
 .
 .P

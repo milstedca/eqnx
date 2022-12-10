@@ -4539,23 +4539,25 @@ Suppress insertion of vertical space before the list and between list items.
 .
 .Sh "Miscellaneous macros"
 .
-Here a list of the remaining macros which do not fit well into one of
-the above sections.
+A double handful of macros fit only uncomfortably into one of the above
+sections.
 .
-We couldn't find real examples for the following macros:
-.Ql .Me
-and
-.Ql .Ot .
+Of these,
+we couldn't find attested examples for
+.Ql \&Me
+or
+.Ql \&Ot .
 .
-They are documented here for completeness\(emif you know how to use them
-properly,
+They are documented here for completeness\[em]if you know their proper
+usage,
 please send a mail to
 .Mt groff@gnu.org
-(including an example).
+and include a specimen with its provenance.
+.
 .
 .Bl -tag -width ".Li .Bt"
 .It Li .Bt
-prints
+formats boilerplate text.
 .
 .Bd -ragged -offset indent
 .Bt
@@ -4565,35 +4567,51 @@ prints
 .Pp
 It is neither callable nor parsed and takes no arguments.
 .
+Its default width is 6n.
+.
+.
 .It Li .Fr
+is an obsolete means of specifying a function return value.
 .
 .
 .Pp
-.Dl Usage: .Fr Ao function return value Ac ...
+.D1 Usage: Pf . Ic \&Fr Ar return-value No ...
 .
 .
 .Pp
-Don't use this macro.
-It allows a break right before the return value (usually a single digit)
+.Ql \&Fr
+allows a break right before the return value
+(usually a single digit)
 which is bad typographical behaviour.
-Use
-.Ql \e\[ti]
+.
+Instead,
+set the return value with the rest of the code,
+using
+.Ql \[rs]\[ti]
 to tie the return value to the previous word.
 .
+.
+.Pp
+Its default width is 12n.
+.
+.
 .It Li .Hf
-Use this macro to include a (header) file literally.
+Inlines the contents of a (header) file into the document.
+.
+.
+.Pp
+.D1 Usage: Pf . Ic \&Hf Ar file
+.
+.
+.Pp
 It first prints
 .Ql File:
-followed by the file name, then the contents of
-.Ao file Ac .
+followed by the file name,
+then the contents of
+.Ar file .
 .
-.
-.Pp
-.Dl Usage: .Hf Ao file Ac
-.
-.
-.Pp
 It is neither callable nor parsed.
+.
 .
 .It Li .Lk
 Embed hyperlink.
@@ -4603,16 +4621,22 @@ Embed hyperlink.
 .D1 Usage: Pf . Ic \&Lk Ar uri Op Ar link-text
 .
 .
+.Pp
+Its default width is 6n.
+.
+.
 .It Li .Me
-Exact usage unknown.
-The documentation in the
+Usage unknown.
+.
+The
 .Xr mdoc
-source file describes it as a macro for
+sources describe it as a macro for
 .Dq "menu entries" .
 .
 .
 .Pp
 Its default width is 6n.
+.
 .
 .It Li .Mt
 Embed email address.
@@ -4622,32 +4646,46 @@ Embed email address.
 .D1 Usage: Pf . Ic \&Mt Ar email-address
 .
 .
+.Pp
+Its default width is 6n.
+.
+.
 .It Li .Ot
-Exact usage unknown.
-The documentation in the
+Usage unknown.
+The
 .Xr mdoc
-source file describes it as
-.Dq old function type (fortran) .
+sources describe it as
+.Dq "old function type (fortran)" .
+.
 .
 .It Li .Sm
-Activate (toggle) space mode.
+Manipulate or toggle argument-spacing mode.
 .
 .
 .Pp
-.Dl Usage: .Sm Oo on | off Oc ...
+.D1 Usage: Pf . Ic \&Sm Oo Li on | Li off Oc ...
 .
 .
 .Pp
-If space mode is off, no spaces between macro arguments are inserted.
-If called without a parameter (or if the next parameter is neither
+If argument-spacing mode is off,
+no spaces between macro arguments are inserted.
+.
+If called without a parameter
+(or if the next parameter is neither
 .Ql on
 nor
-.Ql off ,
-.Ql .Sm
-toggles space mode.
+.Ql off ) ,
+.Ql \&Sm
+toggles argument-spacing mode.
+.
+.
+.Pp
+Its default width is 8n.
+.\" The package demands it, but how is that meaningful?
+.
 .
 .It Li .Ud
-prints
+formats boilerplate text.
 .
 .Bd -ragged -offset indent
 .Ud
@@ -4656,6 +4694,8 @@ prints
 .
 .Pp
 It is neither callable nor parsed and takes no arguments.
+.
+Its default width is 8n.
 .El
 .
 .

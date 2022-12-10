@@ -9976,24 +9976,40 @@ The register @code{.pe} is set to@tie{}1 while @code{bp} is active.
 @cindex orphan lines, preventing with @code{ne}
 @cindex conditional page break (@code{ne})
 @cindex page break, conditional (@code{ne})
-It is often necessary to force a certain amount of space before a new
-page occurs.  This is most useful to make sure that there is not a
-single @dfn{orphan} line left at the bottom of a page.  The @code{ne}
-request ensures that there is a certain distance, specified by the first
-argument, before the next page is triggered (@pxref{Traps}).  The
-default scaling indicator for @code{ne} is @samp{v}; the default value
-of @var{space} is@tie{}1@dmn{v} if no argument is given.
+You may require a certain amount of vertical space before a page break
+occurs.  For instance, you may wish to ensure that the first output line
+of a paragraph is not @dfn{orphaned} at the bottom of a page.  The
+@code{ne} request tests the amount of distance to the next page location
+trap (at the page bottom of none is planted earlier; see @ref{Traps}),
+and breaks the page if less than @var{space} is available.  The default
+scaling unit for @code{ne} is @samp{v}.  If @var{space} is not
+specified, @samp{1v} is assumed.
 
-For example, to make sure that no fewer than 2@tie{}lines get orphaned,
-do the following before each paragraph:
+For example, to require room for at least the first two output lines of
+a paragraph, you can do the following.
 
 @Example
 .ne 2
-text text text
+Considering how common illness is,
+how tremendous the spiritual change that it brings,
+how astonishing,
+when the lights of health go down,
+the undiscovered countries that are then disclosed,
 @endExample
 
-@code{ne} then automatically causes a page break if there is space for
-one line only.
+@c XXX: Some of this might be better placed in a revised Chapter 3.
+@code{ne} then causes a page break if there is room for only one output
+line.  This method is most reliable if a break has already occurred, but
+when macro packages are used this is often not the case; their
+paragraphing macros perform the break.  You may need to experiment with
+placing the @code{ne} after the paragraphing macro, or with placing
+@code{br} and @code{ne} requests before it.
+
+You can use @code{ne} with larger arguments to force grouping of section
+headings with their subsequent paragraphs, or tables with their captions
+and/or explanations.  Macro packages often use @code{ne} to implement
+more flexible keeps and displays.  They may also offer parameters for
+widow and orphan management.
 @endDefreq
 
 @DefreqList {sv, [@Var{space}]}

@@ -3402,13 +3402,13 @@ Disable output line adjustment.
 .
 .TPx
 .REQ .ne
-Need a one-line vertical space.
+Break page if distance to next page location trap is less than one vee.
 .
 .TPx
 .REQ .ne "N"
-Need
+Break page if distance to next page location trap is less than
 .I N
-vertical space (default scaling indicator\~\c
+(default scaling unit:
 .scaleindicator v ).
 .
 .

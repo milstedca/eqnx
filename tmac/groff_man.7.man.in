@@ -3337,7 +3337,9 @@ See
 Disable automatic hyphenation.
 .
 Normally,
-it is enabled using a mode appropriate to the
+it is enabled\~(1).
+.
+The hyphenation mode is determined by the
 .I groff
 locale;
 see section \[lq]Localization\[lq] of
@@ -3404,9 +3406,7 @@ the default is
 .
 Any valid argument to
 .IR groff 's
-\[lq].ft\[rq] request may be used;
-see
-.MR groff @MAN7EXT@ .
+\[lq].ft\[rq] request may be used.
 .
 If the
 .B MF
@@ -3418,8 +3418,9 @@ and italic corrections are applied before and after man page topics.
 .TP
 .BI \-rP n
 Start enumeration of pages at
-.I n
-rather than\~1.
+.IR n .
+.
+The default is\~1.
 .
 .
 .TP

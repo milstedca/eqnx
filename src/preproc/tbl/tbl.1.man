@@ -531,25 +531,27 @@ Left-align entry within the column.
 .
 .TP
 .BR N ,\~ n
-Numerically align entry in the column;
-that is,
-align columns of numbers vertically at the units place.
+Numerically align entry in the column.
+.
+.I @g@tbl
+aligns columns of numbers vertically at the units place.
 .
 If multiple decimal separators are adjacent to a digit,
-use the rightmost one for vertical alignment.
+it uses the rightmost one for vertical alignment.
 .
 If there is no decimal separator,
-use the rightmost digit for vertical alignment;
+the rightmost digit is used for vertical alignment;
 otherwise,
-center the entry within the column.
+.I @g@tbl
+centers the entry within the column.
 .
 The non-printing input token
 .B \[rs]&
-in an entry treats the glyph preceding it
+in an entry marks the glyph preceding it
 (if any)
 as the units place;
 if multiple instances occur in the data,
-use the leftmost one for alignment.
+the leftmost is used for alignment.
 .
 .
 .IP
@@ -559,13 +561,14 @@ entries share a column with
 .B L
 or
 .BR R \~entries,
-center the widest
+.I @g@tbl
+centers the widest
 .BR N \~entry
 with respect to the widest
 .B L
 or
 .BR R \~entry,
-preserving the alignment of all
+preserving the alignment of
 .BR N \~entries
 with respect to each other.
 .
@@ -1531,7 +1534,9 @@ or divert it in any other way.
 Further,
 the
 .B bp
-request cannot be used to force a page break in a multi-page table.
+request will not cause a page break in a
+.RB \[lq] "TS H" \[rq]
+table.
 .
 Define a macro to wrap
 .BR bp :

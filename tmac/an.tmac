@@ -176,9 +176,9 @@
 .  nr an-saved-prevailing-indent1 \\n[IN]
 ..
 .
-.\" Update the page number depending on the C (consecutive numbering)
-.\" register.
-.de an-start-new-document
+.\" Break the page and update its number depending on the C (consecutive
+.\" numbering) register.
+.de an*break-page-with-new-number
 .  ie \\n[C] .bp (\\n[%] + 1) \" argument NOT redundant before page 1
 .  el        .bp 1
 ..
@@ -218,7 +218,7 @@
 .    \" Clear the page header trap so it is not sprung with stale
 .    \" information.
 .    ch an-header
-.    an-start-new-document
+.    an*break-page-with-new-number
 .    nr an-is-first-page-of-document 1
 .  \}
 .

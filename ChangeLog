@@ -1,5 +1,17 @@
 2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man, mdoc]: Trivially refactor.
+
+	* tmac/an.tmac (an-start-new-document): Rename this...
+	(an*break-page-with-new-number): ...to reflect its reduced
+	responsibility.
+
+	* tmac/mdoc/doc-common (doc-start-new-document): Rename this...
+	(doc-break-page-with-new-number): ...to reflect its reduced
+	responsibility.
+
+2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man, mdoc]: Refactor to separate page number management from
 	header trap management.
 

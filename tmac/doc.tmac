@@ -129,7 +129,29 @@
 .
 .\" TODO: Implement MF string.
 .
-.\" TODO: Implement P register.
+.\" starting page number
+.\"
+.\" Unlike most of these parameters, we do not set a default for P;
+.\" troff supplies a default starting page number (1).  When rendering
+.\" for the HTML output device, page numbers are concealed and used for
+.\" internal purposes like image embedding.  Page numbers are not
+.\" rendered at all in continuous rendering mode.
+.if r P \{\
+.  if \n[doc-is-output-html] \
+.    if !(\n[P] = 1) \
+.      ds doc-msg in HTML output\"
+.  if \n[cR] \
+.    ds doc-msg when continuously rendering
+.\}
+.if d doc-msg \{\
+.  tm mdoc: ignoring starting page number \*[doc-msg]
+.  rr P
+.  rm doc-msg
+.\}
+.
+.if !r ps4html \
+.  if r P \
+.    pn 0\n[P]
 .
 .\" Use -rSN=<xxx> to set the subsection heading indentation amount.
 .if !r SN .nr SN 3n

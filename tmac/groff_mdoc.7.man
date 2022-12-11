@@ -4935,6 +4935,14 @@ both registers default to 78n for terminal devices and 6.5i otherwise.
 .
 .
 .Pp
+Setting the
+.Ql P
+register starts enumeration of pages at its value.
+.
+The default is\~1.
+.
+.
+.Pp
 Normally,
 automatic hyphenation is enabled using a mode appropriate to the
 .Xr groff
@@ -4954,8 +4962,7 @@ The
 .Ql HF
 string
 and
-.Ql FT ,
-.Ql P ,
+.Ql FT
 and
 .Ql X
 registers

@@ -1,5 +1,17 @@
 2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[doc]: Support `P` register.
+
+	* tmac/doc.tmac (initialization): Add logic supporting `P`
+	register just as our man(7) implementation does.
+	* tmac/groff_mdoc.7.man (Formatting with groff, troff, and
+	nroff): Document it.
+	* NEWS: Update item.
+
+	Fixes part of <https://savannah.gnu.org/bugs/?63046>.
+
+2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tests]: Add unit tests for man/mdoc `P` register.
 
 	* tmac/tests/an_P-register-works.sh:

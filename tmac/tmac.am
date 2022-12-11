@@ -161,6 +161,7 @@ tmac_TESTS = \
   tmac/tests/an_MR-works.sh \
   tmac/tests/an_MT-body-hyphenates.sh \
   tmac/tests/an_MT-works.sh \
+  tmac/tests/an_P-register-works.sh \
   tmac/tests/an_TH-repairs-ad-damage.sh \
   tmac/tests/an_TH-repairs-hy-damage.sh \
   tmac/tests/an_TS-adds-no-vertical-space.sh \
@@ -186,6 +187,7 @@ tmac_TESTS = \
   tmac/tests/an_title-abbreviation-works.sh \
   tmac/tests/an_use-input-traps-correctly.sh \
   tmac/tests/an_works-with-ec.sh \
+  tmac/tests/andoc_P-register-works.sh \
   tmac/tests/andoc_check-an-to-doc-transition.sh \
   tmac/tests/andoc_clear-doc-traps.sh \
   tmac/tests/andoc_flush-between-packages.sh \
@@ -195,6 +197,7 @@ tmac_TESTS = \
   tmac/tests/doc_Lk-respect-sentence-ending-punctuation.sh \
   tmac/tests/doc_Mt-works.sh \
   tmac/tests/doc_Nm-works.sh \
+  tmac/tests/doc_P-register-works.sh \
   tmac/tests/doc_accept-mixed-case-section-headings.sh \
   tmac/tests/doc_do-not-loop-infinitely-when-shortening-headers.sh \
   tmac/tests/doc_indents-correctly.sh \

@@ -1,5 +1,14 @@
 2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tests]: Add unit tests for man/mdoc `P` register.
+
+	* tmac/tests/an_P-register-works.sh:
+	* tmac/tests/andoc_P-register-works.sh:
+	* tmac/tests/doc_P-register-works.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run tests.
+
+2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man, mdoc]: Refactor.  Rename a Boolean register to more
 	clearly communicate its purpose.  This also reverses its sense.
 

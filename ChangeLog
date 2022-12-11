@@ -1,5 +1,20 @@
 2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man, mdoc]: Refactor.  Rename a Boolean register to more
+	clearly communicate its purpose.  This also reverses its sense.
+
+	* tmac/an.tmac (TH): Rename `an-is-first-page-of-document` to
+	`an*need-titles-reset`.  Drop redundant store.  Reverse sense of
+	test.
+	(initialization): Initialize it to zero.
+
+	* tmac/mdoc/doc-common (Dd): Rename
+	`doc-is-first-page-of-document` to `doc-need-titles-reset`.
+	Drop redundant store.  Reverse sense of test.
+	(initialization): Initialize it to zero.
+
+2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tests]: Add future regression test for header/footer
 	mishandling that wasn't already covered (not a live bug; was
 	exposed by attempted refactoring).

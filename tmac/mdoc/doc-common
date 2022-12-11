@@ -292,14 +292,13 @@
 .  \"
 .  \" If also continuously rendering, cause a page transition to a new
 .  \" mdoc(7) document.
-.  if !\n[doc-is-first-page-of-document] \{\
+.  if \n[doc-need-titles-reset] \{\
 .    if \n[cR] .doc-end-macro
 .
 .    \" Clear the page header trap so it is not sprung with stale
 .    \" information.
 .    ch doc-header
 .    doc-break-page-with-new-number
-.    nr doc-is-first-page-of-document 1
 .  \}
 .
 .  if !\n[.$] \
@@ -973,7 +972,7 @@
 .    pdfbookmark 1 "\*[doc-page-topic](\*[doc-section])"
 .
 .  doc-header
-.  nr doc-is-first-page-of-document 0
+.  nr doc-need-titles-reset 1
 ..
 .ec
 .
@@ -1105,7 +1104,7 @@
 .\" NS   finish output
 .\" NS
 .\" NS modifies:
-.\" NS   doc-is-first-page-of-document
+.\" NS   doc-need-titles-reset
 .
 .eo
 .de doc-end-macro
@@ -1266,13 +1265,13 @@
 .nr doc-in-authors-section 0
 .
 .
-.\" NS doc-is-first-page-of-document global register (bool)
-.\" NS   whether the drawing position is at the top of the first page of
-.\" NS   a document
+.\" NS doc-need-titles-reset global register (bool)
+.\" NS   whether the strings that set header and footer text need to be
+.\" NS   reconfigured
 .\" NS
-.\" NS This is necessarily true when the macro package is loaded.
+.\" NS This happens when batch-rendering and starting a new page.
 .
-.nr doc-is-first-page-of-document 1
+.nr doc-need-titles-reset 0
 .
 .
 .\" NS doc-first-parameter macro

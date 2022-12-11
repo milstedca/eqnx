@@ -212,14 +212,13 @@
 .
 .  \" If batch processing (rendering multiple) man page documents, we
 .  \" must handle the end of a previous document.
-.  if !\\n[an-is-first-page-of-document] \{\
+.  if \\n[an*need-titles-reset] \{\
 .    if \\n[cR] .an-end
 .
 .    \" Clear the page header trap so it is not sprung with stale
 .    \" information.
 .    ch an-header
 .    an*break-page-with-new-number
-.    nr an-is-first-page-of-document 1
 .  \}
 .
 .  nr an-TH-was-called 1 \" an-end can make certain assumptions.
@@ -354,7 +353,7 @@
 .    \}
 .  \}
 .
-.  nr an-is-first-page-of-document 0
+.  nr an*need-titles-reset 1
 ..
 .
 .\" Support legacy AT&T and BSD Unix man pages.
@@ -1247,7 +1246,10 @@ contains unsupported escape sequence
 .nr an-devtag-needs-end-of-heading 0
 .nr an-devtag-needs-second-column 0
 .
-.nr an-is-first-page-of-document 1
+.\" Track whether the strings that set header and footer text need to be
+.\" reconfigured.  This happens when batch-rendering and starting a new
+.\" page.
+.nr an*need-titles-reset 0
 .
 .nr an*is-output-html 0
 .if '\*[.T]'html' .nr an*is-output-html 1

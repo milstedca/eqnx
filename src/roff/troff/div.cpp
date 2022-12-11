@@ -814,6 +814,8 @@ void page_number()
 
   // the ps4html register is set if we are using -Tps
   // to generate images for html
+  // XXX: Yuck!  Get rid of this; macro packages already test the
+  // register before invoking .pn.
   reg *r = (reg *)register_dictionary.lookup("ps4html");
   if (r == NULL)
     if (has_arg() && get_integer(&n, topdiv->get_page_number()))

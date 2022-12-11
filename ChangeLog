@@ -1,5 +1,14 @@
 2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tests]: Add future regression test for header/footer
+	mishandling that wasn't already covered (not a live bug; was
+	exposed by attempted refactoring).
+
+	* tmac/tests/andoc_check-an-to-doc-transition.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man, mdoc]: Trivially refactor.
 
 	* tmac/an.tmac (an-start-new-document): Rename this...

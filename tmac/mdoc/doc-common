@@ -291,12 +291,14 @@
 .  \" must handle the end of a previous document.
 .  \"
 .  \" If also continuously rendering, cause a page transition to a new
-.  \" mdoc(7) document.  Clear the page header trap first so it is not
-.  \" sprung with stale information.  Update the page number depending
-.  \" on the C (consecutive numbering) register.
+.  \" mdoc(7) document.
 .  if !\n[doc-is-first-page-of-document] \{\
-.    ie \n[cR] .doc-end-macro
-.    el        .doc-start-new-document
+.    if \n[cR] .doc-end-macro
+.
+.    \" Clear the page header trap so it is not sprung with stale
+.    \" information.
+.    ch doc-header
+.    doc-start-new-document
 .    nr doc-is-first-page-of-document 1
 .  \}
 .
@@ -1148,12 +1150,11 @@
 .
 .
 .\" NS doc-start-new-document macro
-.\" NS   begin a new document
+.\" NS   Update the page number depending on the C (consecutive
+.\" NS   numbering) register.
 .
 .eo
 .de doc-start-new-document
-.  ch doc-header
-.
 .  ie \n[C] .bp (\n[%] + 1) \" argument NOT redundant before page 1
 .  el       .bp 1
 ..

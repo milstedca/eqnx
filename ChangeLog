@@ -1,5 +1,20 @@
 2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man, mdoc]: Refactor to separate page number management from
+	header trap management.
+
+	* tmac/an.tmac (an-start-new-document): Stop removing
+	`an-header` trap.
+	(TH): Clear the trap here even if not continuously rendering,
+	and call `an-start-new-document`.
+
+	* tmac/mdoc/doc-common (doc-start-new-document): Stop removing
+	`doc-header` trap.
+	(Dd): Clear the trap here even if not continuously rendering,
+	and call `doc-start-new-document`.
+
+2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/mdoc/doc-common: Refactor for better parallelism with our
 	man(7) implementation and to prepare for a synchronized change
 	to both.

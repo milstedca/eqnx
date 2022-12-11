@@ -4908,7 +4908,7 @@ is ignored when formatting for terminal devices.
 .Pp
 The paragraph and subsection heading indentation amounts can be changed
 by setting the registers
-.Ql \&IN
+.Ql IN
 and
 .Ql SN .
 .
@@ -4954,11 +4954,7 @@ The
 .Ql HF
 string
 and
-.\" XXX: FT and IN have to be protected with ampersands because when
-.\" rendering via andoc and having already seen a man(7) page, .Ql
-.\" mis-handles them.  Why this is not true of AD, cR, D, HF, HY, P, SN,
-.\" or X is a mystery.
-.Ql \&FT ,
+.Ql FT ,
 .Ql P ,
 and
 .Ql X

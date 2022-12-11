@@ -296,12 +296,7 @@
 .  \" on the C (consecutive numbering) register.
 .  if !\n[doc-is-first-page-of-document] \{\
 .    ie \n[cR] .doc-end-macro
-.    el \{\
-.      ch doc-header
-.
-.      ie \n[C] .bp (\n[%] + 1) \" argument NOT redundant before page 1
-.      el       .bp 1
-.    \}
+.    el        .doc-start-new-document
 .    nr doc-is-first-page-of-document 1
 .  \}
 .
@@ -1140,7 +1135,6 @@
 .  \}
 .  ch doc-header
 .  bp
-.  nr doc-is-first-page-of-document 1
 .
 .  \" Reset strings to reduce info leaks from one man page to the next.
 .  ds doc-date-string UNDATED\"
@@ -1149,6 +1143,19 @@
 .  ds doc-section \" empty
 .  ds doc-operating-system \" empty
 .  ds doc-topic-name \" empty
+..
+.ec
+.
+.
+.\" NS doc-start-new-document macro
+.\" NS   begin a new document
+.
+.eo
+.de doc-start-new-document
+.  ch doc-header
+.
+.  ie \n[C] .bp (\n[%] + 1) \" argument NOT redundant before page 1
+.  el       .bp 1
 ..
 .ec
 .

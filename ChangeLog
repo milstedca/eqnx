@@ -1,3 +1,13 @@
+2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/mdoc/doc-common: Refactor for better parallelism with our
+	man(7) implementation and to prepare for a synchronized change
+	to both.
+	(Dd): Move open-coded (inlined) operations from here...
+	(doc-start-new-document): ...to this new macro.
+	(doc-end-macro): Drop unnecessary register assignment.  `Dd`
+	takes care of it if there is a subsequent mdoc(7) document.
+
 2022-12-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tbl]: Fix off-by-one error in generated diagnostic message.

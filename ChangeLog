@@ -1,5 +1,13 @@
 2022-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (initialization): Fix problem with `FT` register
+	validation.  Small but valid values were being rejected due to
+	inappropriate use of scaling operator.  Also throw user a bone
+	by expressing what size '1v' is for the output device, in basic
+	units.
+
+2022-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man, mdoc]: Fix Savannah #63500.  Support use of `P` (initial
 	page number) register when batch rendering, regardless of
 	switching macro packages between man(7) and mdoc(7) or setting

@@ -1365,14 +1365,18 @@ contains unsupported escape sequence
 .  ie \n[cR] \
 .    ds an-msg footer distance when continuously rendering\"
 .  el \{\
+.    nr an*tmp 1v
+.    ds an*help " (1v=\n[an*tmp]u)\"
 .    ie (\n[FT] : (\n[FT] = 0)) \
-.      ds an-msg non-negative footer distance: \n[FT]u\"
+.      ds an-msg non-negative footer distance: \n[FT]u\*[an*help]\"
 .    el \{\
 .      ie (-(\n[FT]) > (\n[.p] / 2)) \
-.        ds an-msg implausibly large footer distance: \n[FT]u\"
+.        ds an-msg implausibly large footer distance: \n[FT]u\*[an*help]\"
 .      el \
-.        if ((v;\n[FT]) < 1v) \
-.          ds an-msg implausibly small footer distance: \n[FT]u\"
+.        if (-(\n[FT]) < 1v) \
+.          ds an-msg implausibly small footer distance: \n[FT]u\*[an*help]\"
+.    rm an*help
+.    rr an*tmp
 .    \}
 .  \}
 .  if d an-msg \{\

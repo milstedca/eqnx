@@ -74,10 +74,7 @@ document formatting system.
 .
 .Xr mdoc
 is a
-.Em content-
-and
-.Em domain Ns -based
-formatting package for writing
+structured and semantically oriented package for writing
 .Ux
 manual pages with
 .Xr @g@troff @MAN1EXT@ .
@@ -86,31 +83,35 @@ Its predecessor,
 the
 .Xr man 7
 package,
-primarily addressed page layout concerns,
+primarily addressed page layout and presentational concerns,
 leaving the selection of fonts and other typesetting details to the
 individual author.
 .
 This discretion has led to divergent styling practices among authors
 using it.
 .
-In
-.Xr mdoc ,
-page layout macros make up the
+.
+.Pp
+.Xr mdoc
+organizes its macros into
+.Em domains .
+.
+Those that lay out the page make up the
 .Em "page structure domain"
-that comprises macros for titles,
+comprising titles,
 section headings,
 displays,
-and lists\[em]essentially items that affect the position of text on a
-formatted page.
+and lists.
 .
 The
 .Em "general text domain"
-contains macros to perfom tasks such as quoting or styling text.
+supplies macros to quote or style text,
+or to interpolate common noun phrases.
 .
 The
 .Em "manual domain"
-defines macros corresponding to the terminology used by practitioners
-in discussion of
+offers semantic macros corresponding to the terminology used by
+practitioners in discussion of
 .Ux
 commands,
 routines,

@@ -895,7 +895,10 @@ manuals to automatically insert the current date when committing.
 This macro is neither callable nor parsed.
 .
 .
-.It Li .Dt Ar topic Op Ar section-identifier Op Ar section-name
+.br
+.ne 5v
+.It Li .Dt Ar topic Op Ar section-identifier \
+Op Ar section-keyword-or-title
 .
 .Ar topic
 is the subject of the man page.
@@ -908,18 +911,21 @@ or is one of the words
 .Ql draft ,
 or
 .Ql paper
-selects a predefined section name.
+selects a predefined section title.
 .
-.Ar section-name ,
-if present,
-overrides such predefinitions.
+This use of
+.Dq section
+has nothing to do with the section headings otherwise discussed in this
+page;
+it arises from the organizational scheme of printed and bound Unix
+manuals.
 .
 .
 .br
 .ne 3v
 .Pp
 In this implementation,
-the following names are defined for integral section numbers.
+the following titles are defined for integral section numbers.
 .
 .
 .Bd -unfilled -offset indent
@@ -939,7 +945,7 @@ Lf(CR) L.
 .
 .
 .Pp
-A section name may be arbitrary or one of the following abbreviations.
+A section title may be arbitrary or one of the following abbreviations.
 .
 .
 .Bd -unfilled -offset indent
@@ -969,17 +975,29 @@ and
 for
 .Ql LOCAL .
 .
-Values from the previous table will specify a new section name.
+Values from the previous table will specify a new section title.
 .
-If the third parameter is a keyword designating a computer architecture,
-its value is prepended to the default section name as specified by the
+If
+.Ar section-keyword-or-title
+designates a computer architecture recognized by
+.Xr "groff mdoc" ,
+its value is prepended to the default section title as specified by the
 second parameter.
+.\" mandoc(1) appears to put the architecture string after (or in place
+.\" of) the section title, in parentheses.
 .
 By default,
 the following architecture keywords are defined.
 .
 \# we use 'No' to avoid hyphenation
-.Bd -ragged -offset indent
+.\" I resort to ps/vs violence because this macro package is obsessed
+.\" with dumping gigantic piles of identifiers on users, and I need the
+.\" space to keep this macro description to a single page in PS/PDF(!).
+.\" Lists of information like this simply beg to bit-rot.  -- GBR
+.br
+.ps -2
+.vs -2
+.Bd -ragged -offset 4n
 .No acorn26 , acorn32 , algor , alpha , amd64 , amiga , amigappc ,
 .No arc , arm , arm26 , arm32 , armish , atari , aviion ,
 .No beagle , bebox , cats , cesfic , cobalt , dreamcast ,
@@ -993,6 +1011,15 @@ the following architecture keywords are defined.
 .No shark , socppc , solbourne , sparc , sparc64 , sun2 , sun3 ,
 .No tahoe , vax , x68k , x86_64 , xen , zaurus
 .Ed
+.vs
+.ps
+.
+.
+.Pp
+If a section title is not determined after the above matches have been
+attempted,
+.Ar section-keyword-or-title
+is used.
 .
 .
 .br
@@ -1006,7 +1033,7 @@ are shown below.
 Observe how
 .Ql \[rs]&
 prevents the numeral\~2 from being used to look up a predefined section
-name.
+title.
 .
 .
 .Pp
@@ -1021,29 +1048,20 @@ Lf(CR)1 L2 L C R.
 \&.Dt foo 2 baz@\[->]@foo(2)@System Calls Manual@foo(2)
 \&.Dt foo \[rs]&2 baz@\[->]@foo(2)@baz@foo(2)
 \&.Dt foo \[dq]\[dq] baz@\[->]@foo@baz@foo
+\&.Dt foo M Z80@\[->]@foo(M)@Z80@foo(M)
 .TE
 .Ed
 .
 .
 .Pp
+.Xr roff
+strings define section titles and architecture identifiers.
+.
 Site-specific additions might be found in the file
 .Pa mdoc.local ;
 see section
 .Sx Files
 below.
-.
-.Xr roff
-strings named
-.\" XXX: We should really rename these.
-.Ql volume\-ds\- Ns Ar XXX
-define section names
-and
-.Ql volume\-as\- Ns Ar XXX
-architecture names;
-.Ar XXX
-denotes the arguments to be recognized by the
-.Ql \&Dt
-macro.
 .
 .
 .Pp
@@ -1085,17 +1103,9 @@ recognized
 arguments for some predefined operating systems are listed.
 .
 As with
-.Ql \&Dt ,
+.Pf . Ic \&Dt ,
 site additions might be defined in
 .Pa mdoc.local .
-.
-Look for strings named
-.Ql operating\-system\- Ns Ar XXX Ns \- Ns Ar YYY ,
-where
-.Ar XXX
-is an abbreviation for the operating system and
-.Ar YYY
-the release identifier.
 .
 .Bd -ragged -compact
 .Bl -tag -width ".No DragonFly" -offset indent
@@ -1150,7 +1160,7 @@ the release identifier.
 .Pp
 Historically,
 the first argument used with
-.Li \&Dt
+.Pf . Ic \&Dt
 was
 .Li BSD
 or
@@ -1168,10 +1178,10 @@ unrecognized arguments are displayed verbatim in the page footer.
 .
 For instance,
 this page uses
-.Sq Li .Os groff @VERSION@
+.Dq Li .Os groff @VERSION@
 whereas a locally produced page might employ
-.Sq Li .Os \[dq]UXYZ CS Department\[dq]
-without versioning information.
+.Dq Li .Os \[dq]UXYZ CS Department\[dq] ,
+omitting versioning.
 .
 .
 .Pp

@@ -1,5 +1,12 @@
 2022-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/andoc.tmac (reload-man): Unplant `doc-break-body-text`
+	trap, added in commit 892703b17e, 6 September.  Its survival
+	into man(7) pages didn't seem to cause any problems but I have
+	no confidence that will remain true forever.
+
+2022-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac (initialization): Fix problem with `FT` register
 	validation.  Small but valid values were being rejected due to
 	inappropriate use of scaling operator.  Also throw user a bone

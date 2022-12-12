@@ -5092,12 +5092,21 @@ is a wrapper that loads
 defines macros,
 registers,
 and strings
-primarily concerned with the production of formatted output.
+concerned with the production of formatted output.
 .\" XXX: This is a weak explanation.  The boundary between doc.tmac's
-.\" concerns and doc-common's is not at all clear to GBR.  Further, many
-.\" operating system-related strings are defined here that would seem
-.\" more appropriately placed in doc-syms.  Possibly all three of these
-.\" files should be merged.
+.\" concerns and doc-common's is not at all clear to GBR.  Should some
+.\" of these files be merged?
+.
+It includes strings of the form
+.Ql doc\-volume\-ds\- Ns Ar X
+and
+.Ql doc\-volume\-as\- Ns Ar X
+for manual section titles and architecture identifiers,
+respectively,
+where
+.Ar X
+is an argument recognized by
+.Pf . Ic \&Dt .
 .
 .
 .It Pa @MACRODIR@/\:mdoc/\:doc\-nroff
@@ -5110,7 +5119,34 @@ defines parameters appropriate for rendering to typesetter devices.
 .
 .It Pa @MACRODIR@/\:mdoc/\:doc\-syms
 defines many strings and macros that interpolate formatted text,
-such as names of operating systems and standards documents.
+such as names of operating system releases,
+*BSD libraries,
+and standards documents.
+.
+The string names are of the form
+.Ql doc\-str\- Ns Ar O Ns Li \- Ns Ar V ,
+.Ql doc\-str\-St Ns Li \-\- Ns Ar S Ns Li \- Ns Ar I
+(observe the double dashes),
+or
+.Ql doc\-str\-Lb\- Ns Ar L ,
+where
+.Ar O
+is one of the operating system macros from section
+.Sx "General text domain"
+above,
+.Ar V
+is an encoding of an operating system release
+(sometimes omitted along with the
+.Ql \-
+preceding it),
+.Ar S
+an identifier for a standards body or committee,
+.Ar I
+one for an issue of a standard promulgated by
+.Ar S ,
+and
+.Ar L
+a keyword identifying a *BSD library.
 .
 .
 .It Pa @LOCALMACRODIR@/\:mdoc\:.local

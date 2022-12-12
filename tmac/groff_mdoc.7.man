@@ -4834,7 +4834,10 @@ for less-common choices.
 Setting register
 .Ql C
 to\~1 numbers output pages consecutively,
-rather than resetting the page number to\~1 with each new
+rather than resetting the page number to\~1
+(or the value of register
+.Ql P )
+with each new
 .Xr mdoc
 document.
 .

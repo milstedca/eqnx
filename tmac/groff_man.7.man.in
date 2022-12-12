@@ -3267,7 +3267,10 @@ to disable it.
 .B \-rC1
 Number output pages consecutively,
 in strictly increasing sequence,
-rather than resetting the page number to\~1 with each new
+rather than resetting the page number to\~1
+(or the value of register
+.BR P )
+with each new
 .I man
 document.
 .

@@ -661,7 +661,7 @@ to construct a man page from the following template.
 .Bd -literal -offset indent
 \&.\e" The following commands are required for all man pages.
 \&.Dd date
-\&.Dt topic [section-identifier [volume-name]]
+\&.Dt topic [section-identifier [section-keyword-or-title]]
 \&.Os [package-or-operating system [version-or-release]]
 \&.Sh Name
 \&.Nm topic
@@ -697,10 +697,10 @@ to construct a man page from the following template.
 .
 .Pp
 The first items in the template are the commands
-.Ql \&Dd ,
-.Ql \&Dt ,
+.Pf . Ic \&Dd ,
+.Pf . Ic \&Dt ,
 and
-.Ql \&Os .
+.Pf . Ic \&Os .
 .
 These correspond to the document date;
 the page topic and section of the manual to which the page belongs;
@@ -713,7 +713,7 @@ These commands identify the page and are discussed below in section
 .
 .Pp
 The remaining items in the template are section headings
-.Pf ( Ql \&Sh ) ;
+.Pf ( Pf . Ic \&Sh ) ;
 of which
 .Sx Name
 and

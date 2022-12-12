@@ -300,6 +300,7 @@
 .    ch doc-header
 .    doc-break-page-with-new-number
 .  \}
+.  if \n[C] .rr P
 .
 .  if !\n[.$] \
 .    tm mdoc warning: .Dd directive expects an argument (#\n[.c])
@@ -1135,7 +1136,7 @@
 .    pl \n[nl]u
 .  \}
 .  ch doc-header
-.  bp
+.  doc-break-page-with-new-number
 .
 .  \" Reset strings to reduce info leaks from one man page to the next.
 .  ds doc-date-string UNDATED\"
@@ -1151,11 +1152,19 @@
 .\" NS doc-break-page-with-new-number macro
 .\" NS   Break the page and update its number depending on the C
 .\" NS   (consecutive numbering) register.
+.\" NS
+.\" NS  Corner case: if formatting multiple documents and P (starting
+.\" NS  page number) is defined but C is not set, start numbering each
+.\" NS  document at \n[P].  Not strictly necessary if not switching
+.\" NS  macro packages.
 .
 .eo
 .de doc-break-page-with-new-number
 .  ie \n[C] .bp (\n[%] + 1) \" argument NOT redundant before page 1
-.  el       .bp 1
+.  el \{\
+.    ie r P .bp \n[P]
+.    el     .bp 1
+.  \}
 ..
 .ec
 .

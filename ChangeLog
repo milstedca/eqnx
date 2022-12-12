@@ -1,3 +1,38 @@
+2022-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man, mdoc]: Fix Savannah #63500.  Support use of `P` (initial
+	page number) register when batch rendering, regardless of
+	switching macro packages between man(7) and mdoc(7) or setting
+	of `C` (continuous numbering) register.  (`P` without `C` means
+	"start numbering each rendered document at \n[P]".)
+
+	* tmac/an.tmac (an-end): Call `an*break-page-with-new-number`
+	instead of invoking `bp`.
+	(an*break-page-with-new-number): If `P` is set and `C` is not,
+	use value of `P` as the next page number.
+	(TH): If `C` register is set, remove `P` register after ending a
+	previous document.
+	(initialization): If `P` is set, assign the page number using
+	the `pn` request if the transition to the first formatted page
+	has not yet occurred; otherwise update page number register `%`
+	directly.  Also ignore it with diagnostic if `ps4html` register
+	{for grohtml's internal use} is set.  Add explanatory comment.
+
+	* tmac/mdoc/doc-common (Dd): If `C` register is set, remove `P`
+	register after ending a previous document.
+	(doc-end-macro): Call `doc-break-page-with-new-number` instead
+	of invoking `bp`.
+	(doc-break-page-with-new-number): If `P` is set and `C` is not,
+	use value of `P` as the next page number.
+	* tmac/doc.tmac (initialization): If `P` is set, assign the page
+	number using the `pn` request if the transition to the first
+	formatted page has not yet occurred; otherwise update page
+	number register `%` directly.  Also ignore it with diagnostic if
+	`ps4html` register (for grohtml's internal use) is set.  Add
+	explanatory comment.
+
+	Fixes <https://savannah.gnu.org/bugs/?63500>.
+
 2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[doc]: Support `P` register.

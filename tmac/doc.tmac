@@ -149,9 +149,30 @@
 .  rm doc-msg
 .\}
 .
-.if !r ps4html \
-.  if r P \
-.    pn 0\n[P]
+.\" Setting the page number turns out to be tricky when batch rendering
+.\" and switching macro packages.  We must use different techniques
+.\" depending on whether the transition to the first output page has
+.\" happened yet.  If it has not, `nl` will be `-1` and we use `pn`.  If
+.\" it has, we set `%`.  Technically this is fragile since in theory a
+.\" page could assign a negative value to `nl`.  We might then be
+.\" justified in saying they've broken the macro package and they get to
+.\" keep both pieces.  But if not, consider using a nonce register,
+.\" initially set but then permanently cleared adjacent to this logic,
+.\" and whose state is shared with man (and andoc.tmac, if necessary).
+.\"
+.\" Also, we can't use the `P` register with grohtml at all.
+.ie r ps4html \{\
+.  if r P \{\
+.     tm mdoc: ignoring starting page number in HTML output
+.     rr P
+.  \}
+.\}
+.el \{\
+.  if r P \{\
+.    ie (\n[nl] = -1) .pn 0\n[P]
+.    el               .nr % 0\n[P]
+.  \}
+.\}
 .
 .\" Use -rSN=<xxx> to set the subsection heading indentation amount.
 .if !r SN .nr SN 3n

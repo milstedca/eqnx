@@ -779,9 +779,11 @@ but
 .Sq Li ls Bq Ar file .
 .
 Consequently,
-a warning message is emitted for most commands if the first argument is
+a warning message is emitted for many commands if the first argument is
 itself a macro,
 since it cancels the effect of the preceding one.
+.\" XXX: I don't think it is made clear which macros eat only argument
+.\" and which ones eat until another macro is encountered. -- GBR
 .
 On rare occasions,
 you might want to format a word along with surrounding brackets as a
@@ -812,9 +814,9 @@ Explicit
 and
 .Fl offset
 arguments to the
-.Ql \&Bl
+.Pf . Ic \&Bl
 and
-.Ql \&Bd
+.Pf . Ic \&Bd
 macros are preferable.
 .
 .

@@ -1189,10 +1189,12 @@ This macro is neither callable nor parsed.
 .El
 .
 .
-.Sh "Introduction of manual and general text domains"
+.br
+.ne 4v
+.Sh "Introduction to manual and general text domains"
 .
 .
-.Ss "What's in a Name" Ns ...
+.Ss "What's in a Name" Ns ... \" XXX: Ns not scrubbed for PDF bookmark
 .
 The manual domain macro names are derived from the day to day informal
 language used to describe commands, subroutines and related files.

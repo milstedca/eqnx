@@ -148,13 +148,12 @@ and irrespective of the macro package selected for its composition.
 .
 The
 .Xr mdoc
-package attempts to simplify the process of writing a man page.
-.
-One need not master the
+package attempts to simplify man page authorship and maintenance without
+requiring mastery of the
 .Xr roff
-language to write them.
+language.
 .
-We present some essential facts about the formatter's language below.
+We present essential facts about it as they arise.
 .
 For further background,
 including a discussion of basic typographical concepts like
@@ -165,16 +164,18 @@ and
 see
 .Xr roff @MAN7EXT@ .
 .
-Occasional mention is made of typgraphical units of measurement:
+Typographical units of measurement also arise,
+namely
 ens,
 vees,
-and
 inches,
+and points,
 abbreviated
 .Dq n ,
 .Dq v ,
-and
 .Dq i ,
+and
+.Dq p ,
 respectively;
 see section
 .Sx Measurements
@@ -183,12 +184,14 @@ of
 .
 .
 .Pp
-We present many examples in this document;
-for brief ones,
-we may use an arrow notation that illustrates input on the left and
-output as rendered by
-.Xr mdoc
-on the right.
+For brief examples,
+we employ an arrow notation illustrating a transformation of input on
+the left to rendered output on the right.
+.
+Consider the
+.Pf . Ic \&Dq
+macro,
+which double-quotes its arguments.
 .
 .Bl -tag -width ".Dq\ man page" -offset indent -compact
 .It Li ".Dq man page"
@@ -209,8 +212,18 @@ by placing the
 control character,
 .Ql .\&
 (dot)
-at the beginning of a line followed by the two-
-or three-character macro name.
+at the beginning of a line followed by its name.
+.\" XXX; All mdoc macro names except Brq, Bro, Brc are 2 characters long
+.\" and thus portable to old troffs.  Why the innovation here, when
+.\" `Cq`, `Co`, and `Cc` were available?  Try to sell this reform to
+.\" Ingo Schwarze.
+.
+In this document,
+we often discuss a macro names with this leading dot to identify it
+clearly,
+but the dot is
+.Em not
+part of its name.
 .
 Space or tab characters can separate the dot from the macro name.
 .
@@ -227,12 +240,15 @@ A dot followed immediately by a newline is ignored;
 this is called the
 .Em "empty request" .
 .
-To place a dot at the beginning of an input line in some context other
-than a macro call,
+To begin an input line with a dot
+(or a neutral apostrophe
+.Ql \[aq] )
+in some context other than a macro call,
 precede it with the
 .Ql \e&
 escape sequence;
-this is a dummy character that is never displayed in the output.
+this is a dummy character,
+not formatted for output.
 .
 The backslash is the
 .Xr roff
@@ -241,10 +257,9 @@ it can appear anywhere and it always followed by at least one more
 character.
 .
 If followed by a newline,
-the backslash escapes the input line break,
-permitting input lines to kept to a reasonable length without affecting
-their interpretation by
-.Xr @g@troff .
+the backslash escapes the input line break;
+you can thus keep input lines to a reasonable length without affecting
+their interpretation.
 .
 .
 .Pp
@@ -256,10 +271,13 @@ in contrast to other
 that often can't handle more than nine.
 .
 In limited cases,
-arguments may be continued or extended on the next input line
-(see subsection
+arguments may be continued or extended on the next input line without
+resort to the
+.Ql \[rs] Ns Em newline
+escape sequence;
+see subsection
 .Sx "Extended arguments"
-below).
+below.
 .
 Almost all macros handle quoted arguments
 (see subsection
@@ -268,33 +286,44 @@ below).
 .
 .
 .Pp
-Most of the
-.Xr mdoc
-general text domain and manual domain macros are special in that their
-argument lists are
-.Em parsed
-for callable macro names.
+Most of
+.Xr mdoc Ns No 's
+general text and manual domain macros
+.Em parse
+their argument lists
+for
+.Em callable
+macro names.
 .
-This means that an argument on the argument list matching a general
-text or manual domain macro name
-(and that is defined to be callable)
-will be executed or called when it is processed.
+This means that an argument in the list matching a general text or
+manual domain macro name
+(and defined to be callable)
+will be called with the remaining arguments when it is encountered.
 .
 In such cases,
 the argument,
 although the name of a macro,
 is not preceded by a dot.
 .
-This makes it possible to nest macros;
-for example,
+Macro calls can thus be nested.
+.
+This approach to macro argument processing is a unique characteristic of
+the
+.Xr mdoc
+package,
+not a general feature of
+.Xr roff
+syntax.
+.
+.
+.Pp
+For example,
 the option macro,
-.Ql \&Op ,
-may
-.Em call
-the flag and argument macros,
-.Ql \&Fl
+.Pf . Ic \&Op ,
+may call the flag and argument macros,
+.Pf . Ic \&Fl
 and
-.Ql \&Ar ,
+.Pf . Ic \&Ar ,
 to specify an optional flag with an argument.
 .
 .\" Use width of second example below.
@@ -314,11 +343,12 @@ precede it with the escape sequence
 .Op \&Fl s \&Ar bytes
 .El
 .
-Here the words
-.Ql \&Fl
+The dummy character prevented the words
+.Dq \&Fl
 and
-.Ql \&Ar
-are not interpreted as macros.
+.Dq \&Ar
+from being recognized as macros
+(and called).
 .
 .
 .Pp
@@ -329,16 +359,18 @@ referred to as
 and those that may be called from an argument list are referred to as
 .Em callable .
 .
-This is a technical
+This usage is a technical
 .Em "faux pas" ,
-since almost all of the macros in
+since all
 .Xr mdoc
-are parsed,
-but as it is cumbersome to constantly refer to macros as being callable
-and being able to call other macros,
-the term
+macros are in fact interpreted
+(unless prevented with
+.Ql \e& ) ,
+but as it is cumbersome to constantly refer to macros as
+.Dq "being able to call other macros" ,
+we employ the term
 .Dq parsed
-has been used.
+instead.
 .
 .
 .Pp
@@ -355,36 +387,37 @@ necessary.
 .
 .Ss "Passing space characters in an argument"
 .
-Sometimes it is desirable to give as an argument a string containing one
-or more space characters,
-say,
-to specify arguments to commands that expect a particular arrangement of
-items in the argument list.
+Sometimes it is desirable to give a macro an argument containing one or
+more space characters,
+for instance to specify specify a particular arrangement of arguments
+demanded by the macro.
 .
 Additionally,
 quoting multi-word arguments that are to be treated the same makes
 .Xr mdoc
-work faster.
+work faster;
+macros that parse arguments do so once
+(at most)
+for each.
 .
 For example,
 the function command
-.Ql .Fn
+.Pf . Ic \&Fn
 expects its first argument to be the name of a function and any
 remaining arguments to be function parameters.
 .
-Because ANSI\~C mandates the inclusion of types
+Because C language standards mandate the inclusion of types
 .Em and
 identifiers in the parameter lists of function definitions,
 each
 .Ql \&Fn
 parameter after the first will be at least two words in length,
 as in
-.Fa int foo .
+.Dq Ar "int foo" .
 .
 .
 .Pp
-There are a few possible ways to pass an argument that contains an
-embedded space.
+There are a few ways to embed a space in a macro argument.
 .
 One is to use the unadjustable space escape sequence
 .Ql \e\  ,
@@ -412,7 +445,7 @@ This
 .Xr groff
 extension is widely but not perfectly portable.
 .
-Another method is to enclose the string with double quotes.
+Another method is to enclose the string in double quotes.
 .
 .Bl -tag -width ".Fn\ fetch\ \[dq]char\ *str\[dq]" -offset indent \
 -compact
@@ -505,6 +538,8 @@ a topic presented in subsection
 .Sx "Examples and displays"
 below.
 .
+Use the empty request instead to space for document maintenance.
+.
 .
 .Pp
 Leading spaces cause a break and are formatted.
@@ -544,7 +579,7 @@ line;
 see
 .Xr roff @MAN7EXT@ .
 .
-In a list of macro arguments,
+To defeat this detection in a parsed list of macro arguments,
 put
 .Ql \e&
 before the punctuation mark.
@@ -604,12 +639,12 @@ below.
 .
 .Pp
 A comment in the source file of a man page can begin with
-.Ql .\e"
+.Sq Li .\e"
 at the start of an input line,
-.Ql \e"
+.Sq Li \e"
 after other input,
 or
-.Ql \e#
+.Sq Li \e#
 anywhere
 (the last is a
 .Xr groff

@@ -4853,31 +4853,49 @@ standard error stream.
 A normal user will never need it.
 .
 .
-.Sh "Formatting with groff, troff, and nroff"
+.Sh Options
 .
+The following
+.Xr groff
+options set registers
+(with
+.Fl r )
+and strings
+(with
+.Fl d )
+recognized and used by the
+.Xr mdoc
+macro package.
+.
+To ensure rendering consistent with output device capabilities and
+reader preferences,
+man pages should never manipulate them.
+.
+.
+.Pp
 Setting string
-.Li AD
+.Ql AD
 configures the adjustment mode for most formatted text.
 .
 Typical values are
-.Li b
+.Ql b
 for adjustment to both margins
 (the default),
 or
-.Li l
+.Ql l
 for left alignment
 (ragged right margin).
 .
 Any valid argument to
 .Xr groff Ns No 's
-.Li .ad
+.Ql ad
 request may be used.
 .
 See
 .Xr groff @MAN7EXT@
 for less-common choices.
 .
-.D1 Li groff \-Tutf8 \-dAD=l \-mdoc groff_mdoc.7 | less \-R
+.Dl groff \-Tutf8 \-dAD=l \-mdoc groff_mdoc.7 | less \-R
 .
 .
 .Pp
@@ -4904,8 +4922,7 @@ or
 to enable more efficient viewing of the page.
 .
 This behavior can be changed to format the page as if for 66-line
-.Tn Teletype
-output by setting the continuous rendering register
+Teletype output by setting the continuous rendering register
 .Ql cR
 to zero while calling
 .Xr groff @MAN1EXT@ .
@@ -4947,7 +4964,8 @@ swapping places with the arguments to
 .
 .
 .Pp
-To change the document font size to 11pt or 12pt, set register
+To change the document font size to 11p or 12p,
+set register
 .Ql S
 accordingly:
 .
@@ -5043,9 +5061,7 @@ or
 respectively,
 before any other macros.
 .
-A
-.Xr man
-program or user typing,
+A user typing,
 for example,
 .Dl groff \-mandoc page.1
 need not know which package the file

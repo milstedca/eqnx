@@ -1,3 +1,8 @@
+2022-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/smoke-test_html_device.sh: Add checks for
+	inlining of images when tbl(1) or eqn(1) used.
+
 2022-12-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/andoc.tmac (reload-man): Unplant `doc-break-body-text`

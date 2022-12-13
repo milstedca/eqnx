@@ -10408,8 +10408,8 @@ with @acronym{AT&T} @code{troff}, the formatter maintains a list of font
 An output device's description file @file{DESC} typically configures a
 set of pre-mounted fonts; see @ref{Device and Font Description Files}.
 A font need not be explicitly mounted before it is selected; GNU
-@code{troff} will automatically search for it by name and mount it on
-demand.
+@code{troff} will search @env{GROFF_FONT_PATH} for it by name and mount
+it at the first free mounting position on demand.
 
 @DefreqList {fp, pos font [@Var{external-name}]}
 @DefregItemx {.f}
@@ -10423,9 +10423,7 @@ device's description to mount an initial set of faces, and selects font
 position@tie{}1.  Position@tie{}0 is unused by default.  Unless the
 @var{external-name} argument is given, the name @var{font} should be
 that of a font description file stored in a directory corresponding to
-the selected output device.@footnote{In other words, the font
-description file must be located in the same directory as the output
-device's @file{DESC} file.}
+the selected output device.
 
 @cindex font position register (@code{.f})
 The position of the currently selected font (or style) is available in
@@ -10455,7 +10453,7 @@ strictly.
 If there is no third argument, the font description is sought in the
 file system under the name @var{font}.
 
-@c The third argument was a late revisions to device-independent troff.
+@c The third argument was a late revision to device-independent troff.
 @c It wasn't in the "Unix 4.0" version of CSTR #54 (January 1981), which
 @c featured Kernighan's device-independent rewrite, but appeared by the
 @c time of its 1992 revision.
@@ -10468,7 +10466,16 @@ feature enables font names to be aliased, which can be necessary in
 compatibility mode since AT&T @code{troff} syntax affords no means of
 identifying fonts with names longer than two characters, like @samp{TBI}
 or @samp{ZCMI}, in a font selection escape sequence.
-@xref{Compatibility Mode}.
+@xref{Compatibility Mode}.  You can also alias fonts on mounting for
+convenience or abstraction.
+
+@Example
+.ft SC ZCMI \" "script" font
+Send a \f(SChand-written\fP thank-you note.
+.ft Emph I
+.ft Strong B
+Are \f[Emph]these names\f[] \f[Strong]comfortable\f[]?
+@endExample
 @endDefreq
 
 The @code{ft} request and @code{\f} escape sequence accept mounting

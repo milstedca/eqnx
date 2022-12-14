@@ -8777,8 +8777,9 @@ The hyphenation space adjustment threshold is available in the
 Space downward by @var{distance}.  With no argument, the drawing
 position is advanced downward by one vee.  Inside a diversion, any
 @var{distance} argument is ignored.  Otherwise, a negative argument
-moves the drawing position up the page.  The default scaling unit is
-@samp{v}.  This request causes a break.
+moves the drawing position up the page.  This request causes a break.
+The default scaling unit is @samp{v}.  If @var{distance} is not
+specified, @samp{1v} is assumed.
 
 You may wish to use the following macros to set the baseline of the next
 output text at a given distance from the top or the bottom of the page.
@@ -8831,7 +8832,7 @@ The amount of discarded space is available in the register
 @code{.trunc}.
 
 To protect @code{sp} against vertical position traps, use the @code{vpt}
-request to disable them.
+request to disable them.  @xref{Vertical Position Traps}.
 
 @Example
 .vpt 0

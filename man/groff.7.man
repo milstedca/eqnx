@@ -3785,14 +3785,14 @@ does not exist.
 .
 .TPx
 .REQ .sp
-Move the drawing position down one vee.
+Break line and move drawing position down one vee.
 .
 .
 .TPx
 .REQ .sp N
-Move the drawing position vertically by
+Break line and move drawing position vertically by
 .I N
-(default scaling indicator\~\c
+(default scaling unit\~\c
 .scaleindicator v ).
 .
 Positive values are downwards.

@@ -10015,30 +10015,31 @@ parameters for widow and orphan management.
 @DefreqList {sv, [@Var{space}]}
 @DefreqListEndx {os, }
 @cindex @code{ne} request, comparison with @code{sv}
-@code{sv} is similar to the @code{ne} request; it reserves the specified
-amount of vertical space.  If the desired amount of space exists before
-the next trap (or the bottom page boundary if no trap is set), the space
-is output immediately (ignoring a partially collected line, which stays
-untouched).  If there is not enough space, it is stored for later output
-via the @code{os} request.  The default value is@tie{}1@dmn{v} if no
-argument is given; the default scaling indicator is @samp{v}.
-
+The @code{sv} request is similar to @code{ne}, but @slanted{saves} the
+specified vertical space.  If @var{space} is available before the next
+page location trap (or the page bottom if none is planted earlier; see
+@ref{Page Location Traps}), the space is output immediately.  Any
+partially collected line is ignored.  Otherwise, the vertical space is
+saved.  Output the space on demand with @code{os}.
 @cindex @code{sv} request, and no-space mode
 @cindex @code{os} request, and no-space mode
-Both @code{sv} and @code{os} ignore no-space mode.  While the @code{sv}
-request allows negative values for @var{space}, @code{os} ignores them.
+Both @code{sv} and @code{os} ignore no-space mode (recall
+@ref{Manipulating Spacing}).  While the @code{sv} request allows
+negative values for @var{space}, @code{os} ignores them.  The default
+scaling unit is @samp{v}.  If @var{space} is not specified, @samp{1v} is
+assumed.
 @endDefreq
 
 @Defreg {nl}
-@cindex current vertical position (@code{nl})
-@cindex vertical position, current (@code{nl})
-@cindex position, vertical, current (@code{nl})
-This register contains the current vertical position.  If the vertical
-position is zero and the top of page transition hasn't happened yet,
-@code{nl} is negative.  GNU @code{troff} itself does this at the very
-beginning of a document before anything has been printed---but the main
-application for such a value is to plant and spring a header trap on a
-page if that page has already started (@pxref{Traps}).
+@cindex vertical drawing position (@code{nl})
+@cindex vertical position, drawing (@code{nl})
+@cindex drawing position, vertical (@code{nl})
+@code{nl} interpolates or sets the vertical drawing position.  When the
+formatter starts and first page transition hasn't happened yet,
+@code{nl} is negative.  If a header trap has been planted on the page
+(typically at vertical position @code{0}, you can assign a negative
+value to @code{nl} to spring it if that page has already started
+(@pxref{Page Location Traps}).
 
 @Example
 .de header

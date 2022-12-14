@@ -5521,6 +5521,8 @@ see
 and
 .esc m .
 .
+Empty if the stroke color is the default.
+.
 .TP
 .REG .M
 Fill color (string-valued);
@@ -5528,6 +5530,8 @@ see
 .request .fcolor
 and
 .esc M .
+.
+Empty if the fill color is the default.
 .
 .TP
 .REG .n

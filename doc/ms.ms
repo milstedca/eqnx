@@ -1003,6 +1003,10 @@ the amount stored in the
 .CW PD
 register,
 except at page or column breaks.
+.
+Alternatively,
+a blank input line breaks the output line and vertically spaces by one
+vee.
 .KE
 .
 .
@@ -2076,7 +2080,10 @@ Indented regions
 You may need to indent a region of text while otherwise formatting it
 normally.
 .
-Indented regions can be nested.
+Indented regions can be nested;
+you can change
+.CW \[rs]n[PI]
+before each call to vary the amount of inset.
 .
 .
 .TS
@@ -2098,11 +2105,6 @@ T}
 .
 .
 .PP
-Indented regions can be nested;
-you can change
-.CW \[rs]n[PI]
-before each call to vary the amount of inset.
-.
 This feature enables you to easily line up text under hanging and
 indented paragraphs.
 .
@@ -2592,14 +2594,10 @@ giving us more flexibility to reorganize the document.
 p ~ = ~ q sqrt { 1 + ~ ( x / q sup 2 ) }
 .EN
 .
-.
-.PP
-Remember to run any desired preprocessors on the input;
+Use
 .I groff
 options
-will take care of this.
-.
-Use
+to run preprocessors on the input:
 .CW \-e
 for
 .I eqn ,
@@ -3952,10 +3950,12 @@ This threshold makes use of a scaling unit with these parameters
 practical for high-resolution devices while preserving backward
 compatibility.
 .
+It also permits expression of non-integral type sizes.
+.
 For example,
-.CW "groff \-rPS=10.5p"
+.CW "groff \-rPS=10.5p" \[rq] \[lq]
 at the shell prompt is equivalent to placing
-.CW ".nr PS 10.5p"
+.CW ".nr PS 10.5p" \[rq] \[lq]
 at the beginning of the document.
 .
 .
@@ -4079,6 +4079,8 @@ or another implementation should test this register.
 .\" XXX: We can't use a keep here because the wrong page number will be
 .\" recorded in the table of contents; see Savannah #63159.
 .\"KS
+.br
+.ne 6v
 .NH 2
 Unix Version\~7
 .BI ms
@@ -4101,7 +4103,7 @@ some of which also require a glyph for the Bell System logo that
 .I groff
 does not support.
 .
-These include macros implementing several document type formats
+These macros implemented several document type formats
 (\c
 .CW EG , \" engineer's notes
 .CW IM , \" internal memorandum
@@ -4124,7 +4126,7 @@ stored the postal addresses of Bell Labs sites
 .CW MH , \" Murray Hill
 .CW PY , \" Piscataway
 .CW WH ), \" Whippany
-or lack a stable definition historically
+or lacked a stable definition over time
 (\c
 .CW UX ). \" Unix; on 1st use, add footnote identifying trademark owner
 .
@@ -4169,8 +4171,8 @@ Legacy features
 .
 .LP
 .I "groff ms"
-retains support for some legacy features solely to support formatting of
-historical documents;
+retains some legacy features solely to support formatting of historical
+documents;
 contemporary ones should not use them because they can render poorly.
 .
 See
@@ -4338,6 +4340,19 @@ enabling colored,
 bordered boxes when the
 .CW pdf
 output device is used.
+.
+This document is distributed with
+.I groff
+as the file
+.I msboxes.pdf .
+.
+.
+.LP
+This manual was composed using
+.I "groff ms" ;
+the curious may consult its source in the file
+.I ms.ms
+to see how its formatting was achieved.
 .\" ------------------------
 .TC
 .

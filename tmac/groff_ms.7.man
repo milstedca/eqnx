@@ -2406,6 +2406,8 @@ This threshold makes use of a scaling unit with these parameters
 practical for high-resolution devices while preserving backward
 compatibility.
 .
+It also permits expression of non-integral type sizes.
+.
 For example,
 .RB \[lq] "groff \-rPS=10.5p" \[rq]
 at the shell prompt is equivalent to placing
@@ -2560,7 +2562,7 @@ some of which also require a glyph for the Bell System logo that
 .I groff
 does not support.
 .
-These include macros implementing several document type formats
+These macros implemented several document type formats
 (\c
 .BR EG , \" engineer's notes
 .BR IM , \" internal memorandum
@@ -2583,7 +2585,7 @@ stored the postal addresses of Bell Labs sites
 .BR MH , \" Murray Hill
 .BR PY , \" Piscataway
 .BR WH ), \" Whippany
-or lack a stable definition historically
+or lacked a stable definition over time
 (\c
 .BR UX ). \" Unix; on 1st use, add footnote identifying trademark owner
 .
@@ -2593,8 +2595,8 @@ or lack a stable definition historically
 .\" ====================================================================
 .
 .I "groff ms"
-retains support for some legacy features solely to support formatting of
-historical documents;
+retains some legacy features solely to support formatting of historical
+documents;
 contemporary ones should not use them because they can render poorly.
 .
 See

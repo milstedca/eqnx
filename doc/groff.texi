@@ -3250,7 +3250,8 @@ available, differing in how indentation applies to them: to left, right,
 or both margins; to the first output line of the paragraph, all output
 lines, or all but the first.  All paragraphing macro calls cause the
 insertion of vertical space in the amount stored in the @code{PD}
-register, except at page or column breaks.
+register, except at page or column breaks.  Alternatively, a blank input
+line breaks the output line and vertically spaces by one vee.
 
 The @code{PORPHANS} register defines the minimum number of initial lines
 of any paragraph that must be kept together to avoid isolated lines at
@@ -3757,7 +3758,8 @@ money
 @subsubsection Indented regions
 
 You may need to indent a region of text while otherwise formatting it
-normally.  Indented regions can be nested.
+normally.  Indented regions can be nested; you can change @code{\n[PI]}
+before each call to vary the amount of inset.
 
 @Defmac {RS, , ms}
 Begin a region where headings, paragraphs, and displays are indented
@@ -3768,9 +3770,8 @@ Begin a region where headings, paragraphs, and displays are indented
 End the (next) most recent indented region.
 @endDefmac
 
-Indented regions can be nested; you can change @code{\n[PI]} before each
-call to vary the amount of inset.  This feature enables you to easily
-line up text under hanging and indented paragraphs.
+This feature enables you to easily line up text under hanging and
+indented paragraphs.
 @cindex @file{ms} macros, nested lists
 @cindex nested lists [@file{ms}]
 For example, you may wish to structure lists hierarchically.
@@ -4028,10 +4029,9 @@ This input formats a labelled equation.  We used the @code{SN-NO-DOT}
 string to base the equation label on the current heading number, giving
 us more flexibility to reorganize the document.
 
-Remember to run any desired preprocessors on the input; @command{groff}
-options will take care of this.  Use @option{-e} for @command{geqn},
-@option{-p} for @command{gpic}, @option{-R} for @command{grefer}, and
-@option{-t} for @command{gtbl}.
+Use @command{groff} options to run preprocessors on the input:@:
+@option{-e} for @command{geqn}, @option{-p} for @command{gpic},
+@option{-R} for @command{grefer}, and @option{-t} for @command{gtbl}.
 
 @c ---------------------------------------------------------------------
 
@@ -4541,9 +4541,10 @@ or larger than@tie{}1,000 (one thousand) as decimal fractions multiplied
 by@tie{}1,000.@footnote{Register values are converted to and stored as
 basic units.  @xref{Measurements}.}  This threshold makes use of a
 scaling unit with these parameters practical for high-resolution
-devices while preserving backward compatibility.  For example,
-@samp{groff -rPS=10.5p} at the shell prompt is equivalent to placing
-@samp{.nr PS 10.5p} at the beginning of the document.
+devices while preserving backward compatibility.  It also permits
+expression of non-integral type sizes.  For example, @samp{groff
+-rPS=10.5p} at the shell prompt is equivalent to placing @samp{.nr PS
+10.5p} at the beginning of the document.
 
 @item
 @acronym{AT&T} @file{ms}'s @code{AU} macro supported arguments used with
@@ -4604,8 +4605,8 @@ Several macros described in the Unix Version@tie{}7 @file{ms}
 documentation are unimplemented by @code{groff} @file{ms} because they
 are specific to the requirements of documents produced internally by
 Bell Laboratories, some of which also require a glyph for the Bell
-System logo that @code{groff} does not support.  These include macros
-implementing several document type formats
+System logo that @code{groff} does not support.  These macros
+implemented several document type formats
 (@code{EG}, @c engineer's notes
 @code{IM}, @c internal memorandum
 @code{MF}, @c memorandum for file
@@ -4625,7 +4626,7 @@ stored the postal addresses of Bell Labs sites
 @code{MH}, @c Murray Hill
 @code{PY}, @c Piscataway
 @code{WH}), @c Whippany
-or lack a stable definition historically
+or lacked a stable definition over time
 (@code{UX}). @c Unix; on 1st use, add footnote id'ing trademark owner
 To compatibly render historical @file{ms} documents using these macros,
 we advise your documents to invoke the @code{rm} request to remove any
@@ -4652,10 +4653,10 @@ readability of the document's substance.
 @cindex special characters [@file{ms}]
 @cindex strings [@file{ms}]
 
-@code{groff} @file{ms} retains support for some legacy features solely
-to support formatting of historical documents; contemporary ones should
-not use them because they can render poorly.  See the
-@cite{groff_char@r{(7)}} man page.
+@code{groff} @file{ms} retains some legacy features solely to support
+formatting of historical documents; contemporary ones should not use
+them because they can render poorly.  See the @cite{groff_char@r{(7)}}
+man page.
 
 @unnumberedsubsubsec AT&T accent mark strings
 

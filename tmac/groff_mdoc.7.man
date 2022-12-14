@@ -74,7 +74,7 @@ document formatting system.
 .
 .Xr mdoc
 is a
-structured and semantically oriented package for writing
+structurally- and semantically-oriented package for writing
 .Ux
 manual pages with
 .Xr @g@troff @MAN1EXT@ .
@@ -153,7 +153,8 @@ requiring mastery of the
 .Xr roff
 language.
 .
-We present essential facts about it as they arise.
+This document presents only essential facts about
+.Xr roff.
 .
 For further background,
 including a discussion of basic typographical concepts like
@@ -164,7 +165,7 @@ and
 see
 .Xr roff @MAN7EXT@ .
 .
-Typographical units of measurement also arise,
+Specialized units of measurement also arise,
 namely
 ens,
 vees,
@@ -372,6 +373,11 @@ we employ the term
 .Dq parsed
 instead.
 .
+Except where explicitly stated,
+all
+.Xr mdoc
+macros are parsed and callable.
+.
 .
 .Pp
 In the following,
@@ -389,8 +395,8 @@ necessary.
 .
 Sometimes it is desirable to give a macro an argument containing one or
 more space characters,
-for instance to specify specify a particular arrangement of arguments
-demanded by the macro.
+for instance to specify a particular arrangement of arguments demanded
+by the macro.
 .
 Additionally,
 quoting multi-word arguments that are to be treated the same makes
@@ -420,22 +426,18 @@ as in
 There are a few ways to embed a space in a macro argument.
 .
 One is to use the unadjustable space escape sequence
-.Ql \e\  ,
-that is,
-a space preceded by the escape character.
+.Li \[rs] Ns Em space .
 .
-This method may be used with any macro,
-but has the side effect of not adjusting as other spaces do when an
-output line is formatted.
-.
-.Xr @g@troff
-treats the unadjustable space as if it were any other printable
-character,
-and will not break a line there as it would a normal space when the
+The formatter treats this escape sequence as if it were any other
+printable character,
+and will not break a line there as it would a word space when the
 output line is full.
 .
 This method is useful for macro arguments that are not expected to
-straddle an output line boundary.
+straddle an output line boundary,
+but has a drawback:
+this space does not adjust as others do when the output line is
+formatted.
 .
 An alternative is to use the unbreakable space escape sequence,
 .Ql \[rs]\[ti] ,
@@ -461,9 +463,9 @@ Another method is to enclose the string in double quotes.
 .El
 .
 If the
-.Ql \e
+.Ql \[rs]
 before the space in the first example
-or double quotes in the third example
+or the double quotes in the third example
 were omitted,
 .Ql .Fn
 would see three arguments,
@@ -532,13 +534,13 @@ is a special character escape sequence that explicitly formats the
 .Ss "Other possible pitfalls"
 .
 .Xr "groff mdoc"
-emits a warning when an empty input line is found outside of a
+warns when an empty input line is found outside of a
 .Em display ,
 a topic presented in subsection
 .Sx "Examples and displays"
 below.
 .
-Use the empty request instead to space for document maintenance.
+Use empty requests to space the source document for maintenance.
 .
 .
 .Pp
@@ -760,11 +762,6 @@ separating the items.
 .Ar member No ...
 .Xc
 .El
-.
-Except where explicitly stated,
-all
-.Xr mdoc
-macros are parsed and callable.
 .
 .
 .Pp

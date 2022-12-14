@@ -3250,10 +3250,15 @@ available, differing in how indentation applies to them: to left, right,
 or both margins; to the first output line of the paragraph, all output
 lines, or all but the first.  All paragraphing macro calls cause the
 insertion of vertical space in the amount stored in the @code{PD}
-register, except at page or column breaks.  The @code{PORPHANS} register
-(@pxref{ms Document Control Settings}) operates in conjunction with each
-of these macros to inhibit the printing of isolated lines at the bottom
-of any page.
+register, except at page or column breaks.
+
+The @code{PORPHANS} register defines the minimum number of initial lines
+of any paragraph that must be kept together to avoid isolated lines at
+the bottom of a page.  If a new paragraph is started close to the bottom
+of a page, and there is insufficient space to accommodate
+@samp{\[rs]n[PORPHANS]} lines before an automatic page break, then a
+page break is forced before the start of the paragraph.  This is a GNU
+extension.
 
 @Defmac {LP, , ms}
 Set a paragraph without any (additional) indentation.

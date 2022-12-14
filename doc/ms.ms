@@ -1548,9 +1548,10 @@ similarly.
 Without arguments,
 .I ms
 styles subsequent text in bold
-until the next highlighting,
+until the next
 paragraphing,
-or heading macro call.
+heading,
+or no-argument typeface macro call.
 T}
 _
 \&.R \f[R][\f[I]text\f[] [\f[I]post\f[] [\f[I]pre\f[]]]]	T{
@@ -1638,9 +1639,8 @@ Set subsequent text in
 larger type
 .NL
 (2\~points larger than the current size)
-until
-the next font size,
-highlighting,
+until the next
+type size,
 paragraphing,
 or heading macro call.
 .
@@ -1659,9 +1659,8 @@ Set subsequent text in
 smaller type
 .NL
 (2\~points smaller than the current size)
-until
-the next type size,
-highlighting,
+until the next
+type size,
 paragraphing,
 or heading macro call.
 .

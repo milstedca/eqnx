@@ -3474,7 +3474,6 @@ and displays} and @ref{ms Insertions}.
 
 @node Typeface and decoration, Lists in ms, Headings in ms, ms Body Text
 @subsubsection Typeface and decoration
-@cindex @file{ms} macros, highlighting
 
 The @file{ms} macros provide a variety of ways to style text.
 Attend closely to the ordering of arguments labeled @var{pre} and
@@ -3490,7 +3489,8 @@ to avoid breaking support for older documents.}
 Style @var{text} in @b{bold}, followed by @var{post} in the previous
 font style without intervening space, and preceded by @var{pre}
 similarly.  Without arguments, @file{ms} styles subsequent text in bold
-until the next highlighting, paragraphing, or heading macro call.
+until the next paragraphing, heading, or no-argument typeface macro
+call.
 @endDefmac
 
 @Defmac {R, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
@@ -3528,16 +3528,16 @@ Typeset @var{text} with an underline.  Set @var{post}, if present, after
 
 @Defmac {LG, , ms}
 Set subsequent text in larger type (two points larger than the
-current size) until the next font size, highlighting, paragraphing, or
-heading macro call.  You can specify this macro multiple times to
-enlarge the type size as needed.
+current size) until the next type size, paragraphing, or heading macro
+call.  You can specify this macro multiple times to enlarge the type
+size as needed.
 @endDefmac
 
 @Defmac {SM, , ms}
 Set subsequent text in smaller type (two points smaller than the current
-size) until the next type size, highlighting, paragraphing, or heading
-macro call.  You can specify this macro multiple times to reduce the
-type size as needed.
+size) until the next type size, paragraphing, or heading macro call.
+You can specify this macro multiple times to reduce the type size as
+needed.
 @endDefmac
 
 @Defmac {NL, , ms}

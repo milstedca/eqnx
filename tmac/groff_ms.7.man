@@ -1047,9 +1047,10 @@ similarly.
 Without arguments,
 .I ms
 styles subsequent text in bold
-until the next highlighting,
+until the next
 paragraphing,
-or heading macro call.
+heading,
+or no-argument typeface macro call.
 .
 .
 .TP
@@ -1137,8 +1138,8 @@ with no intervening space.
 .B .LG
 Set subsequent text in larger type
 (2\~points larger than the current size)
-until the next font size,
-highlighting,
+until the next
+type size,
 paragraphing,
 or heading macro call.
 .
@@ -1150,8 +1151,8 @@ needed.
 .B .SM
 Set subsequent text in smaller type
 (2\~points smaller than the current size)
-until the next type size,
-highlighting,
+until the next
+type size,
 paragraphing,
 or heading macro call.
 .

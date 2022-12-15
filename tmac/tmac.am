@@ -198,6 +198,7 @@ tmac_TESTS = \
   tmac/tests/doc_Mt-works.sh \
   tmac/tests/doc_Nm-works.sh \
   tmac/tests/doc_P-register-works.sh \
+  tmac/tests/doc_X-register-works.sh \
   tmac/tests/doc_accept-mixed-case-section-headings.sh \
   tmac/tests/doc_do-not-loop-infinitely-when-shortening-headers.sh \
   tmac/tests/doc_indents-correctly.sh \

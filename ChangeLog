@@ -1,5 +1,12 @@
 2022-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[doc]: Add unit test for `X` register.
+
+	* tmac/tests/doc_X-register-works.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+2022-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/doc.tmac (Nm): Fix `if` -> `ie` typo/thinko.
 
 	Fixes <https://savannah.gnu.org/bugs/?63527>.  Thanks to John

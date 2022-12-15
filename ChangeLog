@@ -1,3 +1,7 @@
+2022-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/tests/doc_Nm-works.sh: Add more checks.
+
 2022-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/groff/tests/smoke-test_html_device.sh: Add checks for

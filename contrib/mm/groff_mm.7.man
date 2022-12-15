@@ -550,28 +550,26 @@ to end the list.
 .
 .
 .TP
-.BI APP\  "name text"
-Begin an appendix with name
-.IR name .
+.BR APP \~\c
+.RI [ id\~ [ title ]]
+Begin an appendix.
 .
-Automatic naming occurs if
-.I name
-is
-.BR \[dq]\[dq] .
+If the identifier
+.I id
+is omitted,
+it is incremented
+(or initialized,
+if necessary).
 .
-The appendices start with\~\c
-.B A
-if automatic naming is used.
+The default register format is \[lq]A\[rq].
 .
-A new page is ejected,
-and a header is also produced if the register
+The page is broken,
+and a header produced if register
 .B Aph
-is non-zero.
+is true;
+this is the default.
 .
-This is the default.
-.
-The appendix always appears in the \[lq]List of contents\[rq] with
-correct page numbers.
+Appendices appear in the \[lq]List of contents\[rq] with page numbers.
 .
 The name \[lq]APPENDIX\[rq] can be changed by setting the string
 .B App
@@ -579,17 +577,25 @@ to the desired text.
 .
 The string
 .B Apptxt
-contains the current appendix text.
+is assigned
+.I title
+if the argument is present,
+otherwise it is cleared.
+.
 .
 .TP
-.BI APPSK\  "name pages text"
-Same as
+.BI APPSK\~ "id n" \~\c
+.RI [ title ]
+As
 .BR .APP ,
-but the page number is incremented with
-.IR pages .
+but increment the page number by
+.IR n .
 .
-This is used when diagrams or other non-formatted documents are
-included as appendices.
+Use this macro to \[lq]skip pages\[rq] when diagrams or other materials
+not formatted by
+.I @g@troff
+are included in appendices.
+.
 .
 .TP
 .BR AS\~ [\c
@@ -2753,41 +2759,54 @@ Used to get rid of the header in letters or other special texts.
 This macro must be used before any text to inhibit the page header
 on the first page.
 .
-.TP
-.BI "PIC \fR[\fP\-B\fR] [\fP\-L\fR] [\fP\-C\fR] [\fP\-R\fR] [\fP\-I\ " "n\fR]\fP filename \fR[\fPwidth \fR[\fPheight\fR]]\fP"
-Include a PostScript file in the document.
 .
-The macro depends on
+.TP
+.BR PIC \~\c
+.RB [ \-B ]\~\c
+.RB [ \-C |\c
+.BI \-I\~ n\c
+.RB | \-L \c
+.RB | \-R ]\~\c
+.IR file \~[ width \~[ height ]]
+Include PostScript document
+.IR file .
+.
+This macro depends on
 .MR mmroff @MAN1EXT@
 and
 .BR INITR .
 .
-The arguments
+The optional
+.B \-B
+argument draws a box around the picture.
+.
+The optional
 .BR \-L ,
 .BR \-C ,
 .BR \-R ,
 and
-.BI \-I\  n
-adjust the picture or indent it.
+.BI \-I\~ n
+arguments align the picture or indent it by
+.I n
+(assuming a scaling unit of
+.BR m ).
 .
-With no flag the picture is adjusted to the left.
+By default,
+the picture is left-aligned.
 .
-Adding
-.B \-B
-draws a box around the picture.
-.
-The optional
+Optional
 .I width
 and
 .I height
-can also be given to resize the picture.
+arguments resize the picture.
+.
 .
 .TP
 .B PE
-Picture end.
-.
-Ends a picture for
+Picture end;
+see
 .MR @g@pic @MAN1EXT@ .
+.
 .
 .TP
 .BI PF\  \fR[\fParg\fR]\fP
@@ -2832,7 +2851,7 @@ The default argument is
 .
 .RS
 .IP
-\[dq]\[aq]\[aq]- % -\[aq]\[aq]\[dq]
+\[dq]\[aq]\[aq]\- % \-\[aq]\[aq]\[dq]
 .RE
 .
 .IP
@@ -2842,20 +2861,19 @@ which gives the page number between two dashes.
 This macro defines string
 .BR TPh .
 .
+.
 .TP
 .B PS
-Picture start (from pic).
-.
-Begins a picture for
+Picture start; see
 .MR @g@pic @MAN1EXT@ .
+.
 .
 .TP
 .B PX
 Page header user-defined exit.
 .
 This macro is called just after the printing of the page header in
-.I no-space
-mode.
+no-space mode.
 .
 .
 .TP
@@ -4375,9 +4393,18 @@ A scaling unit should be appended.
 .
 The default
 .RB is\~ \&.75i
-on terminal devices and
+on terminal devices.
+.
+On typesetters,
+it is
 .B \&.963i
-on typesetters.
+or set to
+.B 1i
+by the
+.I papersize.tmac
+package;
+see
+.MR groff_tmac @MAN5EXT@ .
 .
 .
 .TP
@@ -4542,14 +4569,20 @@ Default is 5n.
 .TP
 .B W
 defines the \[lq]width\[rq]
-(line length)
-of the document,
-and must be set from the command line.
+of the document
+(that is,
+the length of an output line with no indentation);
+it must be set from the command line.
 .
 A scaling unit should be appended.
 .
 The default
-.RB is\~ 6i .
+.RB is\~ 6i
+or assigned by the
+.I papersize.tmac
+package;
+see
+.MR groff_tmac @MAN5EXT@ .
 .
 .
 .

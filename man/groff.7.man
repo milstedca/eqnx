@@ -3521,7 +3521,7 @@ and auto-increment
 .
 .TPx
 .REQ .nroff
-Make the built-in conditions
+Make the conditional expressions
 .B n
 true and
 .B t
@@ -3529,7 +3529,16 @@ false.
 .
 .TPx
 .REQ .ns
-Turn on no-space mode.
+Enable
+.IR "no-space mode" ,
+ignoring
+.B .sp
+requests until a glyph or
+.B \[rs]D
+primitive is output.
+.
+See
+.BR .rs .
 .
 .TPx
 .REQ .nx
@@ -3760,7 +3769,11 @@ Remove register
 .
 .TPx
 .REQ .rs
-Restore spacing; turn no-space mode off.
+Restore spacing;
+disable no-space mode.
+.
+See
+.BR .ns .
 .
 .TPx
 .REQ .rt
@@ -4099,7 +4112,7 @@ transparently throughput into a diversion with
 .
 .TPx
 .REQ .troff
-Make the built-in conditions
+Make the conditional expressions
 .B t
 true and
 .B n

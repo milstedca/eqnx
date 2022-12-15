@@ -987,13 +987,14 @@ By default,
 the following architecture keywords are defined.
 .
 \# we use 'No' to avoid hyphenation
-.\" I resort to ps/vs violence because this macro package is obsessed
-.\" with dumping gigantic piles of identifiers on users, and I need the
-.\" space to keep this macro description to a single page in PS/PDF(!).
-.\" Lists of information like this simply beg to bit-rot.  -- GBR
-.br
-.ps -2
-.vs -2
+.\" Resort to ps/vs violence if necessary because this macro package is
+.\" obsessed with dumping gigantic piles of identifiers on users, and I
+.\" need the space to keep this macro description to a single page in
+.\" PS/PDF(!).  Lists of information like this simply beg to bit-rot.
+.\" -- GBR
+.\"br
+.\"ps -2
+.\"vs -2
 .Bd -ragged -offset 4n
 .No acorn26 , acorn32 , algor , alpha , amd64 , amiga , amigappc ,
 .No arc , arm , arm26 , arm32 , armish , atari , aviion ,
@@ -1008,8 +1009,8 @@ the following architecture keywords are defined.
 .No shark , socppc , solbourne , sparc , sparc64 , sun2 , sun3 ,
 .No tahoe , vax , x68k , x86_64 , xen , zaurus
 .Ed
-.vs
-.ps
+.\"vs
+.\"ps
 .
 .
 .Pp
@@ -5039,6 +5040,8 @@ are reserved for potential future compatibility with
 page rendering options.
 .
 .
+.br
+.ne 4v
 .Sh Files
 .
 .Bl -tag

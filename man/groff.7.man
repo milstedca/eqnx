@@ -2529,14 +2529,19 @@ and so on.
 .
 .
 .TPx
-.REQ .ch "name \fR[\fPN\fR]"
+.REQ .ch name
+Unplant page location trap
+.IR name .
+.
+.
+.TPx
+.REQ .ch "name N"
 Change a planted page location trap
 .I name
 by moving its location to
-.IR N ,
-or by unplanting it altogether if
 .I N
-is absent.
+(default scaling unit\~\c
+.scaleindicator v ).
 .
 .
 .TPx
@@ -4117,16 +4122,18 @@ see
 .
 .
 .TPx
-.REQ .warnscale "si"
-Set scaling indicator used in warnings to
-.IR si .
+.REQ .warnscale "su"
+Set scaling unit used in warnings to
+.IR su .
 .
 .
 .TPx
 .REQ .wh N
 Remove active trap at vertical position
 .IR N ;
-a negative value is measured upward from page bottom.
+a negative value is measured upward from page bottom
+(default scaling unit\~\c
+.scaleindicator v ).
 .
 .
 .TPx
@@ -4137,11 +4144,13 @@ calling macro
 when page location
 .I N
 is reached or passed;
-a negative value is measured upward from page bottom.
+a negative value is measured upward from page bottom
+(default scaling unit\~\c
+.scaleindicator v ).
 .
 Any active trap already present at
 .I N
-is replaced.
+is hidden.
 .
 .
 .TPx

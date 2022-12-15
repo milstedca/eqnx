@@ -14235,11 +14235,6 @@ reaches or passes a certain vertical location on the output page or in a
 diversion.  Their applications include setting page headers and footers,
 body text in multiple columns, and footnotes.
 
-@noindent
-The location parameter used in vertical position traps has a default
-scaling unit of @samp{v}, and its value is rounded to a multiple of the
-vertical motion quantum (found in the register @code{.V}).
-
 @DefreqList {vpt, [@Var{flag}]}
 @DefregListEndx {.vpt}
 @cindex enabling vertical position traps (@code{vpt})
@@ -14269,11 +14264,12 @@ A page can't be ejected if @code{vpt} is set to zero.
 
 @Defreq {wh, dist [@Var{name}]}
 Call macro @var{name} when the vertical position @var{dist} on the page
-is reached or passed in the downward direction.  Non-negative values for
-@var{dist} set the trap relative to the top of the page; negative values
-set the trap relative to the bottom of the page.  An existing
-@emph{visible} trap (see below) at @var{dist} is removed; this is
-@code{wh}'s sole function if @var{name} is missing.
+is reached or passed in the downward direction.  The default scaling
+unit is @samp{v}.  Non-negative values for @var{dist} set the trap
+relative to the top of the page; negative values set the trap relative
+to the bottom of the page.  An existing @emph{visible} trap (see below)
+at @var{dist} is removed; this is @code{wh}'s sole function if
+@var{name} is missing.
 
 A trap is sprung only if it is @dfn{visible}, meaning that its location
 is reachable on the page@footnote{A trap planted at @samp{20i} or
@@ -14376,14 +14372,15 @@ the largest representable integer in basic units---effectively infinite.
 @cindex changing trap location (@code{ch})
 @cindex trap, changing location (@code{ch})
 Change the location of a trap by moving macro @var{name} to new location
-@var{dist}, or by unplanting it altogether if @var{dist} is absent.
-Parameters to @code{ch} are specified in the opposite order from
-@code{wh}.  If @var{name} is the earliest planted macro of multiple
-traps at the same location, (re)moving it from that location exposes the
-macro next least recently planted at the same place.@footnote{It may
-help to think of each trap location as maintaining a queue; @code{wh}
-operates on the head of the queue, and @code{ch} operates on its tail.
-Only the trap at the head of the queue is visible.}
+@var{dist}, or by unplanting it altogether if @var{dist} is absent.  The
+default scaling unit is @samp{v}.  Parameters to @code{ch} are specified
+in the opposite order from @code{wh}.  If @var{name} is the earliest
+planted macro of multiple traps at the same location, (re)moving it from
+that location exposes the macro next least recently planted at the same
+place.@footnote{It may help to think of each trap location as
+maintaining a queue; @code{wh} operates on the head of the queue, and
+@code{ch} operates on its tail.  Only the trap at the head of the queue
+is visible.}
 
 Changing a trap's location is useful for building up footnotes in a
 diversion to allow more space at the bottom of the page for them.

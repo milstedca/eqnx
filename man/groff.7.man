@@ -2240,9 +2240,14 @@ Texinfo manual or
 .LS
 .
 .TPx
-.REQ .ab "\f[R][\f[]message\f[R]]"
+.REQ .ab
 Abort processing;
-write any
+exit with failure status.
+.
+.TPx
+.REQ .ab message
+Abort processing;
+write
 .I message
 to the standard error stream and exit with failure status.
 .
@@ -2368,21 +2373,30 @@ Same as
 but with compatibility mode switched off during macro expansion.
 .
 .TPx
-.REQ .as "string \fR[\fPcontents\fR]\fP"
-Append
-.I contents
-to
-.IR string ;
+.REQ .as name
+Create string
+.I name
+with empty contents;
 no operation if
-.I contents
-omitted.
+.I string
+already exists.
 .
 .TPx
-.REQ .as1 "string \fR[\fPcontents\fR]\fP"
-Same as
-.request .as
-but with compatibility mode switched off during string expansion.
+.REQ .as "name contents"
+Append
+.I contents
+to string
+.IR name .
 .
+.TPx
+.REQ .as1 string
+.TQ
+.REQ .as1 "string contents"
+As
+.request .as ,
+but with compatibility mode disabled when
+.I contents
+interpolated.
 .
 .TPx
 .REQ .asciify "diversion"
@@ -2799,22 +2813,26 @@ of
 is interpreted.
 .
 .TPx
-.REQ .ds "name \fR[\fPcontents\fR]\fP"
-Define a string
-.I name
-with contents
-.IR string ,
-or as empty if
-.I string
-is omitted.
-.
+.REQ .ds name
+Create empty string
+.I string .
 .
 .TPx
-.REQ .ds1 "name \fR[\fPcontents\fR]\fP"
-Same as
-.request .ds
-but with compatibility mode switched off during string expansion.
+.REQ .ds "name contents"
+Create a string
+.I name
+containing
+.IR contents .
 .
+.TPx
+.REQ .ds1 name
+.TQ
+.REQ .ds1 "name contents"
+As
+.request .ds ,
+but with compatibility mode disabled when
+.I contents
+interpolated.
 .
 .TPx
 .REQ .dt
@@ -3372,13 +3390,15 @@ from right margin (default scaling indicator\~\c
 .scaleindicator m ).
 .
 .TPx
-.REQ .mk "\fR[\fPregister\fR]\fP"
-Mark current vertical position in
-.IR register ,
-or in an internal register used by
-.B .rt
-if no argument.
+.REQ .mk
+Mark vertical drawing position in an internal register;
+see
+.BR .rt .
 .
+.TPx
+.REQ .mk register
+Mark vertical drawing position in
+.IR register .
 .
 .TPx
 .REQ .mso "file"
@@ -3434,11 +3454,31 @@ same as
 .
 .TPx
 .REQ .nm
-Number mode off.
+Deactivate output line numbering.
 .
 .TPx
-.REQ .nm "\[+-]N \fR[\fPM \fR[\fPS \fR[\fPI\fR]]]\fP"
-In line number mode, set number, multiple, spacing, and indentation.
+.REQ .nm \[+-]N
+.TQ
+.REQ .nm "\[+-]N M"
+.TQ
+.REQ .nm "\[+-]N M S"
+.TQ
+.REQ .nm "\[+-]N M S I"
+Activate output line numbering:
+number the next output line
+.IR N ,
+writing numbers every
+.I M
+lines,
+with
+.I S
+numeral widths
+.RB ( \[rs]0 )
+between the line number and the output
+(default 1),
+and indenting the line number by
+.I I
+numeral widths (default 0).
 .
 .TPx
 .REQ .nn
@@ -3463,15 +3503,21 @@ Interpret
 .I anything
 as if it were an input line.
 .
+.TPx
+.REQ .nr "reg \[+-]N"
+Define or update register
+.I reg
+with value
+.IR N .
 .
 .TPx
-.REQ .nr "register \[+-]N \fR[\fPM\fR]\fP"
-Define or modify
-.I register
-using
-.I \[+-]N
-with auto-increment
-.IR M .
+.REQ .nr "reg \[+-]N I"
+Define or update register
+.I reg
+with value
+.I N
+and auto-increment
+.IR I .
 .
 .TPx
 .REQ .nroff
@@ -3725,11 +3771,13 @@ to vertical position marked by
 on the current page.
 .
 .TPx
-.REQ .rt "\[+-]N"
+.REQ .rt N
 Return
 .I (upward only)
-to specified distance from the top of the page (default scaling
-indicator\~\c
+to vertical position
+.I N
+(default scaling
+unit\~\c
 .scaleindicator v ).
 .
 .TPx

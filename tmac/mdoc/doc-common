@@ -1052,29 +1052,36 @@
 .\"
 .\" NS local variables:
 .\" NS   doc-xref
-.\"
-.\" TODO: Support man(7)'s `X` register.
+.\" NS   doc-page-id
 .
 .eo
 .de doc-footer
 .  ds doc-xref \*[doc-page-topic-font]\*[doc-page-topic]\f[]\"
 .  as doc-xref \*[doc-page-section-font](\*[doc-section])\f[]\"
+.  ds doc-page-id \n[%]
+.  if r X \{\
+.    if (\n[%] > \n[X]) \{\
+.      nr doc-page-letter (\n[%] - \n[X])
+.      ds doc-page-id \n[X]\n[doc-page-letter]\"
+.    \}
+.  \}
 .  ev doc-caption-enviroment
 .  doc-setup-page-layout
 .  ie \n[D] \{\
 .    ie e \
 .      tl '%'\*[doc-date-string]'\*[doc-operating-system]'
 .    el \
-.      tl '\*[doc-operating-system]'\*[doc-date-string]'%'
+.      tl '\*[doc-operating-system]'\*[doc-date-string]'\*[doc-page-id]'
 .  \}
 .  el \{\
 .    ie \n[cR] \
 .      tl '\*[doc-operating-system]'\*[doc-date-string]'\*[doc-xref]'
 .    el \
-.      tl '\*[doc-operating-system]'\*[doc-date-string]'%'
+.      tl '\*[doc-operating-system]'\*[doc-date-string]'\*[doc-page-id]'
 .  \}
 .  if !\n[cR] .bp
 .  ev
+.  rm doc-page-id
 .  rm doc-xref
 ..
 .ec

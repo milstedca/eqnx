@@ -179,7 +179,23 @@
 .
 .\" TODO: Implement U register.
 .
-.\" TODO: Implement X register.
+.\" page number after which to apply letter suffixes
+.\"
+.\" Unlike most of these parameters, we do not set a default for X; only
+.\" the macro an-footer uses it.  Page numbers are not rendered at all
+.\" in continuous rendering mode.
+.if r X \{\
+.  af doc-page-letter a
+.  if \n[doc-is-output-html] \
+.    ds doc-msg in HTML output\"
+.  if \n[cR] \
+.    ds doc-msg when continuously rendering
+.\}
+.if d doc-msg \{\
+.  tm mdoc: ignoring page number suffix \*[doc-msg]
+.  rr X
+.  rm doc-msg
+.\}
 .
 .
 .\" Load startup files.

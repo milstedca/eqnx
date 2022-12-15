@@ -5027,14 +5027,31 @@ is ignored when formatting for terminal devices.
 .
 .
 .Pp
+Setting the
+.Ql X
+register to a page number
+.Ar p
+causes subsequent pages to be numbered as
+.Ar p Ns Li a ,
+.Ar p Ns Li b ,
+.Ar p Ns Li c ,
+and so forth.
+.
+The register tracking the suffixed page letter uses format
+.Ql a
+(see the
+.Ql af
+request in
+.Xr groff @MAN7EXT@ ) .
+.
+.
+.Pp
 The
 .Ql HF
 string
 and
 .Ql FT
-and
-.Ql X
-registers
+register
 are reserved for potential future compatibility with
 .Xr groff_man @MAN7EXT@
 page rendering options.

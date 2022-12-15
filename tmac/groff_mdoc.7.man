@@ -4962,16 +4962,18 @@ swapping places with the arguments to
 .
 .
 .Pp
-To change the document font size to 11p or 12p,
-set register
-.Ql S
-accordingly:
+Normally,
+automatic hyphenation is enabled using a mode appropriate to the
+.Xr groff
+locale;
+see section \[lq]Localization\[lq] of
+.Xr groff @MAN7EXT@ .
 .
-.Dl groff \-Tdvi \-rS11 \-mdoc foo.man > foo.dvi
+It can be disabled by setting the
+.Ql HY
+register to zero.
 .
-Register
-.Ql S
-is ignored when formatting for terminal devices.
+.Dl groff \-Tutf8 \-rHY=0 \-mdoc foo.man | less \-R
 .
 .
 .Pp
@@ -5012,18 +5014,16 @@ The default is\~1.
 .
 .
 .Pp
-Normally,
-automatic hyphenation is enabled using a mode appropriate to the
-.Xr groff
-locale;
-see section \[lq]Localization\[lq] of
-.Xr groff @MAN7EXT@ .
+To change the document font size to 11p or 12p,
+set register
+.Ql S
+accordingly:
 .
-It can be disabled by setting the
-.Ql HY
-register to zero.
+.Dl groff \-Tdvi \-rS11 \-mdoc foo.man > foo.dvi
 .
-.Dl groff \-Tutf8 \-rHY=0 \-mdoc foo.man | less \-R
+Register
+.Ql S
+is ignored when formatting for terminal devices.
 .
 .
 .Pp

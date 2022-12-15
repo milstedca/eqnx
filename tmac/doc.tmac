@@ -201,6 +201,8 @@
 .
 .\" NS doc-arg-count global register
 .\" NS   total number of arguments
+.\" XXX: This register name and description aren't quite right, but its
+.\" old name `doc-arg-limit` doesn't seem accurate either.  Demystify.
 .
 .nr doc-arg-count 0
 .
@@ -1085,7 +1087,7 @@
 .    ie \n[.$] \{\
 .      \" Handle '.Nm ...' in "Name" section: don't use a special font.
 .      ie \n[doc-in-name-section] \{\
-.        ie "\*[doc-topic-name]"" \
+.        if "\*[doc-topic-name]"" \
 .          ds doc-topic-name "\$1\"
 .        No \$@
 .      \}

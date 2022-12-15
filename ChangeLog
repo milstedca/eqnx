@@ -1,5 +1,12 @@
 2022-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/doc.tmac (Nm): Fix `if` -> `ie` typo/thinko.
+
+	Fixes <https://savannah.gnu.org/bugs/?63527>.  Thanks to John
+	Gardner for the report.
+
+2022-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/tests/doc_Nm-works.sh: Add more checks.
 
 2022-12-13  G. Branden Robinson <g.branden.robinson@gmail.com>

@@ -1,6 +1,6 @@
 2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[doc]: Support `X` register.
+	[mdoc]: Support `X` register.
 
 	* tmac/doc.tmac (initialization): Add logic supporting `X`
 	register just as our man(7) implementation does.
@@ -11,7 +11,7 @@
 
 2022-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[doc]: Add unit test for `X` register.
+	[mdoc]: Add unit test for `X` register.
 
 	* tmac/tests/doc_X-register-works.sh: Do it.
 	* tmac/tmac.am (tmac_TESTS): Run test.
@@ -84,7 +84,7 @@
 
 2022-12-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[doc]: Support `P` register.
+	[mdoc]: Support `P` register.
 
 	* tmac/doc.tmac (initialization): Add logic supporting `P`
 	register just as our man(7) implementation does.
@@ -965,9 +965,9 @@
 	number, e.g., "troff(1)"; `doc-abbv` stores the its potentially
 	abbreviated form when it is too long to fit.
 	(doc-footer): Use `doc-xref` as above.  Stop setting the `Os`
-	and `Dd` parameters in an unusual font (probably unnoticed all
-	these years because the font used to render them was (Times)
-	roman).
+	and `Dd` parameters in the ("semantic"?) font used for the
+	page's section number (probably unnoticed all these years
+	because the font used to render that was (Times) roman).
 
 2022-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -2423,7 +2423,7 @@
 	* tmac/mdoc/doc-common (doc-header): When starting new document
 	and not continuously rendering, space by one half-inch instead
 	of by the now-defunct `doc-header-space` amount (which,
-	strictly, should not have applied to this measurement).  If not
+	strictly, should not have applied to this measurement).  If
 	continuously rendering, extend page length by 1v to accommodate
 	header line.  After formatting header, if not continuously
 	rendering, space to 1 inch below first text baseline.

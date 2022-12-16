@@ -1,5 +1,16 @@
 2022-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an.tmac (TH): Relocate `an-break-body-text` trap to be
+	one half-inch above footer (instead of twice the footer
+	distance).  I reason that anyone who customizes `FT` is doing so
+	to overprint some kind of material at the bottoms of pages, or
+	simply to make the margin larger.  (One then wonders why we
+	don't have an `HD` register for the top.)  Also remove register
+	when done with it.
+	* tmac/groff_man.7.man.in (Options) <FT>: Document this.
+
+2022-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac (TH): Trivially refactor.  Rename
 	`an-footer-location` to `an*footer-location` and set page traps
 	in order descending the page.

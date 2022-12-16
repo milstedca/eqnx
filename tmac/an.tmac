@@ -354,10 +354,10 @@
 .
 .  if !\\n[cR] \{\
 .    wh 0 an-header
-.    ie r FT .nr an-footer-location \\n[FT]
-.    el      .nr an-footer-location (-.5i)
+.    ie r FT .nr an*footer-location \\n[FT]
+.    el      .nr an*footer-location (-.5i)
+.    wh \\n[an*footer-location]u an-footer
 .    wh (2u * \\n[an-footer-location]u) an-break-body-text
-.    wh \\n[an-footer-location]u an-footer
 .    \}
 .  \}
 .

@@ -2708,7 +2708,9 @@ Defines the page offset (i.e., the left margin).
 
 Effective: next page.
 
-Default value: 1@dmn{i}.
+Default: Varies by output device and paper format; 1@dmn{i} is used for
+typesetters using U.S.@: letter paper, and zero for terminals.
+@xref{Paper Format}.
 @endDefmpreg
 
 @Defmpreg {LL, ms}
@@ -2716,16 +2718,20 @@ Defines the line length (i.e., the width of the body text).
 
 Effective: next paragraph.
 
-Default: 6@dmn{i}.
+Default: Varies by output device and paper format; 6.5@dmn{i} is used
+for typesetters using U.S.@: letter paper (@pxref{Paper Format}) and
+65@dmn{n} on terminals.
 @endDefmpreg
 
 @Defmpreg {LT, ms}
 Defines the title line length (i.e., the header and footer width).  This
-is usually the same as @code{LL}, but not necessarily.
+is usually the same as @code{LL}, but need not be.
 
 Effective: next paragraph.
 
-Default: 6@dmn{i}.
+Default: Varies by output device and paper format; 6.5@dmn{i} is used
+for typesetters using U.S.@: letter paper (@pxref{Paper Format}) and
+65@dmn{n} on terminals.
 @endDefmpreg
 
 @Defmpreg {HM, ms}

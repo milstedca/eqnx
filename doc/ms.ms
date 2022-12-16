@@ -14,7 +14,7 @@
 .fchar \[dg] *
 .\".RP
 .ie t .nr LL 6.5i
-.el   .nr LL 84n
+.el   .nr LL 86n
 .nr LT \n[LL]
 .nr PS 11
 .nr VS 13
@@ -22,8 +22,8 @@
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ie t .nr PI 3.5n
 .el   .nr PI 4n
-.ND October 2022
-.EH '%''October 2022'
+.ND December 2022
+.EH '%''December 2022'
 .EF ''''
 .OH 'Using \f[I]groff\f[] with the \f[I]ms\f[] macros''%'
 .OF ''''
@@ -517,13 +517,16 @@ see the discussion in the applicable section.
 .TS H
 box;
 cb | cb cb cb cb
-l | lf(CR) lx l lf(CR).
+l | lf(CR)p-1 lx l lf(CR)p-1.
 Type	Parameter	Definition	Next	Default
 _
 .TH
-Margins	\[rs]n[PO]	Page offset (left margin)	page	1i
-\^	\[rs]n[LL]	Line length	paragraph	6i
-\^	\[rs]n[LT]	Title line length	paragraph	6i
+Margins	\[rs]n[PO]	Page offset (left margin)	page\
+	1i (0)\*{*\*}
+\^	\[rs]n[LL]	Line length	paragraph	\
+6.5i (65n)\*{*\*}
+\^	\[rs]n[LT]	Title line length	paragraph	\
+6.5i (65n)\*{*\*}
 \^	\[rs]n[HM]	Top (header) margin	page	1i
 \^	\[rs]n[FM]	Bottom (footer) margin	page	1i
 _
@@ -547,7 +550,7 @@ Text	\[rs]n[PS]	Type (point) size	paragraph	10p
 _
 Paragraphs	\[rs]n[PI]	Indentation	paragraph	5n
 \^	\[rs]n[PD]	Paragraph distance (spacing)	paragraph\
-	0.3v \f[R](\f[]1v\f[R])
+	0.3v \f[R](\f[]1v\f[R])\*{\[dg]\*}
 \^	\[rs]n[QI]	Quotation indentation	paragraph	5n
 \^	\[rs]n[PORPHANS]	# of initial lines kept	paragraph\
 	1
@@ -571,7 +574,7 @@ Footnotes	\[rs]n[FI]	Indentation	footnote	2n
 \^	\[rs]*[FR]	Line length ratio	\f[I]special	11/12
 _
 Displays	\[rs]n[DD]	Display distance (spacing)\
-	\f[I]special	0.5v \f[R](\f[]1v\f[R])
+	\f[I]special	0.5v \f[R](\f[]1v\f[R])\*{\[dg]\*}
 \^	\[rs]n[DI]	Display indentation	\f[I]special	0.5i
 _
 Other	\[rs]n[MINGW]	Minimum gutter width	page	2n
@@ -582,7 +585,17 @@ Other	\[rs]n[MINGW]	Minimum gutter width	page	2n
 .TE
 .
 .
-.LP
+.IP \*{*\*}
+Defaults vary by output device and paper format;
+the values shown are for typesetters using U.S.\& letter paper,
+and then terminals.
+.
+See section \[lq]Paper format\[rq] of the
+.I groff (1)
+man page.
+.
+.
+.IP \*{\[dg]\*}
 The
 .CW PD
 and

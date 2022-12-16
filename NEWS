@@ -464,6 +464,12 @@ o The s (ms) macro package supports new macros `XN` and `XH` to ease the
   without requiring retyping of the heading text as the package
   previously encouraged.  Thanks to Keith Marshall.
 
+o The s (ms) macro package now uses a default line length of 6.5 inches
+  by default, resulting in 1-inch left and right margins.  When the
+  "papersize.tmac" package is used by employing the "-d paper" groff(1)
+  option on typesetting devices, the default page offset and line length
+  are adjusted to maintain these margins.
+
 o The "a4.tmac" file has been dropped from the distribution.  Its
   successor, "papersize.tmac", has been present and documented for
   nearly 20 years.  See subsection "Paper format" of groff(1).

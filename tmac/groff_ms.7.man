@@ -240,9 +240,9 @@ lf(CR) lx  l  lf(CR).
 Margin settings
 Parameter	Definition	Effective	Default
 _
-\[rs]n[PO]	Page offset (left margin)	next page	1i
-\[rs]n[LL]	Line length	next paragraph	6i
-\[rs]n[LT]	Title line length	next paragraph	6i
+\[rs]n[PO]	Page offset (left margin)	next page	1i (0)
+\[rs]n[LL]	Line length	next paragraph	6.5i (65n)
+\[rs]n[LT]	Title line length	next paragraph	6.5i (65n)
 \[rs]n[HM]	Top (header) margin	next page	1i
 \[rs]n[FM]	Bottom (footer) margin	next page	1i
 _
@@ -387,6 +387,18 @@ For entries marked
 .RI \[lq] special \[rq]
 in the \[lq]Effective\[rq] column,
 see the discussion in the applicable section below.
+.
+The
+.BR PO ,
+.BR LL ,
+and
+.B LT
+register defaults vary by output device and paper format;
+the values shown are for typesetters using U.S.\& letter paper,
+and then terminals.
+.
+See section \[lq]Paper format\[rq] of
+.MR groff @MAN1EXT@ .
 .
 The
 .B PD

@@ -1,3 +1,19 @@
+2022-12-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[ms]: Change default line length to 6.5 inches.
+
+	* tmac/s.tmac (par@load-init): Do it.
+
+	* doc/groff.texi (ms Document Control Settings):
+	* doc/ms.ms (Document control settings):
+	* tmac/groff_ms.7.man (Document control settings): Document it.
+
+	* tmac/tests/s_honor-MINGW-when-two-columns.sh:
+	* tmac/tests/s_mark-column-start-correctly.sh: Update test
+	expectations.
+
+	* NEWS: Add item.
+
 2022-12-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (TH): Relocate `an-break-body-text` trap to be

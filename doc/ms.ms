@@ -1642,10 +1642,9 @@ Typeset
 with an
 .UL underline .
 .
-Set
 .I post,
 if present,
-after
+is set after
 .I text
 with no intervening space.
 T}
@@ -3075,10 +3074,12 @@ Input	Appearance	Description
 _
 \[rs][\-]	\[mi]	minus sign
 \[rs][\->]	\[->]	right arrow
+\[rs][aq]	\[aq]	neutral apostrophe
 \[rs][bu]	\[bu]	bullet
+\[rs][dq]	\[dq]	neutral double quote
 \[rs][dg]	\[dg]	dagger
 \[rs][em]	\[em]	em dash
-\[rs][ha]	\[ha]	circumflex accent (caret)
+\[rs][ha]	\[ha]	circumflex accent (caret, hat)
 \[rs][lg]	\[lq]	left double quotation mark
 \[rs][rq]	\[rq]	right double quotation mark
 \[rs][rs]	\[rs]	reverse solidus (backslash)
@@ -3096,17 +3097,16 @@ Page layout
 .XE
 .LP
 .I ms 's
-default page layout is simple:
-it arranges text in a single column
+default page layout arranges text
+in a single column
 with the page number
-centered between hyphens
-in a header
+between hyphens
+centered in a header
 on each page
-except the first.
+except the first,
+and produces no footers.
 .
-It produces no footers.
-.
-You can customize this arrangement extensively.
+You can customize this arrangement.
 .
 .
 .NH 2
@@ -3295,17 +3295,16 @@ Margins
 .
 .
 .LP
-Control margins using registers.
+Control margins using the registers summarized in the \[lq]Margins\[rq]
+portion of the table in section \[lq]Document control settings\[rq]
+above.
 .
-These are summarized in the \[lq]Margins\[rq] portion of the table in
-section \[lq]Document control settings\[rq] above.
-.
-There is no explicit right margin setting;
+There is no setting for the right margin;
 the combination of page offset
 .CW \[rs]n[PO]
 and line length
 .CW \[rs]n[LL]
-provides the information necessary to derive the right margin.
+determines it.
 .KE
 .
 .

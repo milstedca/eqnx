@@ -3534,8 +3534,8 @@ use unbreakable space or horizontal motion escape sequences (@code{\~},
 @endDefmac
 
 @Defmac {UL, [@Var{text} [@Var{post}]], ms}
-Typeset @var{text} with an underline.  Set @var{post}, if present, after
-@var{text} with no intervening space.
+Typeset @var{text} with an underline.  @var{post}, if present, is set
+after @var{text} with no intervening space.
 @endDefmac
 
 @Defmac {LG, , ms}
@@ -4199,10 +4199,9 @@ English: @samp{January}, @samp{February}, and so on.
 @cindex @file{ms} macros, page layout
 @cindex page layout [@file{ms}]
 
-@file{ms}'s default page layout is simple: it arranges text a single
-column with the page number centered between hyphens in a header on each
-page except the first.  It produces no footers.  You can customize this
-arrangement extensively.
+@file{ms}'s default page layout arranges text in a single column with
+the page number between hyphens centered in a header on each page except
+the first, and produces no footers.  You can customize this arrangement.
 
 @menu
 * ms Headers and Footers::
@@ -4288,11 +4287,10 @@ Redefine this macro to create a different set of default tab stops.
 @subsubsection Margins
 @cindex @file{ms} macros, margins
 
-Control margins using registers.  See ``Margin Settings'' in @ref{ms
-Document Control Settings}.  There is no explicit right margin setting;
-the combination of page offset @code{\n[PO]} and line length
-@code{\n[LL]} provides the information necessary to derive the right
-margin.
+Control margins using the registers summarized in ``Margin settings'' in
+@ref{ms Document Control Settings} above.  There is no setting for the
+right margin; the combination of page offset @code{\n[PO]} and line
+length @code{\n[LL]} determines it.
 
 @c ---------------------------------------------------------------------
 

@@ -1138,10 +1138,9 @@ Typeset
 .I text
 with an underline.
 .
-Set
 .I post,
 if present,
-after
+is set after
 .I text
 with no intervening space.
 .
@@ -1958,17 +1957,16 @@ Redefine this macro to create a different set of default tab stops.
 .SS Margins
 .\" ====================================================================
 .
-Control margins using registers.
+Control margins using the registers summarized in the \[lq]Margins\[rq]
+portion of the table in section \[lq]Document control settings\[rq]
+above.
 .
-These are summarized in the \[lq]Margin settings\[rq] table in
-subsection \[lq]Document control settings\[rq] above.
-.
-There is no explicit right margin setting;
+There is no setting for the right margin;
 the combination of page offset
 .B \[rs]n[PO]
 and line length
 .B \[rs]n[LL]
-provides the information necessary to derive the right margin.
+determines it.
 .
 .
 .\" ====================================================================

@@ -12932,10 +12932,9 @@ the next iteration.
 
 A @dfn{macro} is a stored collection of text and control lines that can
 be interpolated multiple times.  Use macros to define common operations.
-Macros are called in the same way that requests are invoked.
-@xref{Strings}, for a (limited) alternative syntax to call macros.
-While requests exist for the purpose of creating macros, simply calling
-an undefined macro, or interpolating it as a string, will cause it to be
+Macros are called in the same way that requests are invoked.  While
+requests exist for the purpose of creating macros, simply calling an
+undefined macro, or interpolating it as a string, will cause it to be
 defined as empty.  @xref{Identifiers}.
 
 @Defreq {de, name [@Var{end}]}
@@ -13582,8 +13581,8 @@ available.  They are reckoned in ems---not vees---to maintain continuity
 with their original purpose of moving relative to the size of the type
 rather than the distance between text baselines (vees).@footnote{At the
 @code{grops} defaults of 10-point type on 12-point vertical spacing, the
-difference between half a vee and half an em can be subtle: large
-spacings like @samp{.vs 3v} make it obvious.}
+difference between half a vee and half an em can be subtle:@: large
+spacings like @samp{.vs .5i} make it obvious.}
 
 @DefescList {\\r, , , }
 @DefescItemx {\\u, , , }
@@ -13670,8 +13669,7 @@ Move right by the width of a numeral in the current font.
 @endDefesc
 
 Horizontal motions are not discarded at the end of an output line as
-word and supplementary inter-sentence spaces are.  @xref{Manipulating
-Filling and Adjustment}.
+word spaces are.  @xref{Breaking}.
 
 @DefescList {\\w, @code{'}, anything, @code{'}}
 @DefregItemx {st}

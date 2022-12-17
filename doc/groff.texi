@@ -3259,14 +3259,6 @@ insertion of vertical space in the amount stored in the @code{PD}
 register, except at page or column breaks.  Alternatively, a blank input
 line breaks the output line and vertically spaces by one vee.
 
-The @code{PORPHANS} register defines the minimum number of initial lines
-of any paragraph that must be kept together to avoid isolated lines at
-the bottom of a page.  If a new paragraph is started close to the bottom
-of a page, and there is insufficient space to accommodate
-@samp{\[rs]n[PORPHANS]} lines before an automatic page break, then a
-page break is forced before the start of the paragraph.  This is a GNU
-extension.
-
 @Defmac {LP, , ms}
 Set a paragraph without any (additional) indentation.
 @endDefmac

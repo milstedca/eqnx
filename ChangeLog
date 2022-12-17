@@ -1,3 +1,9 @@
+2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/tbl/table.cpp: Trivially refactor.  Rename
+	{portion of} internal register to include an interword hyphen
+	for readability.
+
 2022-12-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Change default line length to 6.5 inches.

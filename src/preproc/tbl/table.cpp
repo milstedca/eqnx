@@ -67,7 +67,7 @@ const int DEFAULT_COLUMN_SEPARATION = 3;
 #define SAVED_HYPHENATION_SPACE_REG PREFIX "hyphspace"
 #define SAVED_NUMBERING_LINENO PREFIX "linenumber"
 #define SAVED_NUMBERING_SUPPRESSION_COUNT PREFIX "linenumbersuppresscnt"
-#define STARTING_PAGE_REG PREFIX "startingpage"
+#define STARTING_PAGE_REG PREFIX "starting-page"
 #define IS_BOXED_REG PREFIX "is-boxed"
 #define PREVIOUS_PAGE_REG PREFIX "previous-page"
 

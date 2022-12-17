@@ -3269,12 +3269,14 @@ or uppercase
 version
 (if one exists).
 .
-.I groff
-special characters
+Special characters
 (see
 .MR groff_char @MAN7EXT@ )
-can be used and the output will usually transform in the expected way
-due to the regular glyph naming convention for accented characters.
+will often transform in the expected way due to the regular naming
+convention for accented characters.
+.
+When they do not,
+use substrings and/or catenation.
 .
 .IP
 .RS

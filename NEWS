@@ -71,8 +71,8 @@ o New requests `stringdown` and `stringup` are available.  These change
   its lowercase or uppercase version (if any), respectively.  groff
   special characters (see the groff_char(7) man page) in the string will
   often transform in the expected way due to the regular naming
-  convention of the special character escape sequences for accented
-  letters.  When they do not, use substrings and/or concatenation.
+  convention for accented letters.  When they do not, use substrings
+  and/or catenation.
 
 o The `ab` request no longer writes "User Abort." to the standard error
   stream if given no arguments.

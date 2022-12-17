@@ -12315,12 +12315,11 @@ index@tie{}@minus{}2, and so on.
 @cindex lowercasing a string (@code{stringdown})
 @cindex up-casing a string (@code{stringup})
 @cindex down-casing a string (@code{stringdown})
-Alter the string named @var{str} by replacing each of its bytes with
-its lowercase (@code{stringdown}) or uppercase (@code{stringup}) version
-(if one exists).  GNU @code{troff} special characters (see the
-@cite{groff_char@r{(7)}} man page) can be used and the output will
-usually transform in the expected way due to the regular glyph naming
-convention for accented characters.
+Alter the string named @var{str} by replacing each of its bytes with its
+lowercase (@code{stringdown}) or uppercase (@code{stringup}) version (if
+one exists).  Special characters in the string will often transform in
+the expected way due to the regular naming convention for accented
+characters.  When they do not, use substrings and/or catenation.
 
 @Example
 .ds resume R\['e]sum\['e]

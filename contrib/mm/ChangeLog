@@ -1,3 +1,11 @@
+2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (let*mt-sign): Check strings populated by optional
+	arguments to `AU` macro for existence before interpolating them.
+
+	Fixes <https://savannah.gnu.org/bugs/?24049>.  Thanks to Werner
+	Lemberg for the report.
+
 2022-11-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* mse.tmac: Set `pg*footer-size` to four vees, not four basic

@@ -3333,11 +3333,16 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .ne \\n[cov*au]u*4v
 .ie \\n[.$]>1 .nr let*k 1
 .el .nr let*k \\n[cov*au]
-.ds let*tmp \\*[cov*au!\\n[let*k]!3]-\\*[cov*au!\\n[let*k]!4]-
+.ds let*tmp \" empty
+.if d cov*au!\\n[let*k]!3 \{\
+.	as let*tmp \\*[cov*au!\\n[let*k]!3]\"
+.	if d cov*au!\\n[let*k]!4 \
+.		as let*tmp -\\*[cov*au!\\n[let*k]!4]-\"
+.\}
 .nr let*i 0 1
 .while \\n+[let*i]<=\\n[cov*au] \{\
-.	if \\n[let*i]>1 .as let*tmp /
-.	as let*tmp \\*[cov*au!\\n[let*i]!2]
+.	if \\n[let*i]>1 .as let*tmp /\"
+.	if d cov*au!\\n[let*i]!2 .as let*tmp \\*[cov*au!\\n[let*i]!2]\"
 .\}
 .if !''\\$1' .as let*tmp -\\$1
 .in (u;\\n[.l]/2)

@@ -1,5 +1,11 @@
 2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/doc.tmac: Trivially refactor.  Relocate handling of `D`
+	command-line reigster to prepare for greater synchronization
+	with groff man(7).
+
+2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/table.cpp: Trivially refactor.  Rename
 	{portion of} internal register to include an interword hyphen
 	for readability.

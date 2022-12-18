@@ -95,9 +95,6 @@
 .\" Use -rCT=1 to force capitalization of page titles in headers.
 .if !r CT .nr CT 0
 .
-.\" Use -rD=1 for double-sided printing.
-.if !r D .nr D 0
-.
 .\" Use -rcR=0 for multiple pages instead of a single, very long page.
 .if !r cR \{\
 .  if t .nr cR 0
@@ -109,6 +106,9 @@
 .  nr 3usekeeps 0
 .el \
 .  nr 3usekeeps 1
+.
+.\" Use -rD=1 for double-sided printing.
+.if !r D .nr D 0
 .
 .\" TODO: Implement HF string.
 .

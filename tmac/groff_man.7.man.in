@@ -3106,10 +3106,23 @@ can be any of the following.
 .SS History
 .\" ====================================================================
 .
-Unix Version\~7 (1979) introduced the
+.MT m.douglas.mcilroy@dartmouth.edu
+M.\& Douglas McIlroy
+.ME
+designed,
+implemented,
+and documented the AT&T
 .I man
-macro package and supported the macros listed in this page not described
-as extensions,
+macros
+for
+Unix Version\~7 (1979) and employed them
+to edit the first volume of its
+.IR "Programmer's Manual" ,
+a compilation of all man pages supplied by the system.
+.
+That
+.I man
+supported the macros listed in this page not described as extensions,
 except
 .BR .P ,
 .BR .SB ,
@@ -3125,6 +3138,8 @@ and
 .BR S ;
 no registers were documented.
 .
+.
+.P
 .B .UC
 appeared in 3BSD (1980) and
 .B .P
@@ -3176,12 +3191,20 @@ Ninth Edition Research Unix (1986) introduced
 and
 .BR .EE .
 .
-SunOS\~4.0 (1988) may have been the first to support
-.BR .SB .
-.\" ...which appeared in a few man pages distributed in 4.3BSD-Reno and
-.\" 4.4BSD even though BSD was already transitioning to mdoc(7) by that
-.\" time and did not support the macro.  SunOS 4.0.3 (May 1989)
-.\" contained over 2,100 uses of .SB.
+.\" These inferences are based on inspection of SunOS 2.0 (May 1985),
+.\" 3.2 (September 1986), 3.5 (January 1988), and 4.0 (December 1988)
+.\" tape archives (only).
+SunOS\~2.0 (1985) recognized
+.BR C ,
+.BR D ,
+.BR P ,
+and
+.B X
+registers.
+.
+SunOS\~4.0 (1988) added the
+.B .SB
+macro.
 .
 .I groff
 1.20 (2009) originated
@@ -3203,6 +3226,8 @@ in 2020.
 .\"  36cd4c58c1346375b98f517fb8568be5bb47618d
 .
 .
+.br
+.ne 4v
 .\" ====================================================================
 .SH Options
 .\" ====================================================================
@@ -3649,6 +3674,8 @@ file.
 This can be achieved by placing one or both of following requests at the
 end of the site-local file.
 .
+.br
+.ne 3v
 .RS
 .RS
 .EX
@@ -4030,30 +4057,13 @@ _endif()dnl
 .SH Authors
 .\" ====================================================================
 .
-.MT m.douglas.mcilroy@dartmouth.edu
-M.\& Douglas McIlroy
-.ME
-designed,
-implemented,
-and documented the AT&T
-.I man
-macros,
-employing them to edit the first volume of the Seventh Edition Unix
-manual,
-a compilation of all man pages supplied by the system.
-.
-.
-.P
-The GNU version of the
+The GNU implementation of the
 .I man
 macro package was written by James Clark;
-he added the
-.BR C ,
-.BR D ,
-.BR P ,
-and
-.B X
-registers. \" sometime before 1.02
+.\" by 1.01
+beyond Version\~7 Unix compatibility,
+he supported the SunOS extensions listed in subsection \(lqHistory\(rq
+above.
 .
 .MT wl@\:gnu\:.org
 Werner Lemberg
@@ -4109,6 +4119,8 @@ and
 Robinson. \" 1.23: the MR for non-groffs
 .
 .
+.br
+.ne 3v
 .P
 This document was originally written for the Debian GNU/Linux system by
 .MT sgk@\:debian\:.org

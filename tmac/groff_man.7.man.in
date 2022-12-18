@@ -3500,9 +3500,9 @@ calls visible in the document text produced by link-capable drivers.
 .
 .TP
 .BI \-rX p
-After
+Number successors of
 .RI page\~ p ,
-number pages as
+as
 .IR p a,
 .IR p b,
 .IR p c,

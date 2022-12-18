@@ -5056,7 +5056,7 @@ Setting the
 .Ql X
 register to a page number
 .Ar p
-causes subsequent pages to be numbered as
+numbers its successors as
 .Ar p Ns Li a ,
 .Ar p Ns Li b ,
 .Ar p Ns Li c ,

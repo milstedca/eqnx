@@ -1371,11 +1371,15 @@ contains unsupported escape sequence
 .    ie (\n[FT] : (\n[FT] = 0)) \
 .      ds an-msg non-negative footer distance: \n[FT]u\*[an*help]\"
 .    el \{\
-.      ie (-(\n[FT]) > (\n[.p] / 2)) \
-.        ds an-msg implausibly large footer distance: \n[FT]u\*[an*help]\"
+.      ie (-(\n[FT]) > (\n[.p] / 2)) \{\
+.        ds an-msg implausibly large footer distance:\"
+.        as an-msg " \n[FT]u\*[an*help]\"
+.      \}
 .      el \
-.        if (-(\n[FT]) < 1v) \
-.          ds an-msg implausibly small footer distance: \n[FT]u\*[an*help]\"
+.        if (-(\n[FT]) < 1v) \{\
+.          ds an-msg implausibly small footer distance:\"
+.          as an-msg " \n[FT]u\*[an*help]\"
+.        \}
 .    rm an*help
 .    rr an*tmp
 .    \}

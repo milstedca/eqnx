@@ -1,3 +1,8 @@
+2022-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/an.tmac: Fix code style nit: use `as` requests to
+	avoid overlong input lines.
+
 2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/doc.tmac: Inform user we're ignoring their "-rD1" setting

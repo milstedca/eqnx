@@ -3260,7 +3260,9 @@ This is the default for terminal and HTML devices.
 .
 Use
 .B \-rcR=0
-to disable it.
+to disable it on terminal devices;
+on HTML devices,
+it cannot be disabled.
 .
 .
 .TP

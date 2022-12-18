@@ -4927,6 +4927,9 @@ to zero while calling
 .
 .Dl groff \-Tlatin1 \-rcR=0 \-mdoc foo.man > foo.txt
 .
+On HTML devices,
+it cannot be disabled.
+.
 .
 .Pp
 Section headings

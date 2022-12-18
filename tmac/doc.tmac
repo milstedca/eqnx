@@ -107,8 +107,15 @@
 .el \
 .  nr 3usekeeps 1
 .
-.\" Use -rD=1 for double-sided printing.
-.if !r D .nr D 0
+.\" double-sided layout
+.ie !r D \
+.  nr D 0
+.el \
+.  if \n[D] \
+.    if \n[doc-is-output-html] \{\
+.       tm mdoc: ignoring double-sided layout in HTML output
+.       nr D 0
+.    \}
 .
 .\" TODO: Implement HF string.
 .

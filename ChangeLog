@@ -1,5 +1,10 @@
 2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/doc.tmac: Inform user we're ignoring their "-rD1" setting
+	if also formatting HTML; parallels groff man(7) behavior.
+
+2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/doc.tmac: Trivially refactor.  Relocate handling of `D`
 	command-line reigster to prepare for greater synchronization
 	with groff man(7).

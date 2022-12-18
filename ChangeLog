@@ -1,5 +1,18 @@
 2022-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Support `FT` register.
+
+	* tmac/doc.tmac (initialization): Add logic supporting `FT`
+	register just as our man(7) implementation does.
+	* tmac/mdoc/doc-common (doc-set-up-titles): Plant footer trap in
+	validated user-requested location.
+	* tmac/groff_mdoc.7.man (Options): Document it.
+	* NEWS: Update item.
+
+	Fixes part of <https://savannah.gnu.org/bugs/?63046>.
+
+2022-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac: Fix code style nit: use `as` requests to
 	avoid overlong input lines.
 

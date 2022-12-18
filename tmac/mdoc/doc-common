@@ -253,8 +253,9 @@
 .
 .\" NS doc-set-up-titles macro
 .\" NS   install and initialize header and footer support
-.\"
-.\" TODO: Support man(7)'s `FT` register.
+.\" NS
+.\" NS local variables:
+.\" NS   doc-footer-location
 .
 .eo
 .de doc-set-up-titles
@@ -262,8 +263,11 @@
 .
 .  if !\n[cR] \{\
 .    wh 0 doc-header
-.    wh -1.0i doc-break-body-text
-.    wh -.5i doc-footer
+.    ie r FT .nr doc-footer-location \n[FT]
+.    el      .nr doc-footer-location (-.5i)
+.    wh \n[doc-footer-location]u doc-footer
+.    wh (\n[doc-footer-location]u - .5i) doc-break-body-text
+.    rr doc-footer-location
 .  \}
 .
 .  e@ doc-end-macro

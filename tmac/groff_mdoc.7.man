@@ -4965,6 +4965,20 @@ swapping places with the arguments to
 .
 .
 .Pp
+The value of the
+.Ql FT
+register determines the footer's distance from the page bottom;
+this amount is always negative and should specify a scaling unit.
+.
+At one half-inch above this location,
+the page text is broken before writing the footer.
+.
+It is ignored if continuous rendering is enabled.
+.
+The default is \-0.5i.
+.
+.
+.Pp
 Normally,
 automatic hyphenation is enabled using a mode appropriate to the
 .Xr groff
@@ -5052,10 +5066,7 @@ request in
 The
 .Ql HF
 string
-and
-.Ql FT
-register
-are reserved for potential future compatibility with
+is reserved for potential future compatibility with
 .Xr groff_man @MAN7EXT@
 page rendering options.
 .

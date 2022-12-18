@@ -117,6 +117,44 @@
 .       nr D 0
 .    \}
 .
+.\" footer distance
+.\"
+.\" Unlike most of these parameters, we do not set a default for FT; the
+.\" doc-set-up-titles macro places page location traps only if not
+.\" continuously rendering.
+.if r FT \{\
+.  \" Validate it.  Continuous rendering ignores FT.  Measuring a footer
+.  \" distance from the page top isn't done.  A footer distance of over
+.  \" half the page length is unlikely.  A footer distance of less than
+.  \" one line height is too.
+.  ie \n[cR] \
+.    ds doc-msg footer distance when continuously rendering\"
+.  el \{\
+.    nr doc-tmp 1v
+.    ds doc-help " (1v=\n[doc-tmp]u)\"
+.    ie (\n[FT] : (\n[FT] = 0)) \
+.      ds doc-msg non-negative footer distance: \n[FT]u\*[doc-help]\"
+.    el \{\
+.      ie (-(\n[FT]) > (\n[.p] / 2)) \{\
+.        ds doc-msg implausibly large footer distance:\"
+.        as doc-msg " \n[FT]u\*[doc-help]\"
+.      \}
+.      el \
+.        if (-(\n[FT]) < 1v) \{\
+.          ds doc-msg implausibly small footer distance:\"
+.          as doc-msg " \n[FT]u\*[doc-help]\"
+.        \}
+.    rm doc-help
+.    rr doc-tmp
+.    \}
+.  \}
+.  if d doc-msg \{\
+.    tm mdoc: ignoring \*[doc-msg]
+.    rr FT
+.    rm doc-msg
+.  \}
+.\}
+.
 .\" TODO: Implement HF string.
 .
 .\" \n[HY] is recognized for groff_man(7) compatibility, particuarly via

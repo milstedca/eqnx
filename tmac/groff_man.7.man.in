@@ -4014,7 +4014,8 @@ font-dependent
 escape sequence.
 .
 We discourage the use of these;
-they usually crowd the dots into a single character cell,
+on terminals,
+they may crowd the dots into a half-width character cell,
 and will not render at all if the output device doesn't have the glyph.
 .
 In syntax synopses,

@@ -4607,9 +4607,13 @@ and include a specimen with its provenance.
 .It Li .Bt
 formats boilerplate text.
 .
-.Bd -ragged -offset indent
+.\" XXX: .Bt get parsed (and measured) even _with_ a leading dot.  Is
+.\" that documented?
+.Bl -tag -width \&.Bt -offset indent
+.It Li .Bt
+\[->]
 .Bt
-.Ed
+.El
 .
 .
 .Pp
@@ -4729,15 +4733,19 @@ toggles argument-spacing mode.
 .
 .Pp
 Its default width is 8n.
-.\" The package demands it, but how is that meaningful?
+.\" XXX: The package demands it, but how is that meaningful?
 .
 .
 .It Li .Ud
 formats boilerplate text.
 .
-.Bd -ragged -offset indent
+.\" XXX: .Ud get parsed (and measured) even _with_ a leading dot.  Is
+.\" that documented?
+.Bl -tag -width \&.Ud -offset indent
+.It Li .Ud
+\[->]
 .Ud
-.Ed
+.El
 .
 .
 .Pp

@@ -1610,7 +1610,7 @@ a segment type of
 .b C
 is assumed.
 If a header is defined,
-the footer is replaced with it
+it replaces the footer
 on the first page
 of each chapter.
 If a title
@@ -1642,8 +1642,8 @@ if the segment type is
 .b A
 or
 .b RA.
-Increment \" ...except for abstract and bibliography segments
-and output the chapter number.
+The chapter number
+is incremented and output. \" except for abstract and bibliography segs
 If a chapter title
 .i T
 is present,

@@ -202,7 +202,7 @@ which double-quotes its arguments.
 .El
 .
 .
-.Ss "Macro usage"
+.Ss Usage
 .
 An
 .Xr mdoc
@@ -281,14 +281,12 @@ see subsection
 .Sx "Extended arguments"
 below.
 .
-Neutral quotes
+Neutral double quotes
 .Li \[dq]
-can be used to group multiple words into an argument.
-.
-Almost all macros handle quoted arguments
-(see subsection
+can be used to group multiple words into an argument;
+see subsection
 .Sx "Passing space characters in an argument"
-below).
+below.
 .
 .
 .Pp
@@ -706,12 +704,7 @@ The first items in the template are the commands
 and
 .Pf . Ic \&Os .
 .
-These correspond to the document date;
-the page topic and section of the manual to which the page belongs;
-and the project or package supplying the page,
-or the operating system for which it is developed.
-.
-These commands identify the page and are discussed below in section
+They identify the page and are discussed below in section
 .Sx "Title macros" .
 .
 .

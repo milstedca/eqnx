@@ -648,24 +648,18 @@ before the spaces.
 _endif()dnl
 .IP
 .\" Also see subsection "History" below...
-These macros are extensions,
-introduced in Ninth Edition Research Unix,
-to the original
-.I man
-package.
+These macros are extensions introduced in Ninth Edition Research Unix.
 .
-Many systems running
-AT&T,
+Systems running that
+.IR troff , \" AT&T Research Unix
+or those from
+DWB,
 Heirloom Doctools,
 or Plan\~9
 .I troff
 support them.
-.\" Solaris 10 troff does not support .EX/.EE.
-.\"
-.\" Plan 9 troff does, but its implementation doesn't manipulate filling
-.\" or hyphenation, so AT&T Unix's probably didn't either.
-.\"
-.\" Neatroff doesn't ship (m)an macros.
+.\" Solaris 10 troff does not support .EX/.EE.  Neatroff doesn't ship
+.\" (m)an macros.
 .
 To be certain your page will be portable to systems that do not,
 copy their definitions from the

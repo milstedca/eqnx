@@ -248,14 +248,13 @@ _endif()dnl
 .SS "Macro reference preliminaries"
 .\" ====================================================================
 .
-Each macro is described in a tagged paragraph.
+A tagged paragraph describes each macro.
 .
-Closely related macros,
-such as
+We present coupled pairs together,
+as with
 .B .EX
 and
-.BR .EE ,
-are grouped together.
+.BR .EE .
 .
 .
 _ifstyle()dnl
@@ -1372,6 +1371,8 @@ angle brackets.
 _ifstyle()dnl
 .
 .
+.br
+.ne 6v
 .IP
 When rendered by
 .I groff
@@ -2049,6 +2050,8 @@ only the former affects the tag,
 but both affect the text of the paragraph.
 .
 .
+.br
+.ne 3v
 .P
 This ordinary
 .RB ( .P )
@@ -2525,9 +2528,10 @@ The next line is interpreted as usual and can `include' a macro call
 .BI \e newline\/\c
 ).
 .
-This escape sequence is useful when three different font styles are
+.B \(rsc
+is useful when three font styles are
 needed in a single word,
-as in a command synopsis,
+as in a command synopsis.
 .
 .
 .RS
@@ -2541,10 +2545,10 @@ as in a command synopsis,
 .
 .
 .IP
-or on a single line,
-as in
+It also helps when changing font styles in
 .BR .EX / .EE
-examples.
+examples,
+since they are not filled.
 .
 .
 .RS
@@ -3667,8 +3671,8 @@ or to permit their override with a user-specific
 .I man.local
 file.
 .
-This can be achieved by placing one or both of following requests at the
-end of the site-local file.
+Place the requests below at the end of the site-local file to
+manifest courtesy.
 .
 .br
 .ne 3v

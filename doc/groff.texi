@@ -3556,7 +3556,7 @@ start @var{text} must start @var{pre} instead to have the desired
 effect.
 
 @CartoucheExample
-The course's students found one C language keyword
+The CS course's students found one C language keyword
 .CW static ) \%(
 most troublesome.
 @endCartoucheExample
@@ -3564,8 +3564,8 @@ most troublesome.
 The foregoing example produces output as follows.
 
 @CartoucheExample
-@r{The course's students found one C language keyword (@t{static}) most
-troublesome.}
+@r{The CS course's students found one C language keyword (@t{static})
+most troublesome.}
 @endCartoucheExample
 
 You can use the output line continuation escape sequence @code{\c} to
@@ -3573,10 +3573,10 @@ achieve the same result (@pxref{Line Continuation}).  It is also
 portable to older @file{ms} implementations.
 
 @CartoucheExample
-The course's students found one C language keyword
-(\c
-.CW \%static \c
-) most troublesome.
+The CS course's students found one C language keyword
+\%(\c
+.CW \%static )
+most troublesome.
 @endCartoucheExample
 
 @code{groff} @file{ms} also offers strings to begin and end super- and

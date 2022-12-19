@@ -1721,13 +1721,14 @@ Lf(CR) L.
 Input	Result
 T{
 .na
-The course\[aq]s students found one C language keyword
+.nh
+The CS course\[aq]s students found one C language keyword
 .br
 \&.CW static ) \[rs]%(
 .br
 most troublesome.
 T}	T{
-The course's students found one C language keyword
+The CS course's students found one C language keyword
 .CW static ) \%(
 most troublesome.
 T}
@@ -1738,9 +1739,9 @@ You can use the output line continuation escape sequence
 .CW \[rs]c
 to achieve the same result.
 .
-It is also portable to older
+It is also portable to some older
 .I ms
-implementations.
+implementations. \" DWB 3.3 ms: no; Heirloom Doctools ms: yes
 .
 .TS
 box center;
@@ -1749,18 +1750,19 @@ Lf(CR) L.
 Input	Result
 T{
 .na
-The course\[aq]s students found one C language keyword
+.nh
+The CS course\[aq]s students found one C language keyword
 .br
-(\[rs]c
+\[rs]%(\[rs]c
 .br
-\&.CW \[rs]%static \[rs]c
+\&.CW static )
 .br
-) most troublesome.
+most troublesome.
 T}	T{
-The course's students found one C language keyword
-(\c
-.CW \%static \c
-) most troublesome.
+The CS course's students found one C language keyword
+\%(\c
+.CW static )
+most troublesome.
 T}
 .TE
 .KE

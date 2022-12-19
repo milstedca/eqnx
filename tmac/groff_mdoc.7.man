@@ -96,9 +96,10 @@ using it.
 organizes its macros into
 .Em domains .
 .
-Those that lay out the page make up the
+The
 .Em "page structure domain"
-comprising titles,
+lays out the page and
+comprises titles,
 section headings,
 displays,
 and lists.
@@ -220,7 +221,7 @@ at the beginning of a line followed by its name.
 .\" Ingo Schwarze.
 .
 In this document,
-we often discuss a macro names with this leading dot to identify it
+we often discuss a macro name with this leading dot to identify it
 clearly,
 but the dot is
 .Em not
@@ -279,6 +280,10 @@ escape sequence;
 see subsection
 .Sx "Extended arguments"
 below.
+.
+Neutral quotes
+.Li \[dq]
+can be used to group multiple words into an argument.
 .
 Almost all macros handle quoted arguments
 (see subsection
@@ -343,13 +348,6 @@ precede it with the escape sequence
 \[->]
 .Op \&Fl s \&Ar bytes
 .El
-.
-The dummy character prevented the words
-.Dq \&Fl
-and
-.Dq \&Ar
-from being recognized as macros
-(and called).
 .
 .
 .Pp
@@ -514,7 +512,7 @@ to appear in the output,
 use
 .Ql \[rs]e
 or
-.Ql \[rs][rs]
+.Ql \[rs](rs
 instead.
 .
 Technically,
@@ -525,8 +523,10 @@ it works reliably as long as no
 request is used to change it,
 which should never happen in man pages.
 .
-.Ql \[rs][rs]
-is a special character escape sequence that explicitly formats the
+.Ql \[rs](rs
+is a
+.Xr groff
+special character escape sequence that explicitly formats the
 .Dq "reverse solidus"
 (backslash) glyph.
 .
@@ -561,8 +561,10 @@ Don't try to use the neutral double quote character
 to represent itself in an argument.
 .
 Use the special character escape sequence
-.Ql \[rs][dq]
+.Ql \[rs](dq
 to format it.
+.\" That's NOT a groffism, but showed up in the "post" and "Latin1"
+.\" devices of Tenth Edition Research Unix.
 .
 Further,
 this glyph should not be used for conventional quotation;
@@ -661,7 +663,7 @@ Use
 to construct a man page from the following template.
 .
 .Bd -literal -offset indent
-\&.\e" The following commands are required for all man pages.
+\&.\e" The following three macro calls are required.
 \&.Dd date
 \&.Dt topic [section-identifier [section-keyword-or-title]]
 \&.Os [package-or-operating system [version-or-release]]
@@ -673,7 +675,7 @@ to construct a man page from the following template.
 \&.\e" The next heading is used in sections 1-4, 6, 8, and 9.
 \&.Sh Synopsis
 \&.Sh Description
-\&.\e" Uncomment and populate the following sections where appropriate.
+\&.\e" Uncomment and populate the following sections as needed.
 \&.\e" .Sh \[dq]Implementation notes\[dq]
 \&.\e" The next heading is used in sections 2, 3, and 9.
 \&.\e" .Sh \[dq]Return values\[dq]
@@ -763,6 +765,26 @@ separating the items.
 .Xc
 .El
 .
+An alternative to using braces is to separately synopsize distinct
+operation modes,
+particularly if the list of valid optional arguments is dependent on the
+user's choice of a mandatory parameter.
+.
+.Bl -tag -offset indent -compact
+.It Nm ztar Xo
+.Cm c
+.Op Fl w Op Fl y | Fl z
+.Op Fl f Ar archive
+.Ar member No ...
+.Xc
+.It Nm ztar Xo
+.Cm x
+.Op Fl w Op Fl y | Fl z
+.Op Fl f Ar archive
+.Ar member No ...
+.Xc
+.El
+.
 .
 .Pp
 Most macros affect subsequent arguments until another macro or a newline
@@ -779,8 +801,9 @@ Consequently,
 a warning message is emitted for many commands if the first argument is
 itself a macro,
 since it cancels the effect of the preceding one.
-.\" XXX: I don't think it is made clear which macros eat only argument
-.\" and which ones eat until another macro is encountered. -- GBR
+.\" XXX: I don't think it is made clear which macros eat only one
+.\" argument and which ones devour tokens until another macro is
+.\" encountered. -- GBR
 .
 On rare occasions,
 you might want to format a word along with surrounding brackets as a
@@ -789,6 +812,10 @@ literal.
 .\" XXX: Why do we need the extra "\ " for the width parameter?  Without
 .\" it, the line breaks before the arrow on a 78n terminal.  But there
 .\" should be room anyway...bug?
+.\"
+.\" XXX: Arguably, Bq should respect the altered font family in a `Bl`,
+.\" but it sets the brackets and argument in Times roman.  Maybe all the
+.\" enclosures work this way.
 .Bl -tag -width "Li\ \[dq]ls\ [file]\[dq]\ " -offset indent -compact
 .It Li ".Li \[dq]ls [file]\[dq]"
 \[->]
@@ -860,6 +887,7 @@ Historically,
 .Ar date
 was written in U.S.\& traditional format,
 .Do
+.\" XXX: Em -> Ar when we de-Courierize .Ar.
 .Em Month day Li , Em year
 .Dc
 where
@@ -868,7 +896,7 @@ is the full month name in English,
 .Em day
 an integer without a leading zero,
 and
-.Ar year
+.Em year
 the four-digit year.
 .
 This localism is not enforced,

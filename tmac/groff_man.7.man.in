@@ -1654,6 +1654,8 @@ text on the next line,
 which can be further formatted with a macro,
 is set smaller and in bold.
 .
+This macro is an extension introduced in SunOS\~4.0.
+.
 .
 _ifstyle()dnl
 .IP

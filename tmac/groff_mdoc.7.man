@@ -1537,12 +1537,12 @@ The default width is 12n.
 .
 .
 .Pp
-In the
-.Em Authors
-section, the
-.Ql .An
-command causes a line break allowing each new name to appear on its own
-line.
+In a section titled
+.Dq Authors ,
+.Ql \&An
+causes a break,
+allowing each new name to appear on its own line.
+.
 If this is not desirable,
 .
 .Bd -literal -offset indent
@@ -1629,15 +1629,13 @@ declaration for a device interface in a section four manual.
 .
 .
 .Pp
-In the
-.Sx Synopsis
-section a
-.Ql .Cd
-command causes a line break before and after its arguments are printed.
+In a section titled
+.Dq Synopsis ,
+.Ql \&Cd
+causes a break before and after its arguments.
 .
 .
 .Pp
-.
 The default width is 12n.
 .
 .
@@ -1803,32 +1801,44 @@ It is neither callable nor parsed.
 .It Li ".Fd \[dq]#include <sys/types.h>\[dq]"
 .Fd "#include <sys/types.h>"
 .El
-.Pp
-In the
-.Sx Synopsis
-section a
-.Ql .Fd
-command causes a line break if a function has already been presented and a
-break has not occurred.
-This leaves a nice vertical space in between the previous function call and
-the declaration for the next function.
+.
 .
 .Pp
-The
-.Ql .In
-macro, while in the
-.Sx Synopsis
-section, represents the
+In a section titled
+.Dq Synopsis ,
+.Ql \&Fd
+causes a break if a function has already been presented and a break has
+not occurred,
+leaving vertical space between one function declaration and the next.
+.\" XXX: that's not what "break" means
+.
+.
+.Pp
+In a section titled
+.Dq Synopsis ,
+the
+.Ql \&In
+macro represents the
 .Li #include
-statement, and is the short form of the above example.
+statement,
+and is the short form of the above example.
+.
 It specifies the C\~header file as being included in a C\~program.
-It also causes a line break.
+.
+It also causes a break.
+.
+.
 .Pp
 While not in the
-.Sx Synopsis
-section, it represents the header file enclosed in angle brackets.
+.Dq Synopsis
+section,
+it represents the header file enclosed in angle brackets.
+.
+.
 .Pp
 .Dl Usage: .In Ao header file Ac
+.
+.
 .Pp
 .Bl -tag -width ".Li .In\ stdio.h" -compact -offset 15n
 .nr in-synopsis-section 1
@@ -1843,13 +1853,20 @@ section, it represents the header file enclosed in angle brackets.
 .Ss "Function Types"
 .
 This macro is intended for the
-.Sx Synopsis
+.Dq Synopsis
 section.
-It may be used anywhere else in the man page without problems, but its main
-purpose is to present the function type in kernel normal form for the
-.Sx Synopsis
-of sections two and three (it causes a line break, allowing the function
-name to appear on the next line).
+.
+It may be used anywhere else in the man page without problems,
+but its main purpose is to present the function type
+(in BSD kernel normal form)
+for the
+.Dq Synopsis
+of sections two and three.
+.
+(It causes a break,
+allowing the function name to appear on the next line.)
+.
+.
 .Pp
 .Dl Usage: .Ft Ao type Ac ...
 .Pp
@@ -1930,22 +1947,30 @@ Produces:
 .Fa "int buflen"
 .Fc
 .Ed
-.Pp
 .
-In the
-.Sx Synopsis
-section, the function will always begin at the beginning of line.
-If there is more than one function presented in the
-.Sx Synopsis
-section and a function type has not been given, a line break will occur,
-leaving a nice vertical space between the current function name and the one
-prior.
+.
+.Pp
+Typically,
+in a
+.Dq Synopsis
+section,
+the function delcaration will begin the line.
+.
+If more than one function is presented in the
+.Dq Synopsis
+section and a function type has not been given,
+a break will occur,
+leaving vertical space between the current and prior function names.
+.\" XXX: that's not what "break" means
+.
+.
 .Pp
 The default width values of
 .Ql .Fn
 and
 .Ql .Fo
-are 12n and 16n, respectively.
+are 12n and 16n,
+respectively.
 .
 .
 .Ss "Function Arguments"
@@ -2229,11 +2254,10 @@ below.
 .
 .
 .Pp
-In the
-.Em Library
-section an
-.Ql .Lb
-command causes a line break before and after its arguments are printed.
+In a section titled
+.Dq Library ,
+.Ql \&Lb
+causes a break before and after its arguments.
 .
 .
 .Ss Literals
@@ -2551,13 +2575,17 @@ Miscellaneous
 .
 .
 .Ss "Variable Types"
-.
 The
 .Ql .Vt
 macro may be used whenever a type is referenced.
-In the
-.Sx Synopsis
-section, it causes a line break (useful for old style variable declarations).
+.
+In a section titled
+.Dq Synopsis ,
+.Ql \&Vt
+causes a break
+(useful for old-style C variable declarations).
+.
+.
 .Pp
 .Dl Usage: .Vt Ao type Ac ...
 .Pp
@@ -3136,11 +3164,15 @@ style references.
 .Pp
 .Bl -tag -width 6n -offset indent -compact
 .It Li .Rs
-Reference start (does not take arguments).
-Causes a line break in the
-.Sx "See also"
-section and begins collection of reference information until the reference
-end macro is read.
+Reference start
+(does not take arguments).
+.
+In a section titled
+.Dq "See also" ,
+it causes a break
+and begins collection of reference information until the reference end
+macro is read.
+.
 .It Li .Re
 Reference end (does not take arguments).
 The reference is printed.
@@ -3763,12 +3795,14 @@ and
 .
 The only option that
 .Ql .Bk
-accepts currently is
+currently accepts is
 .Fl words
-(this is also the default if no option is given)
-which is useful for preventing line breaks in the middle of options.
+(also the default);
+this prevents breaks in the middle of options.
 .
-In the example for the make command-line arguments
+In the example for
+.Nm make
+command-line arguments
 (see
 .Sx What's in a Name ) ,
 the keep prevents
@@ -3852,24 +3886,31 @@ It has the following syntax:
 .
 .
 .Pp
-.
 .Bl -tag -width ".Fl file Ao Ar file name Ac " -compact
 .It Fl ragged
 Fill, but do not adjust the right margin (only left-justify).
+.
 .It Fl centered
 Center lines between the current left and right margin.
+.
 Note that each single line is centered.
+.
 .It Fl unfilled
-Do not fill; display a block of text as typed, using line breaks as
-specified by the user.
+Do not fill;
+break lines where their input lines are broken.
+.
 This can produce overlong lines without warning messages.
+.
 .It Fl filled
 Display a filled block.
 The block of text is formatted (i.e., the text is justified on both the left
 and right side).
+.
 .It Fl literal
 Display block with literal font (usually fixed-width).
+.
 Useful for source code or simple tabbed or spaced text.
+.
 .It Fl file Ao Ar file name Ac
 The file whose name follows the
 .Fl file

@@ -1013,9 +1013,9 @@ the following architecture keywords are defined.
 .\" need the space to keep this macro description to a single page in
 .\" PS/PDF(!).  Lists of information like this simply beg to bit-rot.
 .\" -- GBR
-.\"br
-.\"ps -2
-.\"vs -2
+.br
+.ps -2
+.vs -2
 .Bd -ragged -offset 4n
 .No acorn26 , acorn32 , algor , alpha , amd64 , amiga , amigappc ,
 .No arc , arm , arm26 , arm32 , armish , atari , aviion ,
@@ -1030,8 +1030,8 @@ the following architecture keywords are defined.
 .No shark , socppc , solbourne , sparc , sparc64 , sun2 , sun3 ,
 .No tahoe , vax , x68k , x86_64 , xen , zaurus
 .Ed
-.\"vs
-.\"ps
+.vs
+.ps
 .
 .
 .Pp

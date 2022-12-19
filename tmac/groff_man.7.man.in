@@ -364,11 +364,11 @@ and
 .BR .EE .
 .
 When none of the foregoing meets a structural demand,
-a region within a (sub)section can be manually inset within
+use
 .B .RS
 and
 .B .RE
-macros.
+macros to set a region within a (sub)section.
 .
 .
 .TP

@@ -2218,23 +2218,22 @@ and their results are:
 .It Li libz
 .Lb libz
 .El
-.Pp
 .
-Local, OS-specific additions might be found in the file
+.
+.Pp
+Site-specific additions might be found in the file
 .Pa mdoc.local ;
-look for strings named
-.Ql str\-Lb\-XXX .
-.Ql XXX
-then denotes the keyword to be used with the
-.Ql .Lb
-macro.
+see section
+.Sx Files
+below.
+.
+.
 .Pp
 In the
 .Em Library
 section an
 .Ql .Lb
 command causes a line break before and after its arguments are printed.
-.Pp
 .
 .
 .Ss Literals

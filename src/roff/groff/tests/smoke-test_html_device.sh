@@ -29,9 +29,10 @@ wail () {
 
 cleanup () {
   rm -f grohtml-[0-9]*-[12].png
+  trap - HUP INT QUIT TERM
 }
 
-trap 'trap - HUP INT QUIT TERM; cleanup; kill -s INT $$' \
+trap 'trap "" HUP INT QUIT TERM; cleanup; kill -s INT $$' \
   HUP INT QUIT TERM
 
 input='.TS
@@ -53,6 +54,8 @@ echo "checking production of inline image for eqn(1) equation" >&2
 output=$(echo "$input" | "$groff" -e -Thtml)
 echo "$output" | grep -q '<img src="grohtml-[0-9]\+-2.png"' || wail
 
+cleanup
+
 # We can't run remaining tests if the environment doesn't support UTF-8.
 test "$(locale charmap)" = UTF-8 || exit 77 # skip
 
@@ -71,7 +74,6 @@ echo "checking -C -k -Thtml" >&2
 printf "\('a" | "$groff" -C -k -Thtml | grep -qx '<p>&aacute;</p>' \
   || wail
 
-cleanup
 test -z "$fail"
 
 # vim:set autoindent expandtab shiftwidth=2 tabstop=2 textwidth=72:

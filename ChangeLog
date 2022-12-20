@@ -1,3 +1,17 @@
+2022-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tests]: Fix potential problem(s) in trap handler.
+
+	* src/roff/groff/tests/smoke-test_html_device.sh: Move call of
+	`cleanup` function from end of script to after the tests that
+	generate temporary files have been run, and before script
+	possibly exits with status 77 to skip some checks.  Within trap
+	handler, mask trapped signals while running handler.
+	(cleanup): Reset trap dispositions to default after removing
+	files; once the temporary files are gone, we no longer need a
+	trap handler.  One might already be running however, and this
+	ensures that its "suicide" ("kill -s INT $$") will succeed.
+
 2022-12-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mdoc]: Support `FT` register.

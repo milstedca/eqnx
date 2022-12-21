@@ -1746,7 +1746,7 @@ _ifstyle()dnl
 .IP
 .\" from src/roff/troff/troff.1.man
 .EX
-\&.BI \(rs\-r\(rs\(ti reg = n
+\&.BI \-r\~ register = numeric-expression
 .EE
 .RE
 .
@@ -1764,9 +1764,9 @@ _ifstyle()dnl
 .IP
 .\" from tmac/groff_ms.7.man
 .EX
-After invocation of
-\&.BR .NH ,
-the assigned number is made available in the strings
+After
+\&.B .NH
+is called,
 .EE
 .RE
 .
@@ -1782,13 +1782,11 @@ alternately.
 _ifstyle()dnl
 .RS
 .IP
-.\" from man/groff_tmac.5.man
+.\" from src/preproc/pic/pic.1.man
 .EX
-\&.I groff
-copes with this situation by searching for both
-\&.IB anything .tmac
-and
-\&.BI tmac. anything
+In places where
+\&.IB n th
+is allowed,
 .EE
 .RE
 .
@@ -1804,12 +1802,12 @@ alternately.
 _ifstyle()dnl
 .RS
 .IP
-.\" from src/utils/tfmtodit/tfmtodit.1.man
+.\" from src/preproc/pic/pic.1.man
 .EX
-The
-\&.I groff
-font file is written to
-\&.I font.
+Use GNU
+\&.IR pic \[aq]s
+\&.B figname
+command to change the name of the vbox.
 .EE
 .RE
 .
@@ -1825,11 +1823,13 @@ alternately.
 _ifstyle()dnl
 .RS
 .IP
-.\" from src/preproc/eqn/eqn.1.man
+.\" from src/preproc/pic/pic.1.man
 .EX
-and do not handle the
-\&.RB \e(lq "delim on" \e(rq
-statement specially.
+if
+\&.I file
+is
+\&.RB \[rs][lq] \[rs]\- \[rs][rq],
+the standard input stream is read.
 .RE
 .EE
 .
@@ -1845,9 +1845,12 @@ alternately.
 _ifstyle()dnl
 .RS
 .IP
-.\" from various pages
+.\" from src/preproc/pic/pic.1.man
 .EX
-\&.RI [ file\e\(ti .\e|.\e|.]
+\&.RI ( tpic
+was a fork of AT&T
+\&.I pic \" AT&T
+by Tim Morgan of the University of California at Irvine
 .EE
 .RE
 .

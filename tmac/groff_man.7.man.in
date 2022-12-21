@@ -536,7 +536,7 @@ a section called \(lqName\(rq or \(lqNAME\(rq must exist,
 must be the first section after the
 .B .TH
 call,
-and must contain only a line of the form
+and must contain only text of the form
 .RS \" Invisibly move left margin to current .IP indentation.
 .RS \" Now indent further, visibly.
 .IR topic [\c
@@ -652,7 +652,7 @@ These macros are extensions introduced in Ninth Edition Research Unix.
 Systems running that
 .IR troff , \" AT&T Research Unix
 or those from
-DWB,
+Documenter's Workbench,
 Heirloom Doctools,
 or Plan\~9
 .I troff
@@ -807,7 +807,7 @@ was used to write the first paragraph of this description of
 .BR .TP ,
 and
 .B .IP
-the subsequent ones.
+the subsequent one.
 _endif()dnl
 .
 .
@@ -1588,25 +1588,25 @@ for file and path names,
 for environment variables,
 for C data types,
 for enumeration or preprocessor constants in C,
-for variable (user-determined) portions of syntax synopses,
+for variant (user-replaceable) portions of syntax synopses,
 for the first occurrence (only) of a technical concept being introduced,
 for names of journals and of literary works longer than an article,
 and anywhere a parameter requiring replacement by the user is
 encountered.
 .
-An exception involves variable text in a context that is already marked
-up in italics,
-such as file or path names with variable components;
+An exception involves variant text in a context already typeset in
+italics,
+such as file or path names with replaceable components;
 in such cases,
 follow the convention of mathematical typography:
 set the file or path name in italics as usual
-but use roman for the variable part
+but use roman for the variant part
 (see
 .B .IR
 and
 .B .RI
 below),
-and italics again in running roman text when referring to the variable
+and italics again in running roman text when referring to the variant
 material.
 .
 .
@@ -1687,7 +1687,7 @@ Unicode\~13.0,
 or
 POSIX.1-2017;
 acronyms;
-and occurrences after the first of a technical term or piece of jargon.
+and occurrences after the first of a technical term.
 .
 .
 .P
@@ -2310,10 +2310,11 @@ The macros we have described as extensions
 .BR .TQ ,
 .BR .UR / .UE ,
 .BR .MT / .ME ,
+.BR .MR ,
 and
-.BR .MR )
+.BR .SB )
 should be used with caution,
-as they may not yet be built in to some viewer that is important to your
+as they may not be built in to some viewer that is important to your
 audience.
 .
 See
@@ -2809,7 +2810,7 @@ so it does not represent itself in output.
 .
 Also see
 .B \ee
-below.
+above.
 .
 .
 .TP
@@ -3124,8 +3125,7 @@ That
 .I man
 supported the macros listed in this page not described as extensions,
 except
-.BR .P ,
-.BR .SB ,
+.B .P
 .\" .SS was implemented in tmac.an but not documented in man(7).
 and the deprecated
 .B .AT
@@ -3501,7 +3501,7 @@ calls visible in the document text produced by link-capable drivers.
 .TP
 .BI \-rX p
 Number successors of
-.RI page\~ p ,
+.RI page\~ p
 as
 .IR p a,
 .IR p b,

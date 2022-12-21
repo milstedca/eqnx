@@ -338,9 +338,8 @@ group of macros.
 .
 .B .TH
 (title heading)
-identifies the document as a man page and defines information enabling
-.MR mandb 8
-or a similar tool to `index' it.
+identifies the document as a man page and configures the page headers
+and footers.
 .
 Section headings
 .RB ( .SH ),

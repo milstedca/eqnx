@@ -2671,15 +2671,20 @@ escape sequences do.
 .
 .P
 Several special characters are also widely portable.
+.\" meaning: groff, Heirloom Doctools troff, neatroff, mandoc
 .
 AT&T
 .I troff
-did not `define' the reverse solidus or quotation characters listed
-below,
-but any of its descendants,
+did not consistently `define' the characters listed below,
+.\" Only \-, \(em, and \(ga were documented in CSTR #54 (1976).  CSTR
+.\" #54 (1992) offers no _comprehensive_ list but shows \(en in its
+.\" PostScript DESC file example.  In DWB 3.3, \(aq was supported by the
+.\" "post" device, and \(dq by "pcl" and "Latin1".
+but its descendants,
 like Plan\~9 or Solaris
 .IR troff , \" Plan 9, Solaris
-can support them by defining their glyphs in font description files;
+can be made to support them by defining them in font description files,
+making them aliases of existing glyphs if necessary;
 see
 .MR groff_font @MAN5EXT@ .
 .

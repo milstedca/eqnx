@@ -2469,20 +2469,22 @@ omitting a partially collected line.
 .
 .TPx
 .REQ .bp
-Eject current page and begin new page.
+Break page and start a new one.
 .
 .TPx
 .REQ .bp "\[+-]N"
-Eject current page; next page number
+Break page,
+starting a new one numbered
 .IR \[+-]N .
 .
 .TPx
 .REQ .br
-Line break.
+Break output line.
 .
 .TPx
 .REQ .brp
-Break output line; adjust if applicable.
+Break output line;
+adjust if applicable.
 .
 .TPx
 .REQ .break

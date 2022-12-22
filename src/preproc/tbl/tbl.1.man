@@ -129,9 +129,13 @@ and
 .B .TE
 (table end).
 .
-Within each such
-.I table region,
-another description can be preceded with an input line beginning with
+Each such
+.I table region
+encloses one or more tables.
+.
+Within a table region,
+table descriptions beyond the first must each be preceded
+by an input line beginning with
 .BR .T& .
 .
 .
@@ -295,8 +299,9 @@ is also recognized.
 .
 .TP
 .B expand
-Spread the table horizontally to fill the space between the current
-indentation and the current line length by increasing column separation.
+Spread the table horizontally to fill the available space
+(line length minus indentation)
+by increasing column separation.
 .
 Ordinarily,
 a table is made only as wide as necessary to accommodate the widths of
@@ -306,12 +311,13 @@ its entries and its column separations
 When
 .B expand
 applies to a table that exceeds the available horizontal space,
-column separation is reduced as far as necessary\[em]even to zero.
+column separation is reduced as far as necessary
+(even to zero).
 .
 .I @g@tbl
 produces
 .I groff
-input that issues a diagnostic if this occurs.
+input that issues a diagnostic if such compression occurs.
 .
 The column modifier
 .B x
@@ -335,13 +341,15 @@ This option is ignored on terminal devices.
 .
 .TP
 .B nokeep
-Don't use diversions to prevent page breaks.
+Don't use
+.I roff
+diversions to manage page breaks.
 .
 Normally,
 .I @g@tbl
-attempts to prevent undesirable breaks in tables by using diversions.
+employs them to avoid breaking a page within a table row.
 .
-This can sometimes interact badly with macro packages' own use of
+This usage can sometimes interact badly with macro packages' own use of
 diversions\[em]when footnotes,
 for example,
 are employed.
@@ -1183,8 +1191,7 @@ Multiple text blocks can occur in a table row.
 .
 .
 .P
-Like other table entries,
-text blocks are formatted as was the text prior to the table,
+Text blocks are formatted as was the text prior to the table,
 modified by applicable column descriptors.
 .
 Specifically,
@@ -1202,7 +1209,7 @@ within its cell,
 but not its
 .I adjustment.
 .
-You can add
+Add
 .B na
 or
 .B ad

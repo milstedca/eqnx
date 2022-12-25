@@ -4910,16 +4910,14 @@ not interested in details.
 
 @acronym{AT&T} @code{troff} was designed to take input as it would be
 composed on a typewriter, including the teletypewriters used as early
-computer terminals, and relieve the user of having to be concerned
-during the drafting process with the precise line length that the final
-version of the document would use, where words should be hyphenated, and
-how to achieve straight margins on both the left and right sides of the
-page.  Early in its development, the program gained the ability to
-prepare output for a phototypesetter; a document could then be prepared
-for output to either a teletypewriter, a phototypesetter, or both.  GNU
-@code{troff} continues this tradition of permitting an author to compose
-a single master version of a document which can then be rendered for a
-variety of output formats or devices.
+computer terminals, and relieve the user drafting a document of concern
+with details like line length, hyphenation breaking, and the achievement
+of straight margins.  Early in its development, the program gained the
+ability to prepare output for a phototypesetter; a document could then
+be prepared for output to either a teletypewriter, a phototypesetter, or
+both.  GNU @code{troff} continues this tradition of permitting an author
+to compose a single master version of a document which can then be
+rendered for a variety of output formats or devices.
 
 @code{roff} input files contain text interspersed with instructions to
 control the formatter.  Even in the absence of such instructions, GNU

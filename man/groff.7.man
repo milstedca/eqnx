@@ -1570,8 +1570,13 @@ respectively.
 .
 AT&T
 .I troff \" AT&T
-did not define these special characters,
-but any of its descendants can be made to support them.
+did not consistently define these special characters,
+.\" It seems that AT&T troff never recognized \(rs, though DWB 3.3
+.\" defined \(bs as an alias of "\" on its "Latin1" device, in
+.\" deliberate(?) collision with the Bell System logo identifier.  It
+.\" also defined \(dq for several devices (pcl, Latin1, nroff, ...)
+.\" along with \(aq.
+but its descendants can be made to support them.
 .
 See
 .MR groff_font @MAN5EXT@ .

@@ -611,8 +611,8 @@ this is a
 .
 .
 .P
-When the last line of input text is also the last output line that can
-fit on the page,
+When the last line of input text corresponds to the last output line
+that fits on the page,
 the break caused by the end of input will also break the page,
 producing a useless blank one.
 .

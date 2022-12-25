@@ -5752,12 +5752,13 @@ place the next text baseline off the page.  Rather than let that happen,
 start a new one, and again set the drawing position to one vee below the
 page top; this is a @dfn{page break}.
 
-When the last line of input text is also the last output line that can
-fit on the page, the break caused by the end of input will also break
-the page, producing a useless blank one.  Macro packages keep users from
-having to confront this difficulty by setting ``traps'' (@pxref{Traps});
-moreover, all but the simplest page layouts tend to have headers and
-footers, or at least bear vertical margins larger than one vee.
+When the last line of input text corresponds to the last output line
+that fits on the page, the break caused by the end of input will also
+break the page, producing a useless blank one.  Macro packages keep
+users from having to confront this difficulty by setting ``traps''
+(@pxref{Traps}); moreover, all but the simplest page layouts tend to
+have headers and footers, or at least bear vertical margins larger than
+one vee.
 
 
 @c =====================================================================
@@ -6765,9 +6766,15 @@ double quote.
 
 In GNU @code{troff}'s @acronym{AT&T} compatibility mode, these
 characters remain available as @code{\(rs} and @code{\(dq},
-respectively.  @acronym{AT&T} @code{troff} did not define these special
-characters, but any of its descendants can be made to support them.
-@xref{Device and Font Description Files}.
+respectively.  @acronym{AT&T} @code{troff} did not consistently define
+these special characters,
+@c It seems that AT&T troff never recognized \(rs, though DWB 3.3
+@c defined \(bs as an alias of "\" on its "Latin1" device, in
+@c deliberate(?) collision with the Bell System logo identifier.  It
+@c also defined \(dq for several devices (pcl, Latin1, nroff, ...) along
+@c with \(aq.
+but its descendants can be made to support them.  @xref{Device and Font
+Description Files}.
 
 If even that is not feasible, options remain.  To obtain a literal
 escape character in a macro argument, you can simply type it if you

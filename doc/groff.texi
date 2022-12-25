@@ -12173,7 +12173,10 @@ document maintenance.
 @cindex spaces with @code{ds}
 @cindex @code{ds} request, and leading spaces
 An initial neutral double quote @code{"} in @var{contents} is stripped
-to allow embedding of leading spaces.
+to allow embedding of leading spaces.  Any other @code{"} is interpreted
+literally, but it is wise to use the special character escape sequence
+@code{\[dq]} instead if the string might be interpolated as part of a
+macro argument; see @ref{Calling Macros}.
 
 @c Examples should be more accessible than Unix nerd stuff like this,
 @c but in general document authors shouldn't want to use "straight"
@@ -12181,8 +12184,7 @@ to allow embedding of leading spaces.
 @c as these examples can get and not overrun the right margin in PDF.
 @Example
 .ds salutation "         Yours in a white wine sauce,\"
-.ds c-var-defn "    char build_date[]="2020-07-29";\"
-.ds sucmd sudo sh -c "fdisk -l /dev/sda > partitions"\"
+.ds c-var-defn "  char mydate[]=\[dq]2020-07-29\[dq];\"
 @endExample
 
 @cindex multi-line strings

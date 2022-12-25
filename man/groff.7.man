@@ -5165,6 +5165,14 @@ An initial neutral double quote
 .B \[dq]
 in the string contents is stripped to allow embedding of leading spaces.
 .
+Any other
+.B \[dq]
+is interpreted literally,
+but it is wise to use the special character escape sequence
+.B \[rs][dq]
+instead if the string might be interpolated as part of a macro argument;
+see section \[lq]Calling macros\[rq] above.
+.
 Strings are not limited to a single input line of text.
 .BI \[rs] newline
 works just as it does elsewhere.

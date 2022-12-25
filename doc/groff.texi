@@ -5739,7 +5739,7 @@ top to the bottom of the page.
 @dfn{Vertical spacing} is the distance between adjacent text baselines.
 Typographic tradition sets this quantity to 120% of the type size.  The
 initial drawing position is one unit of vertical spacing below the page
-top.  Typographers this unit a @slanted{vee}.
+top.  Typographers term this unit a @slanted{vee}.
 
 @cindex page break
 @cindex break, page

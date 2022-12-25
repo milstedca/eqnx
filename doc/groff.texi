@@ -8082,14 +8082,14 @@ To clearly present the next couple of requests, we must introduce the
 concept of ``productive'' input lines.  A @dfn{productive input line} is
 one that directly produces formatted output.  Text lines produce output,
 as do control lines containing requests like @code{tl} or escape
-sequences like @code{\D}.  Macro calls are not themselves productive,
-but their interpolated contents can be; macro calls may therefore be
-@emph{indirectly} productive.  An empty request, and requests and escape
-sequences that define registers or strings or alter the formatting
-environment (such as typeface changes) are @emph{not} productive.  The
-output line continuation escape sequence @code{\c} ``connects'' two
-input lines that would otherwise be counted separately.  @xref{Line
-Continuation}.
+sequences like @code{\D}.  Macro calls are not @emph{directly}
+productive, and thus not counted, but their interpolated contents can
+be.  Empty requests, and requests and escape sequences that define
+registers or strings or alter the formatting environment (as with
+changes to the size, face, height, slant, or color of the type) are
+not productive.  The output line continuation escape sequence @code{\c}
+``connects'' two input lines that would otherwise be counted separately.
+@xref{Line Continuation}.
 
 @Example
 @c .ll 56n
@@ -8307,8 +8307,8 @@ request in the absence of a hyphenation language is an error.
 The request is ignored if there are no parameters.
 @endDefreq
 
-These are known as hyphenation @emph{exceptions} in the expectation that
-most users will avail themselves of automatic hyphenation; these
+These are known as hyphenation @slanted{exceptions} in the expectation
+that most users will avail themselves of automatic hyphenation; these
 exceptions override any rules that would normally apply to a word
 matching a hyphenation exception defined with @code{hw}.
 

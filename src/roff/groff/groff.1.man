@@ -842,7 +842,7 @@ the size of the output medium can be set in its
 .I DESC
 file.
 .
-Most also recognize a command-line option
+Most output drivers also recognize a command-line option
 .B \-p
 to override the default dimensions and an option
 .B \-l

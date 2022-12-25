@@ -1590,8 +1590,8 @@ geographically appropriate.
 It is up to each macro package to respect the page dimensions configured
 in this way.
 
-For each output driver, the size of the output medium can be set in its
-@file{DESC} file.  Most output devices also recognize a command-line
+For each output device, the size of the output medium can be set in its
+@file{DESC} file.  Most output drivers also recognize a command-line
 option @option{-p} to override the default dimensions and an option
 @option{-l} to use landscape orientation.  @xref{DESC File Format}, for
 a description of the @code{papersize} keyword, which takes an argument

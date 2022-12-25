@@ -1416,7 +1416,7 @@ overrides @env{GROFF_TYPESETTER}.
 @tindex SOURCE_DATE_EPOCH@r{, environment variable}
 A timestamp (expressed as seconds since the Unix epoch) to use as the
 output creation timestamp in place of the current time.  The time is
-converted to human-readable form using @cite{ctime@r{(3)}} when the
+converted to human-readable form using @cite{localtime@r{(3)}} when the
 formatter starts up and stored in registers usable by documents and
 macro packages (@pxref{Built-in Registers}).
 
@@ -7670,10 +7670,10 @@ We present here a few built-in registers that are not described
 elsewhere in this manual; they have to do with invariant properties of
 GNU @code{troff}, or obtain information about the formatter's
 command-line options or the operating environment.  Date- and
-time-related registers are set to the local time as determined by
-@cite{ctime@r{(5)}} when the formatter launches.  This initialization
-can be overridden by @env{SOURCE_DATE_EPOCH} and @env{TZ}; see
-@ref{Environment}.
+time-related registers are set per the local time as determined by
+@cite{localtime@r{(3)}} when the formatter launches.  This
+initialization can be overridden by @env{SOURCE_DATE_EPOCH} and
+@env{TZ}; see @ref{Environment}.
 
 @table @code
 @item \n[.F]

@@ -1,3 +1,14 @@
+2022-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/groff.texi (Invoking groff, Built-in Registers):
+	* man/groff.7.man (Writable predefined registers):
+	* src/roff/groff/groff.1.man (Environment):
+	* src/roff/troff/troff.1.man (Environment): Replace erroneous
+	reference to ctime(3) with localtime(3).
+
+	Fixes <https://savannah.gnu.org/bugs/?63509>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
 2022-12-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tests]: Fix potential problem(s) in trap handler.

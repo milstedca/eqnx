@@ -5853,7 +5853,7 @@ sequences.
 .
 Date- and time-related registers are set to the local time as determined
 by
-.MR ctime 3
+.MR localtime 3
 when the formatter launches.
 .
 This initialization can be overridden by

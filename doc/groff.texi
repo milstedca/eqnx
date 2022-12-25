@@ -12115,7 +12115,7 @@ variable @var{name} (one-character name@tie{}@var{n}, two-character name
 handled as macro arguments are; recall @ref{Calling Macros}.  In
 contrast to macro calls, however, if a closing bracket @samp{]} occurs
 in a string argument, that argument must be enclosed in double quotes.
-@code{\\*} is interpreted even in copy mode (@pxref{Copy Mode}).  When
+@code{\*} is interpreted even in copy mode (@pxref{Copy Mode}).  When
 defining strings, argument interpolations must be escaped if they are to
 reference parameters from the calling context; @xref{Parameters}.
 

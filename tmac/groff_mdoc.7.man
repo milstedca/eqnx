@@ -3248,10 +3248,14 @@ produces
 .Re
 .Ed
 .
-.Ss "Trade Names (or Acronyms and Type Names)"
+.Ss "Trade Names or Acronyms"
 .
-The trade name macro prints its arguments in a smaller font.
-Its intended use is to imitate a small caps fonts for uppercase acronyms.
+The trade name macro prints its arguments at a smaller type size.
+.
+It is intended to imitate a small caps fonts for fully capitalized
+acronyms.
+.
+.
 .Pp
 .Dl Usage: .Tn Ao symbol Ac ...
 .Pp
@@ -5292,6 +5296,15 @@ and sometimes looks ridiculous if output lines are being filled.
 .Pp
 The list and display macros do not do any keeps and certainly should be
 able to.
+.
+.
+.Pp
+As of
+.Xr groff
+1.23,
+.Ql \&Tn
+no longer changes the type size;
+this functionality may return in the next release.
 .\" Note what happens if the parameter list overlaps a newline
 .\" boundary.
 .\" to make sure a line boundary is crossed:

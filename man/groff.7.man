@@ -5086,9 +5086,9 @@ then restore it.
 supports strings primarily for user convenience.
 .
 Conventionally,
-if a macro definition needs only to interpolate text,
-without invoking any requests or calling any other macros,
-a string is defined instead.
+if one would define a macro only to interpolate a small amount of text,
+without invoking requests or calling any other macros,
+one defines a string instead.
 .
 Only one string is predefined by the language.
 .
@@ -5172,6 +5172,9 @@ works just as it does elsewhere.
 The resulting string is stored
 .I without
 the newlines.
+.
+Care is therefore required when interpolating strings while filling is
+disabled.
 .
 It is not possible to embed a newline in a string that will be
 interpreted as such when the string is interpolated.

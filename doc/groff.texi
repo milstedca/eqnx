@@ -12070,9 +12070,10 @@ is the default.
 @cindex strings
 
 GNU @code{troff} supports strings primarily for user convenience.
-Conventionally, if a macro definition needs only to interpolate text,
-without invoking any requests or calling any other macros, a string is
-defined instead.  Only one string is predefined by the language.
+Conventionally, if one would define a macro only to interpolate a small
+amount of text, without invoking requests or calling any other macros,
+one defines a string instead.  Only one string is predefined by the
+language.
 
 @Defstr {.T}
 @stindex .T
@@ -12190,7 +12191,8 @@ to allow embedding of leading spaces.
 @cindex escaping newline characters, in strings
 Strings are not limited to a single input line of text.
 @code{\@key{RET}} works just as it does elsewhere.  The resulting string
-is stored @emph{without} the newlines.
+is stored @emph{without} the newlines.  Care is therefore required when
+interpolating strings while filling is disabled.
 
 @Example
 .ds foo This string contains \

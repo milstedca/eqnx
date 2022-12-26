@@ -14,7 +14,7 @@ _ifstyle()dnl
 ; that is,
 approximately the width of the letter \(lqn\(rq in the font current when
 the macro is called
-(see section \(lqNumerical Expressions\(rq in
+(see section \(lqNumeric Expressions\(rq in
 .MR groff @MAN7EXT@ )\c
 _endif()dnl
 \&.
@@ -3183,6 +3183,17 @@ which had been internal to Seventh Edition Unix
 .IR man .
 .\" ...as well as a PD register, which we use but don't expose.
 .
+.\" The SunOS inferences here and below are based on inspection of SunOS
+.\" 2.0 (May 1985), 3.2 (September 1986), 3.5 (January 1988), and 4.0
+.\" (December 1988) tape archives (only).
+SunOS\~2.0 (1985) recognized
+.BR C ,
+.BR D ,
+.BR P ,
+and
+.B X
+registers.
+.
 4.3BSD (1986) added
 .\" undocumented .DS and .DE macros for "displays", which are .RS/.RE
 .\" wrappers with filling disabled and vertical space of 1v before and
@@ -3197,17 +3208,6 @@ Ninth Edition Research Unix (1986) introduced
 .B .EX
 and
 .BR .EE .
-.
-.\" These inferences are based on inspection of SunOS 2.0 (May 1985),
-.\" 3.2 (September 1986), 3.5 (January 1988), and 4.0 (December 1988)
-.\" tape archives (only).
-SunOS\~2.0 (1985) recognized
-.BR C ,
-.BR D ,
-.BR P ,
-and
-.B X
-registers.
 .
 SunOS\~4.0 (1988) added the
 .B .SB
@@ -3585,14 +3585,9 @@ reloads each macro package as necessary.
 .
 .TP
 .I @MACRODIR@/\:\%an\-ext\:.tmac
-Definitions of macros described above as extensions
-.RB ( .SY / .YS ,
-.BR .TQ ,
-.BR .EX / .EE ,
-.BR .UR / .UE ,
-.BR .MT / .ME ,
-and
-.BR .MR )
+Except for
+.BR .SB ,
+definitions of macros described above as extensions
 are contained in this file;
 in some cases,
 they are simpler versions of definitions appearing in
@@ -4080,6 +4075,10 @@ supplied the
 and
 .B cR \" 1.17
 registers.
+.\" ...the latter a 4.3BSD-Reno mdoc(7) feature.
+.\" "Assume nroff on crt's [sic] only if cR==1"
+.\" https://minnie.tuhs.org/cgi-bin/utree.pl
+.\"   ?file=4.3BSD-Reno/share/tmac/tmac.doc
 .
 .MT kollar@\:alltel\:.net
 Larry Kollar

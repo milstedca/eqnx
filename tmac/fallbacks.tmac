@@ -161,23 +161,27 @@
 .fchar \[u2008] \^\" puncutation space
 .fchar \[u2009] \|\" thin space
 .fchar \[u200A] \^\" hair space
-.fchar \[u200B] \h'0'\" zero-width space
-.fchar \[u2010] -\:\" hyphen
-.fchar \[u2011] -\" non-breaking hyphen (won't break w/o .hcode or \:)
+.\" Mapping U+200B awaits resolution of Savannah #58958.
+.\"fchar \[u200B] \h'0'\" zero-width space
+.\" \[u2010] is always defined thanks to uniglyph.cpp.
+.\"fchar \[u2010] -\:\" hyphen
+.\" Mapping U+2011 awaits resolution of Savannah #63354.
+.\"fchar \[u2011] -\" non-breaking hyphen (won't break w/o .hcode or \:)
 .ie \n[fallbacks*troff-mode] \
-.  fchar \[u2012] \v'-.3m'\l'\w"\0"u\[ru]'\v'+.3m'\" figure dash
+.  fchar \[u2012] \^\v'-.3m'\l'\w"\0"u'\v'+.3m'\^\" figure dash
 .el \
 .  fchar \[u2012] \-
 .fchar \[u2013] \[en]\" en dash
 .fchar \[u2014] \[em]\" em dash
 .fchar \[u2015] \[em]\" horizontal bar (quotation dash)
-.fchar \[u2016] ||\" double vertical line (matrix norm)
+.fchar \[u2016] \[ba]\[ba]\" double vertical line (matrix norm)
 .if \n[fallbacks*troff-mode] \
 .  fchar \[u2017] \Z'\[ul]'\v'+.1m'\[ul]\v'-.1m'\" double low line
-.fchar \[u2018] \[oq]\" left single quotation mark
-.fchar \[u2019] \[cq]\" right single quotation mark
-.fchar \[u201C] \[lq]\" left double quotation mark
-.fchar \[u201D] \[rq]\" right double quotation mark
+.\" Mapping U+201[89CD] awaits resolution of Savannah #59932.
+.\"fchar \[u2018] \[oq]\" left single quotation mark
+.\"fchar \[u2019] \[cq]\" right single quotation mark
+.\"fchar \[u201C] \[lq]\" left double quotation mark
+.\"fchar \[u201D] \[rq]\" right double quotation mark
 .\" XXX: The next two are troublesome; see Savannah #63332.
 .\"fchar \[u2020] \[dg]\" dagger
 .\"fchar \[u2021] \[dd]\" double dagger

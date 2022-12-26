@@ -1,3 +1,18 @@
+2022-12-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tmac]: Revise "fallback" character definitions in several
+	respects for Unicode characters from General Punctuation block.
+
+	* tmac/fallbacks.tmac: Comment out fallbacks for U+200B, U+2010,
+	U+2011, and U+201[89CD], due to ineffectuality or apparent groff
+	bugs.  Redefine U+2012 fallback to include hair space (\^)
+	around synthetic figure dash.  Redefine U+2016 to use `\[ba]`
+	special characters instead of ordinary `|` characters to dodge
+	possible character translations by user.
+
+	Fixes part of <https://savannah.gnu.org/bugs/?63354>.  Thanks to
+	Dave Kemper for the (multifarious) discussion.
+
 2022-12-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/groff.texi (Invoking groff, Built-in Registers):

@@ -64,8 +64,9 @@ printable code points.
 .P
 AT&T
 .I troff
-in the 1970s faced a similar problem of typesetter devices with a glyph
-repertoire differing from that of the computers that controlled them.
+in the 1970s faced a similar problem:
+the available typesetter's glyph repertoire differed from that of the
+computers that controlled it.
 .
 Its solution was a form of escape sequence known as a
 .I special character
@@ -898,7 +899,7 @@ When using the AT&T special character syntax
 Entries marked with \[lq]***\[rq] denote glyphs used for mathematical
 purposes.
 .
-On typesetter devices,
+On typesetting devices,
 such glyphs are typically drawn from a
 .I special
 font
@@ -1445,7 +1446,7 @@ L Lf(CR) L Lx.
 .SS "Rules and lines"
 .\" ====================================================================
 .
-On typesetter devices,
+On typesetting devices,
 the font-invariant glyphs
 (see subsection \[lq]Brackets\[rq] above)
 .BR \[rs][br] ,
@@ -1469,7 +1470,7 @@ always accesses the underscore glyph in a font;
 .\" concern--what font doesn't support every ASCII codepoint these days?
 .BR \[rs][ul] ,
 by contrast,
-may be font-invariant on typesetter devices.
+may be font-invariant on typesetting devices.
 .
 .
 .P
@@ -1625,7 +1626,7 @@ The variants of the not sign may differ in appearance or spacing
 depending on the device and font selected.
 .
 Unicode does not encode a discrete \[lq]bitwise or\[rq] sign:
-on typesetter devices,
+on typesetting devices,
 it is drawn shorter than the bar,
 about the same height as a capital letter.
 .

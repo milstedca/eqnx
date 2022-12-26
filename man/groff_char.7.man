@@ -132,7 +132,7 @@ these exist for syntactical or historical reasons.
 and
 .B \e_
 are translated on input to the special character escape sequences
-.BR \e[aq] ,
+.BR \e[aa] ,
 .BR \e[ga] ,
 .BR \e[\-] ,
 and
@@ -970,13 +970,13 @@ L Lf(CR) L Lx.
 \[lB]	\e[lB]	u005B	left square bracket
 \[rs]	\e[rs]	u005C	reverse solidus
 \[rB]	\e[rB]	u005D	right square bracket
-\[ha]	\e[ha]	u005E	circumflex, caret, \[lq]hat\[rq] +
+\[ha]	\e[ha]	u005E	circumflex, caret, \[lq]hat\[rq]
 \[lC]	\e[lC]	u007B	left brace
 |	|	u007C	bar
 \[ba]	\e[ba]	u007C	bar
 \[or]	\e[or]	u007C	bitwise or +
 \[rC]	\e[rC]	u007D	right brace
-\[ti]	\e[ti]	u007E	tilde +
+\[ti]	\e[ti]	u007E	tilde
 .TE
 .
 .

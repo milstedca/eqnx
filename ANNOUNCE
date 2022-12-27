@@ -1,4 +1,5 @@
-[[ maintainer: send to info-gnu, platform-testers ]]
+[[ maintainer: send to platform-testers for betas/RCs;
+               info-gnu for releases ]]
 
 groff 1.23 release candidate 2, 1.23.0.rc2, is now available from GNU's
 alpha FTP site.  You may download the distribution archive from there.

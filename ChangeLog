@@ -1,3 +1,26 @@
+2022-12-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[mdoc]: Support `HF` string.
+
+	* tmac/doc.tmac (initialization): Add logic supporting `HF`
+	string just as our man(7) implementation does.  If the font name
+	ends with `B` (as the default does), set
+	`doc-remap-I-style-in-headings` register and extract font
+	family, which can be empty (as is the default).
+	* tmac/mdoc/doc-common (Sh, Ss): If
+	`doc-remap-I-style-in-headings` register set, perform (and
+	unwind) font remapping of italic to bold-italic face.
+	* tmac/mdoc/doc-ditroff:
+	* tmac/mdoc/doc-nroff: Define `doc-Sh-font` in terms of `HF`.
+
+	* tmac/tests/doc_heading-font-remapping-works.sh: Test it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+	* tmac/groff_mdoc.7.man (Options): Document it.
+	* NEWS: Update item.
+
+	Fixes last part of <https://savannah.gnu.org/bugs/?63046>.
+
 2022-12-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tmac]: Revise "fallback" character definitions in several

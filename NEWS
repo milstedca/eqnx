@@ -321,7 +321,8 @@ o The groff_man(7) man page documenting the groff implementation of the
   reader who is not an expert in *roff systems or in writing man pages.
 
 o The doc (mdoc) macro package now honors the `C`, `FT`, `HY`, `IN`,
-  `P`, `SN`, and `X` registers as the an (man) package does.
+  `P`, `SN`, and `X` registers and `HF` string as the an (man) package
+  does.
 
 o The doc (mdoc) macro package now renders man page (sub)section cross
   references cited with the `Sx` macro by quoting them instead of

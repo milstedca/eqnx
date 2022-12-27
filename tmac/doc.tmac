@@ -155,7 +155,24 @@
 .  \}
 .\}
 .
-.\" TODO: Implement HF string.
+.\" (sub)section heading font
+.if !d HF \
+.  ds HF B\"
+.
+.\" If HF is a bold style, use bold italics for italics in headings.
+.ds doc-heading-style \*[HF]\"
+.substring doc-heading-style -1 -1
+.ds doc-heading-family \" empty
+.length doc-HF-length \*[HF]
+.if (\n[doc-HF-length] > 1) \{\
+.  as doc-heading-family \*[HF]\"
+.  substring doc-heading-family 0 -2
+.\}
+.if '\*[doc-heading-style]'B' \
+.  if F \*[doc-heading-family]BI \
+.    nr doc-remap-I-style-in-headings 1
+.rr doc-HF-length
+.rm doc-heading-style
 .
 .\" \n[HY] is recognized for groff_man(7) compatibility, particuarly via
 .\" andoc.tmac and man(1); see \n[doc-hyphen-flags] in doc-common.

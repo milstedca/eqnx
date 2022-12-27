@@ -1382,6 +1382,9 @@
 .  el \
 .    nr doc-in-name-section 0
 .
+.  if \n[doc-remap-I-style-in-headings] \
+.    ftr I \*[doc-heading-family]BI
+.
 .  ie \n[doc-arg-count] \{\
 .    \" we only allow 'Sh' within 'Sh'; it will change the font back to
 .    \" 'doc-Sh-font'
@@ -1485,6 +1488,9 @@
 .    doc-check-depth
 .  \}
 .
+.  if \n[doc-remap-I-style-in-headings] \
+.    ftr I I
+.
 .  \" Don't let doc-print-recursive force caps on anything else.
 .  nr doc-do-capitalize 0
 ..
@@ -1505,6 +1511,9 @@
 .
 .eo
 .de Ss
+.  if \n[doc-remap-I-style-in-headings] \
+.    ftr I \*[doc-heading-family]BI
+.
 .  ie \n[doc-arg-count] \{\
 .    \" we only allow 'Ss' within 'Ss'; it will change the font back to
 .    \" 'doc-Sh-font'
@@ -1562,6 +1571,9 @@
 .
 .    doc-check-depth
 .  \}
+.
+.  if \n[doc-remap-I-style-in-headings] \
+.    ftr I I
 ..
 .ec
 .

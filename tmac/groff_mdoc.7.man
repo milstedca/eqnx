@@ -5052,6 +5052,21 @@ The default is \-0.5i.
 .
 .
 .Pp
+The
+.Ql HF
+string sets
+the font used for section and subsection headings;
+the default is
+.Ql B
+(bold style of the default family).
+.
+Any valid argument to
+.Xr groff 7 's
+.Ql ft
+request may be used.
+.
+.
+.Pp
 Normally,
 automatic hyphenation is enabled using a mode appropriate to the
 .Xr groff
@@ -5133,15 +5148,6 @@ The register tracking the suffixed page letter uses format
 .Ql af
 request in
 .Xr groff @MAN7EXT@ ) .
-.
-.
-.Pp
-The
-.Ql HF
-string
-is reserved for potential future compatibility with
-.Xr groff_man @MAN7EXT@
-page rendering options.
 .
 .
 .br

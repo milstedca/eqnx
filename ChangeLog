@@ -1,5 +1,12 @@
 2022-12-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/doc.am (doc/groff-man-pages.pdf): Set (sub) section
+	headings in Helvetica bold in compiled man pages, as a test and
+	demonstration of the `HF` feature's application to both man(7)
+	and mdoc(7) documents.
+
+2022-12-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Support `HF` string.
 
 	* tmac/doc.tmac (initialization): Add logic supporting `HF`

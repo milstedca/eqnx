@@ -256,8 +256,8 @@ man-clean:
 # feature of gropdf.
 doc/groff-man-pages.pdf: $(GROFF_MAN_PAGES_ALL) eqn pic tbl \
   $(TMAC_PACKAGE_MAN) $(TMAC_PACKAGE_MDOC) font/devps/freeeuro.pfa
-	$(GROFF_V)$(DOC_GROFF) -pet -mandoc -rC1 -rCHECKSTYLE=3 \
-	  -Tpdf -P-e \
+	$(GROFF_V)$(DOC_GROFF) -pet -mandoc -dHF=HB -rC1 \
+	  -rCHECKSTYLE=3 -Tpdf -P-e \
 	  $(GROFF_MAN_PAGES1) \
 	  $(tmac_srcdir)/sv.tmac $(GROFF_MAN_PAGES2) \
 	  $(tmac_srcdir)/en.tmac $(GROFF_MAN_PAGES3) > $@

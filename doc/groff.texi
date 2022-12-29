@@ -1214,14 +1214,14 @@ For @TeX{} DVI format.
 For a 75@dmn{dpi} X11 previewer.
 
 @item X75-12
-For a 75@dmn{dpi} X11 previewer with a 12@dmn{pt} base font in the
+For a 75@dmn{dpi} X11 previewer with a 12-point base font in the
 document.
 
 @item X100
 For a 100@dmn{dpi} X11 previewer.
 
 @item X100-12
-For a 100@dmn{dpi} X11 previewer with a 12@dmn{pt} base font in the
+For a 100@dmn{dpi} X11 previewer with a 12-point base font in the
 document.
 
 @item ascii
@@ -11602,6 +11602,9 @@ This is a test.
 @c TODO: Move the troff and nroff mode stuff here.  Try to keep stuff
 @c that isn't ignored in nroff above this point, and stuff for
 @c typesetters below, until we hit the programming/advanced concepts.
+@c XXX: Thorny issue: nroff/terminal devices ignore type size but
+@c _honor_ vertical spacing (to within their crude vertical motion
+@c quanta).
 
 @node Manipulating Type Size and Vertical Spacing, Colors, Fonts and Symbols, gtroff Reference
 @section Manipulating Type Size and Vertical Spacing
@@ -11617,9 +11620,9 @@ These concepts were introduced in @ref{Page Geometry}.  The height of a
 font's tallest glyph is one em, which is equal to the type size in
 points.@footnote{This tallest glyph is typically the parenthesis.
 Unfortunately, in many cases the actual dimensions of the glyphs in a
-font do not closely match its declared its type size!  For example, in
-the standard PostScript font families, 10@dmn{pt} Times sets better with
-9@dmn{pt} Helvetica and 11@dmn{pt} Courier than if all three were used
+font do not closely match its declared type size!  For example, in
+the standard PostScript font families, 10-point Times sets better with
+9-point Helvetica and 11-point Courier than if all three were used
 at 10@tie{}points.}  A vertical spacing of less than 120% of the type
 size can make a document hard to read.  Larger proportions can be useful
 to spread the text for annotations or proofreader's marks.  By default,
@@ -11891,9 +11894,9 @@ read-only register @code{.psr} and in points as a decimal fraction by
 the read-only string-valued register @code{.sr}.  Both are associated
 with the environment (@pxref{Environments}).
 
-For example, if a type size of 10.95@dmn{pt} is requested, and the
+For example, if a type size of 10.95 points is requested, and the
 nearest size permitted by a @code{sizes} request (or a @code{sizescale}
-directive in the device's @file{DESC} file) is 11@dmn{pt}, the latter
+directive in the device's @file{DESC} file) is 11 points, the latter
 value is used by the output driver.
 @endDefreg
 
@@ -16159,8 +16162,8 @@ Print a @dfn{margin character} to the right of the
 text.@footnote{@dfn{Margin character} is a misnomer since it is an
 output glyph.}  The first argument is the glyph to be printed.  The
 second argument is the distance away from the right margin.  If missing,
-the previously set value is used; default is 10@dmn{pt}).  For text
-lines that are too long (that is, longer than the text length plus
+the previously set value is used; the default is 10@tie{}points.  For
+text lines that are too long (that is, longer than the text length plus
 @var{dist}), the margin character is directly appended to the lines.
 
 With no arguments the margin character is turned off.  If this occurs

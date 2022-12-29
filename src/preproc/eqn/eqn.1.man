@@ -153,9 +153,9 @@ then in
 and finally in the standard macro directory
 .IR @MACRODIR@ .
 .
-If it exists,
+If it exists and is readable,
 .I @g@eqn
-processes it before the other input files.
+processes it before any input files.
 .
 .
 .P
@@ -637,7 +637,8 @@ drawing a diagonal line through it.
 \&.  ds 0s \[rs]
 \[rs]Z\[aq]\[rs]\[rs]*(0s\[aq]\[rs]
 \[rs]v\[aq]\[rs]\[rs]n(0du\[aq]\[rs]
-\[rs]D\[aq]l \[rs]\[rs]n(0wu \-\[rs]\[rs]n(0hu-\[rs]\[rs]n(0du\[aq]\[rs]
+\[rs]D\[aq]l \[rs]\[rs]n(0wu \-\[rs]\[rs]n(0hu\-\[rs]\
+\[rs]n(0du\[aq]\[rs]
 \[rs]v\[aq]\[rs]\[rs]n(0hu\[aq]
 \&..
 \&.EQ

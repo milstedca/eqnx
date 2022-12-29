@@ -328,12 +328,8 @@ o The doc (mdoc) macro package now renders man page (sub)section cross
   references cited with the `Sx` macro by quoting them instead of
   setting them in italics.
 
-o On typestting output devices, the e (me) macro package now derives the
-  line length from the device description, which can be overriden by the
-  "papersize.tmac" macro file (usually configured via the "-d paper"
-  groff command-line option).  The package thus adapts to landscape
-  orientation and paper formats other than U.S. letter.  It continues to
-  use a line length of 6 (notional) inches on terminals.
+o The e (me) macro package has changed its default line length to 6.5i
+  from 6i on typesetting devices.
 
 o The e (me) macro package has changed its support for output line
   numbering with the `n1` and `n2` macros to resolve several bugs in the

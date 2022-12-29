@@ -4518,8 +4518,9 @@ Default is\~0.
 defines the type size for the document,
 and must be set from the command line.
 .
-A scaling unit may be appended;
-scaled points are assumed.
+A scaling unit should be appended;
+.B p
+is typical.
 .
 .
 .TP
@@ -4552,8 +4553,9 @@ Default is\~5.
 defines the vertical spacing for the document,
 and must be set from the command line.
 .
-A scaling unit may be appended;
-points are assumed.
+A scaling unit should be appended;
+.B p
+is typical.
 .
 The default vertical spacing is 120% of the type size.
 .

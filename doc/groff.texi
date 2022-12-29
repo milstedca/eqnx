@@ -11716,14 +11716,10 @@ Some devices may permit only certain type sizes, in which case GNU
 file normally specifies which type sizes are allowed by the device.
 
 Use the @code{sizes} request to change the permissible sizes for the
-output device.  Arguments are in scaled points; the @code{sizescale}
-line in the @file{DESC} file for the output device provides the scaling
-factor.  For example, if the scaling factor is 1000, then the value
-12000 is 12@tie{}points.
-
-Each argument can be a single type size (such as @samp{12000}), or a
-range of sizes (such as @samp{4000-72000}).  You can optionally end the
-list with a zero.
+output device.  Arguments are in scaled points; @xref{Using Fractional
+Type Sizes}.  Each can be a single type size (such as @samp{12000}), or
+a range of sizes (such as @samp{4000-72000}).  You can optionally end
+the list with a zero.
 @endDefreq
 
 @need 1000
@@ -11845,13 +11841,14 @@ scaled points can thus represent a non-integral type size.
 A @dfn{scaled point} is equal to @math{1/@var{sizescale}} points, where
 @var{sizescale} is specified in the device description file @file{DESC},
 and defaults to@tie{}1.@footnote{@xref{Device and Font Description
-Files}.}  The scaling unit @samp{z} multiplies by @var{sizescale}.
-Requests and escape sequences in GNU @code{troff} interpret arguments
-that represent a type size in scaled points; that is, they evaluate each
-such argument using a default scaling unit of @samp{z}.  Arguments
-treated in this way comprise those to the escape sequences @code{\H} and
-@code{\s}, to the request @code{ps}, the third argument to the @code{cs}
-request, and the second and fourth arguments to the @code{tkf} request.
+Files}.}  Requests and escape sequences in GNU @code{troff} interpret
+arguments that represent a type size in scaled points, which the
+formatter multiplies by @var{sizescale} and converts to an integer.
+Arguments treated in this way comprise those to the escape sequences
+@code{\H} and @code{\s}, to the request @code{ps}, the third argument to
+the @code{cs} request, and the second and fourth arguments to the
+@code{tkf} request.  Scaled points may be specified explicitly with the
+@code{z} scaling unit.
 
 For example, if @var{sizescale} is@tie{}1000, then a scaled point is one
 thousandth of a point.  The request @samp{.ps 10.5} is synonymous with
@@ -18289,8 +18286,8 @@ extend over more than one line.
 
 @item sizescale @var{n}
 @kindex sizescale
-Set the scale factor for type sizes to one divided by@tie{}@var{n}.  The
-default is@tie{}@code{1}.  @xref{Using Fractional Type Sizes}.
+A typographical point is subdivided into @var{n}@tie{}scaled points.
+The default is@tie{}@code{1}.  @xref{Using Fractional Type Sizes}.
 
 @item styles @var{S1} @r{@dots{}} @var{Sm}
 @kindex styles

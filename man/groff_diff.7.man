@@ -193,17 +193,12 @@ and defaults to\~1.
 (See
 .MR groff_font @MAN5EXT@ .)
 .
-The scaling
-.RB unit\~\[lq] z \[rq]
-has multiplies by
-.IR sizescale .
-.
 Requests and escape sequences in GNU
 .I troff \" GNU
-interpret arguments that represent a type size scaled points;
-that is,
-they evaluate such arguments using a default scaling unit
-.RB of\~\[lq] z \[rq].
+interpret arguments that represent a type size in points,
+which the formatter multiplies by
+.I sizescale
+and converts to an integer.
 .
 Arguments treated in this way comprise those to the escape sequences
 .B \[rs]H
@@ -217,6 +212,10 @@ request,
 and the second and fourth arguments to the
 .B tkf
 request.
+.
+Scaled points may be specified explicitly with the
+.B z
+scaling unit.
 .
 .
 .P

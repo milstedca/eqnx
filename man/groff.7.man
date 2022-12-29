@@ -6633,8 +6633,6 @@ The current environment is at the top of the stack.
 The same environment name can be pushed onto the stack multiple times,
 possibly interleaved with others.
 .
-.
-.P
 Popping the environment stack does not destroy the current environment;
 it remains accessible by name and can be made current again by pushing
 it at any time.
@@ -6654,11 +6652,25 @@ Environments store the following information.
 .
 .
 .IP \[bu] 2n
+a partially collected line, if any
+.
+.
+.IP \[bu]
+data about the most recently output glyph and line
+(registers
+.BR .cdp ,
+.BR .cht ,
+.BR .csk ,
+.BR .n ,
+.BR .w )
+.
+.
+.IP \[bu]
 typeface parameters
 (size,
 family,
 style,
-glyph height and slant,
+height and slant,
 inter-word and inter-sentence space sizes)
 .
 .
@@ -6667,31 +6679,30 @@ page parameters
 (line length,
 title length,
 vertical spacing,
-line
-spacing,
+line spacing,
 indentation,
 line numbering,
 centering,
-right-justifying,
+right-alignment,
 underlining,
-hyphenation data)
+hyphenation parameters)
 .
 .
 .IP \[bu]
-filling enablement,
+filling enablement;
 adjustment enablement and mode
 .
 .
 .IP \[bu]
-tab stops; tab and leader characters; escape,
+tab stops;
+tab,
+leader,
+escape,
 control,
 no-break control,
-hyphenation control,
-and margin characters
-.
-.
-.IP \[bu]
-partially collected lines
+hyphenation,
+and
+margin characters
 .
 .
 .IP \[bu]

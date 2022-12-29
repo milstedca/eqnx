@@ -15305,35 +15305,38 @@ current at any given time.  Active environments are managed using a
 @dfn{stack}, a data structure supporting ``push'' and ``pop''
 operations.  The current environment is at the top of the stack.
 The same environment name can be pushed onto the stack multiple times,
-possibly interleaved with others.
-
-Popping the environment stack does not destroy the current environment;
-it remains accessible by name and can be made current again by pushing
-it at any time.  Environments cannot be renamed or deleted, and can only
-be modified when current.  To inspect the environment stack, use the
-@code{pev} request; see @ref{Debugging}.
+possibly interleaved with others.  Popping the environment stack does
+not destroy the current environment; it remains accessible by name and
+can be made current again by pushing it at any time.  Environments
+cannot be renamed or deleted, and can only be modified when current.  To
+inspect the environment stack, use the @code{pev} request; see
+@ref{Debugging}.
 
 Environments store the following information.
 
 @itemize @bullet
 @item
-typeface parameters (size, family, style, glyph height and slant,
-inter-word and inter-sentence space sizes)
+a partially collected line, if any
+
+@item
+data about the most recently output glyph and line (registers
+@code{.cdp}, @code{.cht}, @code{.csk}, @code{.n}, @code{.w})
+
+@item
+typeface parameters (size, family, style, height and slant, inter-word
+and inter-sentence space sizes)
 
 @item
 page parameters (line length, title length, vertical spacing, line
-spacing, indentation, line numbering, centering, right-justifying,
-underlining, hyphenation data)
+spacing, indentation, line numbering, centering, right-alignment,
+underlining, hyphenation parameters)
 
 @item
-filling enablement, adjustment enablement and mode
+filling enablement; adjustment enablement and mode
 
 @item
-tab stops; tab and leader characters; escape, control, no-break control,
-hyphenation control, and margin characters
-
-@item
-partially collected lines
+tab stops; tab, leader, escape, control, no-break control, hyphenation,
+and margin characters
 
 @item
 input traps

@@ -1275,7 +1275,7 @@ are coincident.
 In places where
 .IB n th
 is allowed,
-.BI \[aq] expr th\[aq]
+.BI \[aq] expr \[aq]th
 is also allowed.
 .
 .RB \[lq] \[aq]th \[lq]

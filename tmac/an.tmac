@@ -1129,6 +1129,8 @@ contains unsupported escape sequence
 .\" a diversion; it becomes the link text for the hyperlinked address.
 .\" .MT nobody@example.com
 .de1 MT
+.  if !(\\n[.$] = 1) \
+.    an-style-warn .\\$0 expects 1 argument, got \\n[.$]
 .  ds an*prefix mailto:
 .  an*begin-hyperlink \\$1
 ..
@@ -1145,6 +1147,8 @@ contains unsupported escape sequence
 .\" a diversion; it becomes the link text for the hyperlinked address.
 .\" .UR nobody@example.com
 .de1 UR
+.  if !(\\n[.$] = 1) \
+.    an-style-warn .\\$0 expects 1 argument, got \\n[.$]
 .  ds an*prefix \" empty
 .  an*begin-hyperlink \\$1
 ..

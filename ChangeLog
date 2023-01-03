@@ -1,3 +1,8 @@
+2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/an.tmac (MT, UR): Throw style warning if macro called
+	without (exactly one) argument.
+
 2022-12-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (doc/groff-man-pages.pdf): Set (sub) section

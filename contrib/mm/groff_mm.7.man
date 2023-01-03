@@ -499,10 +499,15 @@ It is a special case of
 See also
 .BR 1C .
 .
+.
 .TP
 .B AE
-Abstract end, see
+Abstract end;
+stop collecting abstract text.
+.
+See
 .BR AS .
+.
 .
 .TP
 .BI AF\ \fR[\fP name-of-firm \fR]\fP
@@ -600,7 +605,12 @@ are included in appendices.
 .TP
 .BR AS\~ [\c
 .IR arg \~[ indent ]]
-Abstract start.
+Abstract start;
+begin collecting abstract.
+.
+Text up to the next
+.B AE
+call is included in the abstract.
 .
 Depending on the cover sheet macros used,
 .I arg
@@ -655,6 +665,13 @@ T}
 .IP
 An abstract is not printed at all in external letters
 .RB ( "MT 5" ).
+.
+Abstract type
+.B 2
+was supported by DWB
+.I mm
+but is not by
+.IR "groff mm" .
 .
 .
 .IP
@@ -3321,18 +3338,25 @@ This header is printed again if a page break occurs.
 .
 Argument \[lq]N\[rq] isn't implemented yet.
 .
-.TP
-.BI TL\  "\fR[\fPcharging-case-number \fR[\fPfiling-case-number\fR]]\fP"
-Begin title of memorandum.
 .
-All text up to the next
+.TP
+.BR TL \~[\c
+.IR charging-case-number \~[\c
+.IR filing-case-number ]]
+Begin collecting document title.
+.
+Text up to the next
 .B AU
-is included in the title.
+call is included in the title.
 .
 .I charging-case-number
 and
 .I filing-case-number
-are saved for use in the front page processing.
+are saved for use in memorandum types 0 and 5.
+.
+See
+.BR MT .
+.
 .
 .TP
 .BI TM\  "\fR[\fPnum1 \fR[\fPnum2 \fR[.\|.\|.]]]\fP"

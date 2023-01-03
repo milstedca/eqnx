@@ -1,5 +1,12 @@
 2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Regression-test Savannah #63613.
+
+	* tests/MT-1-reports-all-TM-numbers.sh: Do it.
+	* mm.am (mm_TESTS): Run test.
+
+2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* groff_mm.7.man (AU): Fix error; an argument is mandatory.
 
 2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>

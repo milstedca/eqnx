@@ -1,3 +1,7 @@
+2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* groff_mm.7.man (AU): Fix error; an argument is mandatory.
+
 2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (let*mt-sign): Check strings populated by optional

@@ -691,8 +691,7 @@ cover sheet style.
 .
 .
 .TP
-.BR AU \~\c \" space in roman because we must use 2-font macro with \c
-.RI [ name\~\c
+.BI AU\~ name\~\c
 .RI [ initials\~\c
 .RI [ loc\~\c
 .RI [ dept\~\c
@@ -700,7 +699,7 @@ cover sheet style.
 .RI [ room\~\c
 .RI [ arg1\~\c
 .RI [ arg2\~\c
-.RI [ arg3 ]]]]]]]]]
+.RI [ arg3 ]]]]]]]]
 Author information.
 .
 Specifies the author of the memo or paper,

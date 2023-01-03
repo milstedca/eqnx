@@ -3097,7 +3097,7 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .\" switch to ISO-date if register Iso exist: YYYY-MM-DD
 .if r Iso .ISODATE 1
 .\"-------------------
-.\" save technical numbers.
+.\" Save technical memorandum numbers.
 .de TM
 .nr cov*i 0 1
 .while \\n[.$]>=\\n+[cov*i] .ds cov*mt-tm!\\n[cov*i] \\$[\\n[cov*i]]
@@ -3118,6 +3118,14 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .ds cov*mt-file!6 0.MT
 .\"------------
 .de MT
+.if d cov*cov-type \{\
+.	@warning \\$0: ignoring; already using COVER macro
+.	return
+.\}
+.if d cov*mt-type \{\
+.	@warning \\$0: ignoring; type is already \\*[cov*mt-type]
+.	return
+.\}
 .ie \\n[.$] \{\
 .	ie d cov*mt-file!\\$1 .ds cov*mt-type \\$1
 .	el .ds cov*mt-type 6
@@ -3130,6 +3138,10 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .mso \\*[cov*str]\\*[cov*mt-file!\\*[cov*mt-type]]
 ..
 .de COVER
+.if d cov*mt-type \{\
+.	@warning \\$0: ignoring; already using MT macro
+.	return
+.\}
 .ie !\\n[.$] .ds cov*cov-type ms
 .el .ds cov*cov-type \\$1
 .pg@disable-top-trap

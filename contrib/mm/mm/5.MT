@@ -1,4 +1,3 @@
-.\" -*- nroff -*-
 .ig
 
 Copyright (C) 1991-2020 Free Software Foundation, Inc.
@@ -26,7 +25,7 @@ http://savannah.gnu.org/bugs/?group=groff.
 .\"------------
 .nr cov*mt0-ind 1.1c
 .de cov@print-title
-.if !d cov*title .@error title (.TL) not defined!
+.if !d cov*title .@error title not defined; call TL and AU before MT
 .B
 .ll 9c
 .fi
@@ -55,3 +54,9 @@ http://savannah.gnu.org/bugs/?group=groff.
 .	pg@enable-trap
 .	ds cov*mt-printed
 .\}
+.
+.\" Local Variables:
+.\" mode: nroff
+.\" fill-column: 72
+.\" End:
+.\" vim: set filetype=groff textwidth=72:

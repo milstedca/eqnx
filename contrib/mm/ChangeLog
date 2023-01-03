@@ -1,5 +1,22 @@
 2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Improve cover sheet diagnostics.
+
+	* m.tmac (MT): Warn and ignore if `COVER` or self already
+	called.
+	(COVER): Warn and ignore if `MT` already called.
+	* mm/0.MT (cov@print-title): Abort if title not defined; tell
+	user how to use the macros.
+	(cov@print-authors): Add similar paranoid diagnostic that I
+	don't think is reachable (since you _have_ to call `AU` to
+	"close" `TL`).
+	* mm/4.MT (cov@print-title, cov@print-authors):
+	* mm/5.MT (cov@print-title): As "0.MT".
+
+	* mm/4.MT: Get rid of spurious blank line in file.
+
+2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Fix Savannah #63613.
 
 	* mm/0.MT (cov*print-authors): Iterate through _all_ technical

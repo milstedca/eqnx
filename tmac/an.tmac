@@ -1106,9 +1106,11 @@ contains unsupported escape sequence
 .    \" don't add angle brackets here.
 .    el \{\
 .      if \\n[an*is-output-html] \
-.        nop \X^html:<a href="\\*[an*prefix]\\*[an*hyperlink]">\\*[an*hyperlink]</a>^\c
+.        nop \X^html:<a href="\\*[an*prefix]\\*[an*hyperlink]">\
+\\*[an*hyperlink]</a>^\c
 .      if \\n[an*is-output-terminal] \
-.        nop \X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\\*[an*hyperlink]\X^tty: link^\c
+.        nop \X^tty: link \\*[an*prefix]\\*[an*hyperlink]^\
+\\*[an*hyperlink]\X^tty: link^\c
 .    \}
 .    nop \&\\$1\"
 .  \}

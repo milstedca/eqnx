@@ -201,19 +201,6 @@ _ifstyle()dnl
 .
 .
 .\" ====================================================================
-.\" .SS "Fundamental concepts"
-.\" ====================================================================
-.\" TODO: Write an introduction for non-typographers.  Cover the
-.\" following:
-.\"
-.\" filling, hyphenation, breaking, adjustment (elsewhere known as
-.\" justification)
-.\" font (family, style [elsewhere known as face])
-.\" type size
-.\" typesetter (troff device, PostScript, PDF)
-.\" terminal (nroff device, emulator, typewriter, TTY)
-.\"
-.\" ====================================================================
 .\" .SS "Input file format"
 .\" ====================================================================
 .P
@@ -231,7 +218,46 @@ and employ the Unix line-ending convention
 .\" Don't fill your input text yourself; let groff do the work.
 .\" Also good for diffs.
 .\" escape sequences--pretty much just "see Portability"
-.\"
+.
+.\" ====================================================================
+.SS "Fundamental concepts"
+.\" ====================================================================
+.\" font (family, style [elsewhere known as face])
+.\" type size
+.\" typesetter (troff device, PostScript, PDF)
+.\" terminal (nroff device, emulator, typewriter, TTY)
+.
+The formatter collects words from the input and
+.I fills
+output lines with as many as will fit.
+.
+A transition to a new output line is called a
+.I break.
+.
+A word may be split across output lines at hyphens,
+at
+.B \e%
+or
+.B \e:
+escape sequences
+(see subsection \(lqPortability\(rq below),
+or at predetermined locations
+if automatic hyphenation is enabled
+(see the
+.B \-rHY
+flag in section \(lqOptions\(rq below).
+.
+An output line may be supplemented with
+.I inter-sentence space
+and
+.I adjusted
+to form a straight right margin
+(see the
+.B \-dAD
+flag in section \(lqOptions\(rq below).
+.
+.MR roff @MAN7EXT@
+details these processes.
 .\" ====================================================================
 .\" .SS "Why have a tutorial and style guide?"
 .\" ====================================================================

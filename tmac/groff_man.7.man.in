@@ -2675,6 +2675,11 @@ escape sequences do.
 Several special characters are also widely portable.
 .\" meaning: groff, Heirloom Doctools troff, neatroff, mandoc
 .
+Except for
+.BR \[rs]\- ,
+.BR \[rs](em ,
+and
+.BR \[rs](ga ,
 AT&T
 .I troff
 did not consistently `define' the characters listed below,

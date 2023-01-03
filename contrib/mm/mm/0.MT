@@ -1,4 +1,3 @@
-.\" -*- nroff -*-
 .ig
 
 Copyright (C) 1991-2020 Free Software Foundation, Inc.
@@ -75,7 +74,7 @@ subject:
 TM
 .	in 1.5c
 .	sp -1
-.	while \\n+[cov*i]<\\n[cov*mt-tm-max] \\*[cov*mt-tm!\\n[cov*i]]
+.	while \\n+[cov*i]<=\\n[cov*mt-tm-max] \\*[cov*mt-tm!\\n[cov*i]]
 .	in
 .	ft
 .\}
@@ -166,3 +165,9 @@ TM
 .	pg@enable-trap
 .	ds cov*mt-printed
 .\}
+.
+.\" Local Variables:
+.\" mode: nroff
+.\" fill-column: 72
+.\" End:
+.\" vim: set filetype=groff textwidth=72:

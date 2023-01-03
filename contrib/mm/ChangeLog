@@ -1,5 +1,16 @@
 2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Fix Savannah #63613.
+
+	* mm/0.MT (cov*print-authors): Iterate through _all_ technical
+	memorandum numbers instead of stopping one shy of the last.
+	Problem appears to date back to introduction of TM support for
+	memorandum type 1 in commit a48ab7b6d (groff 1.05, 1992-03-18).
+
+	Fixes <https://savannah.gnu.org/bugs/?63613>.
+
+2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Regression-test Savannah #63613.
 
 	* tests/MT-1-reports-all-TM-numbers.sh: Do it.

@@ -336,6 +336,8 @@ _endif()dnl
 The highest level of organization of a man page is determined by this
 group of macros.
 .
+All of these macros break the output line.
+.
 .B .TH
 (title heading)
 identifies the document as a man page and configures the page headers
@@ -726,7 +728,7 @@ with
 .BR .TP ,
 or to present an itemized or ordered list.
 .
-All paragraph macros break the output line at the current position.
+All of these macros break the output line.
 .
 If another paragraph macro has occurred since the previous
 .B .SH
@@ -907,19 +909,18 @@ _endif()dnl
 .SS "Command synopsis macros"
 .\" ====================================================================
 .
-Command synopses are a staple of section\~1 and\~8 man pages.
-.
-These macros aid you to construct one that has the classical Unix
+.B .SY
+and
+.B .YS
+aid you to construct a command synopsis that has the classical Unix
 appearance.
+.
+They break the output line.
 .
 .\" TODO: Determine whether this (is still? was ever?) true.
 .\" Furthermore,
 .\" some tools are able to interpret these macros semantically and treat
 .\" them appropriately for localization and/or presentation.
-.
-A command synopsis is wrapped in
-.BR .SY / .YS
-calls.
 .
 .
 .P
@@ -981,10 +982,9 @@ each will be vertically separated as paragraphs are.
 .
 .P
 .B .SY
-can also be repeated multiple times before a closing
-.BR .YS ,
-which is useful to indicate synonymous ways of invoking a particular
-mode of operation.
+can be repeated before
+.B .YS
+to indicate synonymous ways of invoking a particular mode of operation.
 .
 .
 .P
@@ -2136,15 +2136,6 @@ sections,
 the inter-paragraph spacing is 1v regardless of output
 device.
 .
-The macros
-.BR .RS ,
-.BR .RE ,
-.BR .EX ,
-.BR .EE ,
-and
-.B .TQ
-also cause a break but no insertion of vertical space.
-.
 .
 .\" ====================================================================
 .SS Registers
@@ -2278,6 +2269,8 @@ supplement the functionality of
 with these lower-level elements where necessary.
 .
 .
+.br
+.ne 2v
 .P
 However,
 using raw

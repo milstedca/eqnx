@@ -23,7 +23,6 @@ http://savannah.gnu.org/bugs/?group=groff.
 .\"------------
 .\" Cover sheet. Memorandum type 5
 .\"------------
-.nr cov*mt0-ind 1.1c
 .de cov@print-title
 .if !d cov*title .@error title not defined; call TL and AU before MT
 .B

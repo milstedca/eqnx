@@ -24,7 +24,6 @@ http://savannah.gnu.org/bugs/?group=groff.
 .\" Cover sheet. Memorandum type 0-3 and "string".
 .\"------------
 .if !r Au .nr Au 1
-.nr cov*mt0-ind 1.1c
 .de cov@print-title
 .if !d cov*title .@error title not defined; call TL and AU before MT
 .MOVE 4.8c 1.5c

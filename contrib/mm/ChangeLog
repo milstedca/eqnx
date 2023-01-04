@@ -1,5 +1,10 @@
 2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* mm/0.MT:
+	* mm/5.MT: Drop never-read register `cov*mt0-ind`.
+
+2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Improve cover sheet diagnostics.
 
 	* m.tmac (MT): Warn and ignore if `COVER` or self already

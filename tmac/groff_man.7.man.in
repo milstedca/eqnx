@@ -391,10 +391,8 @@ and
 .
 When none of the foregoing meets a structural demand,
 use
-.B .RS
-and
-.B .RE
-macros to set a region within a (sub)section.
+.BR .RS / .RE
+to inset a region within a (sub)section.
 .
 .
 .TP
@@ -843,9 +841,7 @@ _endif()dnl
 Set an additional tag for a paragraph tagged with
 .BR .TP .
 .
-The pending output line is broken.
-.
-A one-line input trap is planted as with
+An input trap is planted as with
 .BR .TP .
 .
 .
@@ -1013,6 +1009,8 @@ can be repeated before
 to indicate synonymous ways of invoking a particular mode of operation.
 .
 .
+.br
+.ne 2v
 .P
 .IR groff 's
 own command-line interface serves to illustrate most of the specimens
@@ -1216,9 +1214,9 @@ _endif()dnl
 are best presented with
 .BR .MR .
 .
-Email addresses are bracketed with
+Text may be hyperlinked to email addresses with
 .BR .MT / .ME
-and other forms of hyperlink with
+or other URIs with
 .BR .UR / .UE .
 .
 Hyperlinked text is supported on HTML
@@ -2129,7 +2127,7 @@ _endif()dnl
 .
 .
 .P
-Several macros break the output line and insert vertical space:
+Several macros insert vertical space:
 .BR .SH ,
 .BR .SS ,
 .BR .TP ,
@@ -3877,7 +3875,7 @@ will be set.
 .BR .TP ,
 and the deprecated
 .B .HP
-all use the same default indentation.
+use the same default indentation.
 .
 If not given an argument,
 .B .RS

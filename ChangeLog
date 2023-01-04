@@ -1,5 +1,15 @@
 2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/mdoc/doc-common (Sh, Ss): Narrow scope of font remappings
+	lexically and restrict remapping to the heading font family (if
+	any) to avoid undesired remapping of fonts in page headers if,
+	say, a (sub)section heading begins just prior to a page
+	break--which is ugly anyway and should be avoided, but the
+	package has no keep macros and solving that problem in an
+	automatic way promises to be complex.
+
+2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/an.tmac (MT, UR): Throw style warning if macro called
 	without (exactly one) argument.
 

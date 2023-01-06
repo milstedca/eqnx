@@ -3075,14 +3075,40 @@ and \[lq]D\[rq] the default value.
 If \[lq]+\[rq] or \[lq]\-\[rq] is used before the value,
 the current value is incremented or decremented, respectively.
 .
+.
 .TP
-.BI SA\  \fR[\fParg\fR]\fP
-Set right-margin justification.
+.BR SA \~\c
+.RI [ mode ]
+Set or restore the default enablement of adjustment.
 .
-Justification is turned on by default.
+Adjustment is on by default.
 .
-No argument or value \[lq]0\[rq] turns off justification,
-and \[lq]1\[rq] turns on justification.
+To set the adjustment default for the document,
+specify
+.B 0
+or
+.B 1
+as
+.I mode,
+to disable or enable it,
+respectively.
+.
+Adjustment can be temporarily suspended with the
+.B na
+request.
+.
+When the
+.B H
+or
+.B HU
+macros are used to format a heading,
+or when
+.B SA
+is called without a
+.I mode
+argument,
+the default adjustment is restored.
+.
 .
 .TP
 .BI SETR\  "refname \fR[\fPstring\fR]\fP"

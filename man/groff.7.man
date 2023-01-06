@@ -2641,11 +2641,21 @@ to
 ems with em
 .IR M .
 .
+.
 .TPx
-.REQ .cu "N"
-Continuous underline in nroff, like
-.request .ul
-in troff.
+.REQ .cu
+Continuously underline the output of the next productive input line.
+.
+.
+.TPx
+.REQ .cu npl
+Continuously underline the output of the next
+.I npl
+productive input lines.
+.
+If
+.IR npl =0,
+stop continuously underlining.
 .
 .
 .TPx
@@ -4126,20 +4136,36 @@ true and
 false.
 .
 .TPx
-.REQ .uf "font"
-Set underline font to
-.I font
-(to be switched to by
-.request .ul ).
+.REQ .uf font
+Set underline font used by
+.request .ul
+to
+.I font.
+.
 .
 .TPx
-.REQ .ul "N"
+.REQ .ul
 Underline
 (italicize in
 .I troff
 mode)
-.I N
-input lines.
+the output of the next productive input line.
+.
+.
+.TPx
+.REQ .ul npl
+Underline
+(italicize in
+.I troff
+mode)
+the output of the next
+.I npl
+productive input line.
+.
+If
+.IR npl =0,
+stop underlining.
+.
 .
 .TPx
 .REQ .unformat "diversion"

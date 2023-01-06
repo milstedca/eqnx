@@ -379,6 +379,7 @@ Index		array!index
 .\"---------------------------------------------
 .\" ####### module init ######
 .\"	reset all things
+.\" XXX: Resets .cu and .ul but _not_ .ce or .rj.
 .de init@reset
 .ie \\n[misc@adjust] 'ad
 .el 'na
@@ -508,12 +509,21 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .nr line*lp\\n[.z] \\n[.d]
 ..
 .\" ######## module misc ###############
+.\" XXX: This register value is meaningless.
+.\"   .ad b
+.\"   .nr misc@adjust \n[.j]
+.\" might be better...
 .nr misc@adjust 14
 .de SA
 .if \\n[.$] \{\
 .	if \\$1-1 .@error "SA: bad arg: \\$1"
+.\" XXX: ...then...
+.\"   .ad l
+.\"   .nr misc@adjust \\n[.j]
 .	nr misc@adjust 0\\$1
 .\}
+.\" XXX: ...and finally an unconditional.
+.\"   .ad \\n[.j]
 .ie \\n[misc@adjust] 'ad
 .el 'na
 ..

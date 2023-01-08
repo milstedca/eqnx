@@ -1,3 +1,11 @@
+2023-01-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Add regression test for hyphenation getting wrongly
+	restored by `YS`, `ME`, `UE`, and `MR` macros.
+
+	* tmac/tests/an_HY-register-works.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
 2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/mdoc/doc-common (Sh, Ss): Narrow scope of font remappings

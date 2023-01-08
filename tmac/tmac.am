@@ -156,6 +156,7 @@ tmac_TESTS = \
   tmac/tests/an_CT-register-on.sh \
   tmac/tests/an_CT-register-unspecified.sh \
   tmac/tests/an_FT-bad-value-should-not-trash-titles.sh \
+  tmac/tests/an_HY-register-works.sh \
   tmac/tests/an_LL-init-sanely.sh \
   tmac/tests/an_ME-punct-hyphenates.sh \
   tmac/tests/an_MR-works.sh \

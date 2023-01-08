@@ -37,13 +37,17 @@
 .ds mC CW
 .if n .ds mC R
 .
+.\" Save the automatic hyphenation mode.
+.\"
 .\" In AT&T troff, there was no register exposing the hyphenation mode,
-.\" and no way to save and restore it.  Set this to a reasonable value
+.\" and no way to save and restore it.  Set `mH` to a reasonable value
 .\" for your implementation and preference.
-.ie !\n(.g \
-.  nr mH 14
-.el \
-.  do nr mH \n[.hy]
+.de mY
+.  ie !\\n(.g \
+.    nr mH 14
+.  el \
+.    do nr mH \\n[.hy] \" groff extension register
+..
 .
 .nr mS 0 \" in a synopsis (SY/YS)?
 .nr mE 0 \" in an example (EX/EE)?
@@ -52,6 +56,7 @@
 .\" Declare start of command synopsis.  Sets up hanging indentation.
 .de SY
 .  ie !\\n(mS \{\
+.    mY
 .    nh
 .    nr mS 1
 .    nr mA \\n(.j
@@ -90,6 +95,7 @@
 .\" Emit hyperlink.  The optional argument supplies trailing punctuation
 .\" after link text.  `ME` and `UE` call this.
 .de mQ
+.  mY
 .  nh
 <\\*(m1>\\$1
 .  hy \\n(mH
@@ -132,6 +138,7 @@
 .\" .MR page-topic page-section [trailing-text]
 .if \n(.g-\n(mG \{\
 .de MR
+.  mY
 .  nh
 .  ie \\n(.$=1 \
 .    I \\$1

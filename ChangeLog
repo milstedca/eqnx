@@ -1,5 +1,25 @@
 2023-01-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/an-ext.tmac: Move the saving of the hyphenation mode from
+	the "top level" to...
+	(mY): ...this new macro.
+	(SY, mQ, MR): Call `mY` before disabling hyphenation.
+
+	Problem introduced by me in commit 096c2f0567, 16 February.
+	"an-ext.tmac" gets sourced by "an.tmac" before any
+	command-line setting of the `HY` register is handled, so (for
+	groff) the stored hyphenation mode was the default for the
+	language, not reflecting user disablement.  The synopsis macros,
+	which do not have an alternate implementation in "an.tmac" for
+	leverage of groff features, were causing hyphenation to be
+	resurrected (after `YS`) even if the user had disabled it.
+	Saving the hyphenation mode anew upon entry to these macros is
+	arguably inefficient, but it is more correct since a man page
+	could conceivably manipulate the automatic hyphenation mode
+	{even if that's not recommended outside of tbl(1) text blocks}.
+
+2023-01-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Add regression test for hyphenation getting wrongly
 	restored by `YS`, `ME`, `UE`, and `MR` macros.
 

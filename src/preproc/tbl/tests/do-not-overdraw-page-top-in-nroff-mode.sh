@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (C) 2022 Free Software Foundation, Inc.
+# Copyright (C) 2022-2023 Free Software Foundation, Inc.
 #
 # This file is part of groff.
 #
@@ -36,9 +36,9 @@ wail () {
 # from grotty about "character(s) above [the] first line [being]
 # discarded".
 
-# Case 1: Vertical rule with no horizontal rules.
+# Case 1: No horizontal rules; vertical rule at leading column.
 input='.TS
-L |.
+| L.
 foo
 .TE'
 
@@ -50,14 +50,14 @@ echo "$output"
 echo "checking that no diagnostic messages are produced by grotty (1)"
 echo "$error" | grep -q 'grotty:' && wail
 
-echo "checking that vertical rule is placed on the first output line"
-echo "$output" | sed -n '1p' | grep -q '|' || wail
+echo "checking that a lone vertical rule starts the first output line"
+echo "$output" | sed -n '1p' | grep -Fqx '|' || wail
 
-# Case 2: Vertical rule with horizontal rule in row description.
+# Case 2: No horizontal rules; vertical rule between columns.
 input='.TS
-_
-L |.
-foo
+tab(@);
+L | L.
+foo@bar
 .TE'
 
 tmp=$(printf "%s\n" "$input" | "$groff" -t -Z -Tascii -P-cbou)
@@ -68,13 +68,12 @@ echo "$output"
 echo "checking that no diagnostic messages are produced by grotty (2)"
 echo "$error" | grep -q 'grotty:' && wail
 
-echo "checking that intersection is placed on the first output line"
-echo "$output" | sed -n '1p' | grep -q '+' || wail
+echo "checking that a lone vertical rule ends the first output line"
+echo "$output" | sed -n '1p' | grep -Eqx ' +\|' || wail
 
-# Case 3: Vertical rule with horizontal rule as first table datum.
+# Case 3: No horizontal rules; vertical rule at trailing column.
 input='.TS
 L |.
-_
 foo
 .TE'
 
@@ -86,10 +85,46 @@ echo "$output"
 echo "checking that no diagnostic messages are produced by grotty (3)"
 echo "$error" | grep -q 'grotty:' && wail
 
+echo "checking that a lone vertical rule ends the first output line"
+echo "$output" | sed -n '1p' | grep -Eqx ' +\|' || wail
+
+# Case 4: Vertical rule with horizontal rule in row description.
+input='.TS
+_
+L |.
+foo
+.TE'
+
+tmp=$(printf "%s\n" "$input" | "$groff" -t -Z -Tascii -P-cbou)
+output=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>/dev/null)
+error=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>&1 >/dev/null)
+echo "$output"
+
+echo "checking that no diagnostic messages are produced by grotty (4)"
+echo "$error" | grep -q 'grotty:' && wail
+
 echo "checking that intersection is placed on the first output line"
 echo "$output" | sed -n '1p' | grep -q '+' || wail
 
-# Case 4: Horizontal rule as non-first row description with vertical
+# Case 5: Vertical rule with horizontal rule as first table datum.
+input='.TS
+L |.
+_
+foo
+.TE'
+
+tmp=$(printf "%s\n" "$input" | "$groff" -t -Z -Tascii -P-cbou)
+output=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>/dev/null)
+error=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>&1 >/dev/null)
+echo "$output"
+
+echo "checking that no diagnostic messages are produced by grotty (5)"
+echo "$error" | grep -q 'grotty:' && wail
+
+echo "checking that intersection is placed on the first output line"
+echo "$output" | sed -n '1p' | grep -q '+' || wail
+
+# Case 6: Horizontal rule as non-first row description with vertical
 # rule.
 input='.TS
 L,_,L |.
@@ -102,7 +137,7 @@ output=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>/dev/null)
 error=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>&1 >/dev/null)
 echo "$output"
 
-echo "checking that no diagnostic messages are produced by grotty (4)"
+echo "checking that no diagnostic messages are produced by grotty (6)"
 echo "$error" | grep -q 'grotty:' && wail
 
 echo "checking that table data begin on first output line"
@@ -110,7 +145,7 @@ echo "$output" | sed -n '1p' | grep -q 'foo' || wail
 
 # Also ensure that no collateral damage arises in related cases.
 
-# Case 5: Horizontal rule as first table datum with no vertical rule.
+# Case 7: Horizontal rule as first table datum with no vertical rule.
 input='.TS
 L.
 _
@@ -122,13 +157,13 @@ output=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>/dev/null)
 error=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>&1 >/dev/null)
 echo "$output"
 
-echo "checking that no diagnostic messages are produced by grotty (4)"
+echo "checking that no diagnostic messages are produced by grotty (7)"
 echo "$error" | grep -q 'grotty:' && wail
 
 echo "checking that horizontal rule is placed on the first output line"
 echo "$output" | sed -n '1p' | grep -q '^---' || wail
 
-# Case 6: Horizontal rule as last table datum with no vertical rule.
+# Case 8: Horizontal rule as last table datum with no vertical rule.
 input='.TS
 L.
 foo
@@ -142,13 +177,13 @@ output=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>/dev/null)
 error=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>&1 >/dev/null)
 echo "$output"
 
-echo "checking that no diagnostic messages are produced by grotty (6)"
+echo "checking that no diagnostic messages are produced by grotty (8)"
 echo "$error" | grep -q 'grotty:' && wail
 
 echo "checking that horizontal rule is placed on the last output line"
 echo "$output" | sed -n '$p' | grep -q '^---' || wail
 
-# Case 7: Horizontal rule in row description with no vertical rule.
+# Case 9: Horizontal rule in row description with no vertical rule.
 input='.TS
 _
 L.
@@ -160,13 +195,13 @@ output=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>/dev/null)
 error=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>&1 >/dev/null)
 echo "$output"
 
-echo "checking that no diagnostic messages are produced by grotty (7)"
+echo "checking that no diagnostic messages are produced by grotty (9)"
 echo "$error" | grep -q 'grotty:' && wail
 
 echo "checking that intersection is placed on the first output line"
 echo "$output" | sed -n '1p' | grep -q '^---' || wail
 
-# Case 8: Horizontal rule as non-first row description with no vertical
+# Case 10: Horizontal rule as non-first row description with no vertical
 # rule.
 input='.TS
 L,_,L.
@@ -179,7 +214,7 @@ output=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>/dev/null)
 error=$(printf "%s" "$tmp" | "$grotty" -F ./font 2>&1 >/dev/null)
 echo "$output"
 
-echo "checking that no diagnostic messages are produced by grotty (8)"
+echo "checking that no diagnostic messages are produced by grotty (10)"
 echo "$error" | grep -q 'grotty:' && wail
 
 echo "checking that table data begin on first output line"

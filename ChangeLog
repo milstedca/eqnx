@@ -1,3 +1,9 @@
+2023-01-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/tbl/tests/\
+	do-not-overdraw-page-top-in-nroff-mode.sh: Correct erroneous
+	check of test output, and add two more test cases.
+
 2023-01-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an-ext.tmac: Move the saving of the hyphenation mode from

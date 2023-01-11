@@ -1,5 +1,10 @@
 2023-01-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/main.cpp (process_format): Fix code hygiene
+	nit: nullify `list` pointer after freeing its target.
+
+2023-01-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Really fix Savannah #63449.
 
 	* src/preproc/tbl/main.cpp (process_format): "Or" on the

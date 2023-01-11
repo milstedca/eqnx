@@ -785,6 +785,7 @@ format *process_format(table_input &in, options *opt,
 	error("end of input while processing table format"
 	      " specification");
 	free_input_entry_format_list(list);
+	list = 0 /* nullptr */;
 	return 0;
       }
       switch (c) {
@@ -849,6 +850,7 @@ format *process_format(table_input &in, options *opt,
 	  break;
 	error("invalid column classifier '%1'", char(c));
 	free_input_entry_format_list(list);
+	list = 0 /* nullptr */;
 	return 0;
       }
       if (got_period)
@@ -1062,6 +1064,7 @@ format *process_format(table_input &in, options *opt,
 	    if (c == EOF || c == '\n') {
 	      error("'w' column modifier missing closing parenthesis");
 	      free_input_entry_format_list(list);
+	      list = 0 /* nullptr */;
 	      return 0;
 	    }
 	    list->width += c;
@@ -1137,12 +1140,14 @@ format *process_format(table_input &in, options *opt,
     if (c != '\n') {
       error("'.' is not the last character of the table format");
       free_input_entry_format_list(list);
+      list = 0 /* nullptr */;
       return 0;
     }
   }
   if (!list) {
     error("table format specification is empty");
     free_input_entry_format_list(list);
+    list = 0 /* nullptr */;
     return 0;
   }
   list->is_last_column = true;
@@ -1182,6 +1187,7 @@ format *process_format(table_input &in, options *opt,
     if (ncolumns > current_format->ncolumns) {
       error("cannot increase the number of columns in a continued format");
       free_input_entry_format_list(list);
+      list = 0 /* nullptr */;
       return 0;
     }
     f = current_format;
@@ -1239,6 +1245,7 @@ format *process_format(table_input &in, options *opt,
       col++;
   }
   free_input_entry_format_list(list);
+  list = 0 /* nullptr */;
   for (col = 0; col < ncolumns; col++) {
     entry_format *e = f->entry[f->nrows - 1] + col;
     if (e->type != FORMAT_HLINE

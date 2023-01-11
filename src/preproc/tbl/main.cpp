@@ -837,6 +837,7 @@ format *process_format(table_input &in, options *opt,
 	got_period = true;
 	break;
       case '|':
+	opt->flags |= table::HAS_TOP_VLINE;
 	vline_count++;
 	break;
       case ' ':

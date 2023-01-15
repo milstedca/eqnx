@@ -1383,6 +1383,7 @@ Figure title.
 .
 The arguments are the same as for
 .BR EC .
+.
 .B FG
 uses the register
 .B Fg
@@ -4151,6 +4152,13 @@ displays.
 Otherwise the value of
 .B Lsp
 is used.
+.
+.
+.TP
+.B Ec
+is an auto-incrementing equation counter;
+see
+.BR EC .
 .
 .
 .TP

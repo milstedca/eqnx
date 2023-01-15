@@ -9,7 +9,7 @@ groff_mm \- memorandum macros for GNU
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1989-2022 Free Software Foundation, Inc.
+.\" Copyright (C) 1989-2023 Free Software Foundation, Inc.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -165,6 +165,20 @@ and affecting the interpretation of the
 and
 .B HP
 strings.
+.
+.
+.P
+Macro,
+register,
+and string descriptions in this page frequently mention each other;
+most cross references are to macros.
+.
+Where a register or string is referenced,
+its type is explicitly identified;
+.
+.IR mm 's
+macro names are usually in full capitals;
+registers and strings tend to have mixed-case names.
 .
 .
 .\" ====================================================================
@@ -1359,7 +1373,7 @@ is 10.
 .TP
 .B FE
 Footnote end;
-see macro
+see
 .BR FS .
 .
 .
@@ -3998,14 +4012,14 @@ is in use
 .TP
 .B :p
 is an auto-incrementing footnote counter;
-see macro
+see
 .BR FS .
 .
 .
 .TP
 .B :R
 is an auto-incrementing reference counter;
-see macro
+see
 .BR RS .
 .
 .
@@ -4155,14 +4169,14 @@ and to the right if 0 (default).
 .TP
 .B Ex
 auto-incrementing exhibit counter;
-see macro
+see
 .B EX
 .
 .
 .TP
 .B Fg
 auto-incrementing figure counter;
-see macro
+see
 .B FG
 .
 .
@@ -4176,7 +4190,7 @@ Default is\~1.
 .TP
 .BR H1 \|.\|.\|.\| H14
 auto-incrementing heading counters;
-see macro
+see
 .B H
 .
 .

@@ -1590,21 +1590,27 @@ Register
 .B Ej
 controls page ejection before the heading.
 .
-By default, a level-one heading gets two blank lines before it;
-higher levels only get one.
+If
+.I level
+is less than
+.BR Ej 's
+value,
+the page is broken prior to formatting the heading.
 .
-A new page is ejected before each first-level heading if register
-.B Ej
-is\~1.
 .
-All levels below or equal the value of
-.B Ej
-get a new page.
-.
-Default value for
-.B Ej
-is\~0.
+.IP
+If not preceded by a page break,
+a heading of
+.I level
+greater than the value of register
+.B Hps
+is preceded by the amount of vertical space in register
+.BR Hps1 ,
+and by the amount in
+.B Hps2
+otherwise.
 .RE
+.
 .
 .IP
 .B Heading break level
@@ -4163,9 +4169,13 @@ see
 .
 .TP
 .B Ej
-If set to\~1, eject page before each first-level heading.
+is the heading level threshold below which pages will be broken before
+formatting a heading;
+see
+.BR H .
 .
-Default is\~0.
+The default
+.RB is\~ 0 .
 .
 .
 .TP
@@ -4257,38 +4267,65 @@ T}
 .TE
 .RE
 .
+.
 .TP
 .B Hps
-Heading pre-space level.
+sets the heading level threshold for application of distinct vertical
+space;
+see
+.BR H .
 .
-If the heading level is less than or equal to
+If the heading level is greater than the value in
 .BR Hps ,
-two lines precede the section heading instead of one.
-.
-Default is first level only.
-.
-The real amount of lines is controlled by the registers
+the
 .B Hps1
-and
+amount is used;
+otherwise that of
 .BR Hps2 .
+.
+The default
+.RB is\~ 1 .
+.
+The value of
+.B Hps
+should be strictly greater than that of
+.BR Ej .
+.
 .
 .TP
 .B Hps1
-Number of lines preceding
-.B .H
-if the heading level is greater than
-.BR Hps .
+configures the amount of vertical space preceding a heading above the
+.B Hps
+threshold.
 .
-Value is in units, default is 0.5.
+The default
+.RB is\~ 0.5v
+on
+.I troff
+devices
+.RB and\~ 1v
+on
+.I nroff
+devices.
+.
 .
 .TP
 .B Hps2
-Number of lines preceding
-.B .H
-if the heading level is less than or equal to
-.BR Hps .
+configures the amount of vertical space preceding a heading below or at
+the
+.B Hps
+threshold.
 .
-Value is in units, default is\~1.
+The default
+.RB is\~ 1v
+on
+.I troff
+devices
+.RB and\~ 2v
+on
+.I nroff
+devices.
+.
 .
 .TP
 .B Hs

@@ -3950,23 +3950,42 @@ Default is\~1.
 .SH Registers
 .\" ====================================================================
 .
+Default register values,
+where meaningful,
+are shown in parentheses.
+.
+Many are also marked as Boolean-valued,
+meaning that they are considered \[lq]true\[rq]
+(on,
+enabled)
+when they have a positive value,
+and \[lq]false\[rq]
+(on,
+disabled)
+otherwise.
+.
+.
 .TP
 .B .mgm
-Always\~1.
+indicates that
+.I groff mm
+is in use
+(Boolean-valued;
+.BR 1 ).
 .
 .
 .TP
 .B :p
-auto-incrementing footnote counter;
+is an auto-incrementing footnote counter;
 see macro
-.B FS
+.BR FS .
 .
 .
 .TP
 .B :R
-auto-incrementing reference counter;
+is an auto-incrementing reference counter;
 see macro
-.B RS
+.BR RS .
 .
 .
 .TP

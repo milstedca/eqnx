@@ -3081,17 +3081,16 @@ the current value is incremented or decremented, respectively.
 .RI [ mode ]
 Set or restore the default enablement of adjustment.
 .
-Adjustment is on by default.
-.
-To set the adjustment default for the document,
-specify
+Specify
 .B 0
 or
 .B 1
 as
-.I mode,
-to disable or enable it,
-respectively.
+.I mode
+to set a document's default explicitly;
+.B 1
+is assumed by
+.IR mm .
 .
 Adjustment can be temporarily suspended with the
 .B na

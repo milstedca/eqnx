@@ -1,5 +1,13 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (@abort): Introduce macro for internal errors,
+	unconditionally reporting a backtrace...
+	(misc@pop-set, hd@split, MULN, df@print-float, IND): ..and use
+	it instead of `@error` for problems with internal state.
+	(IND): Also fix botch in reported error.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (SA): Reject an argument value > 1 as invalid.
 
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>

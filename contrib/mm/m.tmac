@@ -410,6 +410,12 @@ Index		array!index
 .if \\n[D] .backtrace
 .ab
 ..
+.
+.de @abort
+.tm \\*[@mm]:\\n[.F]:\\n[.c]: internal error: \\$*
+.backtrace
+.ab
+..
 .de misc@toupper
 .tr aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ
 .br
@@ -565,7 +571,7 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .de misc@pop-set
 .ds misc*st-name \\$1
 .shift
-.if \\n[.$]<1 .@error "stack \\*[misc*st-name] empty"
+.if \\n[.$]<1 .@abort stack '\\*[misc*st-name]' empty
 .ds misc*pop \\$1
 .shift
 .ds \\*[misc*st-name] \\$*
@@ -1013,7 +1019,10 @@ numeric; got '\\$1'
 .\"-------------
 .\" .hd@split variable index name val1 val2 ...
 .de hd@split
-.if \\$2>(\\n[.$]-3) .@error "\\$3 must have at least \\$2 values (\\*[\\$3]).
+.\" TODO: Verify that this isn't reachable due to ordinary user error;
+.\" if it is, make it an @error.
+.if \\$2>(\\n[.$]-3) .@abort \\$3 must have at least \\$2 values \
+(\\*[\\$3])
 .nr hd*sp-tmp \\$2+3
 .ds \\$1 \\$[\\n[hd*sp-tmp]]
 ..
@@ -1686,7 +1695,8 @@ messy
 ..
 .\"-----------
 .de MULN
-.if \\n[pg*mul-x]>=\\n[pg*mul-max-col] .@error "MULN: Undefined columnwidth"
+.if \\n[pg*mul-x]>=\\n[pg*mul-max-col] .@abort undefined column width \
+(pg*mul-x=\\n[pg*mul-x >= pg*mul-max-col=\\n[pg*mul-max])
 .br
 .if \\n[.d]>\\n[pg*mul-last] .nr pg*mul-last \\n[.d]
 .rt +0
@@ -1977,7 +1987,7 @@ messy
 .\"	4	beginning of new page
 .\"
 .de df@print-float
-.if \\n[Df]>5 .@error "Df=\\n[Df], max value is 5"
+.if \\n[Df]>5 .@abort invalid float type: 5 < Df (\\n[Df])
 .if !\\n[ds*float-busy] \{\
 .	nr ds*float-busy 1
 .\" at .DE
@@ -3319,11 +3329,11 @@ messy
 .de IND
 .if !d ind*file .@error "IND: No active INITI"
 .if \\n[D]>1 .tm IND: type=\\*[ind*type]
-.ds ind*ref
+.ds ind*ref \" empty
 .if '\\*[ind*type]'N' .ds ind*ref \\n[%]
 .if '\\*[ind*type]'H' .ds ind*ref \\*[hd*mark]
 .if '\\*[ind*type]'B' .ds ind*ref \\*[hd*mark]\t\\n[%]
-.if '\\*[ind*ref]'' .@error "IND:wrong index type: \\*[ind*ref]"
+.if '\\*[ind*ref]'' .@abort invalid index type '\\*[ind*type]'
 .\"
 .ds ind*line \\$1
 .while \\n[.$]>0 \{\

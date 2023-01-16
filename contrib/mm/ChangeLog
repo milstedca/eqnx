@@ -1,5 +1,10 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (MOVE, SM, AT, LO): Weaken diagnostics when given no
+	arguments from (fatal) errors to warnings, then return.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (PIC): Bomb out (with diagnostic) if either of the
 	width or height arguments are not numeric expressions.
 

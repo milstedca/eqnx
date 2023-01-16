@@ -619,7 +619,10 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .\" .MOVE y [[x] linelength]
 .\" move to line y, indent to x
 .de MOVE
-.if !\\n[.$] .@error "MOVE y [x]: no arguments"
+.if !\\n[.$] \{\
+.	@warning \\$0: ignoring; no arguments specified
+.	return
+.\}
 .if \\n[nl]<0 \c
 .\" move to Y-pos
 .sp |(v;\\$1)
@@ -636,7 +639,10 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 ..
 .\"-------------
 .de SM
-.if !\\n[.$] .@error "SM: no arguments"
+.if !\\n[.$] \{\
+.	@warning \\$0: ignoring; no arguments specified
+.	return
+.\}
 .if \\n[.$]=1 \s-1\\$1\s0
 .if \\n[.$]=2 \s-1\\$1\s0\\$2
 .if \\n[.$]=3 \\$1\s-1\\$2\s0\\$3
@@ -3077,7 +3083,10 @@ numeric; got '\\$1'
 .\" Any quantity of titles may be declared.
 .\" Must be called directly after the corresponding .AU.
 .de AT
-.if \\n[.$]<1 .@error "AT: no arguments"
+.if !\\n[.$] \{\
+.	@warning \\$0: ignoring; no arguments specified
+.	return
+.\}
 .nr cov*at!\\n[cov*au] \\n[.$]
 .nr cov*i 0 1
 .while \\n[.$]>=\\n+[cov*i] \{\
@@ -3654,7 +3663,10 @@ numeric; got '\\$1'
 .\" Letter options
 .de LO
 .rm AF AS AE AT AU CS OK TL MT
-.if ''\\$1' .@error "LO: missing option"
+.if !\\n[.$] \{\
+.	@warning \\$0: ignoring; no arguments specified
+.	return
+.\}
 .if !d Let\\$1 .@error "LO: unknown option (\\$1)"
 .ds let*lo-\\$1 \\$2
 .if \n[D]>1 .tm Letter option \\$1 \\$2

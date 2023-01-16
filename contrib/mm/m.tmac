@@ -454,7 +454,8 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .		shift
 .	\}
 .	el .if (\\$1 > 1) \
-.		@warning \\$0: ignoring unsupported paragraph type \\$1
+.		@warning \\$0: ignoring unsupported paragraph type \
+'\\$1'
 .\}
 .\"	skip P if previous heading
 .if \\n[D]>2 \{\
@@ -991,10 +992,10 @@ numeric; got '\\$1'
 .@warning \\$0: not implemented except with ".MT 4"
 ..
 .de OK
-.@warning OK: not implemented
+.@warning \\$0: not implemented
 ..
 .de PM
-.@warning PM: not implemented
+.@warning \\$0: not implemented
 ..
 .\" ######## module hd #################
 .\" support for usermacro
@@ -1594,7 +1595,9 @@ numeric; got '\\$1'
 .el \{\
 .	if d ft*div \{\
 .		if \\n[pg*ncol-i]>0 \{\
-.			@warning 1C: footnotes will be messy
+.			@warning \\$0: returning to single-column \
+layout with suppressed page break and footnote pending; output may be \
+messy
 .		\}
 .	\}
 .	if \\n[pg*last-ncol]>0 \{\

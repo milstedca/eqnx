@@ -1,5 +1,11 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (P): Quote unrecognized argument in warning diagnostic.
+	(OK, PM): Refactor to use `\$0`.
+	(1C): Explain poorly supported better in warning diagnostic.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (Tm): Align with definition of `Sm`, with analogous
 	fallback definitions.
 

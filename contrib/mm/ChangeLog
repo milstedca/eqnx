@@ -1,5 +1,12 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (CS): Define to throw diagnostic when used without ".MT
+	4".  (Later, if the "4.MT" file is sourced, this definition is
+	replaced.)
+	* groff_mm.7.man (Description): Clarify `CS` support status.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (MOVE, SM, AT, LO): Weaken diagnostics when given no
 	arguments from (fatal) errors to warnings, then return.
 

@@ -90,14 +90,19 @@ the
 (\[lq]private\[rq] heading)
 register;
 and the
-.B CS
-(cover sheet),
 .B OK
 (other keywords),
 and
 .B PM
 (proprietary markings)
 macros.
+.
+.
+.IP \[bu] 2n
+The
+.B CS
+(output cover sheet)
+macro is implemented only for memorandum type 4.
 .
 .
 .IP \[bu]

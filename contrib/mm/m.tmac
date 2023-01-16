@@ -1642,12 +1642,14 @@ messy
 .el .nr pg*column-sep (n;\\$2)
 .\"
 .\" calculate the number of columns/page
-.nr pg*cols-per-page 0
+.nr pg*cols-per-page 0 \" temporarily invalid!
 .nr pg*i \\n[pg*column-size]
 .while \\n[pg*i]<=\\n[.l] \{\
-.	nr pg*cols-per-page \\n[pg*cols-per-page]+1
+.	nr pg*cols-per-page +1
 .	nr pg*i \\n[pg*i]+\\n[pg*column-sep]+\\n[pg*column-size]
 .\}
+.if \\n[pg*cols-per-page]<0 .@abort \\n[pg*cols-per-page] columns in \
+page
 .nr pg*cur-column 0 1
 .nr pg*cur-po \\n[@po]u
 .ll \\n[pg*column-size]u

@@ -623,32 +623,26 @@ are included in appendices.
 .
 .TP
 .BR AS\~ [\c
-.IR arg \~[ indent ]]
+.IR placement \~[ indentation ]]
 Abstract start;
 begin collecting abstract.
 .
-Text up to the next
+Input up to the next
 .B AE
 call is included in the abstract.
 .
-Depending on the cover sheet macros used,
-.I arg
-influences the placement of the abstract.
+.I placement
+influences the location of the abstract on the cover sheet of a
+memorandum
+(see
+.BR MT ).
 .
-The default cover sheet style used when
-.B .COVER
-is called without arguments
-(and
-.B .MT
-is not called at all)
-places the abstract on the cover sheet and ignores
-.IR arg .
-.
-.
-.IP
-The memorandum types interpret
-.I arg
-as follows.
+.BR COVER ,
+by contrast,
+ignores
+.I placement
+by default,
+but can be customized to interpret it.
 .
 .
 .IP
@@ -656,7 +650,7 @@ as follows.
 tab(@);
 lf(BI) lb
 l lx.
-arg@Placement
+placement@Effect
 0@T{
 The abstract is printed on page\~1 and on the cover sheet if used in the
 released-paper style
@@ -692,12 +686,13 @@ but is not by
 .
 .
 .IP
-The
-.I indent
-parameter controls the indentation of both margins;
-otherwise normal text indentation is used.
+A second argument increases the indentation and reduces the line length
+by
+.IR indentation .
 .
-Its value is interpreted in ens by default.
+A scaling unit of ens is assumed.
+.
+The default is\~0.
 .
 .
 .TP

@@ -695,13 +695,17 @@ A scaling unit of ens is assumed.
 The default is\~0.
 .
 .
+.\" XXX: Do we need a macro for this?  Why is it not a string like App
+.\" or Licon?  It is usefully localizable.
 .TP
-.BI AST\  \fR[\fPtitle\fR]\fP
-Abstract title.
+.BR AST \~\c
+.RI [ heading ]
+Set the heading above the abstract to
+.IR heading ,
+or clear it if there is no argument.
 .
-Default is \[lq]ABSTRACT\[rq].
+The default is \[lq]ABSTRACT\[rq].
 .
-Sets the text above the abstract text.
 .
 .TP
 .BI AT\~ title\c

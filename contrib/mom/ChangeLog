@@ -1,7 +1,10 @@
 
 2023-01-16
-	* om.tac (PRINSTYLE): Abort with message if nroff is called on a
-	document using PRINTSTYLE TYPESET.
+	* om.tmac (PRINSTYLE): Abort with message if nroff is called on
+	a document using PRINTSTYLE TYPESET.
+
+	Fixes <https://savannah.gnu.org/bugs/?63581>.  Thanks to Gene
+	for the report.
 
 2022-11-16
 

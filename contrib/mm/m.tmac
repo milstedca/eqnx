@@ -158,7 +158,12 @@ Index		array!index
 .	ie c \[u2120] .ds Sm \[u2120]\"
 .	el            .ds Sm (SM)\"
 .\}
-.ds Tm \(tm
+.
+.ie t .ds Tm \v'-.4m'\s-3TM\s0\v'.4m'\"
+.el \{\
+.	ie c \[tm] .ds Tm \[tm]\"
+.	el         .ds Tm (TM)\"
+.\}
 .\"
 .\"---------------------------------------------
 .\"	Internal global variables

@@ -1,5 +1,10 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (Tm): Align with definition of `Sm`, with analogous
+	fallback definitions.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (Sm): Implement string for service mark, for DWB mm
 	compatibility.
 	* groff_mm.7.man: Document it.

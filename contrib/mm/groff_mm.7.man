@@ -3978,8 +3978,8 @@ ap@Appendix
 .
 .TP
 .B Tm
-contains the special character
-.BR \[rs](tm ,
+interpolates
+.if c \[tm] \[tm],
 the trade mark sign.
 .
 .

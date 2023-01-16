@@ -3997,7 +3997,7 @@ meaning that they are considered \[lq]true\[rq]
 enabled)
 when they have a positive value,
 and \[lq]false\[rq]
-(on,
+(off,
 disabled)
 otherwise.
 .
@@ -4040,7 +4040,7 @@ see
 .B Au
 includes supplemental author information
 (the third and subsequent arguments to
-.B AU )
+.BR AU )
 in memorandum \[lq]from\[rq] information.
 .
 It defaults
@@ -4767,7 +4767,7 @@ otherwise it is called for all pages.
 .
 .TP
 .BI let@sg_ type\~\c
-.IR "name title n is-surname\~" [ SG-arg\~ .\|.\|.]]
+.IR "name title n is-surname\~" [ SG-arg\~ .\|.\|.]
 .B .SG
 calls this macro only for letters;
 memoranda have their own processing.
@@ -4776,7 +4776,7 @@ memoranda have their own processing.
 and
 .I title
 are specified through
-.BR .WA / .WB .
+.BR .WA / .WE .
 .
 .IR n \~is
 the index of the

@@ -20,7 +20,7 @@ for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-Version 2.5_b
+Version 2.5_c
 -------------
 Antoine de St-Exupéry asserted that elegance in engineering is
 achieved not when there is nothing left to add, but when there is
@@ -53,7 +53,7 @@ extensions, and float management).
 .if (\n[.x]\n[.y] < 118) \
 .   ab [mom]: You need GNU troff version 1.18 or higher to run this version of mom.
 \# Mom version
-.ds version 2.5_b
+.ds version 2.5_c
 .if dVERSION \{\
 .   ab [mom]: Version \*[version]
 .\}
@@ -4250,6 +4250,12 @@ y\R'#DESCENDER \\n[.cdp]'
 \#   Number registers: TYPEWRITE=1, TYPESET=2.
 \#
 .MAC PRINTSTYLE END
+.    if n \{\
+.       if '\\$1'TYPESET' \{\
+.         pl 1
+.         ab [mom]: Terminal output requires PRINTSTYLE TYPEWRITE.  Aborting.
+.       \}
+.    \}
 .    if !\\n[#COLLATE]=1 \{\
 .       if !d$PAPER \{\
 .          PAGELENGTH 11i
@@ -4956,7 +4962,8 @@ y\R'#DESCENDER \\n[.cdp]'
 \# *Function:
 \#   Creates strings and sets registers for document types.
 \# *Notes:
-\#   Number registers: DEFAULT=1, CHAPTER=2, NAMED=3, LETTER=4
+\#   Number registers: DEFAULT=1, CHAPTER=2, NAMED=3, LETTER=4,
+\#   SLIDES=5
 \#
 .MAC DOCTYPE END
 .    if '\\$1'DEFAULT' .nr #DOC_TYPE 1
@@ -5834,7 +5841,7 @@ SMALLCAPS takes precedence.
 .MAC DEFAULTS END
 .    if !\\n[#DOC_TYPE]=5 \{\
 .       ie !d $PAPER \{\
-.          PAGEWIDITH \\n[#PAGE_WIDTH]u
+.          PAGEWIDTH \\n[#PAGE_WIDTH]u
 .          PAGELENGTH \\n[.p]u
 .       \}
 .       el .PAPER \\*[$PAPER]
@@ -12971,9 +12978,16 @@ Shimming must be disabled with NO_SHIM before using FLEX.
 \#   Default is on.
 \#
 .MAC PAGINATE END
-.    ie '\\$1'' .nr #PAGINATE 1
+.    ie '\\$1'' \{\
+.       nr #PAGINATE 1
+.       if \\n[#SAVED_V_POS] \{\
+.          nr #PAGE_NUM_V_POS \\n[#SAVED_V_POS]
+.          rr #SAVED_V_POS
+.       \}
+.    \}
 .    el \{\
 .      nr #PAGINATE 0
+.      nr #SAVED_V_POS \\n[#PAGE_NUM_V_POS]
 .      rr #PAGE_NUM_V_POS
 .    \}
 .    if \\n[#HF_OFF]=1 \{\

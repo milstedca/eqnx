@@ -1,5 +1,11 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (Sm): Implement string for service mark, for DWB mm
+	compatibility.
+	* groff_mm.7.man: Document it.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (CS): Define to throw diagnostic when used without ".MT
 	4".  (Later, if the "4.MT" file is sourced, this definition is
 	replaced.)

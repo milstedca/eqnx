@@ -153,6 +153,11 @@ Index		array!index
 .\" it will be set to co,fg,tb,ec,ex or ap.
 .ds Tcst
 .\"
+.ie t .ds Sm \v'-.4m'\s-3SM\s0\v'.4m'\"
+.el \{\
+.	ie c \[u2120] .ds Sm \[u2120]\"
+.	el            .ds Sm (SM)\"
+.\}
 .ds Tm \(tm
 .\"
 .\"---------------------------------------------

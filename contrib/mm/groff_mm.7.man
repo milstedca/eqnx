@@ -118,12 +118,6 @@ are defined.
 .
 .
 .IP \[bu]
-The service mark string
-.B Sm
-is not implemented.
-.
-.
-.IP \[bu]
 The registers
 .BR A ,
 .BR C ,
@@ -3944,6 +3938,14 @@ page \[rs]\[rs]n[Qrfp].\[rq]
 .TP
 .B Rp
 \[lq]REFERENCES\[rq]
+.
+.
+.
+.TP
+.B Sm
+interpolates
+.if c \[u2120] \[u2120],
+the service mark sign.
 .
 .
 .TP

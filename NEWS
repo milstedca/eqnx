@@ -389,6 +389,8 @@ o The m (mm) macro package now recognizes a `V` register to set the
   correctly if suffixed with a scaling unit, instead of requiring an
   unscaled value assumed to be points.
 
+o The m (mm) macro package now supports AT&T/DWB mm's `Sm` string.
+
 o The m (mm) macro package now requires a title to be declared when
   memorandum type 5 is used (".MT 5"), just as type 4 has since groff
   1.10 (November 1995).

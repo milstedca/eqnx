@@ -652,7 +652,6 @@ as follows.
 .
 .
 .IP
-.RS
 .TS
 tab(@);
 lf(BI) lb
@@ -678,7 +677,6 @@ T}
 .\"The cover sheet is printed without a need for \fBCS\fP.
 .\"T}
 .TE
-.RE
 .
 .
 .IP
@@ -1012,14 +1010,13 @@ than the height of the page.
 .B DS
 can be nested arbitrarily.
 .
-.IP
-.B format
 .
-.RS
 .IP
 .TS
 tab(@);
-l lx.
+Lf(BI) Lb
+L Lx.
+format@Effect
 \[dq]\[dq]@No indentation.
 none@No indentation.
 L@No indentation.
@@ -1032,7 +1029,7 @@ CB@Center the whole display as a block.
 R@Right-adjust the lines.
 RB@Right-adjust the whole display as a block.
 .TE
-.RE
+.
 .
 .IP
 The values \[lq]L\[rq],
@@ -1046,20 +1043,19 @@ and
 respectively,
 for compatibility reasons.
 .
-.IP
-.B fill
 .
-.RS
 .IP
 .TS
 tab(@);
-l l.
+Lf(BI) Lb
+L Lx.
+fill@Effect
 \[dq]\[dq]@Line-filling turned off.
 none@Line-filling turned off.
 N@Line-filling turned off.
 F@Line-filling turned on.
 .TE
-.RE
+.
 .
 .IP
 \[lq]N\[rq] and \[lq]F\[rq] can also be specified as \[lq]0\[rq] and
@@ -1086,14 +1082,13 @@ The
 .I override
 argument changes the numbering.
 .
-.IP
-.B flag
 .
-.RS
 .IP
 .TS
 tab(@);
-l lx.
+Lf(BI) Lb
+L Lx.
+flag@Effect
 none@T{
 .I override
 is a prefix to the number.
@@ -1111,7 +1106,7 @@ T}
 replaces the number.
 T}
 .TE
-.RE
+.
 .
 .IP
 .B EC
@@ -1654,10 +1649,11 @@ Indentation of the text after the heading is controlled by register
 Default value is\~0.
 .
 .IP
-.B Hi
 .TS
 tab(@);
-l lx.
+Lb Lb
+L Lx.
+Hi value@Effect
 0@The text is left-justified.
 1@T{
 Indentation of the text follows the value of register
@@ -2025,13 +2021,13 @@ just add the name of the macro as a third argument.
 .
 The macro is then called with the index as argument(s).
 .
-.IP
-.B type
 .
 .IP
 .TS
 tab(@);
-l lx.
+Lf(BI) Lb
+L Lx.
+type@entry format
 N@Page numbers
 H@Header marks
 B@T{
@@ -2039,6 +2035,7 @@ Both page numbers and header marks,
 separated with a tab character.
 T}
 .TE
+.
 .
 .TP
 .BI INITR\  filename
@@ -2231,19 +2228,18 @@ can then be any of \[lq]1\[rq],
 \[lq]I\[rq],
 or \[lq]i\[rq].
 .
+.
 .IP
 .I type
 selects one of six possible ways to display the mark.
 .
-.IP
-.B type
 .
-.RS
 .IP
-.br
 .TS
 tab(@);
-l l.
+Lf(BI) Lb
+L L.
+type@Output
 1@x.
 2@x)
 3@(x)
@@ -2251,7 +2247,7 @@ l l.
 5@<x>
 6@{x}
 .TE
-.RE
+.
 .
 .IP
 Every item in the list gets
@@ -3032,20 +3028,19 @@ tells
 .B RP
 whether to eject a page or not.
 .
-.IP
-.B arg2
 .
-.RS
 .IP
 .TS
 tab(@);
-l lx.
+Lf(BI) Lb
+L Lx.
+arg2@Effect
 0@The reference page is printed on a separate page.
 1@Do not eject page after the list.
 2@Do not eject page before the list.
 3@Do not eject page before and after the list.
 .TE
-.RE
+.
 .
 .IP
 The reference items are separated by a blank line.
@@ -3506,7 +3501,7 @@ Its value is the sum of all wanted features.
 tab(@);
 lb lb
 l lx.
-Arg@Description
+Arg@Effect
 1@T{
 Disable the escape character (\[rs]).
 This is normally turned on during verbose output.
@@ -4101,7 +4096,6 @@ The valid range is 0 to 5;
 the default is\~5.
 .
 .
-.RS
 .IP
 .TS
 tab(@);
@@ -4138,7 +4132,6 @@ A page break occurs between each display if
 is not zero.
 T}
 .TE
-.RE
 .
 .
 .TP
@@ -4251,7 +4244,6 @@ Heading temporary indent.
 .
 A number in the range 0 to 2, with a default value of\~1.
 .
-.RS
 .IP
 .TS
 tab(@);
@@ -4265,7 +4257,6 @@ T}
 indent to line up with text part of preceding heading
 T}
 .TE
-.RE
 .
 .
 .TP

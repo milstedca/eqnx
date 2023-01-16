@@ -527,7 +527,8 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .nr misc@adjust 14
 .de SA
 .if \\n[.$] \{\
-.	if \\$1-1 .@error "SA: bad arg: \\$1"
+.	if ((\\$1 < 0) : (\\$1 > 1)) .@error \\$0: invalid argument \
+'\\$1'
 .\" XXX: ...then...
 .\"   .ad l
 .\"   .nr misc@adjust \\n[.j]

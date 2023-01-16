@@ -1592,8 +1592,11 @@ numeric; got '\\$1'
 ..
 .\" An argument disables the page-break.
 .de 1C
+.if \\n[pg*cols-per-page]<=1 \{\
+.	@warning \\$0: multicolumn mode not active
+.	return
+.\}
 .br
-.if \\n[pg*cols-per-page]<=1 .@error "1C: multicolumn mode not active"
 .nr pg*cols-per-page 1
 .nr pg*column-sep 0
 .nr pg*column-size \\n[@ll]

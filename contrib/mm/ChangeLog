@@ -1,5 +1,11 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (1C): Warn and return early instead of bombing out if
+	called when multiple columnation is inactive.  A no-op should
+	not be a fatal error.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (@abort): Introduce macro for internal errors,
 	unconditionally reporting a backtrace...
 	(misc@pop-set, hd@split, MULN, df@print-float, IND): ..and use

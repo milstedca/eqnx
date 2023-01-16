@@ -1,5 +1,9 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (IX): Delete.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (MC): Throw internal error if we don't leave
 	`pg*cols-per-page` in a valid state after invalidating it to
 	count columns.  Also simplify expression.

@@ -373,6 +373,12 @@ o The e (me) and s (ms) macro packages now offer a `PF` macro,
   supporting the pic(1) preprocessor's "flyback" feature.  Thanks to
   Dave Kemper.
 
+o The m (mm) macro package no longer implements the `IX` macro.  This
+  groff extension, borrowed from another undocumented one in groff ms,
+  was similarly undocumented.  No applications of it are known.  We
+  recommend makeindex(1), which supports troff and is available with
+  most TeX distributions, for your mm document indexing needs.
+
 o The m (mm) macro package now adapts to the paper format selected when
   the macro file "papersize.tmac" is used (by specifying the groff "-d
   paper" command-line option).  A consequence is that "groff -mm" and

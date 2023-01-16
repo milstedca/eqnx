@@ -1,5 +1,10 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (PIC): Bomb out (with diagnostic) if either of the
+	width or height arguments are not numeric expressions.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (EPIC): Handle and shift off a leading "-L" argument
 	before checking argument count.  Then, if fewer than two
 	arguments remain, throw warning diagnostic and return early

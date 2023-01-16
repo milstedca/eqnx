@@ -835,10 +835,14 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .	nr pict*id +1
 .	shift
 .	if \\n[.$]>0 \{\
+.		if !\B'\\$1' .@error \\$0: width parameter is not \
+numeric; got '\\$1'
 .		nr pict*width (i;\\$1)
 .		shift
 .	\}
 .	if \\n[.$]>0 \{\
+.		if !\B'\\$1' .@error \\$0: height parameter is not \
+numeric; got '\\$1'
 .		nr pict*height (i;\\$1)
 .		shift
 .	\}

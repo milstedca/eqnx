@@ -724,7 +724,8 @@ cover sheet style.
 .
 .
 .TP
-.BI AU\~ name\~\c
+.BR AU \~\c
+.RI [ name\~\c
 .RI [ initials\~\c
 .RI [ loc\~\c
 .RI [ dept\~\c
@@ -732,15 +733,15 @@ cover sheet style.
 .RI [ room\~\c
 .RI [ arg1\~\c
 .RI [ arg2\~\c
-.RI [ arg3 ]]]]]]]]
-Author information.
-.
-Specifies the author of the memo or paper,
-and is printed on the cover sheet and in other similar places.
+.RI [ arg3 ]]]]]]]]]
+Specify author.
 .
 .B AU
-must not appear before
-.BR TL .
+terminates a document title being collected with
+.BR TL ,
+and can be called without arguments for that sole purpose.
+.
+Author information appears on cover sheets and similar places.
 .
 The author information can contain initials,
 location,
@@ -748,6 +749,10 @@ department,
 telephone extension,
 room number or name,
 and up to three additional arguments.
+.
+Repeat
+.B AU
+to identify multiple authors.
 .
 .
 .TP

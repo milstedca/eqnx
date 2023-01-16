@@ -1,5 +1,12 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (AU): Partially revert commit 4fd984adc9, 2021-07-17.
+	`AU` can be called for the sole purpose of "closing" a document
+	title "opened" with `TL`.
+	* groff_mm.7.man (Macros) <AU>: Update description.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (TM): Warn if called without arguments.
 
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
@@ -53,10 +60,6 @@
 
 	* tests/MT-1-reports-all-TM-numbers.sh: Do it.
 	* mm.am (mm_TESTS): Run test.
-
-2023-01-03  G. Branden Robinson <g.branden.robinson@gmail.com>
-
-	* groff_mm.7.man (AU): Fix error; an argument is mandatory.
 
 2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -250,11 +253,8 @@
 
 	Refactor author title handling.
 
-	* m.tmac (AU): Emit error diagnostic and skip remainder of macro
-	definition if called without arguments; this will keep people
-	familiar with the ms package from getting incorrect and
-	surprising output.  Initialize `cov*at!` array element to zero
-	for current author number (`AT` already updates it).
+	* m.tmac (AU): Initialize `cov*at!` array element to zero for
+	current author number (`AT` already updates it).
 
 	* mm/ms.cov (cov@print-authors): Enforce requirement documented
 	in groff_mm(7) that .AU is mandatory if .COVER is used.  Emit

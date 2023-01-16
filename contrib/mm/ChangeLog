@@ -1,5 +1,9 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (TM): Warn if called without arguments.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (AST): Preserve any user-specified leading spaces in
 	argument.
 

@@ -3117,6 +3117,10 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .\"-------------------
 .\" Save technical memorandum numbers.
 .de TM
+.if !\\n[.$] \{\
+.	@warning \\$0: ignoring; no arguments specified
+.	return
+.\}
 .nr cov*i 0 1
 .while \\n[.$]>=\\n+[cov*i] .ds cov*mt-tm!\\n[cov*i] \\$[\\n[cov*i]]
 .nr cov*mt-tm-max \\n[.$]

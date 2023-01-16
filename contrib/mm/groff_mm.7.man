@@ -3404,11 +3404,11 @@ See
 .
 .
 .TP
-.BI TM\  "\fR[\fPnum1 \fR[\fPnum2 \fR[.\|.\|.]]]\fP"
-Technical memorandum numbers used in
-.BR .MT .
+.BI TM\~ number\c
+\~.\|.|.
+Declare technical memorandum number(s) used by
+.BR MT .
 .
-An unlimited number of arguments may be given.
 .
 .TP
 .B TP

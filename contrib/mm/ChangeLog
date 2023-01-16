@@ -1,5 +1,15 @@
 2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (EPIC): Handle and shift off a leading "-L" argument
+	before checking argument count.  Then, if fewer than two
+	arguments remain, throw warning diagnostic and return early
+	instead of bombing out.  Do bomb out (with diagnostic) if either
+	of the width or height arguments are not numeric expressions.
+	Fix bug which prevented third argument from being interpreted.
+	Annotate potential future development.
+
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (AU): Partially revert commit 4fd984adc9, 2021-07-17.
 	`AU` can be called for the sole purpose of "closing" a document
 	title "opened" with `TL`.

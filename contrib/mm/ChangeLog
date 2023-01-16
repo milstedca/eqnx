@@ -1,3 +1,8 @@
+2023-01-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (AST): Preserve any user-specified leading spaces in
+	argument.
+
 2023-01-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (P): Warn if argument is non-numeric, and discard it.

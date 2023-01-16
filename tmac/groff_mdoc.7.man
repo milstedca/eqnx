@@ -4672,8 +4672,8 @@ and include a specimen with its provenance.
 .It Li .Bt
 formats boilerplate text.
 .
-.\" XXX: .Bt get parsed (and measured) even _with_ a leading dot.  Is
-.\" that documented?
+.\" XXX: .Bt gets parsed (i.e., called) _and_ measured even _with_ a
+.\" leading dot.  See Savannah #63672.
 .Bl -tag -width \&.Bt -offset indent
 .It Li .Bt
 \[->]
@@ -4804,8 +4804,8 @@ Its default width is 8n.
 .It Li .Ud
 formats boilerplate text.
 .
-.\" XXX: .Ud get parsed (and measured) even _with_ a leading dot.  Is
-.\" that documented?
+.\" XXX: .Ud gets parsed (i.e., called) _and_ measured even _with_ a
+.\" leading dot.  See Savannah #63672.
 .Bl -tag -width \&.Ud -offset indent
 .It Li .Ud
 \[->]

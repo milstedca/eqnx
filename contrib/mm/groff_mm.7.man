@@ -1651,6 +1651,7 @@ Indentation of the text after the heading is controlled by register
 .
 Default value is\~0.
 .
+.
 .IP
 .TS
 tab(@);
@@ -1659,8 +1660,8 @@ L Lx.
 Hi value@Effect
 0@The text is left-justified.
 1@T{
-Indentation of the text follows the value of register
-.B Pt ,
+The text is indented by the value of register
+.BR Pt ;
 see
 .BR P .
 T}
@@ -1669,6 +1670,7 @@ The text is lined up with the first word of the heading.
 T}
 .TE
 .RE
+.
 .
 .IP
 .B Centered section headings
@@ -1706,48 +1708,56 @@ Default value is
 .
 This could also be written as
 .
+.
 .RS
 .IP
 .B I I I I I I I I I I I I I I
 .RE
 .
+.
 .IP
-Note that some other implementations use
+DWB
+.I mm
+used
 .B 3\~3\~2\~2\~2\~2\~2
-as the default value.
+as the default.
 .
 All omitted values are presumed to have value\~1.
 .RE
 .
+.
 .IP
-.B Point size control
+.B Heading type size
 .
 .RS
-.IP
-String
+The string
 .B HP
-controls the point size of each heading,
-in the same way as
+controls assigns a type size to each heading level,
+analogously to the way
 .B HF
-controls the font.
+selects a font.
 .
-A value of\~0 selects the default point size.
+A value of\~0 uses the default type size.
 .
-Default value is
+The default value is
+.
 .
 .RS
 .IP
 .B 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 .RE
 .
-.IP
-Beware that only the point size changes, not the vertical size.
 .
-The latter can be controlled by the user-specified macros
+.IP
+Only the type size is changed,
+not the vertical spacing.
+.
+Control the latter with the user-definable macros
 .B HX
 and/or
 .BR HZ .
 .RE
+.
 .
 .IP
 .B Heading counters

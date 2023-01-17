@@ -180,7 +180,7 @@ _
 .
 .
 .P
-Macros whose use we discourage
+We discuss other macros
 .RB ( .AT ,
 .BR .DT ,
 .BR .HP ,
@@ -188,7 +188,7 @@ Macros whose use we discourage
 .BR .PD ,
 and
 .BR .UC )
-are described in subsection \(lqDeprecated features\(rq below.
+in subsection \(lqDeprecated features\(rq below.
 .
 .
 .P
@@ -491,7 +491,7 @@ with ellipses
 _ifstyle()dnl
 .RB ( .\|.\|.\& )
 _endif()dnl
-if they overrun the space available in the header and footer,
+if they would overrun the space available in the header and footer,
 respectively.
 .
 For HTML output,
@@ -500,19 +500,24 @@ headers and footers are suppressed.
 .
 .IP
 Additionally,
-this macro starts a new page;
-the page number is reset to\~1
+this macro breaks the page,
+resetting the number to\~1
 (unless the
 .B \-rC1
 option is given).
 .
-This feature is intended only for formatting multiple man pages.
+This feature is intended only for formatting multiple
+.I man
+documents.
 .
 .
 .IP
-A man page should contain exactly one
+A valid
+.I man
+document calls
 .B .TH
-call at or near the beginning of the file,
+once,
+early in the file,
 prior to any other macro calls.
 _ifstyle()dnl
 .
@@ -546,7 +551,7 @@ in bold
 (or the font specified by the string
 .BR HF )
 and,
-on typesetter devices,
+on typesetting devices,
 slightly larger than the base type size.
 .
 If the heading font
@@ -567,7 +572,7 @@ is set as an ordinary paragraph
 .IP
 The content of
 .I heading-text
-and ordering of sections has been standardized by common practice,
+and ordering of sections follows a set of common practices,
 as has much of the layout of material within sections.
 .
 For example,
@@ -710,8 +715,9 @@ installation.
 .TP
 .BR .RS " ["\c
 .IR indentation ]
-Start a new relative inset level,
-moving the left margin right by
+Start a new relative inset level.
+.
+The left margin moves right by
 .I indentation,
 if specified,
 and by a default amount otherwise;
@@ -720,10 +726,11 @@ see subsection \(lqHorizontal and vertical spacing\(rq below.
 Calls to
 .B .RS
 can be nested;
-each call increments by\~1 the inset level used by
+each increments \" by\~1
+the inset level used by
 .BR .RE .
 .
-The inset level prior to any
+The level prior to any
 .B .RS
 calls is\~1.
 .
@@ -1525,7 +1532,7 @@ macros set text in roman or bold,
 respectively,
 at a smaller type size;
 these differ visually from regular-sized roman or bold text only on
-typesetter devices.
+typesetting devices.
 .
 It is often necessary to set text in different styles without
 intervening space.
@@ -1558,8 +1565,10 @@ and inlined literals.
 _endif()dnl
 .
 .
+.br
+.ne 2v
 .P
-The default type size and family for typesetter devices is 10-point
+The default type size and family for typesetting devices is 10-point
 Times,
 except on the
 .B \%X75\-12
@@ -1653,7 +1662,7 @@ _endif()dnl
 .IR text ]
 Set
 .I text
-one point smaller than the default type size on typesetter devices.
+one point smaller than the default type size on typesetting devices.
 .
 If no argument is given,
 a one-line input trap is planted;
@@ -1683,7 +1692,7 @@ _endif()dnl
 Set
 .I text
 in bold and
-(on typesetter devices)
+(on typesetting devices)
 one point smaller than the default type size.
 .
 If no argument is given,
@@ -1966,7 +1975,7 @@ and the default used when
 and the deprecated
 .B .HP
 are not given an indentation argument,
-is 7.2n for typesetter devices
+is 7.2n for typesetting devices
 and 7n for terminal devices
 (but see the
 .B \-rIN
@@ -2154,13 +2163,13 @@ and the deprecated
 The default inter-section and inter-paragraph spacing is
 is 1v for terminal devices
 _ifstyle()dnl
-and 0.4v for typesetter devices
+and 0.4v for typesetting devices
 (\(lqv\(rq is a unit of vertical distance,
 where 1v is the distance between adjacent text baselines in a
 single-spaced document).
 _endif()dnl
 _ifnotstyle()dnl
-and 0.4v for typesetter devices.
+and 0.4v for typesetting devices.
 _endif()dnl
 .
 (The deprecated macro
@@ -2187,6 +2196,8 @@ file as well;
 see section \(lqFiles\(rq below.
 .
 .
+.br
+.ne 7v
 .\" ====================================================================
 .SS Strings
 .\" ====================================================================
@@ -2530,7 +2541,7 @@ a non-breaking space.
 .
 Used primarily in ellipses
 (\(lq.\e|.\e|.\(rq)
-to space the dots more pleasantly on typesetter devices like PostScript
+to space the dots more pleasantly on typesetting devices like PostScript
 and PDF.
 .
 .
@@ -2924,7 +2935,7 @@ Set the page header text
 .
 .
 .P
-If you want to remove a page header or footer entirely,
+To remove a page header or footer entirely,
 `define' the appropriate macro as empty rather than deleting it.
 .
 .
@@ -3025,12 +3036,15 @@ is handled as with
 Use of this presentation-oriented macro is deprecated.
 .
 A hanging indentation cannot be expressed naturally under HTML,
-and HTML-based man page processors may interpret it as starting an
-ordinary paragraph.
+and
+.RI non- roff -based
+man page interpreters may treat
+.B .HP
+as an ordinary paragraph.
 .
 Thus,
-any information or distinction you mean to express with the indentation
-may be lost.
+information or distinctions you mean to express with indentation may be
+lost.
 .
 .
 .TP
@@ -3446,7 +3460,7 @@ indentation.
 .BI \-rLL= line-length
 Set line length;
 the default is 78n for terminal devices
-and 6.5i for typesetter devices.
+and 6.5i for typesetting devices.
 .
 .
 .TP
@@ -3517,6 +3531,8 @@ See subsection \(lqHorizontal and vertical spacing\(rq above for the
 default.
 .
 .
+.br
+.ne 4v
 .TP
 .B \-rU1
 Enable generation of URI hyperlinks in the
@@ -3639,12 +3655,13 @@ To reduce the risk of name space collisions,
 string and register names begin only with
 .RB \[lq] m \[rq] .
 .
-Man page authors concerned about portability to legacy Unix systems are
-encouraged to copy these definitions into their pages,
+We encourage man page authors
+who are concerned about portability to legacy Unix systems
+to copy these definitions into their pages,
 and maintainers of
 .I troff \" generic
-implementations or work-alike systems that format man pages are
-encouraged to re-use them.
+implementations or work-alike systems that format man pages
+to re-use them.
 .
 .
 .IP
@@ -3662,6 +3679,8 @@ Furthermore,
 it is wise to `define' such page-local macros
 (if at all)
 after the \(lqName\(rq section to accommodate timid
+.I makewhatis
+or
 .I mandb
 implementations that may give up their scan for indexing material early.
 .

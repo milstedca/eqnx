@@ -566,26 +566,31 @@ it is incremented
 (or initialized,
 if necessary).
 .
-The default register format is \[lq]A\[rq].
+The register format used for
+.I id
+is \[lq]A\[rq].
 .
-The page is broken,
-and a header produced if register
+The page is broken.
+.
+The register
 .B Aph
-is true;
-this is the default.
+determines whether an appendix heading is then formatted.
 .
-Appendices appear in the \[lq]List of contents\[rq] with page numbers.
-.
-The name \[lq]APPENDIX\[rq] can be changed by setting the string
+This heading uses the string
 .B App
-to the desired text.
+followed by
+.IR id .
+.
+Appendices appear in any table of contents
+(see
+.BR TC ).
 .
 The string
 .B Apptxt
-is assigned
+is set to
 .I title
-if the argument is present,
-otherwise it is cleared.
+if the latter is present,
+and made empty otherwise.
 .
 .
 .TP
@@ -3642,7 +3647,11 @@ These are presented in quotation marks.
 .
 .TP
 .B Apptxt
-The current appendix text.
+stores the
+.I title
+argument to the last
+.B APP
+call.
 .
 .
 .TP
@@ -4002,13 +4011,13 @@ see macro
 .
 .TP
 .B Aph
-Print an appendix page for every new appendix if this register
-is non-zero.
-.
-No output occurs if
-.B Aph
-is zero,
-but there is always an appendix entry in the \[lq]List of contents\[rq].
+formats an appendix heading
+(and title,
+if supplied);
+see
+.B APP
+(Boolean-valued;
+.BR 1 ).
 .
 .
 .TP

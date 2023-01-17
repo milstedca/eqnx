@@ -1316,7 +1316,7 @@ numeric; got '\\$1'
        + \\n[pg*footer-size] + \\n[pg*extra-footer-size] \
        + \\n[.V]) >= \\n[.p]) \{\
 .		pl \\n[nl]u
-.		@error insufficient page length; aborting\"
+.		@error insufficient page length; aborting
 .	\}
 .\}
 .\" check if Hy has been changed
@@ -1620,9 +1620,10 @@ messy
 .\}
 ..
 .de 2C
+.if \\n[pg*cols-per-page]>1 .@error \\$0: multicolumn mode already \
+active
 .br
 .nr pg*head-mark \\n[nl]u
-.if \\n[pg*cols-per-page]>1 .@error "2C: multicolumn mode already active"
 .nr pg*cols-per-page 2
 .nr pg*column-sep \\n[@ll]/15
 .nr pg*column-size (\\n[@ll]u*7)/15
@@ -1633,9 +1634,10 @@ messy
 ..
 .\" MC column-size [ column-separation ]
 .de MC
+.if \\n[pg*cols-per-page]>1 .@error \\$0: multicolumn mode already \
+active
 .br
 .nr pg*head-mark \\n[nl]u
-.if \\n[pg*cols-per-page]>1 .@error "MC: multicolumn mode already active"
 .ie ''\\$1' .nr pg*column-size \\n[.l]
 .el .nr pg*column-size (n;\\$1)
 .ie ''\\$2' .nr pg*column-sep \\n[pg*column-size]/15
@@ -1769,7 +1771,7 @@ page
 .\" set footnote format
 .\" no support for two column processing (yet). $$$
 .de FD
-.if \\n[.$]=0 .@error "FD: bad arg \\$1"
+.if \\n[.$]=0 .@error \\$0: expected 1 or 2 arguments, got \\n[.$]
 .ie \\n[.$]=2 .nr ft*clear-at-header 1
 .el .nr ft*clear-at-header 0
 .\"
@@ -1826,7 +1828,7 @@ page
 .\" begin footnote
 .\" Change environment, switch to diversion and print the foot-note mark.
 .de FS
-.if \\n[ft*busy] .@error "FS: missing FE"
+.if \\n[ft*busy] .@error \\$0: cannot nest; missing FE?
 .nr ft*busy 1
 .ev ft*ev
 .ft@init
@@ -1861,7 +1863,7 @@ page
 .di
 'in 0
 'nf
-.if \\n[@pl]u<\\n[dn]u .@error "FE: too big footnote"
+.if \\n[@pl]u<\\n[dn]u .@error \\$0: footnote bigger than page area
 .if !d ft*div .nr dn +1v
 .if \\n[D]>3 .tm FE: foot-trap=\\n[pg*foot-trap] .d=\\n[.d] dn=\\n[dn]
 .ie (\\n[pg*foot-trap]u-\\n[.d]u)<\\n[dn]u \{\
@@ -1931,7 +1933,9 @@ page
 .\" floating display start
 .\" nested DF/DE is not allowed.
 .de DF
-.if \\n[df*float] .@error "DF:nested floating is not allowed. Use DS."
+.if \\n[df*float] .@error \\$0: cannot nest floating keeps; use DS \
+within DF/DE
+.ds ds@macro \\$0
 .ds@set-format \\$@
 .\"
 .nr df*old-ll \\n[.l]
@@ -2104,7 +2108,7 @@ page
 .de ds@set-format
 .ie \\n[.$] \{\
 .	ie r ds*format!\\$1 .nr ds*format \\n[ds*format!\\$1]
-.	el .@error "DS/DF:wrong format:\\$1"
+.	el .@error \\*[ds@macro]: unrecognized format '\\$1'
 .\}
 .el .nr ds*format 0
 .if \\n[D]>2 .tm set format=\\n[ds*format]
@@ -2112,7 +2116,7 @@ page
 .nr ds*fill 0
 .if \\n[.$]>1 \{\
 .	ie r ds*fill!\\$2 .nr ds*fill \\n[ds*fill!\\$2]
-.	el .@error "\\*[ds*type]:wrong fill:\\$2"
+.	el .@error \\*[ds@macro]: unrecognized fill style '\\$2'
 .\}
 .if \\n[D]>2 .tm set fill=\\n[ds*fill]
 .nr ds*rindent 0
@@ -2161,8 +2165,8 @@ page
 .\" static display start
 .\" nested DS/DE is allowed. No limit on depth.
 .de DS
+.ds ds@macro \\$0
 .br
-.nr XXX \\n[nl]
 .nr ds*lvl +1
 .ds@set-format \\$@
 .\"
@@ -2188,7 +2192,10 @@ page
 ..
 .\"--------------------------------------------
 .de ds@end
-.if \\n-[ds*lvl]<0 .@error "DE: no corresponding DS"
+.\" We hard-code the DE macro name here since this macro is internal but
+.\" only DE calls it.  We also know we're closing a static keep because
+.\" df@end is called otherwise.  See `DE`.
+.if \\n-[ds*lvl]<0 .@error DE: no corresponding DS
 .br
 .di
 .\" **********
@@ -2251,7 +2258,7 @@ page
 .\"	the major list-begin macro.
 .\"	If type == -1 a 'break' will occur.
 .de LB
-.if \\n[.$]<4 .@error "LB: not enough arguments, min 4"
+.if \\n[.$]<4 .@error \\$0: expected at least 4 arguments, got \\n[.$]
 .misc@push cind \\n[.i]
 .misc@push tind \\n[li*tind]
 .misc@push mind \\n[li*mind]
@@ -2281,7 +2288,8 @@ page
 ..
 .\"---------------
 .de LI
-.if \\n[li*lvl]<1 .@error "LI:no lists active"
+.if \\n[li*lvl]<1 .@error \\$0: no list active; call AL, BL, BVL, ... \
+first
 .if \\n[li*li-spc]&(\\n[Ls]>=\\n[li*lvl]) .SP (u;\\n[li*li-spc]*\\n[Lsp])
 .ne 2v
 .\"
@@ -2327,7 +2335,8 @@ page
 .ds li*mark \\*[li*mark-list!\\n[li*lvl]]
 ..
 .de LE
-.if \\n[li*lvl]<1 .@error "LE:mismatched"
+.if \\n[li*lvl]<1 .@error \\$0: no list active; call AL, BL, BVL, ... \
+and LI first
 .li@pop
 .if '\\$1'1' .SP \\n[Lsp]u
 ..
@@ -2335,15 +2344,19 @@ page
 .\"	list status clear.
 .\"	terminate all lists to level i
 .de LC
-.ie \\n[.$]<1 .nr li*i 0
-.el .nr li*i \\$1
-.if \\n[li*i]>\\n[li*lvl] .@error "LC: incorrect argument: \\n[li*i] (too big)"
+.nr li*i 0
+.if \\n[.$] \{\
+.	ie \B'\\$1' .nr li*i \\$1
+.	el          .@error \\$0: argument not numeric: '\\n[li*i]'
+.\}
+.if \\n[li*i]>\\n[li*lvl] .@error \\$0 invalid argument: \\n[li*i] \
+exceeds depth of nested lists (\\n[li*lvl])
 .while \\n[li*lvl]>\\n[li*i] .li@pop
 .nr par@ind-flag 0
 ..
 .\"-------------
 .de AL
-.if \\n[.$]>3 .@error "AL: too many arguments"
+.if \\n[.$]>3 .@warning \\$0: ignoring excess arguments
 .if \\n[D]>2 .tm AL $*
 .ie \\n[.$]<=1 .LB \\n[Li] 0 2 1 "\\$1"
 .el \{\
@@ -2355,7 +2368,7 @@ page
 .\}
 ..
 .de ML
-.if \\n[.$]>3 .@error "ML: too many arguments"
+.if \\n[.$]>3 .@warning \\$0: ignoring excess arguments
 .if \\n[D]>2 .tm ML $*
 .nr li*ml-width \w@\\$1@u+1n
 .if \\n[.$]<2 .LB \\n[li*ml-width]u 0 1 0 "\\$1"
@@ -2367,14 +2380,14 @@ page
 ..
 .de VL
 .if \\n[D]>2 .tm VL $*
-.if \\n[.$]>3 .@error "VL: too many arguments"
-.if \\n[.$]<1 .@error "VL: missing text-indent"
+.if \\n[.$]>3 .@warning \\$0: ignoring excess arguments
+.if \\n[.$]<1 .@error \\$0: expected 1 to 3 arguments, got \\n[.$]
 .ie \\n[.$]<3 .LB 0\\$1 0\\$2 0 0
 .el .LB 0\\$1 0\\$2 0 0 \& 0 1
 ..
 .de BL
 .if \\n[D]>2 .tm BL $*
-.if \\n[.$]>2 .@error "BL: too many arguments"
+.if \\n[.$]>2 .@warning \\$0: ignoring excess arguments
 .if \\n[.$]<1 .LB \\n[Pi] 0 1 0 \\*[BU]
 .if \\n[.$]=1 .LB 0\\$1 0 1 0 \\*[BU]
 .if \\n[.$]=2 \{\
@@ -2384,7 +2397,7 @@ page
 ..
 .de DL
 .if \\n[D]>2 .tm DL $*
-.if \\n[.$]>2 .@error "DL: too many arguments"
+.if \\n[.$]>2 .@warning \\$0: ignoring excess arguments
 .if \\n[.$]<1 .LB \\n[Pi] 0 1 0 \(em
 .if \\n[.$]=1 .LB 0\\$1 0 1 0 \(em
 .if \\n[.$]=2 \{\
@@ -2394,7 +2407,7 @@ page
 ..
 .de RL
 .if \\n[D]>2 .tm RL $*
-.if \\n[.$]>2 .@error "RL: too many arguments"
+.if \\n[.$]>2 .@warning \\$0: ignoring excess arguments
 .if \\n[.$]<1 .LB 6 0 2 4
 .if \\n[.$]=1 .LB 0\\$1 0 2 4
 .if \\n[.$]=2 \{\
@@ -2405,8 +2418,8 @@ page
 .\" Broken Variable List. As .VL but text begin on the next line
 .de BVL
 .if \\n[D]>2 .tm BVL $*
-.if \\n[.$]>3 .@error "BVL: too many arguments"
-.if \\n[.$]<1 .@error "BVL: missing text-indent"
+.if \\n[.$]>3 .@warning \\$0: ignoring excess arguments
+.if \\n[.$]<1 .@error \\$0: expected 1 to 3 arguments, got \\n[.$]
 .ie \\n[.$]<3 .LB 0\\$1 0\\$2 0 -1
 .el .LB 0\\$1 0\\$2 0 -1 \& 0 1
 ..
@@ -2456,10 +2469,10 @@ page
 .	ie '\\$1'N' .if !\\n[tbl*header-written] .tbl@print-header
 .	el .tbl@print-header
 .\}
-.el .@error ".TH without .TS H"
+.el .@error \\$0: .TH without .TS H"
 ..
 .de TE
-.ie '\\n(.z'tbl*header-div' .@error ".TS H but no .TH before .TE"
+.ie '\\n(.z'tbl*header-div' .@error \\$0: .TS H but no .TH before .TE
 .el \{\
 .	nr tbl*have-header 0
 .\}
@@ -2470,16 +2483,14 @@ page
 ..
 .\" ####### module pic #######################################
 .de PS
-.br
-.SP .5
-.ie !\\n[.$]=2 \{\
-.	ds pic*msg PS: expected 2 arguments, got \\n[.$]\"
+.if !\\n[.$]=2 \{\
+.	ds pic*msg \\$0: expected 2 arguments, got \\n[.$]\"
 .	as pic*msg ; not preprocessed with pic?\"
 .	@error \\*[pic*msg]
 .\}
-.el \{\
-.	if r ds*format .if !\\n[ds*lvl] .ne (u;\\$1)+1v
-.\}
+.br
+.SP .5
+.if r ds*format .if !\\n[ds*lvl] .ne (u;\\$1)+1v
 ..
 .de PY
 .init@reset
@@ -2862,7 +2873,7 @@ page
 .nr box*ll 0
 .\" .B1 and .B2 works like .DS
 .de B1
-.if \\n[box*ll] .@error "B1: missing B2"
+.if \\n[box*ll] .@error \\$0: cannot nest; missing B2?
 .nr box*ll \\n[.l]
 .nr box*ind \\n[.i]
 .nr box*hyp \\n[.hy]
@@ -2878,7 +2889,7 @@ page
 .hy \\n[.hy]
 ..
 .de B2
-.if !\\n[box*ll] .@error "B2: missing B1"
+.if !\\n[box*ll] .@error \\$0: no corresponding B1
 .br
 .di
 .nr box*height \\n[dn]
@@ -2950,7 +2961,10 @@ page
 ..
 .\"-----------
 .de RP
-.if !d ref*mac .@error "RP: No references!"
+.if !d ref*mac \{\
+.	@warning \\$0: ignoring; no references defined
+.	return
+.\}
 .ie !''\\$2' .nr ref*i 0\\$2
 .el .nr ref*i \\n[Rpe]
 .if \\n[ref*i]<2 .SK
@@ -3016,7 +3030,7 @@ page
 .\" .APPSK name pages text
 .\" name == "" -> autonumber
 .de APPSK
-.if \\n[.$]<2 .@error "APPSK: too few arguments"
+.if \\n[.$]<2 .@error \\$0: expected 2 or 3 arguments, got \\n[.$]
 .app@set-ind "\\$1"
 .\"
 .ds Tcst ap
@@ -3135,8 +3149,8 @@ page
 ..
 .de AS
 .pg@disable-top-trap
-.if d cov*abstract .@error "AS: only one abstract allowed"
-.if !''\\n[.z]' .@error "AS: no diversion allowed (previous .AS?)"
+.if d cov*abstract .@error \\$0: only one abstract allowed
+.if !''\\n[.z]' .@error \\$0: no diversion allowed (previous .AS?)
 .nr cov*abs-arg 0\\$1
 .nr cov*abs-ind (n;0\\$2)
 .de cov*abstract AE
@@ -3242,8 +3256,8 @@ page
 .\"---------------
 .\" set a reference.
 .de SETR
-.if \\n[.$]<1 .@error "SETR:reference name missing"
-.if !r qrf*pass .tm "SETR: No .INITR in this file"
+.if \\n[.$]<1 .@error \\$0: expected 1 or 2 arguments, got \\n[.$]
+.if !r qrf*pass .tm \\$0: no .INITR in this file \" XXX: .@error?
 .if \\n[Ref] \{\
 .	ds qrf*name qrf*ref-\\$1
 .	if \\n[D]>2 .tm SETR: ref \\*[qrf*name]=\\*[hd-mark-trimmed],\\n[%]
@@ -3263,8 +3277,8 @@ page
 .\" get misc-string
 .\" If two arg -> set var. arg to misc-string.
 .de GETST
-.if \\n[.$]<1 .@error "GETST:reference name missing"
-.if !r qrf*pass .tm "GETST: No .INITR in this file"
+.if \\n[.$]<1 .@error \\$0: expected 1 or 2 arguments, got \\n[.$]
+.if !r qrf*pass .tm \\$0: no .INITR in this file \" XXX: .@error?
 .ds qrf*name qrf*ref-\\$1
 .	if d \\*[qrf*name]-xx \{\
 .		ie \\n[.$]>1 .ds \\$2 \\*[\\*[qrf*name]-xx]
@@ -3276,8 +3290,8 @@ page
 .\" get header-number
 .\" If two arg -> set var. arg to header-number.
 .de GETHN
-.if \\n[.$]<1 .@error "GETHN:reference name missing"
-.if !r qrf*pass .tm "GETHN: No .INITR in this file"
+.if \\n[.$]<1 .@error \\$0: expected 1 or 2 arguments, got \\n[.$]
+.if !r qrf*pass .tm \\$0: no .INITR in this file \" XXX: .@error?
 .ds qrf*name qrf*ref-\\$1
 .if d \\*[qrf*name]-hn \{\
 .	ie \\n[.$]>1 .ds \\$2 \\*[\\*[qrf*name]-hn]
@@ -3288,8 +3302,8 @@ page
 .\" get page-number
 .\" If two arg -> set var. arg to page-number.
 .de GETPN
-.if \\n[.$]<1 .@error "GETPN:reference name missing"
-.if !r qrf*pass .tm "GETPN: No .INITR in this file"
+.if \\n[.$]<1 .@error \\$0: expected 1 or 2 arguments, got \\n[.$]
+.if !r qrf*pass .tm \\$0: no .INITR in this file \" XXX: .@error?
 .ds qrf*name qrf*ref-\\$1
 .if d \\*[qrf*name]-pn \{\
 .	ie \\n[.$]>1 .ds \\$2 \\*[\\*[qrf*name]-pn]
@@ -3298,10 +3312,8 @@ page
 ..
 .\"----------
 .de GETR
-.if \\n[.$]<1 .@error "GETR:reference name missing"
-.ie !r qrf*pass \{\
-.	tm "GETR: No .INITR in this file"
-.\}
+.if \\n[.$]<1 .@error \\$0: expected an argument
+.ie !r qrf*pass .tm \\$0: no .INITR in this file" \" XXX: .@error?
 .el \{\
 .	GETHN \\$1 Qrfh
 .	GETPN \\$1 Qrfp
@@ -3313,14 +3325,12 @@ page
 .\" Another type of index system
 .\" INITI type filename [macro]
 .de INITI
-.if \\n[.$]<1 .@error "INITI:type missing"
+.if \\n[.$]<2 .@error \\$0: expected 2 or 3 arguments, got \\n[.$]
 .\" ignore if INITI has already been used
-.if \\n[.$]>1 \{\
-.	if d ind*file .@error "INITI:file already set"
-.	ds ind*file \\$2.ind
-.	if \\n[D]>1 .tm INITI: source \\*[ind*file]
-.\}
-.if !d ind*file .@error "INITI:file not specified"
+.if d ind*file .@error \\$0: index file name already set
+.ds ind*file \\$2.ind
+.if \\n[D]>1 .tm INITI: source \\*[ind*file]
+.if !d ind*file .@error \\$0: index file name not specified
 .ds ind*type \\$1
 .if \\n[Ref] \{\
 .	if \\n[.$]>2 .tm .\\\\" Imacro: \\$3
@@ -3328,7 +3338,7 @@ page
 ..
 .\"---------------
 .de IND
-.if !d ind*file .@error "IND: No active INITI"
+.if !d ind*file .@error \\$0: no active index; call INITI"
 .if \\n[D]>1 .tm IND: type=\\*[ind*type]
 .ds ind*ref \" empty
 .if '\\*[ind*type]'N' .ds ind*ref \\n[%]
@@ -3397,7 +3407,10 @@ page
 ..
 .\"------------------------
 .de let*lt-sign
-.if !d let@sg_\\*[let*type] .@error "SG: letter type \\*[let*type] undefined"
+.\" We hard-code the SG macro name here since this macro is internal but
+.\" only SG calls it.
+.if !d let@sg_\\*[let*type] .@error SG: letter type '\\*[let*type]' \
+undefined
 .df@print-float 3
 .nr let*i 0 1
 .nr let*j 0
@@ -3478,7 +3491,7 @@ page
 .nr Pi 5
 .nr Pt 0
 .if !''\\$1' .ds let*type \\$1
-.if !d let@head_\\*[let*type] .@error "LT: unknown letter type \\$1"
+.if !d let@head_\\*[let*type] .@error \\$0: unknown letter type '\\$1'
 .shift
 .als let@header let@head_\\*[let*type]
 .let@init_\\*[let*type] \\$@
@@ -3695,7 +3708,7 @@ page
 .	@warning \\$0: ignoring; no arguments specified
 .	return
 .\}
-.if !d Let\\$1 .@error "LO: unknown option (\\$1)"
+.if !d Let\\$1 .@error \\$0: unrecognzied option '\\$1'
 .ds let*lo-\\$1 \\$2
 .if \n[D]>1 .tm Letter option \\$1 \\$2
 ..

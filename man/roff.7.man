@@ -1075,7 +1075,7 @@ systems:
 .
 definition of macros
 .RB ( .de ),
-diversion of text thence
+diversion of text thither
 .RB ( .di ),
 and removal thereof
 .RB ( .rm );
@@ -1784,7 +1784,7 @@ formatting elements.
 The
 .I roff
 language is powerful enough to support arbitrary computation and
-supply facilities that encourage their extension.
+it supplies facilities that encourage extension.
 .
 The primary such facility is macro definition;
 with this feature,

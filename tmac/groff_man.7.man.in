@@ -211,8 +211,6 @@ and employ the Unix line-ending convention
 .\" What about rare English words that require diacritics, and
 .\" proper names that require more than basic Latin?
 .\"
-.\" text lines vs. control lines (macro calls)
-.\" word (delimited by spaces or newlines)
 .\" sentence (including end-of-sentence detection)
 .\" The above distinction works well with filling.
 .\" Don't fill your input text yourself; let groff do the work.
@@ -226,15 +224,26 @@ and employ the Unix line-ending convention
 .\" type size
 .\" typesetter (troff device, PostScript, PDF)
 .\" terminal (nroff device, emulator, typewriter, TTY)
+.I groff
+is a programming system for typesetting:
+we thus often use the verb \(lqto set\(rq in the sense
+\(lqto typeset\(rq.
 .
-The formatter collects words from the input and
+The formatter
+.MR @g@troff @MAN1EXT@
+collects words from the input and
 .I fills
 output lines with as many as will fit.
+.
+.I Words
+are separated by spaces and newlines.
+.\" Also tabs and leaders, but let's not discuss those in man(7).
 .
 A transition to a new output line is called a
 .I break.
 .
-A word may be split across output lines at hyphens,
+When formatted,
+a word may be broken at hyphens,
 at
 .B \e%
 or
@@ -245,94 +254,46 @@ or at predetermined locations
 if automatic hyphenation is enabled
 (see the
 .B \-rHY
-flag in section \(lqOptions\(rq below).
+option in section \(lqOptions\(rq below).
 .
 An output line may be supplemented with
-.I inter-sentence space
-and
+.I inter-sentence space,
+and then optionally
 .I adjusted
-to form a straight right margin
+with more space to a consistent line length
 (see the
 .B \-dAD
-flag in section \(lqOptions\(rq below).
+option).
 .
 .MR roff @MAN7EXT@
 details these processes.
-.\" ====================================================================
-.\" .SS "Why have a tutorial and style guide?"
-.\" ====================================================================
-.\" the processing pipeline in brief
-.\"   preprocessors, roff itself, various output devices
-.\" Things that aren't groff--why you want the man page language to be
-.\" small (mandoc, Kerrisk's man7.org, manpages.debian.org, non-expert
-.\" humans).
-.\" possibly exhibit a horrorshow docbook-to-man example
-_endif()dnl
 .
 .
-.\" ====================================================================
-.SS "Macro reference preliminaries"
-.\" ====================================================================
-.
-A tagged paragraph describes each macro.
-.
-We present coupled pairs together,
-as with
-.B .EX
-and
-.BR .EE .
-.
-.
-_ifstyle()dnl
 .P
-A macro call appears on a line starting with a dot (\(lq.\(rq),
-followed by zero or more spaces and then the macro name.
+An input line that starts with a dot (.\&)
+or neutral apostrophe (\(aq)
+is a
+.I control line.
+To call a macro,
+follow the dot with zero or more spaces \" or tabs
+and then the macro name.
 .
-Some macros accept arguments;
-each such argument is separated from the macro name and any subsequent
-arguments by one or more spaces.
+Some macros interpret
+.I arguments,
+words that follow the macro name.
 .
 A newline,
 unless escaped
 (see subsection \(lqPortability\(rq below),
-terminates the macro call.
+marks the end of the macro call.
 .
+An input line consisting of a dot followed by a newline
+is called the
+.I empty request;
+it does nothing.
 .
-_endif()dnl
-.P
-_ifstyle()dnl
-Optional macro arguments are indicated by surrounding them with square
-brackets.
-.
-If a macro accepts multiple arguments,
-those containing space \" or tab (in Plan 9 troff [only?])
-characters must be double-quoted to be interpreted correctly.
-.
-_endif()dnl
-An empty macro argument can be specified with a pair of double-quotes
-(\(lq""\(rq),
-but the
-.I man
-package is designed such that this should seldom be necessary.
-_ifstyle()dnl
-.
-See section \(lqNotes\(rq below for examples of cases where better
-alternatives to empty arguments in macro calls are available.
-_endif()dnl
-.
-Most macro arguments wll be formatted as text in the output;
-exceptions are noted.
-.
-.
-_ifstyle()dnl
-.P
-Bear in mind that
-.I groff
-is fundamentally a programming system for typesetting.
-.
-Consequently,
-the verb \(lqto set\(rq is frequently used below in the sense \(lqto
-typeset\(rq.
+.I Text lines
+are input lines that are not control lines.
 .
 .
 .P
@@ -354,7 +315,60 @@ escape sequence do not spring the trap;
 anything else does.
 .
 .
+.\" ====================================================================
+.\" .SS "Why have a tutorial and style guide?"
+.\" ====================================================================
+.\" the processing pipeline in brief
+.\"   preprocessors, roff itself, various output devices
+.\" Things that aren't groff--why you want the man page language to be
+.\" small (mandoc, Kerrisk's man7.org, manpages.debian.org, non-expert
+.\" humans).
+.\" possibly exhibit a horrorshow docbook-to-man example
 _endif()dnl
+.
+.
+.br
+.ne 6v
+.\" ====================================================================
+.SS "Macro reference preliminaries"
+.\" ====================================================================
+.
+A tagged paragraph describes each macro.
+.
+We present coupled pairs together,
+as with
+.B .EX
+and
+.BR .EE .
+.
+.
+.br
+.ne 2v
+.P
+_ifstyle()dnl
+Optional macro arguments are indicated by surrounding them with square
+brackets.
+.
+If a macro accepts multiple arguments,
+those containing space \" or tab (in Plan 9 troff [only?])
+characters must be double-quoted to be interpreted correctly.
+.
+_endif()dnl
+An empty macro argument can be specified with a pair of double-quotes
+(""),
+but the
+.I man
+package is designed such that this should seldom be necessary.
+_ifstyle()dnl
+.
+See section \(lqNotes\(rq below for examples of cases where better
+alternatives to empty arguments in macro calls are available.
+_endif()dnl
+.
+Most macro arguments wll be formatted as text in the output;
+exceptions are noted.
+.
+.
 .\" ====================================================================
 .SS "Document structure macros"
 .\" ====================================================================

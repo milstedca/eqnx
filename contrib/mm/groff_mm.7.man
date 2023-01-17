@@ -3627,9 +3627,18 @@ End the address specification after
 .SH Strings
 .\" ====================================================================
 .
+Many
+.I mm
+strings interpolate predefined,
+localizable text.
+.
+These are presented in quotation marks.
+.
+.
 .TP
 .B App
-A string containing the word \[lq]APPENDIX\[rq].
+\[lq]APPENDIX\[rq]
+.
 .
 .TP
 .B Apptxt
@@ -3638,10 +3647,9 @@ The current appendix text.
 .
 .TP
 .B BU
-bullet
+interpolates a bullet
 (see
-.B BL
-macro)
+.BR BL ).
 .
 .
 .TP
@@ -3670,7 +3678,7 @@ register.
 .
 .TP
 .B EM
-Em dash string
+interpolates an em dash.
 .
 .
 .TP
@@ -3715,9 +3723,11 @@ By default,
 this is \[lq]0 0 0 0 0 0 0\[rq] which is the same as \[lq]10 10 10 10 10
 10 10\[rq].
 .
+.
 .TP
 .B Index
-Contains the string \[lq]INDEX\[rq].
+\[lq]INDEX\[rq]
+.
 .
 .TP
 .B Indcmd
@@ -3729,42 +3739,42 @@ Default value is
 .
 .TP
 .B Le
-Contains the string \[lq]LIST OF EQUATIONS\[rq].
+\[lq]LIST OF EQUATIONS\[rq]
 .
 .
 .TP
 .B Letfc
-Contains the string \[lq]Yours very truly,\[rq],
-used in
-.BR .FC .
+\[lq]Yours very truly,\[rq]
+(see
+.BR FC )
 .
 .
 .TP
 .B Letapp
-Contains the string \[lq]APPROVED:\[rq],
-used in
-.BR .AV .
+\[lq]APPROVED:\[rq]
+(see
+.BR AV )
 .
 .
 .TP
 .B LetAT
-Contains the string \[lq]ATTENTION:\[rq],
-used in
-.BR ".LO AT" .
+\[lq]ATTENTION:\[rq]
+(see
+.BR LO )
 .
 .
 .TP
 .B LetCN
-Contains the string \[lq]CONFIDENTIAL\[rq],
-used in
-.BR ".LO CN" .
+\[lq]CONFIDENTIAL\[rq]
+(see
+.BR LO )
 .
 .
 .TP
 .B Letdate
-Contains the string \[lq]Date\[rq],
-used in
-.BR .AV .
+\[lq]Date\[rq]
+(see
+.BR AV )
 .
 .
 .TP
@@ -3827,78 +3837,80 @@ Default is\~0.
 .
 .TP
 .B LetRN
-Contains the string \[lq]In reference to:\[rq],
-used in
-.BR ".LO RN" .
+\[lq]In reference to:\[rq]
+(see
+.BR LO )
 .
 .
 .TP
 .B LetSA
-Contains the string \[lq]To Whom It May Concern:\[rq],
-used in
-.BR ".LO SA" .
+\[lq]To Whom It May Concern:\[rq]
+(see
+.BR LO )
 .
 .
 .TP
 .B LetSJ
-Contains the string \[lq]SUBJECT:\[rq],
-used in
-.BR ".LO SJ" .
+\[lq]SUBJECT:\[rq]
+(see
+.BR LO )
 .
 .
 .TP
 .B Lf
-Contains the string \[lq]LIST OF FIGURES\[rq].
+\[lq]LIST OF FIGURES\[rq]
 .
 .
 .TP
 .B Licon
-String containing \[lq]CONTENTS\[rq].
+\[lq]CONTENTS\[rq]
 .
 .
 .TP
 .B Liec
-String containing \[lq]Equation\[rq].
+\[lq]Equation\[rq]
 .
 .
 .TP
 .B Liex
-String containing \[lq]Exhibit\[rq].
+\[lq]Exhibit\[rq]
 .
 .
 .TP
 .B Lifg
-String containing \[lq]Figure\[rq].
+\[lq]Figure\[rq]
 .
 .
 .TP
 .B Litb
-String containing \[lq]TABLE\[rq].
+\[lq]TABLE\[rq]
 .
 .
 .TP
 .B Lt
-Contains the string \[lq]LIST OF TABLES\[rq].
+\[lq]LIST OF TABLES\[rq]
 .
 .
 .TP
 .B Lx
-Contains the string \[lq]LIST OF EXHIBITS\[rq].
+\[lq]LIST OF EXHIBITS\[rq]
 .
 .
 .TP
-.B "MO1 \(en MO12"
-Strings containing the month names \[lq]January\[rq] through
-\[lq]December\[rq].
+.BR MO1 \|.\|.\|.\| MO12
+\[lq]January\[rq] through \[lq]December\[rq]
+.
 .
 .TP
 .B Qrf
-String containing \[lq]See chapter \[rs]\[rs]*[Qrfh],
-page \[rs]\[rs]n[Qrfp].\[rq].
+\[lq]See chapter \[rs]\[rs]*[Qrfh],
+page \[rs]\[rs]n[Qrfp].\[rq]
+.
 .
 .TP
 .B Rp
-Contains the string \[lq]REFERENCES\[rq].
+\[lq]REFERENCES\[rq]
+.
 .
 .TP
 .B Tcst

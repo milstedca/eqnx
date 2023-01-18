@@ -10,7 +10,7 @@ manuscript macro package for formatting documents
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1989-2022 Free Software Foundation, Inc.
+.\" Copyright (C) 1989-2023 Free Software Foundation, Inc.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -1828,9 +1828,9 @@ and
 .B RF
 to set the left,
 center,
-and right footers similarly.
+and right footers.
 .
-This approach works best for documents that do not distinguish odd- and
+This approach suffices for documents that do not distinguish odd- and
 even-numbered pages.
 .
 .
@@ -2309,11 +2309,9 @@ rather than silently to ignore them.
 .
 .IP \[bu]
 Tenth Edition \" possibly 9th
-Research Unix supported a pair of
-.B P1
-and
-.B P2
-macros for setting code examples;
+Research Unix supported
+.BR P1 / P2
+macros to bracket code examples;
 .I groff ms
 does not.
 .
@@ -2372,14 +2370,13 @@ but by setting it absolutely.
 This can cause problems for documents that define additional macros of
 their own that try to manipulate indentation.
 .
-The solution is to use,
-not the
-.B in
-request,
-but
+Use
 .B .RS
 and
-.BR .RE .
+.B .RE
+instead of the
+.B in
+request.
 .
 .
 .IP \[bu]
@@ -2408,9 +2405,8 @@ units.
 .
 See \[lq]Measurements\[rq] in the
 .I groff
-Texinfo manual or the
-.MR groff @MAN7EXT@
-man page.)
+Texinfo manual or in
+.MR groff @MAN7EXT@ ).
 .
 This threshold makes use of a scaling unit with these parameters
 practical for high-resolution devices while preserving backward
@@ -2537,10 +2533,10 @@ The AT&T
 .I ms
 manual did not document the
 .B QI
-register,
-whereas Berkeley did;
+register;
+Berkeley and
 .I "groff ms"
-accordingly supports it.
+do.
 .
 .
 .IP \[bu]

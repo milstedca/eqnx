@@ -26,7 +26,7 @@
 @copying
 This manual documents GNU @code{troff} version 1.23.0.
 
-Copyright @copyright{} 1994--2022 Free Software Foundation, Inc.
+Copyright @copyright{} 1994--2023 Free Software Foundation, Inc.
 
 @quotation
 Permission is granted to copy, distribute and/or modify this document
@@ -468,7 +468,7 @@ developing GNU and promoting software freedom.''
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle December 2022
+@subtitle January 2023
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -4215,9 +4215,9 @@ the first, and produces no footers.  You can customize this arrangement.
 There are multiple ways to produce headers and footers.  One is to
 define the strings @code{LH}, @code{CH}, and @code{RH} to set the left,
 center, and right headers, respectively; and @code{LF}, @code{CF}, and
-@code{RF} to set the left, center, and right footers similarly.  This
-approach works best for documents that do not distinguish odd- and
-even-numbered pages.
+@code{RF} to set the left, center, and right footers.  This approach
+suffices for documents that do not distinguish odd- and even-numbered
+pages.
 
 Another method is to call macros that set headers or footers for odd- or
 even-numbered pages.  Each such macro takes a delimited argument
@@ -4503,7 +4503,7 @@ report errors, rather than silently to ignore them.
 
 @item
 Tenth Edition @c possibly 9th
-Research Unix supported @code{P1} and @code{P2} macros for setting code
+Research Unix supported @code{P1}/@code{P2} macros to bracket code
 examples; @code{groff} @file{ms} does not.
 
 @item
@@ -4528,8 +4528,8 @@ headings, and displays, cause a reset of paragraph rendering parameters,
 and may change the indentation; they do so not by incrementing or
 decrementing it, but by setting it absolutely.  This can cause problems
 for documents that define additional macros of their own that try to
-manipulate indentation.  The solution is to use, not the @code{in}
-request, but the @file{ms} @code{RS} and @code{RE} macros.
+manipulate indentation.  Use the @file{ms} @code{RS} and @code{RE}
+macros instead of the @code{in} request.
 
 @item
 @cindex fractional type sizes in @file{ms} macros
@@ -4590,8 +4590,7 @@ space between columns, not the fixed gutter width of @acronym{AT&T}
 
 @item
 The @acronym{AT&T} @file{ms} manual did not document the @code{QI}
-register, whereas Berkeley did; @code{groff} @file{ms} accordingly
-supports it.
+register; Berkeley and @code{groff} @file{ms} do.
 @end itemize
 
 @Defmpreg {GS, ms}

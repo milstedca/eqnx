@@ -22,8 +22,8 @@
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ie t .nr PI 3.5n
 .el   .nr PI 4n
-.ND December 2022
-.EH '%''December 2022'
+.ND January 2023
+.EH '%''January 2023'
 .EF ''''
 .OH 'Using \f[I]groff\f[] with the \f[I]ms\f[] macros''%'
 .OF ''''
@@ -3137,9 +3137,9 @@ and
 .CW RF
 to set the left,
 center,
-and right footers similarly.
+and right footers.
 .
-This approach works best for documents that do not distinguish odd- and
+This approach suffices for documents that do not distinguish odd- and
 even-numbered pages.
 .
 .
@@ -3881,10 +3881,9 @@ rather than silently to ignore them.
 .PP
 Tenth Edition \" possibly 9th
 Research Unix supported
-.B P1
-and
+.B P1 /
 .B P2
-macros for setting code examples;
+macros to bracket code examples;
 .I groff ms
 does not.
 .
@@ -3943,14 +3942,13 @@ but by setting it absolutely.
 This can cause problems for documents that define additional macros of
 their own that try to manipulate indentation.
 .
-The solution is to use,
-not the
-.CW in
-request,
-but
+Use
 .CW .RS
 and
-.CW .RE .
+.CW .RE
+instead of the
+.CW in
+request.
 .
 .
 .PP
@@ -3978,9 +3976,8 @@ Register values are converted to and stored as basic units.
 .
 See \[lq]Measurements\[rq] in the
 .I groff
-Texinfo manual or the
-.I groff (7)
-man page.
+Texinfo manual or in
+.I groff (7).
 .FE
 .
 This threshold makes use of a scaling unit with these parameters
@@ -4110,10 +4107,10 @@ The AT&T
 .I ms
 manual did not document the
 .CW QI
-register,
-whereas Berkeley did;
+register;
+Berkeley and
 .I "groff ms"
-accordingly supports it.
+do.
 .
 .
 .PP

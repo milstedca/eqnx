@@ -4915,9 +4915,7 @@ of Lund, Sweden.
 the DWB\~3.3
 .I mm
 manual,
-introduces the package but does not document
-.I groff mm
-extensions.
+introduces the package but does not document GNU extensions.
 .
 .
 .P

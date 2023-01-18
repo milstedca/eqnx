@@ -2426,24 +2426,6 @@ at the beginning of the document.
 .
 .
 .IP \[bu]
-To make
-.I groff ms
-use the default page offset
-(which also specifies the left margin),
-the
-.B PO
-register must stay undefined until the first
-.I ms
-macro is called.
-.
-This implies that
-.B \[rs]n[PO]
-should not be used early in the document,
-unless it is changed also:
-accessing an undefined register automatically defines it.
-.
-.
-.IP \[bu]
 AT&T
 .IR ms 's
 .B AU
@@ -2465,6 +2447,24 @@ but it doesn't work\[rq].
 In
 .IR "groff ms" ,
 it does.
+.
+.
+.IP \[bu]
+To make
+.I groff ms
+use the default page offset
+(which also specifies the left margin),
+the
+.B PO
+register must stay undefined until the first
+.I ms
+macro is called.
+.
+This implies that
+.B \[rs]n[PO]
+should not be used early in the document,
+unless it is changed also:
+accessing an undefined register automatically defines it.
 .
 .
 .IP \[bu]

@@ -1,4 +1,4 @@
-    Copyright (C) 1992-2022 Free Software Foundation, Inc.
+    Copyright (C) 1992-2023 Free Software Foundation, Inc.
 
     Copying and distribution of this file, with or without modification,
     are permitted in any medium without royalty provided the copyright
@@ -44,9 +44,10 @@ o Type size escape sequences of the form "\sNN", where NN is in the
 
   The form "\s(NN" is accepted for two-digit sizes in all known troffs.
   The form "\s[NNN]" accepts a numeric expression of variable length; it
-  has been supported by groff since version 1.02 (June 1991) at the
-  latest and is by current versions of Heirloom Doctools troff and
-  neatroff.  The form "\s'NNN'" is also widely supported.
+  has been supported by groff since version 1.01 (March 1991) or
+  earlier, by Heirloom Doctools troff since its 2005-08-16 release, and
+  by neatroff, but not by Plan 9 troff.  The form "\s'NNN'" is also
+  widely supported.
 
   Summary: in your documents, rewrite escape sequences beginning with
   "\s1", "\s2", or "\s3" in an unambiguous and portable form.  For
@@ -264,8 +265,8 @@ o The an (man) macro package supports a new macro, `MR`, intended for
   communities over which typeface should be used to set the man page
   topic (italics, roman, or bold).
 
-o Part of the an (man) macro package has been renamed from `an-old.tmac`
-  to `an.tmac`, replacing a file that sourced the `andoc.tmac` wrapper.
+o Part of the an (man) macro package has been renamed from "an-old.tmac"
+  to "an.tmac", replacing a file that sourced the "andoc.tmac" wrapper.
   This means that the "-man" argument to groff (or nroff, or troff) will
   no longer load the andoc wrapper, and not successfully format mdoc(7)
   man pages.  If you are not sure which macro package a given man page
@@ -373,21 +374,22 @@ o The e (me) and s (ms) macro packages now offer a `PF` macro,
   supporting the pic(1) preprocessor's "flyback" feature.  Thanks to
   Dave Kemper.
 
-o The m (mm) macro package no longer implements the `IX` macro.  This
-  groff extension, borrowed from another undocumented one in groff ms,
-  was similarly undocumented.  No applications of it are known.  We
-  recommend makeindex(1), which supports troff and is available with
-  most TeX distributions, for your mm document indexing needs.
+o The m (mm) and s (ms) macro packages no longer implement the `IX`
+  macro.  This undocumented 4.2BSD ms extension was similarly
+  undocumented by groff mm and ms.  No documents applying it are
+  attested.  groff mm documents its own indexing feature, `INITI`.  We
+  otherwise suggest makeindex(1), which supports troff and is available
+  with most TeX distributions, for your mm document indexing needs.
 
 o The m (mm) macro package now adapts to the paper format selected when
   the macro file "papersize.tmac" is used (by specifying the groff "-d
   paper" command-line option).  A consequence is that "groff -mm" and
   "groff -d paper=letter -mm" are _not_ synonymous (when groff is
   configured to use U.S. letter as the default paper format), because
-  groff mm(7) uses a page offset of 0.963 inches on typesetters for
-  compatibility with DWB mm.  If the `W` or `O` registers are also set
-  on the command line, the line length and page offset, respectively,
-  are not overridden by "papersize.tmac".
+  groff mm(7) uses a page offset of 0.963 inches on typesetting devices
+  for compatibility with DWB mm.  If the `W` or `O` registers are also
+  set on the command line, the line length and page offset,
+  respectively, are not overridden by "papersize.tmac".
 
 o The m (mm) macro package now recognizes a `V` register to set the
   vertical spacing for the document.  Like the existing `S`, it must be
@@ -415,12 +417,6 @@ o The m (mm) package now offers a `PY` macro, which serves the function
 o The "ptx.tmac" macro file, a counterpart to the GNU coreutils ptx(1)
   command for generating permuted indexes, is now installed.  It has
   long been part of the source distribution.
-
-o The s (ms) macro package no longer implements the `IX` macro.  This
-  4.2BSD extension was not documented by Berkeley, nor in the
-  groff_ms(7) man page.  No applications of it are attested.  We
-  recommend makeindex(1), which supports troff and is available with
-  most TeX distributions, for your ms document indexing needs.
 
 o The s (ms) macro package supports a new string, `FR`, which defines
   the ratio of the footnote line length to the current line length.  The
@@ -511,7 +507,7 @@ o A new device control command, "background", enables boxes to be drawn
   underneath other page content.  The boxes can be shaded with colors,
   drawn with a colored border of configurable thickness, and interrupted
   by page breaks with special support for breaking before footnotes and
-  similar material.  For convenience, `pdf.tmac` exposes a new macro,
+  similar material.  For convenience, "pdf.tmac" exposes a new macro,
   `pdfbackground`.  Thanks to Deri James.
 
 grotty

@@ -1075,15 +1075,42 @@ to\~0 prevents this.
 .I rindent
 shortens the line length by that amount.
 .
+.
 .TP
-.BI EC\  "\fR[\fPtitle \fR[\fPoverride \fR[\fPflag \fR[\fPrefname\fR]]]]\fP"
-Equation title.
+.BR EC \~\c
+.RI [ title \~[ override \~[ flag \~[  refname ]]]]
+Caption an equation.
 .
-Sets a title for an equation.
+The caption consists of the string
+.B Liec
+followed by an automatically incrementing counter stored in the register
+.BR Ec ,
+a period,
+then
+.I title
+(if any).
 .
-The
+Use the
+.B af
+request to configure
+.BR Ec 's
+number format.
+.
+If the Boolean register
+.B Of
+is true,
+the period is replaced by an em dash.
+.
 .I override
-argument changes the numbering.
+and
+.I flag
+alter the equation number as follows.
+.
+Omitting
+.I flag
+and specifying
+.B 0
+in its place are equivalent.
 .
 .
 .IP
@@ -1092,73 +1119,49 @@ tab(@);
 Lf(BI) Lb
 L Lx.
 flag@Effect
-none@T{
-.I override
-is a prefix to the number.
-T}
 0@T{
-.I override
-is a prefix to the number.
+Prefix number with
+.IR override .
 T}
 1@T{
-.I override
-is a suffix to the number.
+Suffix number with
+.IR override .
 T}
 2@T{
-.I override
-replaces the number.
+Replace number with
+.IR override .
 T}
 .TE
 .
 .
 .IP
-.B EC
-uses the register
-.B Ec
-as a counter.
+Equation captions are centered irrespective of the alignment of any
+enclosing display.
 .
-It is possible to use
-.B .af
-to change the format of the number.
-.
-If register
-.B Of
-is\~1,
-the format of title uses a dash instead of a dot after the number.
 .
 .IP
-The string
-.B Le
-controls the title of the List of Equations;
-default is \[lq]LIST OF EQUATIONS\[rq].
-.
-The List of Equations is printed only if register
-.B Le
-is\~1.
-.
-The default is\~0.
-.
-The string
-.B Liec
-contains the word \[lq]Equation\[rq],
-which is printed before the number.
-.
-If
 .I refname
-is used,
-then the equation number is saved with
-.BR .SETR ,
-and can be retrieved with
+stores the equation number using
+.B .SETR
+such that it can be retreived with
 .RB \[lq] .GETST
 .IR refname \[rq].
 .
+This argument is a GNU extension.
+.
+.
 .IP
-Special handling of the title occurs if
-.B EC
-is used inside
-.BR DS / DE ;
-it is not affected by the format of
-.BR DS .
+Captioned equations are listed in a table of contents
+(see
+.BR TC )
+if the Boolean register
+.B Le
+is true.
+.
+Such a list uses the string
+.B Le
+as a heading.
+.
 .
 .TP
 .BI EF\  \fR[\fParg\fR]\fP
@@ -1276,47 +1279,38 @@ is used.
 .
 .
 .TP
-.BI EX\  "\fR[\fPtitle \fR[\fPoverride \fR[\fPflag \fR[\fPrefname\fR]]]]\fP"
-Exhibit title.
+.BR EX \~\c
+.RI [ title \~[ override \~[ flag \~[  refname ]]]]
+Caption an exhibit.
 .
-The arguments are the same as for
+Arguments are handled analogously to
 .BR EC .
 .
-.B EX
-uses the register
+The register
 .B Ex
-as a counter.
-.
-The string
-.B Lx
-controls the title of the List of Exhibits;
-default is \[lq]LIST OF EXHIBITS\[rq].
-.
-The List of Exhibits is printed only if register
-.B Lx
-is\~1,
-which is the default.
+is the exhibit counter.
 .
 The string
 .B Liex
-contains the word \[lq]Exhibit\[rq],
-which is printed before the number.
+precedes the exhibit number and any
+.I title.
 .
-If
-.I refname
-is used, the exhibit number is saved with
-.BR .SETR ,
-and can be retrieved with
-.RB \[lq] .GETST
-.IR refname \[rq].
+Exhibit captions are centered irrespective of the alignment of any
+enclosing display.
+.
 .
 .IP
-Special handling of the title occurs if
-.B EX
-is used inside
-.BR DS / DE ;
-it is not affected by the format of
-.BR DS .
+Captioned exhibits are listed in a table of contents
+(see
+.BR TC )
+if the Boolean register
+.B Lx
+is true.
+.
+Such a list uses the string
+.B Lx
+as a heading.
+.
 .
 .TP
 .BI FC\  \fR[\fPclosing\fR]\fP
@@ -1376,46 +1370,37 @@ see
 .
 .
 .TP
-.BI FG\  "\fR[\fPtitle \fR[\fPoverride \fR[\fPflag \fR[\fPrefname\fR]]]]\fP"
-Figure title.
+.BR FG \~\c
+.RI [ title \~[ override \~[ flag \~[  refname ]]]]
+Caption a figure.
 .
-The arguments are the same as for
+Arguments are handled analogously to
 .BR EC .
 .
-.B FG
-uses the register
+The register
 .B Fg
-as a counter.
-.
-The string
-.B Lf
-controls the title of the List of Figures;
-default is \[lq]LIST OF FIGURES\[rq].
-.
-The List of Figures is printed only if register
-.B Lf
-is\~1, which is the default.
+is the figure counter.
 .
 The string
 .B Lifg
-contains the word \[lq]Figure\[rq],
-which is printed before the number.
+precedes the figure number and any
+.I title.
 .
-If
-.I refname
-is used, then the figure number is saved with
-.BR .SETR ,
-and can be retrieved with
-.RB \[lq] .GETST
-.IR refname \[rq].
+Figure captions are centered irrespective of the alignment of any
+enclosing display.
+.
 .
 .IP
-Special handling of the title occurs if
-.B FG
-is used inside
-.BR DS / DE ,
-it is not affected by the format of
-.BR DS .
+Captioned figures are listed in a table of contents
+(see
+.BR TC )
+if the Boolean register
+.B Lf
+is true.
+.
+Such a list uses the string
+.B Lf
+as a heading.
 .
 .
 .TP
@@ -3234,45 +3219,47 @@ before a call to
 .B SP
 to avoid this.
 .
+.
 .TP
 .B TAB
-Reset tabs to every\ 5n.
+Reset tab stops to every 5\~ens.
 .
-Normally used to reset any previous tab positions.
 .
+.br
+.ne 4v
 .TP
-.BI TB\  "\fR[\fPtitle \fR[\fPoverride \fR[\fPflag \fR[\fPrefname\fR]]]]\fP"
-Table title.
+.BR TB \~\c
+.RI [ title \~[ override \~[ flag \~[  refname ]]]]
+Caption a table.
 .
-The arguments are the same as for
+Arguments are handled analogously to
 .BR EC .
 .
-.B TB
-uses the register
+The register
 .B Tb
-as a counter.
-.
-The string
-.B Lt
-controls the title of the List of Tables;
-default value is \[lq]LIST OF TABLES\[rq].
-.
-The List of Tables is printed only if register
-.B Lt
-is\~1, which is the default.
+is the table counter.
 .
 The string
 .B Litb
-contains the word \[lq]TABLE\[rq],
-which is printed before the number.
+precedes the table number and any
+.I title.
+.
+Table captions are centered irrespective of the alignment of any
+enclosing display.
+.
 .
 .IP
-Special handling of the title occurs if
-.B TB
-is used inside
-.BR DS / DE ,
-it is not affected by the format of
-.BR DS .
+Captioned tables are listed in a table of contents
+(see
+.BR TC )
+if the Boolean register
+.B Lt
+is true.
+.
+Such a list uses the string
+.B Lt
+as a heading.
+.
 .
 .TP
 .BI TC\  "\fR[\fPslevel \fR[\fPspacing \fR[\fPtlevel \fR[\fPtab \fR[\fPh1 \fR[\fPh2 \fR[\fPh3 \fR[\fPh4 \fR[\fPh5\fR]]]]]]]]]\fP"

@@ -4502,6 +4502,11 @@ The general error-handling policy of @code{groff} @file{ms} is to detect
 and report errors, rather than silently to ignore them.
 
 @item
+Tenth Edition @c possibly 9th
+Research Unix supported @code{P1} and @code{P2} macros for setting code
+examples; @code{groff} @file{ms} does not.
+
+@item
 @code{groff} @file{ms} does not work in GNU @code{troff}'s
 @acronym{AT&T} compatibility mode.  If loaded when that mode is enabled,
 it aborts processing with a diagnostic message.
@@ -4551,6 +4556,15 @@ Right-aligned displays are available.  The @acronym{AT&T} @file{ms}
 manual observes that ``it is tempting to assume that @samp{.DS R} will
 right adjust lines, but it doesn't work''.  In @code{groff} @file{ms},
 it does.
+
+@item
+To make @code{groff} @file{ms} use the default page offset (which also
+specifies the left margin), the @code{PO} register must stay undefined
+until the first @file{ms} macro is called.
+
+This implies that @samp{\n[PO]} should not be used early in the
+document, unless it is changed also: accessing an undefined register
+automatically defines it.
 
 @item
 @code{groff} @file{ms} supports the @code{PN} register, but it is not

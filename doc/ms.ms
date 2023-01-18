@@ -3872,6 +3872,24 @@ manual [Lesk 1978].
 .
 .
 .PP
+The error-handling policy of
+.I groff ms
+is to detect and report errors,
+rather than silently to ignore them.
+.
+.
+.PP
+Tenth Edition \" possibly 9th
+Research Unix supported
+.B P1
+and
+.B P2
+macros for setting code examples;
+.I groff ms
+does not.
+.
+.
+.PP
 .I "groff ms"
 does not work in GNU
 .I troff 's \" GNU
@@ -3879,6 +3897,11 @@ AT&T compatibility mode.
 .
 If loaded when that mode is enabled,
 it aborts processing with a diagnostic message.
+.
+.
+.PP
+Multiple line spacing is not supported
+(use a larger vertical spacing instead).
 .
 .
 .PP
@@ -3995,6 +4018,24 @@ but it doesn't work\[rq].
 In
 .I "groff ms" ,
 it does.
+.
+.
+.PP
+To make
+.I groff ms
+use the default page offset
+(which also specifies the left margin),
+the
+.B PO
+register must stay undefined until the first
+.I ms
+macro is called.
+.
+This implies that
+.B \[rs]n[PO]
+should not be used early in the document,
+unless it is changed also:
+accessing an undefined register automatically defines it.
 .
 .
 .PP

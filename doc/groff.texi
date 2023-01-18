@@ -4498,8 +4498,8 @@ manual.@footnote{@cite{Typing Documents on the UNIX System: Using the
 @c XXX: We support RT anyway; maybe we should stop?
 
 @item
-The general error-handling policy of @code{groff} @file{ms} is to detect
-and report errors, rather than silently to ignore them.
+The error-handling policy of @code{groff} @file{ms} is to detect and
+report errors, rather than silently to ignore them.
 
 @item
 Tenth Edition @c possibly 9th

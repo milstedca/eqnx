@@ -492,25 +492,32 @@ to enable customized tables of contents.
 .
 .
 .TP
-.BR 1C\  [ 1 ]
-Begin one-column processing.
+.BR 1C\~ [ 1 ]
+Begin one-column formatting after breaking the page.
 .
-A\~\c
-.B 1
-as an argument disables the page break.
+.RB A\~ 1
+argument suppresses the page break,
+but if a footnote is pending,
+it may be overprinted.
 .
-Use wide footnotes, small footnotes may be overprinted.
+See
+.BR 2C ,
+.BR MC ,
+and
+.BR NCOL .
+.
 .
 .TP
 .B 2C
-Begin two-column processing.
+Begin two-column formatting.
 .
-Splits the page in two columns.
-.
-It is a special case of
+This is a special case of
 .BR MC .
-See also
-.BR 1C .
+.
+See
+.B 1C
+and
+.BR NCOL .
 .
 .
 .TP
@@ -2457,28 +2464,30 @@ T}
 .
 .
 .TP
-.BI MC\  "column-size \fR[\fPcolumn-separation\fR]\fP"
-Begin multiple columns.
+.BI MC\~ column-width\~\c
+.RI [ gutter-width ]
+Begin multi-column layout.
 .
-Return to normal with
-.BR 1C .
+.I groff mm
+creates as many columns of
+.I column-width
+as the line length will permit.
+.
+.I gutter-width
+is the interior spacing between columns.
+.
+It defaults to
+.IR column-width /15.
+.
+.B 1C
+returns to single-column layout.
 .
 .B MC
-creates as many columns as the current line length permits.
+is a GNU extension.
 .
-.I column-size
-is the width of each column,
-and
-.I column-separation
-is the space between two columns.
-.
-Default separation is
-.IR column-size /15.
-.
-.
-This is a GNU extension;
-see also
-.BR 1C .
+See
+.B MULB
+for an alternative.
 .
 .
 .TP
@@ -2596,12 +2605,14 @@ End alternative multi-column mode and emit the columns.
 .
 .TP
 .B NCOL
-Force printing to the next column.
+Move to the start of the next column
+(only when using
+.B 2C
+or
+.BR MC ).
 .
-Don't use this together with the
-.B MUL*
-macros, see
-.BR 2C .
+Contrast with
+.BR MULN .
 .
 .
 .TP

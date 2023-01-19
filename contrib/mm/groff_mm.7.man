@@ -181,6 +181,43 @@ registers and strings tend to have mixed-case names.
 .
 .
 .\" ====================================================================
+.SS "Document styles"
+.\" ====================================================================
+.
+.I groff mm
+offers three different frameworks for document organization.
+.
+.BR COVER / COVEND
+is a flexible means of preparing any document requiring a cover page.
+.
+.BR LT / LO
+arranges correspondence typical of Anglophone
+commerce
+(business letters,
+for example).
+.
+The
+.B MT
+memorandum type mechanism implements a group of formal styles
+historically used by AT&T Bell Laboratories.
+.
+Your document can select at most one of these approaches;
+when used,
+each disables the others.
+.
+A simple
+.I mm
+document might use only
+.B H
+(or
+.BR HU )
+and
+.B P
+for headings and paragraphing,
+respectively.
+.
+.
+.\" ====================================================================
 .SS Localization
 .\" ====================================================================
 .

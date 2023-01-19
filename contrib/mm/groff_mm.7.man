@@ -4743,6 +4743,13 @@ Default is\~5.
 .
 .
 .TP
+.B Tb
+is an auto-incrementing table counter;
+see
+.BR TB .
+.
+.
+.TP
 .B V
 defines the vertical spacing for the document,
 and must be set from the command line.

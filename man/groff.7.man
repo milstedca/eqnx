@@ -3255,8 +3255,14 @@ Set indentation to
 .scaleindicator m ).
 .
 .TPx
+.REQ .it
+Cancel any pending input line trap.
+.
+.TPx
 .REQ .it "npl name"
-Set an input trap,
+Set
+(or replace)
+an input line trap in the environment,
 calling macro
 .IR name ,
 after the next
@@ -3268,13 +3274,16 @@ Lines interrupted with the
 escape sequence are counted separately.
 .
 .TPx
+.REQ .itc
+Cancel any pending input line trap.
+.
+.TPx
 .REQ .itc "npl name"
-Set an input trap,
-calling macro
-.IR name ,
-after the next
-.I npl
-productive input lines have been read.
+As
+.request .it ,
+except that input lines interrupted with the
+.B \[rs]c
+escape sequence are not counted.
 .
 .TPx
 .REQ .kern

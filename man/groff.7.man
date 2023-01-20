@@ -5186,21 +5186,6 @@ see section \[lq]Parameters\[rq] below.
 .
 .
 .P
-.B Caution:
-Unlike other requests,
-the second argument to these requests consumes the remainder of the
-input line,
-including trailing spaces.
-.
-Ending string definitions
-(and appendments)
-with a comment,
-even an empty one,
-prevents unwanted space from creeping into them during source document
-maintenance.
-.
-.
-.P
 An initial neutral double quote
 .B \[dq]
 in the string contents is stripped to allow embedding of leading spaces.
@@ -5264,6 +5249,21 @@ is likewise similar to
 .BR .as ,
 with compatibility mode suspended when the appended portion of the
 string is later interpolated.
+.
+.
+.P
+.B Caution:
+Unlike other requests,
+the second argument to these requests consumes the remainder of the
+input line,
+including trailing spaces.
+.
+Ending string definitions
+(and appendments)
+with a comment,
+even an empty one,
+prevents unwanted space from creeping into them during source document
+maintenance.
 .
 .
 .P

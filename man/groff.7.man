@@ -6732,7 +6732,7 @@ margin characters
 .
 .
 .IP \[bu]
-input traps
+input line traps
 .
 .
 .IP \[bu]

@@ -14639,12 +14639,12 @@ jat
 When @samp{Trap} gets called depends on whether the @samp{a} register is
 defined; the control line with the @code{if} request may or may not
 produce written output.  We also see that the spacing request @code{sp},
-while certainly affecting the output, does not spring the input trap.
-Similarly, the horizontal motion escape sequence @code{\h} also affected
-the output, but was not ``written''.  Observe that we had to follow it
-with @code{\c} and use @code{itc} to prevent the newline at the end of
-the text line from causing a word break, which, like an ordinary space
-character, counts as written output.
+while certainly affecting the output, does not spring the input line
+trap.  Similarly, the horizontal motion escape sequence @code{\h} also
+affected the output, but was not ``written''.  Observe that we had to
+follow it with @code{\c} and use @code{itc} to prevent the newline at
+the end of the text line from causing a word break, which, like an
+ordinary space character, counts as written output.
 
 @Example
 $ groff -Tascii input-trap-example.groff
@@ -14658,10 +14658,10 @@ $ groff -Tascii -ra1 input-trap-example.groff
 @endExample
 @endDefreq
 
-Input traps are associated with the environment (@pxref{Environments});
-switching to another environment disables the current input trap, and
-going back reactivates it, restoring the count of qualifying lines
-enumerated in that environment.
+Input line traps are associated with the environment
+(@pxref{Environments}); switching to another environment suspends the
+current input line trap, and going back resumes it, restoring the count
+of qualifying lines enumerated in that environment.
 
 @c ---------------------------------------------------------------------
 
@@ -15352,7 +15352,7 @@ tab stops; tab, leader, escape, control, no-break control, hyphenation,
 and margin characters
 
 @item
-input traps
+input line traps
 
 @item
 stroke and fill colors
@@ -15447,7 +15447,7 @@ underline (with or without underlined spaces)---these are set to zero;
 the activation status of temporary indentation;
 
 @item
-input traps and their associated data;
+input line traps and their associated data;
 
 @item
 the activation status of line numbering (which can be reactivated with

@@ -6643,6 +6643,135 @@ with its corresponding amount of motion
 .
 .
 .\" ====================================================================
+.SH Diversions
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Diversions".
+In
+.I roff
+systems systems it is possible to format text as if for output,
+but instead of writing it immediately,
+one can
+.I divert
+the formatted text into a named storage area.
+.
+It is retrieved later by specifying its name after a control character.
+.
+The same name space is used for such
+.I diversions
+as for strings and macros;
+see section \[lq]Identifiers\[rq] above.
+.
+Such text is sometimes said to be \[lq]stored in a macro\[rq],
+but this coinage obscures the important distinction between macros and
+strings on one hand and diversions on the other;
+the former store
+.I unformatted
+input text,
+and the latter capture
+.I formatted
+output.
+.
+Diversions also do not interpret arguments.
+.
+Applications of diversions include \[lq]keeps\[rq]
+(preventing a page break from occurring at an inconvenient place by
+forcing a set of output lines to be set as a group),
+footnotes,
+tables of contents,
+and indices.
+.
+For orthogonality it is said that GNU
+.I troff \" GNU
+is in the
+.I top-level diversion
+if no diversion is active
+(that is,
+formatted output is being \[lq]diverted\[rq] immediately to the output
+device.
+.
+.
+.P
+Dereferencing an undefined diversion will create an empty one of that
+name and cause a warning in category
+.B mac
+to be emitted.
+(see section \[lq]Warnings\[rq] in
+.MR @g@troff @MAN1EXT@ ).
+.
+A diversion does not exist for the purpose of testing with the
+.B d
+conditional operator until its initial definition ends
+(see subsection \[lq]Conditional expressions\[rq] above).
+.\" The following requests are used to create and alter diversions.
+.\" END Keep (roughly) parallel with groff.texi node "Diversions".
+.
+.
+.P
+The
+.B di
+request creates a diversion,
+including any partially collected line.
+.
+.B da
+appends to an existing diversion,
+creating one if it does not already exist.
+.
+.B box
+and
+.B boxa
+works similarly,
+but ignore partially collected lines.
+.
+Call any of these macros again without an argument to end the diversion.
+.
+.
+.br
+.ne 2v
+.P
+Diversions can be nested.
+.
+The registers
+.BR .d ,
+.BR .z ,
+.BR dn ,
+and
+.B dl
+report information about the current
+(or last closed)
+diversion.
+.
+.B .h
+is meaningful in diversions,
+including the top level.
+.
+.
+.P
+The
+.B \[rs]!\%
+and
+.B \[rs]?\%
+escape sequences and
+.B output
+request escape from a diversion,
+the first two to the enclosing level and the last to the top level.
+.
+This facility is termed
+.IR "transparent embedding" .
+.
+.
+.P
+The macros
+.B asciify
+and
+.B unformat
+reprocess diversions.
+.\" XXX: That's a weak statement.  What we need is a `for` request and
+.\" a new conditional operator that tests whether an item in a node list
+.\" is an (otherwise unrepresentable) node.  See Savannah #62264.
+.
+.
+.\" ====================================================================
 .SH Environments
 .\" ====================================================================
 .

@@ -14211,6 +14211,7 @@ Environments save us considerable effort.
 
 @c =====================================================================
 
+@c BEGIN Keep (roughly) parallel with subsection "Traps" of groff(7).
 @node Traps, Diversions, Deferring Output, gtroff Reference
 @section Traps
 @cindex traps
@@ -14228,6 +14229,7 @@ Setting a trap is also called @dfn{planting} one.
 @cindex trap, springing
 @cindex springing a trap
 It is said that a trap is @dfn{sprung} if its condition is fulfilled.
+@c END Keep (roughly) parallel with subsection "Traps" of groff(7).
 
 @menu
 * Vertical Position Traps::

@@ -6360,14 +6360,15 @@ and end inside another.
 .P
 Variants of
 .B .de
-that disable compatibility mode and/or indirect the names of the macros
-being defined or ending the definition through strings are available as
+disable compatibility mode and/or indirect the names of the macros
+specified for definition or termination:
+these are
 .BR .de1 ,
 .BR .dei ,
 and
 .BR .dei1 .
 .
-Existing macro definitions can be appended to with
+Append to macro definitions with
 .BR .am ,
 .BR .am1 ,
 .BR .ami ,
@@ -6584,6 +6585,7 @@ use end macros.
 .SH Traps
 .\" ====================================================================
 .
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Traps".
 .I Traps
 are locations in the output,
 or conditions on the input that,
@@ -6616,6 +6618,7 @@ one.
 It is said that a trap is
 .I sprung
 if its condition is fulfilled.
+.\" END Keep (roughly) parallel with groff.texi node "Traps".
 .
 .
 .P
@@ -6847,6 +6850,7 @@ use the following.
 .EE
 .RE
 .
+.ne 2v
 When using
 .IR doclifter ,
 it might be necessary to change syntax forms such as
@@ -7062,6 +7066,7 @@ G.\& Branden Robinson
 .SH "See also"
 .\" ====================================================================
 .
+.ne 2v
 .IR "Groff: The GNU Implementation of troff" ,
 by Trent A.\& Fisher and Werner Lemberg,
 is the primary
@@ -7071,6 +7076,8 @@ manual.
 You can browse it interactively with \[lq]info groff\[rq].
 .
 .
+.br
+.ne 2v
 .P
 \[lq]Troff User's Manual\[rq]
 by Joseph F.\& Ossanna,
@@ -7088,6 +7095,8 @@ documentation as
 .RI \[lq]AT&T\~ troff \[rq].
 .
 .
+.br
+.ne 3v
 .P
 \[lq]A Typesetter-independent TROFF\[rq]
 by Brian W.\& Kernighan,

@@ -1129,7 +1129,8 @@ The caption consists of the string
 .B Liec
 followed by an automatically incrementing counter stored in the register
 .BR Ec ,
-a period,
+punctuation configured by the register
+.BR Of ,
 then
 .I title
 (if any).
@@ -1139,11 +1140,6 @@ Use the
 request to configure
 .BR Ec 's
 number format.
-.
-If the Boolean register
-.B Of
-is true,
-the period is replaced by an em dash.
 .
 .I override
 and
@@ -1186,8 +1182,8 @@ enclosing display.
 .IP
 .I refname
 stores the equation number using
-.B .SETR
-such that it can be retreived with
+.BR SETR ;
+it can be retreived with
 .RB \[lq] .GETST
 .IR refname \[rq].
 .
@@ -3454,7 +3450,7 @@ See
 .
 .TP
 .BI TM\~ number\c
-\~.\|.|.
+\~.\|.\|.
 Declare technical memorandum number(s) used by
 .BR MT .
 .

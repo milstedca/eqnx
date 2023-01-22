@@ -1,3 +1,17 @@
+2023-01-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac: Help user navigate the document type macros.  Stop
+	setting up the formatter to throw "unrecognized macro"
+	diagnostics for macros that are plainly documented in
+	groff_mm(7).
+	(@disable): New macro takes a list of macros whose definitions
+	are replaced with a warning diagnostic about how they're no
+	longer unavailable due to use of another document type macro
+	already called, identified by new string `@cover`.
+	(TL, MT, COVER, LT, LO): Define `@cover` and call `@disable`.
+	Drop existing diagnostics that did a similar thing as above,
+	more verbosely.
+
 2023-01-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac: Revise diagnostic messages.  Use a consistent message

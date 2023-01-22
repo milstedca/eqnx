@@ -729,9 +729,9 @@ but is not by
 .
 .
 .IP
-A second argument increases the indentation and reduces the line length
-by
-.IR indentation .
+A second argument increases the indentation by
+.I indentation
+and reduces the line length by twice this amount.
 .
 A scaling unit of ens is assumed.
 .
@@ -1473,13 +1473,13 @@ in
 This string precedes the footnote text at the bottom of the column or
 page.
 .
-Vertical space in the amount of
-.RB register\~ Fs
-separates footnotes;
-the default amount is 1v.
+Footnotes are vertically separated by the product of
+.RB registers\~ Fs
+and
+.BR Lsp .
 .
 In
-.IR "groff ms" ,
+.IR "groff mm" ,
 footnotes may be used in displays.
 .
 .
@@ -1579,6 +1579,7 @@ sets it to the saved string.
 See
 .BR INITR .
 .
+.\" XXX: discuss dot handling after section number
 .TP
 .BI H\  "level \fR[\fPheading-text \fR[\fPheading-suffix\fR]]\fP"
 Numbered section heading.
@@ -2085,37 +2086,38 @@ T}
 .
 .
 .TP
-.BI INITR\  filename
+.BI INITR\~ id
 Initialize the cross reference macros.
 .
-Cross references are written to stderr and are supposed to be
-redirected into file
-.RI filename .qrf .
+Cross references are written to the standard error stream,
+which should be redirected into a file named
+.RI id .qrf .
 .
-Requires two passes with groff;
-this is handled by a separate program called
-.MR mmroff @MAN1EXT@ .
+.MR mmroff @MAN1EXT@
+handles this and the two formatting passes it requires.
+.\".
+.\"This program exists because
+.\".MR groff @MAN1EXT@
+.\"by default deactivates the unsafe operations that are required by
+.\".BR INITR .
 .
-This program exists because
-.MR groff @MAN1EXT@
-by default deactivates the unsafe operations that are required by
-.BR INITR .
-.
-The first pass looks for cross references,
+The first pass identifies cross references,
 and the second one includes them.
+.\"
+.\".B INITR
+.\"can be used several times,
+.\"but it is only the first occurrence of
+.\".B INITR
+.\"that is active.
 .
-.B INITR
-can be used several times,
-but it is only the first occurrence of
-.B INITR
-that is active.
 .
 .IP
-See also
+See
 .BR SETR ,
 .BR GETPN ,
 and
 .BR GETHN .
+.
 .
 .TP
 .BI IND\  "arg1 \fR[\fParg2 \fR[.\|.\|.]]\fP"
@@ -2249,6 +2251,27 @@ spaces before the text.
 .
 This right-justifies the mark.
 .
+.
+.IP
+.I type
+selects one of six possible ways to display the mark.
+.
+.
+.IP
+.TS
+tab(@);
+Lf(BI) Lb
+L L.
+type@Output for a mark \[lq]x\[rq]
+1@x.
+2@x)
+3@(x)
+4@[x]
+5@<x>
+6@{x}
+.TE
+.
+.
 .IP
 If
 .I type
@@ -2264,7 +2287,7 @@ as a mark.
 If
 .I type
 is greater than\~0 automatic numbering occurs,
-using arabic numbers if
+using Arabic numerals if
 .I mark
 is empty.
 .
@@ -2274,26 +2297,6 @@ can then be any of \[lq]1\[rq],
 \[lq]a\[rq],
 \[lq]I\[rq],
 or \[lq]i\[rq].
-.
-.
-.IP
-.I type
-selects one of six possible ways to display the mark.
-.
-.
-.IP
-.TS
-tab(@);
-Lf(BI) Lb
-L L.
-type@Output
-1@x.
-2@x)
-3@(x)
-4@[x]
-5@<x>
-6@{x}
-.TE
 .
 .
 .IP
@@ -3231,18 +3234,26 @@ No reference data is printed if the author(s) is specified through
 .
 See section \[lq]Internals\[rq] below.
 .
+.
 .TP
-.BI SK\  \fR[\fPpages\fR]\fP
-Skip pages.
+.BR SK \~\c
+.RI [ n ]
+Skip
+.I n
+pages.
 .
 If
-.I pages
-is\~0 or omitted, a skip to the next page occurs unless it is already
-at the top of a page.
+.I n
+is\~0 or omitted,
+the page is broken unless the drawing position is already at the top of
+a page.
 .
-Otherwise it skips
-.I pages
-pages.
+Otherwise,
+.I n
+pages,
+blank except for any headers and footers,
+are printed.
+.
 .
 .TP
 .BI SM\  "string1 \fR[\fPstring2 \fR[\fPstring3\fR]]\fP"
@@ -3330,6 +3341,11 @@ as a heading.
 Table of contents.
 .
 This macro is normally used as the last line of the document.
+.
+The pages of the table of contents are numbered with Roman numerals;
+their appearance can be suppressed with the
+.B Oc
+register.
 .
 It generates a table of contents with headings up to the level
 controlled by register

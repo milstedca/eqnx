@@ -191,8 +191,7 @@ offers three different frameworks for document organization.
 is a flexible means of preparing any document requiring a cover page.
 .
 .BR LT / LO
-arranges correspondence typical of Anglophone
-commerce
+aids preparation of typical Anglophone correspondence
 (business letters,
 for example).
 .
@@ -695,21 +694,21 @@ lf(BI) lb
 l lx.
 placement@Effect
 0@T{
-The abstract is printed on page\~1 and on the cover sheet if used in the
-released-paper style
-.RB ( "MT 4" );
+The abstract appears on page\~1 and cover sheet if the document is a
+\[lq]released paper\[rq] memorandum
+.RB ( ".MT 4" );
 otherwise,
-it is printed on page\~1 without a cover sheet.
+it appears on page\~1 without a cover sheet.
 T}
 1@T{
-The abstract is printed only on the cover sheet
-.RB ( "MT 4"
+The abstract appears only on the cover sheet
+.RB ( ".MT 4"
 only).
 T}
 .\" XXX: This does not appear to be implemented.
 .\"2@T{
 .\"The abstract is printed only on the cover sheet (if not
-.\".BR "MT 4" )
+.\".BR ".MT 4" )
 .\".
 .\"The cover sheet is printed without a need for \fBCS\fP.
 .\"T}
@@ -717,10 +716,11 @@ T}
 .
 .
 .IP
-An abstract is not printed at all in external letters
-.RB ( "MT 5" ).
+An abstract does not appear at all in external letters
+.RB ( ".MT 5" ).
 .
-Abstract type
+.RI A\~ placement
+of
 .B 2
 was supported by DWB
 .I mm
@@ -784,9 +784,11 @@ terminates a document title being collected with
 .BR TL ,
 and can be called without arguments for that sole purpose.
 .
-Author information appears on cover sheets and similar places.
+Author information is used by cover sheets and predefined memorandum
+types
+.RB ( MT ).
 .
-The author information can contain initials,
+It can contain initials,
 location,
 department,
 telephone extension,
@@ -796,6 +798,13 @@ and up to three additional arguments.
 Repeat
 .B AU
 to identify multiple authors.
+.
+.
+.IP
+Use
+.BR WA / WE
+instead to identify the author for documents employing
+.BR LT .
 .
 .
 .TP
@@ -2549,24 +2558,34 @@ to end the list.
 .
 .TP
 .BR MT \~\c \" space in roman because we must use 2-font macro with \c
-.RI [ number \~[ addressee ]]
-Memorandum type.
+.RI [ type \~[ addressee ]]
+Select memorandum type.
 .
-The argument
-.I number
-is used to construct the file name
-.IR @TMAC_MDIR@/\:\% number \:.MT
+These correspond to formats used by AT&T Bell Laboratories,
+where the
+.I mm
+package was initially developed,
+affecting the document layout.
+.
+Some of these included a cover page with a caption categorizing the
+document.
+.
+.I groff mm
+uses
+.I type
+to construct the file name
+.IR @TMAC_MDIR@/\:\% type \:.MT
 and load it with the
 .B mso
 request.
 .
 Memorandum types 0 to\~5 are supported;
 any other value of
-.I number
+.I type
 is mapped to type\~6.
 .
 If
-.I number
+.I type
 is omitted,
 .B 0
 is implied.
@@ -2576,25 +2595,26 @@ sets a string analogous to one used by AT&T cover sheet macros that are
 not implemented in
 .IR "groff mm" .
 .
-.RS
+.
 .IP
 .TS
 tab(@);
-lB l.
-0@Normal memorandum, no type printed.
-1@Memorandum with \[lq]MEMORANDUM FOR FILE\[rq] printed.
-2@Memorandum with \[lq]PROGRAMMER'S NOTES\[rq] printed.
-3@Memorandum with \[lq]ENGINEER'S NOTES\[rq] printed.
-4@Released paper style.
-5@External letter style.
+Lf(BI) Lb
+L L.
+type@Description
+0@normal memorandum; no caption
+1@captioned \[lq]MEMORANDUM FOR FILE\[rq]
+2@captioned \[lq]PROGRAMMER'S NOTES\[rq]
+3@captioned \[lq]ENGINEER'S NOTES\[rq]
+4@released paper
+5@external letter
 .TE
-.RE
 .
 .
 .IP
-See also
-.BR COVER / COVEND ,
-a more flexible type of cover page.
+See
+.B COVER
+for a more flexible cover sheet mechanism.
 .
 .
 .TP
@@ -4093,12 +4113,11 @@ see
 includes supplemental author information
 (the third and subsequent arguments to
 .BR AU )
-in memorandum \[lq]from\[rq] information.
-.
-It defaults
-.RB to\~ 1 ;
-.BR 0 \~excludes
-the information.
+in memorandum \[lq]from\[rq] information;
+see
+.B MT
+(Boolean-valued;
+.BR 1 ).
 .
 .
 .TP

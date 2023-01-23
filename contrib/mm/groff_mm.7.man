@@ -187,7 +187,7 @@ registers and strings tend to have mixed-case names.
 .I groff mm
 offers three different frameworks for document organization.
 .
-.BR COVER / COVEND
+.BR \%COVER / \%COVEND
 is a flexible means of preparing any document requiring a cover page.
 .
 .BR LT / LO
@@ -570,7 +570,7 @@ See
 Author's firm, should be called before
 .BR AU ,
 see also
-.BR COVER .
+.BR \%COVER .
 .
 .
 .TP
@@ -679,7 +679,7 @@ memorandum
 (see
 .BR MT ).
 .
-.BR COVER ,
+.BR \%COVER ,
 by contrast,
 ignores
 .I placement
@@ -828,7 +828,7 @@ Generates a line with place for signature.
 .
 .
 .TP
-.BR B \~\c \" space in roman because we must use 2-font macro with \c
+.BR B \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ bold-text\~\c
 .RI [ previous-font-text ]]\~.\|.\|.
 Join
@@ -868,7 +868,7 @@ End bottom block, see
 .
 .
 .TP
-.BR BI \~\c \" space in roman because we must use 2-font macro with \c
+.BR BI \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ bold-text\~\c
 .RI [ italic-text ]]\~.\|.\|.
 Join
@@ -895,7 +895,7 @@ A third argument prohibits printing of a blank line before each item.
 .
 .
 .TP
-.BR BR \~\c \" space in roman because we must use 2-font macro with \c
+.BR BR \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ bold-text\~\c
 .RI [ roman-text ]]\~.\|.\|.
 Join
@@ -936,12 +936,12 @@ A third argument prohibits printing of a blank line before each item.
 .
 .
 .TP
-.BR COVER \~\c \" space in roman because we must use 2-font macro with \c
+.BR \%COVER \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ style ]
 Begin a cover sheet description.
 .
 It is important that
-.B .COVER
+.B \%COVER
 appear before any of the body text
 (or main matter)
 of a document.
@@ -964,9 +964,9 @@ it structures a cover sheet to resemble that used by the
 .I ms
 package.
 .
-.B .COVER
+.B \%COVER
 requires a
-.B .COVEND
+.B \%COVEND
 at the end of the cover description.
 .
 Always use the following ordering of the cover sheet macros.
@@ -2006,7 +2006,7 @@ See\~\c
 .
 .
 .TP
-.BR I \~\c \" space in roman because we must use 2-font macro with \c
+.BR I \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ italic-text\~\c
 .RI [ previous-font-text ]]\~.\|.\|.
 Join
@@ -2034,7 +2034,7 @@ See
 .
 .
 .TP
-.BR IB \~\c \" space in roman because we must use 2-font macro with \c
+.BR IB \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ italic-text\~\c
 .RI [ bold-text ]]\~.\|.\|.
 Join
@@ -2178,7 +2178,7 @@ normal operation again.
 .
 .
 .TP
-.BR IR \~\c \" space in roman because we must use 2-font macro with \c
+.BR IR \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ italic-text\~\c
 .RI [ roman-text ]]\~.\|.\|.
 Join
@@ -2560,7 +2560,7 @@ to end the list.
 .
 .
 .TP
-.BR MT \~\c \" space in roman because we must use 2-font macro with \c
+.BR MT \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ type \~[ addressee ]]
 Select memorandum type.
 .
@@ -2616,7 +2616,7 @@ type@Description
 .
 .IP
 See
-.B COVER
+.B \%COVER
 for a more flexible cover sheet mechanism.
 .
 .
@@ -2636,7 +2636,7 @@ without arguments to return to normal.
 .
 .
 .TP
-.BR MULB \~\c \" space in roman because we must use 2-font macro with \c
+.BR MULB \~\c \" space in roman; we must use 2-font macro with \c
 .IR "cw1 space1\~" [ "cw2 space2" "] .\|.\|.\~" cwn
 Begin alternative multi-column mode.
 .
@@ -2992,7 +2992,7 @@ This is a GNU extension.
 .
 .
 .TP
-.BR R \~\c \" space in roman because we must use 2-font macro with \c
+.BR R \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ roman-text\~\c
 .RI [ previous-font-text ]]\~.\|.\|.
 Join
@@ -3007,7 +3007,7 @@ switch font to roman style.
 .
 .
 .TP
-.BR RB \~\c \" space in roman because we must use 2-font macro with \c
+.BR RB \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ roman-text\~\c
 .RI [ bold-text ]]\~.\|.\|.
 Join
@@ -3048,7 +3048,7 @@ See
 .
 .
 .TP
-.BR RI \~\c \" space in roman because we must use 2-font macro with \c
+.BR RI \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ roman-text\~\c
 .RI [ italic-text ]]\~.\|.\|.
 Join
@@ -3071,7 +3071,7 @@ changes the default indentation.
 .
 .
 .TP
-.BR RP \~\c \" space in roman because we must use 2-font macro with \c
+.BR RP \~\c \" space in roman; we must use 2-font macro with \c
 .RI [ suppress-counter-reset \~[ page-ejection-policy ]]
 Format a reference page,
 listing items accumulated within

@@ -3554,60 +3554,54 @@ See
 .BR TC .
 .
 .TP
-.BI VERBON\  "\fR[\fPflag \fR[\fPpoint-size \fR[\fPfont\fR]]]\fP"
-Begin verbatim output using Courier font.
+.BR VERBON \~\c \" space in roman; we must use 2-font macro with \c
+.RI [ format \~[ type-size \~[ font ]]]
+Begin verbatim display,
+where characters have equal width.
 .
-Usually for printing programs.
+.I format
+controls several parameters.
 .
-All characters have equal width.
+Add up the values of desired features;
+the default
+.RB is\~ 0 .
 .
-The point size can be changed with the second argument.
 .
-By specifying a third argument it is possible to use another font
-instead of Courier.
-.
-.I flag
-controls several special features.
-.
-Its value is the sum of all wanted features.
-.
-.RS
 .IP
 .TS
 tab(@);
 lb lb
 l lx.
-Arg@Effect
-1@T{
-Disable the escape character (\[rs]).
-This is normally turned on during verbose output.
-T}
-2@Add an empty line before the verbose text.
-4@Add an empty line after the verbose text.
+Value@Effect
+1@Disable the formatter's escape character (\[rs]).
+2@Vertically space before the display.
+2@Vertically space after the display.
 8@T{
-Print the verbose text with numbered lines.
-This adds four digit-sized spaces in the beginning of each line.
-Finer control is available through the string
+Number output lines; call formatter's
+.B nm
+request with arguments in string
 .BR Verbnm .
-It contains all arguments to the
-.MR @g@troff @MAN1EXT@
-command
-.BR .nm ,
-normally \[lq]1\[rq].
 T}
 16@T{
-Indent the verbose text by \[lq]5n\[rq].
-.
-This is controlled by the register
-.B Verbin
-(in units).
+Indent by the amount stored in register
+.BR Verbin .
 T}
 .TE
-.RE
+.
+.
+.IP
+On typesetting devices,
+.I type-size
+selects a different type size in scaled points,
+and
+.I font
+chooses a face\[em]the default is Courier roman.
+.
 .
 .TP
 .B VERBOFF
-End verbatim output.
+End verbatim display.
+.
 .
 .TP
 .BI VL\  "text-indent \fR[\fPmark-indent\ " \fR[\fP1\fR]]\fP

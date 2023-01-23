@@ -593,7 +593,8 @@ An explicitly empty
 also indicates the default.
 .
 .I text-indent
-sets the indentation and overrides the register
+sets the indentation in ens,
+overriding register
 .BR Li .
 .
 If a third argument,
@@ -888,7 +889,8 @@ list item (see
 .BR LI ).
 .
 .I text-indent
-overrides the default indentation of the list items set by register
+sets the indentation in ens,
+overriding register
 .BR Pi .
 .
 A third argument prohibits printing of a blank line before each item.
@@ -1043,7 +1045,8 @@ Dash list start.
 Begins a list where each item is printed after a dash.
 .
 .I text-indent
-changes the default indentation of the list items set by register
+sets the indentation in ens,
+overriding register
 .BR Pi .
 .
 A second argument prevents an empty line between each list item.
@@ -1077,8 +1080,9 @@ format@Effect
 none@No indentation.
 L@No indentation.
 I@T{
-Indent text with the value of register
-.BR Si .
+Indent text by
+.B \[rs]n[Si]
+ens.
 T}
 C@Center each line.
 CB@Center the whole display as a block.
@@ -2378,8 +2382,9 @@ There is no nesting limit.
 .
 .
 .IP
-The indentation can be changed through register
-.BR Li .
+The
+.B Li
+register configures the indentation amount in ens.
 .
 .
 .IP
@@ -2542,7 +2547,7 @@ Start a list with the
 argument preceding each list item.
 .
 .I text-indent
-sets the indentation and overrides the register
+overrides the default indentation of the list items set by register
 .BR Li .
 .
 If a third argument,
@@ -2802,12 +2807,12 @@ This is the same as setting
 .I type
 to\~0.
 .
-If the argument is\~1,
-the first line of text following\~\c
-.B P
-is indented by the number of spaces in register
-.BR Pi ,
-by default\~5.
+If
+.I type
+is\~1,
+the first output line of the paragraph is indented by
+.B \[rs][Pi]
+ens.
 .
 .IP
 Instead of giving an argument to\~\c

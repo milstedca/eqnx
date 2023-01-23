@@ -329,8 +329,11 @@ o The doc (mdoc) macro package now renders man page (sub)section cross
   references cited with the `Sx` macro by quoting them instead of
   setting them in italics.
 
-o The e (me) macro package has changed its default line length to 6.5i
-  from 6i on typesetting devices.
+o The e (me) macro package has changed its default line length on
+  typesetting devices from 6i to the output device's default (for
+  example, 6.5i on the 'ps' and 'pdf' devices).  You can use
+  "papersize.tmac" to override this length, as in "groff -d paper=a4l",
+  without needing to alter the document.
 
 o The e (me) macro package has changed its support for output line
   numbering with the `n1` and `n2` macros to resolve several bugs in the
@@ -379,7 +382,7 @@ o The m (mm) and s (ms) macro packages no longer implement the `IX`
   undocumented by groff mm and ms.  No documents applying it are
   attested.  groff mm documents its own indexing feature, `INITI`.  We
   otherwise suggest makeindex(1), which supports troff and is available
-  with most TeX distributions, for your mm document indexing needs.
+  with most TeX distributions, for your mm/ms document indexing needs.
 
 o The m (mm) macro package now adapts to the paper format selected when
   the macro file "papersize.tmac" is used (by specifying the groff "-d
@@ -596,19 +599,19 @@ o Manual section titles for man pages (those that appear by default in
   the page header, like "General Commands Manual") are now localized for
   Czech, German, French, Italian, and Swedish.
 
-o The semantics of the environment variable SOURCE_DATE_EPOCH (support
-  for which was added in 1.22.4) to groff were not established with
-  respect to time zone selection, prompting divergent interpretations;
-  Debian and distributions derived from it have for several years
-  patched groff to implicitly use UTC as the time zone when interpreting
-  the current time (or SOURCE_DATE_EPOCH) as a local time.  While a
-  convenient and defensible choice for reproducible build efforts, it
-  runs against the grain of user expectations.  Systems programmers like
-  time zone-invariant, monotonically increasing clocks; the broader
-  user base usually prefers a clock that follows an applicable civil
-  calendar.  groff programs now reckon SOURCE_DATE_EPOCH with respect to
-  the local time zone.  Users of SOURCE_DATE_EPOCH may wish to also set
-  the TZ environment variable.
+o The semantics of the environment variable SOURCE_DATE_EPOCH to groff,
+  support for which was added in 1.22.4, were not established at that
+  time with respect to time zone selection, prompting divergent
+  interpretations; Debian and distributions derived from it have for
+  several years patched groff to implicitly use UTC as the time zone
+  when interpreting the current time (or SOURCE_DATE_EPOCH) as a local
+  time.  While a convenient and defensible choice for reproducible build
+  efforts, it runs against the grain of user expectations.  Systems
+  programmers like time zone-invariant, monotonically increasing clocks;
+  the broader user base usually prefers a clock that follows an
+  applicable civil calendar.  groff programs now reckon
+  SOURCE_DATE_EPOCH with respect to the local time zone.  Users of
+  SOURCE_DATE_EPOCH may wish to also set the TZ environment variable.
 
 o xtotroff now supports a "-d" option to specify the directory in which
   to generate font description files.

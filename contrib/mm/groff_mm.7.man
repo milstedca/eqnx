@@ -3069,62 +3069,46 @@ incremented number between square brackets.
 .I text-indent
 changes the default indentation.
 .
+.
 .TP
-.BI RP\  "\fR[\fParg1 \fR[\fParg2\fR]]\fP"
-Produce reference page.
+.BR RP \~\c \" space in roman because we must use 2-font macro with \c
+.RI [ suppress-counter-reset \~[ page-ejection-policy ]]
+Format a reference page,
+listing items accumulated within
+.BR RS / RF
+pairs.
 .
-This macro can be used if a reference page is wanted somewhere in the
-document.
+The reference counter is reset unless the first argument
+.RB is\~ 1 .
 .
-It is not needed if
+Normally,
+page breaks occur before and after the references are output;
+the register
+.B Rpe
+configures this behavior,
+and a second argument overrides its value.
+.
 .B TC
-is used to produce a table of contents.
-.
-The reference page is then printed automatically.
-.
-.IP
-The reference counter is not reset if
-.I arg1
-is\~1.
-.
-.IP
-.I arg2
-tells
+calls
 .B RP
-whether to eject a page or not.
+automatically if references have accumulated.
 .
 .
 .IP
-.TS
-tab(@);
-Lf(BI) Lb
-L Lx.
-arg2@Effect
-0@The reference page is printed on a separate page.
-1@Do not eject page after the list.
-2@Do not eject page before the list.
-3@Do not eject page before and after the list.
-.TE
-.
-.
-.IP
-The reference items are separated by a blank line.
+References are list items,
+and thus are vertically separated
+(see
+.BR LB ).
 .
 Setting register
 .B Ls
-to\~0 suppresses the line.
+.RB to\~ 0
+suppresses this spacing.
 .
-.IP
 The string
 .B Rp
-contains the reference page title and is set to \[lq]REFERENCES\[rq]
-by default.
+contains the reference page caption.
 .
-The register
-.B Rpe
-holds the default value for the second argument of
-.BR RP ;
-it is initially set to\~0.
 .
 .TP
 .BI RS\  \fR[\fPstring-name\fR]\fP
@@ -3341,6 +3325,13 @@ as a heading.
 Table of contents.
 .
 This macro is normally used as the last line of the document.
+.
+It flushes any pending displays and,
+if any references are pending
+(see
+.BR RS ),
+calls
+.BR RP .
 .
 The pages of the table of contents are numbered with Roman numerals;
 their appearance can be suppressed with the
@@ -4730,12 +4721,26 @@ T}
 .IP
 Default is\~0.
 .
+.\" XXX: Why is this not named `Rpej`?
 .TP
 .B Rpe
-Set default value for second argument of
-.BR .RP .
+configures the default page ejection policy for reference pages;
+see
+.B RP
+.RB ( 0 ).
 .
-Default is\~0.
+.
+.IP
+.TS
+tab(@);
+Lb Lb
+L Lx.
+Value@Effect
+0@Break the page before and after the list of references.
+1@Suppress page break after the list.
+2@Suppress page break before the list.
+3@Suppress page breaks before and after the list.
+.TE
 .
 .
 .TP

@@ -319,7 +319,7 @@ Index		array!index
 .if \n[N]=5 .nr Sectf 1
 .\"
 .\" argument to .nm in .VERBON.
-.ds Verbnm "1
+.ds Verbnm 1\"
 .\" indent for VERBON
 .nr Verbin 5n
 .\"
@@ -751,14 +751,14 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .rm misc*rd misc*rd2
 ..
 .\"------------
-.\" VERBON [flag [pointsize [font]]]
+.\" VERBON [flag [type-size [font]]]
 .\"	flag
 .\"	bit	function
-.\"	0	escape on
+.\"	0	escape character disablement
 .\"	1	add an empty line before verbose text
 .\"	2	add an empty line after verbose text
-.\"	3	numbered lines (controlled by the string Verbnm)
-.\"	4	indent text by the numbervariable Verbin.
+.\"	3	number output lines using Verbnm string for .nm args
+.\"	4	indent text by amount in register Verbin
 .de VERBON
 .br
 .nr misc*verb 0\\$1

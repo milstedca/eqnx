@@ -4128,106 +4128,131 @@ see
 .
 .TP
 .B Cl
-Contents level (in the range 0 to 14).
+sets the threshold for inclusion of headings in a table of contents.
 .
-The contents is saved if a heading level is lower than or equal to the
-value of
-.BR Cl .
+Headings at levels above this value are excluded;
+see
+.B H
+and
+.B TC
+.RB ( 2 ).
 .
-Default is\~2.
 .
 .TP
 .B Cp
-Eject page between list of table, list of figure, etc., if the value of
-.B Cp
-is zero.
+suppresses page breaks before lists of captioned
+equations,
+exhibits,
+figures,
+and tables,
+and before an index;
+see
+.BR EC ,
+.BR EX ,
+.BR FG ,
+.BR TB ,
+and
+.B INDP
+(Boolean-valued;
+.BR 0 ).
 .
-Default is\~0.
 .
 .TP
 .B D
-Debug flag.
+produces debugging information for the
+.I mm
+package on the standard error stream.
 .
-Values greater than zero produce debug information of increasing
-verbosity.
+A value of\~0 outputs nothing;
+1\~reports formatting progress.
 .
-A value of\~1 gives information about the progress of formatting.
-.
-Default is\~0.
+Higher values communicate internal state information of increasing
+verbosity
+.RB ( 0 ).
 .
 .
 .TP
 .B De
-If\~1,
-eject page after a floating display is output.
-.
-The default is\~0.
+causes a page break after a floating display is output;
+see
+.B DF
+(Boolean-valued;
+.BR 0 ).
 .
 .
 .TP
 .B Df
-Configure the output of the floating keep macro
+configures the behavior of
 .BR DF .
 .
-The valid range is 0 to 5;
-the default is\~5.
+The following values are recognized;
+4 and 5 do not override the
+.B De
+register
+.RB ( 5 ).
 .
 .
 .IP
 .TS
 tab(@);
+Lb Lb
 L Lx.
+Value@Effect
 0@T{
-Output displays at the end of each section
+Flush pending displays
+at the end of each section
 when section-page numbering is active,
-or at the end of the document otherwise.
+otherwise at the end of the document.
 T}
 1@T{
-Output a display on the current page if there is enough space,
+Flush a pending display
+on the current page or column
+if there is enough space,
 otherwise at the end of the document.
 T}
 2@T{
-Output one display at the top of each page or column.
+Flush one pending display
+at the top of each page or column.
 T}
 3@T{
-Output a display on the current page if there is enough space,
-otherwise at the top of the next page or column.
+Flush a pending display
+on the current page or column
+if there is enough space,
+otherwise at the top of the next.
 T}
 4@T{
-Output as many displays as possible in a new page or column.
-.
-A page break occurs between each display if
-.B De
-is not zero.
+Flush as many pending displays
+as possible in a new page or column.
 T}
 5@T{
-Fill the current page with displays and the rest beginning at a new page
-or column.
-.
-A page break occurs between each display if
-.B De
-is not zero.
+Fill columns or pages with flushed displays
+until none remain.
 T}
 .TE
 .
 .
 .TP
 .B Ds
-If set to\~1, use the amount of space stored in register
+puts vertical space in the amount of register
+.B Dsp
+(if defined) or
 .B Lsp
-before and after display.
-.
-Default is\~1.
+before and after each static display;
+see
+.B DS
+(Boolean-valued;
+.BR 1 ).
 .
 .
 .TP
 .B Dsp
-If defined, it controls the space output before and after static
-displays.
-.
-Otherwise the value of
-.B Lsp
-is used.
+configures the amount of vertical space placed
+before and after static displays;
+see
+.B DS
+and register
+.B Ds
+.RI ( undefined ).
 .
 .
 .TP
@@ -4239,106 +4264,132 @@ see
 .
 .TP
 .B Ej
-is the heading level threshold below which pages will be broken before
-formatting a heading;
-see
-.BR H .
+sets the threshold for page breaks (ejection) prior to the format of
+headings.
 .
-The default
-.RB is\~ 0 .
+Headings at levels above this value are set on the same page and column
+if possible;
+see
+.B H
+.RB ( 0 ).
 .
 .
 .TP
 .B Eq
-aligns equation labels to the left of a display if 1,
-and to the right if 0 (default).
+aligns an equation label to the left of a display instead of the right
+(Boolean-valued;
+.BR 0 ).
 .
 .
 .TP
 .B Ex
-auto-incrementing exhibit counter;
+is an auto-incrementing exhibit counter;
 see
-.B EX
+.BR EX .
 .
 .
 .TP
 .B Fg
-auto-incrementing figure counter;
+is an auto-incrementing figure counter;
 see
-.B FG
+.BR FG .
 .
 .
 .TP
 .B Fs
-Footnote spacing.
-.
-Default is\~1.
+is multiplied by register
+.B Lsp
+to vertically separate footnotes;
+see
+.B FS
+.RB ( 1 ).
 .
 .
 .TP
 .BR H1 \|.\|.\|.\| H14
-auto-incrementing heading counters;
+are auto-incrementing counters corresponding to each heading level;
 see
 .B H
 .
 .
+.\" XXX: This should be generalized to "Hdot".  Unfortunately, mm is
+.\" already inconsistent; level 1 gets a dot, higher levels don't.
 .TP
 .B H1dot
-Append a dot after the level-one heading number if value is greater
-than zero.
+appends a period to the number of a level one heading;
+see
+.B H
+(Boolean-valued;
+.BR 1 ).
 .
-Default is\~1.
 .
+.\" XXX: This may be insufficiently general; see Savannah #62825.
 .TP
 .B H1h
+is a copy of
 A copy of register
-.BR H1 ,
-but it is incremented just before the page break.
+.RB register\~ H1 ,
+but it is incremented just before a page break.
 .
-Useful in user-defined header macros.
+This can be useful in user-defined macros;
+see
+.B H
+and
+.BR HX .
+.
 .
 .TP
 .B Hb
-Heading break level.
+sets the threshold for breaking the line after formatting a heading.
 .
-A number in the range 0 to 14, with a default value of\~2.
+Text after headings at levels above this value are set on the same
+output line if possible;
+see
+.B H
+.RB ( 2 ).
 .
-See\~\c
-.BR .H .
 .
 .TP
 .B Hc
-Heading centering level.
+sets the threshold for centering a heading.
 .
-A number in the range 0 to 14, with a default value of\~0.
+Headings at levels above this value use the prevailing alignment
+(that is,
+they are not centered);
+see
+.B H
+.RB ( 0 ).
 .
-See\~\c
-.BR .H .
 .
 .TP
 .B Hi
-Heading temporary indent.
+configures the indentation of text after headings.
 .
-A number in the range 0 to 2, with a default value of\~1.
+It does not affect \[lq]run-in\[rq] headings.
+.
+The following values are recognized;
+see
+.B H
+and
+.B P
+.RB ( 1 ).
+.
 .
 .IP
 .TS
 tab(@);
-l lx.
-0@no indentation, left margin
-1@T{
-indent to the right, similar to
-.RB \[lq] ".P 1" \[rq]
-T}
-2@T{
-indent to line up with text part of preceding heading
-T}
+Lb Lb
+L Lx.
+Value@Effect
+0@no indentation
+1@indent per the paragraph type
+2@indent to align with heading title
 .TE
 .
 .
 .TP
 .B Hps
-sets the heading level threshold for application of distinct vertical
+sets the heading level threshold for application of preceding vertical
 space;
 see
 .BR H .
@@ -4351,119 +4402,106 @@ amount is used;
 otherwise that of
 .BR Hps2 .
 .
-The default
-.RB is\~ 1 .
-.
 The value of
 .B Hps
 should be strictly greater than that of
-.BR Ej .
+.B Ej
+.RB ( 1 ).
 .
 .
 .TP
 .B Hps1
 configures the amount of vertical space preceding a heading above the
 .B Hps
-threshold.
-.
-The default
-.RB is\~ 0.5v
-on
-.I troff
-devices
-.RB and\~ 1v
-on
+threshold;
+see
+.B H
+.RI ( troff
+devices:
+.BR 0.5v ;
 .I nroff
-devices.
+devices:
+.BR 1v ).
 .
 .
 .TP
 .B Hps2
-configures the amount of vertical space preceding a heading below or at
+configures the amount of vertical space preceding a heading at or below
 the
 .B Hps
-threshold.
-.
-The default
-.RB is\~ 1v
-on
-.I troff
-devices
-.RB and\~ 2v
-on
+threshold;
+see
+.B H
+.RI ( troff
+devices:
+.BR 1v ;
 .I nroff
-devices.
+devices:
+.BR 2v ).
 .
 .
 .TP
 .B Hs
-Heading space level.
+sets the heading level threshold for application of succeeding vertical
+space.
 .
-A number in the range 0 to 14, with a default value of\~2.
+If the heading level is greater than the value in
+.BR Hs ,
+the heading is followed by vertical space in the amount of
+.RB register\~ Hss ;
+see
+.B H
+.RB ( 2 ).
 .
-See\~\c
-.BR .H .
 .
 .TP
 .B Hss
-Number of lines following
-.B .H
-if the heading level is less than or equal to
-.BR Hs .
+is multiplied by register
+.B Lsp
+to produce vertical space after headings above the
+threshold in
+.RB register\~ Hs ;
+see
+.B H
+.RB ( 1 ).
 .
-Value is in units, default is\~1.
 .
 .TP
 .B Ht
-Heading numbering type.
+suppresses output of heading level counters above the lowest when the
+heading is formatted;
+see
+.B H
+(Boolean-valued;
+.BR 0 ).
 .
-.RS
-.IP
-.TS
-tab(@);
-l l.
-0@multiple levels (1.1.1, 1.1.2, etc.)
-1@single level
-.TE
-.RE
-.IP
-Default is\~0.
+.
 .
 .TP
 .B Hu
-Unnumbered heading level.
+sets the heading level used by unnumbered headings;
+see
+.B HU
+.RB ( 2 ).
 .
-Default is\~2.
 .
 .TP
 .B Hy
-Hyphenation status of text body.
-.
-.RS
-.IP
-.TS
-7tab(@);
-l l.
-0@no hyphenation
-1@hyphenation on, set to value\~6
-.TE
-.RE
-.
-.IP
-Default is\~0.
+enables automatic hyphenation of words
+(Boolean-valued;
+.BR 0 ).
 .
 .
 .TP
 .B Iso
-Define this register
-(to any value)
-on the command line to use ISO\~8601 date format
-(e.g.,
-.RB \[lq] \-rIso=1 \[rq]).
+configures the use of ISO\~8601 date format
+if specified
+(with any value)
+on the command line;
+see
+.BR ISODATE .
 .
-See macro
-.B ISODATE
-above.
+The default is determined by localization files.
 .
 .
 .TP
@@ -4486,117 +4524,160 @@ output device.
 .B Lt
 .TQ
 .B Lx
-enable (1) or disable (0) the inclusion of lists of equations.
-figures,
-tables,
-and exhibits,
-respectively.
+configures the report of lists of equation,
+figure,
+table,
+and exhibit captions,
+respectively,
+after a table of contents;
+see
+.B TC
+(Boolean-valued;
+.BR Le :\~ 0 ;
+.BR Lf ,
+.BR Lt ,
+.BR Lx :\~ 1 ).
 .
-All default
-.RB to\~ 1
-except
-.BR Le ,
-which defaults
-.RB to\~ 0 .
 .
-.
+.\" XXX: What is the rationale for this feature?
 .TP
 .B Letwam
-Maximum lines in return-address, used in
-.BR .WA / .WE .
-.
-Default is\~14.
+sets the maximum number of input lines permitted in a writer's address;
+see
+.B WA
+and
+.B WE
+.RB ( 14 ).
 .
 .
 .TP
 .B Li
-is the list item indentation amount used by lists
-.RB ( LB
-and the macros that call it).
-.
-The default
-.BR is\~ 6 .
+configures the amount of indentation in ens applied to list items;
+see
+.B LI
+.RB ( 6 ).
 .
 .
 .TP
 .B Limsp
-A flag controlling the insertion of space between prefix and mark in
-automatic lists
-.RB ( .AL ).
+inserts a space between the prefix and the mark
+in automatically numbered lists;
+see
+.B AL
+(Boolean-valued;
+.BR 1 ).
 .
-.RS
-.IP
-.TS
-tab(@);
-l l.
-0@no space
-1@emit space
-.TE
-.RE
 .
 .TP
 .B Ls
-List space threshold.
+sets a threshold for placement of vertical space before list items.
 .
-If current list level is greater than
-.B Ls
-no spacing occurs around lists.
+If the list nesting level is greater than the value in
+.BR Ls ,
+no such spacing occurs;
+see
+.B LI
+.RB ( 99 ).
 .
-Default is\~99.
 .
 .TP
 .B Lsp
-The vertical space used by an empty line.
+configures the base amount of vertical space used for separation
+in the document.
 .
-The default is 0.5v in troff mode and 1v in nroff mode.
+.I mm
+applies this spacing to many contexts,
+sometimes with multipliers;
+see
+.BR DS ,
+.BR FS ,
+.BR H ,
+.BR LI ,
+and
+.B P
+.RI ( troff
+devices:
+.BR 0.5v ;
+.I nroff
+devices:
+.BR 1v ).
+.
 .
 .TP
 .B N
-Page numbering style.
+configures the header and footer placements used by
+.BR PH .
 .
-.RS
-.IP
-.TS
-tab(@);
-l lx.
-0@normal header for all pages.
-1@T{
-header replaces footer on first page, header is empty.
-T}
-2@page header is removed on the first page.
-3@\[lq]section-page\[rq] numbering style enabled.
-4@page header is removed on the first page.
-5@T{
-\[lq]section-page\[rq] and \[lq]section-figure\[rq] numbering style
-enabled.
-T}
-.TE
-.RE
+The default footer is empty.
 .
-.IP
-Default is\~0.
+If \[lq]section-page\[rq] numbering is selected,
+the default header becomes empty
+and the default footer becomes
+.RI \[lq] x - y \[rq],
+where
+.IR x \~is
+is the section number
+(the number of the current first-level heading)
+.RI and\~ y
+the page number within the section.
+.\" XXX: section-figure numbering needs more documentation.
 .
-See also the registers
+The following values are recognized;
+for finer control,
+see
+.BR PH ,
+.BR PF ,
+.BR EH ,
+.BR EF ,
+.BR OH ,
+and
+.BR OF ,
+and registers
 .B Sectf
 and
 .BR Sectp .
 .
-.TP
-.B Np
-A flag to control whether paragraphs are numbered.
+Value 5 is a GNU extension
+.RB ( 0 ).
 .
-.RS
+.
 .IP
 .TS
 tab(@);
-l l.
-0@not numbered
-1@numbered in first-level headings.
+Lb Lb
+L Lx.
+Value@Effect
+0@Set header on all pages.
+1@Move header to footer on page 1.
+2@Omit header on page 1.
+3@Use \[lq]section-page\[rq] numbering style on all pages.
+4@Omit header on all pages.
+5@T{
+Use \[lq]section-page\[rq] and \[lq]section-figure\[rq] \
+numbering style on all pages.
+T}
 .TE
-.RE
 .
-.IP
-Default is\~0.
+.
+.TP
+.B Np
+causes paragraphs after first-level headings (only) to be numbered
+in the format
+.IR s . p ,
+where
+.IR s \~is
+is the section number
+(the number of the current first-level heading)
+and
+.IR p \~is
+the paragraph number,
+starting at 1;
+see
+.B H
+and
+.B P
+(Boolean-valued;
+.BR 0 ).
 .
 .
 .TP
@@ -4624,101 +4705,121 @@ see
 .
 .TP
 .B Oc
-controls the presence of page numbers in the table of contents.
+suppresses the appearance of page numbers in the table of contents;
+see
+.B TC
+(Boolean-valued;
+.BR 0 ).
 .
-The default
-.RB is\~ 0 ,
-which numbers the pages with Arabic numerals;
-any positive value suppresses them.
 .
-.
+.\" XXX: This really should just be a string, shouldn't it?
 .TP
 .B Of
-Format of figure, table, exhibit, and equation titles.
+selects a separator format within equation,
+exhibit,
+figure,
+and table captions;
+see
+.BR EC ,
+.BR EX ,
+.BR FG ,
+and
+.BR TB .
 .
-.RS
+The following values are recognized;
+the spaces shown are unpaddable
+.RB ( 0 ).
+.
+.
 .IP
 .TS
 tab(@);
-l l.
-0@\[dq]. \[dq]
-1@\[dq] - \[dq]
+Lb Lb
+L Lx.
+Value@Effect
+0@\[dq].  \[dq]
+1@\[dq] \[em] \[dq]
 .TE
-.RE
 .
-.IP
-Default is\~0.
 .
 .TP
 .B P
-Current page number,
-normally the same as \[lq]%\[rq] unless
-\[lq]section-page\[rq] numbering style is enabled.
+interpolates the current page number;
+it is the same as
+.RB register\~ %
+except when
+\[lq]section-page\[rq] numbering is enabled.
+.
 .
 .TP
 .B Pi
-Paragraph indentation.
+configures the amount of indentation in ens applied to the first line of
+a paragraph;
+see
+.B P
+.RB ( 5 ).
 .
-Default is\~5.
 .
 .TP
 .B Pgps
-A flag to control whether header and footer point size should follow
-the current settings or just change when the header and footer are
-defined.
+causes the type size and vertical spacing set by
+.B S
+to apply to headers and footers,
+overriding the
+.B HP
+string.
 .
-.RS
-.IP
-.TS
-tab(@);
-l lx.
-0@T{
-Point size only changes to the current setting when
-.BR .PH ,
-.BR .PF ,
-.BR .OH ,
-.BR .EH ,
-.BR .OF ,
+If not set,
+.B S
+calls affect headers and footers only when followed by
+.BR PH ,
+.BR PF ,
+.BR OH ,
+.BR EH ,
+.BR OF ,
 or
-.B .OE
-is executed.
-T}
-1@T{
-Point size changes after every
-.BR .S .
-This is the default.
-T}
-.TE
-.RE
+.B OE
+calls
+(Boolean-valued;
+.BR 1 ).
+.
 .
 .TP
 .B Ps
-Paragraph spacing.
-Default is\~1.
+is multiplied by register
+.B Lsp
+to vertically separate paragraphs;
+see
+.B P
+.RB ( 1 ).
+.
 .
 .TP
 .B Pt
-Paragraph type.
+determines when a first-line indentation is applied to a paragraph;
+see
+.B P
+.RB ( 0 ).
 .
-.RS
+.
 .IP
 .TS
 tab(@);
-l lx.
-0@left-justified
-1@indented paragraphs
+Lb Lb
+L Lx.
+Value@Effect
+0@never
+1@always
 2@T{
-indented paragraphs except after
-.BR .H ,
-.BR .DE ,
+always,
+except immediately after
+.BR H ,
+.BR DE ,
 or
-.BR .LE .
+.B LE
 T}
 .TE
-.RE
 .
-.IP
-Default is\~0.
 .
 .\" XXX: Why is this not named `Rpej`?
 .TP
@@ -4749,32 +4850,45 @@ and must be set from the command line.
 .
 A scaling unit should be appended;
 .B p
-is typical.
+is typical
+.RB ( 10p ).
 .
 .
 .TP
 .B Sectf
-A flag controlling \[lq]section-figures\[rq] numbering style.
+selects the \[lq]section-figure\[rq] numbering style.
 .
-A non-zero value enables this.
+Its default
+.RB is\~ 0
+unless
+.RB register\~ N
+is set
+.RB to\~ 5
+at the command line
+(Boolean-valued).
 .
-See also register\~\c
-.BR N .
 .
 .TP
 .B Sectp
-A flag controlling \[lq]section-page\[rq] numbering style.
+selects the \[lq]section-page\[rq] numbering style.
 .
-A non-zero value enables this.
+Its default
+.RB is\~ 0
+unless
+.RB register\~ N
+is set
+.RB to\~ 3
+.RB or\~ 5
+at the command line
+(Boolean-valued).
 .
-See also register\~\c
-.BR N .
 .
 .TP
 .B Si
-Display indentation.
-.
-Default is\~5.
+configures the amount of display indentation in ens;
+see
+.B DS
+.RB ( 5 ).
 .
 .
 .TP
@@ -4798,10 +4912,11 @@ The default vertical spacing is 120% of the type size.
 .
 .TP
 .B Verbin
-Indentation for
-.BR .VERBON .
-.
-Default is 5n.
+configures the amount of indentation for verbatim displays
+when indentation is selected;
+see
+.B \%VERBON
+.RB ( 5n ).
 .
 .
 .TP
@@ -4842,7 +4957,8 @@ sets the registers
 .B Pt
 and
 .B Pi
-to 0 and\~5, respectively.
+to 0 and\~5,
+respectively.
 .
 The following strings and macros must be defined for a new letter type.
 .

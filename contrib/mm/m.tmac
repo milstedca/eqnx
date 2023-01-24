@@ -454,7 +454,7 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .\"------------
 .\" paragraph
 .de P
-.if \\n[.$] \{
+.if \\n[.$] \{\
 .	ie !\B'\\$1' \{\
 .		@warning \\$0: expected numeric argument, got '\\$1'
 .		shift

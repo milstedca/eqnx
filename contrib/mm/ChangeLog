@@ -1,5 +1,12 @@
 2023-01-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (df@print-float): Eliminate spew at high debug levels.
+	This macro gets called even when there aren't any floating
+	displays pending, so we cannot assume that related registers are
+	defined.
+
+2023-01-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (P): Fix missing backslash after brace escape sequence.
 	Problem introduced by me in 3b1afbdb8e, 6 January.
 

@@ -2012,7 +2012,12 @@ within DF/DE
 .if !\\n[ds*float-busy] \{\
 .	nr ds*float-busy 1
 .\" at .DE
-.	if \\n[D]>3 .tm print-float: .t=\\n[.t], h=\\n[df*height!\\n[df*o-fnr]]
+.	if \\n[D]>3 \{\
+.		tmc print-float: .t=\\n[.t]
+.		if r df*height!\\n[df*o-fnr] \
+.			tmc , h=\\n[df*height!\\n[df*o-fnr]]
+.		tm
+.	\}
 .	\" Df = 1 or 5
 .	if (\\$1=1)&((\\n[Df]=1):(\\n[Df]=5)) \{\
 .		if \\n[.t]>\\n[df*height!\\n[df*o-fnr]] \{\

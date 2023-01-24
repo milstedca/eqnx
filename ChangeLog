@@ -1,3 +1,11 @@
+2023-01-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[grohtml]: Fix misleading diagnostic message.
+
+	* src/preproc/html/pre-html.cpp (main): The suggestion should be
+	to re-run the formatter (groff, troff), not "pre-grohtml", with
+	a different output driver since the document may be malformed.
+
 2023-01-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/tbl/main.cpp (process_format): Fix code hygiene

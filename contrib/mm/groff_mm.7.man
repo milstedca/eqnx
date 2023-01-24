@@ -144,6 +144,17 @@ use an explicit scaling unit to avoid surprises.
 .
 .
 .IP \[bu]
+DWB
+.IR mm 's
+.B nP
+macro indented the second line of a paragraph to align it with the start
+of the text of the first
+(after the paragraph number);
+.IR "groff mm" 's
+does not.
+.
+.
+.IP \[bu]
 Cut marks are not supported.
 .
 .

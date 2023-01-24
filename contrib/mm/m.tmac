@@ -437,7 +437,8 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
  .p=\\n[.p] .t=\\n[.t] .z=\\n[.z] nl=\\n[nl] dn=\\n[dn] n=\\n[debug*n]
 ..
 .\" ####### module par #################################
-.nr par@ind-flag 1	\" indent on following P if Pt=2
+.nr par*indentation-eligible 1		\" indent following P if Pt=2
+.nr par@suppress-indentation 0
 .nr hd*last-pos -1
 .nr hd*last-hsize -1
 .nr par*number 0 1
@@ -468,39 +469,36 @@ in=\\n[.i] fi=\\n[.u] .d=\\n[.d] nl=\\n[nl] pg=\\n[%]
 .	tm Paragraph nl=\\n[nl], last=\\n[hd*last-pos]
 .	tm Paragraph .k=\\n[.k], hsize=\\n[hd*last-hsize]
 .\}
-.if !((\\n[nl]=\\n[hd*last-pos])&(\\n[hd*last-hsize]=\\n[.k])) \{\
-.	if \\n[D]>2 .tm Paragraph set ind-flag=1
-.	nr par@ind-flag 1
-.	\" any collected unprinted text?
-.	par@doit \\$*
-.\}
+.nr par*indentation-eligible 1-\\n[par@suppress-indentation]
+.par@doit \\$*
 .if \\n[Np] \\n[H1].\\n+[par*number]\ \ \c
 ..
 .\"------------
 .de nP
-.\"	skip P if previous heading
 .if \\n[D]>2 \{\
 .	tm Paragraph nl=\\n[nl], last=\\n[hd*last-pos]
 .	tm Paragraph .k=\\n[.k], hsize=\\n[hd*last-hsize]
 .\}
-.if !((\\n[nl]=\\n[hd*last-pos])&(\\n[hd*last-hsize]=\\n[.k])) \{\
-.	if \\n[D]>2 .tm Paragraph set ind-flag=1
-.	nr par@ind-flag 1
-.\}
-.par@doit \\$*
+.\" A first-line indentation is meaningless for a numbered paragraph.
+.nr par*indentation-eligible 0
+.par@doit
 \\n[H2].\\n+[par*number2]\ \ \c
-.nr par@ind-flag 1
 ..
 .\"------------
 .de par@doit
 .SP (u;\\n[Ps]*\\n[Lsp])
-.ie  \\n[.$] \{\
-.	if \\$1=1 .ti +\\n[Pi]n
+.nr par*do-indent 0
+.ie \\n[.$] \{\
+.	if \\$1=1 .nr par*do-indent 1
 .\}
 .el \{\
-.	if \\n[Pt]=1 .ti +\\n[Pi]n
-.	if (\\n[Pt]=2)&\\n[par@ind-flag] .ti +\\n[Pi]n
+.	if \\n[Pt]=1 .nr par*do-indent 1
+.	if (\\n[Pt]=2)&\\n[par*indentation-eligible] \
+.		nr par*do-indent 1
 .\}
+.if \\n[par*do-indent] .ti +\\n[Pi]n
+.rr par*do-indent
+.nr par@suppress-indentation 0
 ..
 .\" ####### module line #######################################
 .de SP
@@ -1177,13 +1175,15 @@ numeric; got '\\$1'
 .\"	do break or space
 .if \\n[hd*htype] .br
 .if \\n[hd*htype]>1 .SP (u;\\n[Lsp]*\\n[Hss])
-.if \\n[hd*htype] \{\
+.ie \\n[hd*htype] \{\
 .	\"	indent if Hi=1 and Pt=1
 .	if (\\n[Hi]=1)&(\\n[Pt]=1) .ti +\\n[Pi]n
 .	\"	indent size of mark if Hi=2
 .	if \\n[hd*htype]&(\\n[Hi]>1) .ti +\\n[hd*mark-size]u
+.	nr par@suppress-indentation 1
 .\}
-.nr par@ind-flag 0			\" no indent on .P if Pt=2
+.\" We're setting a run-in heading; the next paragraph is normal.
+.el .nr par@suppress-indentation 0
 .\"
 .\"	check if it is time to reset footnotes
 .if (\\n[hd*level]=1)&\\n[ft*clear-at-header] .nr ft*nr 0 1
@@ -1199,7 +1199,6 @@ numeric; got '\\$1'
 .if d HZ .HZ \\n[hd*level] \\n[hd*arg1] "\\$2\\$3"
 .nr hd*last-pos \\n[nl]
 .nr hd*last-hsize \\n[.k]
-.nr par@ind-flag 0
 .\" HTML: end of heading
 .misc@tag EO-H
 ..
@@ -1978,7 +1977,7 @@ within DF/DE
 .\"	move div to the floating display list
 .rn df*div df*fdiv!\\n[df*fnr]
 .\"
-.nr par@ind-flag 0
+.nr par@suppress-indentation 1	\" no indentation after displays
 .\" print float if queue is empty and the display fits into
 .\" the current page
 .if ((\\n[df*fnr]>=\\n[df*o-fnr])&(\\n[dn]<\\n[.t])) .df@print-float 1
@@ -2256,7 +2255,7 @@ within DF/DE
 .if \\n[ds*format]=4 'rj 0
 .rm ds*div!\\n[ds*snr]
 .nr ds*snr -1
-.nr par@ind-flag 0
+.nr par@suppress-indentation 1	\" no indentation after displays
 .ev
 ..
 .\"########### module list ###################
@@ -2356,6 +2355,7 @@ first
 and LI first
 .li@pop
 .if '\\$1'1' .SP \\n[Lsp]u
+.nr par@suppress-indentation 1	\" no indentation after lists
 ..
 .\"-------------
 .\"	list status clear.
@@ -2369,7 +2369,7 @@ and LI first
 .if \\n[li*i]>\\n[li*lvl] .@error \\$0 invalid argument: \\n[li*i] \
 exceeds depth of nested lists (\\n[li*lvl])
 .while \\n[li*lvl]>\\n[li*i] .li@pop
-.nr par@ind-flag 0
+.nr par@suppress-indentation 1	\" no indentation after lists
 ..
 .\"-------------
 .de AL

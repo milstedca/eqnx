@@ -1,5 +1,44 @@
 2023-01-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	When register `Pt` was 2, paragraphs immediately following
+	displays and lists were being indented, contrary to DWB mm
+	behavior.
+
+	* m.tmac: Replace `par@ind-flag` register with two separate
+	state bits, `par*indentation-eligible` and
+	`par@suppress-indentation`.
+	(P, nP): Remove complex test for deciding whether the current
+	paragraph is being set immediately after a heading.
+	(P): Set `par*indentation-eligible` to the logical complement of
+	`par@suppress-indentation`.  Call `par@doit` (which underlies
+	both `P` and `nP`) unconditionally.
+	(nP): Force `par*indentation-eligible` off, since numbered
+	paragraphs are not influenced by a `Pt` value of "2" in DWB mm.
+	{The paragraph number occupies the indentation space.}
+	(par@doit): Introduce local register `par*do-indent`,
+	manipulate it, and use it to control `ti` request instead of
+	scattering the request across multiple locations.  Remove this
+	register when done.  Clear `par@suppress-indentation` at end,
+	since after indentation is suppressed once, it should not happen
+	again until a special circumstance (the setting of a heading,
+	display, or list) arises.
+	(H): Convert test of `hd*htype` register, which tells us if
+	we're setting a run-in heading or not, from `if` to `ie`.  (The
+	first paragraphing macro call after a run-in heading should
+	_not_ have its indentation suppressed, because the material
+	after the heading title constitutes a first pagraph.)  In the
+	true arm, set `par@suppress-indentation`; in the new else arm,
+	clear it.  This replaces the "complex test" above, and seems
+	much more straightforward and reliable.  Stop manipulating
+	`par@ind-flag`.
+	(df@end, ds@end, LC): Set `par@suppress-indentation` instead of
+	clearing `par@ind-flag`.
+	(LE): Set `par@suppress-indentation`.
+
+	Fixes #54909.  Thanks to Jeff Conrad for the report.
+
+2023-01-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Regression-test Savannah #54909.
 
 	* tests/P-indentation-works.sh: Do it.

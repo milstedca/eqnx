@@ -183,7 +183,7 @@ and string descriptions in this page frequently mention each other;
 most cross references are to macros.
 .
 Where a register or string is referenced,
-its type is explicitly identified;
+its type is explicitly identified.
 .
 .IR mm 's
 macro names are usually in full capitals;
@@ -506,6 +506,8 @@ to call a macro
 with an empty second argument but non-empty first and third ones,
 you could input the following.
 .
+.
+.P
 .RS
 .EX
 \&.XX foo \[dq]\[dq] baz
@@ -4073,6 +4075,8 @@ macro.
 Default is\~1.
 .
 .
+.br
+.ne 4v
 .\" ====================================================================
 .SH Registers
 .\" ====================================================================
@@ -4133,6 +4137,8 @@ includes supplemental author information
 .BR AU )
 in memorandum \[lq]from\[rq] information;
 see
+.B COVER
+and
 .B MT
 (Boolean-valued;
 .BR 1 ).
@@ -4166,6 +4172,7 @@ see
 and
 .B INDP
 (Boolean-valued;
+.\" DWB 3.3's manual said this was 1, but the code said 0.
 .BR 0 ).
 .
 .
@@ -4321,7 +4328,7 @@ see
 .BR H1 \|.\|.\|.\| H14
 are auto-incrementing counters corresponding to each heading level;
 see
-.B H
+.BR H .
 .
 .
 .\" XXX: This should be generalized to "Hdot".  Unfortunately, mm is

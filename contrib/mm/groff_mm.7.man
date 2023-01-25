@@ -74,9 +74,8 @@ with the following limitations.
 .
 .
 .IP \[bu] 2n
-No Bell Labs localisms are implemented.
-.
-This includes the logo and company name strings,
+Omitted features include
+the logo and company name strings,
 .B }Z
 and
 .BR ]S ,
@@ -271,7 +270,9 @@ No diagnostic is produced if these files do not exist.
 .SS "Registers and strings"
 .\" ====================================================================
 .
-The behavior of many macros can be configured by registers and strings.
+Much
+.I mm
+behavior can be configured by registers and strings.
 .
 A register is assigned with the
 .B nr

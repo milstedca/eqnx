@@ -1983,44 +1983,26 @@ An explicitly empty argument also indicates the default.
 .
 .
 .TP
-.BI HU\  heading-text
-Unnumbered section header.
+.BI HU\~ heading-text
+Set an unnumbered section heading.
 .
-.B HU
-behaves like
+Except for a heading number,
+it is treated as a numbered heading of the level stored in
+.RB register\~ Hu ;
+.RB see\~ H .
+see\~\c
+.BR H .
+.
+.
+.TP
+.B HX
+.TQ
+.B HY
+.TQ
+.B HZ
+See
 .B H
-at the level in register
-.BR Hu .
-.
-See\~\c
-.BR H .
-.
-.TP
-.BI HX\  "dlevel rlevel heading-text"
-User-defined heading exit.
-.
-Called just before printing the header.
-.
-See\~\c
-.BR H .
-.
-.TP
-.BI HY\  "dlevel rlevel heading-text"
-User-defined heading exit.
-.
-Called just before printing the header.
-.
-See\~\c
-.BR H .
-.
-.TP
-.BI HZ\  "dlevel rlevel heading-text"
-User-defined heading exit.
-.
-Called just after printing the header.
-.
-See\~\c
-.BR H .
+for descriptions of these user-definable hooks.
 .
 .
 .TP
@@ -2992,7 +2974,7 @@ Picture start; see
 .
 .TP
 .B PX
-Page header user-defined exit.
+Page header hook.
 .
 This macro is called just after the printing of the page header in
 no-space mode.
@@ -3549,23 +3531,12 @@ See
 .
 .TP
 .B TX
-User-defined table of contents exit.
-.
-This macro is called just before
-.B TC
-prints the word \[lq]CONTENTS\[rq].
-.
-See
-.BR TC .
-.
-.TP
+.TQ
 .B TY
-User-defined table of contents exit.
-.
-This macro is called instead of printing \[lq]CONTENTS\[rq].
-.
 See
-.BR TC .
+.B TC
+for descriptions of these user-definable hooks.
+.
 .
 .TP
 .BR VERBON \~\c \" space in roman; we must use 2-font macro with \c

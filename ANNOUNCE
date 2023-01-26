@@ -29,7 +29,7 @@ Changes
 =======
 
 groff 1.23.0.rc2 represents two years of development since the previous
-release candidate, and nearly four since the last release.
+release candidate, and four since the last release.
 
 Headline features nominated by our development community include:
   * a new 'man' macro, "MR", for formatting man page cross references;

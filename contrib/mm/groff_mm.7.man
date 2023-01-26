@@ -1597,215 +1597,136 @@ sets it to the saved string.
 See
 .BR INITR .
 .
-.\" XXX: discuss dot handling after section number
+.
 .TP
-.BI H\  "level \fR[\fPheading-text \fR[\fPheading-suffix\fR]]\fP"
-Numbered section heading.
+.BI H\~ level\~\c
+.RI [ title \~[ suffix ]]
+Set an automatically numbered section heading at
+.IR level .
 .
-Section headers can have a level between 1 and 14;
-level\~1 is the top level.
+.I mm
+produces numbered headings in the form
+.IR a . b . c .\|.\|.,
+with up to fourteen levels of nesting.
 .
-The text is given in
-.IR heading-text ,
-and must be surrounded by double quotes if it contains spaces.
+The numbering of each level increases automatically and is
+reset to zero when a more significant level is specified.
 .
-.I heading-suffix
-is added to the header in the text but not in the table of contents.
+.RB \[lq] 1 \[rq]\~is
+the most significant or coarsest division of the document.
 .
-This is normally used for footnote marks and similar things.
-.
-Don't use
-.B \[rs]*F
-in
-.IR heading-suffix ,
-it doesn't work.
-.
-A manual label must be used, see
-.BR FS .
-.sp
-A call to the paragraph macro\~\c
-.B P
-directly after\~\c
+Text after an
 .B H
-is ignored.
+call is formatted as a paragraph;
+calling
+.B P
+is unnecessary.
 .
-.BR H \~takes
-care of spacing and indentation.
 .
 .IP
-.B Page ejection before heading
+.I title
+specifies an optional title;
+it must be double-quoted if it contains spaces.
 .
+.I suffix
+is appended to the heading title in the body of the document,
+but omitted from any table of contents
+(see
+.BR TC ).
+.
+This facility can be used to annotate the heading title with a footnote.
+.
+.I suffix
+should not include
+.BR \[rs]*F ;
+specify a footnote mark explicitly.
+.
+See
+.BR FS .
+.
+.
+.IP
+Heading behavior is highly configurable.
+.
+Several registers set a
+.I threshold,
+where heading levels below the threshold value are handled in one way,
+and those at or above it another.
+.
+.
+.\" TODO: Get rid of these pseudo-headings once they are all recast.
+.IP
+.B Heading layout
+.
+.
+.br
+.ne 3v
 .RS
 .IP
 Register
 .B Ej
-controls page ejection before the heading.
+sets a threshold for page breaking (ejection) prior to a heading.
 .
-If
-.I level
-is less than
-.BR Ej 's
-value,
-the page is broken prior to formatting the heading.
-.
-.
-.IP
 If not preceded by a page break,
-a heading of
-.I level
-greater than the value of register
+a heading level below the threshold in register
 .B Hps
 is preceded by the amount of vertical space in register
 .BR Hps1 ,
 and by the amount in
 .B Hps2
 otherwise.
-.RE
 .
 .
+.br
+.ne 2v
 .IP
-.B Heading break level
+The
+.B Hb
+register sets a threshold below which a break occurs after the heading,
+and register
+.B Hs
+sets a threshold below which vertical space follows it.
 .
-.RS
-.IP
-A line break occurs after the heading if the heading level is less
-or equal to register
-.BR Hb .
+If the heading level is not less than both of these,
+a
+.I run-in heading
+is produced;
+paragraph text follows on the same output line.
 .
-Default value is\~2.
-.RE
+Otherwise,
+register
+.B Hi
+configures the indentation of text after headings.
 .
-.IP
-.B Heading space level
-.
-.RS
-.IP
-A blank line is inserted after the heading if the heading level is
-less or equal to register
-.BR Hs .
-.
-Default value is\~2.
-.
-.IP
-Text follows the heading on the same line if the level is greater than
-both
+Threshold register
+.B Hc
+enables the centering of headers;
+a heading level below both of the
 .B Hb
 and
-.BR Hs .
-.RE
-.
-.IP
-.B Post-heading indent
-.
-.RS
-.IP
-Indentation of the text after the heading is controlled by register
-.BR Hi .
-.
-Default value is\~0.
-.
-.
-.IP
-.TS
-tab(@);
-Lb Lb
-L Lx.
-Hi value@Effect
-0@The text is left-justified.
-1@T{
-The text is indented by the value of register
-.BR Pt ;
-see
-.BR P .
-T}
-2@T{
-The text is lined up with the first word of the heading.
-T}
-.TE
-.RE
-.
-.
-.IP
-.B Centered section headings
-.
-.RS
-.IP
-All headings whose level is equal or below register
 .B Hc
-and also less than or equal to
-.B Hb
-or
-.B Hs
-are centered.
-.RE
-.
-.IP
-.B Font control of the heading
-.
-.RS
-.IP
-The font of each heading level is controlled by string
-.BR HF .
-.
-It contains a font number or font name for each level.
-.
-Default value is
-.
-.RS
-.IP
-.B 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-.RE
-.
-.IP
-(all headings in italic).
-.
-This could also be written as
-.
-.
-.RS
-.IP
-.B I I I I I I I I I I I I I I
+thresholds is centered.
 .RE
 .
 .
 .IP
-DWB
-.I mm
-used
-.B 3\~3\~2\~2\~2\~2\~2
-as the default.
+.B Heading typeface and size
 .
-All omitted values are presumed to have value\~1.
-.RE
-.
-.
-.IP
-.B Heading type size
 .
 .RS
+.IP
+The fonts used for heading numbers and titles at each level are
+configured by the
+.B HF
+string.
+.
 The string
 .B HP
-controls assigns a type size to each heading level,
-analogously to the way
-.B HF
-selects a font.
+likewise assigns a type size to each heading level.
 .
-A value of\~0 uses the default type size.
-.
-The default value is
-.
-.
-.RS
-.IP
-.B 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-.RE
-.
-.
-.IP
-Only the type size is changed,
-not the vertical spacing.
-.
-Control the latter with the user-definable macros
+.\" XXX: Why not an "Hvs" string?
+The vertical spacing used by headings may be controlled by
+the user-definable macros
 .B HX
 and/or
 .BR HZ .
@@ -1813,76 +1734,99 @@ and/or
 .
 .
 .IP
-.B Heading counters
+.B Heading number format
+.
 .
 .RS
 .IP
-Fourteen registers named
+Registers named
 .B H1
-up to
+through
 .B H14
-contain the counter for each heading level.
+store counters for each heading level.
 .
-The values are printed using Arabic numerals;
-this can be changed with the macro
-.B HM
-(see below).
+Their values are printed using Arabic numerals by default;
+see
+.BR HM .
 .
-All marks are concatenated before printing.
-.
-To avoid this,
-set register
+The heading levels are catenated with dots for formatting;
+to typeset only the deepest,
+set the
 .B Ht
-to\~1.
+register.
 .
-This only prints the current heading counter at each heading.
+Heading numbers are not suffixed with a trailing dot except when only
+the first level is output;
+to omit a dot in this case as well,
+clear the
+.B H1dot
+register.
 .RE
 .
+.
 .IP
-.B Automatic table of contents
+.B Table of contents population
+.
 .
 .RS
 .IP
-All headings whose level is equal or below register
+.
+A heading level below the threshold in
 .B Cl
-are saved to be printed in the table of contents.
-.
-Default value is\~2.
+is included in the table of contents
+(see
+.BR TC ).
 .RE
 .
+.
 .IP
-.B Special control of the heading, user-defined macros
+.B Customizing heading behavior
+.
 .
 .RS
 .IP
-The following macros can be defined by the user to get a finer control
-of vertical spacing, fonts, or other features.
+.I mm
+calls
+.I hook
+macros to enable further customization of headings.
 .
-Argument
+(DWB
+.I mm
+called these \[lq]exits\[rq].)
+.
+Define them in expectation of the following parameters.
+.
+The argument
+.I declared-level
+is the
 .I level
-is the level-argument to\~\c
+argument to
 .BR H ,
-but\~0 for unnumbered headings (see
+.RB or\~ 0
+for unnumbered headings (see
 .BR HU ).
 .
-Argument
-.I rlevel
-is the real level;
-it is set to register
-.B Hu
+.I actual-level
+is the same as
+.I declared-level
+for numbered headings,
+and the value of
+.RB register\~ Hu
 for unnumbered headings.
 .
-Argument
-.I heading-text
-is the text argument to
+.I title
+is the corresponding argument to
 .B H
-and
+or
 .BR HU .
+.
 .
 .RS
 .TP
-.BI HX\  "level rlevel heading-text"
-This macro is called just before the printing of the heading.
+.BI HX\~ "declared-level actual-level title"
+.I mm
+calls HX
+just before setting the heading.
 .
 The following registers are available for
 .BR HX .
@@ -1895,6 +1839,8 @@ may alter
 and
 .BR ;3 .
 .
+.
+.\" XXX: These names are ugly and of no obvious meaning.  Alias them.
 .RS
 .TP
 .BR }0\  (string)
@@ -1923,6 +1869,7 @@ The string is empty if
 .B ;0
 is non-zero.
 .
+.
 .TP
 .BR ;3\  (register)
 Contains the needed space in units after the heading.
@@ -1936,13 +1883,15 @@ vertical spacing
 and the needed space after the heading.
 .RE
 .
+.
 .TP
-.BI HY\  "dlevel rlevel heading-text"
+.BI HY\~ "declared-level actual-level title"
 This macro is called after size and font calculations and
 might be used to change indentation.
 .
+.
 .TP
-.BI HZ\  "dlevel rlevel heading-text"
+.BI HZ\~ "declared-level actual-level title"
 This macro is called after the printing of the heading,
 just before
 .B H
@@ -1953,6 +1902,7 @@ exits.
 Can be used to change the page header according to the section heading.
 .RE
 .RE
+.
 .
 .TP
 .BI HC\  \fR[\fPhyphenation-character\fR]\fP
@@ -3788,20 +3738,44 @@ to the current heading text.
 .
 Also updated in table of contents & friends.
 .
+.
 .TP
 .B HF
-Font list for headings,
-\[lq]2 2 2 2 2 2 2\[rq] by default.
+assigns font identifiers,
+separated by spaces,
+to heading levels in one-to-one correspondence.
 .
-Non-numeric font names may also be used.
+Each identifier may be a font mounting position,
+font name,
+or style name.
+.
+Omitted values are assumed to be\~1.
+.
+The default is
+.RB \[lq] "2 2 2 2 2 2 2 2 2 2 2 2 2 2" \[rq],
+which places all headings in italics.
+.
+DWB
+.IR mm 's
+default was
+.RB \[lq] "3 3 2 2 2 2 2" \[rq].
+.
 .
 .TP
 .B HP
-Point size list for headings.
+assigns type sizes,
+separated by spaces,
+to heading levels in one-to-one correspondence.
 .
-By default,
-this is \[lq]0 0 0 0 0 0 0\[rq] which is the same as \[lq]10 10 10 10 10
-10 10\[rq].
+Each size is interpreted in scaled points;
+zero values are translated to
+.BR 10 .
+.
+Omitted values are assumed to be\~0
+(and are translated accordingly).
+.
+The default is
+.RB \[lq] "0 0 0 0 0 0 0 0 0 0 0 0 0 0" \[rq].
 .
 .
 .TP
@@ -4302,8 +4276,8 @@ see
 .BR H .
 .
 .
-.\" XXX: This should be generalized to "Hdot".  Unfortunately, mm is
-.\" already inconsistent; level 1 gets a dot, higher levels don't.
+.\" XXX: This could be generalized to an "Hdot" threshold register with
+.\" a default of 2.
 .TP
 .B H1dot
 appends a period to the number of a level one heading;

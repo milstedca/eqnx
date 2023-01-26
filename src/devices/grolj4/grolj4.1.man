@@ -447,9 +447,9 @@ supports paper formats
 .RB \[lq] C5 \[rq],
 .RB \[lq] com10 \[rq],
 .RB \[lq] DL \[rq],
-.RB \[lq] executive \[rq],
-.RB \[lq] legal \[rq],
-.RB \[lq] letter \[rq],
+.RB \%\[lq] executive \[rq],
+.RB \%\[lq] legal \[rq],
+.RB \%\[lq] letter \[rq],
 and
 .RB \[lq] monarch \[rq].
 .
@@ -471,7 +471,7 @@ If neither specifies a paper format,
 .I grolj4
 recognizes four font description file directives in addition to those
 documented in
-.MR groff_font @MAN5EXT@ ,
+.MR groff_font @MAN5EXT@ .
 .
 .
 .TP

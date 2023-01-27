@@ -1,3 +1,9 @@
+2023-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/s.tmac (TE): Enable no-space mode after outputting the
+	display distance vertically, replacing any inter-paragraph
+	distance that might follow.
+
 2023-01-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[grohtml]: Fix misleading diagnostic message.

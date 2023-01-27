@@ -2031,7 +2031,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .ie '\\n(.z'tbl*header-div' .@error-recover .TS H but no .TH before .TE
 .el \{\
 .	nr tbl*have-header 0
-.       if !'\*(.T'html' .sp \\n[DD]u
+.	if !'\*(.T'html' \{\
+.		sp \\n[DD]u
+.		ns
+.	\}
 .\}
 .HTML-IMAGE-END
 .if '\*(.T'html' \

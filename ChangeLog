@@ -1,5 +1,9 @@
 2023-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/ms.ms: Remove redundant initializations.
+
+2023-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/ms.ms: Define appropriate hyphen-minus mapping on 'cp1047'
 	output device.
 

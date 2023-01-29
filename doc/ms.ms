@@ -21,6 +21,8 @@
 .  ftr CBI BI
 .  \" Redefine CW to use bold instead for a visible font change.
 .  als CW B
+.  \" The "document control settings" imposes this minimum width.
+.  nr LL 85n
 .\}
 .\" This document doesn't require the minus sign (in Times) but we do
 .\" want a copy- and-pastable hyphen-minus.
@@ -28,10 +30,6 @@
 .el                 .char \- \N'45'
 .\" A very limited output device might not have a dagger glyph.
 .fchar \[dg] *
-.\".RP
-.ie t .nr LL 6.5i
-.el   .nr LL 86n
-.nr LT \n[LL]
 .nr PS 11
 .nr VS 13
 .ds FR 1

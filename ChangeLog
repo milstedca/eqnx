@@ -1,3 +1,8 @@
+2023-01-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/ms.ms: Define appropriate hyphen-minus mapping on 'cp1047'
+	output device.
+
 2023-01-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/s.tmac (TE): Enable no-space mode after outputting the

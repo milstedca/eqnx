@@ -771,7 +771,7 @@ void input_entry_format::debug_print()
 format *process_format(table_input &in, options *opt,
 		       format *current_format = 0)
 {
-  input_entry_format *list = 0;
+  input_entry_format *list = 0 /* nullptr */;
   bool have_expand = false;
   bool is_first_row = true;
   int c = in.get();
@@ -786,7 +786,7 @@ format *process_format(table_input &in, options *opt,
 	      " specification");
 	free_input_entry_format_list(list);
 	list = 0 /* nullptr */;
-	return 0;
+	return 0 /* nullptr */;
       }
       switch (c) {
       case 'n':
@@ -851,7 +851,7 @@ format *process_format(table_input &in, options *opt,
 	error("invalid column classifier '%1'", char(c));
 	free_input_entry_format_list(list);
 	list = 0 /* nullptr */;
-	return 0;
+	return 0 /* nullptr */;
       }
       if (got_period)
 	break;
@@ -1065,7 +1065,7 @@ format *process_format(table_input &in, options *opt,
 	      error("'w' column modifier missing closing parenthesis");
 	      free_input_entry_format_list(list);
 	      list = 0 /* nullptr */;
-	      return 0;
+	      return 0 /* nullptr */;
 	    }
 	    list->width += c;
 	    c = in.get();
@@ -1141,14 +1141,14 @@ format *process_format(table_input &in, options *opt,
       error("'.' is not the last character of the table format");
       free_input_entry_format_list(list);
       list = 0 /* nullptr */;
-      return 0;
+      return 0 /* nullptr */;
     }
   }
   if (!list) {
     error("table format specification is empty");
     free_input_entry_format_list(list);
     list = 0 /* nullptr */;
-    return 0;
+    return 0 /* nullptr */;
   }
   list->is_last_column = true;
   // now reverse the list so that the first row is at the beginning
@@ -1188,7 +1188,7 @@ format *process_format(table_input &in, options *opt,
       error("cannot increase the number of columns in a continued format");
       free_input_entry_format_list(list);
       list = 0 /* nullptr */;
-      return 0;
+      return 0 /* nullptr */;
     }
     f = current_format;
     row = f->nrows;
@@ -1256,7 +1256,7 @@ format *process_format(table_input &in, options *opt,
   if (col >= ncolumns) {
     error("last row of format is all lines");
     delete f;
-    return 0;
+    return 0 /* nullptr */;
   }
   if (have_expand && (opt->flags & table::EXPAND)) {
     error("'x' column modifier encountered; ignoring region option"
@@ -1573,12 +1573,12 @@ table *process_data(table_input &in, format *f, options *opt)
 
 void process_table(table_input &in)
 {
-  options *opt = 0;
-  format *form = 0;
-  table *tbl = 0;
-  if ((opt = process_options(in)) != 0 
-      && (form = process_format(in, opt)) != 0
-      && (tbl = process_data(in, form, opt)) != 0) {
+  options *opt = 0 /* nullptr */;
+  format *form = 0 /* nullptr */;
+  table *tbl = 0 /* nullptr */;
+  if ((opt = process_options(in)) != 0 /* nullptr */
+      && (form = process_format(in, opt)) != 0 /* nullptr */
+      && (tbl = process_data(in, form, opt)) != 0 /* nullptr */) {
     tbl->print();
     delete tbl;
   }

@@ -1125,7 +1125,7 @@ format *process_format(table_input &in, options *opt,
     } while (success);
     if (list->vline > 2) {
       list->vline = 2;
-      error("more than 2 vertical bars between column descriptors");
+      error("more than 2 vertical lines after column descriptor");
     }
     if (c == '\n' || c == ',') {
       is_first_row = false;

@@ -1675,8 +1675,23 @@ void table::add_entry(int r, int c, const string &str,
 void table::add_vlines(int r, const char *v)
 {
   allocate(r);
-  for (int i = 0; i < ncolumns+1; i++)
-    vline[r][i] = v[i];
+  bool lwarned = false;
+  bool twarned = false;
+  for (int i = 0; i < ncolumns+1; i++) {
+    assert(v[i] < 3);
+    if (v[i] && (flags & (BOX | ALLBOX | DOUBLEBOX)) && (i == 0)
+	&& (!lwarned)) {
+      error("ignoring vertical line at leading edge of boxed table");
+      lwarned = true;
+    }
+    else if (v[i] && (flags & (BOX | ALLBOX | DOUBLEBOX))
+	     && (i == ncolumns) && (!twarned)) {
+      error("ignoring vertical line at trailing edge of boxed table");
+      twarned = true;
+    }
+    else
+      vline[r][i] = v[i];
+  }
 }
 
 void table::check()

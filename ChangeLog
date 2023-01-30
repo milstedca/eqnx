@@ -1,3 +1,26 @@
+2023-02-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Refactor handling of vertical lines in format.  Validate
+	input more strictly.  Add diagnostics when vertical lines are
+	redundant with box borders.
+
+	* src/preproc/tbl/main.cpp (process_format): Shift diagnostic
+	about excess vertical lines in a sequence at the beginning of a
+	row description to later, after the first proper column
+	descriptor has been interpreted.  Normalize a sequence of more
+	than two consecutive vertical lines to 2 when they occur at the
+	beginning of a row description.  Unconditionally update
+	`list->vline` and reset `vline_count` once we start looking for
+	modifiers, since we know we've finished any sequence of vertical
+	lines, and at the end of a row definition.  Rename and retype
+	loop variable int `success` to Boolean
+	`is_valid_modifier_sequence`.  Drop now-invalid assertion.
+	* src/preproc/tbl/table.cpp (table::add_vlines): Throw new
+	diagnostics when vertical lines are redundant with box borders.
+	Add assertion to ensure we got a valid vertical line value (0,
+	1, or 2) from `process_format`.  Throw these only once per table
+	format, not for every row.
+
 2023-01-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/tbl/main.cpp (process_table): Trivially refactor.

@@ -841,11 +841,7 @@ format *process_format(table_input &in, options *opt,
 	// leading vertical line in row
 	opt->flags |= table::HAS_TOP_VLINE;
 	vline_count++;
-	if (vline_count > 2) {
-	  vline_count = 2;
-	  error("more than 2 vertical lines at beginning of row"
-		" description");
-	}
+	// list->vline_count is updated later
 	break;
       case ' ':
       case '\t':
@@ -868,9 +864,14 @@ format *process_format(table_input &in, options *opt,
     if (got_period)
       break;
     list = new input_entry_format(t, list);
-    if (vline_count)
-      list->vline_count = vline_count;
-    int success = 1;
+    if (vline_count > 2) {
+      vline_count = 2;
+      error("more than 2 vertical lines at beginning of row description");
+    }
+    list->vline_count = vline_count;
+    // Now handle modifiers.
+    vline_count = 0;
+    bool is_valid_modifier_sequence = true;
     do {
       switch (c) {
       case '0':
@@ -1115,7 +1116,7 @@ format *process_format(table_input &in, options *opt,
 	if (is_first_row)
 	  opt->flags |= table::HAS_TOP_VLINE;
 	c = in.get();
-	list->vline++;
+	vline_count++;
 	break;
       case ' ':
       case '\t':
@@ -1125,15 +1126,17 @@ format *process_format(table_input &in, options *opt,
 	if (c == opt->tab_char)
 	  c = in.get();
 	else
-	  success = 0;
+	  is_valid_modifier_sequence = false;
 	break;
       }
-    } while (success);
-    if (list->vline > 2) {
-      list->vline = 2;
+    } while (is_valid_modifier_sequence);
+    if (vline_count > 2) {
+      vline_count = 2;
       error("more than 2 vertical lines after column descriptor");
     }
+    list->vline += vline_count;
     if (c == '\n' || c == ',') {
+      vline_count = 0;
       is_first_row = false;
       c = in.get();
       list->is_last_column = true;
@@ -1238,10 +1241,8 @@ format *process_format(table_input &in, options *opt,
 	error("multiple widths for column %1", col + 1);
       f->width[col] = tem->width;
     }
-    if (tem->vline_count) {
-      assert(col == 0);
+    if (tem->vline_count)
       f->vline[row][col] = tem->vline_count;
-    }
     f->vline[row][col + 1] = tem->vline;
     if (tem->is_last_column) {
       row++;

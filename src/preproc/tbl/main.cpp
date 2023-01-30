@@ -838,8 +838,14 @@ format *process_format(table_input &in, options *opt,
 	got_period = true;
 	break;
       case '|':
+	// leading vertical line in row
 	opt->flags |= table::HAS_TOP_VLINE;
 	vline_count++;
+	if (vline_count > 2) {
+	  vline_count = 2;
+	  error("more than 2 vertical lines at beginning of row"
+		" description");
+	}
 	break;
       case ' ':
       case '\t':

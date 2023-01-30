@@ -1,5 +1,13 @@
 2023-01-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/main.cpp (process_format): Throw error
+	diagnostic if more than 2 vertical lines are specified at the
+	beginning of a row definition.
+
+	Fixes <https://savannah.gnu.org/bugs/?63731>.
+
+2023-01-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/main.cpp (process_format): Recast diagnostic
 	message to refer to character by its Unicode name and generalize
 	to accurately cover additional circumstance of excess '|'

@@ -3510,7 +3510,7 @@ l lx.
 Value@Effect
 1@Disable the formatter's escape character (\[rs]).
 2@Vertically space before the display.
-2@Vertically space after the display.
+4@Vertically space after the display.
 8@T{
 Number output lines; call formatter's
 .B nm

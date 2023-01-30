@@ -1360,7 +1360,7 @@ printf \[dq].ft RSR\[rs]nHello, world!\[rs]n\[dq] | groff \-F \
 .
 .
 .P
-Once you're satisifed that the font works,
+Once you're satisfied that the font works,
 you may want to generate any available related styles
 (for instance,
 Roboto Slab

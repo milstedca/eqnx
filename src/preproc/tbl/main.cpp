@@ -1580,11 +1580,11 @@ table *process_data(table_input &in, format *f, options *opt)
 void process_table(table_input &in)
 {
   options *opt = 0 /* nullptr */;
-  format *form = 0 /* nullptr */;
+  format *fmt = 0 /* nullptr */;
   table *tbl = 0 /* nullptr */;
   if ((opt = process_options(in)) != 0 /* nullptr */
-      && (form = process_format(in, opt)) != 0 /* nullptr */
-      && (tbl = process_data(in, form, opt)) != 0 /* nullptr */) {
+      && (fmt = process_format(in, opt)) != 0 /* nullptr */
+      && (tbl = process_data(in, fmt, opt)) != 0 /* nullptr */) {
     tbl->print();
     delete tbl;
   }
@@ -1594,7 +1594,7 @@ void process_table(table_input &in)
       ;
   }
   delete opt;
-  delete form;
+  delete fmt;
   if (!in.ended())
     error("premature end of file");
 }

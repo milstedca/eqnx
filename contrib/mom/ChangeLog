@@ -1,6 +1,10 @@
+2023-02-02
+	* om.tmac (UNDERSCORE, UNDERSCORE2): Add PREFIX and SUFFIX
+	arguments so surrounding punctuation can be protected from
+	underscoring.
 
 2023-01-16
-	* om.tmac (PRINSTYLE): Abort with message if nroff is called on
+	* om.tmac (PRINTSTYLE): Abort with message if nroff is called on
 	a document using PRINTSTYLE TYPESET.
 
 	Fixes <https://savannah.gnu.org/bugs/?63581>.  Thanks to Gene

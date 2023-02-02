@@ -23,6 +23,7 @@ fail=
 
 wail () {
     echo "...FAILED" >&2
+    echo "$output"
     fail=yes
 }
 

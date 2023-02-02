@@ -1,5 +1,10 @@
 2023-02-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/table.cpp (table::determine_row_type)
+	(table::compute_widths, table::do_row): Boolify some local ints.
+
+2023-02-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Refactor handling of vertical lines in format.  Validate
 	input more strictly.  Add diagnostics when vertical lines are
 	redundant with box borders.

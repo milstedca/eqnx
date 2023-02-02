@@ -1731,9 +1731,9 @@ void table::determine_row_type()
 {
   row_is_all_lines = new char[nrows];
   for (int i = 0; i < nrows; i++) {
-    int had_single = 0;
-    int had_double = 0;
-    int had_non_line = 0;
+    bool had_single = false;
+    bool had_double = false;
+    bool had_non_line = false;
     for (int c = 0; c < ncolumns; c++) {
       table_entry *e = entry[i][c];
       if (e != 0) {
@@ -1741,16 +1741,16 @@ void table::determine_row_type()
 	  int t = e->line_type();
 	  switch (t) {
 	  case -1:
-	    had_non_line = 1;
+	    had_non_line = true;
 	    break;
 	  case 0:
 	    // empty
 	    break;
 	  case 1:
-	    had_single = 1;
+	    had_single = true;
 	    break;
 	  case 2:
-	    had_double = 1;
+	    had_double = true;
 	    break;
 	  default:
 	    assert(0 == "table entry line type not in {-1, 0, 1, 2}");
@@ -2375,16 +2375,16 @@ void table::compute_widths()
   for (p = span_list; p; p = p->next)
     sum_columns(p->start_col, p->end_col, 0);
   // Now handle unexpanded blocks.
-  int had_spanning_block = 0;
-  int had_equal_block = 0;
+  bool had_spanning_block = false;
+  bool had_equal_block = false;
   for (q = entry_list; q; q = q->next)
     if (q->divert(ncolumns, minimum_width,
 		  (flags & EXPAND) ? column_separation : 0, 0)) {
       if (q->end_col > q->start_col)
-	had_spanning_block = 1;
+	had_spanning_block = true;
       for (i = q->start_col; i <= q->end_col && !had_equal_block; i++)
 	if (equal[i])
-	  had_equal_block = 1;
+	  had_equal_block = true;
     }
   // Adjust widths.
   if (had_equal_block)
@@ -2405,7 +2405,7 @@ void table::compute_widths()
     for (q = entry_list; q; q = q->next)
       if (q->divert(ncolumns, minimum_width, 0, 1)) {
 	if (q->end_col > q->start_col)
-	  had_spanning_block = 1;
+	  had_spanning_block = true;
       }
     // Adjust widths again.
     if (had_spanning_block)
@@ -2802,24 +2802,24 @@ void table::do_row(int r)
   printfs(".\\\" do row %1\n", i_to_a(r));
   if (!(flags & NOKEEP) && row_begins_section(r))
     prints(".if \\n[" USE_KEEPS_REG "] ." KEEP_MACRO_NAME "\n");
-  int had_line = 0;
+  bool had_line = false;
   stuff *p;
   for (p = stuff_list; p && p->row < r; p = p->next)
     ;
   for (stuff *p1 = p; p1 && p1->row == r; p1 = p1->next)
     if (!p1->printed && (p1->is_single_line() || p1->is_double_line())) {
-      had_line = 1;
+      had_line = true;
       break;
     }
   if (!had_line && !row_is_all_lines[r])
     printfs("." REPEATED_MARK_MACRO " %1\n", row_top_reg(r));
-  had_line = 0;
+  had_line = false;
   for (; p && p->row == r; p = p->next)
     if (!p->printed) {
       p->print(this);
       if (!had_line && (p->is_single_line() || p->is_double_line())) {
 	printfs("." REPEATED_MARK_MACRO " %1\n", row_top_reg(r));
-	had_line = 1;
+	had_line = true;
       }
     }
   // change the row *after* printing the stuff list (which might contain .TH)

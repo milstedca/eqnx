@@ -60,11 +60,11 @@ Index		array!index
 .\"	Equation label adjust 0=left, 1=right
 .nr Eq 0
 .\"	Bullet string (for .BL)
-.ie n .ds BU \(bu
-.el .ds BU \s-2\(bu\s0
+.ie n .ds BU \[bu]
+.el .ds BU \s-2\[bu]\s0
 .\"	Em dash string
 .ie n .ds EM " --
-.el .ds EM \(em
+.el .ds EM \[em]
 .\"	Footnote spacing
 .nr Fs 1
 .\"	H1-H7	heading counters
@@ -988,9 +988,9 @@ numeric; got '\\$1'
 .acc@over-def ' \'
 .acc@over-def ^ ^
 .acc@over-def ~ ~
-.acc@over-def : \(ad
-.acc@over-def ; \(ad
-.acc@under-def , \(ac
+.acc@over-def : \[ad]
+.acc@over-def ; \[ad]
+.acc@under-def , \[ac]
 .\" ######## module uni #################
 .\" unimplemented macros
 .de @disable
@@ -1223,7 +1223,7 @@ numeric; got '\\$1'
 .wh 0 pg@header
 .em pg@end-of-text
 .\"
-.ds pg*header ''- \\nP -''
+.ds pg*header ''- \\n[P] -''
 .ds pg*footer
 .if \n[N]=4 .ds pg*header ''''
 .if (\n[N]=3):(\n[N]=5) \{\
@@ -2202,7 +2202,7 @@ within DF/DE
 .di ds*div!\\n[ds*snr]
 .\"
 .nr ds*div-ll \\n[ds*old-ll]
-.if \\n[ds*format]=1 .nr ds*div-ll -\\n(Sin
+.if \\n[ds*format]=1 .nr ds*div-ll -\\n[Si]n
 .ds@set-new-ev \\n[ds*div-ll]
 .nr df*float 0
 ..
@@ -2415,11 +2415,11 @@ exceeds depth of nested lists (\\n[li*lvl])
 .de DL
 .if \\n[D]>2 .tm DL $*
 .if \\n[.$]>2 .@warning \\$0: ignoring excess arguments
-.if \\n[.$]<1 .LB \\n[Pi] 0 1 0 \(em
-.if \\n[.$]=1 .LB 0\\$1 0 1 0 \(em
+.if \\n[.$]<1 .LB \\n[Pi] 0 1 0 \[em]
+.if \\n[.$]=1 .LB 0\\$1 0 1 0 \[em]
 .if \\n[.$]=2 \{\
-.	ie '\\$1'' .LB \\n[Pi] 0 1 0 \(em 0 1
-.	el .LB 0\\$1 0 1 0 \(em 0 1
+.	ie '\\$1'' .LB \\n[Pi] 0 1 0 \[em] 0 1
+.	el .LB 0\\$1 0 1 0 \[em] 0 1
 .\}
 ..
 .de RL
@@ -2489,7 +2489,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .el .@error \\$0: .TH without .TS H"
 ..
 .de TE
-.ie '\\n(.z'tbl*header-div' .@error \\$0: .TS H but no .TH before .TE
+.ie '\\n[.z]'tbl*header-div' .@error \\$0: .TS H but no .TH before .TE
 .el \{\
 .	nr tbl*have-header 0
 .\}
@@ -2536,7 +2536,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .		\"	label to the right, possibly compensating for
 .		\"	indented display
 .		ie \\n[ds*format]=1 \
-\h'|\\n[.l]u-\w'\\*[eq*label]'u+\\n(Sin'\\*[eq*label]
+\h'|\\n[.l]u-\w'\\*[eq*label]'u+\\n[Si]n'\\*[eq*label]
 .		el \h'|\\n[.l]u-\w'\\*[eq*label]'u'\\*[eq*label]
 .	\}
 .	rt
@@ -2722,7 +2722,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .el .ds lix*numb \\$3
 .\"
 .ie !\\n[Of] .ds lix*ds-form .\ \ \"
-.el .ds lix*ds-form "\ \(em\ \"
+.el .ds lix*ds-form "\ \[em]\ \"
 .nr lix*in \\n[.i]
 .ds lix*label \\*[Li\\$1]\ \\*[lix*numb]\\*[lix*ds-form]
 .if !'\\$5'' \{\

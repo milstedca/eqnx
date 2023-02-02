@@ -1,3 +1,11 @@
+2023-02-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac: Fix code style nit.  Except for initial register
+	tests for GNU troff formatter and compatibility mode, migrate
+	special character, register, and string interpolation escape
+	sequences from `(xx` form to `[xx]`.  Also rewrite an instance
+	of `\nP` to `\n[P]`.
+
 2023-01-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	When register `Pt` was 2, paragraphs immediately following

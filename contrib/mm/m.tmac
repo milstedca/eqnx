@@ -43,7 +43,7 @@ Index		array!index
 .
 .mso devtag.tmac
 .\" ######## init #######
-.\"	Contents level [0:14], contents saved if heading level <= Cl
+.\"	create table of contents entry for headings of level <= Cl
 .nr Cl 2
 .\"	Eject page between LIST OF XXXX if Cp == 0
 .nr Cp 0
@@ -55,7 +55,7 @@ Index		array!index
 .nr Df 5
 .\"	space before and after display if == 1 [0:1]
 .nr Ds 1
-.\"	Eject page
+.\"	eject page before headings of level <= Ej
 .nr Ej 0
 .\"	Equation label adjust 0=left, 1=right
 .nr Eq 0
@@ -82,9 +82,9 @@ Index		array!index
 .nr H12 0 1
 .nr H13 0 1
 .nr H14 0 1
-.\"	Heading break level [0:14]
+.\"	break after headings of level <= Hb
 .nr Hb 2
-.\"	heading centering level, [0:14]
+.\"	center headings of level <= Hc
 .nr Hc 0
 .\"	header format
 .ds HF 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -95,7 +95,7 @@ Index		array!index
 .nr Hi 1
 .\"	header pointsize
 .ds HP 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-.\"	heading space level [0:14]
+.\"	put vertical space of \n[Hss] after headings of level <= Hs
 .nr Hs 2
 .\"	heading numbering type
 .\"	0 -> multiple (1.1.1 ...)
@@ -118,8 +118,8 @@ Index		array!index
 .nr Le 0
 .\"	List indentation in ens, used by .AL
 .nr Li 6
-.\"	List space, if listlevel > Ls then no spacing will occur around lists.
-.nr Ls 99
+.\"	put vertical space before list items of nesting level <= Ls
+.nr Ls 99 \" TODO: use \n[.R]; see Savannah #63587
 .\"	Numbering style [0:5]
 .if !r N .nr N 0
 .\"	numbered paragraphs
@@ -247,16 +247,14 @@ Index		array!index
 .\" Add a dot after level one heading number if >0
 .nr H1dot 1
 .\"
-.\" header prespace level. If level <= Hps, then two lines will be printed
-.\" before the header instead of one.
+.\" put vertical space of \n[Hps2] before headings of level <= Hps
 .nr Hps 1
 .\"
-.\" These variables controls the number of lines preceding .H.
-.\" Hps1 is the number of lines when level > Hps
+.\" amount of vertical space before headings when level > Hps
 .nr Hps1 0.5v
 .if n .nr Hps1 1v
 .\"
-.\" Hps2 is the number of lines when level <= Hps
+.\" amount of vertical space before headings when level <= Hps
 .nr Hps2 1v
 .if n .nr Hps2 2v
 .\"
@@ -1069,9 +1067,8 @@ numeric; got '\\$1'
 .el .nr H1h \\n[H1] 1
 .if \\n[hd*level]=1 .nr H1h +1
 .\"
-.\"	Check if it's time for new page. Only if text has
-.\"	appeared before.
-.if \\n[Ej]&(\\n[Ej]>=\\n[hd*level])&(\\n[nl]>\\n[hd*cur-bline]) .pg@next-page
+.\" Break page before headings of level <= Ej.
+.if ((\\n[hd*level]<=\\n[Ej])&(\\n[nl]>\\n[hd*cur-bline])) .pg@next-page
 .\"
 .\" increment current counter
 .nr H\\n[hd*level] +1
@@ -1085,7 +1082,8 @@ numeric; got '\\$1'
 .if \\n[hd*level]>1 .as hd*mark \\n[H2]
 .\"
 .nr hd*i 2 1
-.while \\n+[hd*i]<15 .if \\n[hd*level]>(\\n[hd*i]-1) .as hd*mark .\\n[H\\n[hd*i]]
+.while \\n+[hd*i]<15 .if \\n[hd*level]>(\\n[hd*i]-1) \
+.	as hd*mark .\\n[H\\n[hd*i]]
 .if \\n[Ht] .ds hd*mark \\n[H\\n[hd*level]].
 .\"
 .\" special case, no dot after level one heading if not H1dot true
@@ -2306,7 +2304,8 @@ within DF/DE
 .de LI
 .if \\n[li*lvl]<1 .@error \\$0: no list active; call AL, BL, BVL, ... \
 first
-.if \\n[li*li-spc]&(\\n[Ls]>=\\n[li*lvl]) .SP (u;\\n[li*li-spc]*\\n[Lsp])
+.if \\n[li*li-spc]&(\\n[li*lvl]<=\\n[Ls]) \
+.	SP (u;\\n[li*li-spc]*\\n[Lsp])
 .ne 2v
 .\"
 .ds li*c-mark \\*[li*mark]

@@ -158,10 +158,10 @@ font names used to access them.
 .P
 .TS
 tab(|) allbox center;
-c c c c c
-ab c c c c
+Cb Cb Cb Cb Cb
+L L L L L
 .
-Typeface | Regular | Bold | Italic | Bold-Italic
+Typeface | Roman | Bold | Italic | Bold-Italic
 Dutch | TR | TB | TI | TBI
 Swiss | HR | HB | HI | HBI
 Swiss Narrow | HNR | HNB | HNI | HNBI

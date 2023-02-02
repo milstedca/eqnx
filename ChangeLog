@@ -1,5 +1,11 @@
 2023-02-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/table.cpp (table::compute_total_separation):
+	Trivially refactor; rename loop indices so it's obvious which
+	dimension of a matrix they're referring to.
+
+2023-02-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/table.cpp (table::determine_row_type)
 	(table::compute_widths, table::do_row): Boolify some local ints.
 

@@ -2232,17 +2232,16 @@ void table::compute_total_separation()
   if (flags & (ALLBOX | BOX | DOUBLEBOX))
     left_separation = right_separation = 1;
   else {
-    for (int i = 0; i < nrows; i++) {
-      if (vline[i][0] > 0)
+    for (int r = 0; r < nrows; r++) {
+      if (vline[r][0] > 0)
 	left_separation = 1;
-      if (vline[i][ncolumns] > 0)
+      if (vline[r][ncolumns] > 0)
 	right_separation = 1;
     }
   }
   total_separation = left_separation + right_separation;
-  int i;
-  for (i = 0; i < ncolumns - 1; i++)
-    total_separation += column_separation[i];
+  for (int c = 0; c < ncolumns - 1; c++)
+    total_separation += column_separation[c];
 }
 
 void table::compute_separation_factor()

@@ -1089,7 +1089,7 @@ numeric; got '\\$1'
 .\" special case, no dot after level one heading if not H1dot true
 .if (\\n[hd*level]=1)&(\\n[H1dot]=0) .ds hd*mark \\n[H1]
 .\"
-.ds hd-mark-trimmed \\*[hd*mark]\" save hd-mark w/o spaces for references
+.ds hd@mark-trimmed \\*[hd*mark]\" save hd-mark w/o spaces for references
 .as hd*mark \ \ \"			add spaces between mark and heading
 .if !\\n[hd*arg1] .ds hd*mark\"		no mark for unnumbered
 .\"
@@ -3269,14 +3269,14 @@ exceeds depth of nested lists (\\n[li*lvl])
 .if !r qrf*pass .tm \\$0: no .INITR in this file \" XXX: .@error?
 .if \\n[Ref] \{\
 .	ds qrf*name qrf*ref-\\$1
-.	if \\n[D]>2 .tm SETR: ref \\*[qrf*name]=\\*[hd-mark-trimmed],\\n[%]
+.	if \\n[D]>2 .tm SETR: ref \\*[qrf*name]=\\*[hd@mark-trimmed],\\n[%]
 .	\" heading-number
-.	ds \\*[qrf*name]-hn \\*[hd-mark-trimmed]
+.	ds \\*[qrf*name]-hn \\*[hd@mark-trimmed]
 .	\" page-number
 .	ds \\*[qrf*name]-pn \\n[%]
 .	\"
 .	if \\n[Ref] \{\
-.		tm .ds \\*[qrf*name]-hn \\*[hd-mark-trimmed]
+.		tm .ds \\*[qrf*name]-hn \\*[hd@mark-trimmed]
 .		tm .ds \\*[qrf*name]-pn \\n[%]
 .		if !'\\$2'' .tm .ds \\*[qrf*name]-xx \\$2
 .	\}

@@ -1604,7 +1604,7 @@ See
 .TP
 .BI H\~ level\~\c
 .RI [ title \~[ suffix ]]
-Set an automatically numbered section heading at
+Set a numbered section heading at
 .IR level .
 .
 .I mm
@@ -1653,20 +1653,21 @@ Heading behavior is highly configurable.
 .
 Several registers set a
 .I threshold,
-where heading levels below or at the threshold value are handled in one
+where heading levels at or below the threshold value are handled in one
 way,
 and those above it another.
 .
+For example,
+a heading level within the threshold of register
+.B Cl
+is included in the table of contents
+(see
+.BR TC ).
 .
-.\" TODO: Get rid of these pseudo-headings once they are all recast.
+.
 .IP
-.B Heading layout
+.I Heading layout.
 .
-.
-.br
-.ne 3v
-.RS
-.IP
 Register
 .B Ej
 sets a threshold for page breaking (ejection) prior to a heading.
@@ -1680,10 +1681,6 @@ and by the amount in
 .B Hps2
 otherwise.
 .
-.
-.br
-.ne 2v
-.IP
 The
 .B Hb
 register sets a threshold below which a break occurs after the heading,
@@ -1710,15 +1707,11 @@ a heading level below both of the
 and
 .B Hc
 thresholds is centered.
-.RE
 .
 .
 .IP
-.B Heading typeface and size
+.I Heading typeface and size.
 .
-.
-.RS
-.IP
 The fonts used for heading numbers and titles at each level are
 configured by the
 .B HF
@@ -1734,15 +1727,11 @@ the user-definable macros
 .B HX
 and/or
 .BR HZ .
-.RE
 .
 .
 .IP
-.B Heading number format
+.I Heading number format.
 .
-.
-.RS
-.IP
 Registers named
 .B H1
 through
@@ -1765,29 +1754,11 @@ to omit a dot in this case as well,
 clear the
 .B H1dot
 register.
-.RE
 .
 .
 .IP
-.B Table of contents population
+.I Customizing heading behavior.
 .
-.
-.RS
-.IP
-A heading level below the threshold in
-.B Cl
-is included in the table of contents
-(see
-.BR TC ).
-.RE
-.
-.
-.IP
-.B Customizing heading behavior
-.
-.
-.RS
-.IP
 .I mm
 calls
 .I hook
@@ -1797,7 +1768,15 @@ macros to enable further customization of headings.
 .I mm
 called these \[lq]exits\[rq].)
 .
-Define them in expectation of the following parameters.
+They can be used to change the heading's
+.I mark
+(the numbered portion before any heading title),
+its vertical spacing,
+and its vertical space requirements
+(for instance,
+to require a minimum quantity of subsequent output lines).
+.
+Define hook macros in expectation of the following parameters.
 .
 The argument
 .I declared-level
@@ -1828,82 +1807,84 @@ or
 .TP
 .BI HX\~ "declared-level actual-level title"
 .I mm
-calls HX
-just before setting the heading.
-.
-The following registers are available for
-.BR HX .
-.
-Note that
+calls
 .B HX
-may alter
+before setting the heading.
+.
+Your definition may alter
 .BR }0 ,
 .BR }2 ,
 and
 .BR ;3 .
 .
 .
-.\" XXX: These names are ugly and of no obvious meaning.  Alias them.
+.\" XXX: These names are ugly and of no obvious meaning.  Make
+.\" documented aliases for them.
 .RS
 .TP
-.BR }0\  (string)
-Contains the heading mark plus two spaces if
-.I rlevel
+.BR }0\~ (string)
+contains the heading mark plus two spaces if
+.I declared-level
 is non-zero,
-otherwise empty.
+and otherwise is empty.
+.
 .
 .TP
-.BR ;0\  (register)
-Contains the position of the text after the heading.
+.BR ;0\~ (register)
+encodes a position for the text after the heading.
 .
-0\~means that the text should follow the heading on the same line,
-1\~means that a line break should occur before the text,
-and 2\~means that a blank line should separate the heading and the text.
+0\~means that the heading is to be run in,
+1\~means that a break is to occur before the text,
+and 2\~means that vertical space is to separate heading and text.
+.
 .
 .TP
-.BR }2\  (string)
-Contains two spaces if register
+.BR }2\~ (string)
+is the suffix that separates a run-in heading from the text.
+.
+It contains two spaces if register
 .B ;0
-is\~0.
-.
-It is used to separate the heading from the text.
-.
-The string is empty if
-.B ;0
-is non-zero.
+is\~0,
+and otherwise is empty.
 .
 .
 .TP
-.BR ;3\  (register)
-Contains the needed space in units after the heading.
+.BR ;3\~ (register)
+contains the vertical space required for the heading to be typeset.
 .
-Default is 2v.
+If that amount is not available,
+the page is broken prior to the heading.
 .
-Can be used to change things like numbering
-.RB ( }0 ),
-vertical spacing
-.RB ( }2 ),
-and the needed space after the heading.
+The default is
+.BR 2v .
 .RE
 .
 .
 .TP
 .BI HY\~ "declared-level actual-level title"
-This macro is called after size and font calculations and
-might be used to change indentation.
+.I mm
+calls
+.B HY
+after determing the header typeface and size.
+.
+It might be used to change indentation.
 .
 .
 .TP
 .BI HZ\~ "declared-level actual-level title"
-This macro is called after the printing of the heading,
+.I mm
+calls
+.B HZ
+after formatting the heading,
 just before
 .B H
 or
 .B HU
-exits.
+returns.
 .
-Can be used to change the page header according to the section heading.
-.RE
+It might be used to change the page header to include a section heading.
+.\" XXX: ...but only for the _next_ page, not the current one.  See
+.\" Savannah #62825.
 .RE
 .
 .

@@ -1465,6 +1465,8 @@ permitting them to be wrapped or non-destructively replaced.
 See section \[lq]Strings\[rq] below.
 .
 .
+.br
+.ne 4v
 .P
 There is no general limit on argument length or quantity.
 .

@@ -22,7 +22,7 @@
 .  \" Redefine CW to use bold instead for a visible font change.
 .  als CW B
 .  \" The "document control settings" table imposes this minimum width.
-.  nr LL 85n
+.  nr LL 87n
 .\}
 .\" This document doesn't require the minus sign (in Times) but we do
 .\" want a copy- and-pastable hyphen-minus.
@@ -3683,7 +3683,7 @@ T}
 .
 .KS
 .PP
-.I groff ms
+.I "groff ms"
 encourages customization of table of contents entry production.
 .
 .

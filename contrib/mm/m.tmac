@@ -1089,18 +1089,18 @@ numeric; got '\\$1'
 .\" special case, no dot after level one heading if not H1dot true
 .if (\\n[hd*level]=1)&(\\n[H1dot]=0) .ds hd*mark \\n[H1]
 .\"
-.ds hd@mark-trimmed \\*[hd*mark]\" save hd-mark w/o spaces for references
-.as hd*mark \ \ \"			add spaces between mark and heading
-.if !\\n[hd*arg1] .ds hd*mark\"		no mark for unnumbered
+.ds hd@mark-trimmed \\*[hd*mark]\" mark without spaces, for references
+.as hd*mark \ \ \"	add spaces between heading mark and title
+.if !\\n[hd*arg1] .ds hd*mark \" empty; no mark for unnumbered heading
 .\"
 .if \\n[D]>1 .tm At header \\*[hd*mark] "\\$2"
-.nr hd*htype 0				\" hd*htype = check break and space
-.					\" 0 = run-in, 1 = break only, 2 = space
+.nr hd*htype 0			\" hd*htype = check break and space
+.				\" 0 = run-in, 1 = break only, 2 = space
 .if \\n[hd*level]<=\\n[Hb] .nr hd*htype 1
 .if \\n[hd*level]<=\\n[Hs] .nr hd*htype 2
 .					\" two spaces if hd*htype == 0
 .ie (\\n[hd*htype]=0)&(\w@\\$2@) .ds hd*suf-space "  \"
-.el .ds hd*suf-space
+.el .ds hd*suf-space \" empty
 .nr hd*need 2v				\" hd*need = header need space
 .\"---------- user macro HX ------------
 .\" User exit macro to override numbering.
@@ -1119,9 +1119,9 @@ numeric; got '\\$1'
 .br
 .di
 .rm hd*div
-.if \\n[hd*htype] .na \"		no adjust if run-in
+.if \\n[hd*htype] .na \"	do not adjust heading if not run-in
 .if \\n[hd*htype]<2 .nr hd*need +\\n[Lsp]u \"	add some extra space
-.ne \\n[hd*need]u+\\n[dn]u+.5p-1v \"	this is the needed space for a header
+.ne \\n[hd*need]u+\\n[dn]u+.5p-1v \"	space needed for a heading
 .\"
 .\" size and font calculations
 .hd@split hd*font \\n[hd*level] HF \\*[HF]\"	get font for this level

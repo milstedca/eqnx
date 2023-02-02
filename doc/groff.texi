@@ -9716,8 +9716,9 @@ collected line still uses the old line length value.
 @cindex line control
 @cindex control, line
 
-The @code{roff} language distinguishes input and output line
-continuation.
+When filling is enabled, input and output line breaks generally do not
+correspond.  The @code{roff} language therefore distinguishes input and
+output line continuation.
 
 @Defesc {\\@key{RET}, , ,}
 @cindex input line continuation (@code{\@key{RET}})

@@ -587,9 +587,12 @@ respectively.
 .SH "Line continuation"
 .\" ====================================================================
 .
+When filling is enabled,
+input and output line breaks generally do not correspond.
+.
 The
 .I roff
-language distinguishes input and output line continuation.
+language therefore distinguishes input and output line continuation.
 .
 .
 .P

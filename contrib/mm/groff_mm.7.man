@@ -197,7 +197,7 @@ registers and strings tend to have mixed-case names.
 .I groff mm
 offers three different frameworks for document organization.
 .
-.BR \%COVER / \%COVEND
+.BR \%COVER /\: \%COVEND
 is a flexible means of preparing any document requiring a cover page.
 .
 .BR LT / LO
@@ -340,22 +340,23 @@ request.
 .RS
 .P
 .B .ds
-.I ident string
+.I ident contents
 .RE
 .
 .
 .P
-The string is assigned everything up to the end of the line,
+.I contents
+consumes everything up to the end of the line,
 including trailing spaces.
 .
 It is a good practice to end
-.I string
+.I contents
 with a comment escape sequence
 .RB ( \[rs]\[dq] )
 so that extraneous spaces do not intrude during document maintenance.
 .
 To include leading spaces in
-.IR string ,
+.IR contents ,
 prefix it with a double quote.
 .
 Strings are interpolated with the
@@ -835,6 +836,8 @@ it is replaced with an empty line if there is a second argument.
 The text \[lq]Date\[rq] can be changed with the string
 .BR Letdate .
 .
+.
+.\" XXX: AVL is misnamed; it should have been called SGL or similar.
 .TP
 .BI AVL\  \fR[\fPname\fR]\fP
 Letter signature.
@@ -1650,8 +1653,9 @@ Heading behavior is highly configurable.
 .
 Several registers set a
 .I threshold,
-where heading levels below the threshold value are handled in one way,
-and those at or above it another.
+where heading levels below or at the threshold value are handled in one
+way,
+and those above it another.
 .
 .
 .\" TODO: Get rid of these pseudo-headings once they are all recast.
@@ -1770,7 +1774,6 @@ register.
 .
 .RS
 .IP
-.
 A heading level below the threshold in
 .B Cl
 is included in the table of contents
@@ -2276,13 +2279,20 @@ This is used by\~\c
 .B H
 to clear any active list.
 .
+.
 .TP
-.B LE \fR[\fP1\fR]\fP
+.BR LE \~[ 1 ]
 List end.
 .
-Terminates the current list.
-.B LE
-outputs a blank line if an argument is given.
+The current list is terminated.
+.
+If an argument
+.B 1
+is present,
+vertical space in the amount of register
+.B Lsp
+follows.
+.
 .
 .TP
 .BI LI\  \fR[\fPmark\  \fR[\fP1\fR|\fP2\fR]]\fP
@@ -2314,17 +2324,14 @@ A zero length
 makes a hanging indentation instead.
 .
 .IP
-A blank line is printed before the list item by default.
-.
-This behaviour can be controlled by register
+A list item is preceded by vertical space unless its nesting level is
+greater than the value of register
 .BR Ls .
 .
-Pre-spacing occurs for each list level less than or equal to
-.BR Ls .
-.
-Default value is 99.
-.
-There is no nesting limit.
+The amount of space is determined by the register
+.B Lsp
+and an argument to
+.BR LB .
 .
 .
 .IP
@@ -4358,12 +4365,11 @@ space;
 see
 .BR H .
 .
-If the heading level is greater than the value in
-.BR Hps ,
-the
-.B Hps1
-amount is used;
-otherwise that of
+Headings at levels above the value in register
+.B Hps
+use the amount of space in register
+.BR Hps1 ;
+otherwise that in
 .BR Hps2 .
 .
 The value of
@@ -4409,8 +4415,7 @@ devices:
 sets the heading level threshold for application of succeeding vertical
 space.
 .
-If the heading level is greater than the value in
-.BR Hs ,
+If the heading level is greater than this value,
 the heading is followed by vertical space in the amount of
 .RB register\~ Hss ;
 see
@@ -4536,8 +4541,7 @@ see
 .B Ls
 sets a threshold for placement of vertical space before list items.
 .
-If the list nesting level is greater than the value in
-.BR Ls ,
+If the list nesting level is greater than this value,
 no such spacing occurs;
 see
 .B LI

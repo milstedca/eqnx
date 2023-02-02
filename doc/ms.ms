@@ -21,7 +21,7 @@
 .  ftr CBI BI
 .  \" Redefine CW to use bold instead for a visible font change.
 .  als CW B
-.  \" The "document control settings" imposes this minimum width.
+.  \" The "document control settings" table imposes this minimum width.
 .  nr LL 85n
 .\}
 .\" This document doesn't require the minus sign (in Times) but we do

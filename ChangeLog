@@ -1,3 +1,14 @@
+2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Add more tests.
+
+	* src/preproc/tbl/tests/boxes-and-vertical-rules.sh:
+	* src/preproc/tbl/tests/expand-region-option-works.sh:
+	* src/preproc/tbl/tests/x-column-modifier-works.sh: Do it.
+
+	* src/preproc/tbl/tbl.am (tbl_TESTS): Run tests.
+	(tbl_XFAIL_TESTS): Add; future changes will resolve these.
+
 2023-02-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/tbl/table.cpp (table::compute_total_separation):

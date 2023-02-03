@@ -459,7 +459,7 @@ and perform other tasks described below.
 The format specification can occupy multiple input lines,
 but must conclude with a dot
 .RB \[lq] .\& \[rq]
-at the end of its final column descriptor.
+followed by a newline.
 .
 Each row definition is applied in turn to one row of the table.
 .

@@ -45,7 +45,12 @@
 .\" This reference invokes every macro in the package several times and
 .\" is guaranteed to give worst-case performance for an already
 .\" extremely slow package.
-.\"
+.
+.
+.\" Save and disable compatibility mode (for, e.g., Solaris 10/11).
+.do nr *groff_groff_mdoc_7_man_C \n[.cp]
+.cp 0
+.
 .
 .Dd @MDATE@
 .Dt groff_mdoc 7
@@ -5357,6 +5362,12 @@ this functionality may return in the next release.
 .\" .Xr @g@nroff
 .\" the right margin is normally ragged and the problem is not as
 .\" severe.
+.
+.
+.\" Restore compatibility mode (for, e.g., Solaris 10/11).
+.cp \n[*groff_groff_mdoc_7_man_C]
+.do rr *groff_groff_mdoc_7_man_C
+.
 .
 .\" Local Variables:
 .\" mode: nroff

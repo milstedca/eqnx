@@ -37,6 +37,7 @@ g@h@i
 '
 
 output=$(printf "%s" "$input" | "$groff" -Tascii -t)
+echo "$output"
 
 for l in 1 3 5 7
 do

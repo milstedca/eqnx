@@ -1,5 +1,48 @@
 2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Fix bugs using boxes or vertical rules at table edges on
+	nroff devices, particularly when combined with region or column
+	expansion.
+
+	* src/preproc/tbl/table.h (class table): Add `GAP_EXPAND`
+	enumeration constant.  James Clark seems to have designed GNU
+	tbl carefully to avoid distinguishing region expansion from
+	column expansion in a categorical way, but I needed a way for
+	formatting-time logic to know which was in use.  (Column
+	expansion, the "x" modifier, expands columns--i.e., text.
+	Region expansion expands [or compresses] the _gaps_ between
+	columns.)
+	* src/preproc/tbl/main.cpp (process_options): Set `GAP_EXPAND`
+	flag in table if "expand" region option seen.
+	* src/preproc/tbl/table.cpp: Add new macro `LEFTOVER_FACTOR_REG`
+	to name a new roff register for the remainder of gap-expansion
+	space when the amount of space available for expansion is
+	divided by the number of gaps.
+	(table::compute_overall_width): If _not_ expanding a table in
+	either respect and in nroff mode, reduce line length by 1n for
+	each of any left and right border (because the vertical lines
+	eat character cells).  This prevents bordered or boxed tables
+	from being overset even when they use neither expansion feature.
+	(table::compute_separation_factor): If gap-expanding a table,
+	store any remainder from the division used to compute the
+	separation factor into the new `LEFTOVER_FACTOR_REG`.
+	(table::compute_column_positions): Insert that remainder into
+	the gap before the last (rightmost) column of the table.  This
+	_could_ be done more elegantly by spreading each en in a
+	symmetric way across a subset of the gaps.  (It is necessarily a
+	subset by the pigeonhole principle.)  But it didn't seem worth
+	the effort for a feature (region expansion) that few users
+	employ.  (Usually what you want is the "x" column modifier.)
+	Alternatively, "forget it, Jake--it's a terminal emulator".
+
+	* src/preproc/tbl/tbl.am (tbl_XFAIL_TESTS): Remove now-passing
+	tests.
+
+	Fixes <https://savannah.gnu.org/bugs/?63640> and
+	<https://savannah.gnu.org/bugs/?63749>.
+
+2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/table.cpp (table::compute_column_positions):
 	Stop multiplying the gaps at the left and right edges of a table
 	{which occur when it is boxed or has a leading and/or trailing

@@ -1,4 +1,4 @@
-/* Copyright (C) 1989-2022 Free Software Foundation, Inc.
+/* Copyright (C) 1989-2023 Free Software Foundation, Inc.
      Written by James Clark (jjc@jclark.com)
 
 This file is part of groff.
@@ -28,6 +28,7 @@ const int DEFAULT_COLUMN_SEPARATION = 3;
 
 #define DELIMITER_CHAR "\\[tbl]"
 #define SEPARATION_FACTOR_REG PREFIX "sep"
+#define LEFTOVER_FACTOR_REG PREFIX "leftover"
 #define BOTTOM_REG PREFIX "bot"
 #define RESET_MACRO_NAME PREFIX "init"
 #define LINESIZE_REG PREFIX "lps"
@@ -2179,6 +2180,12 @@ void table::build_span_list()
 void table::compute_overall_width()
 {
   prints(".\\\" compute overall width\n");
+  if (!(flags & GAP_EXPAND)) {
+    if (left_separation)
+      printfs(".if n .ll -%1n\n", as_string(left_separation));
+    if (right_separation)
+      printfs(".if n .ll -%1n\n", as_string(right_separation));
+  }
   // Compute the amount of horizontal space available for expansion,
   // measuring every column _including_ those eligible for expansion.
   // This is the minimum required to set the table without compression.
@@ -2266,6 +2273,14 @@ void table::compute_separation_factor()
   for (int i = 0; i < ncolumns; i++)
     printfs("-\\n[%1]", span_width_reg(i, i));
   printfs("/%1\n", as_string(total_separation));
+  // Store the remainder for use in compute_column_positions().
+  if (flags & GAP_EXPAND) {
+    prints(".if n \\\n");
+    prints(".  nr " LEFTOVER_FACTOR_REG " \\n[.l]-\\n[.i]");
+    for (int i = 0; i < ncolumns; i++)
+      printfs("-\\n[%1]", span_width_reg(i, i));
+    printfs("%%%1\n", as_string(total_separation));
+  }
   prints(".ie \\n[" SEPARATION_FACTOR_REG "]<=0 \\{\\\n");
   if (!(flags & NOWARN)) {
     // Protect characters in diagnostic message (especially :, [, ])
@@ -2317,6 +2332,13 @@ void table::compute_column_positions()
 	    column_start_reg(i),
 	    column_end_reg(i-1),
 	    as_string(column_separation[i-1]));
+    // If we have leftover expansion room in a table using the "expand"
+    // region option, put it prior to the last column so that the table
+    // looks as if expanded to the available line length.
+    if ((ncolumns > 2) && (flags & GAP_EXPAND) && (i == (ncolumns - 1)))
+      printfs(".if n .if \\n[" LEFTOVER_FACTOR_REG "] .nr %1 +(1n>?\\n["
+	      LEFTOVER_FACTOR_REG "])\n",
+	      column_start_reg(i));
     printfs(".nr %1 \\n[%2]+\\n[%3]/2\n",
 	    column_divide_reg(i),
 	    column_end_reg(i-1),

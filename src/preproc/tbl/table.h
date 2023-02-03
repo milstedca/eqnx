@@ -140,9 +140,10 @@ public:
     NOKEEP        = 0x00000020,
     NOSPACES      = 0x00000040,
     NOWARN        = 0x00000080,
-    // The next two properties help manage nroff mode output.
+    // The next few properties help manage nroff mode output.
     HAS_TOP_VLINE = 0x00000100,
     HAS_TOP_HLINE = 0x00000200,
+    GAP_EXPAND    = 0x00000400,
     EXPERIMENTAL  = 0x80000000 // undocumented
     };
   char *expand;

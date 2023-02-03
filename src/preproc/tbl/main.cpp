@@ -475,6 +475,7 @@ options *process_options(table_input &in)
       if (arg)
 	error("'expand' region option does not take an argument");
       opt->flags |= table::EXPAND;
+      opt->flags |= table::GAP_EXPAND;
     }
     else if (strieq(p, "box") || strieq(p, "frame")) {
       if (arg)

@@ -2222,22 +2222,22 @@ void table::compute_overall_width()
       break;
     }
   if (do_expansion) {
-  prints(".if \\n[" AVAILABLE_WIDTH_REG "] \\\n");
-  prints(".  nr " EXPAND_REG " \\n[.l]-\\n[.i]");
-  for (int i = 0; i < ncolumns; i++)
-    if (!expand[i])
-      printfs("-\\n[%1]", span_width_reg(i, i));
-  if (total_separation)
-    printfs("-%1n", as_string(total_separation));
-  prints("\n");
-  int colcount = count_expand_columns();
-  if (colcount > 1)
-    printfs(".nr " EXPAND_REG " \\n[" EXPAND_REG "]/%1\n",
-	    as_string(colcount));
-  for (int i = 0; i < ncolumns; i++)
-    if (expand[i])
-      printfs(".nr %1 \\n[%1]>?\\n[" EXPAND_REG "]\n",
-	      span_width_reg(i, i));
+    prints(".if \\n[" AVAILABLE_WIDTH_REG "] \\\n");
+    prints(".  nr " EXPAND_REG " \\n[.l]-\\n[.i]");
+    for (int i = 0; i < ncolumns; i++)
+      if (!expand[i])
+	printfs("-\\n[%1]", span_width_reg(i, i));
+    if (total_separation)
+      printfs("-%1n", as_string(total_separation));
+    prints("\n");
+    int colcount = count_expand_columns();
+    if (colcount > 1)
+      printfs(".nr " EXPAND_REG " \\n[" EXPAND_REG "]/%1\n",
+	      as_string(colcount));
+    for (int i = 0; i < ncolumns; i++)
+      if (expand[i])
+	printfs(".nr %1 \\n[%1]>?\\n[" EXPAND_REG "]\n",
+		span_width_reg(i, i));
   }
 }
 

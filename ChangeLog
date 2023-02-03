@@ -1,5 +1,16 @@
 2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/table.cpp (table::compute_column_positions):
+	Stop multiplying the gaps at the left and right edges of a table
+	{which occur when it is boxed or has a leading and/or trailing
+	vertical line} by the column separation factor.  Only interior
+	column gaps should be spread.  This change prevents tables using
+	the "expand" region option from being overset (exceeding the
+	line length), but might not (yet) fully expand to that length on
+	low-resolution devices due to integer roundoff.
+
+2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/table.cpp (table::compute_total_separation)
 	(table::compute_separation_factor, table::compute_widths): Add
 	comments to generated roff output to assist the mystified user.

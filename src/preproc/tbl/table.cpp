@@ -2300,8 +2300,7 @@ void table::compute_column_positions()
 {
   prints(".\\\" compute column positions\n");
   printfs(".nr %1 0\n", column_divide_reg(0));
-  printfs(".nr %1 %2*\\n[" SEPARATION_FACTOR_REG "]\n",
-	  column_start_reg(0),
+  printfs(".nr %1 %2n\n", column_start_reg(0),
 	  as_string(left_separation));
   // In nroff mode, compensate for width of vertical rule.
   if (left_separation)
@@ -2323,7 +2322,7 @@ void table::compute_column_positions()
 	    column_end_reg(i-1),
 	    column_start_reg(i));
   }
-  printfs(".nr %1 \\n[%2]+(%3*\\n[" SEPARATION_FACTOR_REG "])\n",
+  printfs(".nr %1 \\n[%2]+%3n\n",
 	  column_divide_reg(ncolumns),
 	  column_end_reg(i-1),
 	  as_string(right_separation));

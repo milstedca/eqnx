@@ -10,7 +10,7 @@ documents
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1989-2021 Free Software Foundation, Inc.
+.\" Copyright (C) 1989-2023 Free Software Foundation, Inc.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -637,7 +637,7 @@ issues a diagnostic message.
 .
 .TP
 .B |
-Place a vertical rule on the corresponding row of the table
+Place a vertical rule (line) on the corresponding row of the table
 (if two of these are adjacent,
 a double vertical rule).
 .
@@ -647,7 +647,10 @@ entries correspond to it.
 A
 .B |
 to the left of the first column descriptor or to the right of the last
-one produces a line at the edge of the table.
+one produces a vertical rule at the edge of the table;
+these are redundant
+(and ignored)
+in boxed tables.
 .
 .
 .P
@@ -1559,7 +1562,7 @@ See section \[lq]Examples\[rq] below for a demonstration.
 .
 .
 .P
-Double horizontal rules are not currently supported by
+Double horizontal rules are not supported by
 .MR grotty @MAN1EXT@ ;
 single rules are used instead.
 .
@@ -1569,7 +1572,8 @@ so the
 .B u
 column modifier has no effect.
 .
-On terminal devices,
+On terminal devices
+.RI (\[lq] nroff mode\[rq]),
 horizontal rules and box borders occupy a full vee of space;
 this amount is doubled for
 .B doublebox
@@ -1583,6 +1587,12 @@ mode:
 write
 .B ne
 requests accordingly.
+.
+Vertical rules between columns are drawn in the space between columns in
+.I nroff
+mode;
+using double vertical rules and/or reducing the column separation below
+the default can make them ugly or overstrike them with table data.
 .
 .
 .P

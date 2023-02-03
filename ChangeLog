@@ -11,6 +11,21 @@
 
 2023-02-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/table.cpp (table::compute_column_positions):
+	If a table has "left separation" (it is boxed, or has a vertical
+	rule on the left-hand side), increase the first column's start
+	register value by 1n, for symmetry with the right-hand size.
+
+	* src/preproc/tbl/tests/check-horizontal-line-length.sh:
+	* src/preproc/tbl/tests/check-line-intersections.sh:
+	* src/preproc/tbl/tests/check-vertical-line-length.sh: Update
+	output expectations.
+
+	* src/preproc/tbl/tbl.am (tbl_XFAIL_TESTS): Remove now-passing
+	test.
+
+2023-02-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/table.cpp (table::compute_total_separation):
 	Trivially refactor; rename loop indices so it's obvious which
 	dimension of a matrix they're referring to.

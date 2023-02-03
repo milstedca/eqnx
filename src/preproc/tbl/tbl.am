@@ -48,7 +48,6 @@ TESTS += $(tbl_TESTS)
 EXTRA_DIST += $(tbl_TESTS)
 
 tbl_XFAIL_TESTS = \
-  src/preproc/tbl/tests/boxes-and-vertical-rules.sh \
   src/preproc/tbl/tests/expand-region-option-works.sh \
   src/preproc/tbl/tests/table-lacks-spurious-top-border.sh \
   src/preproc/tbl/tests/x-column-modifier-works.sh

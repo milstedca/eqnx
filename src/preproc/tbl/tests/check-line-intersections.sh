@@ -42,7 +42,7 @@ echo "$output"
 for l in 1 3 5 7
 do
     echo "checking intersections on line $l"
-    echo "$output" | sed -n ${l}p | grep -Fqx '+--+---+---+' || wail
+    echo "$output" | sed -n ${l}p | grep -Fqx '+---+---+---+' || wail
 done
 
 # TODO: Check `-Tutf8` output for correct crossing glyph identities.

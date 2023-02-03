@@ -2287,6 +2287,8 @@ void table::compute_column_positions()
   printfs(".nr %1 %2*\\n[" SEPARATION_FACTOR_REG "]\n",
 	  column_start_reg(0),
 	  as_string(left_separation));
+  if (left_separation)
+    printfs(".if n .nr %1 +1n\n", column_start_reg(0));
   int i;
   for (i = 1;; i++) {
     printfs(".nr %1 \\n[%2]+\\n[%3]\n",

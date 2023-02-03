@@ -97,8 +97,8 @@ class table {
   string *minimum_width;
   int *column_separation;
   char *equal;
-  int left_separation;
-  int right_separation;
+  int left_separation; // from a vertical rule or box border, in ens
+  int right_separation; // from a vertical rule or box border, in ens
   int total_separation;
   int allocated_rows;
   void build_span_list();

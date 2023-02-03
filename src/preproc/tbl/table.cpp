@@ -2260,6 +2260,7 @@ void table::compute_total_separation()
 
 void table::compute_separation_factor()
 {
+  prints(".\\\" compute column separation factor\n");
   // Don't let the separation factor be negative.
   prints(".nr " SEPARATION_FACTOR_REG " \\n[.l]-\\n[.i]");
   for (int i = 0; i < ncolumns; i++)
@@ -2297,13 +2298,15 @@ void table::compute_separation_factor()
 
 void table::compute_column_positions()
 {
+  prints(".\\\" compute column positions\n");
   printfs(".nr %1 0\n", column_divide_reg(0));
   printfs(".nr %1 %2*\\n[" SEPARATION_FACTOR_REG "]\n",
 	  column_start_reg(0),
 	  as_string(left_separation));
+  // In nroff mode, compensate for width of vertical rule.
   if (left_separation)
     printfs(".if n .nr %1 +1n\n", column_start_reg(0));
-  int i;
+  int i; // needed after loop
   for (i = 1;; i++) {
     printfs(".nr %1 \\n[%2]+\\n[%3]\n",
 	    column_end_reg(i-1),
@@ -2357,7 +2360,7 @@ void table::make_columns_equal()
 
 void table::compute_widths()
 {
-  prints(".\\\" compute widths\n");
+  prints(".\\\" compute column widths\n");
   build_span_list();
   int i;
   horizontal_span *p;

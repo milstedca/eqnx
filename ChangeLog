@@ -1,5 +1,11 @@
 2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/table.cpp (table::compute_total_separation)
+	(table::compute_separation_factor, table::compute_widths): Add
+	comments to generated roff output to assist the mystified user.
+
+2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Refactor.
 
 	* src/preproc/tbl/table.cpp:

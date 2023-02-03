@@ -1,5 +1,23 @@
 2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Refactor.
+
+	* src/preproc/tbl/table.cpp:
+	* src/preproc/tbl/table.h: Rename `compute_expand_width` to
+	`compute_overall_width`, since this member function is used on
+	_all_ tables, not just those undergoing column or gap expansion.
+	For instance, in a post-groff 1.22.4 development, it throws a
+	diagnostic if an unexpanded table overruns the line length.
+	* src/preproc/tbl/table.cpp (table::compute_widths): Update call
+	site of `compute_overall_width`.
+	* src/preproc/tbl/table.cpp: Split the roff register behind the
+	`EXPAND_REG` C++ preprocessor macro into two, adding
+	`AVAILABLE_WIDTH_REG`.  Annotate the distinction.
+	(compute_overall_width): Annotate.  Move and conditionalize
+	logic so as not to produce as much unnecessary roff output.
+
+2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/main.cpp (main): Avoid reading from invalid
 	memory upon failure to open an input file.
 

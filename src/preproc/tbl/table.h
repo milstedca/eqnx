@@ -102,7 +102,7 @@ class table {
   int total_separation;
   int allocated_rows;
   void build_span_list();
-  void compute_expand_width();
+  void compute_overall_width();
   void do_hspan(int r, int c);
   void do_vspan(int r, int c);
   void allocate(int r);

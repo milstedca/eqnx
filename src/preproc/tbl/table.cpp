@@ -77,7 +77,8 @@ const int DEFAULT_COLUMN_SEPARATION = 3;
 // for use with `ig` requests embedded inside macro definitions
 #define NOP_NAME PREFIX "nop"
 
-#define EXPAND_REG PREFIX "expand"
+#define AVAILABLE_WIDTH_REG PREFIX "available-width"
+#define EXPAND_REG PREFIX "expansion-amount"
 
 #define LEADER_REG PREFIX LEADER
 
@@ -2175,20 +2176,23 @@ void table::build_span_list()
   }
 }
 
-void table::compute_expand_width()
+void table::compute_overall_width()
 {
-  // First, compute the unexpanded table width, measuring every column
-  // (including those eligible for expansion).
-  prints(".nr " EXPAND_REG " \\n[.l]-\\n[.i]");
+  prints(".\\\" compute overall width\n");
+  // Compute the amount of horizontal space available for expansion,
+  // measuring every column _including_ those eligible for expansion.
+  // This is the minimum required to set the table without compression.
+  prints(".nr " EXPAND_REG " 0\n");
+  prints(".nr " AVAILABLE_WIDTH_REG " \\n[.l]-\\n[.i]");
   for (int i = 0; i < ncolumns; i++)
     printfs("-\\n[%1]", span_width_reg(i, i));
   if (total_separation)
     printfs("-%1n", as_string(total_separation));
   prints("\n");
-  prints(".if \\n[" EXPAND_REG "]<0 \\{\\\n");
   // If the "expand" region option was given, a different warning will
   // be issued later (if "nowarn" was not also specified).
   if ((!(flags & NOWARN)) && (!(flags & EXPAND))) {
+    prints(".if \\n[" AVAILABLE_WIDTH_REG "]<0 \\{\\\n");
     // Protect characters in diagnostic message (especially :, [, ])
     // from being interpreted by eqn.
     prints(".  ig\n"
@@ -2205,12 +2209,21 @@ void table::compute_expand_width()
 	   "delim on\n"
 	   ".EN\n"
 	   ".  .\n");
-    prints(".  nr " EXPAND_REG " 0\n");
+    prints(".  nr " AVAILABLE_WIDTH_REG " 0\n");
+    prints(".\\}\n");
   }
-  prints(".\\}\n");
-  // Now, iterate through the columns again, spreading any excess line
-  // width among the expanded columns.
-  prints(".nr " EXPAND_REG " \\n[.l]-\\n[.i]");
+  // Now do a similar computation, this time omitting columns that
+  // _aren't_ undergoing expansion.  The difference is the amount of
+  // space we have to distribute among the expanded columns.
+  bool do_expansion = false;
+  for (int i = 0; i < ncolumns; i++)
+    if (expand[i]) {
+      do_expansion = true;
+      break;
+    }
+  if (do_expansion) {
+  prints(".if \\n[" AVAILABLE_WIDTH_REG "] \\\n");
+  prints(".  nr " EXPAND_REG " \\n[.l]-\\n[.i]");
   for (int i = 0; i < ncolumns; i++)
     if (!expand[i])
       printfs("-\\n[%1]", span_width_reg(i, i));
@@ -2225,6 +2238,7 @@ void table::compute_expand_width()
     if (expand[i])
       printfs(".nr %1 \\n[%1]>?\\n[" EXPAND_REG "]\n",
 	      span_width_reg(i, i));
+  }
 }
 
 void table::compute_total_separation()
@@ -2393,7 +2407,7 @@ void table::compute_widths()
   if (had_spanning_block)
     for (p = span_list; p; p = p->next)
       divide_span(p->start_col, p->end_col);
-  compute_expand_width();
+  compute_overall_width();
   if ((flags & EXPAND) && total_separation != 0) {
     compute_separation_factor();
     for (p = span_list; p; p = p->next)

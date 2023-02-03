@@ -31,6 +31,19 @@ font metrics
 .do nr *groff_xtotroff_1_man_C \n[.cp]
 .cp 0
 .
+.\" Define fallback for groff 1.23's MR macro if the system lacks it.
+.de @@
+.  de MR
+.    ie \n(.$=1 \
+.      I %\$1
+.    el \
+.      IR %\$1 (\$2)\$3
+.  \\.
+..
+.if  \n(.g .if !d MR .@@
+.if !\n(.g .@@
+.rm @@
+.
 .
 .\" ====================================================================
 .SH Synopsis

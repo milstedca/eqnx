@@ -31,6 +31,19 @@ output driver for HP LaserJet 4 and compatible printers
 .do nr *groff_grolj4_1_man_C \n[.cp]
 .cp 0
 .
+.\" Define fallback for groff 1.23's MR macro if the system lacks it.
+.de @@
+.  de MR
+.    ie \n(.$=1 \
+.      I %\$1
+.    el \
+.      IR %\$1 (\$2)\$3
+.  \\.
+..
+.if  \n(.g .if !d MR .@@
+.if !\n(.g .@@
+.rm @@
+.
 .\" This macro definition is poor style from a portability standpoint,
 .\" but it's a good test and demonstration of the standard font
 .\" repertoire for the devices where it has any effect at all, and so

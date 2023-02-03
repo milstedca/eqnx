@@ -1,5 +1,13 @@
 2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/lex.cpp (get_delimited_text): Avoid reading
+	from invalid memory when throwing diagnostic.  Duplicate
+	`filename` string, then free it on all paths out of function.
+
+	Fixes <https://savannah.gnu.org/bugs/?63214>.
+
+2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Add more tests.
 
 	* src/preproc/tbl/tests/boxes-and-vertical-rules.sh:

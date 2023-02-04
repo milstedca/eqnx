@@ -1,5 +1,6 @@
-[[ maintainer: send to platform-testers for betas/RCs;
-               info-gnu for releases ]]
+[[ maintainer: Send to platform-testers for betas/RCs,
+               info-gnu for releases,
+               and CC groff and linux-man@vger.kernel.org for both. ]]
 
 groff 1.23 release candidate 2, 1.23.0.rc2, is now available from GNU's
 alpha FTP site.  You may download the distribution archive from there.
@@ -53,7 +54,7 @@ release shipped with three automated unit tests; this one ships with
 over 130 unit and regression tests.
 
 As of this writing, per the GNU Savannah bug tracker, the groff project
-has resolved 379 problems as fixed for the 1.23.0 release.  Some of the
+has resolved 409 problems as fixed for the 1.23.0 release.  Some of the
 bugs we've corrected were over 30 years old.
 
 Classifying these issues by type and the component of the project to
@@ -61,36 +62,36 @@ which they apply, we find the following.
 
   Type                              Component
   ----                              ---------
-  Build/installation           35   Core                           95
-  Crash/unresponsive           10   Driver: grohtml                 4
-  Documentation                95   Driver: gropdf                  7
-  Feature change               37   Driver: grops                   2
-  Incorrect behavior          115   Driver: grotty                  4
-  Lint                         12   Driver: others/general          4
+  Build/installation           37   Core                           96
+  Crash/unresponsive           11   Driver: grohtml                 4
+  Documentation                99   Driver: gropdf                  8
+  Feature change               39   Driver: grops                   2
+  Incorrect behavior          128   Driver: grotty                  4
+  Lint                         14   Driver: others/general          8
   Rendering/cosmetics          10   Font: devpdf                    1
   Test                          4   Font: devps                     3
-  Warning/suspicious behavior  61   Font: others/general            4
-                                    General                        39
+  Warning/suspicious behavior  67   Font: others/general            4
+                                    General                        42
                                     Macros: man                    32
-                                    Macros: mdoc                   10
+                                    Macros: mdoc                   13
                                     Macros: me                     36
-                                    Macros: mm                     16
-                                    Macros: mom                     9
+                                    Macros: mm                     20
+                                    Macros: mom                    11
                                     Macros: ms                     27
-                                    Macros: other/general          25
-                                    Preprocessor: eqn               3
+                                    Macros: other/general          26
+                                    Preprocessor: eqn               5
                                     Preprocessor: grn               3
                                     Preprocessor: pic               5
                                     Preprocessor: preconv           7
                                     Preprocessor: refer             3
-                                    Preprocessor: tbl              15
+                                    Preprocessor: tbl              23
                                     Preprocessor: others/general    5
-                                    Utilities                      17
+                                    Utilities                      18
 
 Another way of capturing the amount of revision is as follows.
 
-$ git diff --stat 1.22.4 HEAD | tail -n 1
- 935 files changed, 117550 insertions(+), 69438 deletions(-)
+$ git diff --stat 1.22.4 1.23.0 | tail -n 1
+ [[ maintainer: insert output ]]
 
 Obtaining groff
 ===============
@@ -111,13 +112,15 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  groff-1.23.0.rc2.tar.gz
 yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy  groff-1.23.0.rc2.tar.gz
 
 The SHA-256 checksum is encoded in Base64 instead of the hexadecimal
-form that most checksum tools default to.
+form that most checksum tools default to.  The mechanism follows.
+
+sha256sum < groff-1.23.0.rc2.tar.gz | cut -f1 -d\  | xxd -r -p | base64
 
 [*] Use a .sig file to verify that the corresponding file (without the
     .sig suffix) is intact.  First, be sure to download both the .sig
     file and the corresponding archive.  Then, verify the archive.
 
-      gpg --verify groff-1.23.0.rc2.tar.gz
+      gpg --verify groff-1.23.0.rc2.tar.gz{.sig,}
 
     If that command fails because you don't have the required public
     key, you can import it.
@@ -126,8 +129,16 @@ form that most checksum tools default to.
 
     Re-run the 'gpg --verify' command subsequently.
 
+Errata
+======
+
+o A known failure in automated testing occurs (if you run "make check")
+  for gdiffmk if GNU diffutils 3.9 is used.  We hope to resolve this
+  issue for the final release.  The gdiffmk component's maintainer has
+  retired--we would welcome a volunteer to join groff development!
+
 News
 ====
 
 [[ maintainer: insert output of
-   "sed -n '/VERSION 1\.23/{:X;n;/VERSION 1\.22/q;p;bX}' NEWS" ]]
+   "sed -n '/VERSION 1\.23/{n;:X;n;/VERSION 1\.22/q;p;bX}' NEWS" ]]

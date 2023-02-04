@@ -1,3 +1,9 @@
+2023-02-04  Bertrand Garrigues <bertrand.garrigues@laposte.net>
+
+	Update gnulib submodule
+
+	gnulib now points on sha1 4e9fcc7b84fcac07a3e5a3cd5f66d1ff320dc8e8
+
 2023-02-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[man pages]: Provide page-local fallback definition of new `MR`

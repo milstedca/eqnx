@@ -1,3 +1,16 @@
+2023-02-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Drop XFAIL test.  It was written with an unclear
+	understanding of how DWB (AT&T) and Heirloom Doctools troff
+	behaved.  The individual checks might come back, modified.
+
+	* src/preproc/tbl/tests/table-lacks-spurious-top-border.sh:
+	Delete.
+
+	* src/preproc/tbl/tbl.am (tbl_TESTS): Drop it.
+	(tbl_XFAIL_TESTS, XFAIL_TESTS): Drop now empty assignment and
+	unnecessary update, respectively.
+
 2023-02-04  Bertrand Garrigues <bertrand.garrigues@laposte.net>
 
 	Update gnulib submodule

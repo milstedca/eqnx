@@ -1,3 +1,44 @@
+2023-03-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Trivially refactor.  Rename variables and functions to
+	use the term "rule" rather than "line".  The value of the term
+	"rule" is that it is not confusable with "lines" of (text) input
+	or output.
+
+	* src/preproc/tbl/main.cpp (struct format) <vline>:
+	(format::format) <vline>:
+	(format::add_rows) <old_vline, vline>:
+	(format::~format) <vline>:
+	(struct input_entry_format) <vline, vline_count>:
+	(input_entry_format::input_entry_format) <vline, vline_count>:
+	(input_entry_format::debug_print) <vline, vline_count>:
+	(process_format) <vline_count>:
+	(process_data) ([anonymous] enum) <SINGLE_HLINE, DOUBLE_HLINE>:
+	* src/preproc/tbl/table.cpp:
+	* src/preproc/tbl/table.h (enum format_type) <FORMAT_HLINE,
+	FORMAT_DOUBLE_HLINE>
+	(class table) <vline, vline_spanned, ([anonymous] enum)
+	<HAS_TOP_VLINE, HAS_TOP_HLINE>, add_single_hline,
+	add_double_hline, add_vlines, print_single_hline,
+	print_double_hline: Rename these...
+
+	* src/preproc/tbl/main.cpp (struct format) <vrule>:
+	(format::format) <vrule>:
+	(format::add_rows) <old_vrule, vrule>:
+	(format::~format) <vrule>:
+	(struct input_entry_format) <vrule, vrule_count>:
+	(input_entry_format::input_entry_format) <vrule, vrule_count>:
+	(input_entry_format::debug_print) <vrule, vrule_count>:
+	(process_format) <vrule_count>:
+	(process_data) ([anonymous] enum) <SINGLE_HRULE, DOUBLE_HRULE>:
+	* src/preproc/tbl/table.cpp:
+	* src/preproc/tbl/table.h (enum format_type) <FORMAT_HRULE,
+	FORMAT_DOUBLE_HRULE>
+	(class table) <vrule, vrule_spanned, ([anonymous] enum)
+	<HAS_TOP_VRULE, HAS_TOP_HRULE>, add_single_hrule,
+	add_double_hrule, add_vrules, print_single_hrule,
+	print_double_hrule: ...to these.
+
 2023-02-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tbl]: Fix Savannah #63838.

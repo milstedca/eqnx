@@ -2932,7 +2932,7 @@ Groff
 -----
 
 The environment variable GROFF_COMMAND_PREFIX can be used to control
-whether groff looks for `gtroff' or `troff' (similarily for the
+whether groff looks for `gtroff' or `troff' (similarly for the
 preprocessors.)
 
 Troff

@@ -950,7 +950,7 @@ position within the document (see pagename command above).
 .I \[oq]when\[cq]
 can be either
 .RI \[oq] after "\[cq] or \[oq]" before \[cq].
-If it is ommitted it defaults to
+If it is omitted it defaults to
 .RI \[oq] before \[cq].
 .IP
 The convenience command for this is

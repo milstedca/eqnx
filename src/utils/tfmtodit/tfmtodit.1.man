@@ -250,7 +250,7 @@ commands to obtain additional font metric information.
 .
 .TP
 .BI \-k \~skew-char
-The skew charcter of this font is at position
+The skew character of this font is at position
 .I skew-char.
 .
 .I skew-char

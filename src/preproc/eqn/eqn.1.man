@@ -93,7 +93,7 @@ or MathML
 .SH Description
 .\" ====================================================================
 .
-The GNU implemenation of
+The GNU implementation of
 .I eqn \" GNU
 is part of the
 .MR groff @MAN7EXT@

@@ -1397,7 +1397,7 @@ int char_buffer::run_output_filter(int filter, int argc, char **argv)
     set_redirection(STDERR_FILENO, saved_stderr);
 
   // Now we redirect the standard output to the inlet end of the pipe,
-  // and push out the appropiately formatted data to the filter.
+  // and push out the appropriately formatted data to the filter.
 
   set_redirection(STDOUT_FILENO, pipedes[1]);
   emit_troff_output(DEVICE_FORMAT(filter));

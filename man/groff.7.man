@@ -955,7 +955,7 @@ provides a set of mathematical and logical operators familiar to
 programmers\[em]as well as some unusual ones\[em]but supports only
 integer arithmetic.
 .
-(Provision is made for intepreting and
+(Provision is made for interpreting and
 reporting decimal fractions in certain cases.)
 .
 The internal data type used for computing results is usually a 32-bit
@@ -5529,9 +5529,11 @@ and
 .REG .F
 Name of input file (string-valued).
 .
+.
 .TP
 .REG .fam
-Nmae of font family (string-valued).
+Name of font family (string-valued).
+.
 .
 .TP
 .REG .fn

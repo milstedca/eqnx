@@ -276,7 +276,7 @@ tmac_an_prefix=\
   fi`
 
 # Extension to be used for refer index files.  Index files are not
-# sharable between different architectures, so you might want to use
+# shareable between different architectures, so you might want to use
 # different suffixes for different architectures.  Choose an extension
 # that doesn't conflict with refer or any other indexing program.
 indexext=.i

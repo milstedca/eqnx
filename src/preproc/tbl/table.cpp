@@ -423,7 +423,7 @@ void simple_entry::position_vertically()
       printfs(".sp |\\n[%1]u\n", row_start_reg(start_row));
       break;
     case entry_modifier::CENTER:
-      // Peform the motion in two stages so that the center is rounded
+      // Perform the motion in two stages so that the center is rounded
       // vertically upwards even if net vertical motion is upwards.
       printfs(".sp |\\n[%1]u\n", row_start_reg(start_row));
       printfs(".sp \\n[" BOTTOM_REG "]u-\\n[%1]u-1v/2u\n",
@@ -660,7 +660,7 @@ void block_entry::position_vertically()
       printfs(".sp |\\n[%1]u\n", row_start_reg(start_row));
       break;
     case entry_modifier::CENTER:
-      // Peform the motion in two stages so that the center is rounded
+      // Perform the motion in two stages so that the center is rounded
       // vertically upwards even if net vertical motion is upwards.
       printfs(".sp |\\n[%1]u\n", row_start_reg(start_row));
       printfs(".sp \\n[" BOTTOM_REG "]u-\\n[%1]u-\\n[%2]u/2u\n",

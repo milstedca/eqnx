@@ -197,7 +197,7 @@ character cancels detection of the end of a sentence.
 However,
 several characters are treated
 .I transparently
-after the occurence of an end-of-sentence character.
+after the occurrence of an end-of-sentence character.
 .
 That is,
 a
@@ -1830,7 +1830,7 @@ in
 .
 .
 .P
-A macro package anticipated for use in a document can be delcared to
+A macro package anticipated for use in a document can be declared to
 the formatter by the command-line option
 .BR \-m ;
 see
@@ -2375,7 +2375,7 @@ after any Emacs configuration:
 .
 .P
 Replace \[lq]groff\[rq] in the above with \[lq]nroff\[rq] if you want
-highlighing that does
+highlighting that does
 .I not
 recognize many of the GNU extensions to
 .IR roff ,

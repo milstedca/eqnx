@@ -110,7 +110,7 @@ int have_input = 0;		// whether \f, \F, \D'F...', \H, \m, \M,
 				// \O[345], \R, \s, or \S has been processed
 				// in token::next()
 int old_have_input = 0;		// value of have_input right before \n
-bool device_has_tcommand = false;	// 't' ouput command supported
+bool device_has_tcommand = false;	// 't' output command supported
 int unsafe_flag = 0;		// safer by default
 
 bool have_multiple_params = false;	// e.g., \[e aa], \*[foo bar]

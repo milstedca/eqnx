@@ -274,7 +274,7 @@ macros, respectively.
 .
 .PP
 In this man page,
-we approximate the result of each example as terminal ouput to be as
+we approximate the result of each example as terminal output to be as
 generic as possible since
 .I hdtbl
 currently only supports the
@@ -1029,7 +1029,7 @@ The font family for the table.
 .CI name
 is a
 .I groff
-font familiy identifier,
+font family identifier,
 such as
 .CR A
 for Avant Garde or

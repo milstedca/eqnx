@@ -1,5 +1,70 @@
 2023-02-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Correct numerous typos and solecisms throughout the source tree.
+
+	* ChangeLog:
+	* ChangeLog.115:
+	* ChangeLog.116:
+	* ChangeLog.117:
+	* ChangeLog.118:
+	* ChangeLog.119:
+	* ChangeLog.121:
+	* ChangeLog.122:
+	* Makefile.am:
+	* NEWS:
+	* PROBLEMS:
+	* README:
+	* contrib/chem/chem.am:
+	* contrib/chem/chem.pl:
+	* contrib/glilypond/README.txt:
+	* contrib/glilypond/glilypond.pl:
+	* contrib/hdtbl/groff_hdtbl.7.man:
+	* contrib/mm/ChangeLog:
+	* contrib/mm/m.tmac:
+	* contrib/pdfmark/pdfmark.ms:
+	* doc/automake.mom:
+	* doc/groff.texi:
+	* doc/me-revisions:
+	* doc/webpage.ms:
+	* m4/lib-link.m4:
+	* man/groff.7.man:
+	* man/groff_diff.7.man:
+	* man/roff.7.man:
+	* src/devices/grohtml/post-html.cpp:
+	* src/devices/grolbp/lbp.h:
+	* src/devices/gropdf/TODO:
+	* src/devices/gropdf/gropdf.1.man:
+	* src/devices/gropdf/gropdf.pl:
+	* src/devices/xditview/ChangeLog:
+	* src/devices/xditview/xditview.c:
+	* src/libs/libdriver/input.cpp:
+	* src/libs/libgroff/glyphuni.cpp:
+	* src/preproc/eqn/eqn.1.man:
+	* src/preproc/grn/gprint.h:
+	* src/preproc/grn/main.cpp:
+	* src/preproc/html/pre-html.cpp:
+	* src/preproc/preconv/preconv.cpp:
+	* src/preproc/tbl/table.cpp:
+	* src/roff/groff/pipeline.c:
+	* src/roff/groff/tests/substring_works.sh:
+	* src/roff/groff/tests/
+	use_point_size_escape_with_single_digit_arg.sh:
+	* src/roff/troff/div.cpp:
+	* src/roff/troff/input.cpp:
+	* src/roff/troff/troff.1.man:
+	* src/utils/grog/grog.pl:
+	* src/utils/indxbib/indxbib.cpp:
+	* src/utils/tfmtodit/tfmtodit.1.man:
+	* tmac/doc-old.tmac:
+	* tmac/doc.tmac:
+	* tmac/groff_man.7.man.in:
+	* tmac/hyphen.fr: Do it.
+
+	Fixes <https://savannah.gnu.org/bugs/?63589>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
+2023-02-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Drop XFAIL test.  It was written with an unclear
 	understanding of how DWB (AT&T) and Heirloom Doctools troff
 	behaved.  The individual checks might come back, modified.
@@ -447,7 +512,7 @@
 2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/doc.tmac: Trivially refactor.  Relocate handling of `D`
-	command-line reigster to prepare for greater synchronization
+	command-line register to prepare for greater synchronization
 	with groff man(7).
 
 2022-12-17  G. Branden Robinson <g.branden.robinson@gmail.com>
@@ -1088,7 +1153,7 @@
 
 	* font/devps/psstrip.sed: Stop stripping comment lines in
 	general instead of preserving only ones that use the form in the
-	Document Structuring Coventions.  This way we won't strip
+	Document Structuring Conventions.  This way we won't strip
 	copyright notices, like Werner Lemberg's in the FreeEuro font.
 	Thanks to Deri James for pointing this out.
 
@@ -4290,7 +4355,7 @@
 	ghostscript is either unavailable or deliberately disabled
 	by the person running the build.  These files need to be
 	built and installed anyway, and can be used on the target
-	sytem when the required infrastructure is available at run
+	system when the required infrastructure is available at run
 	time.
 
 2022-06-15  G. Branden Robinson <g.branden.robinson@gmail.com>
@@ -4432,7 +4497,7 @@
 	* src/devices/gropdf/gropdf.pl: Do more "DESC" file validation.
 	(LoadDesc): Bomb out gracefully if any of "unitwidth", "res", or
 	"sizescale" missing from "DESC" file.  This prevents Perl
-	warnings about use of unintialized values, and undoubtedly
+	warnings about use of uninitialized values, and undoubtedly
 	mangled output.
 
 2022-06-04  G. Branden Robinson <g.branden.robinson@gmail.com>
@@ -5826,10 +5891,10 @@
 
 	Fix the configuration of texi2dvi.
 
-	* m4/groff.m4: Set groff_have_texi2dvi if texi2dvi(1) is available
-	and useable, even if the availability was specified by the user
-	by manually providing the configure variable PROG_TEXI2DVI,
-	and not only if it was autodetected.
+	* m4/groff.m4: Set groff_have_texi2dvi if texi2dvi(1) is
+	available and usable, even if the availability was specified by
+	the user by manually providing the configure variable
+	PROG_TEXI2DVI, and not only if it was autodetected.
 	Also, set the PROG_TEXI2DVI Makefile variable to the name of
 	the texi2dvi program specified by the user or autodetected,
 	and not to the string "found", such that this Makefile variable
@@ -6233,10 +6298,10 @@
 	* font/devX100/devX100.am:
 	* font/devX75-12/devX75-12.am:
 	* font/devX75/devX75.am: Fix in-tree build; expand `fontdir`
-	instead of `abs_top_builddir` Make macro when definining
-	Automake variable for generated artifacts.  Problem introduced
-	by me in commit 3c82cbbfe, 27 February.  Thanks to Robert
-	Goulding for the report.
+	instead of `abs_top_builddir` Make macro when defining Automake
+	variable for generated artifacts.  Problem introduced by me in
+	commit 3c82cbbfe, 27 February.  Thanks to Robert Goulding for
+	the report.
 
 2022-03-22  Ingo Schwarze <schwarze@openbsd.org>
 
@@ -7091,7 +7156,7 @@
 	its semantics to a Boolean value (see Savannah #61734).
 	Introduce new register `mJ` to store "1" (if not groff) and the
 	current hyphenation mode otherwise.  Explain why in a comment.
-	(YS, UE, ME, MR): Restore hyphenation mode using `mJ` insted of
+	(YS, UE, ME, MR): Restore hyphenation mode using `mJ` instead of
 	`HY`.
 
 2022-02-16  G. Branden Robinson <g.branden.robinson@gmail.com>
@@ -8352,7 +8417,7 @@
 	* tmac/e.tmac (initialization): Introduce internal
 	`_mo1`..`_mo12`, `_dw1`..`_dw7`, and `_td_format` strings (with
 	English defaults).  Define them outside of the new `ld` macro so
-	that they can be overriden by localization packages.
+	that they can be overridden by localization packages.
 	(ld) <dw, mo, td>: Populate via the above new strings.
 	* tmac/trans.tmac: Stop defining `mo` and `dw`.  Instead, make
 	them aliases of the new strings above.   Handle `wa` and `wc`
@@ -9816,7 +9881,7 @@
 
 	* src/devices/grotty/tty.cpp: Boolify.  Demote numerous
 	variables (and one return type) from `int` to `bool`, use
-	Boolean insted of integer literals with them, and give the
+	Boolean instead of integer literals with them, and give the
 	variables names resembling logical predicates.
 	 - horizontal_tab_flag -> want_horizontal_tabs
 	 - form_feed_flag -> want_form_feeds
@@ -11913,7 +11978,7 @@
 	locale character set inference logic so that we only run it if
 	we have to (`-T` option was invalid or not given and
 	`GROFF_TYPESETTER` was not set in the environment or invalid).
-	Initalize `T` variable as empty.
+	Initialize `T` variable as empty.
 
 2021-07-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -13556,9 +13621,9 @@
 	* src/preproc/html/pre-html.cpp (scanArguments):
 	* src/devices/grohtml/post-html.cpp (main): Use libgroff's
 	warning() instead of printf() to emit diagnostic about
-	unrecognized paramter to `-x` option.  This sends the diagnostic
-	to the standard error stream and continues the long process of
-	fixing Savannah #52463.
+	unrecognized parameter to `-x` option.  This sends the
+	diagnostic to the standard error stream and continues the long
+	process of fixing Savannah #52463.
 
 2021-05-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -14172,7 +14237,7 @@
 
 	* tmac/s.tmac: Implement alternative rendering for automatic
 	footnote numbers in nroff mode, inspired by Heirloom Doctools
-	ms; since superscripting is not univerally available on
+	ms; since superscripting is not universally available on
 	terminals, surround number with square brackets instead.
 	(fn@init): New macro finishes initializing footnote module,
 	setting up aliases to par@sup-{start,end} strings in troff mode
@@ -15187,7 +15252,7 @@
 	(FontNamesAmbiguous, MapFont, main): Format diagnostic messages
 	more consistently with GNU Coding Standards.  Prefix with name
 	of complaining command.  Put argument literals in quotation
-	marks.  Put each messge on one line only.
+	marks.  Put each message on one line only.
 
 2020-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -15716,7 +15781,7 @@
 	* src/preproc/tbl/main.cpp (main):
 	* tmac/eqnrc:
 	* tmac/troffrc: Perform checks of register and macro definitions
-	with a .do request, since we might be in compatibilty mode.
+	with a .do request, since we might be in compatibility mode.
 
 2020-10-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -16112,7 +16177,7 @@
 	Lemberg on 3 May 2002 and Colin Watson updated man-db man(1)--on
 	the same day!--to synthesize the option when calling groff.
 
-	Later, in August 2005, Keith Marshall, a user of vesion 1.5m of
+	Later, in August 2005, Keith Marshall, a user of version 1.5m of
 	Brouwer/Lucifredi man(1), which did not set the LL register,
 	suggested that the existing .ll setting (technically, the value
 	of \n[.l], the only way the result of an .ll request could be
@@ -16862,7 +16927,7 @@
 
 	* **/*.{man,tmac}: Save compatibility mode robustly.
 
-	Use new \n[.cp] register to save compatibilty mode.
+	Use new \n[.cp] register to save compatibility mode.
 
 	Use register names based on the filename (at the source
 	maintenance level) to avoid clobbering other files' saved
@@ -17265,7 +17330,7 @@
 	Improve point-size escape diagnostics.
 
 	* src/roff/troff/input.cpp (read_size): Disclose context
-	{point-size escape intepretation} in diagnostic messages.  When
+	{point-size escape interpretation} in diagnostic messages.  When
 	a "bad digit" is encountered, describe it if possible.  When a
 	relative adjustment results in a negative point size, report the
 	computed value.  Also rename a variable for slightly more

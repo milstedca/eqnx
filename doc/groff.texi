@@ -1159,7 +1159,7 @@ postprocessor.
 @itemx -r@var{register}=@var{expr}
 Set @code{roff} register@tie{}@var{c} or @var{register} to the value
 @var{numeric-expression} (@pxref{Numeric Expressions}).
-@var{c}@tie{}must be one character; @var{regsiter} can be of arbitrary
+@var{c}@tie{}must be one character; @var{register} can be of arbitrary
 length.  Such register assignments happen before any macro file is
 loaded, including the startup file.  Due to @code{getopt_long}
 limitations, @var{c}@tie{}cannot be, and @var{register} cannot contain,
@@ -2646,7 +2646,7 @@ supported by @code{groff} @file{ms}.
 @item Format and layout
 By setting registers and strings, you can configure your document's
 typeface, margins, spacing, headers and footers, and footnote
-arrangment.  @xref{ms Document Control Settings}.
+arrangement.  @xref{ms Document Control Settings}.
 
 @item Document description
 A document description consists of any of: a title, one or more authors'
@@ -5085,7 +5085,7 @@ opposed to a space or tab) immediately after an end-of-sentence
 character cancels detection of the end of a sentence.  For example, it
 would be incorrect for GNU @code{troff} to infer the end of a sentence
 after the dot in @samp{3.14159}.  However, several characters are
-treated @emph{transparently} after the occurence of an end-of-sentence
+treated @emph{transparently} after the occurrence of an end-of-sentence
 character.  That is, GNU @code{troff} does not cancel end-of-sentence
 detection when it processes them.  This is because such characters are
 often used as footnote markers or to close quotations and
@@ -5811,7 +5811,7 @@ after the decimal point are optional.  Measurement expressions include
 @samp{10.5p}, @samp{11i}, and @samp{3.c}.
 
 @cindex basic units, conversion to
-@cindex units, basic, converstion to
+@cindex units, basic, conversion to
 @cindex conversion to basic units
 Measurements are scaled by the scaling unit and stored internally (with
 any fractional part discarded) in basic units.
@@ -6012,7 +6012,7 @@ and string interpolations interleaved with measurements and operators.
 
 GNU @code{troff} provides a set of mathematical and logical operators
 familiar to programmers---as well as some unusual ones---but supports
-only integer arithmetic.@footnote{Provision is made for intepreting and
+only integer arithmetic.@footnote{Provision is made for interpreting and
 reporting decimal fractions in certain cases.}  The internal data type
 used for computing results is usually a 32-bit signed integer, which
 suffices to represent magnitudes within a range of ±2
@@ -6805,7 +6805,7 @@ line to do so.   We consider this lethargic practice poor style.}  In
 the argument list to a macro, a double quote that @emph{isn't} preceded
 by a space @emph{doesn't} start a macro argument.  If not preceded by a
 double quote that began an argument, this double quote becomes part of
-the argument.  Futhermore, within a quoted argument, a pair of adjacent
+the argument.  Furthermore, within a quoted argument, a pair of adjacent
 double quotes becomes a literal double quote.
 
 @Example
@@ -12347,7 +12347,7 @@ characters.  When they do not, use substrings and/or catenation.
 @endExample
 @endDefreq
 
-(In pratice, we would end the @code{ds} request with a comment escape
+(In practice, we would end the @code{ds} request with a comment escape
 @code{\"} to prevent space from creeping into the definition during
 source document maintenance.)
 
@@ -15853,7 +15853,7 @@ This works by having the Perl script (run by @code{sy}) write
 @code{S} to a temporary file.  The @code{roff} document then reads the
 temporary file using the @code{so} request.
 
-@cindex time, formating
+@cindex time, formatting
 @cindex formatting the time
 The registers @code{seconds}, @code{minutes}, and @code{hours},
 initialized at startup of GNU @code{troff}, should satisfy most

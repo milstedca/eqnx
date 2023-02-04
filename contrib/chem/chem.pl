@@ -384,7 +384,7 @@ my $Line = '';
     }
 
     if ($Words[0] eq 'pic') {
-      # pic pass-thru
+      # pic pass-through
       return 1 if $#Words == 0;
       my $s = $line;
       $s =~ /^\s*pic\s*(.*)$/;

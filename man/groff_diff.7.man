@@ -2657,7 +2657,7 @@ above.
 .B .hpf
 or
 .B .hpfa
-aplly the mapping
+apply the mapping
 after reading or appending to the active list of patterns.
 .
 Its arguments are pairs of character codes\[em]integers from 0 to\~255.

@@ -428,7 +428,7 @@ if ($cpageno > 0)
 
 		my $pg=$bg->[3] || \@mediabox;
 
-		$bg->[5]=$pg->[3];	# box is continueing to next page
+		$bg->[5]=$pg->[3];	# box is continuing to next page
 		$box.=DrawBox($bg);
 		$bg->[4]=$pg->[1];	# will continue from page top
 	    }
@@ -2822,7 +2822,7 @@ sub NewPage
 
 		my $pg=$bg->[3] || \@defaultmb;
 
-		$bg->[5]=$pg->[3];	# box is continueing to next page
+		$bg->[5]=$pg->[3];	# box is continuing to next page
 		$box.=DrawBox($bg);
 		$bg->[4]=$pg->[1];	# will continue from page top
 	    }
@@ -3029,7 +3029,7 @@ sub do_m
     # PDF uses G/RG/K for graphic stroke, and g/rg/k for text & graphic fill.
     #
     # This means that we must maintain g/rg/k state separately for text colour & graphic fill (this is
-    # probably why 'gs' maintains seperate graphic states for text & graphics when distilling PS -> PDF).
+    # probably why 'gs' maintains separate graphic states for text & graphics when distilling PS -> PDF).
     #
     # To facilitate this:-
     #

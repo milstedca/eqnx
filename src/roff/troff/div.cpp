@@ -246,7 +246,7 @@ vunits macro_diversion::distance_to_next_trap()
   if (!diversion_trap.is_null() && diversion_trap_pos > vertical_position)
     return diversion_trap_pos - vertical_position;
   else
-    // Substract vresolution so that vunits::vunits does not overflow.
+    // Subtract vresolution so that vunits::vunits does not overflow.
     return vunits(INT_MAX - vresolution);
 }
 

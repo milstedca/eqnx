@@ -1169,7 +1169,7 @@ Fri Sep 3 07:33:14 1999 Jörgen Hägg (jh at axis.com)
 	  It didn't setup the @pl, @ll and @po as it should, now it does.
 	* mgm_ref/mgm_roff renamed to mmroff [-x]
 	* fixed y2k-bug in \*[DT]
-	* \n[cov*year] removed, hope noone used that.
+	* \n[cov*year] removed, hope no one used that.
 	* ISODATE added with Iso as command line flag
 		(iso-date suggested by Paul Eggert)
 	* Added ISODATE to tmac.mse and removed local settings
@@ -1235,7 +1235,7 @@ Fri Sep 6 07:13:07 1996 Jörgen Hägg (jh at axis.se)
 	*   .S D should set the point size to \nS, not 10.
 	*   .S was setting the vertical spacing based on the old point size
 		instead of the new point size.
-	*   Got rid of a spurrious .br that prevented run-in headings from
+	*   Got rid of a spurious .br that prevented run-in headings from
 		working.
 	*   Reset the .SP counters in pg@header so that spacing on one page
 		won't affect spacing on subsequent pages.
@@ -1260,7 +1260,7 @@ Fri Sep 6 07:13:07 1996 Jörgen Hägg (jh at axis.se)
 Wed May 15 07:39:32 1996 Jörgen Hägg (jh at axis.se)
 
 	* version 1.29
-	* Syntax and scaling errror fixed, (thanks to Frazer Williams)
+	* Syntax and scaling error fixed, (thanks to Frazer Williams)
 	* DF/DE will now do a line-break before printing the display.
 	* Updated the manual for TB,FG,EX and EC.
 	* Added support for the ms- (and mgs-)macro .IX
@@ -1385,7 +1385,7 @@ Mon Apr 5 09:36:01 1993 Joergen Haegg (jh at efd.lth.se)
 	* bug in VERBON fixed, causing strange errors.
 	* section-page footer fixed.
 	* added support for numberregister S
-	* fixed bug with floating displays wich made floats to
+	* fixed bug with floating displays which made floats to
 	  generate space on a page, but broke page anyway.
 	* end-of-page trap reinstalled.
 
@@ -1422,7 +1422,7 @@ Wed Mar 3 09:21:20 1993 Joergen Haegg (jh at efd.lth.se)
 	  normal text, but it will still set .vs.
 	* SK was broken, will now produce the requested number of
 	  empty pages.
-	* dotted lines added to LIST OF FIGURES adn friends.
+	* dotted lines added to LIST OF FIGURES and friends.
 	  Also better linespacing.
 
 Mon Feb 22 12:41:06 1993 Joergen Haegg (jh at efd.lth.se)
@@ -1490,7 +1490,7 @@ Thu Aug 20 13:56:31 1992 Joergen Haegg (jh at efd.lth.se)
 	* page-break in .EQ moved.
 	* changed unit for footer-size and header-size from units to lines.
 	  Fixes problems with .S and page-breaks.
-	* \n[%] is now treated as a string, wich makes it possible
+	* \n[%] is now treated as a string, which makes it possible
 	  to assign new formats to it. Unfortunately, it was necessary
 	  to change the page-number-variable in GETPN to a string.
 	* Makefile.sub included. (Thank you, James)

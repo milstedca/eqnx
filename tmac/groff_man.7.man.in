@@ -378,7 +378,7 @@ See section \(lqNotes\(rq below for examples of cases where better
 alternatives to empty arguments in macro calls are available.
 _endif()dnl
 .
-Most macro arguments wll be formatted as text in the output;
+Most macro arguments will be formatted as text in the output;
 exceptions are noted.
 .
 .

@@ -739,7 +739,7 @@ is writing cannot map the groff special character '*D' to both 'Delta'
 and 'uni0394'.
 
 Which, if any, such warnings you see depends on the version of the URW
-fonts you are builing groff against.  See the '--with-urw-fonts-dir'
+fonts you are building groff against.  See the '--with-urw-fonts-dir'
 option to the "configure" script, and the afmtodit(1) and groff_char(7)
 man pages for more background.
 

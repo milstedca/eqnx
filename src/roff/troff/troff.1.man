@@ -368,7 +368,7 @@ and ordering.
 .
 .TP
 .BI \-n\~ num
-Begin numering pages at
+Begin numbering pages at
 .I num.
 .
 The default

@@ -1853,7 +1853,7 @@ groffer
 
 .ULS
 .LI
-New option \-\-shell to select the shell under wich groffer shall run.
+New option \-\-shell to select the shell under which groffer shall run.
 .ULE
 .
 .SH 2

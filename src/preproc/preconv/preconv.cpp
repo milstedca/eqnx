@@ -1020,7 +1020,8 @@ detect_file_encoding(FILE *fp)
   char *ret = NULL;
 
   current_position = ftell(fp);
-  /* due to BOM and tag detection we are not at the begining of the file */
+  /* Due to BOM and tag detection, we are not at the beginning of the
+     file. */
   rewind(fp);
   if (fstat(fileno(fp), &stat_buf) != 0) {
     error("fstat: %1", strerror(errno));

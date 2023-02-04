@@ -194,6 +194,8 @@
 	* src/preproc/tbl/tbl.am (tbl_XFAIL_TESTS): Remove now-passing
 	test.
 
+	See <https://savannah.gnu.org/bugs/?61597> for background.
+
 2023-02-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/tbl/table.cpp (table::compute_total_separation):

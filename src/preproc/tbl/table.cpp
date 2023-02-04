@@ -2320,7 +2320,7 @@ void table::compute_column_positions()
   // In nroff mode, compensate for width of vertical rule.
   if (left_separation)
     printfs(".if n .nr %1 +1n\n", column_start_reg(0));
-  int i; // needed after loop
+  int i;
   for (i = 1;; i++) {
     printfs(".nr %1 \\n[%2]+\\n[%3]\n",
 	    column_end_reg(i-1),

@@ -2400,7 +2400,7 @@
 	* tmac/fallbacks.tmac: Define fallbacks for characters in ISO
 	Latin-{2,5,9} but not in Latin-1.
 
-	Fixes <https://bugs.debian.org/782903>.  Thanks to Rafal Peitrak
+	Fixes <https://bugs.debian.org/782903>.  Thanks to Rafal Pietrak
 	for the report.
 
 2022-10-03  G. Branden Robinson <g.branden.robinson@gmail.com>

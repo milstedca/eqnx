@@ -6358,7 +6358,8 @@
 	* doc/groff.texi (Environments): Clarify environment handling.
 	* man/groff.7.man (Environments): Add new section.
 
-	Fixes <https://savannah.gnu.org/bugs/?62036>.
+	Fixes <https://savannah.gnu.org/bugs/?62036>.  Thanks to Dave
+	Kemper for the report and a suggested patch.
 
 2022-03-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -7967,7 +7968,8 @@
 	baffling surprises if a sentence is recast in a text editor, and
 	a word beginning with a dot or neutral apostrophe is reflowed
 	onto the beginning of the next input line--suddenly it is parsed
-	as a control character.
+	as a control character.  Based on a patch by Bjarni Ingi
+	Gislason.
 
 	* contrib/hdtbl/groff_hdtbl.7.man:
 	* doc/automake.mom:
@@ -7993,7 +7995,8 @@
 	* contrib/groff_filenames/groff_filenames.5.man: Remove
 	superfluous paragraphing macro.
 
-	Fixes <https://savannah.gnu.org/bugs/?55084>.
+	Fixes <https://savannah.gnu.org/bugs/?55084>.  Thanks to Bjarni
+	Ingi Gislason for the report and a suggested patch.
 
 2022-01-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -8782,6 +8785,9 @@
 	being vertical motions.  Add discussion and example.  Thanks to
 	Bjarni Ingi Gislason for pointing out the problem in groff(7)
 	and Tadziu Hoffman for his lucid explanation.
+
+	Fixes <https://savannah.gnu.org/bugs/?61437>.  Thanks to Bjarni
+	Ingi Gislason for the report and a suggested patch.
 
 2021-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -11262,7 +11268,7 @@
 	* src/preproc/grn/hdb.cpp: Drop use of `register` storage class.
 
 	Fixes <https://savannah.gnu.org/bugs/?57733>.  Thanks to Bjarni
-	Ingi Gislason for the report.
+	Ingi Gislason for the report and a suggested patch.
 
 	* src/preproc/grn/hgraph.cpp (len, HGPrintElt, picurve):
 	* src/preproc/grn/hdb.cpp (DBRead): Wrap long lines.
@@ -12344,6 +12350,8 @@
 	(TMACMDOCUNSTRIPFILES): Delete variable.
 	(EXTRA_DIST): Drop `$(TMACMDOCUNSTRIPFILES)`.
 	($(TMACSTRIPFILES), $(TMACMDOCSTRIPFILES)): Drop targets.
+
+	The portions above are based on a patch by Ingo Schwarze.
 
 	* tmac/doc.tmac:
 	* tmac/mdoc/doc-common:
@@ -14691,7 +14699,8 @@
 	character definition using numeric code point escape, which is
 	less portable.
 
-	Fixes <https://savannah.gnu.org/bugs/?59528>.
+	Fixes <https://savannah.gnu.org/bugs/?59528>.  Thanks to Bjarni
+	Ingi Gislason for the report and a suggested patch.
 
 2021-02-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 

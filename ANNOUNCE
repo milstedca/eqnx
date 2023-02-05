@@ -62,7 +62,7 @@ which they apply, we find the following.
 
   Type                              Component
   ----                              ---------
-  Build/installation           37   Core                           96
+  Build/installation           37   Core                           93
   Crash/unresponsive           11   Driver: grohtml                 7
   Documentation                99   Driver: gropdf                  8
   Feature change               39   Driver: grops                   2
@@ -71,7 +71,7 @@ which they apply, we find the following.
   Rendering/cosmetics          10   Font: devpdf                    1
   Test                          4   Font: devps                     3
   Warning/suspicious behavior  67   Font: others/general            4
-                                    General                        42
+                                    General                        45
                                     Macros: man                    32
                                     Macros: mdoc                   13
                                     Macros: me                     36

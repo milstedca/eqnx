@@ -142,3 +142,58 @@ News
 
 [[ maintainer: insert output of
    "sed -n '/VERSION 1\.23/{n;:X;n;/VERSION 1\.22/q;p;bX}' NEWS" ]]
+
+Acknowledgements
+================
+
+The following people wrote code and/or documentation for this release.
+
+[[ maintainer: Insert output of
+   "git shortlog --summary --email" 1.22.4..HEAD _just before tagging_
+   1.23.0 so that all commits are captured. ]]
+
+We'd further like to thank the following people for otherwise helping
+ensure the quality of this release.
+
+[[ maintainer: Collect "thanks to" credits from the ChangeLog file, for
+   instance with "grep -i -A1 thanks ChangeLog". ]]
+
+"hackerb9"
+Alan D. Salewski
+Alex Colomar
+Alexander Kanavin
+Bertrand Garrigues
+Bjarni Ingi Gislason
+Blake McBride
+Colin Watson
+Dave Kemper
+Deri James
+Dorai Sitaram
+Doug McIlroy
+Florent Rougon
+Hans Bezemer
+Ingo Schwarze
+Jeremy Puhlman
+John Gardner
+KUBO Koichi
+Keith Marshall
+Nikita Ivanov
+Oliver Corff
+Olle Lögdahl
+Osamu Sayama
+Peter Schaffter
+Petru-Florin Mihancea
+Quentin Monnet
+Rafal Pietrak
+Ralph Corderoy
+Robert Bihlmeyer
+Robert Goulding
+Russ Allbery
+Sergei Trofimovich
+Steffen Nurpmeso
+T. Kurt Bond
+Tadziu Hoffman
+Thomas Dupond
+Werner Lemberg
+Wim Stockman
+наб

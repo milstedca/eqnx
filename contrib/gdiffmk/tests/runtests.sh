@@ -31,7 +31,7 @@ command=${abs_top_builddir}/gdiffmk
 #	Test the number of arguments and the first argument.
 case "$#-$1" in
 1-clean )
-	rm -fv result* tmp_file*
+	rm -fv result.* tmp_file.*
 	exit 0
 	;;
 1-run )
@@ -40,7 +40,7 @@ case "$#-$1" in
 	echo >&2 "$0 [ clean | run ]
 Run a few simple tests on '${command}'."'
 
-clean	Remove the result? and tmp_file? files.
+clean	Remove the result.? and tmp_file.? files.
 run	Run the tests.
 '
 	exit 255
@@ -63,8 +63,13 @@ TestResult () {
 	fi
 }
 
-tmpfile=/tmp/$$
-trap 'rm -f ${tmpfile}' 0 1 2 3 15
+CleanUp () {
+	rm -f tmp_file.* ${tmpfile}
+}
+
+tmpfile=${TMPDIR:-/tmp}/$$
+trap 'trap "" HUP INT QUIT TERM; CleanUp; kill -s INT $$' \
+	HUP INT QUIT TERM
 
 #	Run tests.
 
@@ -148,6 +153,8 @@ TestResult ${srcdir}/baseline.10 ${ResultFile}
 
 
 echo failure_count ${failure_count}
+
+CleanUp
 
 exit ${exit_code}
 

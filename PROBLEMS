@@ -781,6 +781,18 @@ future release of gnulib to do so.
 
 ----------------------------------------------------------------------
 
+* Tests fail when I run "make check" on Solaris 10.
+
+The test suite expects a POSIX-conformant shell and utilities.  Solaris
+10 does not offer these in the default $PATH.  We try to use features
+standardized no later than POSIX Issue 4 (1994).  Unfortunately even
+that is too recent for some implementations.  Solaris 11 is believed to
+have a conforming shell.  It may help to ensure that "/usr/xpg6/bin"
+and/or "/usr/xpg4/bin" precedes "/bin" and "/usr/bin/" in the $PATH when
+building groff.
+
+----------------------------------------------------------------------
+
 * I am building from the Git repository, using 'autoreconf' from a GNU
   Autoconf release earlier than 2.69, and I get this.
 

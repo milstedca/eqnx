@@ -1,4 +1,9 @@
-.\" -*- nroff -*-
+.\" This file is loaded by mdoc.tmac.
 .\"
-.\" This file is loaded after doc.tmac.
-.\" Put any local modifications to doc.tmac here.
+.\" Put local modifications to groff_mdoc(7)'s behavior here.
+.\"
+.\" Local Variables:
+.\" mode: nroff
+.\" fill-column: 72
+.\" End:
+.\" vim: set filetype=groff textwidth=72:

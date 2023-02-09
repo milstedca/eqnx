@@ -1,3 +1,9 @@
+2023-02-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (token::next): Use correct kind of
+	null object in comparison.  Fixes latent bug that would be
+	exposed if we were to migrate from zero literals to `nullptr`.
+
 2023-02-09  Deri James  <deri@chuzzlewit.myzen.co.uk>
 
 	[gropdf] Parse multiple entries in 'papersize' as specified in

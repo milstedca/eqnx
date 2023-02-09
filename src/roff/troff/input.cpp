@@ -2069,7 +2069,7 @@ void token::next()
 	  // environment::set_font warns if a bogus mounting position is
 	  // requested.  We must warn here if a bogus font name is
 	  // selected.
-	  if (*p != 0 /* nullptr */ || s.is_empty()) {
+	  if (*p != '\0' || s.is_empty()) {
 	    if (!curenv->set_font(s))
 	      warning(WARN_FONT, "cannot select font '%1'",
 		      s.contents());

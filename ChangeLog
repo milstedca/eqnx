@@ -1,3 +1,15 @@
+2023-02-09  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	[gropdf] Parse multiple entries in 'papersize' as specified in
+	the groff_font man page. Reported by Ben Wong and fix based on
+	his patch, thanks.
+
+	* src/devices/gropdf/gropdf.pl: Parse papersize string for
+	possible multiple (space separated) entries. First valid entry
+	wins.
+
+	Fixes https://savannah.gnu.org/bugs/?63757
+
 2023-02-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Correct numerous typos and solecisms throughout the source tree.

@@ -20,7 +20,7 @@ internet at <http://www.gnu.org/licenses/gpl-2.0.txt>. */
 #endif
 #include <math.h>
 
-#include "assert.h"
+#include <assert.h>
 
 bool is_prime(unsigned n)
 {

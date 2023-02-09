@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#include "assert.h"
+#include <assert.h>
 
 #include "errarg.h"
 #include "error.h"

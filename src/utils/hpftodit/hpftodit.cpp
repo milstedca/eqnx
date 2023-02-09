@@ -31,7 +31,7 @@ put filename in error messages (or fix lib)
 #include <ctype.h>
 #include <math.h>
 #include <errno.h>
-#include "assert.h"
+#include <assert.h>
 #include "posix.h"
 #include "errarg.h"
 #include "error.h"

@@ -53,7 +53,7 @@ both be zero. */
 #include <errno.h>
 #include "errarg.h"
 #include "error.h"
-#include "assert.h"
+#include <assert.h>
 #include "cset.h"
 #include "nonposix.h"
 

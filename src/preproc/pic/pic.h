@@ -46,7 +46,7 @@ extern "C" {
 }
 #endif
 
-#include "assert.h"
+#include <assert.h>
 #include "cset.h"
 #include "stringclass.h"
 #include "lf.h"

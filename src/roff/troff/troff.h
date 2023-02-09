@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <stdlib.h>
 #include <errno.h>
 
-#include "assert.h"
+#include <assert.h>
 #include "color.h"
 #include "device.h"
 #include "searchpath.h"

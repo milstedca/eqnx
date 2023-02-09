@@ -54,7 +54,7 @@ release shipped with three automated unit tests; this one ships with
 over 160 unit and regression tests.
 
 As of this writing, per the GNU Savannah bug tracker, the groff project
-has resolved 411 problems as fixed for the 1.23.0 release.  Some of the
+has resolved 412 problems as fixed for the 1.23.0 release.  Some of the
 bugs we've corrected were over 30 years old.
 
 Classifying these issues by type and the component of the project to
@@ -62,7 +62,7 @@ which they apply, we find the following.
 
   Type                              Component
   ----                              ---------
-  Build/installation           37   Core                           93
+  Build/installation           38   Core                           94
   Crash/unresponsive           11   Driver: grohtml                 7
   Documentation                99   Driver: gropdf                  9
   Feature change               39   Driver: grops                   2

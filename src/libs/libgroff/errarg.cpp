@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #endif
 
 #include <stdio.h>
-#include "assert.h"
+#include <assert.h>
 #include "errarg.h"
 
 errarg::errarg(const char *p) : type(STRING)

@@ -18,14 +18,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "lib.h"
 
+#include <assert.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <sys/stat.h>
 #ifdef HAVE_UCHARDET
 #include <uchardet/uchardet.h>
 #endif
-
-#include <assert.h>
 
 #include "errarg.h"
 #include "error.h"

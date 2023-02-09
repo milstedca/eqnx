@@ -31,6 +31,7 @@ X command to include bitmap graphics
 */
 
 #include <assert.h>
+
 #include "driver.h"
 #include "nonposix.h"
 

@@ -18,10 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "lib.h"
 
-#include <stdlib.h>
-#include <errno.h>
-
 #include <assert.h>
+#include <errno.h>
+#include <stdlib.h>
 
 #include "posix.h"
 #include "errarg.h"

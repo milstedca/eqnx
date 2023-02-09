@@ -18,6 +18,7 @@
 */
 
 #include <assert.h>
+
 #include "driver.h"
 
 /* If we are sending output to an onscreen pager (as is the normal case

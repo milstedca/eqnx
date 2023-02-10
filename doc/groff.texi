@@ -10058,7 +10058,7 @@ assumed.
 @code{nl} interpolates or sets the vertical drawing position.  When the
 formatter starts and first page transition hasn't happened yet,
 @code{nl} is negative.  If a header trap has been planted on the page
-(typically at vertical position @code{0}, you can assign a negative
+(typically at vertical position @code{0}), you can assign a negative
 value to @code{nl} to spring it if that page has already started
 (@pxref{Page Location Traps}).
 

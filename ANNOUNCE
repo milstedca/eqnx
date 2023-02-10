@@ -29,8 +29,12 @@ while consuming minimal system resources.
 Changes
 =======
 
-groff 1.23.0.rc2 represents two years of development since the previous
-release candidate, and four since the last release.
+Since groff 1.22.4 was released in December 2018, 26 people have made a
+total of over 4,500 commits.
+
+[[ maintainer: Insert output of
+   "git shortlog --summary --email 1.22.4..HEAD" _just before tagging_
+   1.23.0 so that all commits are captured. ]]
 
 Headline features nominated by our development community include:
   * a new 'man' macro, "MR", for formatting man page cross references;
@@ -145,14 +149,8 @@ News
 Acknowledgements
 ================
 
-The following people wrote code and/or documentation for this release.
-
-[[ maintainer: Insert output of
-   "git shortlog --summary --email" 1.22.4..HEAD _just before tagging_
-   1.23.0 so that all commits are captured. ]]
-
-We'd further like to thank the following people for otherwise helping
-ensure the quality of this release.
+We'd like to thank the following people for helping ensure the quality
+of this release.
 
 [[ maintainer: Collect "thanks to" credits from the ChangeLog file, for
    instance with "grep -i -A1 thanks ChangeLog".  A manual merge of

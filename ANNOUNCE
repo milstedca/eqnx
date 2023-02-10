@@ -134,8 +134,7 @@ Caveats
 
 o A failure in automated testing occurs (if you run "make check") for
   gdiffmk if GNU diffutils 3.9 is used.  This is a known problem with
-  that release; see <https://lists.gnu.org/archive/html/bug-diffutils/\
-  2023-01/msg00011.html>.
+  that release; see <https://debbugs.gnu.org/db/61/61193.html>.
 
 News
 ====

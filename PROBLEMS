@@ -1,4 +1,4 @@
-    Copyright 1989-2022 Free Software Foundation, Inc.
+    Copyright 1989-2023 Free Software Foundation, Inc.
 
     Copying and distribution of this file, with or without modification,
     are permitted in any medium without royalty provided the copyright
@@ -105,6 +105,13 @@ glyph and there is no historically established *roff input character,
 ordinary or special, for obtaining it when a hyphen and minus sign are
 both separately available.  To obtain a true minus sign, use the special
 character escape sequences '\(mi' or '\[mi]'.
+
+----------------------------------------------------------------------
+
+* gdiffmk doesn't work / its automated test fails.
+
+A defect in GNU diffutils 3.9 (January 2023) causes gdiffmk to
+malfunction.  See <https://debbugs.gnu.org/db/61/61193.html>.
 
 ----------------------------------------------------------------------
 

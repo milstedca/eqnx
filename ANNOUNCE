@@ -155,12 +155,15 @@ We'd further like to thank the following people for otherwise helping
 ensure the quality of this release.
 
 [[ maintainer: Collect "thanks to" credits from the ChangeLog file, for
-   instance with "grep -i -A1 thanks ChangeLog". ]]
+   instance with "grep -i -A1 thanks ChangeLog".  A manual merge of
+   similar from the contrib/ change log files may also be necessary. ]]
 
 "hackerb9"
 Alan D. Salewski
 Alex Colomar
 Alexander Kanavin
+Andreas Kusalananda Kähäri
+Axel Kielhorn
 Ben Wong
 Bertrand Garrigues
 Bjarni Ingi Gislason
@@ -172,12 +175,15 @@ Deri James
 Dorai Sitaram
 Doug McIlroy
 Florent Rougon
+Gene
 Hans Bezemer
 Ingo Schwarze
+Jeff Conrad
 Jeremy Puhlman
 John Gardner
 KUBO Koichi
 Keith Marshall
+Ken Mandelberg
 Nikita Ivanov
 Oliver Corff
 Olle Lögdahl

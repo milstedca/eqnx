@@ -129,13 +129,13 @@ sha256sum < groff-1.23.0.rc2.tar.gz | cut -f1 -d\  | xxd -r -p | base64
 
     Re-run the 'gpg --verify' command subsequently.
 
-Errata
-======
+Caveats
+=======
 
-o A known failure in automated testing occurs (if you run "make check")
-  for gdiffmk if GNU diffutils 3.9 is used.  We hope to resolve this
-  issue for the final release.  The gdiffmk component's maintainer has
-  retired--we would welcome a volunteer to join groff development!
+o A failure in automated testing occurs (if you run "make check") for
+  gdiffmk if GNU diffutils 3.9 is used.  This is a known problem with
+  that release; see <https://lists.gnu.org/archive/html/bug-diffutils/\
+  2023-01/msg00011.html>.
 
 News
 ====

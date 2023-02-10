@@ -7,10 +7,10 @@
 	* tests/gdiffmk_tests.sh: Delete.
 	* tests/runtests.sh: Revise to search for test artifact input
 	and output directories (source vs. build).  Drop argument
-	argument processing, converting two modes ("run" and "clean")
-	into one (run, with cleaning afterward).  Also ensure we use the
-	build directory to construct "tmp_file.7".  Update authorship
-	credit so that Mike Bianchi isn't asked to support it.
+	processing, converting two modes ("run" and "clean") into one
+	{run, with cleaning afterward}.  Also ensure we use the build
+	directory to construct "tmp_file.7".  Update authorship credit
+	so that Mike Bianchi isn't asked to support it.
 
 	* tests/baseline.7: Update expected test output.
 

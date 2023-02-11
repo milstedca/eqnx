@@ -140,6 +140,19 @@ o A failure in automated testing occurs (if you run "make check") for
   gdiffmk if GNU diffutils 3.9 is used.  This is a known problem with
   that release; see <https://debbugs.gnu.org/db/61/61193.html>.
 
+o Some automated test failures (if you run "make check") are expected on
+  macOS.  These are due to differences between GNU and BSD-descended
+  versions of POSIX-standardized utilities.  We hope to resolve these
+  for final release.  The following tests are affected.
+
+	src/roff/groff/tests/some_escapes_accept_newline_delimiters.sh
+	tmac/tests/an_TS-adds-no-vertical-space.sh
+	tmac/tests/an_use-input-traps-correctly.sh
+	tmac/tests/doc_heading-font-remapping-works.sh
+	tmac/tests/latin2_works.sh
+	tmac/tests/latin5_works.sh
+	tmac/tests/latin9_works.sh
+
 News
 ====
 

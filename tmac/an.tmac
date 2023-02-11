@@ -1,6 +1,6 @@
 .\" groff implementation of man(7) package
 .\"
-.\" Copyright (C) 1989-2022 Free Software Foundation, Inc.
+.\" Copyright (C) 1989-2023 Free Software Foundation, Inc.
 .\"      Written by James Clark (jjc@jclark.com)
 .\" Enhanced by: Werner Lemberg <wl@gnu.org>
 .\"              Larry Kollar <kollar@alltel.net>
@@ -1161,17 +1161,30 @@ contains unsupported escape sequence
 .  rm an*prefix
 ..
 .
+.\" There is no standardized format for man page URLs, but the default
+.\" is expected to work (or be harmlessly ignored) everywhere except
+.\" macOS.  Override in man.local if desired.
+.nr an*MR-URL-format 1
+.
 .\" Set a man page cross reference.
 .\" .MR page-topic page-section [trailing-text]
 .de1 MR
 .  if ((\\n[.$] < 2) : (\\n[.$] > 3)) \
 .    an-style-warn .\\$0 expects 2 or 3 arguments, got \\n[.$]
+.  if (\\n[an*MR-URL-format] = 1) \
+.    ds an*url man:\\$1(\\$2)\" used everywhere but macOS
+.  if (\\n[an*MR-URL-format] = 2) \
+.    ds an*url man:\\$1.\\$2\" Bwana (macOS)
+.  if (\\n[an*MR-URL-format] = 3) \
+.    ds an*url x-man-doc://\\$2/\\$1(\\$2)\" ManOpen (macOS)
+.  if (\\n[an*MR-URL-format] = 4) \
+.    ds an*url x-man-page://\\$2/\\$1\" Terminal.app, iTerm (macOS)
 .  nh
 .  if \\n[an*do-hyperlink] \{\
 .    if \\n[an*is-output-html] \
-.      nop \X^html:<a href="man:\\$1(\\$2)">^\c
+.      nop \X^html:<a href="\\*[an*url]">^\c
 .    if \\n[an*is-output-terminal] \
-.      nop \X^tty: link man:\\$1(\\$2)^\c
+.      nop \X^tty: link \\*[an*url]^\c
 .  \}
 .      nop \&\\*[an-lic]\f[\\*[MF]]\\$1\\*[an-ic]\f[R](\\$2)\c
 .  if \\n[an*do-hyperlink] \{\

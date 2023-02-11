@@ -14,6 +14,16 @@
 .\" might prefer to remap it to bold ("B") instead.
 .\" .if n .ftr CW R
 .\"
+.\" A de facto standard URL format for man pages is recognized
+.\" everywhere except Apple, where different macOS applications expect
+.\" different formats.
+.\"   1: man:groff(1)           -- package default
+.\"   2: man:groff.1            -- Bwana (macOS)
+.\"   3: x-man-doc://1/groff(1) -- ManOpen (macOS)
+.\"   4: x-man-page://1/groff   -- Terminal.app, iTerm (macOS)
+.\" Set this register to configure which the `MR` macro uses.
+.\" .nr an*MR-URL-format 1
+.\"
 .\" Local Variables:
 .\" mode: nroff
 .\" fill-column: 72

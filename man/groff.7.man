@@ -528,9 +528,10 @@ When filling is enabled
 (the default),
 a line may be broken at a space.
 .
-When adjustment is enabled and set to both margins
+When adjustment to both margins is enabled
 (the default),
-inter-word spaces may be expanded to justify the line.
+inter-word spaces are expanded until the output line reaches the
+configured length.
 .
 An adjustable but non-breaking space is available with
 .esc \[ti] .
@@ -6648,7 +6649,7 @@ vertical position trap enablement status
 distance to the next trap
 .RB ( \[rs]n[.t] ),
 amount of needed
-.RB ( .ne -requested )
+.RB ( .ne -requested)
 space that caused the most recent vertical position trap to be sprung
 .RB ( \[rs]n[.ne] ),
 amount of needed space truncated from the amount requested

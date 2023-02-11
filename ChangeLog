@@ -1,3 +1,18 @@
+2023-02-11  Deri James  <deri@chuzzlewit.myzen.co.uk>
+
+	[BuildFoundries]: Fails if neither ghostcript nor URW fonts
+	are installed.
+
+	* font/devpdf/util/BuildFoundries.pl: When the change to hold paths
+	in an array, rather than a delimited string (see commit
+	4ae4aeb6555f4f16c28fcb03eb1f56577826054c), the FindGSpath
+	subroutine should return a pointer to an empty array when the
+	call to ghostscript fails, rather than return an empty string,
+	as was done previously.
+
+	See <https://lists.gnu.org/archive/html/groff/2023-02/msg00042.html>
+	thanks to Bruno Haible for the report.
+
 2023-02-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Switch to using system's assert.h header file.  It is futile to

@@ -2210,7 +2210,7 @@ and a square \(sq labels \*G extensions.
 \&.$s	M\(dd	output footnote area separator
 \e%	F\(sc	control hyphenation
 \en%	R\(sc	current page number
-\e&	F\(sc	non-printing input break
+\e&	F\(sc	dummy character
 \e(\fI\,xx\fP	F\(sc	interpolate special character \fIxx\fP
 \&.(b	M	begin block
 \&.(c	M	begin centered block

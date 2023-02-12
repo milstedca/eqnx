@@ -468,7 +468,7 @@ developing GNU and promoting software freedom.''
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle January 2023
+@subtitle February 2023
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -2604,7 +2604,7 @@ character
 Interpolate glyph of special character named @var{char}.
 
 @item \&
-non-printing, zero-width dummy character
+dummy character
 
 @item \~
 Insert an unbreakble space that is adjustable like a normal space.
@@ -5049,8 +5049,8 @@ by default, an uncommon character in natural language text, and is
 ``sequence''.
 
 @cindex @code{\&}, at end of sentence
-The non-printing input break escape sequence @code{\&} can be used after
-an end-of-sentence character to defeat end-of-sentence detection on a
+The dummy character escape sequence @code{\&} can be used after an
+end-of-sentence character to defeat end-of-sentence detection on a
 per-instance basis.  We can therefore rewrite our input more
 defensively.
 
@@ -5281,13 +5281,12 @@ counterpart, the @dfn{no-break control character}, a neutral apostrophe
 (@code{'}), suppresses the break that is implied by some requests.
 These characters were chosen because it is uncommon for lines of text in
 natural languages to begin with them.
-@cindex non-printing input break (@code{\&})
-@cindex input break, non-printing (@code{\&})
-@cindex break, non-printing input (@code{\&})
+@cindex dummy character (@code{\&}), as control character suppressor
+@cindex character, dummy (@code{\&}), as control character suppressor
 If you require a formatted period or apostrophe (closing single
 quotation mark) where GNU @code{troff} is expecting a control character,
-prefix the dot or neutral apostrophe with the non-printing input break
-escape sequence, @samp{\&}.
+prefix the dot or neutral apostrophe with the dummy character escape
+sequence, @samp{\&}.
 
 @cindex control line
 An input line beginning with a control character is called a
@@ -9356,9 +9355,8 @@ set with the @code{shc} request.
 
 @item
 @cindex @code{\&}, and translations
-The pair @samp{@var{c}\&} (this is an arbitrary character@tie{}@var{c}
-followed by the non-printing input break) maps this character to
-nothing.
+The pair @samp{@var{c}\&} (an arbitrary character@tie{}@var{c} followed
+by the dummy character) maps this character to nothing.
 
 @Example
 .tr a\&
@@ -10124,6 +10122,7 @@ special symbols (Greek, mathematics).
 * Special Fonts::
 * Artificial Fonts::
 * Ligatures and Kerning::
+* Dummy Characters::
 @end menu
 
 @c ---------------------------------------------------------------------
@@ -11404,7 +11403,7 @@ an integer.
 
 @c ---------------------------------------------------------------------
 
-@node Ligatures and Kerning,  , Artificial Fonts, Fonts and Symbols
+@node Ligatures and Kerning, Dummy Characters, Artificial Fonts, Fonts and Symbols
 @subsection Ligatures and Kerning
 @cindex ligatures and kerning
 @cindex kerning and ligatures
@@ -11460,9 +11459,8 @@ enable pairwise kerning, otherwise disable it.  The read-only register
 @code{.kern} is set to@tie{}1 if pairwise kerning is enabled,
 0@tie{}otherwise.
 
-@cindex non-printing input break (@code{\&}), effect on kerning
-@cindex input break, non-printing (@code{\&}), effect on kerning
-@cindex break, non-printing input (@code{\&}), effect on kerning
+@cindex dummy character (@code{\&}), effect on kerning
+@cindex character, dummy (@code{\&}), effect on kerning
 If the font description file contains pairwise kerning information,
 glyphs from that font are kerned.  Kerning between two glyphs can be
 inhibited by placing @code{\&} between them: @samp{V\&A}.
@@ -11534,14 +11532,36 @@ ugly.  Use this escape sequence whenever an upright glyph is followed
 immediately by an oblique glyph without any intervening space.
 @endDefesc
 
+@c TODO: Move this node earlier in the text due to dummy characters'
+@c multifarious effects.
+@node Dummy Characters,  , Ligatures and Kerning, Fonts and Symbols
+@subsection Dummy Characters
+
+As discussed in @ref{Requests and Macros}, the first character on an
+input line is treated specially.  Further, formatting a glyph has many
+consequences on formatter state (@pxref{Environments}).  Occasionally,
+we want to escape this context or embrace some of those consequences
+without actually rendering a glyph to the output.
+
 @Defesc {\\&, , , }
-Insert a non-printing input break, which is invisible.  Its intended use
-is to stop interaction of a character with its surroundings.
+@cindex dummy character (@code{\&})
+@cindex character, dummy (@code{\&})
+Interpolate a dummy character, which is constitutive of output but
+invisible.@footnote{Opinions of this escape sequence's name abound.
+``Zero-width space'' is a popular misnomer:@: @code{roff} formatters do
+not treat it like a space.  Ossanna called it a ``non-printing,
+zero-width character'', but the character causes @emph{output} even
+though it does not ``print''.  If no output line is pending, the dummy
+character starts one.  Contrast an empty input document with one
+containing only @code{\&} (and a newline).  The former produces no
+output; the latter, a blank page.}  Its presence alters the
+interpretation context of a subsequent input character, and enjoys
+several applications.
 
 @itemize @bullet
 @item
-It prevents the insertion of extra space after an end-of-sentence
-character.
+It prevents insertion of extra space after an end-of-sentence character
+(@pxref{Sentences}).
 
 @Example
 Test.
@@ -11579,34 +11599,58 @@ V\&A
 @end iftex
 
 @item
-It is needed to map an arbitrary character to nothing in the @code{tr}
-request (@pxref{Character Translations}).
+It permits the @code{tr} request to remap a character to nothing
+(@pxref{Character Translations}).
 @end itemize
-@endDefesc
 
-@Defesc {\\), , , }
-This escape is similar to @code{\&} except that it behaves like a
-character declared with the @code{cflags} request to be transparent for
-the purposes of an end-of-sentence character.
-
-Its main usage is in macro definitions to protect against arguments
-starting with a control character.
+The dummy character escape sequence sees use in macro definitions as a
+means of ensuring that arguments are treated as text even if they begin
+with spaces or control characters.
 
 @Example
-.de xxx
-\)\\$1
+.de HD \" typeset a simple bold heading
+.  sp
+.  ft B
+\&\\$1 \" exercise: remove the \&
+.  ft
+.  sp
 ..
-.de yyy
-\&\\$1
+.HD .\|.\|.\|surprised?
+@endExample
+@endDefesc
+
+One way to think about the dummy character is to imagine placing the
+symbol @samp{&} in the input at a certain location; if doing so has all
+the side effects on formatting that you desire except for sticking an
+ugly ampersand in the midst of your text, the dummy character is what
+you want in its place.
+
+@Defesc {\\), , , }
+@cindex transparent dummy character (@code{\)})
+@cindex character, transparent dummy (@code{\)})
+@cindex dummy character, transparent (@code{\)})
+Interpolate a @slanted{transparent} dummy character---one that is
+transparent to end-of-sentence detection.  It behaves as @code{\&},
+except that @code{\&} is treated as letters and numerals normally are
+after @samp{.}, @samp{?} and @samp{!}; @code{\&} cancels end-of-sentence
+detection, and @code{\)} does not.
+@c This feature seems too weak to me; see Savannah #60571.  -- GBR
+
+@Example
+.de Suffix-&
+.  nop \&\\$1
 ..
-This is a test.\c
-.xxx '
-This is a test.
-    @result{}This is a test.'  This is a test.
-This is a test.\c
-.yyy '
-This is a test.
-    @result{}This is a test.' This is a test.
+.
+.de Suffix-)
+.  nop \)\\$1
+..
+.
+Here's a sentence.\c
+.Suffix-& '
+Another one.\c
+.Suffix-) '
+And a third.
+    @result{} Here's a sentence.' Another one.'  And a third.
 @endExample
 @endDefesc
 
@@ -13870,9 +13914,8 @@ The optional second parameter@tie{}@var{c} is a glyph to draw the line
 with.  If this second argument is not specified, @code{gtroff} uses the
 underscore glyph, @code{\[ru]}.
 
-@cindex non-printing input break (@code{\&}), effect on @code{\l} escape
-@cindex input break, non-printing (@code{\&}), effect on @code{\l} escape
-@cindex break, non-printing input (@code{\&}), effect on @code{\l} escape
+@cindex dummy character (@code{\&}), effect on @code{\l} escape
+@cindex character, dummy (@code{\&}), effect on @code{\l} escape
 To separate the two arguments (to prevent @code{gtroff} from
 interpreting a drawing glyph as a scaling indicator if the glyph is
 represented by a single character) use @code{\&}.
@@ -14725,7 +14768,7 @@ and no motion is produced before calling @var{name}.
 @c the leading space macro sees only @samp{foo} without the preceding
 @c @samp{\fI}.  If the macro should see the font escape, you have to
 @c ``protect'' it with something that creates a token, like the
-@c non-printing input break; for example, @samp{\&\fIfoo}.
+@c dummy character; for example, @samp{\&\fIfoo}.
 @endDefreq
 
 @c ---------------------------------------------------------------------

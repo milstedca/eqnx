@@ -1860,6 +1860,49 @@ See section \[lq]Implementation differences\[rq] in
 .
 .
 .\" ====================================================================
+.SH "Dummy characters"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Dummy
+.\" Characters".
+As discussed in
+.MR roff @MAN7EXT@ ,
+the first character on an input line is treated specially.
+.
+Further,
+formatting a glyph has many
+consequences on formatter state
+(see section \[lq]Environments\[rq] below).
+.
+Occasionally,
+we want to escape this context or embrace some of those consequences
+without actually rendering a glyph to the output.
+.
+.B \[rs]&
+interpolates a dummy character,
+which is constitutive of output but invisible.
+.
+Its presence alters the interpretation context of a subsequent input
+character,
+and enjoys several applications:
+preventing the insertion of extra space after an end-of-sentence
+character,
+preventing interpretation of a control character at the beginning of an
+input line,
+preventing kerning between two glyphs,
+and permitting the
+.B tr
+request to remap a character to nothing.
+.
+.B \[rs])
+works as
+.B \[rs]&
+does,
+except that it does not cancel a pending end-of-sentence state.
+.\" END Keep (roughly) parallel with groff.texi node "Dummy Characters".
+.
+.
+.\" ====================================================================
 .SH "Control structures"
 .\" ====================================================================
 .
@@ -4515,13 +4558,13 @@ Move one-twelfth em to the right on typesetters.
 .
 .TP
 .ESC &
-Non-printing input break.
+Interpolate a dummy character.
 .
 .
 .TP
 .ESC )
-Non-printing input break,
-transparent to end-of-sentence recognition.
+Interpolate a dummy character that is transparent to end-of-sentence
+recognition.
 .
 .
 .TP

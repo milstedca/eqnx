@@ -819,11 +819,11 @@ contains unsupported escape sequence
 .\"
 .\" Implementation notes:
 .\"
-.\" We always emit a non-printing input break \& before the first
-.\" argument.  This is necessary only when the calling man page is in
-.\" compatibility mode; it works around the surprising AT&T semantics of
-.\" \f escapes at the beginning of an input line.  See "Implementation
-.\" differences" in groff_diff(7) or the groff Texinfo manual.
+.\" We always emit a dummy character \& before the first argument.  This
+.\" is necessary only when the calling man page is in compatibility
+.\" mode; it works around the surprising AT&T semantics of \f escapes at
+.\" the beginning of an input line.  See "Implementation differences" in
+.\" groff_diff(7) or the groff Texinfo manual.
 .\"
 .\" The italic correction escapes can be visually confusing.  We apply
 .\" the following rules, always on the same input line.

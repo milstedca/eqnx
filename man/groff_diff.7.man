@@ -975,14 +975,29 @@ argument to the
 .B ds
 request.
 .
+.
 .TP
 .B \[rs])
-Like
+Interpolate a
+.I transparent
+dummy character\[em]one that is transparent to end-of-sentence
+detection.
+.
+It behaves as
+.BR \[rs]& ,
+except that
 .B \[rs]&
-except that it behaves like a character declared with the
-.B .cflags
-request to be transparent for the purposes of end-of-sentence
-recognition.
+is treated as letters and numerals normally are after
+\[lq].\[rq],
+\[lq]?\[rq],
+and
+\[lq]!\[rq];
+.B \[rs]&
+cancels end-of-sentence detection,
+and
+.B \[rs])
+does not.
+.
 .
 .TP
 .BI \[rs]*[ "xxx arg1 arg2\~"\c
@@ -4442,8 +4457,7 @@ is
 If the font description file contains pairwise kerning information,
 glyphs from that font are kerned.
 .
-Kerning between two glyphs can be inhibited by placing a non-printing
-input break
+Kerning between two glyphs can be inhibited by placing a dummy character
 .B \[rs]&
 between them.
 .

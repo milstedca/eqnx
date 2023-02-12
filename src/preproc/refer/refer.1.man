@@ -668,7 +668,7 @@ or the second citation's
 is non-empty.
 .
 (If you wish to prevent this,
-use the non-printing input break escape sequence
+use the dummy character escape sequence
 .B \[rs]&
 as the first citation's
 .IR closing-text .)

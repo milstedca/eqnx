@@ -1,3 +1,23 @@
+2023-02-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[docs]: Re-re-christen 'ESCAPE_AMPERSAND' ('\&').  Now call it a
+	{non-transparent} "dummy character".  Also rechristen
+	'ESCAPE_RIGHT_PARENTHESIS', ('\)') as the "transparent dummy
+	character"; it has no impact on sentence-ending detection.
+
+	* doc/groff.texi:
+	* doc/meref.me.in:
+	* man/groff.7.man:
+	* man/groff_diff.7.man:
+	* man/roff.7.man:
+	* src/preproc/refer/refer.1.man:
+	* tmac/groff_man.7.man.in: Do it.
+
+	Fixes <https://savannah.gnu.org/bugs/?62816>.  Thanks to Dave
+	Kemper to the report and to the groff mailing list for the
+	vigorous discussion.  I don't expect my solution to please
+	everyone.
+
 2023-02-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac: Add internal register `an*MR-URL-format` to
@@ -13971,7 +13991,7 @@
 	structural differences to the reader's burden.  Make their
 	implementations rigidly parallel.  Update comments.
 	(RI, IR, IB, BI, RB, BR): Always define the `an-result` string
-	as empty except for a non-printing input break for the sake of
+	as empty except for a dummy character '\&' for the sake of
 	compatibility mode.
 	(RI, IR, IB, BI): Defer interpolation of the first argument to
 	the while loop if there are at least two (like the existing RB,
@@ -16419,9 +16439,9 @@
 
 	* tmac/tty.tmac: Define fallback glyphs for Bell System logo
 	{non-breaking adjustable space} and radical extension and square
-	root extension (both non-printing input breaks) to suppress
-	warnings from groff_char(7).  As none of these are encoded in
-	Unicode it seems unlikely they will become supported soon.
+	root extension (both dummy characters '\&') to suppress warnings
+	from groff_char(7).  As none of these are encoded in Unicode it
+	seems unlikely they will become supported soon.
 
 2020-08-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 

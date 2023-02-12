@@ -183,7 +183,7 @@ or one of them is followed by two spaces on the same input line,
 it appends an inter-word space
 followed by an inter-sentence space in the formatted output.
 .
-The non-printing input break escape sequence
+The dummy character escape sequence
 .B \[rs]&
 can be used after an end-of-sentence character to defeat end-of-sentence
 detection on a per-instance basis.
@@ -411,8 +411,8 @@ If you require a formatted period or apostrophe
 where
 .\" GNU @code{troff}
 the formatter is expecting a control character,
-prefix the dot or neutral apostrophe with the non-printing input break
-escape sequence,
+prefix the dot or neutral apostrophe with the dummy character escape
+sequence,
 .RB \[lq] \[rs]& \[rq].
 .
 .

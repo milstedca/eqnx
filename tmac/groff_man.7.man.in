@@ -696,7 +696,7 @@ or
 .B ?\&
 followed by multiple spaces can change.
 .
-Use the non-printing input break escape sequence
+Use the dummy character escape sequence
 .B \(rs&
 before the spaces.
 .
@@ -1222,7 +1222,7 @@ see subsection \(lqPortability\(rq below.
 .
 .
 .IP \(bu
-The non-printing input break escape sequence
+The dummy character escape sequence
 .B \e&
 follows the ellipsis when further text will follow after space on the
 output line,
@@ -2534,7 +2534,7 @@ or Documenter's Workbench
 .
 .TP
 .B \e&
-Non-printing input break.
+Dummy character.
 .
 Insert at the beginning of an input line to prevent a dot or apostrophe
 from being interpreted as the beginning of a
@@ -4055,7 +4055,7 @@ Since dots both begin control lines and are candidate end-of-sentence
 characters,
 however,
 it is sometimes necessary to prefix and/or suffix an ellipsis with the
-non-printing input break escape sequence
+dummy character escape sequence
 .BR \[rs]& .
 .
 That fact stands even if a string is defined to contain the sequence;
@@ -4071,9 +4071,9 @@ but not always.)
 A hypothetical string
 .B EL
 that contained an ellipsis,
-but not the trailing input break,
-would then need to be suffixed with
-.B \[rs]&
+but not the trailing dummy character
+.BR \[rs]& ,
+would then need to be suffixed with the latter
 when not ending a sentence.
 .
 .
@@ -4119,7 +4119,8 @@ In syntax synopses,
 missing ellipses can cause great confusion.
 .
 Dots and space are universally supported.
-.\" XXX: Does an unconditional _preceding_ input break cause problems?
+.\" XXX: Does an unconditional _preceding_ dummy character cause
+.\" problems?
 _endif()dnl
 .
 .

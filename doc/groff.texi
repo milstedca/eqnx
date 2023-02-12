@@ -11499,8 +11499,8 @@ the same amount to compensate.
 @endDefreq
 
 Sometimes, when typesetting letters of different fonts, more or less
-space at such boundaries is needed.  There are two escape sequences to
-help with this.
+space at such boundaries is needed.  Two escape sequences help with
+this.
 
 @Defesc {\\/, , , }
 @cindex italic correction (@code{\/})

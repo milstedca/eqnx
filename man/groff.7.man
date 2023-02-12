@@ -1970,7 +1970,7 @@ their truth values are as shown below.
 .
 .
 .br
-.ne 14v
+.ne 3v
 .P
 .TS
 rf(BI) lB
@@ -2252,9 +2252,9 @@ an increment or decrement is applied as if to\~0.
 .SH "Request short reference"
 .\" ====================================================================
 .
-Not all details of each request's behavior are outlined here.
+Not all details of request behavior are outlined here.
 .
-Refer to the
+See the
 .I groff
 Texinfo manual or
 .MR groff_diff @MAN7EXT@ .

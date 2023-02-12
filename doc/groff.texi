@@ -490,7 +490,7 @@ developing GNU and promoting software freedom.''
 * Invoking groff::
 * Tutorial for Macro Users::
 * Major Macro Packages::
-* gtroff Reference::
+* GNU troff Reference::
 * File Formats::
 * Copying This Manual::
 * Request Index::
@@ -1699,7 +1699,7 @@ language, nor even some of its major features like diversions, traps,
 and environments.  A familiarity with some basic concepts and mechanisms
 common to macro packages (like ``displays'') remains helpful; this
 chapter aims to bring you to this level.  If you prefer a meticulous and
-comprehensive presentation, try @ref{gtroff Reference} instead.
+comprehensive presentation, try @ref{GNU troff Reference} instead.
 
 @menu
 * Basics::
@@ -2130,7 +2130,7 @@ to changing the appearance of section headers.
 @c =====================================================================
 @c =====================================================================
 
-@node Major Macro Packages, gtroff Reference, Tutorial for Macro Users, Top
+@node Major Macro Packages, GNU troff Reference, Tutorial for Macro Users, Top
 @chapter Macro Packages
 @cindex major macro package
 @cindex package, macro, major
@@ -4859,8 +4859,8 @@ Names containing only uppercase letters and digits.
 @c =====================================================================
 @c =====================================================================
 
-@node gtroff Reference, File Formats, Major Macro Packages, Top
-@chapter @code{gtroff} Reference
+@node GNU troff Reference, File Formats, Major Macro Packages, Top
+@chapter GNU @code{troff} Reference
 @cindex reference, @code{gtroff}
 @cindex @code{gtroff}, reference
 
@@ -4917,7 +4917,7 @@ not interested in details.
 @codequoteundirected on
 
 @c BEGIN Keep roughly parallel with roff(7) section "Concepts".
-@node Text, Measurements, gtroff Reference, gtroff Reference
+@node Text, Measurements, GNU troff Reference, GNU troff Reference
 @section Text
 @cindex text, GNU @code{troff} processing
 
@@ -5685,7 +5685,7 @@ later.
 .\" Albert Einstein, _The Meaning of Relativity_, 1922
 @endCartoucheExample
 
-@node Page Geometry, Measurements, Text, gtroff Reference
+@node Page Geometry, Measurements, Text, GNU troff Reference
 @section Page Geometry
 @cindex page, geometry of
 @cindex geometry, page
@@ -5794,7 +5794,7 @@ one vee.
 
 @c BEGIN Keep (roughly) parallel with section "Measurements" of
 @c groff(7).
-@node Measurements, Numeric Expressions, Text, gtroff Reference
+@node Measurements, Numeric Expressions, Text, GNU troff Reference
 @section Measurements
 @cindex measurements
 @cindex scaling indicator
@@ -6000,7 +6000,7 @@ scaling unit.
 
 @c BEGIN Keep (roughly) parallel with section "Numeric expressions" of
 @c groff(7).
-@node Numeric Expressions, Identifiers, Measurements, gtroff Reference
+@node Numeric Expressions, Identifiers, Measurements, GNU troff Reference
 @section Numeric Expressions
 @cindex numeric expressions
 @cindex expressions, numeric
@@ -6356,7 +6356,7 @@ not qualify, so our first attempt got a warning.
 @c =====================================================================
 
 @c BEGIN Keep (roughly) parallel with section "Identifiers" of groff(7).
-@node Identifiers, Formatter Instructions, Numeric Expressions, gtroff Reference
+@node Identifiers, Formatter Instructions, Numeric Expressions, GNU troff Reference
 @section Identifiers
 @cindex identifiers
 
@@ -6524,7 +6524,7 @@ emitted, and the previous contents of @samp{xxx} are lost.
 
 @c =====================================================================
 
-@node Formatter Instructions, Registers, Identifiers, gtroff Reference
+@node Formatter Instructions, Registers, Identifiers, GNU troff Reference
 @section Formatter Instructions
 @cindex formatter instructions
 @cindex instructing the formatter
@@ -7183,7 +7183,7 @@ a surprising way.
 @c END Keep (roughly) parallel with subsection " Delimiters" of
 @c groff(7).
 
-@node Comments, Registers, Formatter Instructions, gtroff Reference
+@node Comments, Registers, Formatter Instructions, GNU troff Reference
 @section Comments
 @cindex comments
 
@@ -7280,7 +7280,7 @@ the call of its end macro.
 
 @c BEGIN Keep (roughly) parallel with subsection "Registers" of
 @c groff(7).
-@node Registers, Manipulating Filling and Adjustment, Formatter Instructions, gtroff Reference
+@node Registers, Manipulating Filling and Adjustment, Formatter Instructions, GNU troff Reference
 @section Registers
 @cindex registers
 
@@ -7862,7 +7862,7 @@ Indicator of output device selection (Boolean-valued); see
 
 @c =====================================================================
 
-@node Manipulating Filling and Adjustment, Manipulating Hyphenation, Registers, gtroff Reference
+@node Manipulating Filling and Adjustment, Manipulating Hyphenation, Registers, GNU troff Reference
 @section Manipulating Filling and Adjustment
 @cindex manipulating filling and adjustment
 @cindex filling and adjustment, manipulating
@@ -8269,7 +8269,7 @@ sequence.
 
 @c =====================================================================
 
-@node Manipulating Hyphenation, Manipulating Spacing, Manipulating Filling and Adjustment, gtroff Reference
+@node Manipulating Hyphenation, Manipulating Spacing, Manipulating Filling and Adjustment, GNU troff Reference
 @section Manipulating Hyphenation
 @cindex manipulating hyphenation
 @cindex hyphenation, manipulating
@@ -8787,7 +8787,7 @@ The hyphenation space adjustment threshold is available in the
 
 @c =====================================================================
 
-@node Manipulating Spacing, Tabs and Fields, Manipulating Hyphenation, gtroff Reference
+@node Manipulating Spacing, Tabs and Fields, Manipulating Hyphenation, GNU troff Reference
 @section Manipulating Spacing
 @cindex manipulating spacing
 @cindex spacing, manipulating
@@ -8952,7 +8952,7 @@ header).
 
 @c =====================================================================
 
-@node Tabs and Fields, Character Translations, Manipulating Spacing, gtroff Reference
+@node Tabs and Fields, Character Translations, Manipulating Spacing, GNU troff Reference
 @section Tabs and Fields
 @cindex tabs, and fields
 @cindex fields, and tabs
@@ -9278,7 +9278,7 @@ environment (@pxref{Environments}).
 @codequotebacktick on
 @codequoteundirected on
 
-@node Character Translations, @code{troff} and @code{nroff} Modes, Tabs and Fields, gtroff Reference
+@node Character Translations, @code{troff} and @code{nroff} Modes, Tabs and Fields, GNU troff Reference
 @section Character Translations
 @cindex character translations
 @cindex translations of characters
@@ -9455,7 +9455,7 @@ instead of @code{tr} it prints @samp{a}.
 
 @c =====================================================================
 
-@node @code{troff} and @code{nroff} Modes, Line Layout, Character Translations, gtroff Reference
+@node @code{troff} and @code{nroff} Modes, Line Layout, Character Translations, GNU troff Reference
 @section @code{troff} and @code{nroff} Modes
 @cindex @code{troff} mode
 @cindex mode, @code{troff}
@@ -9513,7 +9513,7 @@ file @file{tty.tmac}, which is loaded by the startup file
 
 @c =====================================================================
 
-@node Line Layout, Line Continuation, @code{troff} and @code{nroff} Modes, gtroff Reference
+@node Line Layout, Line Continuation, @code{troff} and @code{nroff} Modes, GNU troff Reference
 @section Line Layout
 @cindex line layout
 @cindex layout, line
@@ -9709,7 +9709,7 @@ collected line still uses the old line length value.
 
 @c =====================================================================
 
-@node Line Continuation, Page Layout, Line Layout, gtroff Reference
+@node Line Continuation, Page Layout, Line Layout, GNU troff Reference
 @section Line Continuation
 @cindex line control
 @cindex control, line
@@ -9821,7 +9821,7 @@ request invocation or macro call.}
 @codequotebacktick on
 @codequoteundirected on
 
-@node Page Layout, Page Control, Line Continuation, gtroff Reference
+@node Page Layout, Page Control, Line Continuation, GNU troff Reference
 @section Page Layout
 @cindex page layout
 @cindex layout, page
@@ -9947,7 +9947,7 @@ This doesn't affect the register@tie{}@code{%}.
 
 @c =====================================================================
 
-@node Page Control, Fonts and Symbols, Page Layout, gtroff Reference
+@node Page Control, Fonts and Symbols, Page Layout, GNU troff Reference
 @section Page Control
 @cindex page control
 @cindex control, page
@@ -10102,7 +10102,7 @@ one.
 
 @c =====================================================================
 
-@node Fonts and Symbols, Manipulating Type Size and Vertical Spacing, Page Control, gtroff Reference
+@node Fonts and Symbols, Manipulating Type Size and Vertical Spacing, Page Control, GNU troff Reference
 @section Fonts and Symbols
 @cindex fonts
 
@@ -11664,7 +11664,7 @@ And a third.
 @c _honor_ vertical spacing (to within their crude vertical motion
 @c quanta).
 
-@node Manipulating Type Size and Vertical Spacing, Colors, Fonts and Symbols, gtroff Reference
+@node Manipulating Type Size and Vertical Spacing, Colors, Fonts and Symbols, GNU troff Reference
 @section Manipulating Type Size and Vertical Spacing
 @cindex manipulating type size and vertical spacing
 
@@ -11987,7 +11987,7 @@ with a default scaling unit of @samp{z}.
 @c =====================================================================
 
 @c BEGIN Keep (roughly) parallel with section "Colors" of groff(7).
-@node Colors, Strings, Manipulating Type Size and Vertical Spacing, gtroff Reference
+@node Colors, Strings, Manipulating Type Size and Vertical Spacing, GNU troff Reference
 @section Colors
 @cindex colors
 
@@ -12129,7 +12129,7 @@ is the default.
 @c =====================================================================
 
 @c BEGIN Keep (roughly) parallel with section "Strings" of groff(7).
-@node Strings, Conditionals and Loops, Colors, gtroff Reference
+@node Strings, Conditionals and Loops, Colors, GNU troff Reference
 @section Strings
 @cindex strings
 
@@ -12488,7 +12488,7 @@ not destroyed until it has no more names.
 
 @c =====================================================================
 
-@node Conditionals and Loops, Writing Macros, Strings, gtroff Reference
+@node Conditionals and Loops, Writing Macros, Strings, GNU troff Reference
 @section Conditionals and Loops
 @cindex conditionals and loops
 @cindex loops and conditionals
@@ -12984,7 +12984,7 @@ the next iteration.
 
 @c =====================================================================
 
-@node Writing Macros, Page Motions, Conditionals and Loops, gtroff Reference
+@node Writing Macros, Page Motions, Conditionals and Loops, GNU troff Reference
 @section Writing Macros
 @cindex writing macros
 @cindex macros, writing
@@ -13524,7 +13524,7 @@ sequence for the minus sign glyph.
 
 @c =====================================================================
 
-@node Page Motions, Drawing Requests, Writing Macros, gtroff Reference
+@node Page Motions, Drawing Requests, Writing Macros, GNU troff Reference
 @section Page Motions
 @cindex page motions
 @cindex motions, page
@@ -13877,7 +13877,7 @@ an actual emergency!
 
 @c =====================================================================
 
-@node Drawing Requests, Traps, Page Motions, gtroff Reference
+@node Drawing Requests, Traps, Page Motions, GNU troff Reference
 @section Drawing Requests
 @cindex drawing requests
 @cindex requests for drawing
@@ -14200,7 +14200,7 @@ follows.
 
 @c =====================================================================
 
-@node Deferring Output, Traps, Drawing Requests, gtroff Reference
+@node Deferring Output, Traps, Drawing Requests, GNU troff Reference
 @section Deferring Output
 @cindex deferred output
 
@@ -14257,7 +14257,7 @@ Environments save us considerable effort.
 @c =====================================================================
 
 @c BEGIN Keep (roughly) parallel with subsection "Traps" of groff(7).
-@node Traps, Diversions, Deferring Output, gtroff Reference
+@node Traps, Diversions, Deferring Output, GNU troff Reference
 @section Traps
 @cindex traps
 
@@ -14901,7 +14901,7 @@ end-of-input macro using the @code{am} request.
 
 @c BEGIN Keep (roughly) parallel with subsection "Diversions" of
 @c groff(7).
-@node Diversions, Punning Names, Traps, gtroff Reference
+@node Diversions, Punning Names, Traps, GNU troff Reference
 @section Diversions
 @cindex diversions
 
@@ -15218,7 +15218,7 @@ space width, and so on) is retained.
 
 @c =====================================================================
 
-@node Punning Names, Environments, Diversions, gtroff Reference
+@node Punning Names, Environments, Diversions, GNU troff Reference
 @section Punning Names
 @cindex diversions
 
@@ -15359,7 +15359,7 @@ This is \*[xxx].
 @c =====================================================================
 
 @c BEGIN Keep parallel with section "Environments" of groff(7).
-@node Environments, Suppressing Output, Diversions, gtroff Reference
+@node Environments, Suppressing Output, Diversions, GNU troff Reference
 @section Environments
 @cindex environments
 
@@ -15555,7 +15555,7 @@ line emitted in the environment.
 
 @c =====================================================================
 
-@node Suppressing Output, Colors, Environments, gtroff Reference
+@node Suppressing Output, Colors, Environments, GNU troff Reference
 @section Suppressing Output
 
 @Defesc {\\O, [, num, ]}
@@ -15636,7 +15636,7 @@ escape sequences.
 
 @c TODO: Rename this node to "Operating Environment Access" or similar,
 @c and move the date/time, process ID, etc., read-only registers here.
-@node I/O, Postprocessor Access, Suppressing Output, gtroff Reference
+@node I/O, Postprocessor Access, Suppressing Output, GNU troff Reference
 @section I/O
 @cindex i/o
 @cindex input and output requests
@@ -16009,7 +16009,7 @@ in copy mode (@pxref{Copy Mode}).
 
 @c =====================================================================
 
-@node Postprocessor Access, Miscellaneous, I/O, gtroff Reference
+@node Postprocessor Access, Miscellaneous, I/O, GNU troff Reference
 @section Postprocessor Access
 @cindex postprocessor access
 @cindex access to postprocessor
@@ -16088,7 +16088,7 @@ Control Commands}).
 
 @c =====================================================================
 
-@node Miscellaneous, Gtroff Internals, Postprocessor Access, gtroff Reference
+@node Miscellaneous, Gtroff Internals, Postprocessor Access, GNU troff Reference
 @section Miscellaneous
 
 This section documents parts of @code{gtroff} that cannot (yet) be
@@ -16323,7 +16323,7 @@ The search path for @var{filename} can be controlled with the
 
 @c =====================================================================
 
-@node Gtroff Internals, Debugging, Miscellaneous, gtroff Reference
+@node Gtroff Internals, Debugging, Miscellaneous, GNU troff Reference
 @section @code{gtroff} Internals
 
 @cindex input token
@@ -16464,7 +16464,7 @@ restore tokens are removed.
 @c =====================================================================
 
 @c BEGIN Keep parallel with section "Debugging" of groff(7).
-@node Debugging, Implementation Differences, Gtroff Internals, gtroff Reference
+@node Debugging, Implementation Differences, Gtroff Internals, GNU troff Reference
 @section Debugging
 @cindex debugging
 
@@ -16891,7 +16891,7 @@ targeting @code{groff} are encouraged to use this setting.
 @codequotebacktick on
 @codequoteundirected on
 
-@node Implementation Differences, Safer Mode, Debugging, gtroff Reference
+@node Implementation Differences, Safer Mode, Debugging, GNU troff Reference
 @section Implementation Differences
 @cindex implementation differences
 @cindex differences in implementation
@@ -17290,7 +17290,7 @@ partially collected line at the end of input; GNU @code{troff} will not.
 @c =====================================================================
 @c =====================================================================
 
-@node File Formats, Copying This Manual, gtroff Reference, Top
+@node File Formats, Copying This Manual, GNU troff Reference, Top
 @chapter File Formats
 @cindex file formats
 @cindex formats, file

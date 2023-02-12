@@ -1,5 +1,13 @@
 2023-02-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/groff.texi (Manipulating Filling and Adjustment): Say more
+	about the consequences of a break.
+
+	Fixes <https://savannah.gnu.org/bugs/?63777>.  Thanks to Dave
+	Kemper for the report.
+
+2023-02-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[docs]: Re-re-christen 'ESCAPE_AMPERSAND' ('\&').  Now call it a
 	{non-transparent} "dummy character".  Also rechristen
 	'ESCAPE_RIGHT_PARENTHESIS', ('\)') as the "transparent dummy

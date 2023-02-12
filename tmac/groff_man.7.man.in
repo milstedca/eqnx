@@ -4184,13 +4184,15 @@ and the
 macro. \" all 1.23
 .
 .
-The extension macros were written by
+Except for
+.BR .SB , \" Clark, as noted above
+the extension macros were written by
 Lemberg,
 .MT esr@\:thyrsus\:.com
 Eric S.\& Raymond
 .ME ,
 and
-Robinson. \" 1.23: the MR for non-groffs
+Robinson. \" 1.23: MR
 .
 .
 .br

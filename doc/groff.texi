@@ -15400,7 +15400,7 @@ name of the current environment---the one at the top of the stack.
 @r{@dots{}}
 
 .ev footnote-env
-\[dg] Note the large, friendly letters.
+\[dg] Observe the smaller text and vertical spacing.
 .ev
 @endExample
 

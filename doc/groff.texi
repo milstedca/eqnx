@@ -7785,8 +7785,7 @@ This document was formatted in \n[year].
 @endExample
 
 @noindent
-or, to be portable across many @code{troff} implementations, to the
-following.
+or, for portability across many @code{roff} programs, to the following.
 
 @Example
 .nr y4 1900+\n(yr

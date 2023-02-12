@@ -515,6 +515,8 @@ that a particular reference is cited,
 and will apply to all citations of that reference.
 .
 .
+.br
+.ne 2v
 .LP
 The
 .I opening-text

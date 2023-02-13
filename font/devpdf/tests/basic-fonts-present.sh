@@ -23,6 +23,14 @@
 #
 # We need all of them except SS and ZDR.
 
+# Our configure script warns that gropdf will not be functional if gs
+# (Ghostscript) is not available.
+if ! command -v gs
+then
+    echo "gs command not available; skipping test" >&2
+    exit 77 # skip
+fi
+
 devps_fontsrcdir="${abs_top_srcdir:-..}"/font/devps
 devpdf_fontbuilddir="${abs_top_builddir:-.}"/font/devpdf
 

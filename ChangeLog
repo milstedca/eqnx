@@ -1,3 +1,13 @@
+2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devpdf/tests/basic-fonts-present.sh: Skip test if 'gs'
+	command not available.  The test is to ensure that gropdf will
+	produce sound documents using the base fonts from PostScript,
+	but since gropdf requires Ghostscript to do this (as noted in
+	our "./configure" messages), it makes no sense to validate font
+	availability if the program is absent.  Resolves test failure
+	seen on macOS with minimal dependencies installed.
+
 2023-02-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/groff.texi (Manipulating Filling and Adjustment): Say more

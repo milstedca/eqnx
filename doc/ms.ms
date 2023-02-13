@@ -36,8 +36,8 @@
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ie t .nr PI 3.5n
 .el   .nr PI 4n
-.ND January 2023
-.EH '%''January 2023'
+.ND February 2023
+.EH '%''February 2023'
 .EF ''''
 .OH 'Using \f[I]groff\f[] with the \f[I]ms\f[] macros''%'
 .OF ''''
@@ -199,12 +199,12 @@ can be useful for previewing.
 .
 .TS
 box center;
-lf(CB).
-\f[CR]$\f[] editor radical.ms
-\f[CR]$\f[] nroff -ww -z -ms radical.ms # check for errors
-\f[CR]$\f[] nroff \-ms radical.ms | less \-R
-\f[CR]$\f[] groff \-T ps \-ms radical.ms > radical.ps
-\f[CR]$\f[] see radical.ps
+Lf(CR)1 Lf(CB).
+$	editor radical.ms # vim, emacs, ...
+$	nroff -ww -z -ms radical.ms # check for errors
+$	nroff \-ms radical.ms | less \-R
+$	groff \-T pdf \-ms radical.ms > radical.pdf
+$	see radical.pdf # or your favorite PDF viewer
 .TE
 .
 .

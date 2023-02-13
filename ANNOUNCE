@@ -145,7 +145,6 @@ o Some automated test failures (if you run "make check") are expected on
   versions of POSIX-standardized utilities.  We hope to resolve these
   for final release.  The following tests are affected.
 
-	tmac/tests/an_use-input-traps-correctly.sh
 	tmac/tests/latin2_works.sh
 	tmac/tests/latin5_works.sh
 	tmac/tests/latin9_works.sh

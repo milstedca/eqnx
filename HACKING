@@ -95,8 +95,8 @@ Here are some portability notes on writing automated tests.
     sed -n '/Foo\./{n;s/^$/FAILURE/;p;}'
 
 * POSIX doesn't say that sed has to accept semicolons as command
-  separators after label (':') and branch ('t') commands, so it doesn't.
-  GNU sed does.
+  separators after label (':') and branch ('t') commands, or after brace
+  commands, so it doesn't.  GNU sed does.
 
   So rewrite tidy, compact sed scripts like this:
     sed -n '/Foo\./{n;s/^$/FAILURE/;tA;s/.*/SUCCESS/;:A;p}'
@@ -105,3 +105,13 @@ Here are some portability notes on writing automated tests.
       -e '/Foo\./{n;s/^$/FAILURE/;tA;' \
       -e 's/.*/SUCCESS/;:A;' \
       -e 'p;}')
+
+  Similarly, a brace sequence like that in this partial sed script:
+    /f1/p}}}}}}
+  must be rewritten as follows.
+    /f1/p;}
+    }
+    }
+    }
+    }
+    }

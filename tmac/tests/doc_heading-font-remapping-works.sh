@@ -48,6 +48,11 @@ echo "$output" | sed -n '/tHacking/{n
 /h/{n
 /tgroff/{n
 /n/{n
-/f1/p}}}}}}' | grep -Fqx f1
+/f1/p;}
+}
+}
+}
+}
+}' | grep -Fqx f1
 
 # vim:set ai et sw=4 ts=4 tw=72:

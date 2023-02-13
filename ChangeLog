@@ -1,5 +1,16 @@
 2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[mdoc]: Port a test to work with macOS sed.
+
+	* tmac/tests/doc_heading-font-remapping-works.sh: Put semicolons
+	between commands and closing braces in sed script.  Put each of
+	multiple closing braces on a separate input line, because macOS
+	doesn't accept them otherwise.  Resolves test failure observed
+	on macOS.
+	* HACKING: Document the closing brace sequence problem.
+
+2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Port a test to work with macOS sed.
 
 	* tmac/tests/an_TS-adds-no-vertical-space.sh: Put semicolons

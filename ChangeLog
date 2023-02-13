@@ -1,5 +1,14 @@
 2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/tests/\
+	some_escapes_accept_newline_delimiters.sh: Weaken regexes in two
+	test cases to accommodate excessive output from macOS's 'od'
+	command.  Resolves test failure seen on macOS.
+	* HACKING: Add section "Writing Tests" and document the above
+	since this is the second time I've cracked my shin on this.
+
+2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/tests/basic-fonts-present.sh: Skip test if 'gs'
 	command not available.  The test is to ensure that gropdf will
 	produce sound documents using the base fonts from PostScript,

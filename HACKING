@@ -70,3 +70,18 @@ their impact.
     contrast, adding a command-line option to tbl, or changing the
     meaning of its "expand" region option such that it no longer
     horizontally compresses tables as well, _would_ be 'NEWS'-worthy.
+
+
+Writing Tests
+-------------
+
+Here are some portability notes on writing automated tests.
+
+* The "od" command on macOS can put extra space characters (i.e., spaces
+  that don't correspond to the input) at the ends of lines when using
+  the "od -t c" format; GNU od does not.
+
+  So a regex like this that works with GNU od:
+    grep -Eqx '0000000 +A +\\b +B +\\b +C       D +\\n'
+  might need to be weakened to the following on macOS.
+    grep -Eqx '0000000 +A +\\b +B +\\b +C       D +\\n *'

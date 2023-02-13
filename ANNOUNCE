@@ -145,7 +145,6 @@ o Some automated test failures (if you run "make check") are expected on
   versions of POSIX-standardized utilities.  We hope to resolve these
   for final release.  The following tests are affected.
 
-	src/roff/groff/tests/some_escapes_accept_newline_delimiters.sh
 	tmac/tests/an_TS-adds-no-vertical-space.sh
 	tmac/tests/an_use-input-traps-correctly.sh
 	tmac/tests/doc_heading-font-remapping-works.sh

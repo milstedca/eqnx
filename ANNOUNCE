@@ -2,7 +2,7 @@
                info-gnu for releases,
                and CC groff and linux-man@vger.kernel.org for both. ]]
 
-groff 1.23 release candidate 2, 1.23.0.rc2, is now available from GNU's
+groff 1.23 release candidate 2, 1.23.0.rc3, is now available from GNU's
 alpha FTP site.  You may download the distribution archive from there.
 
   https://alpha.gnu.org/gnu/groff/
@@ -112,19 +112,19 @@ Use a mirror for higher download bandwidth.
 
 Here are the SHA-1 and SHA-256 checksums.
 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  groff-1.23.0.rc2.tar.gz
-yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy  groff-1.23.0.rc2.tar.gz
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  groff-1.23.0.rc3.tar.gz
+yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy  groff-1.23.0.rc3.tar.gz
 
 The SHA-256 checksum is encoded in Base64 instead of the hexadecimal
 form that most checksum tools default to.  The mechanism follows.
 
-sha256sum < groff-1.23.0.rc2.tar.gz | cut -f1 -d\  | xxd -r -p | base64
+sha256sum < groff-1.23.0.rc3.tar.gz | cut -f1 -d\  | xxd -r -p | base64
 
 [*] Use a .sig file to verify that the corresponding file (without the
     .sig suffix) is intact.  First, be sure to download both the .sig
     file and the corresponding archive.  Then, verify the archive.
 
-      gpg --verify groff-1.23.0.rc2.tar.gz{.sig,}
+      gpg --verify groff-1.23.0.rc3.tar.gz{.sig,}
 
     If that command fails because you don't have the required public
     key, you can import it.
@@ -152,6 +152,9 @@ o Some automated test failures (if you run "make check") are expected on
 	tmac/tests/latin2_works.sh
 	tmac/tests/latin5_works.sh
 	tmac/tests/latin9_works.sh
+
+o Solaris 10 also has known problems with automated tests; see the
+  "PROBLEMS" file in the distribution archive.
 
 News
 ====

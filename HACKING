@@ -85,3 +85,23 @@ Here are some portability notes on writing automated tests.
     grep -Eqx '0000000 +A +\\b +B +\\b +C       D +\\n'
   might need to be weakened to the following on macOS.
     grep -Eqx '0000000 +A +\\b +B +\\b +C       D +\\n *'
+
+* macOS sed requires semicolons after commands even if they are followed
+  immediately by a closing brace.
+
+  Rewrite
+    sed -n '/Foo\./{n;s/^$/FAILURE/;p}'
+  as follows.
+    sed -n '/Foo\./{n;s/^$/FAILURE/;p;}'
+
+* POSIX doesn't say that sed has to accept semicolons as command
+  separators after label (':') and branch ('t') commands, so it doesn't.
+  GNU sed does.
+
+  So rewrite tidy, compact sed scripts like this:
+    sed -n '/Foo\./{n;s/^$/FAILURE/;tA;s/.*/SUCCESS/;:A;p}'
+  as this more cumbersome alternative.
+    sed -n \
+      -e '/Foo\./{n;s/^$/FAILURE/;tA;' \
+      -e 's/.*/SUCCESS/;:A;' \
+      -e 'p;}')

@@ -1,5 +1,16 @@
 2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man]: Port a test to work with macOS sed.
+
+	* tmac/tests/an_TS-adds-no-vertical-space.sh: Put semicolons
+	between commands and closing braces in sed script.  Separate
+	command stream into multiple '-e' expressions, breaking them
+	after branch and label commands.  Resolves test failure observed
+	on macOS.
+	* HACKING: Document the above problems.
+
+2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/\
 	some_escapes_accept_newline_delimiters.sh: Weaken regexes in two
 	test cases to accommodate excessive output from macOS's 'od'

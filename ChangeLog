@@ -1,5 +1,17 @@
 2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tests/latin2_works.sh:
+	* tmac/tests/latin5_works.sh:
+	* tmac/tests/latin9_works.sh: Port to work around macOS's
+	apparently POSIX non-conforming 'od' command.  Use single-byte
+	octal output format instead of "character", and update test
+	expectations accordingly.  Apparently gratuitously, macOS also
+	puts more spaces after the octal address field when using this
+	output format.
+	* HACKING: Document, and elaborate upon, this problem.
+
+2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mdoc]: Port a test to work with macOS sed.
 
 	* tmac/tests/doc_heading-font-remapping-works.sh: Put semicolons

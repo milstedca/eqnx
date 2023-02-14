@@ -1,4 +1,4 @@
-    Copyright 2022 Free Software Foundation, Inc.
+    Copyright 2022-2023 Free Software Foundation, Inc.
 
     Copying and distribution of this file, with or without
     modification, are permitted in any medium without royalty provided
@@ -76,6 +76,12 @@ Writing Tests
 -------------
 
 Here are some portability notes on writing automated tests.
+
+* Write to the POSIX standard for the shell and utilities where
+  possible.  Issue 4 from 1994 is old enough that no contemporary system
+  has a good reason for not conforming.  A copy of the standard is
+  available at the Open Group's web site.
+    https://pubs.opengroup.org/onlinepubs/009656399/toc.pdf
 
 * The "od" command on macOS can put extra space characters (i.e., spaces
   that don't correspond to the input) at the ends of lines when using

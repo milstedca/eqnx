@@ -1,5 +1,24 @@
 2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/tests/basic-fonts-present.sh: Revise test.
+	Improve explanation of why we're looking for the gs(1) command
+	in a font availability test.  Prefix diagnostic output with name
+	of test script.  Perform a search for the 'ps' device font
+	descriptions that will work in more build scenarios (i.e., don't
+	assume an out-of-tree build taking place in an immediate
+	subdirectory of the source).  Distinguish failure to find the
+	font descriptions from a failure to locate the 'gs' command,
+	skipping the test in both scenarios.  Reduce noise in output.
+	* m4/groff.m4 (GROFF_CHECK_GROPDF_PROGRAMS): Revise warning
+	issued when awk and Ghostscript are unavailable; gropdf will not
+	be completely inoperative.  Characterize its reduced function.
+
+	Thanks to Deri James in <https://lists.gnu.org/archive/html/\
+	groff-commit/2023-02/msg00089.html> for prompting me to take a
+	another look at this.
+
+2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/tests/latin2_works.sh:
 	* tmac/tests/latin5_works.sh:
 	* tmac/tests/latin9_works.sh: Port to work around macOS's

@@ -234,8 +234,8 @@ AC_DEFUN([GROFF_GROHTML_PROGRAM_NOTICE], [
   fi
 ])
 
-# gropdf needs awk and Ghostscript to have produced its font description
-# files.
+# gropdf needs awk and Ghostscript to have produced (a full set of) its
+# font description files.
 
 AC_DEFUN([GROFF_CHECK_GROPDF_PROGRAMS], [
   use_gropdf=no
@@ -263,8 +263,9 @@ AC_DEFUN([GROFF_CHECK_GROPDF_PROGRAMS], [
 \$PATH.
 
   Consequently, groff's PDF output driver, 'gropdf', will not work
-  properly.  It will not be possible to prepare or install
-  groff-generated documentation in PDF.
+  fully.  It will not be possible to prepare or install some
+  groff-generated documentation in PDF.  Support is restricted to the
+  base 14 fonts of the PDF specification.
 "
   fi
   AC_SUBST([use_gropdf])

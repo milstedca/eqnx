@@ -462,9 +462,9 @@
 .  while (\\n[an-header-width] >= \\n[.lt]) \{\
 .    \" The page topic is too long; trim some bits out of the middle.
 .    length an*topic-length \\*[an*topic-string]
-.    \" roff division rounds integers toward zero.  Remove an additional
-.    \" character on each side of the midpoint to account for the
-.    \" ellipsis we add later.
+.    \" roff uses truncating division.  Remove an additional character
+.    \" on each side of the midpoint to account for the ellipsis we add
+.    \" later.
 .    nr an-mark1 (\\n[an*topic-length] / 2 - 2)
 .    nr an-mark2 (\\n[an*topic-length] / 2 + 2)
 .    ds an-prefix \\*[an*topic-string]\"

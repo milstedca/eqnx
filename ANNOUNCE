@@ -2,7 +2,7 @@
                info-gnu for releases,
                and CC groff and linux-man@vger.kernel.org for both. ]]
 
-groff 1.23 release candidate 2, 1.23.0.rc3, is now available from GNU's
+groff 1.23 release candidate 3, 1.23.0.rc3, is now available from GNU's
 alpha FTP site.  You may download the distribution archive from there.
 
   https://alpha.gnu.org/gnu/groff/

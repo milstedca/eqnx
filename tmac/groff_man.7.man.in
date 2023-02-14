@@ -14,7 +14,7 @@ _ifstyle()dnl
 ; that is,
 approximately the width of the letter \(lqn\(rq in the font current when
 the macro is called
-(see section \(lqNumeric Expressions\(rq in
+(see section \(lqMeasurements\(rq in
 .MR groff @MAN7EXT@ )\c
 _endif()dnl
 \&.
@@ -287,9 +287,13 @@ An input line that starts with a dot (.\&)
 or neutral apostrophe (\(aq)
 is a
 .I control line.
+.
 To call a macro,
-follow the dot with zero or more spaces \" or tabs
-and then the macro name.
+put its name after a dot on a control line.
+.\" You never need to indent macro calls in man(7), or call them with
+.\" the no-break control character.
+.
+We refer to macros in this document using this leading dot.
 .
 Some macros interpret
 .I arguments,
@@ -319,13 +323,15 @@ specially.
 .
 For
 .I man
-documents written in the language subset described in section
+documents that follow the advice in section
 \[lq]Portability\[rq] below,
 this means that control lines using the empty request
-and uncommented input lines ending with an escaped newline or the
-.B \[rs]c
-escape sequence do not spring the trap;
-anything else does.
+and uncommented input lines ending with an escaped newline
+do not spring the trap;
+anything else does
+(but see the
+.B .TP
+macro description).
 .
 .
 .\" ====================================================================
@@ -386,10 +392,9 @@ exceptions are noted.
 .SS "Document structure macros"
 .\" ====================================================================
 .
-The highest level of organization of a man page is determined by this
-group of macros.
+Document structure macros organize a man page's content.
 .
-All of these macros break the output line.
+All of them break the output line.
 .
 .B .TH
 (title heading)
@@ -398,9 +403,9 @@ and footers.
 .
 Section headings
 .RB ( .SH ),
-one of which is mandatory and many of which are standardized,
-facilitate quick location of relevant material by the reader and aid
-the man page writer to discuss all essential aspects of the topic.
+one of which is mandatory and many of which are conventionally expected,
+facilitate location of material by the reader and aid the man page
+writer to discuss all essential aspects of the topic.
 .
 Subsection headings
 .RB ( .SS )
@@ -448,8 +453,9 @@ _endif()dnl
 .
 See
 .MR man 1
-for details on the section numbers and suffixes applicable to your
-system.
+or
+.MR intro 1
+for the manual sectioning applicable to your system.
 .
 .I topic
 and
@@ -490,7 +496,7 @@ is centered in the header.
 .
 If
 .I section
-is a simple integer between 1 and\~9 (inclusive),
+is an integer between 1 and\~9 (inclusive),
 there is no need to specify
 .I header-middle;
 .I an.tmac
@@ -838,6 +844,10 @@ text on the next line,
 which can be formatted with a macro,
 becomes the tag,
 which is placed at the current left margin.
+.
+The tag can be extended with the
+.B \(rsc
+escape sequence.
 .
 Subsequent text is indented by
 .I indentation,
@@ -1210,7 +1220,8 @@ repeated arbitrarily.
 The non-breaking adjustable space escape sequence
 .B \e\(ti
 is used to prevent the output line from being broken within the option
-brackets.
+brackets;
+see subsection \(lqPortability\(rq below.
 .
 .
 .IP \(bu
@@ -1345,9 +1356,10 @@ ampersands,
 and number signs in HTTP(S) URIs.
 .
 _endif()dnl
+The formatter removes
 .B \e:
-escape sequences are ignored when supplied to device control commands
-for hyperlink-aware output drivers.
+escape sequences from hyperlinks when supplying device control commands
+to output drivers.
 .
 .
 .TP
@@ -1788,8 +1800,9 @@ it is possible with the
 .B \ec
 and/or
 .B \ef
-escape sequences,
-but see subsection \(lqPortability\(rq
+escape sequences.
+.
+See subsection \(lqPortability\(rq
 below for approaches.
 _endif()dnl
 .
@@ -1938,7 +1951,7 @@ package assumes \(lqn\(rq;
 that is,
 the width of a letter \(lqn\(rq in the font current when the macro is
 called
-(see section \(lqNumerical Expressions\(rq in
+(see section \(lqMeasurements\(rq in
 .MR groff @MAN7EXT@ ).
 _endif()dnl
 _ifnotstyle()dnl
@@ -1951,7 +1964,7 @@ An indentation specified in a call to
 or the deprecated
 .B .HP
 persists until
-(1) another of these macros is called with an explicit
+(1) another of these macros is called with an
 .I indentation
 argument,
 or
@@ -2190,9 +2203,11 @@ _endif()dnl
 can change this vertical spacing,
 but its use is discouraged.)
 .
-In
-.BR .EX / .EE
-sections,
+Between
+.B .EX
+and
+.B .EE
+calls,
 the inter-paragraph spacing is 1v regardless of output
 device.
 .
@@ -2414,7 +2429,7 @@ Everything after the double-quote to the end of the input line is
 ignored.
 .
 Whole-line comments should be placed immediately after the empty request
-.RB \(lq . \(rq).
+.RB (\(lq . \(rq).
 .
 .
 .TP
@@ -2771,10 +2786,9 @@ or similar.
 .B \e(aq
 Basic Latin neutral apostrophe.
 .
-Some
-output devices replace
+Some output devices format
 .RB \(lq\| \(aq \|\(rq
-with a right single quotation mark.
+as a right single quotation mark.
 .
 .
 .br
@@ -2848,9 +2862,9 @@ for example,
 .B \e(ga
 Basic Latin grave accent.
 .
-Some output devices replace
+Some output devices format
 .RB \(lq\| \(ga \|\(rq
-with a left single quotation mark.
+as a left single quotation mark.
 .
 .
 .TP
@@ -2858,9 +2872,9 @@ with a left single quotation mark.
 Basic Latin circumflex accent
 (\(lqhat\(rq).
 .
-Some output devices replace
+Some output devices format
 .RB \(lq \(ha \(rq
-with U+02C6
+as U+02C6
 (modifier letter circumflex accent)
 or similar.
 .
@@ -2884,9 +2898,9 @@ above.
 .B \e(ti
 Basic Latin tilde.
 .
-Some output devices replace
+Some output devices format
 .RB \(lq \(ti \(rq
-with U+02DC
+as U+02DC
 (small tilde)
 or similar.
 .

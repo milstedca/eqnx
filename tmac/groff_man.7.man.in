@@ -733,11 +733,11 @@ installation.
 .
 .TP
 .BR .RS " ["\c
-.IR indentation ]
+.IR inset-amount ]
 Start a new relative inset level.
 .
 The left margin moves right by
-.I indentation,
+.I inset-amount,
 if specified,
 and by a default amount otherwise;
 see subsection \(lqHorizontal and vertical spacing\(rq below.
@@ -1936,12 +1936,14 @@ _endif()dnl
 The
 .I indentation
 argument accepted by
-.BR .RS ,
 .BR .IP ,
 .BR .TP ,
 and the deprecated
 .B .HP
-is a number plus an optional scaling unit.
+is a number plus an optional scaling unit,
+as is
+.BR .RS 's
+.IR inset-amount .
 .
 If no scaling unit is given,
 the
@@ -1976,7 +1978,7 @@ or
 or its synonyms is called;
 these clear the indentation entirely.
 .
-Relative insets created by
+Insets created by
 .B .RS
 move the left margin and persist until
 .BR .RS ,

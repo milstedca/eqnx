@@ -7878,11 +7878,11 @@ Indicator of output device selection (Boolean-valued); see
 @cindex @code{sp} request, causing implicit break
 @cindex @code{ti} request, causing implicit break
 @cindex @code{trf} request, causing implicit break
-A break updates the drawing position per the page offset, indentation,
-vertical spacing, and page length, interrupting filling.  Various ways
-of causing breaks were shown in @ref{Breaking}.  The @code{br} request
-likewise causes a break.  A break is implied by several other
-requests:@: @code{bp}, @code{ce}, @code{cf}, @code{fi}, @code{fl},
+When an output line is pending (see below), a break moves the drawing
+position to the beginning of the next text baseline, interrupting
+filling.  Various ways of causing breaks were shown in @ref{Breaking}.
+The @code{br} request likewise causes a break.  Several other requests
+imply breaks:@: @code{bp}, @code{ce}, @code{cf}, @code{fi}, @code{fl},
 @code{in}, @code{nf}, @code{rj}, @code{sp}, @code{ti}, and @code{trf}.
 If the no-break control character is used with any of these requests,
 GNU @code{troff} suppresses the break; instead the requested operation
@@ -7910,7 +7910,10 @@ to be @dfn{pending} if some input has been collected but an output line
 corresponding to it has not yet been written; such an output line is
 also termed @dfn{partially collected}.  If no output line is pending, it
 is as if a break has already happened; additional breaks, whether
-explicit or implicit, have no effect.
+explicit or implicit, have no effect.  If the vertical drawing
+position is negative---as it is when the formatter starts up---a break
+starts a new page (even if no output line is pending) unless an
+end-of-input macro is being interpreted.  @xref{End-of-input Traps}.
 
 @Defreq {br, }
 Break the line: emit any pending output line without adjustment.

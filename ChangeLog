@@ -1,5 +1,17 @@
 2023-02-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_CHECK_GROPDF_PROGRAMS): Better characterize
+	gropdf's reduced function, pointing out the ways in which it
+	would be more useful if the dependencies were met.
+	(GROFF_URW_FONTS_NOTICE): Identify 'U' as the foundry name
+	gropdf uses for the URW fonts.  Confirm continuing availability
+	of most recent URW fonts release; bump date.
+
+	Fixes <https://savannah.gnu.org/bugs/?63808>.  Thanks to Deri
+	James for the report and extremely helpful pseudocode.
+
+2023-02-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_GHOSTSCRIPT_VERSION_CHECK,
 	GROFF_URW_FONTS_NOTICE): Add macro dependency on
 	`GROFF_GHOSTSCRIPT_PATH`, which should have been there already.

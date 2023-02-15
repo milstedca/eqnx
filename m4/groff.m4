@@ -1,5 +1,5 @@
 # Autoconf macros for groff.
-# Copyright (C) 1989-2022 Free Software Foundation, Inc.
+# Copyright (C) 1989-2023 Free Software Foundation, Inc.
 #
 # This file is part of groff.
 #
@@ -267,10 +267,12 @@ AC_DEFUN([GROFF_CHECK_GROPDF_PROGRAMS], [
   gropdf_notice="The program$plural $missing $verb not found in \
 \$PATH.
 
-  Consequently, groff's PDF output driver, 'gropdf', will not work
-  fully.  It will not be possible to prepare or install some
-  groff-generated documentation in PDF.  Support is restricted to the
-  base 14 fonts of the PDF specification.
+  groff documentation will not be available in PDF.
+
+  'gropdf' will have reduced function.  Only the standard PDF base 14
+  fonts, plus the 'EURO' font groff supplies, will be available, and
+  font embedding with its '-e' option (accessed via the 'groff' command
+  with the option '-P -e') will not be possible.
 "
   fi
   AC_SUBST([use_gropdf])
@@ -352,9 +354,7 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
 ])
 
 AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
-  AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
-
-  if test "$GHOSTSCRIPT" != missing && test "$groff_have_urw_fonts" = no
+  if test "$groff_have_urw_fonts" = no
   then
     AC_MSG_NOTICE([URW fonts in Type 1/PFB format were not found.
 
@@ -362,7 +362,7 @@ AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
   properly.  You can obtain the URW base 35 fonts from their GitHub
   project.
 
-  As of this writing (2021-05-15), you can find them in the 'fonts'
+  As of this writing (2023-02-15), you can find them in the 'fonts'
   directory of the following archives (choose one).
 
     https://github.com/ArtifexSoftware/urw-base35-fonts/archive/refs/
@@ -384,7 +384,9 @@ AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
 
   Alternatively, you can pass the option '--with-urw-fonts-dir=DIR'
   to 'configure' to look for them in the directory DIR you specify.
-  ])
+  If found, the 'U' foundry will be available via the '-y' option to
+  'gropdf' (accessed via the 'groff' command with the option '-P -y').
+    ])
   fi
 ])
 

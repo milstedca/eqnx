@@ -242,39 +242,58 @@ AC_DEFUN([GROFF_GROHTML_PROGRAM_NOTICE], [
 # gropdf needs awk and Ghostscript to have produced (a full set of) its
 # font description files.
 
+AC_DEFUN([GROFF_AWK_NOTICE], [
+  AC_REQUIRE([GROFF_AWK_PATH])
+
+  awk_names=awk
+  if test -n "$ALT_AWK_PROGS"
+  then
+    awk_names="$ALT_AWK_PROGS"
+  fi
+
+  if test "$AWK" = missing
+  then
+    AC_MSG_NOTICE([No awk program was found in \$PATH.
+
+  It was sought under the name(s) "$awk_names".
+    ])
+  fi
+])
+
 AC_DEFUN([GROFF_CHECK_GROPDF_PROGRAMS], [
   AC_REQUIRE([GROFF_AWK_PATH])
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
 
   use_gropdf=no
-  missing=
-  test "$AWK" = missing && missing="'awk'"
-  test "$GHOSTSCRIPT" = missing && missing="$missing 'gs'"
-  if test -z "$missing"
+  gropdf_missing_deps=
+
+  test "$AWK" = missing && gropdf_missing_deps="awk"
+
+  if test "$GHOSTSCRIPT" = missing
+  then
+    if test -n "$gropdf_missing_deps"
+    then
+      gropdf_missing_deps="$gropdf_missing_deps and "
+    fi
+    gropdf_missing_deps="${gropdf_missing_deps}Ghostscript"
+  fi
+
+  if test -z "$gropdf_missing_deps"
   then
     use_gropdf=yes
   else
-    plural=`set $missing; test $[#] -eq 2 && echo s`
-    if test "$plural" = s
-    then
-      missing=`set $missing; echo "$[1] and $[2]"`
-      verb=were
-    else
-      missing=`echo $missing`
-      verb=was
-    fi
+    gropdf_notice="'gropdf' will have reduced function.
 
-  gropdf_notice="The program$plural $missing $verb not found in \
-\$PATH.
+  Due to the missing $gropdf_missing_deps described above, groff
+  documentation will not be available in PDF.
 
-  groff documentation will not be available in PDF.
-
-  'gropdf' will have reduced function.  Only the standard PDF base 14
-  fonts, plus the 'EURO' font groff supplies, will be available, and
-  font embedding with its '-e' option (accessed via the 'groff' command
-  with the option '-P -e') will not be possible.
+  'gropdf' will be able to handle only documents using the standard PDF
+  base 14 fonts, plus the 'EURO' font groff supplies, and font embedding
+  with its '-e' option (accessed via the 'groff' command with the option
+  '-P -e') will not be possible.
 "
   fi
+
   AC_SUBST([use_gropdf])
 ])
 
@@ -459,6 +478,31 @@ AC_DEFUN([GROFF_GHOSTSCRIPT_PREFS],
     [ALT_GHOSTSCRIPT_PROGS="$withval"],
     [ALT_GHOSTSCRIPT_PROGS="gs gswin32c gsos2"])
    AC_SUBST([ALT_GHOSTSCRIPT_PROGS])])
+
+AC_DEFUN([GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE], [
+  AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
+
+  gs_names=gs
+  if test -n "$ALT_GHOSTSCRIPT_PROGS"
+  then
+    gs_names="$ALT_GHOSTSCRIPT_PROGS"
+  fi
+
+  if test "$GHOSTSCRIPT" = missing
+  then
+    AC_MSG_NOTICE([No Ghostscript program was found in \$PATH.
+
+  It was sought under the name(s) "$gs_names".
+
+  groff documentation will not be available in HTML.
+
+  'grohtml' will have reduced function, being unable to produce
+  documents using the 'tbl' preprocessor.
+
+  Further, 'pdroff' will not work.
+    ])
+  fi
+])
 
 # Ghostscript version check.  Versions 9.00 <= x < 9.54 suffer from a
 # rendering glitch that affects the AT&T troff (and groff) special

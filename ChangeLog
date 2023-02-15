@@ -1,8 +1,23 @@
 2023-02-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	* m4/groff.m4 (GROFF_CHECK_GROPDF_PROGRAMS): Better characterize
-	gropdf's reduced function, pointing out the ways in which it
-	would be more useful if the dependencies were met.
+	* configure.ac: Call new macro
+	`GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE`.  Call
+	`GROFF_GHOSTSCRIPT_VERSION_NOTICE` after it, but before
+	`GROFF_URW_FONTS_NOTICE`.
+	* m4/groff.m4 (GROFF_AWK_NOTICE): New macro produces warning if
+	no awk could be found.  This reduces gropdf functionality, but
+	so do missing URW fonts, so we report this problem separately.
+	Report the names under which we sought it, since there's
+	configure script option for that.
+	(GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE): New macro explains
+	consequences of missing optional dependency on Ghostscript
+	program: reduced grohtml functionality, nonfunctional pdfroff.
+	Report the names under which we sought it, since there's
+	configure script option for that.
+	(GROFF_CHECK_GROPDF_PROGRAMS): Better characterize gropdf's
+	reduced function, pointing out the ways in which it would be
+	more useful if the dependencies were met.  Also simplify the
+	computational grammar.
 	(GROFF_URW_FONTS_NOTICE): Identify 'U' as the foundry name
 	gropdf uses for the URW fonts.  Confirm continuing availability
 	of most recent URW fonts release; bump date.

@@ -174,9 +174,12 @@ AC_DEFUN([GROFF_USE_TEX_CHECK], [
 # grohtml needs the following programs to produce images from tbl(1)
 # tables and eqn(1) equations.
 
+dnl Any macro that tests $make_htmldoc should AC_REQUIRE this.
+
 AC_DEFUN([GROFF_CHECK_GROHTML_PROGRAMS], [
-  make_htmldoc=no
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
+
+  make_htmldoc=no
   missing=
   m4_foreach([groff_prog],
     [[pnmcrop], [pnmcut], [pnmtopng], [pnmtops], [psselect]], [
@@ -222,12 +225,14 @@ AC_DEFUN([GROFF_CHECK_GROHTML_PROGRAMS], [
   properly.  It will not be possible to prepare or install
   groff-generated documentation in HTML format.
 "
-
    fi
    AC_SUBST([make_htmldoc])
 ])
 
+
 AC_DEFUN([GROFF_GROHTML_PROGRAM_NOTICE], [
+  AC_REQUIRE([GROFF_CHECK_GROHTML_PROGRAMS])
+
   if test "$make_htmldoc" = no
   then
     AC_MSG_NOTICE([$grohtml_notice])
@@ -238,10 +243,10 @@ AC_DEFUN([GROFF_GROHTML_PROGRAM_NOTICE], [
 # font description files.
 
 AC_DEFUN([GROFF_CHECK_GROPDF_PROGRAMS], [
-  use_gropdf=no
   AC_REQUIRE([GROFF_AWK_PATH])
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
 
+  use_gropdf=no
   missing=
   test "$AWK" = missing && missing="'awk'"
   test "$GHOSTSCRIPT" = missing && missing="$missing 'gs'"
@@ -347,6 +352,8 @@ AC_DEFUN([GROFF_URW_FONTS_CHECK], [
 ])
 
 AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
+  AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
+
   if test "$GHOSTSCRIPT" != missing && test "$groff_have_urw_fonts" = no
   then
     AC_MSG_NOTICE([URW fonts in Type 1/PFB format were not found.
@@ -384,9 +391,13 @@ AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
 
 # Check whether the pnm tools accept the -quiet option.
 
+dnl Any macro that tests $pnmtools_quiet should AC_REQUIRE this.
+
 AC_DEFUN([GROFF_PNMTOOLS_CAN_BE_QUIET], [
-  pnmtools_quiet=
   AC_REQUIRE([GROFF_CHECK_GROHTML_PROGRAMS])
+
+  pnmtools_quiet=
+
   if test "$make_htmldoc" = yes
   then
     AC_MSG_CHECKING([whether PNM tools accept the '-quiet' option])
@@ -408,8 +419,9 @@ AC_DEFUN([GROFF_PNMTOOLS_CAN_BE_QUIET], [
 # doc/gnu.eps from repository builds.
 
 AC_DEFUN([GROFF_PNMTOPS_NOSETPAGE], [
-  pnmtops_nosetpage="pnmtops $pnmtools_quiet"
   AC_REQUIRE([GROFF_PNMTOOLS_CAN_BE_QUIET])
+
+  pnmtops_nosetpage="pnmtops $pnmtools_quiet"
   AC_MSG_CHECKING([whether pnmtops accepts the '-nosetpage' option])
   if echo P2 2 2 255 0 1 2 0 | pnmtops -nosetpage > /dev/null 2>&1
   then
@@ -424,6 +436,8 @@ AC_DEFUN([GROFF_PNMTOPS_NOSETPAGE], [
 
 # Check location of 'gs'; allow '--with-gs=PROG' option to override.
 
+dnl Any macro that tests $GHOSTSCRIPT should AC_REQUIRE this.
+
 AC_DEFUN([GROFF_GHOSTSCRIPT_PATH],
   [AC_REQUIRE([GROFF_GHOSTSCRIPT_PREFS])
    AC_ARG_WITH([gs],
@@ -431,7 +445,7 @@ AC_DEFUN([GROFF_GHOSTSCRIPT_PATH],
        [actual [/path/]name of ghostscript executable])],
      [GHOSTSCRIPT=$withval],
      [AC_CHECK_TOOLS(GHOSTSCRIPT, [$ALT_GHOSTSCRIPT_PROGS], [missing])])
-   test "$GHOSTSCRIPT" = "no" && GHOSTSCRIPT=missing])
+   test "$GHOSTSCRIPT" = no && GHOSTSCRIPT=missing])
 
 # Preferences for choice of 'gs' program...
 # (allow --with-alt-gs="LIST" to override).
@@ -450,6 +464,8 @@ AC_DEFUN([GROFF_GHOSTSCRIPT_PREFS],
 #   <https://bugs.ghostscript.com/show_bug.cgi?id=703187>.
 
 AC_DEFUN([GROFF_GHOSTSCRIPT_VERSION_CHECK], [
+  AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
+
   if test "$GHOSTSCRIPT" != missing
   then
     AC_MSG_CHECKING([for gs version with good left sidebearing handling])
@@ -529,7 +545,7 @@ AC_DEFUN([GROFF_AWK_PATH],
        [actual [/path/]name of awk executable])],
      [AWK=$withval],
      [AC_CHECK_TOOLS(AWK, [$ALT_AWK_PROGS], [missing])])
-   test "$AWK" = "no" && AWK=missing])
+   test "$AWK" = no && AWK=missing])
 
 
 # Preferences for choice of 'awk' program; allow --with-alt-awk="LIST"

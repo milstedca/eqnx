@@ -1,5 +1,19 @@
 2023-02-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_GHOSTSCRIPT_VERSION_CHECK,
+	GROFF_URW_FONTS_NOTICE): Add macro dependency on
+	`GROFF_GHOSTSCRIPT_PATH`, which should have been there already.
+	(GROFF_GROHTML_PROGRAM_NOTICE): Add macro dependency on
+	`GROFF_CHECK_GROHTML_PROGRAMS`, which should have been there
+	already.
+
+	(GROFF_CHECK_GROHTML_PROGRAMS, GROFF_PNMTOOLS_CAN_BE_QUIET):
+	Move `AC_REQUIRE` expansions to precede shell variable
+	assignments (after checking that the required macros don't
+	clobber the assignments we're making).
+
+2023-02-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* font/devpdf/tests/basic-fonts-present.sh: Revise test again,
 	per feedback from Deri James.  Even without Ghostscript or URW
 	fonts available, gropdf can generate valid PDF documents; it

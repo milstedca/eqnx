@@ -178,11 +178,23 @@ uninstall_devpdf:
 	  rmdir $(DESTDIR)$(devpdffontdir); \
 	fi
 
+# Automake has no logical 'and' operator; we test HAVE_GHOSTSCRIPT and
+# HAVE_URW_FONTS separately, with a potentially redundant assignment.
+
+if HAVE_GHOSTSCRIPT
 font_devpdf_TESTS = \
   font/devpdf/tests/basic-fonts-present.sh
+endif
 
 if HAVE_URW_FONTS
+font_devpdf_TESTS = \
+  font/devpdf/tests/basic-fonts-present.sh
+endif
+
+if HAVE_GHOSTSCRIPT
+if HAVE_URW_FONTS
 font_devpdf_TESTS += font/devpdf/tests/urw-fonts-present.sh
+endif
 endif
 
 TESTS += $(font_devpdf_TESTS)

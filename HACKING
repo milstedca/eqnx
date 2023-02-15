@@ -115,7 +115,7 @@ Here are some portability notes on writing automated tests.
 
 * POSIX doesn't say that sed has to accept semicolons as command
   separators after label (':') and branch ('t') commands, or after brace
-  commands, so it doesn't.  GNU sed does.
+  commands, so macOS sed doesn't.  GNU sed does.
 
   So rewrite tidy, compact sed scripts like this:
     sed -n '/Foo\./{n;s/^$/FAILURE/;tA;s/.*/SUCCESS/;:A;p}'

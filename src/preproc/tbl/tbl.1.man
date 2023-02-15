@@ -566,7 +566,9 @@ otherwise,
 .I @g@tbl
 centers the entry within the column.
 .
-The non-printing input token
+The
+.I roff
+dummy character
 .B \[rs]&
 in an entry marks the glyph preceding it
 (if any)
@@ -1005,7 +1007,8 @@ blocks.
 If you wish to visibly mark an empty table entry in the document source,
 populate it with the
 .B \[rs]&
-non-printing input token.
+.I roff
+dummy character.
 .
 The table data are interrupted by a line consisting of the
 .B .T&
@@ -1123,7 +1126,9 @@ To use either
 or
 .B =
 literally and alone in an entry,
-prefix or suffix it with the token
+prefix or suffix it with the
+.I roff
+dummy character
 .BR \[rs]& .
 .
 To express
@@ -1159,7 +1164,9 @@ must be used
 the no-break control character is not recognized.
 .
 To start the first table entry in a row with a dot,
-precede it with the token
+precede it with the
+.I roff
+dummy character
 .BR \[rs]& .
 .
 .
@@ -1586,7 +1593,7 @@ so the
 column modifier has no effect.
 .
 On terminal devices
-.RI (\[lq] nroff mode\[rq]),
+.RI (\[lq] nroff\~ mode\[rq]),
 horizontal rules and box borders occupy a full vee of space;
 this amount is doubled for
 .B doublebox

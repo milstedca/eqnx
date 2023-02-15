@@ -94,7 +94,7 @@
 	* tmac/groff_man.7.man.in: Do it.
 
 	Fixes <https://savannah.gnu.org/bugs/?62816>.  Thanks to Dave
-	Kemper to the report and to the groff mailing list for the
+	Kemper for the report and to the groff mailing list for the
 	vigorous discussion.  I don't expect my solution to please
 	everyone.
 

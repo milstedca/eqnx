@@ -34,14 +34,14 @@ check_char () {
   description=$3
   device=$4
   printf 'checking conversion of \%s to %s (%s) on device %s' \
-    "$sc" "$output" "$description" "$device"
+    "$sc" "$output" "$description" "$device" >&2
   if ! printf "\\X#\\%s %s#\n" "$sc" "$desc" | "$groff" -T$device -Z \
     | grep -Fqx 'x X '$output' '
   then
-    printf '...failed'
+    printf '...failed' >&2
     fail=yes
   fi
-  printf '\n'
+  printf '\n' >&2
 }
 
 for device in utf8 html

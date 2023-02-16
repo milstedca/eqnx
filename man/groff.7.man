@@ -5806,7 +5806,7 @@ Count of lines remaining to be right-aligned.
 .
 .TP
 .REG .s
-Type size in points as a decimal fraction (string-valued).
+Type size in points as a decimal fraction (string-valued);
 see
 .request .ps
 and

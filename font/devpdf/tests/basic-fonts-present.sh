@@ -21,20 +21,11 @@
 # Ensure that groff's PDF device has the copies it needs of PostScript
 # device font descriptions.
 #
-# We need all of them except SS and ZDR.
-
-# Our configure script warns that gropdf will not be fully functional if
-# gs (Ghostscript) is not available.  Namely, we will have only
-# descriptions for the PostScript Level 1 base 14 fonts, not the Level 2
-# base 35 fonts.  We're using the presence of the command as a proxy for
-# the availabilty of the fonts because locating the latter is
-# unreliable (package names, directory locations, and file names all
-# vary), but if the command is present, the fonts usually are too.
-if ! command -v gs
-then
-    echo "$0: gs command not available; skipping test" >&2
-    exit 77 # skip
-fi
+# This is for the reduced-functionality configuration that occurs when
+# optional dependencies are not met; we require only font descriptions
+# of the PDF base 14 fonts (plus groff's EURO).
+#
+# Another test script checks the fully armed gropdf configuration.
 
 # Locate directory containing the font descriptions for the PostScript
 # device.
@@ -64,8 +55,21 @@ fi
 
 devpdf_fontbuilddir="${abs_top_builddir:-.}"/font/devpdf
 
-psfonts=$(cd "$devps_fontsrcdir" && ls [A-Z]* \
-    | grep -Evx '(DESC\.in|SS|ZDR)')
+psfonts='CB
+CBI
+CI
+CR
+EURO
+HB
+HBI
+HI
+HR
+S
+TB
+TBI
+TI
+TR
+ZD'
 
 fail=
 

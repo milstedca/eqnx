@@ -1,3 +1,18 @@
+2023-02-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devpdf/tests/basic-fonts-present.sh: Revise test again,
+	per feedback from Deri James.  Even without Ghostscript or URW
+	fonts available, gropdf can generate valid PDF documents; it
+	simply can't embed fonts in general (without further
+	arrangements made on the host system), which means it is
+	restricted to the PDF base 14 fonts.  That's enough for many
+	purposes, including generating our compiled man pages document
+	{with minor degradations to the typeface lists in gropdf(1) and
+	grops(1)}.  Drop the 'gs' command check, which also didn't check
+	for the name of the Ghostscript interpreter determined by the
+	"configure" script.  Replace dynamically generated font list
+	with a static one (the base 14 fonts plus groff's EURO).
+
 2023-02-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* font/devpdf/tests/basic-fonts-present.sh: Revise test.

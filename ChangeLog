@@ -1,5 +1,12 @@
 2023-02-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tests/an_use-input-traps-correctly.sh: Explicitly test
+	`SM` and `SB` with 'ps' output device.  If one set
+	GROFF_TYPESETTER=utf8 in the test environment, these test cases
+	would fail.  Thanks to John Gardner for the report.
+
+2023-02-15  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: Add Automake conditional, `HAVE_GHOSTSCRIPT`, so
 	that we can populate the list of PDF device font tests
 	dynamically.  Call new macro

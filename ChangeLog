@@ -1,5 +1,10 @@
 2023-02-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.am (groff_TESTS) [!USE_GROHTML]: Don't
+	test the 'grohtml' driver if we know it won't work.
+
+2023-02-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/\
 	device_control_escapes_express_basic_latin.sh: Use printf(1),
 	which is often a shell built-in command, more consistently.

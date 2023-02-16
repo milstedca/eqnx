@@ -1,3 +1,12 @@
+2023-02-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/\
+	device_control_escapes_express_basic_latin.sh: Use printf(1),
+	which is often a shell built-in command, more consistently.
+	Double backslashes intended as literals in the format string,
+	and single-quote format strings using them.  Fixes test failure
+	seen on Solaris 11 with GNU Bash 4.4 and ksh 93u+ (2012-08-01).
+
 2023-02-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/tests/an_use-input-traps-correctly.sh: Explicitly test

@@ -16,12 +16,12 @@
 	* m4/groff.m4 (GROFF_AWK_NOTICE): New macro produces warning if
 	no awk could be found.  This reduces gropdf functionality, but
 	so do missing URW fonts, so we report this problem separately.
-	Report the names under which we sought it, since there's
+	Report the names under which we sought it, since there's a
 	configure script option for that.
 	(GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE): New macro explains
 	consequences of missing optional dependency on Ghostscript
 	program: reduced grohtml functionality, nonfunctional pdfroff.
-	Report the names under which we sought it, since there's
+	Report the names under which we sought it, since there's a
 	configure script option for that.
 	(GROFF_CHECK_GROPDF_PROGRAMS): Better characterize gropdf's
 	reduced function, pointing out the ways in which it would be

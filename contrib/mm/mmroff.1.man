@@ -9,7 +9,7 @@ macro package
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1989-2020 Free Software Foundation, Inc.
+.\" Copyright (C) 1989-2023 Free Software Foundation, Inc.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -70,21 +70,39 @@ macro package
 .\" ====================================================================
 .
 .I mmroff
-is a simple preprocessor for
+is a simple wrapper for
 .IR groff ,
-used for expanding cross references in
+used to expand cross references in
 .IR m@TMAC_M_PREFIX@m ;
 see
 .MR groff_mm @MAN7EXT@ .
 .
+It runs
 .I groff
-is executed twice,
+with the
+.B \-mm
+option twice,
 first with
 .B \-z
 and
 .B \-rRef=1
-to collect all cross references and then to do the real processing
-when the cross-reference file is up to date.
+to collect cross references and update the cross-reference file,
+and then again to produce the document.
+.
+Documents that do not use
+.IR "groff mm" 's
+referencing system
+(the
+.BR INITR ,
+.BR SETR ,
+.BR GETHN ,
+.BR GETPN ,
+.BR GETR ,
+and
+.B GETST
+macros)
+do not require
+.IR mmroff .
 .
 .
 .\" ====================================================================
@@ -102,13 +120,7 @@ both exit afterward.
 .
 .TP
 .B \-x
-Just create the cross-reference file.
-.
-This can be used to refresh the cross-reference file;
-it isn't always needed to have accurate cross references and by using
-this option
-.I groff
-will only be run once.
+Create or update the cross-reference file and exit.
 .
 .
 .\" ====================================================================

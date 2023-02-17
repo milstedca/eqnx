@@ -113,6 +113,8 @@ Here are some portability notes on writing automated tests.
   as follows.
     sed -n '/Foo\./{n;s/^$/FAILURE/;p;}'
 
+  But see below regarding the opening braces.
+
 * POSIX doesn't say that sed has to accept semicolons as command
   separators after label (':') and branch ('t') commands, or after brace
   commands, so macOS sed doesn't.  GNU sed does.
@@ -125,12 +127,26 @@ Here are some portability notes on writing automated tests.
       -e 's/.*/SUCCESS/;:A;' \
       -e 'p;}')
 
+  But see below regarding the opening braces.
+
   Similarly, a brace sequence like that in this partial sed script:
     /f1/p}}}}}}
-  must be rewritten as follows.
+  must be rewritten as follows (or with '-e' expressions).
     /f1/p;}
     }
     }
     }
     }
+    }
+
+* macOS and GNU sed don't require newlines (or '-e' expression endings)
+  after _opening_ braces, but Solaris 11 sed does.
+
+  So the sed script
+    /i/{N;/Table of Contents/{N;/Foo[. ][. ]*1/p;};}
+  must be rewritten as follows (or with '-e' expressions).
+    /i/{
+    N;/Table of Contents/{
+    N;/Foo[. ][. ]*1/p;
+    };
     }

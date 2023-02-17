@@ -1196,7 +1196,7 @@ sub setparams {
 
 sub usage {
   print <<EOF;
-usage: $chem [file] ...
+usage: $chem [file ...]
 usage: $chem { -h | --help | -v | --version }
 
 $chem is a groff preprocessor for producing chemical structure

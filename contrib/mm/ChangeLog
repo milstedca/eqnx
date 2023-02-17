@@ -1,3 +1,10 @@
+2023-02-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[mm]: Add `--help` option support to mmroff.
+
+	* mmroff.pl: Recognize `--help` option.
+	* mmroff.1.man (Synopsis, Options): Document.
+
 2023-02-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (H, SETR): Trivially refactor.  Rename register to

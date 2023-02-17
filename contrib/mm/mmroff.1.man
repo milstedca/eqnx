@@ -56,6 +56,11 @@ macro package
 .
 .
 .SY mmroff
+.B \-\-help
+.YS
+.
+.
+.SY mmroff
 .B \-\-version
 .YS
 .
@@ -86,11 +91,13 @@ when the cross-reference file is up to date.
 .SH Options
 .\" ====================================================================
 .
-If called with the
+.B \-\-help
+displays
+a usage message,
+while
 .B \-\-version
-option,
-.I mmroff
-displays its version information and exits.
+shows version information;
+both exit afterward.
 .
 .
 .TP

@@ -1,5 +1,25 @@
 2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Detangle "pdfroff" and "gropdf" configuration (1/2).
+
+	* m4/groff.m4 (GROFF_GROPDF_DEPENDENCIES_CHECK): Add
+	`AC_REQUIRE`ment on `GROFF_URW_FONTS_CHECK`.  Per discussion
+	with Deri James, if _either_ Ghostscript or the URW fonts are
+	avilable, gropdf will be fully functional, consequent to commit
+	d5515, 22 June.  Drop dependency on awk; it is used only at
+	configuration time (in an Autoconf macro) and since Savannah
+	#62775 was resolved (19 September), it has not been strictly
+	necessary.  (It is useful for searching more locations for URW
+	fonts, but several others are searched even if it is absent.)
+	Stop populating notice text here, instead moving it...
+	(GROFF_GROPDF_PROGRAM_NOTICE): ...here, since it no longer needs
+	to be dynamically constructed.
+
+	Continues <https://savannah.gnu.org/bugs/?63808>.  Thanks to
+	Deri James for the continued discussion.
+
+2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Rename `GROFF_CHECK_GROPDF_PROGRAMS` macro to
 	`GROFF_GROPDF_DEPENDENCIES_CHECK` to generalize for greater
 	accuracy in forthcoming change.

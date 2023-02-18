@@ -1,5 +1,12 @@
 2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* font/devpdf/Foundry.in: Recognize URW foundry replacements for
+	Helvetica Bold-Oblique and Helvetica Oblique under the file
+	names "NimbusSans-BoldItalic.t1" and "NimbusSans-Italic.t1",
+	respectively.
+
+2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am (uninstall-pdf): Clean more fastidiously; try to
 	remove the configured `pdfdocdir` in the event it is empty, but
 	do not fail if it isn't.  (It can be a directory shared with

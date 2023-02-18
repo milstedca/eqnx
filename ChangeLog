@@ -1,5 +1,21 @@
 2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[gropdf]: Revise tests to be foundry-focussed.
+
+	* font/devpdf/tests/basic-fonts-present.sh: Stop trying to match
+	font descriptions in the "devps" directory with ones in
+	"devpdf"; instead, test whether "BuildFoundries" did its job.
+	Test for font descriptions corresponding to the full 35
+	PostScript Level 2 font repertoire, plus groff's "EURO".
+	* font/devpdf/tests/urw-fonts-present.sh: Drop stale comment and
+	rename variable for better parallelism with the other test
+	above.
+
+	Continues <https://savannah.gnu.org/bugs/?63808>.  Thanks to
+	Deri James for the continued discussion.
+
+2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Tweak fix to Savannah #63768.
 
 	* tmac/an.tmac (MR): Ensure `an*url` always has a value,

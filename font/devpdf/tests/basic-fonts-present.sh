@@ -18,44 +18,27 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-# Ensure that groff's PDF device has the copies it needs of PostScript
-# device font descriptions.
+# Ensure that groff's PDF device has font description files for the
+# default (unnamed) foundry's PostScript Level 2 base 35 fonts, plus
+# groff's EURO.
 #
-# This is for the reduced-functionality configuration that occurs when
-# optional dependencies are not met; we require only font descriptions
-# of the PDF base 14 fonts (plus groff's EURO).
+# These font descriptions should be available in any gropdf
+# configuration because they can be copied from the devps font
+# descriptions even if the URW fonts are not available.
 #
-# Another test script checks the fully armed gropdf configuration.
-
-# Locate directory containing the font descriptions for the PostScript
-# device.
-for srcroot in . .. ../..
-do
-    # Look for a source file characteristic of the groff source tree.
-    if ! [ -f "$srcroot"/ChangeLog.115 ]
-    then
-        continue
-    fi
-
-    d=$srcroot/font/devps
-    if [ -d "$d" ]
-    then
-        devps_fontsrcdir=$d
-        break
-    fi
-done
-
-# If we can't find it, we can't test.
-if [ -z "$devps_fontsrcdir" ]
-then
-    echo "$0: cannot locate font descriptions for 'ps' device;" \
-        "skipping test" >&2
-    exit 77 # skip
-fi
+# Another test script checks the "U" (URW) foundry.
 
 devpdf_fontbuilddir="${abs_top_builddir:-.}"/font/devpdf
 
-psfonts='CB
+fonts='AB
+ABI
+AI
+AR
+BMB
+BMBI
+BMI
+BMR
+CB
 CBI
 CI
 CR
@@ -63,17 +46,30 @@ EURO
 HB
 HBI
 HI
+HNB
+HNBI
+HNI
+HNR
 HR
+NB
+NBI
+NI
+NR
+PB
+PBI
+PI
+PR
 S
 TB
 TBI
 TI
 TR
+ZCMI
 ZD'
 
 fail=
 
-for f in $psfonts
+for f in $fonts
 do
     printf "checking for font description %s...\n" "$f" >&2
     if ! [ -f "$devpdf_fontbuilddir"/"$f" ]

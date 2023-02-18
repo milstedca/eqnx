@@ -22,9 +22,7 @@
 
 devpdf_fontbuilddir="${abs_top_builddir:-.}"/font/devpdf
 
-# TODO: Scrape this list out of Foundry or Foundry.in.  Not possible
-# with grep, likely a little tedious with sed.
-urwfonts='AB
+fonts='AB
 ABI
 AI
 AR
@@ -62,7 +60,7 @@ ZD'
 
 fail=
 
-for basefontname in $urwfonts
+for basefontname in $fonts
 do
     f=U-$basefontname
     printf "checking for font description %s...\n" $f >&2

@@ -17,10 +17,10 @@
 .\" A de facto standard URL format for man pages is recognized
 .\" everywhere except Apple, where different macOS applications expect
 .\" different formats.
-.\"   1: man:groff(1)           -- package default
-.\"   2: man:groff.1            -- Bwana (macOS)
-.\"   3: x-man-doc://1/groff(1) -- ManOpen (macOS)
-.\"   4: x-man-page://1/groff   -- Terminal.app, iTerm (macOS)
+.\"   1: man:groff(1)          -- package default
+.\"   2: x-man-page://1/groff  -- macOS/Mac OS X since 10.3 (Panther)
+.\"   3: man:groff.1           -- Bwana (Mac OS X)
+.\"   4: x-man-doc://1/groff   -- ManOpen (Mac OS X pre-2005)
 .\" Set this register to configure which the `MR` macro uses.
 .\" .nr an*MR-URL-format 1
 .\"

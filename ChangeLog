@@ -1,3 +1,17 @@
+2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Tweak fix to Savannah #63768.
+
+	* tmac/an.tmac (MR): Ensure `an*url` always has a value,
+	defaulting to "format 1" (man:page(section)).  Resequence the
+	macOS URL formats to sort the contemporary one before the
+	others.
+	* tmac/man.local: Reflect resequencing of integer assignments to
+	formats.  Clarify historicity of annotations.
+
+	Continues <https://savannah.gnu.org/bugs/?63768>.  Thanks to
+	John Gardner for further discussion.
+
 2023-02-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Port a test to Solaris 11 sed.

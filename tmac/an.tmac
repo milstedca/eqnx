@@ -1171,14 +1171,13 @@ contains unsupported escape sequence
 .de1 MR
 .  if ((\\n[.$] < 2) : (\\n[.$] > 3)) \
 .    an-style-warn .\\$0 expects 2 or 3 arguments, got \\n[.$]
-.  if (\\n[an*MR-URL-format] = 1) \
-.    ds an*url man:\\$1(\\$2)\" used everywhere but macOS
+.  ds an*url man:\\$1(\\$2)\" used everywhere but macOS
 .  if (\\n[an*MR-URL-format] = 2) \
-.    ds an*url man:\\$1.\\$2\" Bwana (macOS)
+.    ds an*url x-man-page://\\$2/\\$1\" macOS/Mac OS X since 10.3
 .  if (\\n[an*MR-URL-format] = 3) \
-.    ds an*url x-man-doc://\\$2/\\$1(\\$2)\" ManOpen (macOS)
+.    ds an*url man:\\$1.\\$2\" Bwana (Mac OS X)
 .  if (\\n[an*MR-URL-format] = 4) \
-.    ds an*url x-man-page://\\$2/\\$1\" Terminal.app, iTerm (macOS)
+.    ds an*url x-man-doc://\\$2/\\$1\" ManOpen (Mac OS X pre-2005)
 .  nh
 .  if \\n[an*do-hyperlink] \{\
 .    if \\n[an*is-output-html] \

@@ -1,5 +1,16 @@
 2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[gropdf]: Rename tests to more accurately characterize their
+	purpose.
+
+	* font/devpdf/tests/basic-fonts-present.sh:
+	* font/devpdf/tests/urw-fonts-present.sh: Rename these...
+	* font/devpdf/tests/check-default-foundry.sh:
+	* font/devpdf/tests/check-urw-foundry.sh: ...to these.
+	* font/devpdf/devpdf.am (font_devpdf_TESTS): Reflect rename.
+
+2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[gropdf]: Revise tests to be foundry-focussed.
 
 	* font/devpdf/tests/basic-fonts-present.sh: Stop trying to match

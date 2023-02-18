@@ -183,17 +183,17 @@ uninstall_devpdf:
 
 if HAVE_GHOSTSCRIPT
 font_devpdf_TESTS = \
-  font/devpdf/tests/basic-fonts-present.sh
+  font/devpdf/tests/check-default-foundry.sh
 endif
 
 if HAVE_URW_FONTS
 font_devpdf_TESTS = \
-  font/devpdf/tests/basic-fonts-present.sh
+  font/devpdf/tests/check-urw-foundry.sh
 endif
 
 if HAVE_GHOSTSCRIPT
 if HAVE_URW_FONTS
-font_devpdf_TESTS += font/devpdf/tests/urw-fonts-present.sh
+font_devpdf_TESTS += font/devpdf/tests/check-urw-foundry.sh
 endif
 endif
 

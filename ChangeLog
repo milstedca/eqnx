@@ -1,5 +1,25 @@
 2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Detangle "pdfroff" and "gropdf" configuration (2/2).
+
+	* m4/groff.m4: Give pdfroff its own Autoconf macros to handle
+	dependency checking, build objectives, and user notice.
+	(GROFF_PDFROFF_DEPENDENCIES_CHECK): New macro requires
+	`GROFF_AWK_PATH` and `GROFF_GHOSTSCRIPT_PATH`, determines
+	whether pdfroff can be used at build time, and (if not)
+	constructs part of message to be shown to user explaining why.
+	(GROFF_PDFROFF_PROGRAM_NOTICE): New macro requires
+	`GROFF_PDFROFF_DEPENDENCIES_CHECK` and emits message if needed.
+	(GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE): Drop mention of impact
+	on pdfroff since its dedicated notice covers this now.
+	* configure.ac: Call the new macros at appropriate times.
+	Produce a new Automake macro, `USE_PDFROFF`, to replace
+	inapposite use of `USE_GROPDF` in pdfmark.am.
+	* contrib/pdfmark/pdfmark.am: Use `USE_PDFROFF` instead of
+	`USE_GROPDF`.
+
+2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Detangle "pdfroff" and "gropdf" configuration (1/2).
 
 	* m4/groff.m4 (GROFF_GROPDF_DEPENDENCIES_CHECK): Add

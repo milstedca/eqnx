@@ -259,6 +259,35 @@ AC_DEFUN([GROFF_AWK_NOTICE], [
   fi
 ])
 
+AC_DEFUN([GROFF_PDFROFF_DEPENDENCIES_CHECK], [
+  AC_REQUIRE([GROFF_AWK_PATH])
+  AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
+
+  use_pdfroff=no
+  pdfroff_missing_deps=
+
+  test "$AWK" = missing && pdfroff_missing_deps="awk"
+
+  if test "$GHOSTSCRIPT" = missing
+  then
+    verb=is
+
+    if test -n "$pdfroff_missing_deps"
+    then
+      pdfroff_missing_deps="$pdfroff_missing_deps and "
+      verb=are
+    fi
+    pdfroff_missing_deps="${pdfroff_missing_deps}Ghostscript $verb"
+  fi
+
+  if test -z "$pdfroff_missing_deps"
+  then
+    use_pdfroff=yes
+  fi
+
+  AC_SUBST([use_pdfroff])
+])
+
 AC_DEFUN([GROFF_GROPDF_DEPENDENCIES_CHECK], [
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
   AC_REQUIRE([GROFF_URW_FONTS_CHECK])
@@ -273,6 +302,19 @@ AC_DEFUN([GROFF_GROPDF_DEPENDENCIES_CHECK], [
   fi
 
   AC_SUBST([use_gropdf])
+])
+
+AC_DEFUN([GROFF_PDFROFF_PROGRAM_NOTICE], [
+  AC_REQUIRE([GROFF_PDFROFF_DEPENDENCIES_CHECK])
+
+  if test "$use_pdfroff" = no
+  then
+    AC_MSG_NOTICE(['pdfroff' will not be functional.
+
+  Because $pdfroff_missing_deps missing, 'pdfroff' will not operate
+  and the 'pdfmark.pdf' document will not be available.
+])
+  fi
 ])
 
 AC_DEFUN([GROFF_GROPDF_PROGRAM_NOTICE], [
@@ -487,8 +529,6 @@ AC_DEFUN([GROFF_GHOSTSCRIPT_AVAILABILITY_NOTICE], [
 
   'grohtml' will have reduced function, being unable to produce
   documents using the 'tbl' preprocessor.
-
-  Further, 'pdroff' will not work.
     ])
   fi
 ])

@@ -1,5 +1,21 @@
 2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[gropdf]: Don't run automated tests if 'gropdf' will be
+	operating with reduced function.  If neither Ghostscript nor the
+	URW fonts are available at configuration time, there is no point
+	testing for successful build-time population of the font
+	descriptions for the default and URW foundries.
+
+	* font/devpdf/devpdf.am (font_devpdf_TESTS) [USE_GROPDF]: Run
+	"check-default-foundry" only if gropdf is fully functional.
+	(font_devpdf_TESTS) [USE_GROPDF && HAVE_URW_FONTS]: Run
+	"check-urw-foundry" only if the URW fonts were found.
+
+	Continues <https://savannah.gnu.org/bugs/?63808>.  Thanks to
+	Deri James for the continued discussion.
+
+2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[gropdf]: Rename tests to more accurately characterize their
 	purpose.
 

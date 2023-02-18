@@ -168,6 +168,7 @@ uninstall_mom:
 	for f in $(PDFDOCFILE); do \
 	  $(RM) $(DESTDIR)$(pdfdocdir)/$$f; \
 	done
+	-rmdir $(DESTDIR)$(pdfdocdir)
 	if test -d $(DESTDIR)$(exampledir)/mom; then \
 	  rmdir $(DESTDIR)$(exampledir)/mom; \
 	fi

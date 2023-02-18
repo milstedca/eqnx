@@ -88,9 +88,7 @@ mostlyclean_pdfmark:
 uninstall_groffdirs: uninstall-pdfmark-hook
 uninstall-pdfmark-hook:
 if USE_PDFROFF
-	if test -d $(DESTDIR)$(pdfmarkpdfdocdir); then \
-	  rmdir $(DESTDIR)$(pdfmarkpdfdocdir); \
-	fi
+	-rmdir $(DESTDIR)$(pdfmarkpdfdocdir)
 endif
 
 

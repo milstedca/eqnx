@@ -655,6 +655,7 @@ uninstall_infodoc:
 	done
 uninstall-pdf:
 	$(RM) $(DESTDIR)$(pdfdocdir)/groff.pdf
+	-rmdir $(DESTDIR)$(pdfdocdir)
 uninstall-html:
 	$(RM) $(DESTDIR)$(htmldocdir)/groff.html.*
 

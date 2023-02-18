@@ -1,5 +1,14 @@
 2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Rename `GROFF_CHECK_GROPDF_PROGRAMS` macro to
+	`GROFF_GROPDF_DEPENDENCIES_CHECK` to generalize for greater
+	accuracy in forthcoming change.
+
+	* configure.ac:
+	* m4/groff.m4: Do it.
+
+2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[gropdf]: Don't run automated tests if 'gropdf' will be
 	operating with reduced function.  If neither Ghostscript nor the
 	URW fonts are available at configuration time, there is no point

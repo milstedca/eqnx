@@ -821,9 +821,6 @@ building groff.  Here is an example.
 
   PATH=/usr/xpg4/bin:$PATH gmake check
 
-Even then, tests may fail because the 'grep' in /usr/xpg4/bin does not
-support the '-E' option.
-
 ----------------------------------------------------------------------
 
 * I am building from the Git repository, using 'autoreconf' from a GNU

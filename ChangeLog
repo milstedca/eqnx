@@ -1,5 +1,11 @@
 2023-02-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tests/latin2_works.sh: Fix missing backslash in printf.
+	Solaris printf(1) was sensitive to this error; macOS and GNU
+	printf were not.  Fixes a test failure on Solaris 11.
+
+2023-02-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/tests/regression_savannah_58153.sh: Improve
 	portability.  Avoid the unpredictability of implementations when
 	putting backslashes inside a groff-piped printf shell command

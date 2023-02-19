@@ -31,7 +31,7 @@ input=$(\
     printf '\\[A ho]\\[ab]\\[/L]\\[S aa]';
     printf '\\[vS]\\[S ac]\\[T ah]\\[Z aa]\\[vZ]\\[Z a.]\n';
     printf '\\[a ho]\\[ho]\\[/l]\\[s aa]';
-    printf '\\[vs]\\[s ac]\\[t ah]\\[z aa]\[a"]\\[vZ]\\[z a.]\n';
+    printf '\\[vs]\\[s ac]\\[t ah]\\[z aa]\\[a"]\\[vZ]\\[z a.]\n';
     printf '\\[R aa]\\[A ab]\\[L aa]\\[C aa]';
     printf '\\[C ah]\\[E ho]\\[E ah]\\[D ah]\n';
     printf '\\[u0110]\\[N aa]\\[N ah]\\[O a"]';

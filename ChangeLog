@@ -1,20 +1,5 @@
 2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	* font/devpdf/tests/check-default-foundry.sh: Bifurcate test of
-	font availability.  The Ghostscript executable can be present in
-	the host environment without any Type 1 fonts.  The PDF standard
-	requires that its base 14 be present in the renderer, so groff
-	font descriptions for those 14 fonts (plus groff's "EURO" font)
-	should always be available.  But the remaining fonts from the
-	"Base 35" PostScript level 2 set won't necessarily be, and so
-	their font descriptions won't be, either.  Skip the test rather
-	than failing it in that case, because the Ghostscript executable
-	can have any number of fonts built-in (in "%rom%" as "gs -h"
-	puts it).  We'll need a more sophisticated Autoconf test to
-	discern this scenario from a true failure case.
-
-2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
-
 	* font/devpdf/Foundry.in: Recognize URW foundry replacements for
 	Helvetica Bold-Oblique and Helvetica Oblique under the file
 	names "NimbusSans-BoldItalic.t1" and "NimbusSans-Italic.t1",

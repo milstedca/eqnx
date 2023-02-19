@@ -30,23 +30,7 @@
 
 devpdf_fontbuilddir="${abs_top_builddir:-.}"/font/devpdf
 
-base_fonts='CB
-CBI
-CI
-CR
-EURO
-HB
-HBI
-HI
-HR
-S
-TB
-TBI
-TI
-TR
-ZD'
-
-additional_fonts='AB
+fonts='AB
 ABI
 AI
 AR
@@ -54,10 +38,19 @@ BMB
 BMBI
 BMI
 BMR
+CB
+CBI
+CI
+CR
+EURO
+HB
+HBI
+HI
 HNB
 HNBI
 HNI
 HNR
+HR
 NB
 NBI
 NI
@@ -66,11 +59,17 @@ PB
 PBI
 PI
 PR
-ZCMI'
+S
+TB
+TBI
+TI
+TR
+ZCMI
+ZD'
 
 fail=
 
-for f in $base_fonts
+for f in $fonts
 do
     printf "checking for font description %s...\n" "$f" >&2
     if ! [ -f "$devpdf_fontbuilddir"/"$f" ]
@@ -80,22 +79,6 @@ do
     fi
 done
 
-test -n "$fail" && exit 1 # fail
-
-# The "Base 35" fonts (not including the PDF base 14) are not guaranteed
-# to be present even if the Ghostscript executable is installed.  Skip
-# the test rather than failing if they're not present.
-#
-# TODO: Come up with a more sophisicated Autoconf test to detect this.
-
-for f in $additional_fonts
-do
-    printf "checking for font description %s...\n" "$f" >&2
-    if ! [ -f "$devpdf_fontbuilddir"/"$f" ]
-    then
-        echo "non-base fonts not available; skipping test" >&2
-        exit 77 # skip
-    fi
-done
+test -z "$fail"
 
 # vim:set ai et sw=4 ts=4 tw=72:

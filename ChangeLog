@@ -1,3 +1,12 @@
+2023-02-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/groff/tests/regression_savannah_58153.sh: Improve
+	portability.  Avoid the unpredictability of implementations when
+	putting backslashes inside a groff-piped printf shell command
+	inside a here document inside a command substitution by changing
+	the groff escape character to something meaningless to the shell
+	and to printf ('@').  Fixes a test failure on Solaris 11.
+
 2023-02-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* font/devpdf/Foundry.in: Recognize URW foundry replacements for

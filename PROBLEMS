@@ -788,7 +788,28 @@ future release of gnulib to do so.
 
 ----------------------------------------------------------------------
 
-* Tests fail when I run "make check" on Solaris 10.
+* I get a lot of warnings about "sprintf" on macOS.
+
+Apple has decided to treat the sprintf() standard C library function as
+deprecated even though the C standard itself has not.
+
+https://developer.apple.com/forums/thread/714675
+
+----------------------------------------------------------------------
+
+* I get a make(1) failure involving grep and the groff_man.7.man.in file
+  on Solaris 11.
+
+Solaris make(1) has a bug easily exhibited by the following Makefile.
+
+all:
+	! false
+
+Use GNU make instead; it may be available in /opt/csw/bin/gmake.
+
+----------------------------------------------------------------------
+
+* Tests fail when I run "make check" on Solaris 10 or 11.
 
 The test suite expects a POSIX-conformant shell and utilities.  Solaris
 10 does not offer these in the default $PATH.  We try to use features
@@ -796,7 +817,12 @@ standardized no later than POSIX Issue 4 (1994).  Unfortunately even
 that is too recent for some implementations.  Solaris 11 is believed to
 have a conforming shell.  It may help to ensure that "/usr/xpg6/bin"
 and/or "/usr/xpg4/bin" precedes "/bin" and "/usr/bin/" in the $PATH when
-building groff.
+building groff.  Here is an example.
+
+  PATH=/usr/xpg4/bin:$PATH gmake check
+
+Even then, tests may fail because the 'grep' in /usr/xpg4/bin does not
+support the '-E' option.
 
 ----------------------------------------------------------------------
 

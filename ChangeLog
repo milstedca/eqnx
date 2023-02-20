@@ -1,5 +1,13 @@
 2023-02-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/tests/an_TS-do-not-keep-tables-when-cR-set.sh: Improve
+	portability of script by using shell constructs instead of the
+	nonstandard GNU coreutils 'seq' utility.  Resolves test failure
+	on Solaris 10.
+	* HACKING: Document this problem.
+
+2023-02-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m4/groff.m4 (GROFF_MAKE_DEFINES_RM): Test the make(1) in the
 	environment variable $MAKE if defined, instead a literal "make".
 	Required on (some) Solaris 10 configurations where traditional

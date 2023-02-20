@@ -23,12 +23,12 @@
 
 	* tests/runtests.sh: Refactor file handling.  Use narrower globs
 	to match the file names actually used; they are suffixed with a
-	dot a number, not a number alone.  Honor $TMPDIR when creating
-	the even-more-temporary file.  Revise trap setup so that the
-	trap handler cannot be interrupted if it is already running.
-	Call the handler, then commit suicide with SIGINT.  Use symbolic
-	names for signals, not numbers.  Call new CleanUp function
-	before exiting normally.
+	dot and a number, not a number alone.  Honor $TMPDIR when
+	creating the even-more-temporary file.  Revise trap setup so
+	that the trap handler cannot be interrupted if it is already
+	running.  Call the handler, then commit suicide with SIGINT.
+	Use symbolic names for signals, not numbers.  Call new CleanUp
+	function before exiting normally.
 	(CleanUp): Pull temporary file clean-up logic into new function.
 	Also delete the even-more-temporary file used in test 1.
 

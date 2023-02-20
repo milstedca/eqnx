@@ -29,6 +29,11 @@ while consuming minimal system resources.
 Changes
 =======
 
+Release candidate 3 resolves a build problem on macOS 12, fixes several
+automated test failures on non-GNU/Linux hosts, improves gropdf's
+parsing of "papersize" directives in "DESC" files, and clarifies and
+corrects documentation.
+
 Since groff 1.22.4 was released in December 2018, 26 people have made a
 total of over 4,500 commits.
 

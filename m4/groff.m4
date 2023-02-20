@@ -1775,6 +1775,11 @@ AC_DEFUN([GROFF_PROG_XPMTOPPM],
 
 AC_DEFUN([GROFF_MAKE_DEFINES_RM], [
   AC_MSG_CHECKING(whether make defines 'RM')
+  make=make
+  if test -n "$MAKE"
+  then
+    make=$MAKE
+  fi
   cat <<EOF > test_make_rm.mk
 all:
 	@if test -n "\$(RM)"; \
@@ -1784,7 +1789,7 @@ all:
 	   echo no; \
 	fi
 EOF
-  groff_make_defines_rm=`make -sf test_make_rm.mk`
+  groff_make_defines_rm=`"$make" -sf test_make_rm.mk`
   AC_MSG_RESULT([$groff_make_defines_rm])
   rm -f test_make_rm.mk
 ])

@@ -9,7 +9,7 @@
 2023-02-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m4/groff.m4 (GROFF_MAKE_DEFINES_RM): Test the make(1) in the
-	environment variable $MAKE if defined, instead a literal "make".
+	environment variable $MAKE if defined, not a literal "make".
 	Required on (some) Solaris 10 configurations where traditional
 	make(1) is not installed but GNU make is installed as "gmake".
 

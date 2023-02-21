@@ -1,5 +1,23 @@
 2023-02-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[grohtml]: Revise tests to check for requisite programs at test
+	time and skip if not found, rather than configuring them away at
+	build time, which can cause a distribution archive to be
+	incorrectly structured.
+
+	* m4/groff.m4: Annotate requisite program list since we're
+	violating the DRY principle.
+	* src/roff/groff/groff.am (groff_TESTS): Populate
+	unconditionally.
+
+	* src/roff/groff/tests/html_works_with_grn_and_eqn.sh:
+	* src/roff/groff/tests/smoke-test_html_device.sh: Check for
+	requisite programs and skip test if any are not found.
+
+	Fixes <https://savannah.gnu.org/bugs/?63824> (1/2).
+
+2023-02-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man pages]: Define page-local `MR` fallback.
 
 	[man pages]: Provide page-local fallback definition of new `MR`

@@ -25,6 +25,11 @@
 .\" instead of in the original English.
 .
 .
+.\" Save and disable compatibility mode (for, e.g., Solaris 10/11).
+.do nr *groff_neqn_1_man_C \n[.cp]
+.cp 0
+.
+.
 .\" ====================================================================
 .SH Synopsis
 .\" ====================================================================
@@ -58,6 +63,11 @@ although it may work adequately for very simple input.
 .\" ====================================================================
 .
 .MR @g@eqn @MAN1EXT@
+.
+.
+.\" Restore compatibility mode (for, e.g., Solaris 10/11).
+.cp \n[*groff_neqn_1_man_C]
+.do rr *groff_neqn_1_man_C
 .
 .
 .\" Local Variables:

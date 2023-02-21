@@ -892,7 +892,17 @@ in the proper sequence,
 was written by
 .MT keith\:.d\:.marshall@\:ntlworld\:.com
 Keith Marshall
-.ME .
+.ME ,
+who maintains it at
+.UR https://\:osdn\:.net/\:users/\:keith/\:pf/\:\%groff-pdfmark/\
+\:wiki/\:\%FrontPage
+his
+.I groff-pdfmark
+OSDN site
+.UE .
+.
+.IR groff 's
+version may be withdrawn in a future release.
 .
 .
 .\" ====================================================================

@@ -1,3 +1,82 @@
+2023-02-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man pages]: Define page-local `MR` fallback.
+
+	[man pages]: Provide page-local fallback definition of new `MR`
+	macro.  I didn't think I was going to have to do this, but the
+	premier site on the web for viewing Linux man pages, Michael
+	Kerrisk's man7.org, has been pulling snapshots of the pages
+	themselves without upgrading the underlying macros, and so man
+	page cross references set with `MR` are getting lost in its
+	presentations.  (I acknowledge: Ingo Schwarze warned me
+	something like this could happen.)  This definition is intended
+	as a stopgap measure only.  I want to revert this after groff
+	1.23 is released and has spread to some reasonable degree.
+
+	* contrib/chem/chem.1.man:
+	* contrib/eqn2graph/eqn2graph.1.man:
+	* contrib/gdiffmk/gdiffmk.1.man:
+	* contrib/glilypond/glilypond.1.man:
+	* contrib/gperl/gperl.1.man:
+	* contrib/gpinyin/gpinyin.1.man:
+	* contrib/grap2graph/grap2graph.1.man:
+	* contrib/hdtbl/groff_hdtbl.7.man:
+	* contrib/mm/groff_mm.7.man:
+	* contrib/mm/groff_mmse.7.man:
+	* contrib/mm/mmroff.1.man:
+	* contrib/mom/groff_mom.7.man:
+	* contrib/pdfmark/pdfroff.1.man:
+	* contrib/pic2graph/pic2graph.1.man:
+	* contrib/rfc1345/groff_rfc1345.7.man:
+	* man/groff.7.man:
+	* man/groff_char.7.man:
+	* man/groff_diff.7.man:
+	* man/groff_font.5.man:
+	* man/groff_out.5.man:
+	* man/groff_tmac.5.man:
+	* man/roff.7.man:
+	* src/devices/grodvi/grodvi.1.man:
+	* src/devices/grohtml/grohtml.1.man:
+	* src/devices/grolbp/grolbp.1.man:
+	* src/devices/grolj4/grolj4.1.man:
+	* src/devices/gropdf/gropdf.1.man:
+	* src/devices/gropdf/pdfmom.1.man:
+	* src/devices/grops/grops.1.man:
+	* src/devices/grotty/grotty.1.man:
+	* src/devices/xditview/gxditview.1.man:
+	* src/preproc/eqn/eqn.1.man:
+	* src/preproc/eqn/neqn.1.man:
+	* src/preproc/grn/grn.1.man:
+	* src/preproc/pic/pic.1.man:
+	* src/preproc/preconv/preconv.1.man:
+	* src/preproc/refer/refer.1.man:
+	* src/preproc/soelim/soelim.1.man:
+	* src/preproc/tbl/tbl.1.man:
+	* src/roff/groff/groff.1.man:
+	* src/roff/nroff/nroff.1.man:
+	* src/roff/troff/troff.1.man:
+	* src/utils/addftinfo/addftinfo.1.man:
+	* src/utils/afmtodit/afmtodit.1.man:
+	* src/utils/grog/grog.1.man:
+	* src/utils/hpftodit/hpftodit.1.man:
+	* src/utils/indxbib/indxbib.1.man:
+	* src/utils/lkbib/lkbib.1.man:
+	* src/utils/lookbib/lookbib.1.man:
+	* src/utils/pfbtops/pfbtops.1.man:
+	* src/utils/tfmtodit/tfmtodit.1.man:
+	* src/utils/xtotroff/xtotroff.1.man:
+	* tmac/groff_man.7.man.in:
+	* tmac/groff_me.7.man:
+	* tmac/groff_ms.7.man:
+	* tmac/groff_trace.7.man:
+	* tmac/groff_www.7.man: Do it.
+
+	Fixes <https://savannah.gnu.org/bugs/?63825>.  Thanks greatly to
+	Alexis for identifying an issue with mandoc(1)'s handling of an
+	earlier iteration of this fallback, and to John Gardner for
+	identifying a method of detecting mandoc as the renderer at
+	formatting time.
+
 2023-02-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/tests/an_TS-do-not-keep-tables-when-cR-set.sh: Improve

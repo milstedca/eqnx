@@ -827,15 +827,50 @@ failures are expected.
 
 * Tests fail when I run "make check" on Solaris 10 or 11.
 
-The test suite expects a POSIX-conformant shell and utilities.  Solaris
+The test suite expects a POSIX-conforming shell and utilities.  Solaris
 10 does not offer these in the default $PATH.  We try to use features
 standardized no later than POSIX Issue 4 (1994).  Unfortunately even
-that is too recent for some implementations.  Solaris 11 is believed to
-have a conforming shell.  It may help to ensure that "/usr/xpg6/bin"
-and/or "/usr/xpg4/bin" precedes "/bin" and "/usr/bin/" in the $PATH when
-building groff.  Here is an example.
+that is too recent for some implementations.  Solaris 11 has a
+conforming shell.  It may help to ensure that "/usr/xpg6/bin" and
+"/usr/xpg4/bin" precede "/usr/bin" in the $PATH when building groff.
 
-  PATH=/usr/xpg4/bin:$PATH gmake check
+For Solaris 10, it is necessary to modify the shell-based test scripts
+in place to use a conforming shell.  Here is an example.
+
+  $ gsed -i -e '1s@#!/bin/sh@#!/usr/xpg4/bin/sh@' \
+      `find . -name '*.sh' | grep /tests/`
+  $ PATH=/usr/xpg4/bin:$PATH gmake check
+
+Two test failures remain expected on Solaris 10.
+
+1.  FAIL: tmac/tests/pdfpic_does-not-choke-on-bad-pdfinfo-output.sh
+
+    /usr/bin/sed is non-conforming with the POSIX Issue 4 standard.
+
+    Install GNU sed in the $PATH and edit tmac/pdfpic.tmac and change
+    the "sed" on line 172 to "gsed".  Re-run "gmake check" as above.
+
+    The sed in /usr/xpg4/bin also works, but pdfpic.tmac uses groff's
+    `sy` request, which wraps the standard C library `system()`
+    function, which sanitizes $PATH to avoid privilege escalation, thus
+    making it likely that the non-conforming sed in /usr/bin will be
+    found first.
+
+2.  FAIL: contrib/hdtbl/examples/test-hdtbl.sh
+
+    /usr/bin/tr is non-conforming with the POSIX Issue 4 standard.  It
+    furthermore issues anonymous diagnostics, saying only "Bad string".
+
+    Install tr from GNU coreutils in the $PATH.  Edit line 57 of each of
+    contrib/hdtbl/examples/fonts_x.in and
+    contrib/hdtbl/examples/fonts_n.in.  Change "tr" to "gtr".  Re-run
+    "gmake check" as above.  (Some files will be rebuilt.)
+
+    The tr commands in /usr/xpg4/bin and /usr/xpg6/bin also work, but
+    the documents constructed from the above inputs use groff's `pso`
+    request, which wraps the standard C library `popen()` function,
+    which sanitizes $PATH to avoid privilege escalation, thus making it
+    likely that the non-conforming tr in /usr/bin will be found first.
 
 ----------------------------------------------------------------------
 

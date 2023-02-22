@@ -1,5 +1,10 @@
 2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/doc.am (install-pdf-local, install-html-local): Enable
+	rules to work in out-of-tree builds.
+
+2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am (uninstall-hook): Drop dependency on
 	"uninstall_mom"; this is not the appropriate place to declare
 	it, and "uninstall_groffdirs" already depends on it in mom's

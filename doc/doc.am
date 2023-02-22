@@ -635,13 +635,13 @@ install_infodoc: doc/groff.info
 install-pdf-local: doc/groff.pdf
 	-test -d $(DESTDIR)$(pdfdocdir) \
 	  || $(mkinstalldirs) $(DESTDIR)$(pdfdocdir)
-	cp $(top_builddir)/doc/groff.pdf $(DESTDIR)$(pdfdocdir)
+	cp $(top_srcdir)/doc/groff.pdf $(DESTDIR)$(pdfdocdir)
 install-html-local: doc/groff.html
 	-test -d $(DESTDIR)$(htmldocdir)/groff.html.mono \
 	  || $(mkinstalldirs) $(DESTDIR)$(htmldocdir)/groff.html.mono
-	cp -r $(top_builddir)/doc/groff.html \
+	cp -r $(top_srcdir)/doc/groff.html \
 	  $(DESTDIR)$(htmldocdir)/groff.html.mono
-	cp -r $(top_builddir)/doc/groff.html.node \
+	cp -r $(top_srcdir)/doc/groff.html.node \
 	  $(DESTDIR)$(htmldocdir)
 
 uninstall-local: uninstall_infodoc uninstall-pdf uninstall-html

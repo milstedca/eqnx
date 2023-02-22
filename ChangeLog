@@ -1,5 +1,20 @@
 2023-02-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[gropdf]: Revise tests to run unconditionally, rather than
+	configuring them away at build time, which can cause a
+	distribution archive to be incorrectly structured.  Update
+	configuration notices when optional dependencies are absent.
+
+	* font/devpdf/devpdf.am (font_devpdf_TESTS): Remove `USE_GROPDF`
+	and `HAVE_URW_FONTS` conditionals.
+	* m4/groff.m4 (GROFF_GROPDF_PROGRAM_NOTICE):
+	(GROFF_URW_FONTS_NOTICE): Warn reader that a gropdf test failure
+	is to be expected.
+
+	Fixes <https://savannah.gnu.org/bugs/?63824> (2/2).
+
+2023-02-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grohtml]: Revise tests to check for requisite programs at test
 	time and skip if not found, rather than configuring them away at
 	build time, which can cause a distribution archive to be

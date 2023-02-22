@@ -178,12 +178,9 @@ uninstall_devpdf:
 	  rmdir $(DESTDIR)$(devpdffontdir); \
 	fi
 
-if USE_GROPDF
-font_devpdf_TESTS = font/devpdf/tests/check-default-foundry.sh
-if HAVE_URW_FONTS
-font_devpdf_TESTS += font/devpdf/tests/check-urw-foundry.sh
-endif
-endif
+font_devpdf_TESTS = \
+  font/devpdf/tests/check-default-foundry.sh \
+  font/devpdf/tests/check-urw-foundry.sh
 
 TESTS += $(font_devpdf_TESTS)
 EXTRA_DIST += $(font_devpdf_TESTS)

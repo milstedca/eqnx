@@ -31,6 +31,7 @@ The real work is done by
 .MR bar 1 .'
 
 OUTPUT=$(echo "$INPUT" | "$groff" -Tascii -rU1 -man -Z | nl)
+echo "$OUTPUT"
 
 # Expected:
 #   91  x X tty: link man:bar(1)

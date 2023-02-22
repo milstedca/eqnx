@@ -36,6 +36,7 @@ do
   do
     echo "testing \"-m $LOCALE\"; COMPAT=\"$COMPAT\""
     OUTPUT=$("$groff" -ww -m $LOCALE "$COMPAT" < /dev/null 2>&1)
+    echo "$OUTPUT"
     test -z "$OUTPUT"
   done
 done

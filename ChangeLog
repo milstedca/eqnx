@@ -1,5 +1,17 @@
 2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tests]: Have more tests report output.
+
+	* src/roff/groff/tests/ab_works.sh:
+	* src/roff/groff/tests/handle_special_input_code_points.sh:
+	* src/roff/groff/tests/initialization_is_quiet.sh:
+	* src/roff/groff/tests/msoquiet_works.sh:
+	* src/roff/groff/tests/soquiet_works.sh:
+	* tmac/tests/an-ext_MR-works.sh:
+	* tmac/tests/an_MR-works.sh: Do it.
+
+2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tests]: Prevent failures when $GROFF_ENCODING is set.
 
 	* src/roff/groff/tests/ab_works.sh:

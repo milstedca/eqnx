@@ -40,6 +40,7 @@ The real work is done by
 .MR bar 1 .'
 
 output=$(echo "$input" | "$groff" -rmG=0 -Tascii -man -Z | nl)
+echo "$output"
 
 # Expected:
 #   88  wf2

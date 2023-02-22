@@ -28,6 +28,7 @@ unset GROFF_ENCODING
 DOC='.soquiet nonexistent'
 
 OUTPUT=$(echo "$DOC" | "$groff" -Tascii 2>&1)
+echo "$OUTPUT"
 
 echo "testing that .soquiet of nonexistent file produces no error" >&2
 test -z "$OUTPUT"

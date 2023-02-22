@@ -809,6 +809,22 @@ Use GNU make instead; it may be available in /opt/csw/bin/gmake.
 
 ----------------------------------------------------------------------
 
+* Tests about foundries fail when I run "make check".
+
+FAIL: font/devpdf/tests/check-default-foundry.sh
+FAIL: font/devpdf/tests/check-urw-foundry.sh
+
+We attempt to configure the 'gropdf' output driver with a maximal set of
+features, including the embedding of Type 1 font files into PDF
+documents.  If those font files cannot be located, they cannot be
+embedded.  Moreover, PDF viewers are only required to provide 14 fonts
+internally; all other fonts _require_ embedding, and the current version
+of the PDF standard recommends that _all_ fonts be embedded.  The
+notices emitted when you run the 'configure' script will warn if test
+failures are expected.
+
+----------------------------------------------------------------------
+
 * Tests fail when I run "make check" on Solaris 10 or 11.
 
 The test suite expects a POSIX-conformant shell and utilities.  Solaris

@@ -8792,8 +8792,7 @@ The hyphenation space adjustment threshold is available in the
 @cindex spacing, manipulating
 
 @Defreq {sp, [@Var{distance}]}
-Space downward by @var{distance}.  With no argument, the drawing
-position is advanced downward by one vee.  Inside a diversion, any
+Space downward by @var{distance}.  Inside a diversion, any
 @var{distance} argument is ignored.  Otherwise, a negative argument
 moves the drawing position up the page.  This request causes a break.
 The default scaling unit is @samp{v}.  If @var{distance} is not

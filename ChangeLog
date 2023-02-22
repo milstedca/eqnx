@@ -1,5 +1,13 @@
 2023-02-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Rename test.
+
+	* tmac/tests/s_no-excess-space-around-displays.tmac: Rename...
+	* tmac/tests/s_no-excess-space-around-displays.sh: ...to this.
+	* tmac/tmac.am (tmac_TESTS): Update.
+
+2023-02-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[gropdf]: Revise tests to run unconditionally, rather than
 	configuring them away at build time, which can cause a
 	distribution archive to be incorrectly structured.  Update

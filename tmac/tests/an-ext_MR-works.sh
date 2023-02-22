@@ -20,6 +20,9 @@
 
 groff="${abs_top_builddir:-.}/test-groff"
 
+# Keep preconv from being run.
+unset GROFF_ENCODING
+
 fail=
 
 wail () {

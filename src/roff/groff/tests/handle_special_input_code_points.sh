@@ -22,6 +22,9 @@ groff="${abs_top_builddir:-.}/test-groff"
 
 # Regression-test Savannah #58962.
 
+# Keep preconv from being run.
+unset GROFF_ENCODING
+
 input='.if " "\~" .tm input no-break space matches \\~
 .if "­"\%" .tm input soft hyphen matches \\%'
 

@@ -20,6 +20,9 @@
 
 groff="${abs_top_builddir:-.}/test-groff"
 
+# Keep preconv from being run.
+unset GROFF_ENCODING
+
 INPUT='.TH foo 1 2021-10-06 "groff test suite"
 .SH Name
 foo \\- a command with a very short name

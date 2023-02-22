@@ -1,3 +1,20 @@
+2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tests]: Prevent failures when $GROFF_ENCODING is set.
+
+	* src/roff/groff/tests/ab_works.sh:
+	* src/roff/groff/tests/handle_special_input_code_points.sh:
+	* src/roff/groff/tests/initialization_is_quiet.sh:
+	* src/roff/groff/tests/msoquiet_works.sh:
+	* src/roff/groff/tests/soquiet_works.sh:
+	* tmac/tests/an-ext_MR-works.sh:
+	* tmac/tests/an_MR-works.sh:
+	* tmac/tests/an_font-remapping-does-not-affect-titles.sh: Unset
+	$GROFF_ENCODING before running test because preconv(1) confounds
+	these tests.
+
+	Thanks to Alexis for reporting this problem.
+
 2023-02-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Rename test.

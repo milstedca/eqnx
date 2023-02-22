@@ -25,6 +25,9 @@ groff="${abs_top_builddir:-.}/test-groff"
 # We don't test the X11 devices because groff launches an X client,
 # which has to be killed.  Using "-z" to avoid this masks the bug.
 
+# Keep preconv from being run.
+unset GROFF_ENCODING
+
 for d in ascii cp1047 dvi html latin1 lbp lj4 pdf ps utf8
 do
   echo "verifying exit status of .ab request using $d device" >&2

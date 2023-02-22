@@ -27,6 +27,9 @@ groff="${abs_top_builddir:-.}/test-groff"
 # we want to ensure that font remapping for the headings doesn't affect
 # page footers and headers.
 
+# Keep preconv from being run.
+unset GROFF_ENCODING
+
 input='.TH \\fIfoo\\fP 1 2021-10-04 "groff test suite"
 .SH Name
 foo \\- a command with a very short name

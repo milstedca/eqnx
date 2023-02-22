@@ -27,6 +27,9 @@ set -e
 # groff should start up in any supported locale, in compatibility mode
 # or not, without producing diagnostics.
 
+# Keep preconv from being run.
+unset GROFF_ENCODING
+
 for COMPAT in "" -C
 do
   for LOCALE in cs de en fr it ja sv zh

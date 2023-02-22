@@ -456,7 +456,7 @@ if USE_GROHTML
 endif
 
 uninstall-hook: \
-  uninstall_doc_examples uninstall_doc_htmldoc uninstall_mom
+  uninstall_doc_examples uninstall_doc_htmldoc
 uninstall_doc_examples:
 	$(RM) $(DESTDIR)$(exampledir)/gnu.eps
 if USE_GROHTML

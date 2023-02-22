@@ -1,5 +1,12 @@
 2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/doc.am (uninstall-hook): Drop dependency on
+	"uninstall_mom"; this is not the appropriate place to declare
+	it, and "uninstall_groffdirs" already depends on it in mom's
+	Automake file.
+
+2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tests]: Have more tests report output.
 
 	* src/roff/groff/tests/ab_works.sh:

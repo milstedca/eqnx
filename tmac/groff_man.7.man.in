@@ -1980,9 +1980,14 @@ or
 or its synonyms is called;
 these clear the indentation entirely.
 .
-Insets created by
+A relative inset created by
 .B .RS
-move the left margin and persist until
+saves the current indentation,
+resets it to zero,
+and
+moves the left margin.
+.
+The new left margin persists until
 .BR .RS ,
 .BR .RE ,
 .BR .SH ,

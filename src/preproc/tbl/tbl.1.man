@@ -146,12 +146,20 @@ and
 .
 Each such
 .I table region
-encloses one or more tables.
+encloses one or more table descriptions.
 .
 Within a table region,
 table descriptions beyond the first must each be preceded
 by an input line beginning with
 .BR .T& .
+.
+This mechanism does not start a new table region;
+all table descriptions are treated as part of their
+.BR .TS / .TE
+enclosure,
+even if they are boxed or have column headings that repeat on subsequent
+pages
+(see below).
 .
 .
 .P

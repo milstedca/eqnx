@@ -1,5 +1,23 @@
 2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[doc]: Handle output formats of our Texinfo manual more
+	consistently.
+
+	* doc/doc.am (install-doc): Add dependency on (Automake
+	standard) target 'install-dvi'.
+	(maintainer-clean-local): Remove our Texinfo manual in plain
+	text format.
+	(install-data-local): Add dependency on new target
+	'install-txt'.
+	(install-txt): Install our Texinfo manual in plain text format.
+	(uninstall-local): Add dependency on new target 'uninstall-txt'.
+	(uninstall-txt): Uninstall our Texinfo manual in plain text
+	format.
+
+	Thanks to T. Kurt Bond for noticing the discrepancy.
+
+2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am (install-pdf-local, install-html-local): Enable
 	rules to work in out-of-tree builds.
 

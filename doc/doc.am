@@ -611,13 +611,20 @@ else
 	exit 1
 endif # HAVE_TEXI2DVI
 
-install-doc: install-pdf install-html
+install-doc: install-dvi install-html install-pdf
 
 maintainer-clean-local:
 	$(RM) $(doc_builddir)/groff.info*
 	$(RM) $(doc_builddir)/groff.pdf
 	$(RM) $(doc_builddir)/groff.dvi
+	$(RM) $(doc_builddir)/groff.txt
 	$(RM) -r $(doc_builddir)/groff.html.*
+
+install-data-local: install-txt
+install-txt:
+	-test -d $(DESTDIR)$(docdir) \
+	  || $(mkinstalldirs) $(DESTDIR)$(docdir)
+	cp $(top_srcdir)/doc/groff.txt $(DESTDIR)$(docdir)
 
 install-data-local: install_infodoc
 install_infodoc: doc/groff.info
@@ -644,7 +651,8 @@ install-html-local: doc/groff.html
 	cp -r $(top_srcdir)/doc/groff.html.node \
 	  $(DESTDIR)$(htmldocdir)
 
-uninstall-local: uninstall_infodoc uninstall-pdf uninstall-html
+uninstall-local: uninstall_infodoc uninstall-pdf uninstall-html \
+  uninstall-txt
 uninstall_doc: uninstall-local
 uninstall-doc: uninstall-local
 uninstall_infodoc:
@@ -658,6 +666,8 @@ uninstall-pdf:
 	-rmdir $(DESTDIR)$(pdfdocdir)
 uninstall-html:
 	$(RM) $(DESTDIR)$(htmldocdir)/groff.html.*
+uninstall-txt:
+	$(RM) $(DESTDIR)$(docdir)/groff.txt
 
 # An image of a gnu in enscapsulated PostScript is generated during the
 # build process if necessary.  Our configure script assumes pnmdepth is

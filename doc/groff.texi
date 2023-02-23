@@ -4598,12 +4598,12 @@ register.
 @endDefmpreg
 
 @menu
-* Unix Version 7 ms Macros Not Implemented by groff ms::
+* Missing Unix Version 7 ms Macros::
 @end menu
 
 @c ---------------------------------------------------------------------
 
-@node Unix Version 7 ms Macros Not Implemented by groff ms, , Differences from AT&T ms, Differences from AT&T ms
+@node Missing Unix Version 7 ms Macros, , Differences from AT&T ms, Differences from AT&T ms
 @subsubsection Unix Version 7 @file{ms} macros not implemented by @code{groff} @file{ms}
 
 Several macros described in the Unix Version@tie{}7 @file{ms}

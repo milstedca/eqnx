@@ -28,8 +28,8 @@ A simple method of building and installing groff is as follows.
   3. Optionally, check the build for sound operation as described under
      "Evaluation" below.
 
-  4. Type 'sudo make install' to install groff's programs, data files,
-     and documentation.  'make install' is the only step for which you
+  4. Type 'sudo make install install-doc' to install groff's programs,
+     data files, and documentation.  This is the only step for which you
      need 'root' access; 'sudo' obtains this access.
 
   5. You can remove the groff executables and other generated files from
@@ -67,8 +67,8 @@ valid on the operating system.
   3. Optionally, check the build for sound operation as described under
      "Evaluation" below.
 
-  4. Type 'sudo make install' to install groff's programs, data files,
-     and documentation.  'make install' is the only step for which you
+  4. Type 'sudo make install install-doc' to install groff's programs,
+     data files, and documentation.  This is the only step for which you
      need 'root' access; 'sudo' obtains this access.
 
   5. You can remove the groff executables and other generated files from

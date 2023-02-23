@@ -665,7 +665,8 @@ uninstall-pdf:
 	$(RM) $(DESTDIR)$(pdfdocdir)/groff.pdf
 	-rmdir $(DESTDIR)$(pdfdocdir)
 uninstall-html:
-	$(RM) $(DESTDIR)$(htmldocdir)/groff.html.*
+	$(RM) $(DESTDIR)$(htmldocdir)/groff.html.mono/*
+	$(RM) $(DESTDIR)$(htmldocdir)/groff.html.node/*
 uninstall-txt:
 	$(RM) $(DESTDIR)$(docdir)/groff.txt
 

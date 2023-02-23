@@ -1,5 +1,13 @@
 2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* Makefile.am (uninstall_groffdirs): Remove "html.mono" and
+	"html.node" directories corresponding to HTML version of our
+	Texinfo manual.
+	* doc/doc.am (uninstall-html): Uninstall HTML version of our
+	Texinfo manual more reliably.
+
+2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[doc]: Handle output formats of our Texinfo manual more
 	consistently.
 

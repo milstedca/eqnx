@@ -774,6 +774,12 @@ uninstall_groffdirs:
 	    rmdir $(DESTDIR)$(exampledir); \
 	  fi; \
 	  if test -d $(DESTDIR)$(htmldocdir); then \
+	    if test -d $(DESTDIR)$(htmldocdir)/groff.html.mono; then \
+	      rmdir $(DESTDIR)$(htmldocdir)/groff.html.mono; \
+	    fi; \
+	    if test -d $(DESTDIR)$(htmldocdir)/groff.html.node; then \
+	      rmdir $(DESTDIR)$(htmldocdir)/groff.html.node; \
+	    fi; \
 	    rmdir $(DESTDIR)$(htmldocdir); \
 	  fi; \
 	  rmdir $(DESTDIR)$(docdir); \

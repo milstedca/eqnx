@@ -179,10 +179,6 @@ GROFF_GHOSTSCRIPT_VERSION_CHECK
 gl_GLIBC21
 gl_LOCALCHARSET
 
-# Check for presence of URW fonts (these require Ghostscript, which is
-# checked for by GROFF_CHECK_GROHTML_PROGRAMS).
-GROFF_URW_FONTS_CHECK
-
 AM_CONDITIONAL([BUILD_WINSCRIPTS], [test -n "$make_winscripts"])
 
 # If X11 is not available, don't build:

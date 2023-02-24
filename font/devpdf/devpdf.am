@@ -178,12 +178,30 @@ uninstall_devpdf:
 	  rmdir $(DESTDIR)$(devpdffontdir); \
 	fi
 
+font_devpdf_default_test=\
+  $(devpdf_srcdir)/tests/check-default-foundry.sh.in
+font_devpdf_urw_test=$(devpdf_srcdir)/tests/check-urw-foundry.sh.in
+
+font/devpdf/tests/check-default-foundry.sh: $(font_devpdf_default_test)
+	$(AM_V_GEN)$(MKDIR_P) `dirname $@` \
+	&& sed -e "s|[@]GHOSTSCRIPT[@]|$(GHOSTSCRIPT)|g" \
+	  $(font_devpdf_default_test) > $@ \
+	&& chmod +x $@
+
+font/devpdf/tests/check-urw-foundry.sh: $(font_devpdf_urw_test)
+	$(AM_V_GEN)$(MKDIR_P) `dirname $@` \
+	&& sed -e "s|[@]urwfontsdir[@]|$(urwfontsdir)|g" \
+	  $(font_devpdf_urw_test) > $@ \
+	&& chmod +x $@
+
 font_devpdf_TESTS = \
   font/devpdf/tests/check-default-foundry.sh \
   font/devpdf/tests/check-urw-foundry.sh
 
 TESTS += $(font_devpdf_TESTS)
-EXTRA_DIST += $(font_devpdf_TESTS)
+MOSTLYCLEANFILES += $(font_devpdf_TESTS)
+EXTRA_DIST += $(font_devpdf_default_test) $(font_devpdf_urw_test)
+
 
 # Local Variables:
 # mode: makefile-automake

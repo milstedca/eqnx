@@ -1,5 +1,24 @@
 2023-02-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[devpdf]: Generate tests from template files, so we can populate
+	the test scripts with information determined at configuration.
+	The default foundry test depends on $GHOSTSCRIPT, and the URW
+	foundry test on $urwfontsdir.
+
+	* font/devpdf/tests/check-default-foundry.sh:
+	* font/devpdf/tests/check-urw-foundry.sh: Rename these...
+	* font/devpdf/tests/check-default-foundry.sh.in:
+	* font/devpdf/tests/check-urw-foundry.sh.in: ...to these.
+
+	* font/devpdf/devpdf.am (font_devpdf_default_test)
+	(font_devpdf_urw_test): New variables store names of generated
+	test scripts.
+	(font/devpdf/tests/check-default-foundry.sh):
+	(font/devpdf/tests/check-urw-foundry.sh): New targets produce
+	test scripts from corresponding .in files.
+
+2023-02-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[devpdf]: Trivially refactor.  Rename sed-substitutum [Lat.]
 	from "@GROFF_GHOSTSCRIPT_INTERPRETERS@" to "@GHOSTSCRIPT@" for
 	clarity and brevity; this is a scalar value containing the

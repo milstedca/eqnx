@@ -1,5 +1,16 @@
 2023-02-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[devpdf]: Trivially refactor.  Rename sed-substitutum [Lat.]
+	from "@GROFF_GHOSTSCRIPT_INTERPRETERS@" to "@GHOSTSCRIPT@" for
+	clarity and brevity; this is a scalar value containing the
+	Autoconf-determined name of the Ghostscript interpreter.  It is
+	not the same as the replacement that occurs in contrib/pdfmark.
+
+	* font/devpdf/devpdf.am:
+	* font/devpdf/util/BuildFoundries.pl: Do it.
+
+2023-02-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Stop scraping output of Ghostscript executable with
 	"-h" option to attempt to find URW fonts.  Fonts that ship with
 	Ghostscript are regarded as the "default" foundry, not the URW

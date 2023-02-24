@@ -348,25 +348,21 @@ AC_DEFUN([GROFF_URW_FONTS_PATH], [
 ])
 
 # Check for availability of URW fonts in the directory specified by the
-# user (see GROFF_URW_FONTS_PATH above); alternatively, use the search
-# path given by 'gs -h' (if possible) supplemented with the paths where
-# font/devpdf/Foundry.in expects them.
+# user (see GROFF_URW_FONTS_PATH above).  We do NOT search the path of
+# directories built into Ghostscript because those fonts lack the
+# corresponding AFM files we need to generate groff font description
+# files; see afmtodit(1).  Ghostscript's own fonts are treated as the
+# "default foundry" and we already provide descriptions of them in
+# font/devpdf (along with groff's EURO font).
 
 AC_DEFUN([GROFF_URW_FONTS_CHECK], [
   AC_REQUIRE([GROFF_URW_FONTS_PATH])
-  AC_REQUIRE([GROFF_AWK_PATH])
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
   groff_have_urw_fonts=no
   AC_MSG_CHECKING([for URW fonts in Type 1/PFB format])
-  _list_paths=
-
-  if test "$AWK" != missing && test "$GHOSTSCRIPT" != missing
-  then
-    _list_paths=`$GHOSTSCRIPT -h | $AWK 'BEGIN { found = 0 } /Search path:/ { found = 1 } /^[ ]*\// { print $'0' }'| tr : ' '`
-  fi
 
 dnl Keep this list in sync with font/devpdf/Foundry.in.
-  _list_paths="$_list_paths \
+  _list_paths="\
     /usr/share/fonts/type1/gsfonts/ \
     /usr/share/fonts/default/Type1/ \
     /usr/share/fonts/default/Type1/adobestd35/ \
@@ -379,6 +375,8 @@ dnl Keep this list in sync with font/devpdf/Foundry.in.
     _list_paths="$urwfontsdir"
   fi
 
+dnl Keep this list of font file names in sync with the corresponding
+dnl entry in font/devpdf/util/BuildFoundries.pl.
   for k in $_list_paths
   do
     for _font_file in \

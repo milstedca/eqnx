@@ -1,5 +1,22 @@
 2023-02-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Stop scraping output of Ghostscript executable with
+	"-h" option to attempt to find URW fonts.  Fonts that ship with
+	Ghostscript are regarded as the "default" foundry, not the URW
+	foundry (though they often ultimately originate with URW fonts).
+	They are often missing Adobe Font Metric (AFM) files, so it is
+	impossible for groff to generate font description files for them
+	at build time.
+
+	* m4/groff.m4 (GROFF_URW_FONTS_CHECK): Drop `AC_REQUIRE` on
+	`GROFF_AWK_PATH`.  Drop awk-based scraping of Ghostscript "-h"
+	output.  Annotate need for sync between this list of
+	characteristic font file names and the one in BuildFoundries.
+
+	Thanks to Deri James for the ongoing discussions.
+
+2023-02-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* configure.ac: Drop now-redundant explicit
 	`GROFF_URW_FONTS_CHECK`.  `GROFF_GROPDF_DEPENDENCIES_CHECK`
 	`AC_REQUIRE`s it as of commit ec001d2a23, 18 February.

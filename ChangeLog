@@ -1,3 +1,12 @@
+2023-02-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m4/groff.m4 (GROFF_URW_FONTS_CHECK): When looking for a
+	characteristic URW font by its file name, also check for
+	"URWGothic-Book" with no file extension.  Avoids false negatives
+	in URW Type 1 font detection when using Ghostscript 9.53.3.
+	Thanks to Deri James for suggesting the test procedure that
+	uncovered this flaw.
+
 2023-02-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* Makefile.am (uninstall_groffdirs): Remove "html.mono" and

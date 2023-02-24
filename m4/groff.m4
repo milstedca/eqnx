@@ -382,6 +382,7 @@ dnl Keep this list in sync with font/devpdf/Foundry.in.
   for k in $_list_paths
   do
     for _font_file in \
+      URWGothic-Book \
       URWGothic-Book.t1 \
       URWGothic-Book.pfb \
       URWGothicL-Book.pfb \

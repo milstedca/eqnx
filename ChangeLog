@@ -1,3 +1,20 @@
+2023-02-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[devpdf]: Revise tests.
+
+	* font/devpdf/tests/check-default-foundry.sh.in: Test only the
+	base 14 fonts of the PDF standard unconditionally.  Test the
+	remainder from the set of 35 commonly distributed only if a
+	Ghostscript interpreter was detected at configuration time,
+	because the latter fonts _must_ be embedded in PDF documents.
+	If they're not present, skip the test rather than failing it.
+	* font/devpdf/tests/check-urw-foundry.sh.in: Skip test if no URW
+	fonts detected at configuration time, rather than failing it.
+	* m4/groff.m4 (GROFF_GROPDF_PROGRAM_NOTICE)
+	(GROFF_URW_FONTS_NOTICE): Drop warnings of expected test
+	failures.  The tests no longer fail in the anticipated
+	circumstances.
+
 2023-02-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[devpdf]: Generate tests from template files, so we can populate

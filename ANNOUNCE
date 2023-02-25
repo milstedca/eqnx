@@ -143,6 +143,9 @@ o A failure in automated testing occurs (if you run "make check") for
 o Solaris 10 has known problems with automated tests; see the "PROBLEMS"
   file in the distribution archive.
 
+o There is a problem building on "newlib"-using systems when X11 support
+  is enabled; see the "PROBLEMS" file in the distribution archive.
+
 News
 ====
 
@@ -170,6 +173,7 @@ Ben Wong
 Bertrand Garrigues
 Bjarni Ingi Gislason
 Blake McBride
+Brian Inglis
 Bruno Haible
 Colin Watson
 Dave Kemper

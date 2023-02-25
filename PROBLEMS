@@ -841,7 +841,7 @@ in place to use a conforming shell.  Here is an example.
       `find . -name '*.sh' | grep /tests/`
   $ PATH=/usr/xpg4/bin:$PATH gmake check
 
-Two test failures remain expected on Solaris 10.
+Some test failures remain expected on Solaris 10.
 
 1.  FAIL: tmac/tests/pdfpic_does-not-choke-on-bad-pdfinfo-output.sh
 
@@ -871,6 +871,25 @@ Two test failures remain expected on Solaris 10.
     request, which wraps the standard C library `popen()` function,
     which sanitizes $PATH to avoid privilege escalation, thus making it
     likely that the non-conforming tr in /usr/bin will be found first.
+
+3.  FAIL: src/roff/groff/tests/initialization_is_quiet.sh
+    FAIL: src/roff/groff/tests/msoquiet_works.sh
+    FAIL: src/roff/groff/tests/soquiet_works.sh
+
+    /usr/xpg4/bin/sh is non-conforming with the POSIX Issue 4 standard,
+    despite its name.  Its "unset" builtin is buggy.
+
+    These tests use the "unset" shell builtin command to prevent
+    environment variables from confounding test results.
+
+    POSIX says "[u]nsetting a variable ... that was not previously set
+    is not considered an error and will not cause the shell to abort."
+
+    Nevertheless this builtin returns an error exit status in this
+    circumstance.
+
+    $ /usr/xpg4/bin/sh -c 'unset _NON_EXISTENT_XYZ; echo $?'
+    1
 
 ----------------------------------------------------------------------
 

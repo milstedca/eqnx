@@ -893,6 +893,20 @@ Some test failures remain expected on Solaris 10.
 
 ----------------------------------------------------------------------
 
+* I get a build failure on Cygwin / a system using newlib and GCC 11.
+
+  "newlib" defines a function called "utoa" which conflicts with a
+  static (file scope-local) function in src/libs/libxutil/XFontName.c.
+
+  We expect to fix this in the near future; in the meantime, you can
+  patch the file to rename the function (and update its call sites) or,
+  if you don't require the "gxditview" output previewer or "xtotroff"
+  utility, you can build groff without X11 support.
+
+  $ ./configure --without-x
+
+----------------------------------------------------------------------
+
 * I am building from the Git repository, using 'autoreconf' from a GNU
   Autoconf release earlier than 2.69, and I get this.
 

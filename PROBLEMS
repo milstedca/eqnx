@@ -809,19 +809,20 @@ Use GNU make instead; it may be available in /opt/csw/bin/gmake.
 
 ----------------------------------------------------------------------
 
-* Tests about foundries fail when I run "make check".
+* The "check-default-foundry" test fails when I run "make check".
 
-FAIL: font/devpdf/tests/check-default-foundry.sh
-FAIL: font/devpdf/tests/check-urw-foundry.sh
+Your Ghostscript installation may have its fonts embedded in the
+executable; this can be discerned by searching for the pattern "%rom%"
+in its search path.
 
-We attempt to configure the 'gropdf' output driver with a maximal set of
-features, including the embedding of Type 1 font files into PDF
-documents.  If those font files cannot be located, they cannot be
-embedded.  Moreover, PDF viewers are only required to provide 14 fonts
-internally; all other fonts _require_ embedding, and the current version
-of the PDF standard recommends that _all_ fonts be embedded.  The
-notices emitted when you run the 'configure' script will warn if test
-failures are expected.
+  $ gs -h | grep '%rom%'
+
+The consequence is that gropdf(1) will be unable to embed fonts into PDF
+files it generates (apart from groff's "EURO" font) when the default
+foundry is used.  This is the same outcome as if Ghostscript were not
+installed at all.  If you install URW fonts (see "INSTALL.extra"), you
+will be able to embed them all by using the use the "U" foundry with
+gropdf to overcome this problem.
 
 ----------------------------------------------------------------------
 

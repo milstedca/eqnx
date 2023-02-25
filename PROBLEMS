@@ -821,8 +821,8 @@ The consequence is that gropdf(1) will be unable to embed fonts into PDF
 files it generates (apart from groff's "EURO" font) when the default
 foundry is used.  This is the same outcome as if Ghostscript were not
 installed at all.  If you install URW fonts (see "INSTALL.extra"), you
-will be able to embed them all by using the use the "U" foundry with
-gropdf to overcome this problem.
+will be able to embed them all by using the "U" foundry with gropdf to
+overcome this problem.
 
 ----------------------------------------------------------------------
 
@@ -831,7 +831,7 @@ gropdf to overcome this problem.
 The test suite expects a POSIX-conforming shell and utilities.  Solaris
 10 does not offer these in the default $PATH.  We try to use features
 standardized no later than POSIX Issue 4 (1994).  Unfortunately even
-that is too recent for some implementations.  Solaris 11 has a
+that is too recent for some implementations.  Solaris 11 has a (mostly)
 conforming shell.  It may help to ensure that "/usr/xpg6/bin" and
 "/usr/xpg4/bin" precede "/usr/bin" in the $PATH when building groff.
 

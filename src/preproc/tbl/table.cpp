@@ -1513,7 +1513,14 @@ void table::add_entry(int r, int c, const string &str,
 		      const entry_format *f, const char *fn, int ln)
 {
   allocate(r);
-  table_entry *e = 0;
+  table_entry *e = 0 /* nullptr */;
+  int len = str.length();
+  if (len > 1) {
+    string last_two_chars = str.substring((len - 2), 2);
+    if ("\\z" == last_two_chars)
+      error_with_file_and_line(fn, ln, "table entry ends with"
+			       " zero-motion escape sequence");
+  }
   char *s = str.extract();
   if (str.search('\n') >= 0) {
     bool was_changed = false;

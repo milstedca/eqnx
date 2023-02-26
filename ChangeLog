@@ -1,3 +1,17 @@
+2023-02-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Fix Savannah #63838.
+
+	* src/preproc/tbl/table.cpp (table::add_entry): Throw error
+	diagnostic if table entry ends in the zero-motion escape
+	sequence `\z`.  This is nonsense and provokes baffling
+	diagnostics from the formatter.  Stick user's nose directly into
+	the problem.
+
+	Fixes <https://savannah.gnu.org/bugs/?63838>.  Thanks to the
+	mandoc(1) project for documenting the issue in a regression
+	test.
+
 2023-04-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: Improve portability to non-GNU, non-LLVM compilers.

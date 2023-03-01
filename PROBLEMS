@@ -892,6 +892,10 @@ Some test failures remain expected on Solaris 10.
     $ /usr/xpg4/bin/sh -c 'unset _NON_EXISTENT_XYZ; echo $?'
     1
 
+    You may disregard these failures, edit the test scripts to append
+    "|| true" to the "unset" commends, or change the scripts to use GNU
+    Bash or some other POSIX-conforming shell as illustrated above.
+
 ----------------------------------------------------------------------
 
 * I get a build failure on Cygwin / a system using newlib and GCC 11.
@@ -904,6 +908,7 @@ Some test failures remain expected on Solaris 10.
   if you don't require the "gxditview" output previewer or "xtotroff"
   utility, you can build groff without X11 support.
 
+  $ make distclean
   $ ./configure --without-x
 
 ----------------------------------------------------------------------

@@ -407,6 +407,12 @@ dnl entry in font/devpdf/util/BuildFoundries.pl.
 AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
   if test "$groff_have_urw_fonts" = no
   then
+    gs_verbiage=
+    if test "$GHOSTSCRIPT" != missing
+    then
+      gs_verbiage=' as well as the search path shown by the
+  "'"$GHOSTSCRIPT"' -h" command (if available)'
+    fi
     AC_MSG_NOTICE([URW fonts in Type 1/PFB format were not found.
 
   groff font description files for the URW fonts, used by the 'gropdf'
@@ -427,11 +433,11 @@ AC_DEFUN([GROFF_URW_FONTS_NOTICE], [
 
     https://github.com/ArtifexSoftware/urw-base35-fonts/releases
 
-  By default, groff will look for these fonts in the search path shown
-  by the 'gs -h' command (if available) and in several directories
-  specified in font/devpdf/Foundry.in).  You will need to 'make
-  distclean' and re-run the 'configure' script after installing these
-  fonts.
+  'gropdf' looks for these fonts in several directories specified in
+  font/devpdf/Foundry.in$gs_verbiage.
+
+  You will need to "make distclean" and re-run the 'configure' script
+  after installing the URW fonts.
 
   Alternatively, you can pass the option '--with-urw-fonts-dir=DIR'
   to 'configure' to look for them in the directory DIR you specify.

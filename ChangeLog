@@ -1,3 +1,13 @@
+2023-03-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m4/groff.m4 (GROFF_URW_FONTS_NOTICE): Adapt wording of notice
+	to presence and identity of Ghostscript interpreter command.
+	Clarify that it is gropdf(1) specifically that traverses the
+	Ghostscript search path reported by its "-h" option.
+
+	Continues <https://savannah.gnu.org/bugs/?63808>.  Thanks to
+	Deri James for the ongoing discussion.
+
 2023-02-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[devpdf]: Revise tests.

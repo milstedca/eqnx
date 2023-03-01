@@ -181,7 +181,7 @@ script called 'test-groff' is supplied for this purpose.  It sets up
 environment variables to allow groff to run without being installed.
 For example, from the directory where you built groff, the command
 
-  ./test-groff -man -Tascii src/roff/groff/groff.1 | less -R
+  ./test-groff -t -man -Tascii src/roff/groff/groff.1 | less -R
 
 displays the groff(1) man page with the 'less' pager.  (You might prefer
 either the '-Tlatin1' or '-Tutf8' option to '-Tascii' depending on the

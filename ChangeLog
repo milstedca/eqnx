@@ -1,5 +1,14 @@
 2023-03-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Discard now-unneeded Autoconf macro and variables.
+
+	* configure.ac: Stop calling `GROFF_POPPLER`.  Stop populating
+	the Automake conditional `HAVE_PDFTOOLS`.  Eliminate chatter
+	about their availability in the configuration report.
+	* m4/groff.m4 (GROFF_POPPLER): Delete.
+
+2023-03-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[mom]: Generate test script even if we'll skip it.
 
 	* contrib/mom/examples/test-mom.sh.in: Check availability of

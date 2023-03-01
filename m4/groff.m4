@@ -1876,20 +1876,6 @@ AC_DEFUN([GROFF_UCHARDET_NOTICE], [
   fi
 ])
 
-# Some automated tests use Poppler PDF tools for sanity checks.
-
-AC_DEFUN([GROFF_POPPLER], [
-  groff_have_pdftools=no
-  AC_CHECK_PROG([PDFINFO], [pdfinfo], [found], [missing])
-  AC_CHECK_PROG([PDFFONTS], [pdffonts], [found], [missing])
-  AC_CHECK_PROG([PDFIMAGES], [pdfimages], [found], [missing])
-  if test "$PDFINFO" = found \
-    && test "$PDFFONTS" = found \
-    && test "$PDFIMAGES" = found
-  then
-    groff_have_pdftools=yes
-  fi
-])
 
 AC_DEFUN([GROFF_USE_GROFF_ALLOCATOR], [
   AC_ARG_ENABLE([groff-allocator],

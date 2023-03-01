@@ -79,7 +79,6 @@ AC_PROG_MKDIR_P
 GROFF_PROG_XPMTOPPM
 PKG_PROG_PKG_CONFIG
 GROFF_UCHARDET
-GROFF_POPPLER
 
 # use a dummy substitution if no csh hack is necessary to avoid errors
 # with non-GNU sed programs
@@ -205,7 +204,6 @@ AM_CONDITIONAL([USE_GROFF_ALLOCATOR],
 AM_CONDITIONAL([HAVE_GHOSTSCRIPT], [test "$GHOSTSCRIPT" != no \
                 && test "$GHOSTSCRIPT" != missing])
 AM_CONDITIONAL([HAVE_URW_FONTS], [test "$groff_have_urw_fonts" = yes ])
-AM_CONDITIONAL([HAVE_PDFTOOLS], [test "$groff_have_pdftools" = yes ])
 AM_CONDITIONAL([HAVE_TEXI2DVI], [test "$groff_have_texi2dvi" = yes ])
 AM_CONDITIONAL([USE_TEX], [test "$groff_use_tex" = yes ])
 
@@ -252,7 +250,6 @@ fi
 echo "\
  preconv can use uchardet library : $groff_have_uchardet
  can build groff.dvi, groff.pdf   : $groff_use_tex
- tests can use poppler PDF tools  : $groff_have_pdftools
 ----------------------------------------------------------------------"
 
 GROFF_APPDEFDIR_NOTICE

@@ -10,7 +10,7 @@ language reference
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 2000-2018, 2020-2022 Free Software Foundation, Inc.
+.\" Copyright (C) 2000-2023 Free Software Foundation, Inc.
 .\"
 .\" This file is part of groff, the GNU roff type-setting system.
 .\"
@@ -2099,9 +2099,20 @@ T}
 .
 .
 .P
-The first of the above,
+If the first argument to an
+.BR .if ,
+.BR .ie ,
+or
+.B .while
+request begins with a non-alphanumeric character apart from
+.B !\&
+(see below);
+it performs an
+.I output comparison test.
+.
+Shown first in the table above,
 the
-.I "output comparison operator,"
+.I output comparison operator
 interpolates a true value if formatting its comparands
 .I s1
 and

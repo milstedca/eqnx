@@ -1,3 +1,12 @@
+2023-03-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/groff.texi (Operators in Conditionals):
+	* man/groff.7.in (Conditional expressions): Clarify how the
+	output comparison operator is recognized.
+
+	Fixes <https://savannah.gnu.org/bugs/?63812>.  Thanks to John
+	Gardner for the report.
+
 2023-03-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Use a better type for symbol hashes.

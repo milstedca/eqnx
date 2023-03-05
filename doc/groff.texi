@@ -12630,9 +12630,9 @@ consumes the next character.
 @Example
 .ds a \[
 .ds b \[
-.if '\?\*a\?'\?\*b\?' a and b true
-.if '\?\\?'\?\\?' backslash true \" doesn't work
-    @result{} a and b true
+.if '\?\*a\?'\?\*b\?' a and b equivalent
+.if '\?\\?'\?\\?' backslashes equivalent
+    @result{} a and b equivalent
 @c slack lines for pagination control
 @c    @error{} warning: missing closing delimiter in
 @c    @error{} conditional expression (got newline)

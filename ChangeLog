@@ -1,3 +1,9 @@
+2023-03-06  Bruno Haible <bruno@clisp.org>
+
+	* arch/misc/misc.am (shdeps.sed): Rename target from this...
+	($(SH_DEPS_SED_SCRIPT)): ...to this, to work better with make(1)
+	on FreeBSD, NetBSD, and AIX.
+
 2023-03-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: Discard now-unneeded Autoconf macro and variables.

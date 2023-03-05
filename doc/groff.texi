@@ -12582,10 +12582,8 @@ operator} formats @var{xxx} and @var{yyy} in separate environments;
 after the comparison, the resulting data are discarded.
 
 @Example
-.ie "|"\fR|\fP" \
-true
-.el \
-false
+.ie "|"\fR|\fP" true
+.el false
     @result{} true
 @endExample
 
@@ -12615,10 +12613,8 @@ causes them to be compared character by character, as with string
 comparisons in other programming languages.
 
 @Example
-.ie "\?|\?"\?\fR|\fP\?" \
-true
-.el \
-false
+.ie "\?|\?"\?\fR|\fP\?" true
+.el false
     @result{} false
 @endExample
 

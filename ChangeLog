@@ -1,5 +1,20 @@
 2023-03-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Use a better type for symbol hashes.
+
+	* bootstrap.conf: Add "stdint" module to ensure that the
+	`uintptr_t` type is available.
+	* src/include/symbol.h: Include <stdint.h> for `uintptr_t`.
+	(class symbol):
+	(symbol::hash): Change return type from `unsigned long`, which
+	causes build failures on 64-bit MinGW, to `uintptr_t`.
+	(symbol::hash): Use a C++ type cast, not a C-style one.
+
+	Thanks to Bruno Haible for reporting the build failure in the
+	64-bit MinGW environment, and for suggesting a remedy.
+
+2023-03-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[groff]: Revise a test to be more revealing.
 
 	* src/roff/groff/tests/initialization_is_quiet.sh: Stop using

@@ -1,4 +1,4 @@
-# Copyright (C) 1989-2020 Free Software Foundation, Inc.
+# Copyright (C) 1989-2023 Free Software Foundation, Inc.
 # Original Makefile.in written by James Clark (jjc@jclark.com)
 # Migrated to Automake by Bertrand Garrigues
 #
@@ -449,6 +449,7 @@ CCC=@CXX@
 # LIBS
 # LIBM
 # LIBICONV
+# AR
 # RANLIB
 # INSTALL
 # INSTALL_PROGRAM
@@ -457,7 +458,6 @@ CCC=@CXX@
 # INSTALL_INFO
 # LN_S
 
-AR=ar
 ETAGS=etags
 ETAGSFLAGS=
 # Flag that tells etags to assume C++.

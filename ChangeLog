@@ -1,5 +1,13 @@
 2023-03-06  Bruno Haible <bruno@clisp.org>
 
+	* Makefile.am (AR): Remove hardcoded value. Let Automake use the
+	value from config.status.
+
+	{Fixes build problem on 64-bit AIX.  Problem appears to date
+	back to commit 5fec19d453, 2014-08-15. --GBR}
+
+2023-03-06  Bruno Haible <bruno@clisp.org>
+
 	* arch/misc/misc.am (shdeps.sed): Rename target from this...
 	($(SH_DEPS_SED_SCRIPT)): ...to this, to work better with make(1)
 	on FreeBSD, NetBSD, and AIX.

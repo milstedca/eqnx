@@ -1,5 +1,26 @@
 2023-03-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[groff]: Revise a test to be more revealing.
+
+	* src/roff/groff/tests/initialization_is_quiet.sh: Stop using
+	"set -e".  Instead use `fail` variable and `wail` function (and
+	lowercase names for our internal variables) like many of our
+	other tests.  If the "unset" shell built-in fails, skip the
+	test (prompted by /usr/xpg4/bin/sh on Solaris).  Attempt every
+	groff locale, with and without compatibility mode initially
+	enabled, instead of stopping at the first failure.  Report
+	standard error and standard output content separately.  Use
+	groff's `-a` flag to prepare the standard output, for
+	readability.
+	* PROBLEMS: Document that this test might be skipped rather than
+	failing on Solaris.  (What actually happens depends on which
+	shell you run it with, and we advise a variety of approaches.)
+
+	Thanks to Bruno Haible for feedback regarding mysterious
+	failures of this test on GNU/Hurd and NetBSD systems.
+
+2023-03-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* bootstrap.conf (gnulib_modules): Add "stdbool-c99" per
 	recommendation from Bruno Haible.
 

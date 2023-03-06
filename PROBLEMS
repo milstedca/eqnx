@@ -115,6 +115,20 @@ malfunction.  See <https://debbugs.gnu.org/db/61/61193.html>.
 
 ----------------------------------------------------------------------
 
+* gdiffmk doesn't work on FreeBSD; I get errors from "expr".
+
+gdiffmk uses the expr(1) command to parse its arguments.  FreeBSD has
+extended the syntax of its expr command in a non-backward compatible way
+that it claims better conforms with POSIX's utility syntax guidelines
+with respect to option processing: however, POSIX mandates no options
+for expr.  Other implementations of expr do not support traditional
+Unix-style options ('-a', '-b', ...), and perhaps as a consequence do
+not follow FreeBSD's interpretation of the guidelines.  You way want to
+set $EXPR_COMPAT in your shell environment.  We hope to have a
+workaround for this behavior in a future release.
+
+----------------------------------------------------------------------
+
 * My document says that the current year is 19100, not 2000.
 
 In groff, as in traditional troff, the yr number register yields the

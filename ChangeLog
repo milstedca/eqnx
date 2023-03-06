@@ -1,3 +1,10 @@
+2023-03-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* bootstrap.conf (gnulib_modules): Add "stdbool-c99" per
+	recommendation from Bruno Haible.
+
+	Fixes build problem on Solaris using Sun compiler.
+
 2023-03-06  Bruno Haible <bruno@clisp.org>
 
 	* Makefile.am (AR): Remove hardcoded value. Let Automake use the

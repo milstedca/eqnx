@@ -61,6 +61,7 @@ TMACNORMALFILES = \
   tmac/latin5.tmac \
   tmac/latin9.tmac \
   tmac/cp1047.tmac \
+  tmac/koi8-r.tmac \
   tmac/X.tmac \
   tmac/Xps.tmac \
   tmac/lj4.tmac \
@@ -85,6 +86,8 @@ TMACNORMALFILES = \
   tmac/hyphen.fr \
   tmac/it.tmac \
   tmac/hyphen.it \
+  tmac/ru.tmac \
+  tmac/hyphen.ru \
   tmac/sv.tmac \
   tmac/hyphen.sv \
   tmac/de.tmac \

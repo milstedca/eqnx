@@ -1,5 +1,12 @@
 2023-03-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tmac]: Add Russian language support (5/7).
+
+	* tmac/tmac.am (TMACNORMALFILES): Ship new Russian language
+	support files.
+
+2023-03-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tmac]: Add Russian language support (4/7).
 
 	* tmac/koi8-ru.tmac: Rename this file...

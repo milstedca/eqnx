@@ -94,7 +94,7 @@ to a
 .I groff
 font description file;
 see
-.MR afmtodit @MAN1EXT@.
+.MR afmtodit @MAN1EXT@ .
 .
 .
 .P

@@ -1,5 +1,14 @@
 2023-03-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[docs]: Add Russian language support (6/7).
+
+	* doc/groff.texi (Input Encodings, Manipulating Hyphenation):
+	* doc/ms.ms (Language and localization):
+	* man/groff_tmac.5.man (Localization packages, Input encodings):
+	Document support for KOI8-R encoding and Russian language.
+
+2023-03-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tmac]: Add Russian language support (5/7).
 
 	* tmac/tmac.am (TMACNORMALFILES): Ship new Russian language

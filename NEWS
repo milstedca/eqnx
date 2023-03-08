@@ -7,6 +7,23 @@
 This file describes recent user-visible changes in groff.  Bug fixes are
 not described.  There are more details in the man and info pages.
 
+VERSION next
+============
+
+Macro packages
+--------------
+o The new macro file "koi8-r.tmac" supports the KOI8-R character
+  encoding, which supports the new Russian locale for groff.
+
+Miscellaneous
+-------------
+
+o Russian language input documents using the KOI8-R encoding are now
+  supported, including hyphenation patterns from the ruhyphen project
+  and localized strings for the man, ms, me, mm, and mom packages.
+  Thanks to Nikita Ivanov.
+
+
 VERSION 1.23.0
 ==============
 

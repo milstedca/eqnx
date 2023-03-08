@@ -454,9 +454,9 @@ even if it does not have a
 .I groff
 glyph name.
 .
-Every character in the font descripiton file must exist in the
+Every character in the font description file must exist in the
 PostScript font,
-and the widths given in the font descripiton file must match the widths
+and the widths given in the font description file must match the widths
 used in the PostScript font.
 .
 .I grops

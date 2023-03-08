@@ -1,5 +1,16 @@
 2023-03-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tmac]: Add Russian language support (4/7).
+
+	* tmac/koi8-ru.tmac: Rename this file...
+	* tmac/koi8-r.tmac: ...to this.  There _is_ a "KOI8-RU"
+	encoding, which appears to subsume KOI8-B and KOI8-U (by
+	replacing more box drawing characters), but this file does not
+	remap their values to applicable Unicode code points.
+	* tmac/ru.tmac: Load the encoding file under its new name.
+
+2023-03-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tmac]: Add Russian language support (3/7).
 
 	* tmac/hyphen.ru:

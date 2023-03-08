@@ -1,3 +1,11 @@
+2023-03-08  Nikita Ivanov <nikita.vyach.ivanov@gmail.com>
+
+	[tmac]: Add Russian language support (1/7).
+
+	* tmac/hyphen.ru: Add hyphenation patterns (encoded in KOI8-R).
+	* tmac/koi8-ru.tmac: Add character encoding support.
+	* tmac/ru.tmac: Add groff locale for Russian.
+
 2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/s.tmac (@EQ): Trivially refactor.  Shift valid

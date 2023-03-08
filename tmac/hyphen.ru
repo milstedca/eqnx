@@ -4693,3 +4693,11 @@
 ядо-зу-бе
 ярем-но-го
 }
+
+% Local Variables:
+% mode: tex
+% coding: cyrillic-koi8
+% fill-column: 72
+% End:
+% XXX: Vim 8.2 does not handle koi8-r correctly.
+% vim: set filetype=tex textwidth=72:

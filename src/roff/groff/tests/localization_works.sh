@@ -52,6 +52,10 @@ echo "testing Japanese localization" >&2
 OUTPUT=$(echo "$DOC" | "$groff" -Tascii -m ja)
 echo "$OUTPUT" | grep -qx japanese
 
+echo "testing Russian localization" >&2
+OUTPUT=$(echo "$DOC" | "$groff" -Tascii -m ru)
+echo "$OUTPUT" | grep -qx russian
+
 echo "testing Swedish localization" >&2
 OUTPUT=$(echo "$DOC" | "$groff" -Tascii -m sv)
 echo "$OUTPUT" | grep -qx swedish

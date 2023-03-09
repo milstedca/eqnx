@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (C) 2021 Free Software Foundation, Inc.
+# Copyright (C) 2021-2023 Free Software Foundation, Inc.
 #
 # This file is part of groff.
 #
@@ -48,6 +48,8 @@ output_cs=$(printf "%s\n" "$input" | "$groff" -Tutf8 -P-cbou -me -mcs)
 output_de=$(printf "%s\n" "$input" | "$groff" -Tutf8 -P-cbou -me -mde)
 output_fr=$(printf "%s\n" "$input" | "$groff" -Tutf8 -P-cbou -me -mfr)
 output_it=$(printf "%s\n" "$input" | "$groff" -Tutf8 -P-cbou -me -mit)
+output_ru=$(printf "%s\n" "$input" \
+    | "$groff" -Tutf8 -P-cbou -me -mru -a)
 output_sv=$(printf "%s\n" "$input" | "$groff" -Tutf8 -P-cbou -me -msv)
 
 echo 'checking that `td` string updated correctly for English' >&2
@@ -112,6 +114,21 @@ echo "$output_it" | grep -Eqx ' +Capitolo 1' || wail
 
 echo 'checking for correct Italian "Appendix" string' >&2
 echo "$output_it" | grep -Eqx ' +Appendice A' || wail
+
+# Russian localization
+echo 'checking that `td` string updated correctly for Russian' >&2
+echo "$output_ru" | sed -n '4p' \
+    | grep -Fqx ' The day was <u043F><u043E><u043D><u0435><u0434><u0435><u043B><u044C><u043D><u0438><u043A>, 15 <u0434><u0435><u043A><u0430><u0431><u0440><u044F> 2008.' \
+    || wail
+
+echo 'checking for correct Russian "Chapter" string' >&2
+echo "$output_ru" | sed -n '2p' \
+    | grep -Fqx ' <u0413><u043B><u0430><u0432><u0430> 1' || wail
+
+echo 'checking for correct Russian "Appendix" string' >&2
+echo "$output_ru" | sed -n '6p' \
+    | grep -Fqx ' <u041F><u0440><u0438><u043B><u043E><u0436><u0435><u043D><u0438><u044F> A' \
+    || wail
 
 # Swedish localization
 echo 'checking that `td` string updated correctly for Swedish (1)' >&2

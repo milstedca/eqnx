@@ -1,3 +1,13 @@
+2023-03-09  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tests]: Add Russian language support (7/7).
+
+	* src/roff/groff/tests/localization_works.sh:
+	* tmac/tests/e_ld-works.sh: Test it.
+
+	Fixes <https://savannah.gnu.org/bugs/?63076>.  Thanks to Nikita
+	Ivanov.
+
 2023-03-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[docs]: Add Russian language support (6/7).

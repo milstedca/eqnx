@@ -115,7 +115,7 @@ echo "$output_it" | grep -Eqx ' +Appendice A' || wail
 
 # Swedish localization
 echo 'checking that `td` string updated correctly for Swedish (1)' >&2
-echo "$output_sv" | grep -q 'The day was m'
+echo "$output_sv" | grep -q 'The day was m' || wail
 
 echo 'checking that `td` string updated correctly for Swedish (2)' >&2
 echo "$output_sv" | grep -q 'ndag, 15 december 2008\.$' || wail

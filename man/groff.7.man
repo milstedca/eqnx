@@ -6374,9 +6374,9 @@ English
 .RI ( en ),
 French
 .RI ( fr ),
-Japanese
-.RI ( it ),
 Italian
+.RI ( it ),
+Japanese
 .RI ( ja ),
 Swedish
 .RI ( sv ),

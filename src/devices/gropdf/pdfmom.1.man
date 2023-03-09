@@ -54,6 +54,7 @@ macro package for
 .
 .SY pdfmom
 .RB [ \-Tpdf ]
+.RB [ \-roff ]
 .RI [ groff-options ]
 .RI [ file\~ .\|.\|.]
 .YS
@@ -86,6 +87,21 @@ that facilitates the production of PDF documents from files
 formatted with the
 .I mom
 macros.
+.
+.
+.P
+If the
+.B \-roff
+option is used the link to
+.I mom
+is severed and the wrapper can be used with other macro sets.
+This is also true if the wrapper is renamed or linked as a
+pseudonym, so creating a link called
+.I pdfms
+which targets pdfmom will create a wrapper for creating pdfs
+with the
+.I ms
+macro.
 .
 .
 .P

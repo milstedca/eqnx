@@ -203,6 +203,16 @@ TeX-related projects.
       FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
       OTHER DEALINGS IN THE SOFTWARE.
 
+* "tmac/hyphen.ru" is renamed from "ruhyphal.tex", obtained from
+  <http://dante.ctan.org/tex-archive/language/hyphenation/ruhyphen/\
+  ruhyphal.tex>.
+
+  Copyright 1999-2003 Alexander I. Lebedev <swan@scon155.phys.msu.su>
+
+  This program may be distributed and/or modified under the conditions
+  of the LaTeX Project Public License, either version 1.2 or any later
+  version.
+
 * "tmac/hyphen.sv" is renamed from "svhyph.tex", obtained from
   <http://dante.ctan.org/CTAN/language/hyphenation/svhyph.tex>.
 

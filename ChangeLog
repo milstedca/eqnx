@@ -1,3 +1,9 @@
+2023-03-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Add Russian language support (2/7).
+
+	LICENSES: Update for CTAN Russian hyphenation patterns.
+
 2023-03-08  Nikita Ivanov <nikita.vyach.ivanov@gmail.com>
 
 	[tmac]: Add Russian language support (1/7).

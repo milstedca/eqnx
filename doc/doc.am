@@ -619,6 +619,7 @@ maintainer-clean-local:
 	$(RM) $(doc_builddir)/groff.dvi
 	$(RM) $(doc_builddir)/groff.txt
 	$(RM) -r $(doc_builddir)/groff.html.*
+	$(RM) -r $(doc_builddir)/*.t2d $(doc_builddir)/*.t2p
 
 install-data-local: install-txt
 install-txt:

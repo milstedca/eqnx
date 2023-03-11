@@ -1,3 +1,17 @@
+2023-03-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/doc.am (install-txt): Look for "groff.txt" in the source
+	and build directories in sequence; it could be in either place
+	depending on whether the build is from the Git repository or
+	from a distribution archive.  Annotate this.  Fixes
+	"install-doc" target when building from Git repository.  Problem
+	introduced by me in commit 691fc70108, 22 February.  Thanks to
+	Nikita Ivanov for the report.
+	(install-pdf-local, install-html-local): Similar.
+
+	Also fixes <https://savannah.gnu.org/bugs/?64059>, later
+	reported anonymously.
+
 2023-03-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (maintainer-clean-local): Remove temporary "*.t2d"

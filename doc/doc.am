@@ -621,11 +621,20 @@ maintainer-clean-local:
 	$(RM) -r $(doc_builddir)/groff.html.*
 	$(RM) -r $(doc_builddir)/*.t2d $(doc_builddir)/*.t2p
 
+# Generated forms of the groff Texinfo manual might be in the source
+# directory (distribution archive build) or in the build directory (Git
+# repository build).
+
 install-data-local: install-txt
 install-txt:
 	-test -d $(DESTDIR)$(docdir) \
 	  || $(mkinstalldirs) $(DESTDIR)$(docdir)
-	cp $(top_srcdir)/doc/groff.txt $(DESTDIR)$(docdir)
+	for d in $(doc_builddir) $(doc_srcdir); do \
+	  if [ -f "$$d"/groff.txt ]; then \
+	    cp "$$d"/groff.txt $(DESTDIR)$(docdir); \
+	    break; \
+	  fi; \
+	done
 
 install-data-local: install_infodoc
 install_infodoc: doc/groff.info
@@ -640,17 +649,29 @@ install_infodoc: doc/groff.info
 	    break; \
 	  fi; \
 	done
+
 install-pdf-local: doc/groff.pdf
 	-test -d $(DESTDIR)$(pdfdocdir) \
 	  || $(mkinstalldirs) $(DESTDIR)$(pdfdocdir)
-	cp $(top_srcdir)/doc/groff.pdf $(DESTDIR)$(pdfdocdir)
+	for d in $(doc_builddir) $(doc_srcdir); do \
+	  if [ -f "$$d"/groff.pdf ]; then \
+	    cp "$$d"/groff.pdf $(DESTDIR)$(pdfdocdir); \
+	    break; \
+	  fi; \
+	done
+
 install-html-local: doc/groff.html
 	-test -d $(DESTDIR)$(htmldocdir)/groff.html.mono \
 	  || $(mkinstalldirs) $(DESTDIR)$(htmldocdir)/groff.html.mono
-	cp -r $(top_srcdir)/doc/groff.html \
-	  $(DESTDIR)$(htmldocdir)/groff.html.mono
-	cp -r $(top_srcdir)/doc/groff.html.node \
-	  $(DESTDIR)$(htmldocdir)
+	for d in $(doc_builddir) $(doc_srcdir); do \
+	  if [ -f "$$d"/groff.html ]; then \
+	    cp -r "$$d"/groff.html \
+	      $(DESTDIR)$(htmldocdir)/groff.html.mono; \
+	    cp -r "$$d"/groff.html.node \
+	      $(DESTDIR)$(htmldocdir); \
+	    break; \
+	  fi; \
+	done
 
 uninstall-local: uninstall_infodoc uninstall-pdf uninstall-html \
   uninstall-txt

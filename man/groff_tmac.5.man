@@ -364,6 +364,21 @@ English.
 .
 .
 .TP
+.I es
+Spanish;
+localizes
+.IR man ,
+.IR me ,
+.IR mm ,
+.IR mom ,
+and
+.IR ms .
+.
+Sets the input encoding to Latin-9 by loading
+.IR latin9.tmac .
+.
+.
+.TP
 .I fr
 French;
 localizes

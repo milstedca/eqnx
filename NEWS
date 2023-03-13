@@ -23,6 +23,10 @@ o Russian language input documents using the KOI8-R encoding are now
   and localized strings for the man, ms, me, mm, and mom packages.
   Thanks to Nikita Ivanov.
 
+o Spanish language input documents are now supported, including
+  hyphenation patterns from the hyph-utf8 project and localized strings
+  for the man, ms, me, mm, and mom packages.  Thanks to Eloi Montañés.
+
 
 VERSION 1.23.0
 ==============

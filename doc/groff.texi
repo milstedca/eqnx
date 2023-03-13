@@ -8630,6 +8630,7 @@ the @cite{groff_tmac@r{(5)}} man page for more information on GNU
 @item        German reformed    @tab den          @tab 2        @tab 2
 @item        Italian            @tab it           @tab 2        @tab 2
 @item        Russian            @tab ru           @tab 2        @tab 2
+@item        Spanish            @tab es           @tab 2        @tab 2
 @item        Swedish            @tab sv           @tab 1        @tab 2
 @end multitable
 

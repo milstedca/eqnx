@@ -1,5 +1,15 @@
 2023-03-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[docs]: Add Spanish language support (4/5).
+
+	* doc/groff.texi (Manipulating Hyphenation):
+	* doc/ms.ms (Language and localization):
+	* man/groff_tmac.5.man (Localization files): Document it.
+
+	* NEWS: Add item.
+
+2023-03-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tmac]: Add Spanish language support (3/5).
 
 	* tmac/hyphen.es:

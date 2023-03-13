@@ -1,5 +1,12 @@
 2023-03-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tmac]: Add Spanish language support (3/5).
+
+	* tmac/hyphen.es:
+	* tmac/es.tmac: Update editor aids.
+
+2023-03-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tmac]: Add Spanish language support (2/5).
 
 	* tmac/es.tmac: Spell weekday and month names in lowercase;

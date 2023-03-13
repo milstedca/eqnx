@@ -2173,3 +2173,9 @@ di4e5léc
 7u4niversid
 5u4niversit
 }
+
+% Local Variables:
+% mode: tex
+% fill-column: 72
+% End:
+% vim: set filetype=tex textwidth=72:

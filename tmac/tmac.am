@@ -82,6 +82,8 @@ TMACNORMALFILES = \
   tmac/en.tmac \
   tmac/hyphen.en \
   tmac/hyphenex.en \
+  tmac/es.tmac \
+  tmac/hyphen.es \
   tmac/fr.tmac \
   tmac/hyphen.fr \
   tmac/it.tmac \

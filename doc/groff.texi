@@ -8711,6 +8711,7 @@ be used.  By default, every code maps to itself except those for letters
 @pindex cs.tmac
 @pindex de.tmac
 @pindex en.tmac
+@pindex es.tmac
 @pindex fr.tmac
 @pindex it.tmac
 @pindex ja.tmac

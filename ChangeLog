@@ -1,3 +1,14 @@
+2023-03-13  Eloi Montañés <em@ilsrv.com>
+
+	[tmac]: Add Spanish language support (1/5).
+
+	* tmac/hyphen.es: Add hyphenation patterns (encoded in Latin-9).
+	* tmac/es.tmac: Add groff locale for Spanish.
+	* tmac/tmac.am (TMACNORMALFILES): Ship new files.
+	* doc/groff.texi (Manipulating Hyphenation): Add file/package
+	  index entry for "es.tmac".
+	* LICENSES: Update for CTAN Spanish hyphenation patterns.
+
 2023-03-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tests]: Add Russian language support (7/7).

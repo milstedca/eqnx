@@ -1,3 +1,15 @@
+2023-03-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tmac]: Add Spanish language support (2/5).
+
+	* tmac/es.tmac: Spell weekday and month names in lowercase;
+	every style authority I could find online mandates this, and it
+	meshes with my half-remembered formal instruction in the
+	language.  Fix groff composite special character escape
+	sequences to place the base character first.  Replace one
+	Unicode special character escape sequence with a composite
+	special character escape sequence, for consistency.
+
 2023-03-13  Eloi Montañés <em@ilsrv.com>
 
 	[tmac]: Add Spanish language support (1/5).

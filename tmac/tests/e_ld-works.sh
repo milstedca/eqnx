@@ -46,6 +46,8 @@ wail () {
 output=$(printf "%s\n" "$input" | "$groff" -Tascii -P-cbou -me)
 output_cs=$(printf "%s\n" "$input" | "$groff" -Tutf8 -P-cbou -me -mcs)
 output_de=$(printf "%s\n" "$input" | "$groff" -Tutf8 -P-cbou -me -mde)
+output_es=$(printf "%s\n" "$input" \
+    | "$groff" -Tutf8 -P-cbou -me -mes -a)
 output_fr=$(printf "%s\n" "$input" | "$groff" -Tutf8 -P-cbou -me -mfr)
 output_it=$(printf "%s\n" "$input" | "$groff" -Tutf8 -P-cbou -me -mit)
 output_ru=$(printf "%s\n" "$input" \
@@ -91,6 +93,18 @@ echo "$output_de" | grep -Eqx ' +Kapitel 1' || wail
 
 echo 'checking for correct German "Appendix" string' >&2
 echo "$output_de" | grep -Eqx ' +Anhang A' || wail
+
+# Spanish localization
+echo "$output_es"
+echo 'checking that `td` string updated correctly for Spanish' >&2
+echo "$output_es" \
+    | grep -q 'The day was lunes, 15 de diciembre de 2008\.$' || wail
+
+echo 'checking for correct Spanish "Chapter" string' >&2
+echo "$output_es" | grep -Eqx " +Cap<'i>tulo 1" || wail
+
+echo 'checking for correct Spanish "Appendix" string' >&2
+echo "$output_es" | grep -Eqx ' +Anexo A' || wail
 
 # French localization
 echo 'checking that `td` string updated correctly for French (1)' >&2

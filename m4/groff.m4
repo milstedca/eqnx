@@ -1121,63 +1121,73 @@ AC_DEFUN([GROFF_TMAC],
   [AC_MSG_CHECKING([for prefix of system macro packages])
    sys_tmac_prefix=
    sys_tmac_file_prefix=
-   for d in /usr/share/lib/tmac /usr/lib/tmac; do
-     for t in "" tmac.; do
-       for m in an s m; do
-	 f=$d/$t$m
-	 if test -z "$sys_tmac_prefix" \
-	    && test -f $f \
-	    && grep '^\.if' $f >/dev/null 2>&1; then
-	   sys_tmac_prefix=$d/$t
-	   sys_tmac_file_prefix=$t
-	 fi
+   for d in /usr/share/lib/tmac /usr/lib/tmac
+   do
+     for t in "" tmac.
+     do
+       for m in an s m
+       do
+         f=$d/$t$m
+         if test -z "$sys_tmac_prefix" \
+            && test -f $f \
+            && grep '^\.if' $f >/dev/null 2>&1
+         then
+           sys_tmac_prefix=$d/$t
+           sys_tmac_file_prefix=$t
+         fi
        done
      done
    done
    sys_tmac_prefix_result=none
    test -z "$sys_tmac_prefix" \
-	|| sys_tmac_prefix_result="$sys_tmac_prefix"
+     || sys_tmac_prefix_result="$sys_tmac_prefix"
    AC_MSG_RESULT([$sys_tmac_prefix_result])
    AC_SUBST([sys_tmac_prefix])
 
    AC_MSG_CHECKING([which system macro packages should be made available])
    tmac_wrap=
-   if test "$sys_tmac_file_prefix" = tmac.; then
-     for f in $sys_tmac_prefix*; do
+   if test "$sys_tmac_file_prefix" = tmac.
+   then
+     for f in $sys_tmac_prefix*
+     do
        suff=`echo $f | sed -e "s;$sys_tmac_prefix;;"`
        case "$suff" in
        e)
-	 ;;
+         ;;
        *)
-	 grep "Copyright.*Free Software Foundation" $f >/dev/null \
-	      || tmac_wrap="$tmac_wrap $suff" ;;
+         grep "Copyright.*Free Software Foundation" $f >/dev/null \
+              || tmac_wrap="$tmac_wrap $suff" ;;
        esac
      done
-   elif test -n "$sys_tmac_prefix"; then
+   elif test -n "$sys_tmac_prefix"
+   then
      files=`echo $sys_tmac_prefix*`
      grep "\\.so" $files >conftest.sol
-     for f in $files; do
+     for f in $files
+     do
        case "$f" in
        ${sys_tmac_prefix}e)
-	 ;;
+         ;;
        *.me)
-	 ;;
+         ;;
        */ms.*)
-	 ;;
+         ;;
        *)
-	 b=`basename $f`
-	 if grep "\\.so.*/$b\$" conftest.sol >/dev/null \
-	    || grep -l "Copyright.*Free Software Foundation" $f >/dev/null; then
-	   :
-	 else
-	   suff=`echo $f | sed -e "s;$sys_tmac_prefix;;"`
-	   case "$suff" in
-	   tmac.*)
-	     ;;
-	   *)
-	     tmac_wrap="$tmac_wrap $suff" ;;
-	   esac
-	 fi
+         b=`basename $f`
+         if grep "\\.so.*/$b\$" conftest.sol >/dev/null \
+            || grep -l "Copyright.*Free Software Foundation" $f \
+               >/dev/null
+         then
+           :
+         else
+           suff=`echo $f | sed -e "s;$sys_tmac_prefix;;"`
+           case "$suff" in
+           tmac.*)
+             ;;
+           *)
+             tmac_wrap="$tmac_wrap $suff" ;;
+           esac
+         fi
        esac
      done
      rm -f conftest.sol
@@ -1185,7 +1195,8 @@ AC_DEFUN([GROFF_TMAC],
    tmac_wrap_result="none found"
    test -z "$tmac_wrap" || tmac_wrap_result="$tmac_wrap"
    AC_MSG_RESULT([$tmac_wrap_result])
-   AC_SUBST([tmac_wrap])])
+   AC_SUBST([tmac_wrap])
+])
 
 
 # Searching if a non-GNU Troff is installed.  The built-in register

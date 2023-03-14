@@ -1,3 +1,15 @@
+2023-03-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/tmac.am (tmac/stamp-wrap): Stop prepending groff's man(7)
+	package wrapper ("-man") on hosts with a system man package with
+	a request to source itself; this was search-and-replace damage
+	from resolving Savannah #60789.  The wrapper still worked, but
+	reported any errors inside the wrapped macro package many times
+	until the process ran out of file descriptors.  Problem
+	introduced by me in commit fdac25937f, 2021-07-05.
+
+	Fixes <https://savannah.gnu.org/bugs/?63924>.
+
 2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/tests/an-ext_SY-and-YS-work.sh: Add test.

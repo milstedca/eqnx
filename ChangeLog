@@ -1,11 +1,3 @@
-2023-02-11  Deri James  <deri@chuzzlewit.myzen.co.uk>
-
-        Make pdfmom more versatile.
-
-        * src/devices/gropdf/pdfmom.pl: Add flag -roff which severs
-        hardcoded link to the mom macros.
-        * src/devices/gropdf/pdfmom.pl: Document changes.
-
 2023-03-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Use a better type for symbol hashes.

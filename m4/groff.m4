@@ -1118,7 +1118,7 @@ fopen(0, 0);
 
 
 AC_DEFUN([GROFF_TMAC],
-  [AC_MSG_CHECKING([for prefix of system macro packages])
+  [AC_MSG_CHECKING([file name prefix of system macro packages])
    sys_tmac_prefix=
    sys_tmac_file_prefix=
    for d in /usr/share/lib/tmac /usr/lib/tmac
@@ -1138,13 +1138,13 @@ AC_DEFUN([GROFF_TMAC],
        done
      done
    done
-   sys_tmac_prefix_result=none
+   sys_tmac_prefix_result='(none)'
    test -z "$sys_tmac_prefix" \
      || sys_tmac_prefix_result="$sys_tmac_prefix"
    AC_MSG_RESULT([$sys_tmac_prefix_result])
    AC_SUBST([sys_tmac_prefix])
 
-   AC_MSG_CHECKING([which system macro packages should be made available])
+   AC_MSG_CHECKING([for system macro packages to make available])
    tmac_wrap=
    if test "$sys_tmac_file_prefix" = tmac.
    then
@@ -1192,7 +1192,7 @@ AC_DEFUN([GROFF_TMAC],
      done
      rm -f conftest.sol
    fi
-   tmac_wrap_result="none found"
+   tmac_wrap_result='(none)'
    test -z "$tmac_wrap" || tmac_wrap_result="$tmac_wrap"
    AC_MSG_RESULT([$tmac_wrap_result])
    AC_SUBST([tmac_wrap])

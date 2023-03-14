@@ -1,3 +1,24 @@
+2023-03-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[build]: Clarify output of `GROFF_TMAC` Autoconf test.
+
+	* configure.ac: Correct characterization of the list of macro
+	packages reported.  It is not the list of macro packages
+	receiving a "g" prefix, but the list of macro packages reciving
+	a wrapper macro file in groff's macro directory, each of which
+	sources the corresponding system (likely AT&T-descended troff)
+	macro package.  Fixes wording I introduced in commit 4d30dd7424,
+	31 May.
+	* m4/groff.m4 (GROFF_TMAC): Clarify first "checking" message:
+	we are looking for a file name prefix on existing system macro
+	packages (like "tmac.").  This has nothing to do with the prefix
+	applied to groff commands, or the "g" prefixed to groff
+	implementations of the man, mm, and ms packages.  Tighten
+	wording of second "checking" message.  Consistently say "(none)"
+	instead of "none" or "none found".
+
+	Fixes <https://savannah.gnu.org/bugs/?63900>.
+
 2023-03-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (install-txt): Look for "groff.txt" in the source

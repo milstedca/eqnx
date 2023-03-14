@@ -1146,6 +1146,7 @@ AC_DEFUN([GROFF_TMAC],
 
    AC_MSG_CHECKING([for system macro packages to make available])
    tmac_wrap=
+   space=
    if test "$sys_tmac_file_prefix" = tmac.
    then
      for f in $sys_tmac_prefix*
@@ -1155,8 +1156,11 @@ AC_DEFUN([GROFF_TMAC],
        e)
          ;;
        *)
-         grep "Copyright.*Free Software Foundation" $f >/dev/null \
-              || tmac_wrap="$tmac_wrap $suff" ;;
+         if ! grep "Copyright.*Free Software Foundation" $f >/dev/null
+         then
+           tmac_wrap="$tmac_wrap$space$suff"
+           space=' '
+         fi ;;
        esac
      done
    elif test -n "$sys_tmac_prefix"
@@ -1185,7 +1189,8 @@ AC_DEFUN([GROFF_TMAC],
            tmac.*)
              ;;
            *)
-             tmac_wrap="$tmac_wrap $suff" ;;
+             tmac_wrap="$tmac_wrap$space$suff"
+             space=' ' ;;
            esac
          fi
        esac

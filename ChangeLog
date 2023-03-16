@@ -1,3 +1,15 @@
+2023-03-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/libs/libxutil/XFontName.c (utoa): Rename function from
+	this...
+	(xu_utoa): ...to this, to avoid name collision when using
+	"newlib" portability library.
+	(XFormatFontName): Update call site.
+	* PROBLEMS: Drop item.
+
+	Fixes <https://savannah.gnu.org/bugs/?63831>.  Thanks to Brian
+	Inglis for the report.
+
 2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[man]: Preserve user-selected font family.

@@ -2,7 +2,10 @@
                info-gnu for releases,
                and CC groff and linux-man@vger.kernel.org for both. ]]
 
-We are pleased to announce the release of groff version 1.23.0.
+groff 1.23 release candidate 4, 1.23.0.rc4, is now available from GNU's
+alpha site.  You may download the distribution archive from there.
+
+  https://alpha.gnu.org/gnu/groff/
 
 What is groff?
 ==============
@@ -30,7 +33,7 @@ Since groff 1.22.4 was released in December 2018, 26 people have made a
 total of over 4,500 commits.
 
 [[ maintainer: Insert output of
-   "git shortlog --summary 1.22.4..1.23.0" ]]
+   "git shortlog --summary 1.22.4..1.23.0.rc4" ]]
 
 Headline features nominated by our development community include:
   * a new 'man' macro, "MR", for formatting man page cross references;
@@ -108,19 +111,19 @@ Use a mirror for higher download bandwidth.
 
 Here are the SHA-1 and SHA-256 checksums.
 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  groff-1.23.0.tar.gz
-yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy  groff-1.23.0.tar.gz
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  groff-1.23.0.rc4.tar.gz
+yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy  groff-1.23.0.rc4.tar.gz
 
 The SHA-256 checksum is encoded in Base64 instead of the hexadecimal
 form that most checksum tools default to.  The mechanism follows.
 
-sha256sum < groff-1.23.0.tar.gz | cut -f1 -d\  | xxd -r -p | base64
+sha256sum < groff-1.23.0.rc4.tar.gz | cut -f1 -d\  | xxd -r -p | base64
 
 [*] Use a .sig file to verify that the corresponding file (without the
     .sig suffix) is intact.  First, be sure to download both the .sig
     file and the corresponding archive.  Then, verify the archive.
 
-      gpg --verify groff-1.23.0.tar.gz{.sig,}
+      gpg --verify groff-1.23.0.rc4.tar.gz{.sig,}
 
     If that command fails because you don't have the required public
     key, you can import it.

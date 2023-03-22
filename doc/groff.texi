@@ -464,7 +464,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle February 2023
+@subtitle March 2023
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -5338,9 +5338,9 @@ Heywood Jabuzzoff
 .ENDNAME
 @endExample
 
-In fact, the ending marker is itself the name of a macro that will be
-called if it is defined by that time (or the name of a request to be
-invoked).
+In fact, the ending marker is itself the name of a macro to be
+called, or a request to be invoked, if it is defined at the time its
+contol line is read.
 
 @Example
 .de END

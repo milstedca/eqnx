@@ -5452,6 +5452,11 @@ load it with the @code{mso} (``macro source'') request.
 
 @c ---------------------------------------------------------------------
 
+@c TODO: Move a lot of this node to the "Invoking groff" chapter.  Some
+@c of the discussion is better placed in discussion of output drivers
+@c (e.g., what character encodings _they_ support for output and their
+@c responsibility for converting to them) as well.
+
 @node Input Encodings, Input Conventions, Macro Packages, Text
 @subsection Input Encodings
 
@@ -5495,8 +5500,7 @@ are interchangeable in their first 128 code points.@footnote{The
 with the successive standards, a cause of some frustration among man
 page writers; see the @cite{groff_char@r{(7)}} man page.}
 
-The remaining encodings require support that is not built-in to the GNU
-@code{troff} executable; instead, they use macro packages.
+Other encodings are supported by means of macro packages.
 
 @table @code
 @item latin2

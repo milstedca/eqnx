@@ -1,3 +1,10 @@
+2023-03-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[mdoc]: Regression-test Savannah #63957.
+
+	* tmac/tests/doc_synopsis_is_not_adjusted.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
 2023-03-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/tmac.am (tmac/stamp-wrap): Stop prepending groff's man(7)

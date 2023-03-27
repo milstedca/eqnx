@@ -132,11 +132,11 @@ pic
 ---
 
 o The token `.PY` is now recognized as a synonym of `.PF` to work around
-  a name space collision with the m (mm) macro package, which uses the
-  same name for a page footer management macro.  (This problem dates
-  back at least to Unix System V Release 2, 1983.)  You should continue
-  to use `.PF` to end pictures with flyback unless a similar problem
-  faces your document.
+  a name space collision with the m (mm) macro package, which defines
+  `PF` as a page footer management macro.  (This problem dates back at
+  least to Unix System V Release 2, 1983.)  You should continue to use
+  `.PF` to end pictures with flyback unless a similar problem faces your
+  document.
 
 tbl
 ---

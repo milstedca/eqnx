@@ -185,7 +185,9 @@ as a synonym of
 to work around a name space collision with the
 .I mm
 macro package,
-which uses the same name for a page footer management macro.
+which defines
+.B PF
+as a page footer management macro.
 .
 Use
 .B PF

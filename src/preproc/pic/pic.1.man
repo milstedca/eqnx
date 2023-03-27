@@ -107,11 +107,11 @@ document formatting system.
 .I @g@pic
 is a
 .MR @g@troff @MAN1EXT@
-preprocessor that compiles descriptions of diagrammatic pictures
+preprocessor that translates descriptions of diagrammatic pictures
 embedded in
-.I troff \" generic
+.MR roff @MAN7EXT@
 or \*[tx] input files into the language understood by \*[tx] or
-.IR troff . \" generic
+.IR @g@troff .
 .
 It copies the contents of each
 .I file

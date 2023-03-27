@@ -84,10 +84,9 @@ document formatting system.
 .I @g@tbl
 is a
 .MR @g@troff @MAN1EXT@
-preprocessor that translates descriptions of tables embedded in its
-input into the language,
-.MR groff @MAN7EXT@ ,
-understood by
+preprocessor that translates descriptions of tables embedded in
+.MR roff @MAN7EXT@
+input files into the language understood by
 .IR @g@troff .
 .
 It copies the contents of each

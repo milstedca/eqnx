@@ -104,7 +104,7 @@ o nroff now recognizes the -b, -E, -k, -K, -R, and -z options and passes
   them through to groff.
 
 o nroff now supports spaces and tabs between option flag letters and
-  option arguments, like groff and troff themselves.
+  arguments to options, like groff and troff themselves.
 
 groff
 -----

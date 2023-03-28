@@ -819,7 +819,6 @@ EXTRA_DIST += \
   ChangeLog.121 \
   ChangeLog.122 \
   FDL \
-  FOR-RELEASE \
   gendef.sh \
   HACKING \
   INSTALL.REPO \

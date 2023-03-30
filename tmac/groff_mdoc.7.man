@@ -4883,7 +4883,7 @@ and
 Historically, \" (\[ti]1989)
 .Xr mdoc
 configured the string definitions to fit the capabilities expected of
-the the output device.
+the output device.
 .
 Old typesetters \" like the C/A/T
 lacked directional double quotes,

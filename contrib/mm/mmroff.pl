@@ -31,6 +31,8 @@ my $no_exec;
 
 if (grep(/^--help$/, @ARGV)) {
 	print "usage: mmroff [-x] [groff-option ...] [file ...]\n";
+	print "usage: mmroff --version\n";
+	print "usage: mmroff --help\n";
 	exit;
 }
 

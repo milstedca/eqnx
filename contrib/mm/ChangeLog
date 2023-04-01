@@ -1,3 +1,8 @@
+2023-04-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* mmroff.pl: Document `--help` and `--version` options in usage
+	message.
+
 2023-06-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tests/indexing-works.sh: Add unit test.

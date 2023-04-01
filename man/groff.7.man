@@ -5241,7 +5241,7 @@ See section \[lq]Warnings\[rq] in
 .P
 The bracketed interpolation form accepts arguments that are handled as
 macro arguments are;
-see section \[lq]Calling Macros\[rq] above.
+see section \[lq]Calling macros\[rq] above.
 .
 In contrast to macro calls,
 however,

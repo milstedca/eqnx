@@ -1,5 +1,15 @@
 2023-04-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (chop_macro)
+	(do_string_case_transform, substring_request, asciify_macro):
+	(unformat_macro, write_macro_request): When diagnosing
+	impossible operations on request names, report the name of the
+	request they were attempted upon.
+	* src/roff/groff/tests/string_case_xform_errors.sh: Update test
+	expectations.
+
+2023-04-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Make futile aliasing an error.
 
 	* src/roff/troff/input.cpp (alias_macro): Promote diagnostic

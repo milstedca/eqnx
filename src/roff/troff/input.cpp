@@ -4718,13 +4718,13 @@ void chop_macro()
     request_or_macro *p = lookup_request(s);
     macro *m = p->to_macro();
     if (!m)
-      error("cannot chop request");
+      error("cannot chop request '%1'", s.contents());
     else if (m->empty())
-      error("cannot chop empty macro");
+      error("cannot chop empty object '%1'", s.contents());
     else {
       int have_restore = 0;
-      // we have to check for additional save/restore pairs which could be
-      // there due to empty am1 requests.
+      // We have to check for additional save/restore pairs which could
+      // be there due to empty am1 requests.
       for (;;) {
 	if (m->get(m->len - 1) != POP_GROFFCOMP_MODE)
 	  break;
@@ -4739,7 +4739,7 @@ void chop_macro()
 	  break;
       }
       if (m->len == 0)
-	error("cannot chop empty macro");
+	error("cannot chop empty object '%1'", s.contents());
       else {
 	if (have_restore)
 	  m->set(POP_GROFFCOMP_MODE, m->len - 1);
@@ -4765,7 +4765,7 @@ void do_string_case_transform(case_xform_mode mode)
   request_or_macro *p = lookup_request(s);
   macro *m = p->to_macro();
   if (!m) {
-    error("cannot apply string case transformation to a request ('%1')",
+    error("cannot apply string case transformation to request '%1'",
 	  s.contents());
     skip_line();
     return;
@@ -4810,7 +4810,7 @@ void substring_request()
     request_or_macro *p = lookup_request(s);
     macro *m = p->to_macro();
     if (!m)
-      error("cannot apply 'substring' on a request");
+      error("cannot extract substring of request '%1'", s.contents());
     else {
       int end = -1;
       if (!has_arg() || get_integer(&end)) {
@@ -4936,7 +4936,7 @@ void asciify_macro()
     request_or_macro *p = lookup_request(s);
     macro *m = p->to_macro();
     if (!m)
-      error("cannot asciify request");
+      error("cannot asciify request '%1'", s.contents());
     else {
       macro am;
       string_iterator iter(*m);
@@ -4963,7 +4963,7 @@ void unformat_macro()
     request_or_macro *p = lookup_request(s);
     macro *m = p->to_macro();
     if (!m)
-      error("cannot unformat request");
+      error("cannot unformat request '%1'", s.contents());
     else {
       macro am;
       string_iterator iter(*m);
@@ -6902,7 +6902,7 @@ void write_macro_request()
   request_or_macro *p = lookup_request(s);
   macro *m = p->to_macro();
   if (!m)
-    error("cannot write request");
+    error("cannot write request '%1' to a stream", s.contents());
   else {
     string_iterator iter(*m);
     for (;;) {

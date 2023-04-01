@@ -428,7 +428,7 @@ void alias_reg()
     symbol s2 = get_name(true /* required */);
     if (!s2.is_null()) {
       if (!register_dictionary.alias(s1, s2))
-	warning(WARN_REG, "register '%1' not defined", s2.contents());
+	error("cannot alias undefined register '%1'", s2.contents());
     }
   }
   skip_line();

@@ -1,3 +1,21 @@
+2023-04-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Make futile aliasing an error.
+
+	* src/roff/troff/input.cpp (alias_macro): Promote diagnostic
+	when attempting to alias a nonexistent macro/string/diversion
+	from warning to error; this aligns with the handling of the
+	requests `chop`, `stringup`, `stringdown`, `substring`,
+	`asciify`, `unformat`, and `writem` when they are regarded as
+	impossible.  Further, attempting to alias a nonexistent object
+	does not create an empty one, unlike interpolating it; try ".als
+	baz qux", then ".pm".
+	* src/roff/troff/reg.cpp (alias_reg): Promote diagnostic when
+	attempting to alias a nonexistent register from warning to
+	error.  Attempting to alias a nonexistent register does not
+	create an empty one, unlike interpolating it; try ".aln q r",
+	then ".pnr".
+
 2023-03-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tbl]: Trivially refactor.  Rename variables and functions to

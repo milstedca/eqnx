@@ -4705,7 +4705,7 @@ void alias_macro()
     symbol s2 = get_name(true /* required */);
     if (!s2.is_null()) {
       if (!request_dictionary.alias(s1, s2))
-	warning(WARN_MAC, "macro '%1' not defined", s2.contents());
+	error("cannot alias undefined object '%1'", s2.contents());
     }
   }
   skip_line();

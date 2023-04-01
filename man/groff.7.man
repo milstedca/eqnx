@@ -5220,14 +5220,26 @@ or
 .P
 The
 .request .ds
-request creates a string with a specified name and contents and the
-.esc *
-escape sequence dereferences its name,
-interpolating the contents.
+request creates a string with a specified name and contents.
 .
-If the string named by the
+If the identifier named by
+.request .ds
+already exists as an alias,
+the target of the alias is redefined.
+.
+If
+.request .ds
+is called with only one argument,
+the named string becomes empty.
+.
+.
+.P
+The
 .esc *
-escape sequence does not exist,
+escape sequence dereferences a string's name,
+interpolating its contents.
+.
+If the name does not exist,
 it is defined as empty,
 nothing is interpolated,
 and a warning in category
@@ -5237,8 +5249,6 @@ is emitted.
 See section \[lq]Warnings\[rq] in
 .MR @g@troff 1 .
 .
-.
-.P
 The bracketed interpolation form accepts arguments that are handled as
 macro arguments are;
 see section \[lq]Calling macros\[rq] above.
@@ -5360,9 +5370,20 @@ and aliasing
 .request .rn ,
 .request .rm ,
 .request .als).
+.
+.
+.P
+When a request,
+macro,
+string,
+or diversion is aliased,
+redefinitions and appendments \[lq]write through\[rq] alias names.
+.
+To replace an alias with a separately defined object,
+you must use the
+.B rm
+request on its name first.
 .\" END Keep (roughly) parallel with groff.texi node "Strings".
-.
-.
 .
 .
 .\" ====================================================================
@@ -6346,11 +6367,11 @@ see
 .
 The
 .B .de
-request defines a macro replacing the definition of any existing
-request,
-macro,
-string,
-or diversion of the same name.
+request defines a macro named for its argument.
+.
+If that name already exists as an alias,
+the target of the alias is redefined;
+see section \[lq]Strings\[rq] above.
 .
 .I @g@troff
 enters \[lq]copy mode\[rq]
@@ -6738,8 +6759,12 @@ request creates a diversion,
 including any partially collected line.
 .
 .B da
-appends to an existing diversion,
+appends to a diversion,
 creating one if it does not already exist.
+.
+If the diversion's name already exists as an alias,
+the target of the alias is replaced or appended to;
+see section \[lq]Strings\[rq] above.
 .
 .B box
 and

@@ -464,7 +464,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle March 2023
+@subtitle April 2023
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -2688,8 +2688,7 @@ Set register @var{reg} to @var{value}.  If @var{reg} doesn't exist, GNU
 @endDefreq
 
 @Defreq {ds, name contents}
-Set string @var{name} to @var{contents}.  If @var{name} exists, it is
-removed first.
+Set string @var{name} to @var{contents}.
 @endDefreq
 
 A list of document control registers and strings follows.  For any
@@ -12166,9 +12165,9 @@ warnings.
 @cindex string arguments
 @cindex arguments, of strings
 Define a string called @var{name} with contents @var{contents}.  If
-@var{name} already exists, it is removed first (see @code{rm} below).
-If @code{ds} is called with only one argument, @var{name} is defined as
-an empty string.
+@var{name} already exists as an alias, the target of the alias is
+redefined; see @code{als} and @code{rm} below.  If @code{ds} is called
+with only one argument, @var{name} is defined as an empty string.
 
 The @code{\*} escape sequence interpolates a previously defined string
 variable @var{name} (one-character name@tie{}@var{n}, two-character name
@@ -12479,6 +12478,11 @@ an error.  @xref{Writing Macros}.
 @cindex diversion, removing alias for (@code{rm})
 To remove an alias, call @code{rm} on its name.  The object itself is
 not destroyed until it has no more names.
+
+When a request, macro, string, or diversion is aliased, redefinitions
+and appendments ``write through'' alias names.  To replace an alias with
+a separately defined object, you must use the @code{rm} request on its
+name first.
 @endDefreq
 @c END Keep (roughly) parallel with section "Strings" of groff(7).
 
@@ -13003,22 +13007,23 @@ defined as empty.  @xref{Identifiers}.
 
 @Defreq {de, name [@Var{end}]}
 Define a macro @var{name}, replacing the definition of any existing
-request, macro, string, or diversion called @var{name}.  GNU
-@code{troff} enters ``copy mode'', storing subsequent input lines as the
-macro definition.  If the optional second argument is not specified, the
-definition ends with the control line @samp{..} (two dots).
-Alternatively, @var{end} identifies a macro whose call syntax at the
-start of a control line ends the definition of @var{name}; @var{end} is
-then called normally.  A macro definition must end in the same
-conditional block (if any) in which it began (@pxref{Conditional
-Blocks}).  Spaces or tabs are permitted after the control character in
-the line containing this ending token (either @samp{.} or
-@samp{@var{end}}), but a tab immediately after the token prevents its
-recognition as the end of a macro definition.  The macro @var{end} can
-be called with arguments.@footnote{While it is possible to define and
-call a macro @samp{.}, you can't use it as an end macro: during a macro
-definition, @samp{..} is never handled as calling @samp{.}, even if
-@samp{.de @var{name} .} explicitly precedes it.}
+request, macro, string, or diversion called @var{name}.  If
+@var{name} already exists as an alias, the target of the alias is
+redefined; recall @ref{Strings}.  GNU @code{troff} enters ``copy mode'',
+storing subsequent input lines as the macro definition.  If the optional
+second argument is not specified, the definition ends with the control
+line @samp{..} (two dots).  Alternatively, @var{end} identifies a macro
+whose call syntax at the start of a control line ends the definition of
+@var{name}; @var{end} is then called normally.  A macro definition must
+end in the same conditional block (if any) in which it began
+(@pxref{Conditional Blocks}).  Spaces or tabs are permitted after the
+control character in the line containing this ending token (either
+@samp{.} or @samp{@var{end}}), but a tab immediately after the token
+prevents its recognition as the end of a macro definition.  The macro
+@var{end} can be called with arguments.@footnote{While it is possible to
+define and call a macro @samp{.}, you can't use it as an end macro:
+during a macro definition, @samp{..} is never handled as calling
+@samp{.}, even if @samp{.de @var{name} .} explicitly precedes it.}
 @c
 @c @Example
 @c .de .
@@ -14947,10 +14952,12 @@ create and alter diversions.
 @cindex appending to a diversion (@code{da})
 @cindex diversion, appending (@code{da})
 Start collecting formatted output in a diversion called @var{name}.  The
-@code{da} request appends to the existing diversion called @var{name},
-creating it if necessary.  The pending output line is diverted as well.
-Switching to another (empty) environment (with the @code{ev} request)
-avoids the inclusion of the current partially collected line;
+@code{da} request appends to a diversion called @var{name}, creating it
+if necessary.  If @var{name} already exists as an alias, the target of
+the alias is replaced or appended to; recall @ref{Strings}.  The pending
+output line is diverted as well.  Switching to another environment (with
+the @code{ev} request) before invoking @code{di} or @code{da} avoids
+including any pending output line in the diversion; see
 @ref{Environments}.
 
 Invoking @code{di} or @code{da} without an argument stops diverting

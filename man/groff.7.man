@@ -5363,31 +5363,6 @@ and aliasing
 .\" END Keep (roughly) parallel with groff.texi node "Strings".
 .
 .
-.\" We don't have a "Diversions" section for this to follow yet.  When
-.\" we do, it should become part of a "Punning Names" section.  See
-.\" groff.texi.
-.ig
-.P
-Macros,
-strings,
-and diversions share a name space;
-see section \[lq]Identifiers\[rq] above.
-.
-Internally,
-the same mechanism is used to store them.
-.
-You can thus call a macro with string interpolation syntax and vice
-versa.
-.
-Interpolating a string does not hide existing macro arguments.
-.
-The sequence
-.B \[rs]\[rs]
-can be placed at the end of a line in a macro definition or,
-within a macro definition,
-immediately after the interpolation of a macro as a string to suppress
-the effect of a newline.
-..
 .
 .
 .\" ====================================================================
@@ -6818,6 +6793,33 @@ requests reprocess diversions.
 .\" XXX: That's a weak statement.  What we need is a `for` request and
 .\" a new conditional operator that tests whether an item in a node list
 .\" is an (otherwise unrepresentable) node.  See Savannah #62264.
+.
+.
+.\" ====================================================================
+.SH "Punning names"
+.\" ====================================================================
+.
+.\" BEGIN Keep (roughly) parallel with groff.texi node "Punning names".
+Macros,
+strings,
+and diversions share a name space;
+see section \[lq]Identifiers\[rq] above.
+.
+Internally,
+the same mechanism is used to store them.
+.
+You can thus call a macro with string interpolation syntax and vice
+versa.
+.
+Interpolating a string does not hide existing macro arguments.
+.
+The sequence
+.B \[rs]\[rs]
+can be placed at the end of a line in a macro definition or,
+within a macro definition,
+immediately after the interpolation of a macro as a string to suppress
+the effect of a newline.
+.\" END Keep (roughly) parallel with groff.texi node "Punning names".
 .
 .
 .\" ====================================================================

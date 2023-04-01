@@ -7316,7 +7316,7 @@ predefined special character escape sequences.
 .
 .TP
 .MR groff_diff @MAN7EXT@
-covers the differences between the
+covers differences between the
 GNU
 .I troff \" GNU
 formatter,

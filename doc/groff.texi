@@ -8964,7 +8964,7 @@ any.
 @cindex @code{\t}, and copy mode
 @cindex copy mode, and @code{\t}
 @cindex mode, copy, and @code{\t}
-Interpolate a tab in copy mode.
+Interpolate a tab in copy mode; see @ref{Copy Mode}.
 @endDefesc
 
 @DefreqList {ta, [[@Var{n1} @Var{n2} @dots{} @Var{nn} ]@t{T} @Var{r1} @
@@ -9189,7 +9189,7 @@ period @samp{.}.
 @cindex @code{\a}, and copy mode
 @cindex copy mode, and @code{\a}
 @cindex mode, copy, and @code{\a}
-Interpolate a leader in copy mode.
+Interpolate a leader in copy mode; see @ref{Copy Mode}.
 @endDefesc
 
 @Defreq {lc, [@Var{fill-glyph}]}
@@ -12168,6 +12168,8 @@ Define a string called @var{name} with contents @var{contents}.  If
 @var{name} already exists as an alias, the target of the alias is
 redefined; see @code{als} and @code{rm} below.  If @code{ds} is called
 with only one argument, @var{name} is defined as an empty string.
+Otherwise, GNU @code{troff} stores @var{contents} in copy
+mode.@footnote{@xref{Copy Mode}.}
 
 The @code{\*} escape sequence interpolates a previously defined string
 variable @var{name} (one-character name@tie{}@var{n}, two-character name
@@ -12175,9 +12177,9 @@ variable @var{name} (one-character name@tie{}@var{n}, two-character name
 handled as macro arguments are; recall @ref{Calling Macros}.  In
 contrast to macro calls, however, if a closing bracket @samp{]} occurs
 in a string argument, that argument must be enclosed in double quotes.
-@code{\*} is interpreted even in copy mode (@pxref{Copy Mode}).  When
-defining strings, argument interpolations must be escaped if they are to
-reference parameters from the calling context; @xref{Parameters}.
+@code{\*} is interpreted even in copy mode.  When defining strings,
+argument interpolations must be escaped if they are to reference
+parameters from the calling context; @xref{Parameters}.
 
 @Example
 .ds cite (\\$1, \\$2)
@@ -12918,7 +12920,7 @@ the @code{while} request's @dfn{body}.
 @cindex @code{de} request, and @code{while}
 GNU @code{troff} treats the body of a @code{while} request similarly to
 that of a @code{de} request (albeit one not read in copy
-mode@footnote{@xref{Copy Mode}.}), but stores it under an internal name
+mode,@footnote{@xref{Copy Mode}.}) but stores it under an internal name
 and deletes it when the loop finishes.  The operation of a macro
 containing a @code{while} request can slow significantly if the
 @code{while} body is large.  Each time the macro is executed, the
@@ -13009,21 +13011,22 @@ defined as empty.  @xref{Identifiers}.
 Define a macro @var{name}, replacing the definition of any existing
 request, macro, string, or diversion called @var{name}.  If
 @var{name} already exists as an alias, the target of the alias is
-redefined; recall @ref{Strings}.  GNU @code{troff} enters ``copy mode'',
-storing subsequent input lines as the macro definition.  If the optional
-second argument is not specified, the definition ends with the control
-line @samp{..} (two dots).  Alternatively, @var{end} identifies a macro
-whose call syntax at the start of a control line ends the definition of
-@var{name}; @var{end} is then called normally.  A macro definition must
-end in the same conditional block (if any) in which it began
-(@pxref{Conditional Blocks}).  Spaces or tabs are permitted after the
-control character in the line containing this ending token (either
-@samp{.} or @samp{@var{end}}), but a tab immediately after the token
-prevents its recognition as the end of a macro definition.  The macro
-@var{end} can be called with arguments.@footnote{While it is possible to
-define and call a macro @samp{.}, you can't use it as an end macro:
-during a macro definition, @samp{..} is never handled as calling
-@samp{.}, even if @samp{.de @var{name} .} explicitly precedes it.}
+redefined; recall @ref{Strings}.  GNU @code{troff} enters copy
+mode,@footnote{@xref{Copy Mode}.} storing subsequent input lines as the
+macro definition.  If the optional second argument is not specified, the
+definition ends with the control line @samp{..} (two dots).
+Alternatively, @var{end} identifies a macro whose call syntax at the
+start of a control line ends the definition of @var{name}; @var{end} is
+then called normally.  A macro definition must end in the same
+conditional block (if any) in which it began (@pxref{Conditional
+Blocks}).  Spaces or tabs are permitted after the control character in
+the line containing this ending token (either @samp{.} or
+@samp{@var{end}}), but a tab immediately after the token prevents its
+recognition as the end of a macro definition.  The macro @var{end} can
+be called with arguments.@footnote{While it is possible to define and
+call a macro @samp{.}, you can't use it as an end macro: during a macro
+definition, @samp{..} is never handled as calling @samp{.}, even if
+@samp{.de @var{name} .} explicitly precedes it.}
 @c
 @c @Example
 @c .de .

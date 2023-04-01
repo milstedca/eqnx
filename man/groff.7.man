@@ -5232,6 +5232,11 @@ If
 is called with only one argument,
 the named string becomes empty.
 .
+Otherwise,
+.I @g@troff
+stores the remainder of the control line in copy mode;
+see subsection \[lq]Copy mode\[rq] below.
+.
 .
 .P
 The
@@ -5261,8 +5266,7 @@ occurs in a string argument,
 that argument must be enclosed in double quotes.
 .
 .B \[rs]*
-is interpreted even in copy mode
-(see subsection \[lq]Copy mode\[rq] below).
+is interpreted even in copy mode.
 .
 When defining strings,
 argument interpolations must be escaped if they are to reference

@@ -2402,7 +2402,8 @@ bool token::usable_as_delimiter(bool report_error)
 
 const char *token::description()
 {
-  static char buf[4];
+  const size_t bufsz = strlen("character 'x'") + 1;
+  static char buf[bufsz];
   switch (type) {
   case TOKEN_BACKSPACE:
     return "a backspace character";
@@ -2410,10 +2411,7 @@ const char *token::description()
     if (c == INPUT_DELETE)
       return "a delete character";
     else {
-      buf[0] = '\'';
-      buf[1] = c;
-      buf[2] = '\'';
-      buf[3] = '\0';
+      (void) snprintf(buf, bufsz, "character '%c'", c);
       return buf;
     }
   case TOKEN_DUMMY:

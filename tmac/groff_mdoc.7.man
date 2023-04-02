@@ -382,7 +382,7 @@ macros are parsed and callable.
 .
 .Pp
 In the following,
-we call an
+we term an
 .Xr mdoc
 macro that starts a line
 (with a leading dot)

@@ -12920,7 +12920,7 @@ the @code{while} request's @dfn{body}.
 @cindex @code{de} request, and @code{while}
 GNU @code{troff} treats the body of a @code{while} request similarly to
 that of a @code{de} request (albeit one not read in copy
-mode,@footnote{@xref{Copy Mode}.}) but stores it under an internal name
+mode@footnote{@xref{Copy Mode}.}), but stores it under an internal name
 and deletes it when the loop finishes.  The operation of a macro
 containing a @code{while} request can slow significantly if the
 @code{while} body is large.  Each time the macro is executed, the

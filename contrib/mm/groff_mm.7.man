@@ -1249,27 +1249,34 @@ as a heading.
 .
 .
 .TP
-.BI EF\  \fR[\fParg\fR]\fP
-Even-page footer,
-printed just above the normal page footer on even pages.
+.BR EF\~ [ \[dq]\|\[aq]\c
+.IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
+]
+Define the even-page footer,
+which is formatted just above the normal page footer on even-numbered
+pages.
 .
 See
 .BR PF .
 .
-.IP
-This macro defines string
+.B EF
+defines the string
 .BR EOPef .
 .
+.
 .TP
-.BI EH\  \fR[\fParg\fR]\fP
-Even-page header,
-printed just below the normal page header on even pages.
+.BR EH\~ [ \[dq]\|\[aq]\c
+.IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
+]
+Define the even-page header,
+which is formatted just below the normal page header on even-numbered
+pages.
 .
 See
 .BR PH .
 .
-.IP
-This macro defines string
+.B EH
+defines the string
 .BR TPeh .
 .
 .
@@ -2712,30 +2719,36 @@ l l.
 .
 .
 .TP
-.BI OF\  \fR[\fParg\fR]\fP
-Odd-page footer, a line printed just above the normal footer.
+.BR OF\~ [ \[dq]\|\[aq]\c
+.IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
+]
+Define the odd-page footer,
+which is formatted just above the normal page footer on odd-numbered
+pages.
 .
 See
-.B EF
-and
 .BR PF .
 .
-.IP
-This macro defines string
+.B OF
+defines the string
 .BR EOPof .
 .
+.
 .TP
-.BI OH\  \fR[\fParg\fR]\fP
-Odd-page header, a line printed just below the normal header.
+.BR OH\~ [ \[dq]\|\[aq]\c
+.IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
+]
+Define the odd-page header,
+which is formatted just below the normal page header on odd-numbered
+pages.
 .
 See
-.B EH
-and
 .BR PH .
 .
-.IP
-This macro defines string
+.B OH
+defines the string
 .BR TPoh .
+.
 .
 .TP
 .B OP
@@ -2869,57 +2882,76 @@ see
 .
 .
 .TP
-.BI PF\  \fR[\fParg\fR]\fP
-Page footer.
+.BR PF\~ [ \[dq]\|\[aq]\c
+.IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
+]
+Define the page footer.
+.
+The footer is formatted at the bottom of each page;
+the argument is otherwise as described in
+.BR PH .
+.
 .B PF
-sets the line to be printed at the bottom of each page.
-.
-Empty by default.
-.
-See
-.B PH
-for the argument specification.
-.
-.IP
-This macro defines string
+defines the string
 .BR EOPf .
 .
-.TP
-.BI PH\  \fR[\fParg\fR]\fP
-Page header, a line printed at the top of each page.
-.
-The argument should be specified as
-.
-.RS
-.IP
-.RI \[dq]\[aq] left-part \[aq] center-part \[aq] right-part \[aq]\[dq]
-.RE
-.
-.IP
-where
-.IR left-part ,
-.IR center-part ,
+See
+.BR EF ,
+.BR OF ,
 and
-.I right-part
-are printed left-justified, centered, and right justified, respectively.
+.BR EOP .
 .
-Within the argument to
-.BR PH ,
-the character \[lq]%\[rq] is changed to the current page number.
 .
-The default argument is
+.TP
+.BR PH\~ [ \[dq]\|\[aq]\c
+.IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
+]
+.RS
+Define the page header,
+formatted at the top of each page,
+as the argument,
+where
+.IR left ,
+.IR center ,
+and
+.I right
+are aligned to the respective locations on the line.
+.
+A
+.RB \[lq] % \[rq]
+character appearing within
+.I arg
+is replaced by the current page number.
+.
+If the argument is absent,
+no page header is set.
+.
+The default page header is
 .
 .RS
-.IP
+.EX
 \[dq]\[aq]\[aq]\- % \-\[aq]\[aq]\[dq]
+.EE
 .RE
 .
-.IP
-which gives the page number between two dashes.
+which centers the page number between hyphens and formats nothing at the
+upper left and right.
 .
-.IP
-This macro defines string
+Header macros call
+.B PX
+(if defined)
+after formatting the header.
+.
+.B PH
+defines the string
 .BR TPh .
+.
+See
+.BR EH ,
+.BR OH ,
+and
+.BR TP .
+.RE
 .
 .
 .TP

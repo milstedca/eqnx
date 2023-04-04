@@ -1,5 +1,12 @@
 2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Ship groff.dvi (our Texinfo manual in DVI format).
+
+	* doc/doc.am (install-dvi-local, uninstall-dvi): Add targets.
+	(uninstall-local): Depend on "uninstall-dvi".
+
+2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Resume shipping pic.html.
 
 	* m4/groff.m4 (GROFF_CHECK_GROHTML_PROGRAMS)

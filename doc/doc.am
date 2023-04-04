@@ -654,6 +654,16 @@ install_infodoc: doc/groff.info
 	  fi; \
 	done
 
+install-dvi-local: doc/groff.dvi
+	-test -d $(DESTDIR)$(docdir) \
+	  || $(mkinstalldirs) $(DESTDIR)$(docdir)
+	for d in $(doc_builddir) $(doc_srcdir); do \
+	  if [ -f "$$d"/groff.dvi ]; then \
+	    cp "$$d"/groff.dvi $(DESTDIR)$(docdir); \
+	    break; \
+	  fi; \
+	done
+
 install-pdf-local: doc/groff.pdf
 	-test -d $(DESTDIR)$(pdfdocdir) \
 	  || $(mkinstalldirs) $(DESTDIR)$(pdfdocdir)
@@ -677,10 +687,13 @@ install-html-local: doc/groff.html
 	  fi; \
 	done
 
-uninstall-local: uninstall_infodoc uninstall-pdf uninstall-html \
-  uninstall-txt
+uninstall-local: uninstall_infodoc uninstall-dvi uninstall-pdf \
+  uninstall-html uninstall-txt
 uninstall_doc: uninstall-local
 uninstall-doc: uninstall-local
+uninstall-dvi:
+	$(RM) $(DESTDIR)$(docdir)/groff.dvi
+	-rmdir $(DESTDIR)$(docdir)
 uninstall_infodoc:
 	-$(INSTALL_INFO) --remove --info-dir=$(DESTDIR)$(infodir) \
 	  $(DESTDIR)$(infodir)/groff.info

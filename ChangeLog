@@ -1,5 +1,17 @@
 2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[build]: Install PDF documents better.  Ship only one copy of
+	"automake.pdf", and install it and the new "groff-man-pages.pdf"
+	in the "pdf/" subdirectory of the destination "doc" directory.
+
+	* doc/doc.am (PROCESSEDDOCFILES): Drop
+	"$(PROCESSEDDOCFILES_PDF)" from macro definition.
+	(nodist_docpdfdoc_DATA) [USE_GROPDF]: Use it here instead,
+	replacing a literal "doc/automake.pdf".
+	(mostlyclean-doc) [USE_GROPDF]: Clean these same files.
+
+2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Ship groff.dvi (our Texinfo manual in DVI format).
 
 	* doc/doc.am (install-dvi-local, uninstall-dvi): Add targets.

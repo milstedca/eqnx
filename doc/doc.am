@@ -79,9 +79,11 @@ PROCESSEDDOCFILES_TXT = \
 # image files.  If we include it here, a copy of its table of contents,
 # full of broken links to each section, gets placed directly in
 # $(DESTDIR)/$(docdir).
+#
+# $(PROCESSEDDOCFILES_PDF) is omitted because it's unnecessary; the
+# Automake macro nodist_docpdfdoc_DATA does what we need.
 PROCESSEDDOCFILES = \
   $(PROCESSEDDOCFILES_PS) \
-  $(PROCESSEDDOCFILES_PDF) \
   $(PROCESSEDDOCFILES_TXT)
 
 # Declare minimal dependencies for documents by output driver.
@@ -106,12 +108,10 @@ nodist_otherdoc_DATA = $(PROCESSEDDOCFILES) $(GENERATEDDOCFILES)
 MOSTLYCLEANFILES += $(GENERATEDDOCFILES) $(PROCESSEDDOCFILES)
 EXTRA_DIST += $(DOCFILES_NOINST)
 
-# pdf doc, written in mom and therefore using contrib/mom/mom.am
-# definitions
 EXTRA_DIST += doc/automake.mom
 if USE_GROPDF
 docpdfdocdir = $(pdfdocdir)
-nodist_docpdfdoc_DATA = doc/automake.pdf
+nodist_docpdfdoc_DATA = $(PROCESSEDDOCFILES_PDF)
 endif
 doc/automake.pdf: doc/automake.mom pdfmom contrib/mom/om.tmac
 
@@ -415,6 +415,9 @@ if USE_GROHTML
 	  done; \
 	  rmdir  $(doc_builddir)/img || :; \
 	fi
+endif
+if USE_GROPDF
+	$(RM) $(PROCESSEDDOCFILES_PDF)
 endif
 
 install-data-hook: install_doc_htmldoc

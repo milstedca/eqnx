@@ -174,12 +174,12 @@ AC_DEFUN([GROFF_USE_TEX_CHECK], [
 # grohtml needs the following programs to produce images from tbl(1)
 # tables and eqn(1) equations.
 
-dnl Any macro that tests $make_htmldoc should AC_REQUIRE this.
+dnl Any macro that tests $use_grohtml should AC_REQUIRE this.
 
 AC_DEFUN([GROFF_CHECK_GROHTML_PROGRAMS], [
   AC_REQUIRE([GROFF_GHOSTSCRIPT_PATH])
 
-  make_htmldoc=no
+  use_grohtml=no
   missing=
   m4_foreach([groff_prog],
 dnl Keep this list of programs in sync with grohtml test scripts.
@@ -195,7 +195,7 @@ dnl Keep this list of programs in sync with grohtml test scripts.
 
   if test -z "$missing"
   then
-      make_htmldoc=yes
+      use_grohtml=yes
   else
     plural=`set $missing; test $[#] -gt 1 && echo s`
     oxford=`set $missing; test $[#] -gt 2 && echo ,`
@@ -227,14 +227,13 @@ dnl Keep this list of programs in sync with grohtml test scripts.
   groff-generated documentation in HTML format.
 "
    fi
-   AC_SUBST([make_htmldoc])
 ])
 
 
 AC_DEFUN([GROFF_GROHTML_PROGRAM_NOTICE], [
   AC_REQUIRE([GROFF_CHECK_GROHTML_PROGRAMS])
 
-  if test "$make_htmldoc" = no
+  if test "$use_grohtml" = no
   then
     AC_MSG_NOTICE([$grohtml_notice])
   fi
@@ -457,7 +456,7 @@ AC_DEFUN([GROFF_PNMTOOLS_CAN_BE_QUIET], [
 
   pnmtools_quiet=
 
-  if test "$make_htmldoc" = yes
+  if test "$use_grohtml" = yes
   then
     AC_MSG_CHECKING([whether PNM tools accept the '-quiet' option])
     if echo P2 2 2 255 0 1 2 0 | pnmtops -quiet > /dev/null 2>&1

@@ -308,18 +308,6 @@ man5dir=$(manroot)/man$(man5ext)
 man7ext=7
 man7dir=$(manroot)/man$(man7ext)
 
-# The configure script checks whether all necessary utility programs for
-# grohtml are available -- only then can we build the HTML documentation.
-# make_htmldoc
-# make_install_htmldoc
-# make_uninstall_htmldoc
-
-# The configure script also checks whether all necessary utility programs
-# for pdfroff are available -- only then can we build PDF documentation.
-# make_pdfdoc
-# make_install_pdfdoc
-# make_uninstall_pdfdoc
-
 # Windows `.cmd' files
 # make_winscripts
 # make_install_winscripts

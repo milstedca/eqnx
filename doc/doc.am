@@ -74,8 +74,12 @@ PROCESSEDDOCFILES_PS = \
   doc/pic.ps
 PROCESSEDDOCFILES_TXT = \
   doc/groff-man-pages.utf8.txt
+# XXX: $(PROCESSEDDOCFILES_HTML) is omitted because pic.html gets
+# special handling: it needs to be placed in a subdirectory with its
+# image files.  If we include it here, a copy of its table of contents,
+# full of broken links to each section, gets placed directly in
+# $(DESTDIR)/$(docdir).
 PROCESSEDDOCFILES = \
-  $(PROCESSEDDOCFILES_HTML) \
   $(PROCESSEDDOCFILES_PS) \
   $(PROCESSEDDOCFILES_PDF) \
   $(PROCESSEDDOCFILES_TXT)

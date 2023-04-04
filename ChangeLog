@@ -1,3 +1,17 @@
+2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[build]: Resume shipping pic.html.
+
+	* m4/groff.m4 (GROFF_CHECK_GROHTML_PROGRAMS)
+	(GROFF_GROHTML_PROGRAM_NOTICE, GROFF_PNMTOOLS_CAN_BE_QUIET):
+	Rename "make_htmldoc" to "use_grohtml" as expected by
+	"configure.ac".  Also stop `AC_SUBST`ing it; we don't need
+	"@use_grohtml@" in our Makefiles since an `AM_CONDITIONAL` in
+	configure.ac already does an equivalent thing.  Continues commit
+	aa5787c1eb by me from 20 May.
+	(PROCESSEDDOCFILES): Drop "$(PROCESSEDDOCFILES_HTML)" from macro
+	definition; annotate why.
+
 2023-03-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	m4/groff.m4 (GROFF_TMAC): Eliminate garbage leading space from

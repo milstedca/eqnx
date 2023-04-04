@@ -1,5 +1,16 @@
 2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[doc]: Add document dependencies on the "me" package.
+
+	* tmac/tmac.am (TMAC_PACKAGE_ME): Define new macro comprising
+	the files of the "me" package.
+	* doc/doc.am (doc/grnexmpl.ps, doc/meintro.ps)
+	(doc/meintro_fr.ps, doc/meref.ps): Add dependency on new macro.
+
+	Fixes <https://savannah.gnu.org/bugs/?62541> (1/4).
+
+2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[build]: Install PDF documents better.  Ship only one copy of
 	"automake.pdf", and install it and the new "groff-man-pages.pdf"
 	in the "pdf/" subdirectory of the destination "doc" directory.

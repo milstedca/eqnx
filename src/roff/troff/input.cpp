@@ -234,12 +234,12 @@ private:
 };
 
 input_iterator::input_iterator()
-: is_diversion(0), ptr(0), eptr(0)
+: is_diversion(0), ptr(0 /* nullptr */), eptr(0 /* nullptr */)
 {
 }
 
 input_iterator::input_iterator(int is_div)
-: is_diversion(is_div), ptr(0), eptr(0)
+: is_diversion(is_div), ptr(0 /* nullptr */), eptr(0 /* nullptr */)
 {
 }
 
@@ -3627,12 +3627,14 @@ public:
 inline
 #endif
 temp_iterator::temp_iterator(const char *s, int len)
+: base(0 /* nullptr */)
 {
-  base = new unsigned char[len];
-  if (len > 0)
+  if (len > 0) {
+    base = new unsigned char[len];
     memcpy(base, s, len);
-  ptr = base;
-  eptr = base + len;
+    ptr = base;
+    eptr = base + len;
+  }
 }
 
 temp_iterator::~temp_iterator()

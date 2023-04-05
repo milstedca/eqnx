@@ -1,5 +1,16 @@
 2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[doc]: Add document dependencies on the ms package.
+
+	* tmac/tmac.am (TMAC_PACKAGE_MS): Define new macro comprising
+	the files of the ms package.
+	* doc/doc.am (doc/ms.ps, doc/webpage.ps, doc/pic.html)
+	(doc/pic.ps): Add dependency on new macro.
+
+	Fixes <https://savannah.gnu.org/bugs/?62541> (2/4).
+
+2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[doc]: Add document dependencies on the "me" package.
 
 	* tmac/tmac.am (TMAC_PACKAGE_ME): Define new macro comprising

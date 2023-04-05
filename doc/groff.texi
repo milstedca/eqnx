@@ -4230,8 +4230,9 @@ and even-numbered (verso) pages, respectively; the @code{OF} and
 @code{EF} macros define footers for them.
 @endDefmac
 
-By default, @file{ms} places no header on any page numbered ``1''
-(regardless of its number format).
+With either method, a percent sign @code{%} in header or footer text is
+replaced by the current page number.  By default, @file{ms} places no
+header on a page numbered ``1'' (regardless of its number format).
 
 @Defmac {P1, , ms}
 Typeset the header even on page@tie{}1.  To be effective, this macro
@@ -4246,10 +4247,10 @@ redefinition of the macros that are called when the @code{groff} traps
 that ordinarily cause the headers and footers to be output are sprung.
 @code{PT} (``page trap'') is called by @file{ms} when the header is to
 be written, and @code{BT} (``bottom trap'') when the footer is to be.
-The page location trap that @file{ms} sets up to format the header also
-calls the (normally undefined) @code{HD} macro after @code{PT}; you can
-define @code{HD} if you need additional processing after setting the
-header (for example, to draw a line below it).
+The @code{groff} page location trap that @file{ms} sets up to format the
+header also calls the (normally undefined) @code{HD} macro after
+@code{PT}; you can define @code{HD} if you need additional processing
+after setting the header (for example, to draw a line below it).
 @c Although undocumented in Tuthill's 4.2BSD ms.diffs paper...
 The @code{HD} hook is a Berkeley extension.  Any such macros you
 (re)define must implement any desired specialization for odd-, even-, or

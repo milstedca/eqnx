@@ -36,8 +36,8 @@
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ie t .nr PI 3.5n
 .el   .nr PI 4n
-.ND February 2023
-.EH '%''February 2023'
+.ND April 2023
+.EH '%''April 2023'
 .EF ''''
 .OH 'Using \f[I]groff\f[] with the \f[I]ms\f[] macros''%'
 .OF ''''
@@ -3197,9 +3197,14 @@ T}
 .
 .
 .PP
+With either method,
+a percent sign
+.B %
+in header or footer text is replaced by the current page number.
+.
 By default,
 .I ms
-places no header on any page numbered \[lq]1\[rq]
+places no header on a page numbered \[lq]1\[rq]
 (regardless of its number format).
 .
 .
@@ -3246,7 +3251,9 @@ and
 (\[lq]bottom trap\[rq])
 when the footer is to be.
 .
-The page location trap that
+The
+.I groff
+page location trap that
 .I ms
 sets up to format the header also calls the
 (normally undefined)

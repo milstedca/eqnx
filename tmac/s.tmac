@@ -95,6 +95,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	@divert \\$*
 ..
 .
+.\" Wrap the `bp` request so that we disregard the enablement of
+.\" no-space mode, which we enter after displays and equations to
+.\" prevent multiple sources of vertical space (like the DD and PD
+.\" registers) from incorrectly accumulating.  Thus, if the user
+.\" requests a page break, we honor it.  See Savannah #62688 & #64005.
+.als @break-page bp
+.de bp
+.	nr @saved-no-space-mode \\n[.ns]
+.	rs
+.	ie \\n[.br] '@break-page \\$1
+.	el          .@break-page \\$1
+.	if \\n[@saved-no-space-mode] .ns
+.	rr @saved-no-space-mode
+..
+.
 .de @init
 .if !rPO .nr PO \\n(.o
 .\" a non-empty environment
@@ -373,8 +388,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .AE
 ..
 .de cov*break-page
-.ie \\n[cov*rp-no-renumber] .bp
-.el .bp 1
+.ie \\n[cov*rp-no-renumber] .@break-page
+.el .@break-page 1
 ..
 .de cov*print
 .als cov*print @nop
@@ -559,7 +574,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	\" flush out any floating keeps
 .	while \\n[kp@tail]>\\n[kp@head] \{\
 .		rs
-.		bp
+.		@break-page
 .	\}
 .\}
 .ie !\\n(.$ \{\
@@ -650,7 +665,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	\" Switching environments ensures that we don't get an unnecessary
 .	\" blank line at the top of the page.
 .	ev ne
-'	bp
+'	@break-page
 .	ev
 .\}
 .el \{\
@@ -665,7 +680,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .			rm pg*next-format
 .		\}
 .	\}
-'	bp
+'	@break-page
 .\}
 ..
 .\" pg@begin number format
@@ -698,9 +713,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\" overflow left, or floating keeps.
 .while \\n[kp@tail]>\\n[kp@head]:\\n[pg@fn-flag] \{\
 .	rs
-.	bp
+.	@break-page
 .\}
-.bp
+.@break-page
 ..
 .nr pg@text-ended 0
 .de pg@end-text

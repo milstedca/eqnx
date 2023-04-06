@@ -1,5 +1,20 @@
 2023-04-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Fix Savannah #64005.
+
+	* tmac/s.tmac (@break-page, bp): Define alias for `bp` request
+	and wrapper for `bp` to (if needed) temporarily disable no-space
+	mode, so that a document's `bp` requests are honored even if
+	no-space mode is on, as can happen after displays.  Fixes a
+	regression from groff 1.22.4 and historical ms implementations
+	introduced by me on 6 July when resolving Savannah #62688.
+
+	Fixes <https://savannah.gnu.org/bugs/?64005>.  Thanks to Michał
+	Kruszewski for reporting the problem and Dave Kemper for
+	identifying the cause.
+
+2023-04-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Regression-test Savannah #64005.
 
 	* tmac/tests/s_honor-page-break-after-display.sh: Do it.

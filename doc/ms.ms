@@ -385,7 +385,10 @@ Wallace after the criticality incident.
 .
 .
 .\" ------------------------
-.if t .bp
+.if t \{\
+.  br
+.  bp
+.\}
 .NH 1
 General structure of an
 .BI ms
@@ -500,7 +503,10 @@ its preparation requires separate processing.
 .
 .
 .\" ------------------------
-.if t .bp
+.if t \{\
+.  br
+.  bp
+.\}
 .NH 1
 Document control settings
 .XS
@@ -621,7 +627,10 @@ this is the case only for output to terminals and emulators thereof.
 .
 .
 .\" ------------------------
-.if t .bp
+.if t \{\
+.  br
+.  bp
+.\}
 .NH 1
 Document description macros
 .XS
@@ -866,7 +875,10 @@ T}
 .
 .
 .\" ------------------------
-.if t .bp
+.if t \{\
+.  br
+.  bp
+.\}
 .NH 1
 Body text
 .XS
@@ -3105,7 +3117,10 @@ _
 .KE
 .
 .\" ------------------------
-.if t .bp
+.if t \{\
+.  br
+.  bp
+.\}
 .NH 1
 Page layout
 .XS
@@ -3848,7 +3863,10 @@ register.
 .
 .
 .\" ------------------------
-.if t .bp
+.if t \{\
+.  br
+.  bp
+.\}
 .NH 1
 Differences from AT&T
 .BI ms
@@ -4234,7 +4252,10 @@ lf(CR).
 .
 .
 .\" ------------------------
-.if t .bp
+.if t \{\
+.  br
+.  bp
+.\}
 .NH 1
 Legacy features
 .XS
@@ -4356,7 +4377,10 @@ _
 .
 .
 .\" ------------------------
-.if t .bp
+.if t \{\
+.  br
+.  bp
+.\}
 .NH 1
 Further reading
 .XS

@@ -1,3 +1,12 @@
+2023-04-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[doc]: Abstract document dependencies on the mom package.
+
+	* doc/doc.am (doc/automake.pdf): Replace dependency with new
+	macro `TMAC_PACKAGE_MOM`.
+
+	Aligns with <https://savannah.gnu.org/bugs/?62541> (4/4).
+
 2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[doc]: Add document dependencies on the ms package.

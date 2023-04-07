@@ -113,7 +113,7 @@ if USE_GROPDF
 docpdfdocdir = $(pdfdocdir)
 nodist_docpdfdoc_DATA = $(PROCESSEDDOCFILES_PDF)
 endif
-doc/automake.pdf: doc/automake.mom pdfmom contrib/mom/om.tmac
+doc/automake.pdf: doc/automake.mom pdfmom $(TMAC_PACKAGE_MOM)
 
 # GNU PIC html documentation, installed in $(htmldocdir)
 # Other pic*.html files are installed by the local rule

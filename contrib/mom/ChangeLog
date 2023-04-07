@@ -1,3 +1,10 @@
+2023-04-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* mom.am (TMAC_PACKAGE_MOM): Define new convenience macro for
+	the benefit of other groff documents.
+
+	Aligns with <https://savannah.gnu.org/bugs/?62541> (3/4).
+
 2023-04-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mom]: Ensure parent directory of test script exists.

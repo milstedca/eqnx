@@ -933,7 +933,7 @@ void do_include()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad filename for include");
+    lex_error("invalid filename for include");
     return;
   }
   token_buffer += '\0';
@@ -951,7 +951,7 @@ void ignore_definition()
 {
   int t = get_token();
   if (t != TEXT) {
-    lex_error("bad definition");
+    lex_error("invalid definition");
     return;
   }
   get_delimited_text();
@@ -961,7 +961,7 @@ void do_definition(int is_simple)
 {
   int t = get_token();
   if (t != TEXT) {
-    lex_error("bad definition");
+    lex_error("invalid definition");
     return;
   }
   token_buffer += '\0';
@@ -985,7 +985,7 @@ void do_undef()
 {
   int t = get_token();
   if (t != TEXT) {
-    lex_error("bad undef command");
+    lex_error("invalid undef command");
     return;
   }
   token_buffer += '\0';
@@ -996,7 +996,7 @@ void do_gsize()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad argument to gsize command");
+    lex_error("invalid argument to gsize command");
     return;
   }
   token_buffer += '\0';
@@ -1008,7 +1008,7 @@ void do_gifont()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad argument to gfont command");
+    lex_error("invalid argument to gfont command");
     return;
   }
   token_buffer += '\0';
@@ -1019,7 +1019,7 @@ void do_grfont()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad argument to grfont command");
+    lex_error("invalid argument to grfont command");
     return;
   }
   token_buffer += '\0';
@@ -1030,7 +1030,7 @@ void do_gbfont()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad argument to gbfont command");
+    lex_error("invalid argument to gbfont command");
     return;
   }
   token_buffer += '\0';
@@ -1041,14 +1041,14 @@ void do_space()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad argument to space command");
+    lex_error("invalid argument to space command");
     return;
   }
   token_buffer += '\0';
   char *ptr;
   long n = strtol(token_buffer.contents(), &ptr, 10);
   if (n == 0 && ptr == token_buffer.contents())
-    lex_error("bad argument '%1' to space command",
+    lex_error("invalid argument '%1' to space command",
 	      token_buffer.contents());
   else
     set_space(int(n));
@@ -1058,7 +1058,7 @@ void do_ifdef()
 {
   int t = get_token();
   if (t != TEXT) {
-    lex_error("bad ifdef");
+    lex_error("invalid ifdef");
     return;
   }
   token_buffer += '\0';
@@ -1105,14 +1105,14 @@ void do_chartype()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad chartype");
+    lex_error("invalid chartype");
     return;
   }
   token_buffer += '\0';
   string type = token_buffer;
   t = get_token();
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad chartype");
+    lex_error("invalid chartype");
     return;
   }
   token_buffer += '\0';
@@ -1123,20 +1123,20 @@ void do_set()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad set");
+    lex_error("invalid set");
     return;
   }
   token_buffer += '\0';
   string param = token_buffer;
   t = get_token();
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("bad set");
+    lex_error("invalid set");
     return;
   }
   token_buffer += '\0';
   int n;
   if (sscanf(&token_buffer[0], "%d", &n) != 1) {
-    lex_error("bad number '%1'", token_buffer.contents());
+    lex_error("invalid number '%1'", token_buffer.contents());
     return;
   }
   set_param(param.contents(), n);

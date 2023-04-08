@@ -1,5 +1,13 @@
 2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/lex.cpp (do_include, ignore_definition)
+	(do_definition, do_undef, do_gsize, do_gifont, do_grfont)
+	(do_gbfont, do_sprintf, do_ifdef, do_chartype, do_set): Recast
+	diagnostic messages to characterize input as "invalid" rather
+	than "bad".
+
+2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[eqn]: Trivially refactor, renaming various globals from
 	containing "gfont" to "gifont", to make it clearer that they
 	deal with the italic font used by equations.

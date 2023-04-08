@@ -1216,7 +1216,8 @@ In GNU
 macros can take arguments.
 .
 In a macro body,
-.BI $ n
+.BI $ n\c
+,
 where
 .I n
 is between 1 and\~9,

@@ -327,7 +327,8 @@ public:
   friend int get_char();
   friend int peek_char();
   friend int get_location(char **, int *);
-  friend void init_lex(const char *str, const char *filename, int lineno);
+  friend void init_lex(const char *str, const char *filename,
+		       int lineno);
 };
 
 class file_input : public input {
@@ -776,7 +777,8 @@ void interpolate_macro_with_args(const char *body)
 	level--;
     }
   } while (c != ')' && c != EOF);
-  current_input = new argument_macro_input(body, argc, argv, current_input);
+  current_input = new argument_macro_input(body, argc, argv,
+					   current_input);
 }
 
 /* If lookup flag is non-zero the token will be looked up to see
@@ -1046,7 +1048,8 @@ void do_space()
   char *ptr;
   long n = strtol(token_buffer.contents(), &ptr, 10);
   if (n == 0 && ptr == token_buffer.contents())
-    lex_error("bad argument '%1' to space command", token_buffer.contents());
+    lex_error("bad argument '%1' to space command",
+	      token_buffer.contents());
   else
     set_space(int(n));
 }
@@ -1064,7 +1067,8 @@ void do_ifdef()
   get_delimited_text();
   if (result) {
     token_buffer += '\0';
-    current_input = new macro_input(token_buffer.contents(), current_input);
+    current_input = new macro_input(token_buffer.contents(),
+				    current_input);
   }
 }
 
@@ -1215,7 +1219,8 @@ void lex_error(const char *message,
   if (!get_location(&filename, &lineno))
     error(message, arg1, arg2, arg3);
   else
-    error_with_file_and_line(filename, lineno, message, arg1, arg2, arg3);
+    error_with_file_and_line(filename, lineno, message, arg1, arg2,
+			     arg3);
 }
 
 void yyerror(const char *s)

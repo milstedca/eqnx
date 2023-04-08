@@ -1,5 +1,12 @@
 2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/s.tmac (@EQ): Trivially refactor.  Shift valid
+	pseudo-enumeration type values from 0..2 to 1..3 so that they
+	more idiomatically test for truth values in roff (where zero and
+	negative values are false).  Simplify a conditional accordingly.
+
+2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Fix Savannah #64013.
 
 	* tmac/s.tmac (@EQ): Revise argument handling.  If there is only

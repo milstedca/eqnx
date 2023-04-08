@@ -1885,12 +1885,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .if \\n[tbl@within-table] \
 .	@error .EQ is not allowed within a .TS/.TE table
 .br
-.nr eqn*type -1
+.nr eqn*type 0
 .ds eqn*num "\\$2
-.if '\\$1'L' .nr eqn*type 0
-.if '\\$1'I' .nr eqn*type 1
-.if '\\$1'C' .nr eqn*type 2
-.if (\\n[eqn*type] < 0) \{\
+.if '\\$1'L' .nr eqn*type 1
+.if '\\$1'I' .nr eqn*type 2
+.if '\\$1'C' .nr eqn*type 3
+.if !\\n[eqn*type] \{\
 .	ds eqn*msg .EQ: unrecognized alignment '\\$1';
 .	ie (\\n[.$] = 1) \{\
 .		if !'\\$1'' \{\
@@ -1913,12 +1913,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .	nr eqn*ll \\n[.l]
 .	ll 1000n
 .\}
-.if \\n[eqn*type]=0 .EQN-HTML-IMAGE-LEFT
-.if \\n[eqn*type]=1 \{\
+.if \\n[eqn*type]=1 .EQN-HTML-IMAGE-LEFT
+.if \\n[eqn*type]=2 \{\
 .   if '\*(.T'html' .RS
 .EQN-HTML-IMAGE-INLINE
 .\}
-.if \\n[eqn*type]=2 .EQN-HTML-IMAGE
+.if \\n[eqn*type]=3 .EQN-HTML-IMAGE
 .nf
 ..
 .de @div-end!eqn*div
@@ -1945,12 +1945,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .			ie r ps4html .ds@need \\n[dn]u-1v+\n[.V]u+1i
 .			el .ds@need \\n[dn]u-1v+\n[.V]u
 .			chop eqn*div
-.			ie \\n[eqn*type]=0 \{\
+.			ie \\n[eqn*type]=1 \{\
 .				ta (u;\\n[.l]-\\n[.i])R
 \\*[eqn*div]\t\\*[eqn*num]
 .			\}
 .			el \{\
-.				ie \\n[eqn*type]=1 .ta \\n[DI]u \
+.				ie \\n[eqn*type]=2 .ta \\n[DI]u \
 (u;\\n[.l]-\\n[.i])R
 .				el .ta (u;\\n[.l]-\\n[.i]/2)C \
 (u;\\n[.l]-\\n[.i])R
@@ -1974,12 +1974,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .		if r ps4html    \\*[eqn*div]
 .	\}
 .       if !'\*(.T'html' .fi
-.	if \\n[eqn*type]=0 .EQN-HTML-IMAGE-END
-.	if \\n[eqn*type]=1 \{\
+.	if \\n[eqn*type]=1 .EQN-HTML-IMAGE-END
+.	if \\n[eqn*type]=2 \{\
 .		EQN-HTML-IMAGE-END
 .		if '\*(.T'html' .RE
 .	\}
-.	if \\n[eqn*type]=2 .EQN-HTML-IMAGE-END
+.	if \\n[eqn*type]=3 .EQN-HTML-IMAGE-END
 .	if '\*(.T'html' \
 .		ll \\n[eqn*ll]u
 .\}

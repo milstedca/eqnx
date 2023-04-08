@@ -23,12 +23,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 const char *current_roman_font;
 
-char *gfont = 0;
-char *grfont = 0;
-char *gbfont = 0;
+char *gfont = 0 /* nullptr */;
+char *grfont = 0 /* nullptr */;
+char *gbfont = 0 /* nullptr */;
 int gsize = 0;
 
-int script_size_reduction = -1;	// negative means reduce by a percentage 
+int script_size_reduction = -1;	// negative means reduce by a percentage
 
 int positive_space = -1;
 int negative_space = -1;
@@ -435,7 +435,7 @@ int box::right_is_italic()
 void box::hint(unsigned)
 {
 }
-  
+
 void box::handle_char_type(int, int)
 {
 }
@@ -499,7 +499,8 @@ int pointer_box::compute_metrics(int style)
 void pointer_box::compute_subscript_kern()
 {
   p->compute_subscript_kern();
-  printf(".nr " SUB_KERN_FORMAT " \\n[" SUB_KERN_FORMAT "]\n", uid, p->uid);
+  printf(".nr " SUB_KERN_FORMAT " \\n[" SUB_KERN_FORMAT "]\n", uid,
+	 p->uid);
 }
 
 void pointer_box::compute_skew()

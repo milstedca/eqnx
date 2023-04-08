@@ -1,5 +1,14 @@
 2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/lex.cpp (do_include, do_undef, do_gsize)
+	(do_gifont, do_grfont, do_gbfont, do_space, do_chartype)
+	(do_set): Recast diagnostic messages to use terminology
+	established in man page, and use more idiomatic English in
+	phrasing.  Distinguish which argument has the problem when
+	lexical analysis of "chartype" and "set" commands fails.
+
+2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/eqn/lex.cpp (do_include, ignore_definition)
 	(do_definition, do_undef, do_gsize, do_gifont, do_grfont)
 	(do_gbfont, do_sprintf, do_ifdef, do_chartype, do_set): Recast

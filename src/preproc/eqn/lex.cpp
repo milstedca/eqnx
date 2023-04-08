@@ -933,7 +933,7 @@ void do_include()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid filename for include");
+    lex_error("invalid file name specified for inclusion");
     return;
   }
   token_buffer += '\0';
@@ -941,7 +941,7 @@ void do_include()
   errno = 0;
   FILE *fp = fopen(filename, "r");
   if (fp == 0) {
-    lex_error("can't open included file '%1'", filename);
+    lex_error("cannot open included file '%1'", filename);
     return;
   }
   current_input = new file_input(fp, filename, current_input);
@@ -985,7 +985,7 @@ void do_undef()
 {
   int t = get_token();
   if (t != TEXT) {
-    lex_error("invalid undef command");
+    lex_error("invalid undefinition");
     return;
   }
   token_buffer += '\0';
@@ -996,7 +996,7 @@ void do_gsize()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid argument to gsize command");
+    lex_error("invalid argument to gsize primitive");
     return;
   }
   token_buffer += '\0';
@@ -1008,7 +1008,7 @@ void do_gifont()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid argument to gfont command");
+    lex_error("invalid argument to gfont primitive");
     return;
   }
   token_buffer += '\0';
@@ -1019,7 +1019,7 @@ void do_grfont()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid argument to grfont command");
+    lex_error("invalid argument to grfont primitive");
     return;
   }
   token_buffer += '\0';
@@ -1030,7 +1030,7 @@ void do_gbfont()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid argument to gbfont command");
+    lex_error("invalid argument to gbfont primitive");
     return;
   }
   token_buffer += '\0';
@@ -1041,14 +1041,14 @@ void do_space()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid argument to space command");
+    lex_error("invalid argument to space primitive");
     return;
   }
   token_buffer += '\0';
   char *ptr;
   long n = strtol(token_buffer.contents(), &ptr, 10);
   if (n == 0 && ptr == token_buffer.contents())
-    lex_error("invalid argument '%1' to space command",
+    lex_error("invalid argument '%1' to space primitive",
 	      token_buffer.contents());
   else
     set_space(int(n));
@@ -1105,14 +1105,15 @@ void do_chartype()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid chartype");
+    lex_error("invalid type argument to chartype primitive");
     return;
   }
   token_buffer += '\0';
   string type = token_buffer;
   t = get_token();
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid chartype");
+    lex_error("invalid character sequence argument to chartype"
+	      " primitive");
     return;
   }
   token_buffer += '\0';
@@ -1123,14 +1124,14 @@ void do_set()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid set");
+    lex_error("invalid parameter name argument to 'set' primitive");
     return;
   }
   token_buffer += '\0';
   string param = token_buffer;
   t = get_token();
   if (t != TEXT && t != QUOTED_TEXT) {
-    lex_error("invalid set");
+    lex_error("invalid parameter value argument to 'set' primitive");
     return;
   }
   token_buffer += '\0';

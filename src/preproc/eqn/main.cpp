@@ -361,7 +361,7 @@ int main(int argc, char **argv)
       }
       break;
     case 'f':
-      set_gfont(optarg);
+      set_gifont(optarg);
       break;
     case 'T':
       device = optarg;

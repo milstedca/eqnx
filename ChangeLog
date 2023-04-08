@@ -1,5 +1,31 @@
 2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[eqn]: Trivially refactor, renaming various globals from
+	containing "gfont" to "gifont", to make it clearer that they
+	deal with the italic font used by equations.
+
+	* src/preproc/eqn/box.cpp (gfont): Rename global char pointer
+	from this...
+	(gifont): ...to this.
+	* src/preproc/eqn/box.cpp (get_gfont, set_gfont):
+	* src/preproc/eqn/box.h (get_gfont, set_gfont):
+	* src/preproc/eqn/lex.cpp (do_gfont): Rename functions from
+	these...
+	* src/preproc/eqn/box.cpp (get_gifont, set_gifont):
+	* src/preproc/eqn/box.h (gifont, get_gifont, set_gifont):
+	* src/preproc/eqn/lex.cpp (do_gifont): ...to these.
+	* src/preproc/eqn/box.cpp (get_gifont, set_gifont): Update
+	global `gfont` access sites.
+	* src/preproc/eqn/box.cpp (box::top_level):
+	* src/preproc/eqn/eqn.ypp (simple):
+	* src/preproc/eqn/lex.cpp (do_gifont, yylex):
+	* src/preproc/eqn/main.cpp (main): Update call sites.
+	* src/preproc/eqn/eqn.ypp:
+	* src/preproc/eqn/lex.cpp (token_table, yylex): Rename "GFONT"
+	token type to "GIFONT".
+
+2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/eqn/main.cpp (main): Prefix generated *roff
 	diagnostics with name of input file (the document).  Use
 	`tmc`/`tm1` to coalesce multi-line diagnostic onto one line of

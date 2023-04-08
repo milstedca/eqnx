@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 const char *current_roman_font;
 
-char *gfont = 0 /* nullptr */;
+char *gifont = 0 /* nullptr */;
 char *grfont = 0 /* nullptr */;
 char *gbfont = 0 /* nullptr */;
 int gsize = 0;
@@ -187,9 +187,9 @@ void set_script_reduction(int n)
   script_size_reduction = n;
 }
 
-const char *get_gfont()
+const char *get_gifont()
 {
-  return gfont ? gfont : "I";
+  return gifont ? gifont : "I";
 }
 
 const char *get_grfont()
@@ -202,10 +202,10 @@ const char *get_gbfont()
   return gbfont ? gbfont : "B";
 }
 
-void set_gfont(const char *s)
+void set_gifont(const char *s)
 {
-  delete[] gfont;
-  gfont = strsave(s);
+  delete[] gifont;
+  gifont = strsave(s);
 }
 
 void set_grfont(const char *s)
@@ -294,7 +294,7 @@ void box::top_level()
     printf(".nr " SAVED_FONT_REG " \\n[.f]\n");
     printf(".ft\n");
     printf(".nr " SAVED_PREV_FONT_REG " \\n[.f]\n");
-    printf(".ft %s\n", get_gfont());
+    printf(".ft %s\n", get_gifont());
     printf(".nr " SAVED_SIZE_REG " \\n[.ps]\n");
     if (gsize > 0) {
       char buf[INT_DIGITS + 1];
@@ -334,7 +334,7 @@ void box::top_level()
 	   "\\s'\\En[" SAVED_INLINE_SIZE_REG "]u'"
 	   "\n");
     printf(".as1 " LINE_STRING " \\&\\E*[" SAVE_FONT_STRING "]");
-    printf("\\f[%s]", get_gfont());
+    printf("\\f[%s]", get_gifont());
     printf("\\s'\\En[" SAVED_SIZE_REG "]u'");
     current_roman_font = get_grfont();
     b->output();

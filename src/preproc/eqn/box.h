@@ -256,10 +256,10 @@ box *make_special_box(char *, box *);
 
 void set_space(int);
 int set_gsize(const char *);
-void set_gfont(const char *);
+void set_gifont(const char *);
 void set_grfont(const char *);
 void set_gbfont(const char *);
-const char *get_gfont();
+const char *get_gifont();
 const char *get_grfont();
 const char *get_gbfont();
 void start_string();

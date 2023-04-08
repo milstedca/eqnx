@@ -94,7 +94,7 @@ static struct {
   { "mark", MARK },
   { "lineup", LINEUP },
   { "space", SPACE },
-  { "gfont", GFONT },
+  { "gfont", GIFONT },
   { "gsize", GSIZE },
   { "define", DEFINE },
   { "sdefine", SDEFINE },
@@ -1002,7 +1002,7 @@ void do_gsize()
     lex_error("invalid size '%1'", token_buffer.contents());
 }
 
-void do_gfont()
+void do_gifont()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
@@ -1010,7 +1010,7 @@ void do_gfont()
     return;
   }
   token_buffer += '\0';
-  set_gfont(token_buffer.contents());
+  set_gifont(token_buffer.contents());
 }
 
 void do_grfont()
@@ -1167,8 +1167,8 @@ int yylex()
     case GSIZE:
       do_gsize();
       break;
-    case GFONT:
-      do_gfont();
+    case GIFONT:
+      do_gifont();
       break;
     case GRFONT:
       do_grfont();

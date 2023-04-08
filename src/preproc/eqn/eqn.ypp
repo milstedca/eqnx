@@ -86,7 +86,7 @@ void yyerror(const char *);
 
 /* these are handled in the lexer */
 %token SPACE
-%token GFONT
+%token GIFONT
 %token GSIZE
 %token DEFINE
 %token NDEFINE
@@ -236,7 +236,7 @@ simple:
 	| BOLD simple
 		{ $$ = new font_box(strsave(get_gbfont()), $2); }
 	| ITALIC simple
-		{ $$ = new font_box(strsave(get_gfont()), $2); }
+		{ $$ = new font_box(strsave(get_gifont()), $2); }
 	| FAT simple
 		{ $$ = new fat_box($2); }
 	| FONT text simple

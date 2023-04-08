@@ -372,6 +372,16 @@ and
 .SS "New primitives"
 .\" ====================================================================
 .
+The new primitives
+.B type
+and
+.B \%chartype
+are discussed in subsection \[lq]Automatic spacing\[rq] above,
+and
+.B set
+in subsection \[lq]Customization\[rq] below.
+.
+.
 .TP
 .BI big\~ e
 Enlarges the expression it modifies;

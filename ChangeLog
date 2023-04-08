@@ -1,3 +1,10 @@
+2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[ms]: Regression-test Savannah #64013.
+
+	* tmac/tests/s_EQ-handles-empty-first-arg.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
 2023-04-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Fix Savannah #64005.

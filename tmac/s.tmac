@@ -1885,14 +1885,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .if \\n[tbl@within-table] \
 .	@error .EQ is not allowed within a .TS/.TE table
 .br
+.nr eqn*type -1
 .ds eqn*num "\\$2
-.ie '\\$1'L' .nr eqn*type 0
-.el \{\
-.	ie '\\$1'I' .nr eqn*type 1
-.	el \{\
-.		nr eqn*type 2
-.		if !'\\$1'C' .ds eqn*num "\\$1
+.if '\\$1'L' .nr eqn*type 0
+.if '\\$1'I' .nr eqn*type 1
+.if '\\$1'C' .nr eqn*type 2
+.if (\\n[eqn*type] < 0) \{\
+.	ds eqn*msg .EQ: unrecognized alignment '\\$1';
+.	ie (\\n[.$] = 1) \{\
+.		if !'\\$1'' \{\
+.			as eqn*msg " assuming it is an equation label
+.			@warning \\*[eqn*msg]
+.			ds eqn*num "\\$1
+.		\}
 .	\}
+.	el .if (\\n[.$] > 1) \{\
+.		if !'\\$1'' \{\
+.			as eqn*msg " centering equation
+.			@warning \\*[eqn*msg]
+.		\}
+.	\}
+.	rm eqn*msg
 .\}
 .di eqn*div
 .in 0

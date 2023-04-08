@@ -1,5 +1,19 @@
 2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Fix Savannah #64013.
+
+	* tmac/s.tmac (@EQ): Revise argument handling.  If there is only
+	one argument and it is not a recognized alignment, warn and
+	treat it as an equation label.  If there are two arguments but
+	the first is not a recognized alignment, throw a warning
+	diagnostic (but still use default alignment with the second
+	argument as label).  An explicitly empty first argument is
+	synonymous with "C".
+
+	Fixes <https://savannah.gnu.org/bugs/?64013>.
+
+2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Regression-test Savannah #64013.
 
 	* tmac/tests/s_EQ-handles-empty-first-arg.sh: Do it.

@@ -1,3 +1,11 @@
+2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/eqn/main.cpp (main): Prefix generated *roff
+	diagnostics with name of input file (the document).  Use
+	`tmc`/`tm1` to coalesce multi-line diagnostic onto one line of
+	output to stderr.  Tighten wording.  Continues the long process
+	of fixing Savannah #52463.
+
 2023-04-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (temp_iterator::temp_iterator):

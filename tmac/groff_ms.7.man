@@ -1337,7 +1337,7 @@ you may improve their appearance by calling
 .B .B1
 after the first paragraphing macro,
 and by adding a small amount of vertical space before calling
-.B .B2 .
+.BR .B2 .
 .
 .
 .br

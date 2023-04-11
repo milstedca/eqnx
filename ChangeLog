@@ -75,16 +75,6 @@
 
 2023-03-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[mom]: Generate test script even if we'll skip it.
-
-	* contrib/mom/examples/test-mom.sh.in: Check availability of
-	required pdfinfo(1) and pdfimages(1) commands at test time; skip
-	if they aren't present.
-	* contrib/mom/mom.am [!HAVE_PDFTOOLS]: Generate the test script
-	even if these tools aren't available.
-
-2023-03-01  G. Branden Robinson <g.branden.robinson@gmail.com>
-
 	* m4/groff.m4 (GROFF_URW_FONTS_NOTICE): Adapt wording of notice
 	to presence and identity of Ghostscript interpreter command.
 	Clarify that it is gropdf(1) specifically that traverses the

@@ -2603,7 +2603,7 @@ Interpolate glyph of special character named @var{char}.
 dummy character
 
 @item \~
-Insert an unbreakble space that is adjustable like a normal space.
+Insert an unbreakable space that is adjustable like a normal space.
 
 @item \|
 Move horizontally by one-sixth em (``thin space'').

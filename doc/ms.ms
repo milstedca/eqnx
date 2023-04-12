@@ -346,7 +346,7 @@ Interpolate glyph of special character named
 T}
 \[rs]&	non-printing, zero-width dummy character
 \[rs]\[ti]	T{
-Insert an unbreakble space of adjustable width like a normal space.
+Insert an unbreakable space of adjustable width like a normal space.
 T}
 \[rs]|	T{
 Move horizontally by one-sixth em

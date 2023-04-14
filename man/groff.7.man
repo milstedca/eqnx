@@ -2907,7 +2907,7 @@ is interpreted.
 .TPx
 .REQ .ds name
 Create empty string
-.I string .
+.IR name .
 .
 .TPx
 .REQ .ds "name contents"

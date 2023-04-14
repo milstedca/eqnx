@@ -1,3 +1,23 @@
+2023-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[eqn]: Implement new "gifont" primitive.
+
+	* src/preproc/eqn/eqn.ypp: Add token "GFONT" (to supplement
+	"GIFONT", already renamed from "GFONT".
+	* src/preproc/eqn/lex.cpp (struct token_table): Map "gifont" and
+	"gfont" inputs to "GIFONT" and "GFONT" tokens.
+	(do_gfont, do_gifont): Employ parallel implementations,
+	differing only in diagnostic message text.
+	(yylex): Handle token "GFONT" by calling `do_gfont()`.
+
+	* src/preproc/eqn/eqn.1.man (New primitives, Fonts, Options)
+	(Bugs): Document it.
+	* NEWS: Add item.
+
+	Fixes <https://savannah.gnu.org/bugs/?63967>.  Thanks to Damian
+	McGuckin, Doug McIlroy, and Ralph Corderoy for support and
+	suggestions.
+
 2023-04-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/eqn/lex.cpp (do_include, do_undef, do_gsize)

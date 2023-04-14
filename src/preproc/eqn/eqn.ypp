@@ -86,7 +86,7 @@ void yyerror(const char *);
 
 /* these are handled in the lexer */
 %token SPACE
-%token GIFONT
+%token GFONT
 %token GSIZE
 %token DEFINE
 %token NDEFINE
@@ -100,6 +100,7 @@ void yyerror(const char *);
 %token SET
 %token GRFONT
 %token GBFONT
+%token GIFONT
 
 /* The original eqn manual says that 'left' is right associative. It's lying.
 Consider 'left ( ~ left ( ~ right ) right )'. */

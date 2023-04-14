@@ -10,6 +10,15 @@ not described.  There are more details in the man and info pages.
 VERSION next
 ============
 
+eqn
+---
+
+o The "gifont" primitive replaces "gfont" as the means of configuring
+  the global italic face within an equation.  "gfont" remains recognized
+  as a synonym for backward compatibility.  The new name is intended to
+  ease acquisition of the eqn language in light of GNU eqn's
+  thirty-year-old extensions "gbfont" and "grfont".
+
 Macro packages
 --------------
 

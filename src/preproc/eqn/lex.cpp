@@ -94,7 +94,8 @@ static struct {
   { "mark", MARK },
   { "lineup", LINEUP },
   { "space", SPACE },
-  { "gfont", GIFONT },
+  { "gifont", GIFONT },
+  { "gfont", GFONT }, // for backward compatibility
   { "gsize", GSIZE },
   { "define", DEFINE },
   { "sdefine", SDEFINE },
@@ -1004,11 +1005,22 @@ void do_gsize()
     lex_error("invalid size '%1'", token_buffer.contents());
 }
 
-void do_gifont()
+void do_gfont()
 {
   int t = get_token(2);
   if (t != TEXT && t != QUOTED_TEXT) {
     lex_error("invalid argument to gfont primitive");
+    return;
+  }
+  token_buffer += '\0';
+  set_gifont(token_buffer.contents());
+}
+
+void do_gifont()
+{
+  int t = get_token(2);
+  if (t != TEXT && t != QUOTED_TEXT) {
+    lex_error("invalid argument to gifont primitive");
     return;
   }
   token_buffer += '\0';
@@ -1171,6 +1183,9 @@ int yylex()
       break;
     case GSIZE:
       do_gsize();
+      break;
+    case GFONT:
+      do_gfont();
       break;
     case GIFONT:
       do_gifont();

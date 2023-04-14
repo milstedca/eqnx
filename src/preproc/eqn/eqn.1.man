@@ -372,7 +372,7 @@ and
 .SS "New primitives"
 .\" ====================================================================
 .
-The new primitives
+The GNU extension primitives
 .RB \[lq] type \[rq]
 and
 .B \%chartype
@@ -383,7 +383,7 @@ and
 .B grfont
 and
 .B gbfont
-in section \[lq]Fonts\[rq] below.
+in subsection \[lq]Fonts\[rq] below.
 .
 .
 .TP

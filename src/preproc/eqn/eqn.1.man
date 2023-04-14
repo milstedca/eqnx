@@ -10,7 +10,7 @@ or MathML
 .\" Legal Terms
 .\" ====================================================================
 .\"
-.\" Copyright (C) 1989-2022 Free Software Foundation, Inc.
+.\" Copyright (C) 1989-2023 Free Software Foundation, Inc.
 .\"
 .\" Permission is granted to make and distribute verbatim copies of this
 .\" manual provided the copyright notice and this permission notice are
@@ -373,13 +373,17 @@ and
 .\" ====================================================================
 .
 The new primitives
-.B type
+.RB \[lq] type \[rq]
 and
 .B \%chartype
-are discussed in subsection \[lq]Automatic spacing\[rq] above,
+are discussed in subsection \[lq]Automatic spacing\[rq] above;
+.RB \[lq] set \[rq]
+in subsection \[lq]Customization\[rq] below;
 and
-.B set
-in subsection \[lq]Customization\[rq] below.
+.B grfont
+and
+.B gbfont
+in section \[lq]Fonts\[rq] below.
 .
 .
 .TP
@@ -1404,76 +1408,61 @@ which sets three dots on the baseline.
 .\" ====================================================================
 .
 .I @g@eqn
-normally uses at least two fonts to set an equation:
-an italic font for letters,
-and a roman font for everything else.
+uses up to three typefaces to set an equation:
+italic (oblique),
+roman (upright),
+and bold.
 .
-The AT&T
-.I eqn \" AT&T
-.B gfont
-primitive changes the font that is used as the italic font.
+Assign each a
+.I groff
+typeface with the primitives
+.BR gfont ,
+.BR \%grfont ,
+and
+.B \%gbfont.
 .
-By default this
-.RB is\~ I .
+The defaults are the styles
+.BR I ,
+.BR R ,
+and
+.B B
+(applied to the current font family).
 .
-The font that is used as the roman font can be changed using the new
-.B grfont
-command.
+The
+.B \%chartype
+primitive
+(see above)
+sets a character's type,
+which determines the face used to set it.
+.
+The \[lq]letter\[rq] type is set in italics,
+and \[lq]digit\[rq] in roman.
+.
+Use the
+.B bold
+primitive to select an (upright) bold style.
+.
+.
+.TP
+.BI gbfont\~ f
+.RI Select\~ f
+as the bold font.
+.
+This is a GNU extension.
+.
+.
+.TP
+.BI gfont\~ f
+.RI Select\~ f
+as the italic font.
 .
 .
 .TP
 .BI grfont\~ f
-Set the roman font
-.RI to\~ f .
+.RI Select\~ f
+as the roman font.
 .
-.
-.P
-The
-.B italic
-primitive uses the current italic font set by
-.BR gfont ;
-the
-.B \%roman
-primitive uses the current roman font set by
-.BR grfont .
-.
-GNU
-.I eqn \" GNU
-offers a
-.B gbfont
-primitive,
-which changes the font used by the
-.B bold
-primitive.
-.
-If you use only the
-.BR roman ,
-.B italic
-and
-.B bold
-primitives to change fonts within an equation,
-then
-.BR gfont ,
-.B grfont
-and
-.B gbfont
-suffice to configure all the typefaces used by your equations.
-.
-.
-.LP
-You can control which characters are treated as letters
-(and therefore set in italics)
-by using the
-.B chartype
-primitive described above.
-.
-A type of
-.B letter
-causes a character to be set in italic type.
-.
-A type of
-.B digit
-causes a character to be set in roman type.
+This is a GNU extension.
 .
 .
 .\" ====================================================================

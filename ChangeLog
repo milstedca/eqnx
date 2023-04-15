@@ -1,3 +1,12 @@
+2023-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[docs]: Minimally document `tag`, `taga` requests.
+
+	* doc/groff.texi (Postprocessor Access):
+	* man/groff.7 (Request short reference): Do it.
+
+	Fixes <https://savannah.gnu.org/bugs/?62695>.
+
 2023-04-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[docs]: Fix typos.

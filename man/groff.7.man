@@ -4131,6 +4131,13 @@ for right-aligned.
 .
 .
 .TPx
+.REQ .tag
+.TQ
+.REQ .taga
+Reserved for internal use.
+.
+.
+.TPx
 .REQ .tc
 Remove tab repetition glyph.
 .

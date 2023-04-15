@@ -16098,6 +16098,11 @@ confuses drivers that do not know about this extension (@pxref{Device
 Control Commands}).
 @endDefesc
 
+@DefreqList {tag, name}
+@DefreqListEndx {taga, name}
+Reserved for internal use.
+@endDefreq
+
 @codequotebacktick off
 @codequoteundirected off
 

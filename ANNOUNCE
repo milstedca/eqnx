@@ -29,20 +29,16 @@ while consuming minimal system resources.
 Changes
 =======
 
-Release candidate 4 resolves portability problems on 64-bit AIX and
-64-bit MinGW, with FreeBSD/NetBSD/AIX make(1), and with the Sun C
-compiler; improves the fallback used in groff's man pages to keep them
-rendering on systems that don't implement the new `MR` man(7) macro;
-makes generation of the distribution archive less dependent on the build
-configuration; makes the automated tests more robust and revealing;
-improves configuration checking for URW font availability; and updates
-the documentation.
+[[ maintainer: Document changes since RC4 here. ]]
 
-Since groff 1.22.4 was released in December 2018, 26 people have made a
+Since groff 1.22.4 was released in December 2018, 28 people have made a
 total of over 4,500 commits.
 
 [[ maintainer: Insert output of
    "git shortlog --summary 1.22.4..1.23.0.rc4" ]]
+
+(Some possibly surprising names in the above are due to a rebase of
+groff me(7) against 4.4BSD.)
 
 Headline features nominated by our development community include:
   * a new 'man' macro, "MR", for formatting man page cross references;
@@ -102,7 +98,7 @@ which they apply, we find the following.
 
 Another way of capturing the amount of revision is as follows.
 
-$ git diff --stat 1.22.4 1.23.0 | tail -n 1
+$ git diff --stat 1.22.4 1.23.0.rc4 | tail -n 1
  [[ maintainer: insert output ]]
 
 Obtaining groff
@@ -137,7 +133,9 @@ sha256sum < groff-1.23.0.rc4.tar.gz | cut -f1 -d\  | xxd -r -p | base64
     If that command fails because you don't have the required public
     key, you can import it.
 
-      gpg --keyserver keys.gnupg.net --recv-keys [[ maintainer: keyID ]]
+      wget -O 96214.asc \
+        'https://savannah.gnu.org/people/viewgpg.php?user_id=96214'
+      gpg --import 96214.asc
 
     Re-run the 'gpg --verify' command subsequently.
 

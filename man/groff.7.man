@@ -408,7 +408,8 @@ but suppresses the break implied by the
 .request .rj ,
 .request .sp ,
 .request .ti ,
-.request .trf ,
+and
+.request .trf
 requests.
 .
 If the no-break control character is used with any of these requests,

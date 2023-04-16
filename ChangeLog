@@ -1,5 +1,11 @@
 2023-04-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* bootstrap.conf (gnulib_modules): Add "sys_wait" module.  MinGW
+	does not provide "sys/wait.h", which we require in
+	src/preproc/html/pre-html.cpp since commit 11137209ed, 27 June.
+
+2023-04-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* Makefile.am: Initialize (as empty) Automake variables that we
 	don't use but which gnulib modules expect to be defined.
 	(AUTOMAKE_OPTIONS, SUBDIRS, noinst_HEADERS, noinst_LTLIBRARIES)

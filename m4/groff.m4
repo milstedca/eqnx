@@ -1628,6 +1628,7 @@ make an error "Path separator is ';'"
 # Check for X11.
 
 AC_DEFUN([GROFF_X11], [
+  AC_REQUIRE([AC_CANONICAL_HOST])
   AC_REQUIRE([AC_PATH_XTRA])
   groff_no_x=$no_x
   if test -z "$groff_no_x"
@@ -1638,6 +1639,7 @@ AC_DEFUN([GROFF_X11], [
     CFLAGS="$CFLAGS $X_CFLAGS"
     LDFLAGS="$LDFLAGS $X_LIBS"
     LIBS="$LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
+    X_AW_DEPS=
 
     LIBS="$LIBS -lXaw"
     AC_MSG_CHECKING([for Xaw library and header files])
@@ -1650,9 +1652,20 @@ AC_DEFUN([GROFF_X11], [
         ]],
         [])
       ],
-      [AC_MSG_RESULT([yes])],
-      [AC_MSG_RESULT([no])
-      groff_no_x=yes])
+      [
+        AC_MSG_RESULT([yes])
+        # Modern versions of Xaw depend on the Xpm library and the SHAPE
+        # extension.  AIX's linker doesn't figure this out on its own.
+        case $host_os in
+          aix*) X_AW_DEPS="-lXpm -lXext" ;;
+        esac
+      ],
+      [
+        AC_MSG_RESULT([no])
+        groff_no_x=yes
+      ])
+
+    AC_SUBST([X_AW_DEPS])
 
     LIBS="$LIBS -lXmu"
     AC_MSG_CHECKING([for Xmu library and header files])

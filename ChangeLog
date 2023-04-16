@@ -1,3 +1,22 @@
+2023-04-20  Bruno Haible <bruno@clisp.org>
+
+	[build]: Fix gxditview linking on AIX.
+
+	* m4/groff.m4 (GROFF_X11): Add macro dependency on
+	`AC_CANONICAL_HOST`.  Introduce new variable `X_AW_DEPS`, empty
+	on most hosts.  If we otherwise have Athena widget library
+	support, and the host is AIX, force linkage against Xpm and Xext
+	libraries to reflect modern Athena dependencies, which AIX's
+	linker doesn't figure out on its own.  `AC_SUBST` this variable,
+	exposing it to Automake files.
+	* src/devices/xditview/xditview.am (gxditview_LDADD): Use it.
+
+	{A similar change might also be useful for HP-UX, another Unix
+	System V descendant; see
+	<http://hpux.connect.org.uk/hppd/cgi-bin/wwwtar?/hpux/Gnu/\
+	groff-1.23.0/groff-1.23.0-src-11.31.tar.gz+groff-1.23.0/\
+	HPUX.Install+text>.  --GBR, 2023-07-10}
+
 2023-04-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* bootstrap.conf (gnulib_modules): Add "sys_wait" module.  MinGW

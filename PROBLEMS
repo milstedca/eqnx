@@ -27,7 +27,7 @@ General Problems
 ================
 
 
-[groff 405fe32847a598962dc3ad8469b9ed0bac4c50ba 2023-03-06]
+[groff 1.23.0]
 
 * gdiffmk doesn't work on FreeBSD; I get errors from "expr".
 
@@ -43,8 +43,6 @@ workaround for this behavior in a future release.
 
 ----------------------------------------------------------------------
 
-[groff 10274fb69e517b2c4b10fcd0ba3347e5bd0eefd7 2023-02-11]
-
 * gdiffmk doesn't work / its automated test fails.
 
 A defect in GNU diffutils 3.9 (January 2023) causes gdiffmk to
@@ -52,7 +50,7 @@ malfunction.  See <https://debbugs.gnu.org/db/61/61193.html>.
 
 ----------------------------------------------------------------------
 
-[groff 5195c5d7bf8df5478fce6714ea89844e9e228175 2003-07-21]
+[groff 1.19.2]
 
 * When viewing man pages, some characters on my UTF-8 terminal emulator
   look funny or copy-and-paste wrong.  Why?
@@ -90,8 +88,6 @@ both separately available.  To obtain a true minus sign, use the special
 character escape sequences '\(mi' or '\[mi]'.
 
 ----------------------------------------------------------------------
-
-[groff 5c1dfd65245b5769d514c4b6f78e6272f132e229 2003-07-18]
 
 * Displaying a man page on a terminal with/without my favorite pager
   shows garbage.
@@ -636,7 +632,7 @@ Platform-Dependent Macro Problems
 
 
 
-[groff 92feb549bb17ba935188f5a3f123ce30ced54311 2001-04-13]
+[groff 1.17]
 
 * groff produces wrapper macros for `ms' and friends which call the
   system's original macros.  Then, to get groff's ms macro package I
@@ -790,7 +786,7 @@ Compilation Problems
 
 
 
-[groff c70e3c4bfbb202f9f6a2ae1426637550ed8de023 2023-03-06]
+[groff 1.23.0]
 
 * The "initialization_is_quiet" test fails on my GNU/Hurd or NetBSD box.
 
@@ -799,8 +795,6 @@ have improved the reporting of the test output in hopes that we can
 isolate it in a future release.
 
 ----------------------------------------------------------------------
-
-[groff 4fecf105c34ee7e3ed24f494bd4217b7237c5859 2023-02-25]
 
 * I get a build failure on Cygwin / a system using newlib and GCC 11.
 
@@ -816,8 +810,6 @@ isolate it in a future release.
   $ ./configure --without-x
 
 ----------------------------------------------------------------------
-
-[groff 434e2b0606ade1736437d8a9be43e8852895c71d 2023-02-22]
 
 * The "check-default-foundry" test fails when I run "make check".
 
@@ -835,8 +827,6 @@ will be able to embed them all by using the "U" foundry with gropdf to
 overcome this problem.
 
 ----------------------------------------------------------------------
-
-[groff 3b04beb92e63cb9d108256ca37cc92446966c89a 2023-02-19]
 
 * I get a lot of warnings about "sprintf" on macOS.
 
@@ -858,8 +848,6 @@ all:
 Use GNU make instead; it may be available in /opt/csw/bin/gmake.
 
 ----------------------------------------------------------------------
-
-[groff 19afc98d213c86504a5475786987c6f86c6817fa 2023-02-09]
 
 * Tests fail when I run "make check" on Solaris 10 or 11.
 
@@ -935,8 +923,6 @@ Some test failures remain expected on Solaris 10.
 
 ----------------------------------------------------------------------
 
-[groff 1f4817f375354f062d3b4fdfbc0c52e2676e267b 2022-07-15]
-
 * I get warnings from afmtodit about names already being mapped.
 
 afmtodit: AGL name 'Delta' already mapped to groff name '*D'; ignoring AGL name 'uni0394'
@@ -959,8 +945,6 @@ man pages for more background.
 
 ----------------------------------------------------------------------
 
-[groff 49b611f1135cbf7f18b656bb445a291d48dd5c86 2022-05-22]
-
 * I am building from the Git repository, using 'autoreconf' from a GNU
   Autoconf release earlier than 2.69, and I get this.
 
@@ -974,8 +958,6 @@ man pages for more background.
 Ignore this.  It doesn't occur in more recent versions of 'autoreconf'.
 
 ----------------------------------------------------------------------
-
-[groff 0d371991136a081c57131cad87380cc4aef64169 2022-05-15]
 
 * I get warnings about special characters in the groff_char(7) man page.
 
@@ -1007,7 +989,7 @@ future release of gnulib to do so.
 
 ----------------------------------------------------------------------
 
-[groff 8a4d69839faa14deb1a5a204e7c28fd85806511c 2015-12-26]
+[groff 1.22.4]
 
 * When compiling on NetBSD, make issues warnings like
 
@@ -1056,7 +1038,7 @@ systems.
 
 ----------------------------------------------------------------------
 
-[groff dfdf0c0bb887010bd0047409c954e5d7a6d55d05 2014-09-04]
+[groff 1.22.3]
 
 * Configuration on MacOS X 10.6 doesn't succeed.
 
@@ -1066,7 +1048,7 @@ Use
 
 ----------------------------------------------------------------------
 
-[groff 6b3c51ebb4e3dbcb294f9c23d9ec0624b5beb4ee 2010-01-23]
+[groff 1.21]
 
 * In MacOS X, I want to completely replace the groff that came with
   the system.
@@ -1084,7 +1066,7 @@ Note that subsequent system updates may replace your groff.
 
 ----------------------------------------------------------------------
 
-[groff 26f1dfcd080e834617302c7a94423d02d17e15a7 2004-05-25]
+[groff 1.19.2]
 
 * I get warnings from the Sun linker while using gcc 3.4.0:
 
@@ -1102,7 +1084,7 @@ only debuggable with gdb but not with Sun's debuggers).
 
 ----------------------------------------------------------------------
 
-[groff ee83e4fd48e50d10967b02e06f128a1452f183b7 2002-11-07]
+[groff 1.19]
 
 * When compiling on MacOS X 10.2, groff compiles but does not run
   well, especially `eqn', causing many `can't break line' messages.
@@ -1119,7 +1101,7 @@ as usual.
 
 ----------------------------------------------------------------------
 
-[groff 3371324496b9ba0efb65e0c66340ca7f99a8bb56 2002-02-07]
+[groff 1.18.0]
 
 * Compilation dies with
 
@@ -1135,7 +1117,7 @@ byacc.
 
 ----------------------------------------------------------------------
 
-[groff e73d5afff5595b13052180c8cc5f402bff39131e 2000-12-06]
+[groff 1.17]
 
 * On HP-UX, the compiler complains about missing symbol `alloca'.
 
@@ -1147,7 +1129,7 @@ before starting the configure script.
 
 ----------------------------------------------------------------------
 
-[groff 2e836ac7d3d9264efb9ae5a06bfe8c7149e22eac 2000-07-21]
+[groff 1.16.1]
 
 * On a host using Unix make (e.g. Solaris), if you are compiling for
   multiple architectures by building in a subdirectory, the make stops
@@ -1170,15 +1152,13 @@ sunfreeware.com.
 
 ----------------------------------------------------------------------
 
-[groff 5af19087eef2de233075c39a1479e11c8fcbe3e9 2000-05-28]
-
 * There are many empty `Makefile.dep' files.  Is this a bug?
 
 No.  Real dependency files are created with a `make depend' call.
 
 ----------------------------------------------------------------------
 
-[groff fbd6cbb8ac7a42fdf219ff087b5b1e98cdeb7c68 2000-04-30]
+[groff 1.16]
 
 * The configure script fails on OS/390 (z/OS) Unix.
 

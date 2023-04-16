@@ -179,10 +179,6 @@ o Solaris 10 has known problems with automated tests; see the "PROBLEMS"
 o There is a problem building on "newlib"-using systems when X11 support
   is enabled; see the "PROBLEMS" file in the distribution archive.
 
-o The build is known to not work with the MSVC compiler.  There are no
-  plans to address this before C23 standardized attributes become
-  available.
-
 News
 ====
 

@@ -1,3 +1,17 @@
+2023-04-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[build]: Improve portability to non-GNU, non-LLVM compilers.
+
+	* bootstrap.conf (gnulib_modules): Add "attribute".
+	* src/libs/libgroff/getopt.c:
+	* src/libs/libgroff/new.cpp: Include gnulib's "attribute.h"
+	header file.
+	* src/libs/libgroff/getopt.c (_getopt_initialize):
+	* src/libs/libgroff/new.cpp (operator delete): Replace GNU C
+	unused attribute syntax with gnulib's "MAYBE_UNUSED".
+
+	Thanks to Bruno Haible for the report and suggested remedy.
+
 2023-03-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/libs/libxutil/XFontName.c (utoa): Rename function from

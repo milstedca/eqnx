@@ -17,11 +17,81 @@ Problems are organized into categories underscored with equals signs.
 * Platform-Dependent Macro Problems
 * Compilation Problems
 
+Within each category, items are organized in reverse chronological order
+(that is, with the most recent first).  groff version numbers
+corresponding to their inclusion in this file are included as
+guideposts.  Entries have been revised for clarity in the years since.
+
 
 General Problems
 ================
 
 
+[groff 405fe32847a598962dc3ad8469b9ed0bac4c50ba 2023-03-06]
+
+* gdiffmk doesn't work on FreeBSD; I get errors from "expr".
+
+gdiffmk uses the expr(1) command to parse its arguments.  FreeBSD has
+extended the syntax of its expr command in a non-backward compatible way
+that it claims better conforms with POSIX's utility syntax guidelines
+with respect to option processing: however, POSIX mandates no options
+for expr.  Other implementations of expr do not support traditional
+Unix-style options ('-a', '-b', ...), and perhaps as a consequence do
+not follow FreeBSD's interpretation of the guidelines.  You way want to
+set $EXPR_COMPAT in your shell environment.  We hope to have a
+workaround for this behavior in a future release.
+
+----------------------------------------------------------------------
+
+[groff 10274fb69e517b2c4b10fcd0ba3347e5bd0eefd7 2023-02-11]
+
+* gdiffmk doesn't work / its automated test fails.
+
+A defect in GNU diffutils 3.9 (January 2023) causes gdiffmk to
+malfunction.  See <https://debbugs.gnu.org/db/61/61193.html>.
+
+----------------------------------------------------------------------
+
+[groff 5195c5d7bf8df5478fce6714ea89844e9e228175 2003-07-21]
+
+* When viewing man pages, some characters on my UTF-8 terminal emulator
+  look funny or copy-and-paste wrong.  Why?
+
+Some Unicode Basic Latin ("ASCII") input characters are mapped to
+non-Basic Latin code points in output for consistency with other output
+devices, like PDF.  See groff_man_style(7) and groff_char(7) for correct
+input conventions and background.  If you use the correct groff special
+character escape sequences to input them, you will get correct output no
+matter what device the input is formatted for.
+
+However, many man pages are written in ignorance of the correct special
+characters to obtain the desired glyphs.  You can conceal these errors
+by adding the following to your site-local man(7) configuration.  The
+file is called "man.local"; its installation directory depends on how
+groff was configured when it was built.
+
+--- start ---
+.if '\*[.T]'utf8' \{\
+.  char ' \[aq]
+.  char - \-
+.  char ^ \[ha]
+.  char ` \[ga]
+.  char ~ \[ti]
+.\}
+--- end ---
+
+You may also wish to do the same for "mdoc.local".
+
+In man pages (only), groff maps the minus sign special character '\-' to
+the Basic Latin hyphen-minus (U+002D) because man pages require this
+glyph and there is no historically established *roff input character,
+ordinary or special, for obtaining it when a hyphen and minus sign are
+both separately available.  To obtain a true minus sign, use the special
+character escape sequences '\(mi' or '\[mi]'.
+
+----------------------------------------------------------------------
+
+[groff 5c1dfd65245b5769d514c4b6f78e6272f132e229 2003-07-18]
 
 * Displaying a man page on a terminal with/without my favorite pager
   shows garbage.
@@ -71,63 +141,7 @@ that handle standardized video terminal escape sequences well.
 
 ----------------------------------------------------------------------
 
-* When viewing man pages, some characters on my UTF-8 terminal emulator
-  look funny or copy-and-paste wrong.  Why?
-
-Some Unicode Basic Latin ("ASCII") input characters are mapped to
-non-Basic Latin code points in output for consistency with other output
-devices, like PDF.  See groff_man_style(7) and groff_char(7) for correct
-input conventions and background.  If you use the correct groff special
-character escape sequences to input them, you will get correct output no
-matter what device the input is formatted for.
-
-However, many man pages are written in ignorance of the correct special
-characters to obtain the desired glyphs.  You can conceal these errors
-by adding the following to your site-local man(7) configuration.  The
-file is called "man.local"; its installation directory depends on how
-groff was configured when it was built.
-
---- start ---
-.if '\*[.T]'utf8' \{\
-.  char ' \[aq]
-.  char - \-
-.  char ^ \[ha]
-.  char ` \[ga]
-.  char ~ \[ti]
-.\}
---- end ---
-
-You may also wish to do the same for "mdoc.local".
-
-In man pages (only), groff maps the minus sign special character '\-' to
-the Basic Latin hyphen-minus (U+002D) because man pages require this
-glyph and there is no historically established *roff input character,
-ordinary or special, for obtaining it when a hyphen and minus sign are
-both separately available.  To obtain a true minus sign, use the special
-character escape sequences '\(mi' or '\[mi]'.
-
-----------------------------------------------------------------------
-
-* gdiffmk doesn't work / its automated test fails.
-
-A defect in GNU diffutils 3.9 (January 2023) causes gdiffmk to
-malfunction.  See <https://debbugs.gnu.org/db/61/61193.html>.
-
-----------------------------------------------------------------------
-
-* gdiffmk doesn't work on FreeBSD; I get errors from "expr".
-
-gdiffmk uses the expr(1) command to parse its arguments.  FreeBSD has
-extended the syntax of its expr command in a non-backward compatible way
-that it claims better conforms with POSIX's utility syntax guidelines
-with respect to option processing: however, POSIX mandates no options
-for expr.  Other implementations of expr do not support traditional
-Unix-style options ('-a', '-b', ...), and perhaps as a consequence do
-not follow FreeBSD's interpretation of the guidelines.  You way want to
-set $EXPR_COMPAT in your shell environment.  We hope to have a
-workaround for this behavior in a future release.
-
-----------------------------------------------------------------------
+[groff 1.16]
 
 * My document says that the current year is 19100, not 2000.
 
@@ -153,94 +167,7 @@ or, if you want to be portable to older troff versions, as follows:
 
 ----------------------------------------------------------------------
 
-* groff can't handle my troff document.  It works fine with AT&T
-  troff.
-
-Read the section on incompatibilities in groff_diff(7).  Try using the
--C option.  Alternatively there's the sed script `tmac/fixmacros.sed'
-which attempts to edit a file of macros so that it can be used with
-groff without the -C flag.
-
-----------------------------------------------------------------------
-
-* gtroff doesn't understand lines like `.ce99' with no space between
-  the name of the request or macro and the arguments.
-
-gtroff requires a space between macro or request and its arguments
-because it allows the use of long names for macros and requests.  You
-can use the -C option or the `cp' request to put gtroff into a
-compatibility mode in which it is not possible to use long names for
-macros but in which no space is required between macros and their
-arguments.  The use of compatibility mode is strongly discouraged.
-
-----------------------------------------------------------------------
-
-* groff -Tdvi produces dvi files that use fonts at weird
-  magnifications.
-
-Yes, it does.  You may need to compile fonts with Metafont at these
-magnifications.  The CompileFonts script in the devdvi/generate
-directory may help you to do this.  (It takes a *long* time on slow
-computers.)
-
-----------------------------------------------------------------------
-
-* Groff doesn't use the font names I'm used to.
-
-Use the `ftr' request.  See groff_diff(7).
-
-----------------------------------------------------------------------
-
-* gpic output is not centered horizontally; pictures sometimes run off
-  the bottom of the page.
-
-The macro package you are using is not supplying appropriate
-definitions of PS and PE.  Give groff a -mpic option.
-
-----------------------------------------------------------------------
-
-* gpic doesn't accept the syntax `chop N M' for chopping both ends of
-  a line.
-
-The correct syntax is `chop N chop M'.
-
-----------------------------------------------------------------------
-
-* With gpic -t, when I print `line ->; box' using a dvi to ps program,
-  the arrow head sticks through into the inside of the box.
-
-The dvi to ps program should be modified to set the line cap and line
-join parameters to 1 while printing tpic specials.
-
-----------------------------------------------------------------------
-
-* gtroff gives warnings about lines like
-  .ev	\" a comment
-  (with a tab after the .ev).
-
-A tab character cannot be used as a substitute for a space character
-(except in one case: between a control character at the beginning of a
-line and the name of a macro or request).  For example, in Unix troff
-
-  .ps	\" restore the previous point size
-
-(with a tab after the .ps) does NOT restore the previous point-size;
-instead it is silently ignored.  Since this is very likely to be an
-error, gtroff can give a warning about it.  If you want to align
-comments, you can do it like this:
-
-  .ev\"				\" a comment
-
-----------------------------------------------------------------------
-
-* I don't like the page headers and footers produced by groff -man.
-
-There seem to be many different styles of page header and footer
-produced by different versions of the -man macros.  You need to put
-modified macros from tmac/an.tmac into man.local.  More information is
-available in groff_man(7).
-
-----------------------------------------------------------------------
+[groff 1.09]
 
 * Where can I get grap?
 
@@ -274,33 +201,7 @@ in the \n[rst] and \n[rsb] registers; these are groff extensions.
 
 ----------------------------------------------------------------------
 
-* While formatting a manual page, groff complains about not being able
-  to break lines.  A line like the following seems to cause this.
-    .TP \w'label'+2
-
-The groff_man(7) man page says that the default scaling unit for the
-`TP` macro is 'n' (ens), and that is how the groff man macros are
-implemented.  Consequently, the macro argument above is evaluated
-equivalently to this expression.
-
-  \w'label'n+2n
-
-AT&T troff's man macros don't implement this correctly (probably because
-it's hard to do in that troff); instead, they append 'n' to the entire
-argument, so that it is evaluated as if it were written as follows.
-
-  \w'label'u+2n
-
-The solution is to fix the manual page.
-
-  .TP \w'label'u+2
-
-It might be better still to avoid such computations in macro arguments,
-however; programs that are not *roff formatters that attempt to
-interpret man pages can lack the ability to interpret numeric
-expressions.  See section "Portability" of groff_man_style(7).
-
-----------------------------------------------------------------------
+[groff 1.08]
 
 * I'm having problems formatting man pages produced by the perl
   wrapman script.
@@ -383,6 +284,8 @@ following patch:
 
 ----------------------------------------------------------------------
 
+[groff 1.07]
+
 * groff uses up an enormous amount of memory processing large files.
   I'm using 386BSD 0.1.
 
@@ -418,12 +321,212 @@ and recompile groff:
         else
   	exprstmt = 0;
 
+----------------------------------------------------------------------
+
+[groff 1.06]
+
+* groff can't handle my troff document.  It works fine with AT&T
+  troff.
+
+Read the section on incompatibilities in groff_diff(7).  Try using the
+-C option.  Alternatively there's the sed script `tmac/fixmacros.sed'
+which attempts to edit a file of macros so that it can be used with
+groff without the -C flag.
+
+----------------------------------------------------------------------
+
+* groff -Tdvi produces dvi files that use fonts at weird
+  magnifications.
+
+Yes, it does.  You may need to compile fonts with Metafont at these
+magnifications.  The CompileFonts script in the devdvi/generate
+directory may help you to do this.  (It takes a *long* time on slow
+computers.)
+
+----------------------------------------------------------------------
+
+[groff 1.01]
+
+* gpic output is not centered horizontally; pictures sometimes run off
+  the bottom of the page.
+
+The macro package you are using is not supplying appropriate
+definitions of PS and PE.  Give groff a -mpic option.
+
+----------------------------------------------------------------------
+
+* Groff doesn't use the font names I'm used to.
+
+Use the `ftr' request.  See groff_diff(7).
+
+----------------------------------------------------------------------
+
+* I get errors using the Unix -ms macros with groff -e -C.
+
+Apply this change:
+
+*** /usr/lib/ms/ms.eqn	Tue Apr 25 02:14:28 1989
+--- ms.eqn	Sun Nov 11 10:33:59 1990
+***************
+*** 22,29 ****
+  ..
+  .	\" EN - end of a displayed equation
+  .de EN
+! .if !\\*(10 .br
+  .di
+  .rm EZ
+  .nr ZN \\n(dn
+  .if \\n(ZN>0 .if \\n(YE=0 .LP
+--- 22,30 ----
+  ..
+  .	\" EN - end of a displayed equation
+  .de EN
+! .if \\n(.k>0 .br
+  .di
++ .ds 10 \\*(EZ\\
+  .rm EZ
+  .nr ZN \\n(dn
+  .if \\n(ZN>0 .if \\n(YE=0 .LP
+
+----------------------------------------------------------------------
+
+* gpic doesn't accept the syntax `chop N M' for chopping both ends of
+  a line.
+
+The correct syntax is `chop N chop M'.
+
+----------------------------------------------------------------------
+
+* With gpic -t, when I print `line ->; box' using a dvi to ps program,
+  the arrow head sticks through into the inside of the box.
+
+The dvi to ps program should be modified to set the line cap and line
+join parameters to 1 while printing tpic specials.
+
+----------------------------------------------------------------------
+
+* gtroff doesn't understand lines like `.ce99' with no space between
+  the name of the request or macro and the arguments.
+
+gtroff requires a space between macro or request and its arguments
+because it allows the use of long names for macros and requests.  You
+can use the -C option or the `cp' request to put gtroff into a
+compatibility mode in which it is not possible to use long names for
+macros but in which no space is required between macros and their
+arguments.  The use of compatibility mode is strongly discouraged.
+
+----------------------------------------------------------------------
+
+* gtroff gives warnings about lines like
+  .ev	\" a comment
+  (with a tab after the .ev).
+
+A tab character cannot be used as a substitute for a space character
+(except in one case: between a control character at the beginning of a
+line and the name of a macro or request).  For example, in Unix troff
+
+  .ps	\" restore the previous point size
+
+(with a tab after the .ps) does NOT restore the previous point-size;
+instead it is silently ignored.  Since this is very likely to be an
+error, gtroff can give a warning about it.  If you want to align
+comments, you can do it like this:
+
+  .ev\"				\" a comment
+
+----------------------------------------------------------------------
+
+* I don't like the page headers and footers produced by groff -man.
+
+There seem to be many different styles of page header and footer
+produced by different versions of the -man macros.  You need to put
+modified macros from tmac/an.tmac into man.local.  More information is
+available in groff_man(7).
+
+----------------------------------------------------------------------
+
+* While formatting a manual page, groff complains about not being able
+  to break lines.  A line like the following seems to cause this.
+    .TP \w'label'+2
+
+The groff_man(7) man page says that the default scaling unit for the
+`TP` macro is 'n' (ens), and that is how the groff man macros are
+implemented.  Consequently, the macro argument above is evaluated
+equivalently to this expression.
+
+  \w'label'n+2n
+
+AT&T troff's man macros don't implement this correctly (probably because
+it's hard to do in that troff); instead, they append 'n' to the entire
+argument, so that it is evaluated as if it were written as follows.
+
+  \w'label'u+2n
+
+The solution is to fix the manual page.
+
+  .TP \w'label'u+2
+
+It might be better still to avoid such computations in macro arguments,
+however; programs that are not *roff formatters that attempt to
+interpret man pages can lack the ability to interpret numeric
+expressions.  See section "Portability" of groff_man_style(7).
+
 
 
 Printing and Display Problems
 =============================
 
 
+
+[groff 1.09]
+
+* How can I use groff with an old LaserJet printer that doesn't work
+  with groff -Tlj4?
+
+You have at least 3 options:
+
+- use groff -Tps with GNU Ghostscript;
+
+- use groff -Tdvi with a TeX .dvi to LaserJet driver;
+
+- use groff with the LaserJet driver in Chris Lewis' psroff package
+  (available for ftp from:
+  ftp.uunet.ca:/distrib/chris_lewis/psroff3.0pl17).
+
+----------------------------------------------------------------------
+
+* Groff seems to generate level 3 Postscript, but my printer is only a
+  level 1 or 2 PostScript printer.
+
+In fact groff generates only level 2 PostScript (or rather level 1
+with some extensions; see grops(1) for more information how to disable
+them).  The `%!PS-Adobe-3.0' comment at the beginning of PostScript
+output generated by groff indicates that the file conforms to version
+3.0 of the Adobe Document Structuring Conventions.  The output
+generated by groff should be printable on any PostScript printer.
+Problems with groff output's not printing are most often caused by the
+spooling system.
+
+----------------------------------------------------------------------
+
+[groff 1.04]
+
+* When I try to run gxditview, I get the error:
+  Error: Widget viewport has zero width and/or height
+
+This error means you haven't correctly installed the application
+defaults file, GXditview.ad; `make install' does this for you
+automatically, so either you didn't do `make install', or you haven't
+passed a good `--appdefdir=<DIR>' argument to groff's configure
+script.
+
+See the X(7) man page for information how and where application
+defaults files have to be located.  Look for the XAPPLRESDIR and
+XUSERFILESEARCHPATH environment variables.
+
+----------------------------------------------------------------------
+
+[groff 1.01]
 
 * I'm having problems including PostScript illustrations (EPS) using
   the PSPIC macro and/or \X'ps: import ...'.
@@ -484,29 +587,6 @@ Make sure that the paper format is "letter".  See groff_tmac(5).
 
 ----------------------------------------------------------------------
 
-* When I try to run gxditview, I get the error:
-  Error: Widget viewport has zero width and/or height
-
-This error means you haven't correctly installed the application
-defaults file, GXditview.ad; `make install' does this for you
-automatically, so either you didn't do `make install', or you haven't
-passed a good `--appdefdir=<DIR>' argument to groff's configure
-script.
-
-See the X(7) man page for information how and where application
-defaults files have to be located.  Look for the XAPPLRESDIR and
-XUSERFILESEARCHPATH environment variables.
-
-----------------------------------------------------------------------
-
-* When I preview documents using -TX75 or -TX100, the layout is not
-  the same as when I print the document with -Tps: the line and page
-  breaks come in different places.
-
-Use `groff -X -Tps'.
-
-----------------------------------------------------------------------
-
 * When I try to print the output of groff -Tps, I get no output at all
   from the printer, and the log file shows the error
   %%[ error: undefined; offendingcommand: BP ]%%
@@ -543,32 +623,11 @@ files produced by TeX.  Try getting a more up to date driver.
 
 ----------------------------------------------------------------------
 
-* How can I use groff with an old LaserJet printer that doesn't work
-  with groff -Tlj4?
+* When I preview documents using -TX75 or -TX100, the layout is not
+  the same as when I print the document with -Tps: the line and page
+  breaks come in different places.
 
-You have at least 3 options:
-
-- use groff -Tps with GNU Ghostscript;
-
-- use groff -Tdvi with a TeX .dvi to LaserJet driver;
-
-- use groff with the LaserJet driver in Chris Lewis' psroff package
-  (available for ftp from:
-  ftp.uunet.ca:/distrib/chris_lewis/psroff3.0pl17).
-
-----------------------------------------------------------------------
-
-* Groff seems to generate level 3 Postscript, but my printer is only a
-  level 1 or 2 PostScript printer.
-
-In fact groff generates only level 2 PostScript (or rather level 1
-with some extensions; see grops(1) for more information how to disable
-them).  The `%!PS-Adobe-3.0' comment at the beginning of PostScript
-output generated by groff indicates that the file conforms to version
-3.0 of the Adobe Document Structuring Conventions.  The output
-generated by groff should be printable on any PostScript printer.
-Problems with groff output's not printing are most often caused by the
-spooling system.
+Use `groff -X -Tps'.
 
 
 
@@ -577,11 +636,7 @@ Platform-Dependent Macro Problems
 
 
 
-* I get lots of errors when I use groff with the AT&T -mm macros.
-
-Use the groff -mm macros.
-
-----------------------------------------------------------------------
+[groff 92feb549bb17ba935188f5a3f123ce30ced54311 2001-04-13]
 
 * groff produces wrapper macros for `ms' and friends which call the
   system's original macros.  Then, to get groff's ms macro package I
@@ -596,75 +651,7 @@ macros.
 
 ----------------------------------------------------------------------
 
-* I'm having problems formatting HP-UX 9.0 man pages with groff -man.
-
-Copy HP's tmac.an into /usr/local/share/groff/site-tmac/an.tmac, and
-either put `.cp 1' at the beginning or filter it (and any files it
-.so's) through tmac/fixmacros.sed.
-
-----------------------------------------------------------------------
-
-* I get errors using the Unix -ms macros with groff -e -C.
-
-Apply this change:
-
-*** /usr/lib/ms/ms.eqn	Tue Apr 25 02:14:28 1989
---- ms.eqn	Sun Nov 11 10:33:59 1990
-***************
-*** 22,29 ****
-  ..
-  .	\" EN - end of a displayed equation
-  .de EN
-! .if !\\*(10 .br
-  .di
-  .rm EZ
-  .nr ZN \\n(dn
-  .if \\n(ZN>0 .if \\n(YE=0 .LP
---- 22,30 ----
-  ..
-  .	\" EN - end of a displayed equation
-  .de EN
-! .if \\n(.k>0 .br
-  .di
-+ .ds 10 \\*(EZ\\
-  .rm EZ
-  .nr ZN \\n(dn
-  .if \\n(ZN>0 .if \\n(YE=0 .LP
-
-----------------------------------------------------------------------
-
-* I'm having problems formatting Ultrix man pages with groff -man.
-
-The Ultrix man pages use a number of non-standard extensions to the
-Unix man macros.  One solution is to use the Ultrix -man macros with
-groff.  Copy /usr/lib/tmac/tmac.an to
-/usr/local/share/groff/site-tmac/an.tmac and apply the following patch
-(from Frank Wortner):
-
-*** /usr/local/lib/groff/tmac/tmac.an     Wed Sep  9 12:29:28 1992
---- /usr/lib/tmac/tmac.an       Fri Jul 24 19:58:19 1992
-***************
-*** 489,495 ****
-  .     \" make special case of shift out of italic
-  .de }S
-  .ds ]F
-! .if \\$12 .if !\\$5 .ds ]F \^
-  .ie !\\$4 .}S \\$2 \\$1 "\\$3\f\\$1\\$4\\*(]F" "\\$5" "\\$6" "\\$7" "\\$8" "\\$9"
-  .el \\$3
-  .}f
---- 489,495 ----
-  .     \" make special case of shift out of italic
-  .de }S
-  .ds ]F
-! .if \\$12 .if !\\$5 .ds ]F\^
-  .ie !\\$4 .}S \\$2 \\$1 "\\$3\f\\$1\\$4\\*(]F" "\\$5" "\\$6" "\\$7" "\\$8" "\\$9"
-  .el \\$3
-  .}f
-
-Another possible solution is to install tmac/man.ultrix as
-/usr/local/share/groff/site-tmac/man.local.
-
-----------------------------------------------------------------------
+[groff 1.09]
 
 * On an SGI system, how can I make the man command use groff?
 
@@ -743,6 +730,59 @@ To get PostScript output from `man -t', you also need to create a
 ! # probably not wanted.
 ! exec groff -Wall $T $opts $rest
 
+----------------------------------------------------------------------
+
+[groff 1.08]
+
+* I'm having problems formatting HP-UX 9.0 man pages with groff -man.
+
+Copy HP's tmac.an into /usr/local/share/groff/site-tmac/an.tmac, and
+either put `.cp 1' at the beginning or filter it (and any files it
+.so's) through tmac/fixmacros.sed.
+
+----------------------------------------------------------------------
+
+[groff 1.07]
+
+* I'm having problems formatting Ultrix man pages with groff -man.
+
+The Ultrix man pages use a number of non-standard extensions to the
+Unix man macros.  One solution is to use the Ultrix -man macros with
+groff.  Copy /usr/lib/tmac/tmac.an to
+/usr/local/share/groff/site-tmac/an.tmac and apply the following patch
+(from Frank Wortner):
+
+*** /usr/local/lib/groff/tmac/tmac.an     Wed Sep  9 12:29:28 1992
+--- /usr/lib/tmac/tmac.an       Fri Jul 24 19:58:19 1992
+***************
+*** 489,495 ****
+  .     \" make special case of shift out of italic
+  .de }S
+  .ds ]F
+! .if \\$12 .if !\\$5 .ds ]F \^
+  .ie !\\$4 .}S \\$2 \\$1 "\\$3\f\\$1\\$4\\*(]F" "\\$5" "\\$6" "\\$7" "\\$8" "\\$9"
+  .el \\$3
+  .}f
+--- 489,495 ----
+  .     \" make special case of shift out of italic
+  .de }S
+  .ds ]F
+! .if \\$12 .if !\\$5 .ds ]F\^
+  .ie !\\$4 .}S \\$2 \\$1 "\\$3\f\\$1\\$4\\*(]F" "\\$5" "\\$6" "\\$7" "\\$8" "\\$9"
+  .el \\$3
+  .}f
+
+Another possible solution is to install tmac/man.ultrix as
+/usr/local/share/groff/site-tmac/man.local.
+
+----------------------------------------------------------------------
+
+[groff 1.01]
+
+* I get lots of errors when I use groff with the AT&T -mm macros.
+
+Use the groff -mm macros.
+
 
 
 Compilation Problems
@@ -750,57 +790,53 @@ Compilation Problems
 
 
 
-* I get warnings from afmtodit about names already being mapped.
+[groff c70e3c4bfbb202f9f6a2ae1426637550ed8de023 2023-03-06]
 
-afmtodit: AGL name 'Delta' already mapped to groff name '*D'; ignoring AGL name 'uni0394'
+* The "initialization_is_quiet" test fails on my GNU/Hurd or NetBSD box.
 
-You can ignore these if they're in the form shown above, where the
-ignored AGL name is 'uniXXXX' and 'XXXX' is four hexadecimal digits.
-The Adobe Glyph List (AGL) has its own names for glyphs; they are often
-different from groff's special character names.  The afmtodit program is
-constructing a mapping from groff special character names to AGL names;
-this can be a one-to-one or many-to-one mapping, but one-to-many will
-not work, so afmtodit discards the excessive mappings.  The example you
-see above is telling you that the groff font description that afmtodit
-is writing cannot map the groff special character '*D' to both 'Delta'
-and 'uni0394'.
-
-Which, if any, such warnings you see depends on the version of the URW
-fonts you are building groff against.  See the '--with-urw-fonts-dir'
-option to the "configure" script, and the afmtodit(1) and groff_char(7)
-man pages for more background.
+This is a known problem.  We haven't tracked down the cause yet, but
+have improved the reporting of the test output in hopes that we can
+isolate it in a future release.
 
 ----------------------------------------------------------------------
 
-* I get warnings about special characters in the groff_char(7) man page.
+[groff 4fecf105c34ee7e3ed24f494bd4217b7237c5859 2023-02-25]
 
-troff:man/groff_char.7:1000: warning: can't find special character '.j'
-troff:man/groff_char.7:1407: warning: can't find special character 'vA'
-troff:man/groff_char.7:1531: warning: can't find special character 'bs'
-troff:man/groff_char.7:1697: warning: can't find special character '-+'
-troff:man/groff_char.7:1746: warning: can't find special character 'coproduct'
-troff:man/groff_char.7:1839: warning: can't find special character '+e'
+* I get a build failure on Cygwin / a system using newlib and GCC 11.
 
-You can ignore these.  groff defines a handful of special characters for
-which historical PostScript fonts usually did not possess glyphs.
-Except for 'bs' (the Bell System logo), we hope to provide fallbacks or
-a supplementary PostScript font in groff in the future (as was done for
-the Euro glyph).
+  "newlib" defines a function called "utoa" which conflicts with a
+  static (file scope-local) function in src/libs/libxutil/XFontName.c.
+
+  We expect to fix this in the near future; in the meantime, you can
+  patch the file to rename the function (and update its call sites) or,
+  if you don't require the "gxditview" output previewer or "xtotroff"
+  utility, you can build groff without X11 support.
+
+  $ make distclean
+  $ ./configure --without-x
+
+----------------------------------------------------------------------
+
+[groff 434e2b0606ade1736437d8a9be43e8852895c71d 2023-02-22]
+
+* The "check-default-foundry" test fails when I run "make check".
+
+Your Ghostscript installation may have its fonts embedded in the
+executable; this can be discerned by searching for the pattern "%rom%"
+in its search path.
+
+  $ gs -h | grep '%rom%'
+
+The consequence is that gropdf(1) will be unable to embed fonts into PDF
+files it generates (apart from groff's "EURO" font) when the default
+foundry is used.  This is the same outcome as if Ghostscript were not
+installed at all.  If you install URW fonts (see "INSTALL.extra"), you
+will be able to embed them all by using the "U" foundry with gropdf to
+overcome this problem.
 
 ----------------------------------------------------------------------
 
-* I get warnings about the "vasnprintf" function.
-
-lib/vasnprintf.c: In function 'vasnprintf':
-lib/vasnprintf.c:5268:27: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
-(and similar)
-
-The groff source tree includes gnulib, the GNU portability library
-<https://www.gnu.org/software/gnulib/>.  These warnings are about its
-source code and that project's responsibility to resolve.  We expect a
-future release of gnulib to do so.
-
-----------------------------------------------------------------------
+[groff 3b04beb92e63cb9d108256ca37cc92446966c89a 2023-02-19]
 
 * I get a lot of warnings about "sprintf" on macOS.
 
@@ -823,30 +859,7 @@ Use GNU make instead; it may be available in /opt/csw/bin/gmake.
 
 ----------------------------------------------------------------------
 
-* The "check-default-foundry" test fails when I run "make check".
-
-Your Ghostscript installation may have its fonts embedded in the
-executable; this can be discerned by searching for the pattern "%rom%"
-in its search path.
-
-  $ gs -h | grep '%rom%'
-
-The consequence is that gropdf(1) will be unable to embed fonts into PDF
-files it generates (apart from groff's "EURO" font) when the default
-foundry is used.  This is the same outcome as if Ghostscript were not
-installed at all.  If you install URW fonts (see "INSTALL.extra"), you
-will be able to embed them all by using the "U" foundry with gropdf to
-overcome this problem.
-
-----------------------------------------------------------------------
-
-* The "initialization_is_quiet" test fails on my GNU/Hurd or NetBSD box.
-
-This is a known problem.  We haven't tracked down the cause yet, but
-have improved the reporting of the test output in hopes that we can
-isolate it in a future release.
-
-----------------------------------------------------------------------
+[groff 19afc98d213c86504a5475786987c6f86c6817fa 2023-02-09]
 
 * Tests fail when I run "make check" on Solaris 10 or 11.
 
@@ -922,20 +935,31 @@ Some test failures remain expected on Solaris 10.
 
 ----------------------------------------------------------------------
 
-* I get a build failure on Cygwin / a system using newlib and GCC 11.
+[groff 1f4817f375354f062d3b4fdfbc0c52e2676e267b 2022-07-15]
 
-  "newlib" defines a function called "utoa" which conflicts with a
-  static (file scope-local) function in src/libs/libxutil/XFontName.c.
+* I get warnings from afmtodit about names already being mapped.
 
-  We expect to fix this in the near future; in the meantime, you can
-  patch the file to rename the function (and update its call sites) or,
-  if you don't require the "gxditview" output previewer or "xtotroff"
-  utility, you can build groff without X11 support.
+afmtodit: AGL name 'Delta' already mapped to groff name '*D'; ignoring AGL name 'uni0394'
 
-  $ make distclean
-  $ ./configure --without-x
+You can ignore these if they're in the form shown above, where the
+ignored AGL name is 'uniXXXX' and 'XXXX' is four hexadecimal digits.
+The Adobe Glyph List (AGL) has its own names for glyphs; they are often
+different from groff's special character names.  The afmtodit program is
+constructing a mapping from groff special character names to AGL names;
+this can be a one-to-one or many-to-one mapping, but one-to-many will
+not work, so afmtodit discards the excessive mappings.  The example you
+see above is telling you that the groff font description that afmtodit
+is writing cannot map the groff special character '*D' to both 'Delta'
+and 'uni0394'.
+
+Which, if any, such warnings you see depends on the version of the URW
+fonts you are building groff against.  See the '--with-urw-fonts-dir'
+option to the "configure" script, and the afmtodit(1) and groff_char(7)
+man pages for more background.
 
 ----------------------------------------------------------------------
+
+[groff 49b611f1135cbf7f18b656bb445a291d48dd5c86 2022-05-22]
 
 * I am building from the Git repository, using 'autoreconf' from a GNU
   Autoconf release earlier than 2.69, and I get this.
@@ -951,236 +975,39 @@ Ignore this.  It doesn't occur in more recent versions of 'autoreconf'.
 
 ----------------------------------------------------------------------
 
-* Compilation dies with
+[groff 0d371991136a081c57131cad87380cc4aef64169 2022-05-15]
 
-    y.tab.c: In function `int yyparse()':
-    y.tab.c: `size_t' undeclared in namespace `std'
+* I get warnings about special characters in the groff_char(7) man page.
 
-* bison reports conflicts (either on stderr or in the `pic.output'
-  file) while processing `pic.y', and the produced pic binary doesn't
-  work at all.
+troff:man/groff_char.7:1000: warning: can't find special character '.j'
+troff:man/groff_char.7:1407: warning: can't find special character 'vA'
+troff:man/groff_char.7:1531: warning: can't find special character 'bs'
+troff:man/groff_char.7:1697: warning: can't find special character '-+'
+troff:man/groff_char.7:1746: warning: can't find special character 'coproduct'
+troff:man/groff_char.7:1839: warning: can't find special character '+e'
 
-You need bison version 1.875b or greater.  Alternatively, use yacc or
-byacc.
-
-----------------------------------------------------------------------
-
-* There are many empty `Makefile.dep' files.  Is this a bug?
-
-No.  Real dependency files are created with a `make depend' call.
-
-----------------------------------------------------------------------
-
-* On HP-UX, the compiler complains about missing symbol `alloca'.
-
-Say
-
-  export LDFLAGS=-lPW
-
-before starting the configure script.
+You can ignore these.  groff defines a handful of special characters for
+which historical PostScript fonts usually did not possess glyphs.
+Except for 'bs' (the Bell System logo), we hope to provide fallbacks or
+a supplementary PostScript font in groff in the future (as was done for
+the Euro glyph).
 
 ----------------------------------------------------------------------
 
-* The configure script fails on OS/390 (z/OS) Unix.
+* I get warnings about the "vasnprintf" function.
 
-[This has been fixed in z/OS V1R3 (aka OS/390 R13).]
+lib/vasnprintf.c: In function 'vasnprintf':
+lib/vasnprintf.c:5268:27: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+(and similar)
 
-There is a bug in the Language Environment (LE) whereby the test
-program for static destructors fails.  You see the message `configure:
-error: a working C++ compiler is required'.
-
-Applying PTF UQ42006 is supposed to fix this, but the test program is
-still returning the wrong value (1).  To work around this problem, you
-can comment out the following in the configure script (near line
-2029).  This effectively bypasses the test (static constructors and
-destructors do actually work properly):
-
-#if { (eval echo "$as_me:2029: \"$ac_link\"") >&5
-#  (eval $ac_link) 2>&5
-#  ac_status=$?
-#  echo "$as_me:2032: \$? = $ac_status" >&5
-#  (exit $ac_status); } && { ac_try='./conftest$ac_exeext'
-#  { (eval echo "$as_me:2034: \"$ac_try\"") >&5
-#  (eval $ac_try) 2>&5
-#  ac_status=$?
-#  echo "$as_me:2037: \$? = $ac_status" >&5
-#  (exit $ac_status); }; }; then
-#  echo "$as_me:2039: result: yes" >&5
-#echo "${ECHO_T}yes" >&6
-#else
-#  echo "$as_me: program exited with status $ac_status" >&5
-#echo "$as_me: failed program was:" >&5
-#cat conftest.$ac_ext >&5
-#echo "$as_me:2045: result: no" >&5
-#echo "${ECHO_T}no" >&6;{ { echo "$as_me:2046: error: a working C++ compiler is required" >&5
-#echo "$as_me: error: a working C++ compiler is required" >&2;}
-#   { (exit 1); exit 1; }; }
-#fi
+The groff source tree includes gnulib, the GNU portability library
+<https://www.gnu.org/software/gnulib/>.  These warnings are about its
+source code and that project's responsibility to resolve.  We expect a
+future release of gnulib to do so.
 
 ----------------------------------------------------------------------
 
-* I get errors when I try to compile groff with DEC C++.
-
-Fix the declaration of write() in <unistd.h> so that the second
-argument is a const char *.  Fix the declaration of open() in
-<sys/file.h> so that the first argument is a const char *.
-
-----------------------------------------------------------------------
-
-* On a host using Unix make (e.g. Solaris), if you are compiling for
-  multiple architectures by building in a subdirectory, the make stops
-  with a message like this:
-
-    make: Fatal error: Don't know how to make target `assert.o'
-
-  or like this:
-
-    make: Fatal error: Can't find /u/src/groff/src/include/Makefile.sub': No such file or directory
-
-This occurs because GNU make and Unix make handle VPATH differently,
-and the groff build relies on GNU make's VPATH handling.
-
-Use GNU make <http://www.gnu.org/software/make/> to work around this.
-In Solaris 8 and 9, GNU make is on the Software Companion CD in
-package SFWgmake and is installed as /opt/sfw/bin/gmake.  Prebuilt
-versions of GNU make for Solaris are also available from
-sunfreeware.com.
-
-----------------------------------------------------------------------
-
-* On Ultrix, the make program stops with the message
-
-    *** Error code 1
-
-    Stop.
-
-  for no apparent reason.
-
-Use GNU make.
-
-----------------------------------------------------------------------
-
-* I'm having problems compiling groff on 386BSD 0.1.
-
-If you're using ash as /bin/sh, you'll need the following patch.
-
-*** gendef.sh.org	Sun Jun 30 13:30:36 1991
---- gendef.sh	Sun Feb 28 10:23:49 1993
-***************
-*** 3,9 ****
-  file=$1
-  shift
-
-! defs="#define $1"
-  shift
-  for def
-  do
---- 3,10 ----
-  file=$1
-  shift
-
-! x=$1
-! defs="#define $x"
-  shift
-  for def
-  do
-
-You'll also need to change dirnamemax.c so that it doesn't use
-pathconf().
-
-----------------------------------------------------------------------
-
-* While compiling on Xenix, ranlib libgroff.a fails.
-
-The system ranlib can't handle externals longer than 40 characters.
-Use the ranlib included in demon.co.uk:/pub/xenix/g++-1.40.3a.v1
-instead.
-
-----------------------------------------------------------------------
-
-* I get errors when I try to compile groff with Sun C++ version 3 or
-  earlier.
-
-Groff requires header files that are moderately compatible with AT&T
-C++ and ANSI C.  With some versions of Sun C++, the supplied header
-files need some of the following changes to meet this requirement:
-<string.h> must declare the mem* functions, (just add `#include
-<memory.h>' to <string.h>); the first argument to fopen and freopen
-should be declared as `const char *'; the first argument to fread
-should be declared as `void *'; the first argument to fwrite should be
-declared as `const void *'; malloc should be declared to return
-`void *'; in <alloca.h>, the declaration `extern "C" { void
-*__builtin_alloca(int); }' should be added; in <sys/signal.h> the
-return type and the second argument type of signal() should be changed
-to be `void (*)(int)'.
-
-You can either change them in place, or copy them to some other
-directory and include that directory with a -I option.
-
-----------------------------------------------------------------------
-
-* I get errors when I try to compile groff with Forte Development 6
-  or 6u1, or Sun C++ version 5.0 through 5.2.
-
-This is a known problem; see Sun bug #4301919.  See Sun patches
-109482, 109490, 109508, and 109509 for fixes.
-
-----------------------------------------------------------------------
-
-* I get warnings from the Sun linker while using gcc 3.4.0:
-
-  ld: warning: relocation error: R_SPARC_UA32:
-      file groff/src/libs/libgroff/libgroff.a(getopt.o): symbol optarg:
-      external symbolic relocation against non-allocatable
-      section .debug_info; cannot be processed at runtime:
-      relocation ignored
-
-This seems to be a known problem (Sun bugs #4910101 and #4910810,
-filed in September 2003; gcc bug #15599, filed May 2004) without a
-public fix as of this writing.  A work-around is to use option
-`-gstabs+' instead of `-g' (and a high probability that the output is
-only debuggable with gdb but not with Sun's debuggers).
-
-----------------------------------------------------------------------
-
-* In MacOS X, I want to completely replace the groff that came with
-  the system.
-
-Use
-
-  ./configure --prefix=/usr --mandir=/usr/share/man
-
-then
-
-  make
-  make install
-
-Note that subsequent system updates may replace your groff.
-
-----------------------------------------------------------------------
-
-* When compiling on MacOS X 10.2, groff compiles but does not run
-  well, especially `eqn', causing many `can't break line' messages.
-
-Use
-
-  ./configure CXX=g++2
-
-then
-
-  make
-
-as usual.
-
-----------------------------------------------------------------------
-
-* Configuration on MacOS X 10.6 doesn't succeed.
-
-Use
-
-  ./configure CXX=g++-4.2
-
-----------------------------------------------------------------------
+[groff 8a4d69839faa14deb1a5a204e7c28fd85806511c 2015-12-26]
 
 * When compiling on NetBSD, make issues warnings like
 
@@ -1226,6 +1053,265 @@ into
 
 The bug is reported to the maintainer of the make(1) tool of those
 systems.
+
+----------------------------------------------------------------------
+
+[groff dfdf0c0bb887010bd0047409c954e5d7a6d55d05 2014-09-04]
+
+* Configuration on MacOS X 10.6 doesn't succeed.
+
+Use
+
+  ./configure CXX=g++-4.2
+
+----------------------------------------------------------------------
+
+[groff 6b3c51ebb4e3dbcb294f9c23d9ec0624b5beb4ee 2010-01-23]
+
+* In MacOS X, I want to completely replace the groff that came with
+  the system.
+
+Use
+
+  ./configure --prefix=/usr --mandir=/usr/share/man
+
+then
+
+  make
+  make install
+
+Note that subsequent system updates may replace your groff.
+
+----------------------------------------------------------------------
+
+[groff 26f1dfcd080e834617302c7a94423d02d17e15a7 2004-05-25]
+
+* I get warnings from the Sun linker while using gcc 3.4.0:
+
+  ld: warning: relocation error: R_SPARC_UA32:
+      file groff/src/libs/libgroff/libgroff.a(getopt.o): symbol optarg:
+      external symbolic relocation against non-allocatable
+      section .debug_info; cannot be processed at runtime:
+      relocation ignored
+
+This seems to be a known problem (Sun bugs #4910101 and #4910810,
+filed in September 2003; gcc bug #15599, filed May 2004) without a
+public fix as of this writing.  A work-around is to use option
+`-gstabs+' instead of `-g' (and a high probability that the output is
+only debuggable with gdb but not with Sun's debuggers).
+
+----------------------------------------------------------------------
+
+[groff ee83e4fd48e50d10967b02e06f128a1452f183b7 2002-11-07]
+
+* When compiling on MacOS X 10.2, groff compiles but does not run
+  well, especially `eqn', causing many `can't break line' messages.
+
+Use
+
+  ./configure CXX=g++2
+
+then
+
+  make
+
+as usual.
+
+----------------------------------------------------------------------
+
+[groff 3371324496b9ba0efb65e0c66340ca7f99a8bb56 2002-02-07]
+
+* Compilation dies with
+
+    y.tab.c: In function `int yyparse()':
+    y.tab.c: `size_t' undeclared in namespace `std'
+
+* bison reports conflicts (either on stderr or in the `pic.output'
+  file) while processing `pic.y', and the produced pic binary doesn't
+  work at all.
+
+You need bison version 1.875b or greater.  Alternatively, use yacc or
+byacc.
+
+----------------------------------------------------------------------
+
+[groff e73d5afff5595b13052180c8cc5f402bff39131e 2000-12-06]
+
+* On HP-UX, the compiler complains about missing symbol `alloca'.
+
+Say
+
+  export LDFLAGS=-lPW
+
+before starting the configure script.
+
+----------------------------------------------------------------------
+
+[groff 2e836ac7d3d9264efb9ae5a06bfe8c7149e22eac 2000-07-21]
+
+* On a host using Unix make (e.g. Solaris), if you are compiling for
+  multiple architectures by building in a subdirectory, the make stops
+  with a message like this:
+
+    make: Fatal error: Don't know how to make target `assert.o'
+
+  or like this:
+
+    make: Fatal error: Can't find /u/src/groff/src/include/Makefile.sub': No such file or directory
+
+This occurs because GNU make and Unix make handle VPATH differently,
+and the groff build relies on GNU make's VPATH handling.
+
+Use GNU make <http://www.gnu.org/software/make/> to work around this.
+In Solaris 8 and 9, GNU make is on the Software Companion CD in
+package SFWgmake and is installed as /opt/sfw/bin/gmake.  Prebuilt
+versions of GNU make for Solaris are also available from
+sunfreeware.com.
+
+----------------------------------------------------------------------
+
+[groff 5af19087eef2de233075c39a1479e11c8fcbe3e9 2000-05-28]
+
+* There are many empty `Makefile.dep' files.  Is this a bug?
+
+No.  Real dependency files are created with a `make depend' call.
+
+----------------------------------------------------------------------
+
+[groff fbd6cbb8ac7a42fdf219ff087b5b1e98cdeb7c68 2000-04-30]
+
+* The configure script fails on OS/390 (z/OS) Unix.
+
+[This has been fixed in z/OS V1R3 (aka OS/390 R13).]
+
+There is a bug in the Language Environment (LE) whereby the test
+program for static destructors fails.  You see the message `configure:
+error: a working C++ compiler is required'.
+
+Applying PTF UQ42006 is supposed to fix this, but the test program is
+still returning the wrong value (1).  To work around this problem, you
+can comment out the following in the configure script (near line
+2029).  This effectively bypasses the test (static constructors and
+destructors do actually work properly):
+
+#if { (eval echo "$as_me:2029: \"$ac_link\"") >&5
+#  (eval $ac_link) 2>&5
+#  ac_status=$?
+#  echo "$as_me:2032: \$? = $ac_status" >&5
+#  (exit $ac_status); } && { ac_try='./conftest$ac_exeext'
+#  { (eval echo "$as_me:2034: \"$ac_try\"") >&5
+#  (eval $ac_try) 2>&5
+#  ac_status=$?
+#  echo "$as_me:2037: \$? = $ac_status" >&5
+#  (exit $ac_status); }; }; then
+#  echo "$as_me:2039: result: yes" >&5
+#echo "${ECHO_T}yes" >&6
+#else
+#  echo "$as_me: program exited with status $ac_status" >&5
+#echo "$as_me: failed program was:" >&5
+#cat conftest.$ac_ext >&5
+#echo "$as_me:2045: result: no" >&5
+#echo "${ECHO_T}no" >&6;{ { echo "$as_me:2046: error: a working C++ compiler is required" >&5
+#echo "$as_me: error: a working C++ compiler is required" >&2;}
+#   { (exit 1); exit 1; }; }
+#fi
+
+----------------------------------------------------------------------
+
+[groff 1.15]
+
+* I get errors when I try to compile groff with Forte Development 6
+  or 6u1, or Sun C++ version 5.0 through 5.2.
+
+This is a known problem; see Sun bug #4301919.  See Sun patches
+109482, 109490, 109508, and 109509 for fixes.
+
+----------------------------------------------------------------------
+
+[groff 1.08]
+
+* I'm having problems compiling groff on 386BSD 0.1.
+
+If you're using ash as /bin/sh, you'll need the following patch.
+
+*** gendef.sh.org	Sun Jun 30 13:30:36 1991
+--- gendef.sh	Sun Feb 28 10:23:49 1993
+***************
+*** 3,9 ****
+  file=$1
+  shift
+
+! defs="#define $1"
+  shift
+  for def
+  do
+--- 3,10 ----
+  file=$1
+  shift
+
+! x=$1
+! defs="#define $x"
+  shift
+  for def
+  do
+
+You'll also need to change dirnamemax.c so that it doesn't use
+pathconf().
+
+----------------------------------------------------------------------
+
+* While compiling on Xenix, ranlib libgroff.a fails.
+
+The system ranlib can't handle externals longer than 40 characters.
+Use the ranlib included in demon.co.uk:/pub/xenix/g++-1.40.3a.v1
+instead.
+
+----------------------------------------------------------------------
+
+[groff 1.07]
+
+* I get errors when I try to compile groff with DEC C++.
+
+Fix the declaration of write() in <unistd.h> so that the second
+argument is a const char *.  Fix the declaration of open() in
+<sys/file.h> so that the first argument is a const char *.
+
+----------------------------------------------------------------------
+
+* On Ultrix, the make program stops with the message
+
+    *** Error code 1
+
+    Stop.
+
+  for no apparent reason.
+
+Use GNU make.
+
+----------------------------------------------------------------------
+
+[groff 1.01]
+
+* I get errors when I try to compile groff with Sun C++ version 3 or
+  earlier.
+
+Groff requires header files that are moderately compatible with AT&T
+C++ and ANSI C.  With some versions of Sun C++, the supplied header
+files need some of the following changes to meet this requirement:
+<string.h> must declare the mem* functions, (just add `#include
+<memory.h>' to <string.h>); the first argument to fopen and freopen
+should be declared as `const char *'; the first argument to fread
+should be declared as `void *'; the first argument to fwrite should be
+declared as `const void *'; malloc should be declared to return
+`void *'; in <alloca.h>, the declaration `extern "C" { void
+*__builtin_alloca(int); }' should be added; in <sys/signal.h> the
+return type and the second argument type of signal() should be changed
+to be `void (*)(int)'.
+
+You can either change them in place, or copy them to some other
+directory and include that directory with a -I option.
+
+
 
 ##### Editor settings
 Local Variables:

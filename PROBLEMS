@@ -22,6 +22,10 @@ Within each category, items are organized in reverse chronological order
 corresponding to their inclusion in this file are included as
 guideposts.  Entries have been revised for clarity in the years since.
 
+In the following discussions, several references to "/usr/local" are
+made.  You should read this directory name as the destination directory
+you set up with the "--prefix" option to groff's "configure" script.
+
 
 General Problems
 ================
@@ -748,8 +752,10 @@ either put `.cp 1' at the beginning or filter it (and any files it
 * I'm having problems formatting Ultrix man pages with groff -man.
 
 The Ultrix man pages use a number of non-standard extensions to the
-Unix man macros.  One solution is to use the Ultrix -man macros with
-groff.  Copy /usr/lib/tmac/tmac.an to
+Unix man macros.  [To be fair, SunOS did too, albeit not as many; see
+groff_man(7).  groff embraced SunOS's extensions early on, but not
+Ultrix's. --GBR in 2023]  One solution is to use the Ultrix -man macros
+with groff.  Copy /usr/lib/tmac/tmac.an to
 /usr/local/share/groff/site-tmac/an.tmac and apply the following patch
 (from Frank Wortner):
 

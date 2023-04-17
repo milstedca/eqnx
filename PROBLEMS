@@ -368,7 +368,9 @@ Use the `ftr' request.  See groff_diff(7).
 
 * I get errors using the Unix -ms macros with groff -e -C.
 
-Apply this change:
+Apply this change.  Be careful of copying and pasting it; literal BEL
+characters (Control+G) appear in the source--this is an AT&T troff idiom
+in output comparisons that is never necessary in GNU troff.
 
 *** /usr/lib/ms/ms.eqn	Tue Apr 25 02:14:28 1989
 --- ms.eqn	Sun Nov 11 10:33:59 1990

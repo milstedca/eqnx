@@ -666,13 +666,13 @@ as empty):
 
 Create a script called `eqn':
 
- > #! /bin/sh
+ > #!/bin/sh
  > if [ ${1:-""} = /usr/pub/eqnchar ] ; then shift ; fi
  > geqn $*
 
 and a script called `neqn':
 
- > #! /bin/sh
+ > #!/bin/sh
  > if [ ${1:-""} = /usr/pub/eqnchar ] ; then shift ; fi
  > geqn -Tascii $*
 
@@ -799,7 +799,7 @@ Compilation Problems
 
 [groff 1.23.0]
 
-* The "initialization_is_quiet" test fails on my GNU/Hurd or NetBSD box.
+* The "initialization_is_quiet" test fails on my NetBSD box.
 
 This is a known problem.  We haven't tracked down the cause yet, but
 have improved the reporting of the test output in hopes that we can

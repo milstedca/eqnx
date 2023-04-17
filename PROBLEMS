@@ -811,13 +811,13 @@ isolate it in a future release.
 
 * I get a build failure on Cygwin / a system using newlib and GCC 11.
 
-  "newlib" defines a function called "utoa" which conflicts with a
-  static (file scope-local) function in src/libs/libxutil/XFontName.c.
+"newlib" defines a function called "utoa" which conflicts with a static
+(file scope-local) function in src/libs/libxutil/XFontName.c.
 
-  We expect to fix this in the near future; in the meantime, you can
-  patch the file to rename the function (and update its call sites) or,
-  if you don't require the "gxditview" output previewer or "xtotroff"
-  utility, you can build groff without X11 support.
+We expect to fix this in the near future; in the meantime, you can patch
+the file to rename the function (and update its call sites) or, if you
+don't require the "gxditview" output previewer or "xtotroff" utility,
+you can build groff without X11 support.
 
   $ make distclean
   $ ./configure --without-x

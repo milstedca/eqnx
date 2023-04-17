@@ -1,3 +1,49 @@
+2023-04-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/pdfpic.tmac: Refactor to make comprehensible some
+	woefully undocumented cleverness and improve efficiency.
+	(PDFPIC): Break out flaming-hoop-leaping "clever" bit of `sy`
+	usage into its own macro, calling from here and relocating its
+	requests from here...
+	(pdfpic@get-image-dimensions): ...to here.  When using `sy`
+	request to collect and munge output of pdfinfo(1), (a) disable
+	the escape character while defining the macro; (b) construct the
+	command in a roff string, appending to it in discrete, hopefully
+	comprehensible chunks; (c) disable the escape character during
+	macro interpretation wherever possible (most of it); (d) retain
+	doubled backslashes so that they survive subsequent string
+	interpolation; (e) stop using grep(1) in the pipeline when
+	sed(1) is perfectly capable of performing its own input
+	filtering; (f) invoke sed with '-n' option and emit output only
+	upon a successful substitution; (g) replace unportable(!) POSIX
+	BRE character class '[:digit:]' in substitution match text with
+	'[0-9]'; and most importantly (h) replace multi-line sed 's'
+	replacement text (see below for the reason we can't use it) with
+	single roff control line employing the groff extension escape
+	sequence `\R` to assign multiple registers.  Annotate
+	portability and escaping challenges.  Tested on GNU/Linux, macOS
+	12, and (with simulated pdfinfo(1) output) Solaris 11.
+
+	There is a problem with trying to embed true newlines into the
+	arguments of a `sy` request.  The C++ function that GNU troff
+	uses to assemble the command string (character by character)
+	_does not recognize C/C++ string literal escape sequences_.
+	This means that you _cannot_ embed "\n" in `sy`'s arguments and
+	have it survive, as a newline character, into the command string
+	passed to the standard C library's system(3) function.  ("A\nB"
+	gets encoded as 'A', '\\', 'n', 'B', not 'A', '\n', 'B'.)
+	Unfortunately, this appears to be AT&T troff-compatible
+	behavior.  But it means that you _cannot_ portably construct
+	multi-line replacement text for sed's 's' command.  (Other sed
+	commands like 'a', 'c', and 'i' will be similarly affected.)
+	See Savannah #64071.
+
+	* PROBLEMS: Drop item.
+
+	Fixes <https://savannah.gnu.org/bugs/?64061>.  Thanks to Bruno
+	Haible for the report, and to him and Ralph Corderoy for the
+	discussion of portable and efficient sed constructs.
+
 2023-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[pdfpic]: Clean up better.

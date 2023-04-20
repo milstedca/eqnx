@@ -609,6 +609,17 @@ REVISION      = `echo $(VERSION) | cut -d . -f 3`
 # relative paths in the following .am files are relative to the top
 # source directory.
 
+# Initialize Automake variables we haven't already handled; see section
+# "3.8 Modifying the build rules of a Gnulib import directory" in the
+# Gnulib manual.
+AUTOMAKE_OPTIONS =
+SUBDIRS =
+noinst_HEADERS =
+noinst_LTLIBRARIES =
+pkgdata_DATA =
+MOSTLYCLEANDIRS =
+AM_CFLAGS =
+
 include $(top_srcdir)/lib/gnulib.mk
 include $(top_srcdir)/arch/mingw/mingw.am
 include $(top_srcdir)/arch/misc/misc.am

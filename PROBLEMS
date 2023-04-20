@@ -59,6 +59,26 @@ Some portability issues are known to affect groff's gdiffmk utility.
 
 ----------------------------------------------------------------------
 
+* The `PDFPIC` macro doesn't work / its automated test fails.
+
+  FAIL: tmac/tests/pdfpic_does-not-choke-on-bad-pdfinfo-output.sh
+
+Due to a limitation (shared by AT&T troff) in the way the `sy` request
+constructs a C string argument to the C library's system(3) function,
+groff requires a GNU sed(1) extension that interprets "\n" as a newline
+in the replacement text of the 's' command.  (We might enhance GNU
+troff's `sy` request to avoid this dependency in the future.)  We have
+observed this problem on Solaris 10 and 11 and Mac OS X 10.11.6, but not
+macOS 12: the last's sed supports the extension in question.
+
+Install GNU sed in the default $PATH as "gsed" and edit
+tmac/pdfpic.tmac.  On line 172, change "sed" to "gsed".  Alternatively,
+you can use the absolute path to GNU sed's location.  (`system()`
+sanitizes $PATH to avoid privilege escalation.)  Then (re-)make the
+"check" target or format your PDFPIC-employing document again.
+
+----------------------------------------------------------------------
+
 [groff 1.19.2]
 
 * When viewing man pages, some characters on my UTF-8 terminal emulator
@@ -878,30 +898,19 @@ in place to use a conforming shell.  Here is an example.
       `find . -name '*.sh' | grep /tests/`
   $ PATH=/usr/xpg4/bin:$PATH gmake check
 
-Some test failures remain expected on Solaris 10.
+Some test failures remain expected on Solaris 10 and/or 11.
 
-1.  FAIL: tmac/tests/pdfpic_does-not-choke-on-bad-pdfinfo-output.sh
+1.  FAIL: contrib/hdtbl/examples/test-hdtbl.sh
 
-    /usr/bin/sed is non-conforming with the POSIX Issue 4 standard.
-
-    Install GNU sed in the $PATH and edit tmac/pdfpic.tmac and change
-    the "sed" on line 172 to "gsed".  Re-run "gmake check" as above.
-
-    The sed in /usr/xpg4/bin also works, but pdfpic.tmac uses groff's
-    `sy` request, which wraps the standard C library `system()`
-    function, which sanitizes $PATH to avoid privilege escalation, thus
-    making it likely that the non-conforming sed in /usr/bin will be
-    found first.
-
-2.  FAIL: contrib/hdtbl/examples/test-hdtbl.sh
-
-    /usr/bin/tr is non-conforming with the POSIX Issue 4 standard.  It
-    furthermore issues anonymous diagnostics, saying only "Bad string".
+    /usr/bin/tr on Solaris 10 is non-conforming with the POSIX Issue 4
+    standard.  It furthermore issues anonymous diagnostics, saying only
+    "Bad string".
 
     Install tr from GNU coreutils in the $PATH.  Edit line 57 of each of
     contrib/hdtbl/examples/fonts_x.in and
-    contrib/hdtbl/examples/fonts_n.in.  Change "tr" to "gtr".  Re-run
-    "gmake check" as above.  (Some files will be rebuilt.)
+    contrib/hdtbl/examples/fonts_n.in.  Change "tr" to "gtr".
+    Alternatively, you can use the absolute path to GNU tr's location.
+    Re-run "gmake check" as above.  (Some files will be rebuilt.)
 
     The tr commands in /usr/xpg4/bin and /usr/xpg6/bin also work, but
     the documents constructed from the above inputs use groff's `pso`
@@ -909,14 +918,15 @@ Some test failures remain expected on Solaris 10.
     which sanitizes $PATH to avoid privilege escalation, thus making it
     likely that the non-conforming tr in /usr/bin will be found first.
 
-3.  FAIL: src/roff/groff/tests/initialization_is_quiet.sh
+2.  FAIL: src/roff/groff/tests/initialization_is_quiet.sh
     FAIL: src/roff/groff/tests/msoquiet_works.sh
     FAIL: src/roff/groff/tests/soquiet_works.sh
 
     (The first of these might be SKIPped instead.)
 
     /usr/xpg4/bin/sh is non-conforming with the POSIX Issue 4 standard,
-    despite its name.  Its "unset" builtin is buggy.
+    despite its name.  Its "unset" builtin is buggy.  (The /usr/bin/sh
+    in Solaris 11 does not have this problem.)
 
     These tests use the "unset" shell builtin command to prevent
     environment variables from confounding test results.

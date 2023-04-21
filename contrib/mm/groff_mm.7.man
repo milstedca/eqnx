@@ -1946,8 +1946,6 @@ Except for a heading number,
 it is treated as a numbered heading of the level stored in
 .RB register\~ Hu ;
 .RB see\~ H .
-see\~\c
-.BR H .
 .
 .
 .TP

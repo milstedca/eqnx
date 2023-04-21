@@ -8249,10 +8249,10 @@ present, are adjusted as normal.
 @cindex discardable horizontal space
 @cindex space, discardable, horizontal
 @cindex horizontal discardable space
-A related application of the @code{ss} request is to insert discardable
-horizontal space; i.e., space that is discarded at a line break.  For
-example, some footnote styles collect the notes into a single paragraph
-with large spaces between each.
+The @code{ss} request can insert discardable horizontal space; that is,
+space that is discarded at a break.  For example, some footnote styles
+collect the notes into a single paragraph with large gaps between
+each note.
 
 @Example
 .ll 48n
@@ -8292,12 +8292,15 @@ hyphenation points can be set manually.
 @cindex explicit hyphenation
 @cindex hyphenation, manual
 @cindex manual hyphenation
-Explicitly hyphenated words such as ``mother-in-law'' are always
-eligible for breaking after each of their hyphens.  Relatively few words
-in a language offer such obvious break points, however, and automatic
-hyphenation is not perfect, particularly for unusual words found in
-technical literature.  We may wish to instruct GNU @code{troff} how to
-hyphenate specific words if the need arises.
+Explicitly hyphenated words such as ``mother-in-law'' are eligible for
+breaking after each of their hyphens.  Relatively few words in a
+language offer such obvious break points, however, and automatic
+detection of syllabic (or phonetic) boundaries for hyphenation is not
+perfect,@footnote{Whether a perfect algorithm for this application is
+even possible is an unsolved problem in computer science:@:
+@url{https://tug.org/docs/liang/liang-thesis.pdf}.} particularly for
+unusual words found in technical literature.  We can instruct GNU
+@code{troff} how to hyphenate specific words if the need arises.
 
 @cindex hyphenation exceptions
 @Defreq {hw, word @dots{}}

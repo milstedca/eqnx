@@ -6388,18 +6388,18 @@ invalid input characters are @code{0x00}, @code{0x08}, @code{0x0B},
 @code{0x09}, @code{0x0B}, @code{0x0D}--@code{0x14},
 @code{0x17}--@code{0x1F}, and
 @code{0x30}--@code{0x3F}.@footnote{Historically, control characters like
-ASCII STX, ETX, and BEL (Control+B, Control+C, and Control+G) have been
-observed in @code{roff} documents, particularly in macro packages
-employing them as delimiters with the output comparison operator to try
-to avoid collisions with the content of arbitrary user-supplied
-parameters (@pxref{Operators in Conditionals}).  We discourage this
-expedient; in GNU @code{troff} it is unnecessary (outside of
-compatibility mode) because delimited arguments are parsed at a different
-input level than the surrounding context.  @xref{Implementation
-Differences}.}  Some of these code points are used by GNU @code{troff}
-internally, making it non-trivial to extend the program to accept UTF-8
-or other encodings that use characters from these
-ranges.@footnote{Consider what happens when a C1 control
+ASCII STX, ETX, and BEL (@key{Control+B},@key{ Control+C}, and
+@key{Control+G}) have been observed in @code{roff} documents,
+particularly in macro packages employing them as delimiters with the
+output comparison operator to try to avoid collisions with the content
+of arbitrary user-supplied parameters (@pxref{Operators in
+Conditionals}).  We discourage this expedient; in GNU @code{troff} it is
+unnecessary (outside of compatibility mode) because delimited arguments
+are parsed at a different input level than the surrounding context.
+@xref{Implementation Differences}.}  Some of these code points are used
+by GNU @code{troff} internally, making it non-trivial to extend the
+program to accept UTF-8 or other encodings that use characters from
+these ranges.@footnote{Consider what happens when a C1 control
 @code{0x80}--@code{0x9F} is necessary as a continuation byte in a UTF-8
 sequence.}
 
@@ -7715,7 +7715,7 @@ as many registers as required.}
 @cindex unsafe mode
 @cindex mode, unsafe
 @vindex .U
-Unsafe mode enablement (Boolean-valued); see @command{groff}
+Unsafe mode enablement status (Boolean-valued); see @command{groff}
 @option{-U} option (@ref{Groff Options}).
 
 @item \n[seconds]
@@ -7950,8 +7950,8 @@ J.\~F.\~Ossanna wrote the original CSTR\~#54.
 @endDefesc
 
 By default, GNU @code{troff} fills text and adjusts it to reach the
-output line length.  Filling can be disabled via the @code{nf} request
-and reënabled with the @code{fi} request.
+output line length.  The @code{nf} request disables filling; the
+@code{fi} request reënables it.
 
 @DefreqList {fi, }
 @DefregListEndx {.u}
@@ -7991,7 +7991,7 @@ filling is.  @var{mode} can have one of the following values.
 @table @code
 @item b
 @itemx n
-Adjust ``normally'': if the output line does not occupy the distance
+Adjust ``normally'':@: if the output line does not consume the distance
 between the indentation and the configured output line length, GNU
 @code{troff} stretches adjustable spaces within the line until that
 length is reached.  When the indentation is zero, this mode spreads the
@@ -8005,11 +8005,11 @@ text @emph{without} filling it.
 
 @item l
 @cindex ragged-right text
-Align text to the left, without adjusting it.
+Align text to the left without adjusting it.
 
 @item r
 @cindex ragged-left text
-Align text to the right, without adjusting it.
+Align text to the right without adjusting it.
 @end table
 
 @var{mode} can also be a value previously stored in the @code{.j}
@@ -8024,12 +8024,12 @@ invocation of the @code{na} request.
 .  br
 .  ad \\$1
 ..
-.
+@c . @c XXX: Restore this line when the page has room for it.
 .de NA
 .  br
 .  na
 ..
-.
+@c . @c XXX: Restore this line when the page has room for it.
 left
 .AD r
 .nr ad \n(.j
@@ -8104,14 +8104,15 @@ This is an uninteresting sentence.
 @cindex line, productive input
 To clearly present the next couple of requests, we must introduce the
 concept of ``productive'' input lines.  A @dfn{productive input line} is
-one that directly produces formatted output.  Text lines produce output,
-as do control lines containing requests like @code{tl} or escape
-sequences like @code{\D}.  Macro calls are not @emph{directly}
-productive, and thus not counted, but their interpolated contents can
-be.  Empty requests, and requests and escape sequences that define
-registers or strings or alter the formatting environment (as with
-changes to the size, face, height, slant, or color of the type) are
-not productive.  The output line continuation escape sequence @code{\c}
+one that directly produces formatted output.  Text lines produce
+output (unless diverted; see @ref{Diversions}), as do control
+lines containing requests like @code{tl} or escape sequences like
+@code{\D}.  Macro calls are not @emph{directly} productive, and thus not
+counted, but their interpolated contents can be.  Empty requests, and
+requests and escape sequences that define registers or strings or alter
+the formatting environment (as with changes to the size, face, height,
+slant, or color of the type) are not productive.  We will also preview
+the output line continuation escape sequence, @code{\c}, which
 ``connects'' two input lines that would otherwise be counted separately.
 @xref{Line Continuation}.
 
@@ -8192,7 +8193,7 @@ argument.
 Break (unless the no-break control character is used), align the output
 of the next @var{nnn} productive input lines to the right margin without
 filling, then break again (regardless of the control character).  The
-count of lines remaining to be centered is stored in the read-only
+count of lines remaining to be right-aligned is stored in the read-only
 register @code{.rj} and is associated with the environment
 (@pxref{Environments}).
 @endDefreq
@@ -8340,9 +8341,8 @@ exceptions override any rules that would normally apply to a word
 matching a hyphenation exception defined with @code{hw}.
 
 Situations also arise when only a specific occurrence of a word needs
-its hyphenation altered or suppressed, or when something that is not a
-word in a natural language, like a URL, needs to be breakable in
-sensible places without hyphens.
+its hyphenation altered or suppressed, or when a URL or similar string
+needs to be breakable in sensible places without hyphenation.
 
 @DefescList {\\%, , , }
 @DefescListEndx {\:, , , }
@@ -8380,9 +8380,9 @@ there, but the soft hyphen glyph (see below) is not written to the
 output if it does.  This escape sequence is an input word boundary, so
 the remainder of the word is subject to hyphenation as normal.
 
-You can use @code{\:} and @code{\%} in combination to control breaking
-of a file name or URL or to permit hyphenation only after certain
-explicit hyphens within a word.
+You can combine @code{\:} and @code{\%} to control breaking of a file
+name or URL, or to permit hyphenation only after certain explicit
+hyphens within a word.
 
 @Example
 @c Wrap example at 56 columns.
@@ -13252,7 +13252,7 @@ number of parameters.
 Shift the parameters @var{n} places (1@tie{}by default).  This is a
 ``left shift'': what was parameter@tie{}@var{i} becomes parameter
 @math{@var{i}-@var{n}}.  The parameters formerly in positions 1
-to@tie{}@var{n} are no longer available.  Shifting by a nonpositive
+to@tie{}@var{n} are no longer available.  Shifting by a non-positive
 amount performs no operation.  The register @code{.$} is adjusted
 accordingly.
 @endDefreq

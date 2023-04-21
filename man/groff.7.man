@@ -531,7 +531,7 @@ When filling is enabled
 (the default),
 a line may be broken at a space.
 .
-When adjustment to both margins is enabled
+When adjustment is enabled
 (the default),
 inter-word spaces are expanded until the output line reaches the
 configured length.
@@ -2335,13 +2335,13 @@ to the standard error stream and exit with failure status.
 .
 .TPx
 .REQ .ad
-Enable output line adjustment using mode stored in
+Enable output line alignment and adjustment using the mode stored in
 .BR \[rs]n[.j] .
 .
 .
 .TPx
 .REQ .ad c
-Enable output line adjustment in mode
+Enable output line alignment and adjustment in mode
 .I c
 .RI ( c =\c
 .BR b , c , l , n , r ).
@@ -4004,7 +4004,7 @@ value.
 Emit a
 .B break
 warning if the additional space inserted for each space between words in
-an output line adjusted to both margins is larger than or equal to
+an adjusted output line is greater than or equal to
 .IR N .
 .
 A negative
@@ -4559,7 +4559,8 @@ Move right one word space.
 .
 .TP
 .ESC \[ti]
-Insert an unbreakable, adjustable space.
+Insert an unbreakable,
+adjustable space.
 .
 .
 .TP

@@ -7949,9 +7949,9 @@ J.\~F.\~Ossanna wrote the original CSTR\~#54.
 @endExample
 @endDefesc
 
-By default, GNU @code{troff} fills text and adjusts it to both margins.
-Filling can be disabled via the @code{nf} request and re-enabled with
-the @code{fi} request.
+By default, GNU @code{troff} fills text and adjusts it to reach the
+output line length.  Filling can be disabled via the @code{nf} request
+and reënabled with the @code{fi} request.
 
 @DefreqList {fi, }
 @DefregListEndx {.u}
@@ -7991,22 +7991,25 @@ filling is.  @var{mode} can have one of the following values.
 @table @code
 @item b
 @itemx n
-Adjust ``normally'': to both margins.  This is the GNU @code{troff}
+Adjust ``normally'': if the output line does not occupy the distance
+between the indentation and the configured output line length, GNU
+@code{troff} stretches adjustable spaces within the line until that
+length is reached.  When the indentation is zero, this mode spreads the
+line to both the left and right margins.  This is the GNU @code{troff}
 default.
 
 @item c
 @cindex centered text (filled)
 Center filled text.  Contrast with the @code{ce} request, which centers
-text without filling it.
+text @emph{without} filling it.
 
 @item l
 @cindex ragged-right text
-Align text to the left margin, producing what is sometimes called
-ragged-right text.
+Align text to the left, without adjusting it.
 
 @item r
 @cindex ragged-left text
-Align text to the right margin, producing ragged-left text.
+Align text to the right, without adjusting it.
 @end table
 
 @var{mode} can also be a value previously stored in the @code{.j}
@@ -8061,10 +8064,9 @@ not write logic to interpret or perform arithmetic on it.
 
 @Defreq {na, }
 Disable output line adjustment.  This produces the same output as
-alignment to the left margin, but the value of the adjustment mode
-register @code{.j} is altered differently.  The adjustment mode and
-enablement status are associated with the environment
-(@pxref{Environments}).
+left-alignment, but the value of the adjustment mode register @code{.j}
+is altered differently.  The adjustment mode and enablement status are
+associated with the environment (@pxref{Environments}).
 @endDefreq
 
 @DefreqList {brp, }

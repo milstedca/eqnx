@@ -7,6 +7,15 @@
 
 	Thanks to Bruno Haible for the advice.
 
+2023-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[mdoc]: Regression-test Savannah #57665, but for mdoc.
+
+	* tmac/tests/doc_TS-do-not-keep-tables-when-cR-set.sh: Do it.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
+	Fixes <https://savannah.gnu.org/bugs/?64037>.
+
 2023-06-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Offer advice to users of PDF who want a table of contents

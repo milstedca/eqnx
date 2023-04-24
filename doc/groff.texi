@@ -6360,12 +6360,14 @@ not qualify, so our first attempt got a warning.
 @section Identifiers
 @cindex identifiers
 
-GNU @code{troff} has rules for properly formed
-@dfn{identifiers}---labels for objects with syntactical importance, like
-registers, names (macros, strings, or diversions), typefaces, glyphs,
-colors, character classes, environments, and streams.  An identifier
-consists of one or more characters excepting spaces, tabs, newlines, and
-invalid input characters.
+An @dfn{identifier} is a label for an object of syntactical
+importance:@: a register, name (macro, string, or diversion), typeface,
+color, special character, character class, environment, or stream.
+Valid identifiers consist of one or more ordinary characters.
+@cindex ordinary character
+@cindex character, ordinary
+An @slanted{ordinary character} is an input character that is not a
+leader, tab, newline, or invalid as GNU @code{troff} input.
 
 @c XXX: We might move this discussion earlier since it is applicable to
 @c troff input in general, and include a reference to the `trin`
@@ -6403,11 +6405,10 @@ these ranges.@footnote{Consider what happens when a C1 control
 @code{0x80}--@code{0x9F} is necessary as a continuation byte in a UTF-8
 sequence.}
 
-The identifiers @samp{br}, @samp{PP}, @samp{end-list},
+Thus, the identifiers @samp{br}, @samp{PP}, @samp{end-list},
 @samp{ref*normal-print}, @samp{|}, @samp{@@_}, and @samp{!"#$%'()*+,-./}
 are all valid.  Discretion should be exercised to prevent confusion.
-Some care is required with identifiers starting with @samp{(} or
-@samp{[}.
+Identifiers starting with @samp{(} or @samp{[} require care.
 
 @Example
 .nr x 9
@@ -6585,22 +6586,23 @@ invoke requests that don't cause breaks is harmless but poor style.
 @cindex no-break control character, changing (@code{c2})
 @cindex character, no-break control, changing (@code{c2})
 @cindex control character, no-break, changing (@code{c2})
-The control character @samp{.} and the no-break control character
-@samp{'} can be changed with the @code{cc} and @code{c2} requests,
-respectively.
+The control @samp{.} and no-break control @samp{'} characters can each
+be changed to any ordinary character@footnote{Recall @ref{Identifiers}.}
+with the @code{cc} and @code{c2} requests, respectively.
 
-@Defreq {cc, [@Var{c}]}
-Set the control character to@tie{}@var{c}.  With no argument, the
-default control character @samp{.} is restored.  The identity of the
-control character is associated with the environment
-(@pxref{Environments}).
+@Defreq {cc, [@Var{o}]}
+Recognize the ordinary character@tie{}@var{o} as the control character.
+If@tie{}@var{o} is absent or invalid, the default control character
+@samp{.} is selected.  The identity of the control character is
+associated with the environment (@pxref{Environments}).
 @endDefreq
 
-@Defreq {c2, [@Var{c}]}
-Set the no-break control character to@tie{}@var{c}.  With no argument,
-the default no-break control character @samp{'} is restored.  The
-identity of the no-break control character is associated with the
-environment (@pxref{Environments}).
+@Defreq {c2, [@Var{o}]}
+Recognize the ordinary character@tie{}@var{o} as the no-break control
+character.  If@tie{}@var{o} is absent or invalid, the default no-break
+control character @samp{'} is selected.  The identity of the no-break
+control character is associated with the environment
+(@pxref{Environments}).
 @endDefreq
 
 When writing a macro, you might wish to know which control character was
@@ -6949,11 +6951,12 @@ invoked, no input character is recognized as starting an escape
 sequence in interpretation mode.
 @endDefreq
 
-@Defreq {ec, [@Var{c}]}
+@Defreq {ec, [@Var{o}]}
 @cindex escape character, changing (@code{ec})
 @cindex character, escape, changing (@code{ec})
-Recognize@tie{}@var{c} as the escape character.  If@tie{}@var{c} is
-absent or invalid, the default escape character @samp{\} is selected.
+Recognize the ordinary character@tie{}@var{o} as the escape character.
+If@tie{}@var{o} is absent or invalid, the default escape character
+@samp{\} is selected.
 
 Changing the escape character globally likely breaks macro packages,
 since GNU @code{troff} has no mechanism to ``intern'' macros, that is,
@@ -10742,8 +10745,8 @@ are translated on input to the special character escape sequences
 @code{\[aa]}, @code{\[-]}, @code{\[ul]}, and @code{\[ga]}, respectively.
 
 A special character name of length one is not the same thing as an
-ordinary input character: that is, the character @code{a} is not the
-same as @code{\[a]}.
+ordinary character: that is, the character @code{a} is not the same as
+@code{\[a]}.
 
 If @var{name} is undefined, a warning in category @samp{char} is
 produced and the escape is ignored.  @xref{Warnings}, for information
@@ -12533,13 +12536,10 @@ termed @dfn{conditional expressions}.
 
 @table @code
 @item c @var{glyph}
-True if @var{glyph} is available, where @var{glyph} is
-@c TODO: "an ordinary character", after we update the section "Fonts and
-@c Symbols" to better parallelize it with groff_char(7).
-a Unicode basic Latin character, a GNU @code{troff} special character
-@samp{\(@var{xx}} or @samp{\[@var{xxx}]}, @samp{\N'@var{xxx}'}, or has
-been defined by any of the @code{char}, @code{fchar}, @code{fschar}, or
-@code{schar} requests.
+True if @var{glyph} is available, where @var{glyph} is an ordinary
+character, a special character @samp{\(@var{xx}} or @samp{\[@var{xxx}]},
+@samp{\N'@var{xxx}'}, or has been defined by any of the @code{char},
+@code{fchar}, @code{fschar}, or @code{schar} requests.
 
 @item d @var{name}
 True if a string, macro, diversion, or request called @var{name} exists.

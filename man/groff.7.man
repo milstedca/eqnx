@@ -1254,28 +1254,29 @@ containing them is surrounded by parentheses.
 .\" ====================================================================
 .
 .\" BEGIN Keep (roughly) parallel with groff.texi node "Identifiers".
-GNU
-.I troff \" GNU
-has rules for properly formed
-.IR identifiers \[em]labels
-for objects with syntactical importance,
-like registers,
-names
-(macros,
-strings,
-or diversions),
-typefaces,
-glyphs,
-colors,
-character classes,
-environments,
-and streams.
+An identifier is a label for an object of syntactical importance:
+a register,
+name
+(macro,
+string,
+or diversion),
+typeface,
+color,
+special character,
+character class,
+environment,
+or stream.
 .
-An identifier consists of one or more characters excepting
-spaces,
-tabs,
-newlines,
-and invalid input characters.
+Valid identifiers consist of one or more ordinary characters.
+.
+An
+.I ordinary character
+is an input character that is not a leader,
+tab,
+newline,
+or invalid as GNU
+.I troff \" GNU
+input.
 .
 .
 .\" XXX: We might move this discussion earlier since it is applicable to
@@ -2577,9 +2578,10 @@ Reset no-break control character to
 .dquoted_char \[aq] .
 .
 .TPx
-.REQ .c2 "c"
-Set no-break control character to
-.IR c .
+.REQ .c2 "o"
+Recognize ordinary character
+.I o
+as the no-break control character.
 .
 .TPx
 .REQ .cc
@@ -2587,9 +2589,10 @@ Reset control character to
 .squoted_char . .
 .
 .TPx
-.REQ .cc "c"
-Set control character to
-.IR c .
+.REQ .cc "o"
+Recognize ordinary character
+.I o
+as the control character.
 .
 .TPx
 .REQ .ce
@@ -2951,9 +2954,9 @@ as the escape character.
 .
 .
 .TPx
-.REQ .ec "c"
-Recognize
-.I c
+.REQ .ec "o"
+Recognize ordinary character
+.I o
 as the escape character.
 .
 .

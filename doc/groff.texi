@@ -5010,9 +5010,9 @@ Welcome to groff.
 GNU @code{troff} does this by flagging certain characters (normally
 @samp{!}, @samp{?}, and @samp{.}) as potentially ending a sentence.
 When GNU @code{troff} encounters one of these @dfn{end-of-sentence
-characters} at the end of a line, or one of them is followed by two
-spaces on the same input line, it appends an inter-word space followed
-by an inter-sentence space in the formatted output.
+characters} at the end of an input line, or one of them is followed by
+two (unescaped) spaces on the same input line, it appends an inter-word
+space followed by an inter-sentence space in the formatted output.
 
 @Example
 R. Harper subscribes to a maxim of P. T. Barnum.
@@ -6388,7 +6388,7 @@ invalid input characters are @code{0x00}, @code{0x08}, @code{0x0B},
 @code{0x09}, @code{0x0B}, @code{0x0D}--@code{0x14},
 @code{0x17}--@code{0x1F}, and
 @code{0x30}--@code{0x3F}.@footnote{Historically, control characters like
-ASCII STX, ETX, and BEL (@key{Control+B},@key{ Control+C}, and
+ASCII STX, ETX, and BEL (@key{Control+B}, @key{Control+C}, and
 @key{Control+G}) have been observed in @code{roff} documents,
 particularly in macro packages employing them as delimiters with the
 output comparison operator to try to avoid collisions with the content

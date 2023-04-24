@@ -180,8 +180,9 @@ as potentially ending a sentence.
 .
 When the formatter encounters one of these
 .I end-of-sentence characters
-at the end of a line,
-or one of them is followed by two spaces on the same input line,
+at the end of an input line,
+or one of them is followed by two (unescaped) spaces on the same input
+line,
 it appends an inter-word space
 followed by an inter-sentence space in the formatted output.
 .

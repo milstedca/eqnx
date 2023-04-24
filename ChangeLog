@@ -1,3 +1,13 @@
+2023-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[docs]: Attempt to further clarify end-of-sentence detection.
+
+	* doc/groff.texi (Sentences):
+	* man/roff.7 (Concepts): Do it.
+
+	Fixes <https://savannah.gnu.org/bugs/?64091>.  Thanks to Ingo
+	Schwarze and Dave Kemper for the report.
+
 2023-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[docs]: Minimally document `tag`, `taga` requests.

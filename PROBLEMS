@@ -984,12 +984,9 @@ Ignore this.  It doesn't occur in more recent versions of 'autoreconf'.
 
 * I get warnings about special characters in the groff_char(7) man page.
 
-troff:man/groff_char.7:1000: warning: can't find special character '.j'
-troff:man/groff_char.7:1407: warning: can't find special character 'vA'
-troff:man/groff_char.7:1531: warning: can't find special character 'bs'
-troff:man/groff_char.7:1697: warning: can't find special character '-+'
-troff:man/groff_char.7:1746: warning: can't find special character 'coproduct'
-troff:man/groff_char.7:1839: warning: can't find special character '+e'
+troff:man/groff_char.7:1033: warning: special character '.j' not defined
+
+  (...and similar for 'vA', 'bs', '-+', 'coproduct', and '+e'.)
 
 You can ignore these.  groff defines a handful of special characters for
 which historical PostScript fonts usually did not possess glyphs.

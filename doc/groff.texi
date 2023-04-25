@@ -3517,7 +3517,7 @@ instead of bold.  This is a Tenth Edition Research Unix extension.
 Typeset @var{text} and draw a box around it.  On terminal devices,
 reverse video is used instead.  If you want @var{text} to contain space,
 use unbreakable space or horizontal motion escape sequences (@code{\~},
-@code{\SP}, @code{\^}, @code{\|}, @code{\0} or @code{\h}).
+@code{\@key{SP}}, @code{\^}, @code{\|}, @code{\0} or @code{\h}).
 @endDefmac
 
 @Defmac {UL, [@Var{text} [@Var{post}]], ms}
@@ -5289,8 +5289,8 @@ An input line beginning with a control character is called a
 @dfn{control line}.
 @cindex text line
 Every line of input that is not a control line is a @dfn{text
-line}.@footnote{The @key{\RET} escape sequence can alter how an input
-line is classified; see @ref{Line Continuation}.}
+line}.@footnote{The @code{\@key{RET}} escape sequence can alter how an
+input line is classified; see @ref{Line Continuation}.}
 
 @cindex argument
 Requests often take @dfn{arguments}, words (separated from the request
@@ -6763,10 +6763,10 @@ The first line calls @code{uh} with three arguments: @samp{The},
 macro with one argument, @samp{The Mouse Problem}.  The last solution,
 using escaped spaces, can be found in documents prepared for
 @acronym{AT&T} @code{troff}.  It can cause surprise when text is
-adjusted, because @code{\SP} inserts a @emph{fixed-width}, non-breaking
-space.  GNU @code{troff}'s @code{\~} escape sequence inserts an
-adjustable, non-breaking space.@footnote{@code{\~} is fairly portable;
-see @ref{Other Differences}.}
+adjusted, because @code{\@key{SP}} inserts a @emph{fixed-width},
+non-breaking space.  GNU @code{troff}'s @code{\~} escape sequence
+inserts an adjustable, non-breaking space.@footnote{@code{\~} is fairly
+portable; see @ref{Other Differences}.}
 
 @cindex @code{"}, embedding in a macro argument
 @cindex double quote, embedding in a macro argument
@@ -7049,12 +7049,13 @@ in numeric expressions; see below.
 @cindex @code{\u}, as delimiter
 The following escape sequences don't take arguments and thus are allowed
 as delimiters:
-@code{\SP}, @code{\%}, @code{\|}, @code{\^}, @code{\@{}, @code{\@}},
-@code{\'}, @code{\`}, @code{\-}, @code{\_}, @code{\!}, @code{\?},
-@code{\)}, @code{\/}, @code{\,}, @code{\&}, @code{\:}, @code{\~},
-@code{\0}, @code{\a}, @code{\c}, @code{\d}, @code{\e}, @code{\E},
-@code{\p}, @code{\r}, @code{\t}, and @code{\u}.  However, using them
-this way is discouraged; they can make the input confusing to read.
+@code{\@key{SP}}, @code{\%}, @code{\|}, @code{\^}, @code{\@{},
+@code{\@}}, @code{\'}, @code{\`}, @code{\-}, @code{\_}, @code{\!},
+@code{\?}, @code{\)}, @code{\/}, @code{\,}, @code{\&}, @code{\:},
+@code{\~}, @code{\0}, @code{\a}, @code{\c}, @code{\d}, @code{\e},
+@code{\E}, @code{\p}, @code{\r}, @code{\t}, and @code{\u}.  However,
+using them this way is discouraged; they can make the input confusing to
+read.
 
 @cindex @code{\A}, delimiters allowed by
 @cindex @code{\b}, delimiters allowed by
@@ -9299,7 +9300,7 @@ Internals}, for more on this process).
 Translate character @var{a} to glyph@tie{}@var{b}, character @var{c} to
 glyph@tie{}@var{d}, and so on.  If there is an odd number of characters
 in the argument, the last one is translated to a fixed-width space (the
-same one obtained by the @w{@samp{\ }} escape).
+same one obtained by the @code{\@key{SP}} escape sequence).
 
 The @code{trin} request is identical to @code{tr}, but when you unformat
 a diversion with @code{asciify} it ignores the translation.
@@ -9697,6 +9698,8 @@ output line continuation.
 @cindex input line continuation (@code{\@key{RET}})
 @cindex line, input, continuation (@code{\@key{RET}})
 @cindex continuation, input line (@code{\@key{RET}})
+@c We use the following notation in our man pages; Texinfo is bound to
+@c the GNU Emacs dialect.
 @esindex \@slanted{newline}
 @code{\@key{RET}} (a backslash immediately followed by a newline)
 suppresses the effects of that newline in the input.  The next input
@@ -13682,9 +13685,11 @@ There are a number of special-case escape sequences for horizontal
 motion.
 
 @Defesc {\\@key{SP}, , , }
-@cindex space, unbreakable and unadjustable (@code{\SP})
-@cindex unbreakable and unadjustable space (@code{\SP})
-@cindex unadjustable and unbreakable space (@code{\SP})
+@cindex space, unbreakable and unadjustable (@code{\@key{SP}})
+@cindex unbreakable and unadjustable space (@code{\@key{SP}})
+@cindex unadjustable and unbreakable space (@code{\@key{SP}})
+@c We use the following notation in our man pages; Texinfo is bound to
+@c the GNU Emacs dialect.
 @esindex \@slanted{space}
 Move right one word space.  (The input is a backslash followed by a
 space.)  This escape sequence can be thought of as a non-adjustable,
@@ -16036,7 +16041,7 @@ is stripped to allow embedding of leading spaces.
 @cindex @code{\@r{<colon>}}, in @code{\X}
 @end ifinfo
 By contrast, within @code{\X} arguments, the escape sequences @code{\&},
-@code{\)}, @code{\%}, and @code{\:} are ignored; @code{\SP} and
+@code{\)}, @code{\%}, and @code{\:} are ignored; @code{\@key{SP}} and
 @code{\~} are converted to single space characters; and @code{\\} has
 its escape character stripped.  So that the basic Latin subset of the
 Unicode character set@footnote{that is, ISO@tie{}646:1991-IRV or,
@@ -18730,9 +18735,9 @@ The escape character, @code{\} by default, is always followed by at
 least one more input character, making an escape @emph{sequence}.  Any
 input token @code{\@var{X}} with @var{X} not in the list below emits a
 warning and interpolates glyph @var{X}.  Note the entries for @code{\.},
-which may be obscured by the leader dots, and for
-@code{\@slanted{newline}} and @code{\@slanted{space}}, which are sorted
-alphabetically, not by code point order.
+which may be obscured by the leader dots, and for @code{\@key{RET}} and
+@code{\@key{SP}}, which are sorted alphabetically, not by code point
+order.
 
 @printindex es
 

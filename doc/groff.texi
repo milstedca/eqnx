@@ -5510,8 +5510,8 @@ Other encodings are supported by means of macro packages.
 @cindex input encoding, @w{Latin-2} (ISO @w{8859-2})
 @pindex latin2.tmac
 To use ISO @w{Latin-2}, an encoding for Central and Eastern European
-languages, either use @w{@samp{.mso latin2.tmac}} at the very beginning
-of your document or use @samp{-mlatin2} as a command-line argument to
+languages, invoke @w{@samp{.mso latin2.tmac}} at the beginning of your
+document or supply @samp{-mlatin2} as a command-line argument to
 @code{groff}.
 
 @item latin5
@@ -5520,9 +5520,9 @@ of your document or use @samp{-mlatin2} as a command-line argument to
 @cindex ISO @w{8859-9} (@w{Latin-5}), input encoding
 @cindex input encoding, @w{Latin-5} (ISO @w{8859-9})
 @pindex latin5.tmac
-To use ISO @w{Latin-5}, an encoding for the Turkish language, either use
-@w{@samp{.mso latin5.tmac}} at the very beginning of your document or
-use @samp{-mlatin5} as a command-line argument to @code{groff}.
+To use ISO @w{Latin-5}, an encoding for the Turkish language, invoke
+@w{@samp{.mso latin5.tmac}} at the beginning of your document or
+supply @samp{-mlatin5} as a command-line argument to @code{groff}.
 
 @item latin9
 @cindex encoding, input, @w{Latin-9} (ISO @w{8859-15})
@@ -5530,11 +5530,10 @@ use @samp{-mlatin5} as a command-line argument to @code{groff}.
 @cindex ISO @w{8859-15} (@w{Latin-9}), input encoding
 @cindex input encoding, @w{Latin-9} (ISO @w{8859-15})
 @pindex latin9.tmac
-ISO @w{Latin-9} is a successor to @w{Latin-1}.  Its main difference from
-@w{Latin-1} is that @w{Latin-9} contains the Euro sign.  To use this
-encoding, either use @w{@samp{.mso latin9.tmac}} at the very beginning
-of your document or use @samp{-mlatin9} as a command-line argument to
-@code{groff}.
+ISO @w{Latin-9} succeeds @w{Latin-1}; it includes a Euro sign and better
+glyph coverage for French.  To use this encoding, invoke @w{@samp{.mso
+latin9.tmac}} at the beginning of your document or supply
+@samp{-mlatin9} as a command-line argument to @code{groff}.
 @end table
 
 Some characters from an input encoding may not be available with a
@@ -5546,13 +5545,12 @@ required by the document.  @xref{Font Positions}.
 
 @pindex freeeuro.pfa
 @pindex ec.tmac
-Due to the importance of the Euro glyph in Europe, @code{groff} is
-distributed with a PostScript font called @file{freeeuro.pfa}, which
-provides various glyph shapes for the Euro.  Because standard PostScript
-fonts contain the other glyphs from @w{Latin-5} and @w{Latin-9} that
-@w{Latin-1} lacks, these encodings are supported for the @option{ps} and
-@option{pdf} output devices as @code{groff} ships, while @w{Latin-2} is
-not.
+Because a Euro glyph was not historically defined in PostScript fonts,
+@code{groff} comes with a font called @file{freeeuro.pfa} that provides
+the Euro in several styles.  Standard PostScript fonts contain the
+glyphs from @w{Latin-5} and @w{Latin-9} that @w{Latin-1} lacks, so these
+encodings are supported for the @option{ps} and @option{pdf} output
+devices as @code{groff} ships, while @w{Latin-2} is not.
 
 Unicode supports characters from all other input encodings; the
 @option{utf8} output driver for terminals therefore does as well.  The

@@ -83,7 +83,7 @@ int class_flag = 0;
 int color_flag = 1;		// colors are on by default
 static int backtrace_flag = 0;
 #ifndef POPEN_MISSING
-char *pipe_command = 0;
+char *pipe_command = 0 /* nullptr */;
 #endif
 charinfo *charset_table[256];
 unsigned char hpf_code_table[256];
@@ -464,7 +464,7 @@ input_iterator *input_stack::top = &nil_iterator;
 int input_stack::level = 0;
 int input_stack::limit = DEFAULT_INPUT_STACK_LIMIT;
 int input_stack::div_level = 0;
-statem *input_stack::diversion_state = 0;
+statem *input_stack::diversion_state = 0 /* nullptr */;
 int suppress_push=0;
 
 
@@ -1591,7 +1591,7 @@ static node *do_zero_width()
   }
   curenv = oldenv;
   node *rev = env.extract_output_line();
-  node *n = 0;
+  node *n = 0 /* nullptr */;
   while (rev) {
     node *tem = rev;
     rev = rev->next;
@@ -3483,7 +3483,8 @@ protected:
   symbol nm;
   string_iterator();
 public:
-  string_iterator(const macro &, const char * = 0, symbol = NULL_SYMBOL);
+  string_iterator(const macro &, const char * = 0 /* nullptr */,
+		  symbol = NULL_SYMBOL);
   int fill(node **);
   int peek();
   int get_location(int, const char **, int *);
@@ -4186,7 +4187,7 @@ enum comp_mode { COMP_IGNORE, COMP_DISABLE, COMP_ENABLE };
 void do_define_string(define_mode mode, comp_mode comp)
 {
   symbol nm;
-  node *n = 0;		// pacify compiler
+  node *n = 0 /* nullptr */;
   int c;
   nm = get_name(true /* required */);
   if (nm.is_null()) {
@@ -4258,7 +4259,7 @@ void append_nocomp_string()
 
 void do_define_character(char_mode mode, const char *font_name)
 {
-  node *n = 0;		// pacify compiler
+  node *n = 0 /* nullptr */;
   int c;
   tok.skip();
   charinfo *ci = tok.get_char(true /* required */);
@@ -4525,7 +4526,7 @@ void do_define_macro(define_mode mode, calling_mode calling, comp_mode comp)
   // doing this here makes the line numbers come out right
   int c = get_copy(&n, true /* is defining*/);
   macro mac;
-  macro *mm = 0;
+  macro *mm = 0 /* nullptr */;
   if (mode == DEFINE_NORMAL || mode == DEFINE_APPEND) {
     request_or_macro *rm =
       (request_or_macro *)request_dictionary.lookup(nm);
@@ -4871,7 +4872,7 @@ void substring_request()
 	}
 	macro mac;
 	for (; i <= end; i++) {
-	  node *nd = 0;		// pacify compiler
+	  node *nd = 0 /* nullptr */;
 	  int c = iter.get(&nd);
 	  while (c == PUSH_GROFF_MODE
 		 || c == PUSH_COMP_MODE
@@ -4941,7 +4942,7 @@ void asciify_macro()
       macro am;
       string_iterator iter(*m);
       for (;;) {
-	node *nd = 0;		// pacify compiler
+	node *nd = 0 /* nullptr */;
 	int c = iter.get(&nd);
 	if (c == EOF)
 	  break;
@@ -4968,7 +4969,7 @@ void unformat_macro()
       macro am;
       string_iterator iter(*m);
       for (;;) {
-	node *nd = 0;		// pacify compiler
+	node *nd = 0 /* nullptr */;
 	int c = iter.get(&nd);
 	if (c == EOF)
 	  break;
@@ -5394,7 +5395,7 @@ node *non_interpreted_node::copy()
 int non_interpreted_node::interpret(macro *m)
 {
   string_iterator si(mac);
-  node *n = 0;		// pacify compiler
+  node *n = 0 /* nullptr */;
   for (;;) {
     int c = si.get(&n);
     if (c == EOF)
@@ -5673,7 +5674,7 @@ void line_file()
 {
   int n;
   if (get_integer(&n)) {
-    const char *filename = 0;
+    const char *filename = 0 /* nullptr */;
     if (has_arg()) {
       symbol s = get_long_name();
       filename = s.contents();
@@ -5938,7 +5939,7 @@ void while_request()
   int level = 0;
   mac.append(new token_node(tok));
   for (;;) {
-    node *n = 0;		// pacify compiler
+    node *n = 0 /* nullptr */;
     int c = input_stack::get(&n);
     if (c == EOF)
       break;
@@ -7145,7 +7146,7 @@ void define_class()
     return;
   }
   charinfo *ci = get_charinfo(nm);
-  charinfo *child1 = 0, *child2 = 0;
+  charinfo *child1 = 0 /* nullptr */, *child2 = 0 /* nullptr */;
   while (!tok.is_newline() && !tok.is_eof()) {
     tok.skip();
     if (child1 != 0 && tok.ch() == '-') {
@@ -7301,7 +7302,7 @@ int token::add_to_zero_width_node_list(node **pp)
 {
   hunits w;
   int s;
-  node *n = 0;
+  node *n = 0 /* nullptr */;
   switch (type) {
   case TOKEN_CHAR:
     *pp = (*pp)->add_char(charset_table[c], curenv, &w, &s);
@@ -7760,7 +7761,7 @@ int page_range::contains(int n)
   return n >= first && (last <= 0 || n <= last);
 }
 
-page_range *output_page_list = 0;
+page_range *output_page_list = 0 /* nullptr */;
 
 int in_output_page_list(int n)
 {
@@ -8048,9 +8049,9 @@ int main(int argc, char **argv)
   static char stderr_buf[BUFSIZ];
   setbuf(stderr, stderr_buf);
   int c;
-  string_list *macros = 0;
-  string_list *register_assignments = 0;
-  string_list *string_assignments = 0;
+  string_list *macros = 0 /* nullptr */;
+  string_list *register_assignments = 0 /* nullptr */;
+  string_list *string_assignments = 0 /* nullptr */;
   int iflag = 0;
   int tflag = 0;
   int fflag = 0;
@@ -8687,7 +8688,7 @@ static void read_color_draw_node(token &start)
   }
   unsigned char scheme = tok.ch();
   tok.next();
-  color *col = 0;
+  color *col = 0 /* nullptr */;
   char end = start.ch();
   switch (scheme) {
   case 'c':

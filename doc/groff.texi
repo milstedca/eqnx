@@ -6360,10 +6360,10 @@ not qualify, so our first attempt got a warning.
 @section Identifiers
 @cindex identifiers
 
-An @dfn{identifier} is a label for an object of syntactical
-importance:@: a register, name (macro, string, or diversion), typeface,
-color, special character, character class, environment, or stream.
-Valid identifiers consist of one or more ordinary characters.
+An @dfn{identifier} labels a GNU @code{troff} datum such as a register,
+name (macro, string, or diversion), typeface, color, special character,
+character class, environment, or stream.  Valid identifiers consist of
+one or more ordinary characters.
 @cindex ordinary character
 @cindex character, ordinary
 An @slanted{ordinary character} is an input character that is not a
@@ -9371,7 +9371,7 @@ foo bar
 @endExample
 
 @noindent
-It is even possible to map the space character to nothing:
+Even the space character can be mapped to the dummy character.
 
 @Example
 .tr aa \&
@@ -9397,8 +9397,8 @@ affected by @code{tr}.
 
 @item
 Translating character to glyphs where one of them or both are undefined
-is possible also; @code{tr} does not check whether the entities in its
-argument do exist.
+is possible also; @code{tr} does not check whether the elements of its
+argument exist.
 
 @xref{Gtroff Internals}.
 
@@ -10527,13 +10527,16 @@ this is font 1 again
 @cindex character, distinguished from glyph
 @cindex ligature
 A @dfn{glyph} is a graphical representation of a @dfn{character}.  While
-a character is an abstract entity containing semantic information, a
-glyph is something that can be actually seen on screen or paper.  It is
-possible that a character has multiple glyph representation forms (for
-example, the character `A' can be either written in a roman or an italic
-font, yielding two different glyphs); sometimes more than one character
-maps to a single glyph (this is a @dfn{ligature}---the most common is
-`fi').
+a character is an abstraction of semantic information, a glyph is
+something that can be seen on screen or paper.  A character has many
+possible representation forms (for example, the character `A' can be
+written in an upright or slanted typeface, producing distinct
+glyphs).  Sometimes, a sequence of characters map to a single glyph:@:
+this is a @dfn{ligature}---the most common is `fi'.
+
+Space characters never become glyphs in GNU @code{troff}.  If not
+discarded (as when trailing on text lines), they are represented by
+horizontal motions in the output.
 
 @cindex symbol
 @cindex special fonts
@@ -11064,16 +11067,15 @@ request, but before the already mounted special fonts.
 @xref{Character Classes}.
 @endDefreq
 
-@DefreqList {rchar, c1 c2 @dots{}}
-@DefreqListEndx {rfschar, f c1 c2 @dots{}}
+@DefreqList {rchar, c @dots{}}
+@DefreqListEndx {rfschar, f c @dots{}}
 @cindex removing glyph definition (@code{rchar}, @code{rfschar})
 @cindex glyph, removing definition (@code{rchar}, @code{rfschar})
 @cindex fallback glyph, removing definition (@code{rchar}, @code{rfschar})
-Remove the definitions of glyphs @var{c1}, @var{c2},@tie{}@dots{},
+Remove definition of each ordinary or special character @var{c},
 undoing the effect of a @code{char}, @code{fchar}, or @code{schar}
-request.
-
-Spaces and tabs are optional between @var{cn}@tie{}arguments.
+request.  Those supplied by font description files cannot be removed.
+Spaces and tabs may separate @var{c}@tie{}arguments.
 
 The request @code{rfschar} removes glyph definitions defined with
 @code{fschar} for font@tie{}@var{f}.
@@ -11399,8 +11401,8 @@ supported `ff', `ffi', and `ffl' ligatures.  Advanced typesetters or
 @code{troff} does not support these (yet).
 
 Only the current font is checked for ligatures and kerns; neither
-special fonts nor entities defined with the @code{char} request (and its
-siblings) are taken into account.
+special fonts nor special charcters defined with the @code{char} request
+(and its siblings) are taken into account.
 
 @DefreqList {lg, [@Var{flag}]}
 @DefregListEndx {.lg}
@@ -17217,21 +17219,20 @@ each rounded down to the nearest multiple of@tie{}12.
 @cindex characters, input, and output glyphs, compatibility with @acronym{AT&T} @code{troff}
 @cindex glyphs, output, and input characters, compatibility with @acronym{AT&T} @code{troff}
 In GNU @code{troff} there is a fundamental difference between
-(unformatted) input characters and (formatted) output glyphs.
-Everything that affects how a glyph is output is stored with the glyph
-node; once a glyph node has been constructed, it is unaffected by any
-subsequent requests that are executed, including @code{bd}, @code{cs},
-@code{tkf}, @code{tr}, or @code{fp} requests.  Normally, glyphs are
-constructed from input characters immediately before the glyph is added
-to the current output line.  Macros, diversions, and strings are all, in
-fact, the same type of object; they contain lists of input characters
-and glyph nodes in any combination.  Special characters can be both:
-before being added to the output, they act as input entities;
-afterward, they denote glyphs.  A glyph node does not behave like an
-input character for the purposes of macro processing; it does not
-inherit any of the special properties that the input character from
-which it was constructed might have had.  Consider the following
-example.
+(unformatted) characters and (formatted) glyphs.  Everything that
+affects how a glyph is output is stored with the glyph node; once a
+glyph node has been constructed, it is unaffected by any subsequent
+requests that are executed, including @code{bd}, @code{cs}, @code{tkf},
+@code{tr}, or @code{fp} requests.  Normally, glyphs are constructed from
+characters immediately before the glyph is added to an output line.
+Macros, diversions, and strings are all, in fact, the same type of
+object; they contain a sequence of intermixed character and glyph nodes.
+Special characters transform from one to the other:@: before being added
+to the output, they behave as characters; afterward, they are glyphs.  A
+glyph node does not behave like a character node when it is processed by
+a macro:@: it does not inherit any of the special properties that the
+character from which it was constructed might have had.  For example,
+the input
 
 @Example
 .di x
@@ -17242,11 +17243,12 @@ example.
 @endExample
 
 @noindent
-It prints @samp{\\} in GNU @code{troff}; each pair of input backslashes
-is turned into one output backslash and the resulting output backslashes
-are not interpreted as escape characters when they are reread.
-@acronym{AT&T} @code{troff} would interpret them as escape characters
-when they were reread and would end up printing one @samp{\}.
+produces @samp{\\} in GNU @code{troff}.  Each pair of backslashes
+becomes one backslash @emph{glyph}; the resulting backslashes are thus
+not interpreted as escape @emph{characters} when they are reread as the
+diversion is output.  @acronym{AT&T} @code{troff} @emph{would} interpret
+them as escape characters when rereading them and end up printing one
+@samp{\}.
 
 @cindex printing backslash (@code{\\}, @code{\e}, @code{\E}, @code{\[rs]})
 @cindex backslash, printing (@code{\\}, @code{\e}, @code{\E}, @code{\[rs]})

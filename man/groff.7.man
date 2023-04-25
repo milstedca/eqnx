@@ -1254,8 +1254,11 @@ containing them is surrounded by parentheses.
 .\" ====================================================================
 .
 .\" BEGIN Keep (roughly) parallel with groff.texi node "Identifiers".
-An identifier is a label for an object of syntactical importance:
-a register,
+An
+.I identifier
+labels a GNU
+.I troff \" GNU
+datum such as a register,
 name
 (macro,
 string,
@@ -2581,7 +2584,7 @@ Reset no-break control character to
 .REQ .c2 "o"
 Recognize ordinary character
 .I o
-as the no-break control character.
+as no-break control character.
 .
 .TPx
 .REQ .cc
@@ -2646,7 +2649,7 @@ by moving its location to
 .
 .TPx
 .REQ .char "c contents"
-Define entity
+Define ordinary or special character
 .I c
 as
 .IR contents .
@@ -3800,11 +3803,16 @@ Change post-vertical line spacing according to
 .scaleindicator p ).
 .
 .TPx
-.REQ .rchar "c1 c2 \fR\&.\|.\|.\&\fP"
-Remove the definitions of entities
+.REQ .rchar "c1 c2 \fR.\|.\|.\&\fP"
+Remove definition of each ordinary or special character
 .IR c1 ,
 .IR c2 ,
-\&.\|.\|.\&
+\&.\|.\|.\& defined by a
+.request .char ,
+.request .fchar ,
+or
+.request .schar
+request.
 .
 .TPx
 .REQ .rd "prompt"

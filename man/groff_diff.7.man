@@ -5453,45 +5453,48 @@ each rounded down to the nearest multiple of\~12.
 .
 .
 .P
-In
-.IR groff ,
-there is a fundamental difference between unformatted input
-characters, and formatted output characters (glyphs).
+In GNU
+.I troff \" GNU
+there is a fundamental difference between (unformatted) characters and
+(formatted) glyphs.
 .
-Everything that affects how a glyph is output is stored with the glyph;
-once a glyph has been constructed,
+Everything that affects how a glyph is output is stored with the glyph
+node;
+once a glyph node has been constructed,
 it is unaffected by any subsequent requests that are executed,
-including the
-.BR .bd ,
-.BR .cs ,
-.BR .tkf ,
-.BR .tr ,
+including
+.BR bd ,
+.BR cs ,
+.BR tkf ,
+.BR tr ,
 or
-.B .fp
+.B fp
 requests.
 .
 Normally,
-glyphs are constructed from input characters immediately before the
-glyph is added to the current output line.
+glyphs are constructed from characters immediately before the glyph is
+added to an output line.
 .
 Macros,
 diversions,
 and strings are all,
 in fact,
 the same type of object;
-they contain lists of input characters and glyphs in any combination.
+they contain a sequence of intermixed character and glyph nodes.
 .
-Special characters can be both: before being added to the output,
-they act as input entities;
-afterwards,
-they denote glyphs.
+Special characters transform from one to the other:
+before being added to the output,
+they behave as characters;
+afterward,
+they are glyphs.
 .
-A glyph does not behave like an input character for the purposes of
-macro processing;
-it does not inherit any of the special properties that the input
-character from which it was constructed might have had.
+A glyph node does not behave like a character node when it is processed
+by a macro:
+it does not inherit any of the special properties that the character
+from which it was constructed might have had.
 .
-Consider the following example.
+For example,
+the input
 .
 .RS
 .EX
@@ -5503,17 +5506,21 @@ Consider the following example.
 .EE
 .RE
 .
-It prints
+produces
 .RB \[lq] \[rs]\[rs] \[rq]
-in
-.IR groff ;
-each pair of input backslashes is turned into one output backslash and
-the resulting output backslashes are not interpreted as escape
-characters when they are reread.
+in GNU
+.IR troff . \" GNU
+Each pair of backslashes becomes one backslash
+.I glyph;
+the resulting backslashes are thus not interpreted as escape
+.I characters
+when they are reread as the diversion is output.
 .
-.RI AT&T\~ troff
-would interpret them as escape characters when they were reread and
-would end up printing one
+AT&T
+.I troff \" AT&T
+.I would
+interpret them as escape characters when rereading them and end up
+printing one
 .RB \[lq] \[rs] \[rq].
 .
 .

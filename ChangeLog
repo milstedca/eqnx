@@ -1,3 +1,16 @@
+2023-04-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[pdfpic]: Refactor.
+
+	* tmac/pdfpic.tmac: Migrate gathering of image dimensions from
+	`sy` and a temporary file to `pso`.
+	(pdfpic@cleanup): Drop `pdfpic*temporary-file` string.
+	(pdfpic@get-image-dimensions): Remove redirection.  Invoke
+	`pso`, not `sy`.
+	(PDFPIC): Stop constructing `pdfpic*temporary-file` string.
+	Stop testing `systat` register.  Stop sourcing and deleting
+	temporary file.
+
 2023-04-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/pdfpic.tmac: Refactor to make comprehensible some

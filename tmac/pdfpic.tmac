@@ -44,7 +44,6 @@
 .  rm pdfpic*file-extension
 .  rm pdfpic*file-name-base
 .  rm pdfpic*temporary-directory
-.  rm pdfpic*temporary-file
 .  rr pdfpic*do-conversion
 .  rr pdfpic*offset-mode
 .  rr pdfpic*indentation
@@ -84,8 +83,7 @@
 .  as pdfpic*command " \\\\R@pdfpic*height (p;\\2)@
 .  as pdfpic*command /p'
 .  ec
-.  as pdfpic*command " > \*[pdfpic*temporary-file]
-.  sy \*[pdfpic*command]
+.  pso \*[pdfpic*command]
 .  rm pdfpic*command
 ..
 .ec
@@ -199,16 +197,8 @@
 skipping '\\$1'
 .    return
 .  \}
-.  ds pdfpic*temporary-file \\*[pdfpic*temporary-directory]/pdfpic\n[$$]
-.  pdfpic@get-image-dimensions \\$1
-.  if \\n[systat] \{\
-.    pdfpic@error retrieval of '\\$1' image dimensions failed with \
-exit status \\n[systat]; skipping
-.    return
-.  \}
-.  so \\*[pdfpic*temporary-file]
-.  sy rm \\*[pdfpic*temporary-file]
 .
+.  pdfpic@get-image-dimensions \\$1
 .  nr pdfpic*did-pdfinfo-work 1
 .  if !r pdfpic*width .nr pdfpic*did-pdfinfo-work 0
 .  if !r pdfpic*height .nr pdfpic*did-pdfinfo-work 0

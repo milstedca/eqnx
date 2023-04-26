@@ -721,9 +721,7 @@ tfont::tfont(tfont_spec &spec) : tfont_spec(spec)
 /* output_file */
 
 class real_output_file : public output_file {
-#ifndef POPEN_MISSING
   int piped;
-#endif
   int printing;		// decision via optional page list
   int output_on;	// \O[0] or \O[1] escape sequences
   virtual void really_transparent_char(unsigned char) = 0;
@@ -1651,7 +1649,6 @@ void output_file::off()
 real_output_file::real_output_file()
 : printing(0), output_on(1)
 {
-#ifndef POPEN_MISSING
   if (pipe_command) {
     if ((fp = popen(pipe_command, POPEN_WT)) != 0) {
       piped = 1;
@@ -1660,7 +1657,6 @@ real_output_file::real_output_file()
     error("pipe open failed: %1", strerror(errno));
   }
   piped = 0;
-#endif /* not POPEN_MISSING */
   fp = stdout;
 }
 
@@ -1679,7 +1675,6 @@ real_output_file::~real_output_file()
     fp = 0;
     fatal("unable to flush output file: %1", strerror(errno));
   }
-#ifndef POPEN_MISSING
   if (piped) {
     int result = pclose(fp);
     fp = 0;
@@ -1697,7 +1692,6 @@ real_output_file::~real_output_file()
     }
   }
   else
-#endif /* not POPEN MISSING */
   if (fclose(fp) < 0) {
     fp = 0;
     fatal("unable to close output file: %1", strerror(errno));

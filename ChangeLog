@@ -1,3 +1,27 @@
+2023-04-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Drop `POPEN_MISSING` preprocessor macro.
+
+	3 source files test this macro but nothing appears to define it.
+	It dates back to (at least) 1994.  I suspect this of being
+	bitrot.  Reasons include: (1) We test for a declaration of
+	`popen` in our "configure.ac" file; (2) our gxditview command
+	uses `popen` _without_ #ifdef-guarding it (perhaps the
+	assumption was that any system that supported X11 also had a
+	working `popen`); (3) our "nonposix.h" header file defines a
+	macro aliasing `popen` to `_popen`, which is its typical name on
+	Windows systems, and is the most likely build host candidate for
+	which support might have been missing as late as 1994.
+	Microsoft end-of-lifed MS-DOS in 2000.  If someone wants to
+	start up a FreeDOS port, talk to us.  Maybe even that has a
+	functional `popen()`.  Here's hopin'.
+
+	* src/roff/troff/input.cpp ([global], file_iterator::close)
+	(pipe_source, pipe_output, init_input_requests):
+	* src/roff/troff/node.cpp (class real_output_file)
+	(output_file::real_output_file, output_file::~real_output_file):
+	* src/roff/troff/node.h: Do it.
+
 2023-04-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[eqn]: Implement new "gifont" primitive.

@@ -82,9 +82,7 @@ int break_flag = 0;
 int class_flag = 0;
 int color_flag = 1;		// colors are on by default
 static int backtrace_flag = 0;
-#ifndef POPEN_MISSING
 char *pipe_command = 0 /* nullptr */;
-#endif
 charinfo *charset_table[256];
 unsigned char hpf_code_table[256];
 
@@ -310,10 +308,8 @@ void file_iterator::close()
 {
   if (fp == stdin)
     clearerr(stdin);
-#ifndef POPEN_MISSING
   else if (popened)
     pclose(fp);
-#endif /* not POPEN_MISSING */
   else
     fclose(fp);
 }
@@ -6064,10 +6060,6 @@ void pipe_source()
     skip_line();
   }
   else {
-#ifdef POPEN_MISSING
-    error("pipes not available on this system");
-    skip_line();
-#else /* not POPEN_MISSING */
     if (tok.is_newline() || tok.is_eof())
       error("missing command");
     else {
@@ -6101,7 +6093,6 @@ void pipe_source()
       delete[] buf;
     }
     tok.next();
-#endif /* not POPEN_MISSING */
   }
 }
 
@@ -7626,10 +7617,6 @@ void pipe_output()
     skip_line();
   }
   else {
-#ifdef POPEN_MISSING
-    error("pipes not available on this system");
-    skip_line();
-#else /* not POPEN_MISSING */
     if (the_output) {
       error("can't pipe: output already started");
       skip_line();
@@ -7650,7 +7637,6 @@ void pipe_output()
       else
 	pipe_command = pc;
     }
-#endif /* not POPEN_MISSING */
   }
 }
 
@@ -8422,9 +8408,7 @@ void init_input_requests()
   init_request("pi", pipe_output);
   init_request("pm", print_macros);
   init_request("psbb", ps_bbox_request);
-#ifndef POPEN_MISSING
   init_request("pso", pipe_source);
-#endif /* not POPEN_MISSING */
   init_request("rchar", remove_character);
   init_request("rd", read_request);
   init_request("return", return_macro_request);

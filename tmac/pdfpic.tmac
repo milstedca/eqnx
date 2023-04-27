@@ -9,6 +9,9 @@
 .\"
 .\" Requires the poppler-utils package (for pdfinfo(1) and pdftops(1)).
 .\" Requires running troff(1) in unsafe mode.
+.\"
+.\" Internal macro names start with `pdfpic@`; internal registers and
+.\" strings start with `pdfpic*`.
 .
 .do if d PDFPIC .nx
 .
@@ -132,6 +135,7 @@
 .    as pdfpic*pspic-args \\*[pdfpic*file-name-base].eps \\$*
 .
 .    PSPIC \\*[pdfpic*pspic-args]
+.    pdfpic@cleanup
 .    return
 .  \}
 .

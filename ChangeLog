@@ -1,3 +1,10 @@
+2023-04-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[pdfpic]: Clean up better.
+
+	* tmac/pdfpic.tmac (PDFPIC): Call `pdfpic@cleanup` before
+	returning when falling back to `PSPIC` for non-PDF documents.
+
 2023-04-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/tty.tmac: Add angle bracket fallbacks.

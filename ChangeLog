@@ -1,3 +1,10 @@
+2023-04-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[build]: Skip an Autoconf check if not necessary.
+
+	* m4/groff.m4 (GROFF_PNMTOPS_NOSETPAGE): Skip check if no
+	"pnmtops" command was found.
+
 2023-04-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[doc]: Abstract document dependencies on the mom package.

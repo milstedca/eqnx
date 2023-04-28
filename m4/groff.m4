@@ -479,6 +479,10 @@ AC_DEFUN([GROFF_PNMTOOLS_CAN_BE_QUIET], [
 AC_DEFUN([GROFF_PNMTOPS_NOSETPAGE], [
   AC_REQUIRE([GROFF_PNMTOOLS_CAN_BE_QUIET])
 
+  if test "$pnmtops" = missing
+  then
+    pnmtops_nosetpage=no
+  else
   pnmtops_nosetpage="pnmtops $pnmtools_quiet"
   AC_MSG_CHECKING([whether pnmtops accepts the '-nosetpage' option])
   if echo P2 2 2 255 0 1 2 0 | pnmtops -nosetpage > /dev/null 2>&1
@@ -487,6 +491,7 @@ AC_DEFUN([GROFF_PNMTOPS_NOSETPAGE], [
     pnmtops_nosetpage="pnmtops $pnmtools_quiet -nosetpage"
   else
     AC_MSG_RESULT([no])
+  fi
   fi
   AC_SUBST([pnmtops_nosetpage])
 ])

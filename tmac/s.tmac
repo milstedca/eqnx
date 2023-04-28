@@ -1156,6 +1156,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .el \
 .	ps \\n[PS]
 .\" don't set VS so that it can be defaulted from PS
+.\" Set vertical spacing defaults to 120% of type size.
 .ie rVS \{\
 .	ie (\\n[VS] >= 1000) \
 .		par*vs "(\\n[VS]p / 1000u)"
@@ -1164,9 +1165,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\}
 .el \{\
 .	ie (\\n[PS] >= 1000) \
-.		par*vs "((\\n[PS]p / 1000u) + 2p)"
+.		par*vs "((\\n[PS]p / 1000u) * 120u / 100u)"
 .	el \
-.		par*vs "(\\n[PS] + 2)"
+.		par*vs "(\\n[PS] * 120u / 100u)"
 .\}
 .if dFAM .fam \\*[FAM]
 .if !rHY .nr HY 6
@@ -1199,11 +1200,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .de par@init
 .if !rLT .nr LT \\n[LL]
 .if !rFL .nr FL \\n[LL]*\\*[FR]
+.\" Set vertical spacing defaults to 120% of type size.
 .if !rVS \{\
 .	ie (\\n[PS] >= 1000) \
-.		nr VS (\\n[PS] + 2000)
+.		nr VS (\\n[PS]p / 1000u * 120u / 100u)
 .	el \
-.		nr VS (\\n[PS] + 2)
+.		nr VS (\\n[PS] * 120u / 100u)
 .\}
 .if !rDI .nr DI .5i
 .if !rFPS \{\
@@ -1214,9 +1216,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .\}
 .if !rFVS \{\
 .	ie (\\n[FPS] >= 1000) \
-.		nr FVS (\\n[FPS] + 2000)
+.		nr FVS (\\n[FPS]p / 1000u * 120u / 100u)
 .	el \
-.		nr FVS (\\n[FPS] + 2)
+.		nr FVS (\\n[FPS] * 120u / 100u)
 .\}
 .\" don't change environment 0
 .ev h

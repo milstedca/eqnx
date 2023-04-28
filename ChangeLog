@@ -1,3 +1,11 @@
+2023-04-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[ms]: Default vertical spacing to 120% of type size, not 2
+	points larger.
+
+	* tmac/s.tmac (par@load-init, par@init): Do it.
+	* NEWS: Add item.
+
 2023-04-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[pdfpic]: Refactor.

@@ -1,5 +1,15 @@
 2023-04-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Fix Savannah #64122.
+
+	* src/preproc/tbl/table.cpp (table::init_output): Specify
+	scaling unit when using `hym` and `hys` requests.  Continues
+	commit cee547e883, 30 January 2021.
+
+	Thanks to Frederic Chartier and Peter Schaffter for the report.
+
+2023-04-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Regression-test Savannah #64122.
 
 	* src/preproc/tbl/tests/\

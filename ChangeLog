@@ -1,3 +1,11 @@
+2023-04-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[tbl]: Regression-test Savannah #64122.
+
+	* src/preproc/tbl/tests/\
+	save-and-restore-hyphenation-parameters.sh: Update input and add
+	check.
+
 2023-04-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Drop `POPEN_MISSING` preprocessor macro.

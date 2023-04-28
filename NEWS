@@ -332,8 +332,9 @@ o The doc (mdoc) macro package now renders man page (sub)section cross
 o The e (me) macro package has changed its default line length on
   typesetting devices from 6i to the output device's default (for
   example, 6.5i on the 'ps' and 'pdf' devices).  You can use
-  "papersize.tmac" to override this length, as in "groff -d paper=a4l",
-  without needing to alter the document.
+  "papersize.tmac" to override this length, as in "groff -d paper=a4l"
+  to select A4 paper in landscape orientation, without needing to alter
+  the document.
 
 o The e (me) macro package has changed its support for output line
   numbering with the `n1` and `n2` macros to resolve several bugs in the

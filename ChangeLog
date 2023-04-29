@@ -1,3 +1,8 @@
+2023-04-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/include/lf.h (interpret_lf_args):
+	* src/libs/libgroff/lf.cpp (interpret_lf_args): Boolify.
+
 2023-04-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tbl]: Fix Savannah #64122.

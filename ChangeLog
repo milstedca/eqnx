@@ -1,3 +1,12 @@
+2023-04-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[eqn]: Improve tests of line number accuracy.
+
+	* src/preproc/eqn/tests/\
+	diagnostics-report-correct-line-numbers.sh: Add cases to check
+	behavior of valid input, not just error cases.  Also add some
+	unexecuted test cases for future use.
+
 2023-04-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/include/lf.h (interpret_lf_args):

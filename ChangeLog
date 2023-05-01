@@ -1,5 +1,25 @@
 2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man]: Preserve user-selected font family.
+
+	* tmac/an.tmac: When initializing, save the currently selected
+	font family as `an*body-family` instead of forcing 'T' (Times,
+	which is the formatter's default, even on nroff-mode devices
+	that can't switch families).  This change makes the formatter's
+	`-f` option work on man(7) documents again (important for
+	Japanese man pages, but there is now once again nothing stopping
+	you from viewing man pages in Palatino or Helvetica on the 'ps'
+	and 'pdf' devices where these families are available).  It also
+	reopens an avenue for rogue pages to affect the rendering of
+	unrelated documents later in batch rendering, but there are many
+	other, and worse, ways for rogue pages to do damage.  Problem
+	introduced by me in commit e0e16d8e65, 15 March 2022.
+
+	Fixes <https://savannah.gnu.org/bugs/?64130>.  Thanks to Deri
+	James for the report.
+
+2023-05-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Stop `HP` producing excess vertical space.
 
 	* tmac/an.tmac (HP): Fix thinko/typo when expanding macro as

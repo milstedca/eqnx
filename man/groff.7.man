@@ -5538,7 +5538,11 @@ macro (Boolean-valued).
 .
 .TP
 .REG .c
-Input line number.
+Input line number;
+see
+.request .lf
+and
+.register \f[R]\[lq]\f[]c.\f[R]\[rq]\f[] .
 .
 .TP
 .REG .C
@@ -5604,13 +5608,13 @@ and
 .
 .TP
 .REG .F
-Name of input file (string-valued).
-.
+Name of input file (string-valued);
+see
+.request .lf .
 .
 .TP
 .REG .fam
 Name of font family (string-valued).
-.
 .
 .TP
 .REG .fn
@@ -5703,7 +5707,7 @@ Horizontal drawing position relative to indentation.
 .
 .TP
 .REG .kern
-Enablement status of pairwise kerning (Boolean-valued).
+Pairwise kerning is enabled (Boolean-valued).
 .
 .TP
 .REG .l
@@ -5719,11 +5723,11 @@ see
 .
 .TP
 .REG .lg
-Ligature mode enablement (Boolean-valued).
+Ligature mode is enabled (Boolean-valued).
 .
 .TP
 .REG .linetabs
-Line-tabs mode enablement (Boolean-valued).
+Line-tabs mode is enabled (Boolean-valued).
 .
 .TP
 .REG .ll
@@ -5767,7 +5771,7 @@ also see
 .
 .TP
 .REG .nm
-Output line numbering enablement (Boolean-valued).
+Output line numbering is enabled (Boolean-valued).
 .
 .TP
 .REG .nn
@@ -5775,7 +5779,7 @@ Count of output lines remaining to have numbering suppressed.
 .
 .TP
 .REG .ns
-No-space mode enablement (Boolean-valued).
+No-space mode is enabled (Boolean-valued).
 .
 .TP
 .REG .o
@@ -5797,7 +5801,7 @@ see
 .
 .TP
 .REG .P
-Output page selection status (Boolean-valued);
+The page is selected for output (Boolean-valued);
 see
 .I @g@troff
 .B \-o
@@ -5805,7 +5809,7 @@ option.
 .
 .TP
 .REG .pe
-Page ejection status (Boolean-valued).
+Page ejection is in progress (Boolean-valued).
 .
 .TP
 .REG .pn
@@ -5888,7 +5892,7 @@ and
 .
 .TP
 .REG .T
-Indicator of output device selection (Boolean-valued);
+An output device was explicitly selected (Boolean-valued);
 see
 .I @g@troff
 .B \-T
@@ -5914,7 +5918,7 @@ also see
 .
 .TP
 .REG .u
-Filling enablement (Boolean-valued);
+Filling is enabled (Boolean-valued);
 see
 .request .fi
 and
@@ -5922,7 +5926,7 @@ and
 .
 .TP
 .REG .U
-Unsafe mode enablement (Boolean-valued);
+Unsafe mode is enabled (Boolean-valued);
 see
 .I @g@troff
 .B \-U
@@ -5940,7 +5944,7 @@ Vertical motion quantum of the output device in basic units.
 .
 .TP
 .REG .vpt
-Vertical position trap enablement (Boolean-valued).
+Vertical position traps are enabled (Boolean-valued).
 .
 .TP
 .REG .w
@@ -5972,11 +5976,15 @@ formatter.
 .REG .z
 Name of diversion (string-valued).
 .
+Empty if output is directed to the top-level diversion.
+.
 .TP
 .REG .zoom
 Zoom multiplier of current font
 (in thousandths;
-zero if no magnification).
+zero if no magnification);
+see
+.request .fzoom .
 .LE
 .
 .

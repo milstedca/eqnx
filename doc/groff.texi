@@ -464,7 +464,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0
-@subtitle April 2023
+@subtitle May 2023
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -16477,23 +16477,25 @@ front of it until it works and if you still have problems add a \c.}
 @end flushright
 
 GNU @code{troff} is not the easiest language to debug, in part thanks to
-its design features of recursive interpolation and the use of multi-stage
-pipeline processing in the surrounding system.  Nevertheless there exist
-several features useful for troubleshooting.
+its design features of recursive interpolation and the use of
+multi-stage pipeline processing in the surrounding system.  Nevertheless
+there exist several features useful for troubleshooting.
 
 Preprocessors use the @code{lf} request to preserve the identity of the
 line numbers and names of input files.  GNU @code{troff} emits a variety
 of error diagnostics and supports several categories of warning; the
-output of these can be selectively suppressed.  Backtraces can be
-enabled when errors or warnings occur, or triggered on demand.  The
-@code{tm} and related requests can be used to emit customized diagnostic
-messages or for instrumentation while troubleshooting.  The @code{ex}
-and @code{ab} requests cause early termination with successful and error
+output of these can be selectively suppressed.  A trace of the
+formatter's input processing stack can be emitted when errors or
+warnings occur by means of GNU @code{troff}'s @option{-b} option, or
+produced on demand with the @code{backtrace} request.  The @code{tm}
+and related requests can be used to emit customized diagnostic messages
+or for instrumentation while troubleshooting.  The @code{ex} and
+@code{ab} requests cause early termination with successful and error
 exit codes respectively, to halt further processing when continuing
-would be fruitless.  The state of the formatter can be examined with
-requests that write lists of defined names (macros, strings, and
-diversions), environments, registers, and page location traps to the
-standard error stream.
+would be fruitless.  Examine the state of the formatter with requests
+that write lists of defined names (macros, strings, and diversions),
+environments, registers, and page location traps to the standard error
+stream.
 @c END Keep parallel with section "Debugging" of groff(7).
 
 @Defreq {lf, line [@Var{filename}]}

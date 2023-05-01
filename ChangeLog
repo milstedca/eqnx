@@ -1,3 +1,15 @@
+2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Stop `HP` producing excess vertical space.
+
+	* tmac/an.tmac (HP): Fix thinko/typo when expanding macro as
+	string to call `an-deprecation-warn`.
+	* tmac/an-ext.tmac (SY): Put 1v of vertical space on the output
+	if we are starting a (non-nested) synopsis.
+
+	Thanks to Alex Colomar for the report.  Problem introduced by me
+	in commit aea1dfb11b, 6 March 2022.
+
 2023-04-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Default vertical spacing to 120% of type size, not 2

@@ -3425,8 +3425,8 @@ and filename to
 .
 .TPx
 .REQ .lg "N"
-Ligature mode on if
-.IR N >0.
+Set ligature mode to
+.IR N .
 .
 .TPx
 .REQ .ll
@@ -5723,7 +5723,7 @@ see
 .
 .TP
 .REG .lg
-Ligature mode is enabled (Boolean-valued).
+Ligature mode.
 .
 .TP
 .REG .linetabs

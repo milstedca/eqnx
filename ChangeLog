@@ -1,3 +1,37 @@
+2023-05-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/reg.cpp (set_number_reg): Rename to...
+	(set_register): ...this.
+	* src/roff/troff/reg.h: Update extern reference.
+	* src/roff/troff/div.cpp (mark):
+	* src/roff/troff/input.cpp (length_request, do_register)
+	(token::add_to_zero_width_node_list, do_register_assignment)
+	(init_registers): Update call sites.
+
+	* src/roff/troff/div.cpp (interpolate_number_reg): Rename to...
+	(interpolate_register): ...this.
+	(get_copy, token::next, length_request, read_title_parts):
+	Update call sites.
+	* src/roff/troff/token.h: Update extern reference.  Explicitly
+	declare as `extern`.
+
+	* src/roff/troff/reg.cpp (define_number_reg): Rename to...
+	(define_register): ...this.
+	(init_reg_requests): Update call site.
+	(set_number_reg): Rename to...
+	(set_register): ...this.
+	(print_number_regs): Rename to...
+	(print_registers): ...this.
+
+	* src/roff/troff/reg.cpp (lookup_number_reg): Rename to...
+	(look_up_register): ...this.
+	* src/roff/troff/input.cpp (interpolate_register): Update call
+	site.
+	* src/roff/troff/reg.h: Update extern reference.  Explicitly
+	declare as `extern`.
+
 2023-04-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[eqn]: Improve tests of line number accuracy.

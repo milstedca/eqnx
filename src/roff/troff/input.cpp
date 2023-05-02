@@ -1048,7 +1048,7 @@ static int get_copy(node **nd, bool is_defining, bool handle_escape_E)
 	int inc;
 	symbol s = read_increment_and_escape_parameter(&inc);
 	if (!(s.is_null() || s.is_empty()))
-	  interpolate_number_reg(s, inc);
+	  interpolate_register(s, inc);
 	break;
       }
     case 'g':
@@ -2149,7 +2149,7 @@ void token::next()
 	  int inc;
 	  symbol s = read_increment_and_escape_parameter(&inc);
 	  if (!(s.is_null() || s.is_empty()))
-	    interpolate_number_reg(s, inc);
+	    interpolate_register(s, inc);
 	  break;
 	}
       case 'N':
@@ -4922,7 +4922,7 @@ void length_request()
   if (r)
     r->set_value(len);
   else
-    set_number_reg(ret, len);
+    set_register(ret, len);
   tok.next();
 }
 
@@ -4989,9 +4989,9 @@ static void interpolate_environment_variable(symbol nm)
     input_stack::push(make_temp_iterator(s));
 }
 
-void interpolate_number_reg(symbol nm, int inc)
+void interpolate_register(symbol nm, int inc)
 {
-  reg *r = lookup_number_reg(nm);
+  reg *r = look_up_register(nm);
   if (inc < 0)
     r->decrement();
   else if (inc > 0)
@@ -5265,7 +5265,7 @@ static void do_register()
   if (r)
     r->set_value(val);
   else
-    set_number_reg(nm, val);
+    set_register(nm, val);
 }
 
 // this implements the \w escape sequence
@@ -5328,7 +5328,7 @@ void read_title_parts(node **part, hunits *part_width)
 	break;
       }
       if (page_character != 0 && tok.get_char() == page_character)
-	interpolate_number_reg(percent_symbol, 0);
+	interpolate_register(percent_symbol, 0);
       else
 	tok.process();
       tok.next();
@@ -7314,7 +7314,7 @@ int token::add_to_zero_width_node_list(node **pp)
   case TOKEN_LEFT_BRACE:
     break;
   case TOKEN_MARK_INPUT:
-    set_number_reg(nm, curenv->get_input_line_position().to_units());
+    set_register(nm, curenv->get_input_line_position().to_units());
     break;
   case TOKEN_NODE:
   case TOKEN_HORIZONTAL_SPACE:
@@ -7404,7 +7404,7 @@ void token::process()
   case TOKEN_LEFT_BRACE:
     break;
   case TOKEN_MARK_INPUT:
-    set_number_reg(nm, curenv->get_input_line_position().to_units());
+    set_register(nm, curenv->get_input_line_position().to_units());
     break;
   case TOKEN_NEWLINE:
     curenv->newline();
@@ -7953,7 +7953,7 @@ static void do_register_assignment(const char *s)
     buf[1] = 0;
     units n;
     if (evaluate_expression(s + 1, &n))
-      set_number_reg(buf, n);
+      set_register(buf, n);
   }
   else {
     char *buf = new char[p - s + 1];
@@ -7961,7 +7961,7 @@ static void do_register_assignment(const char *s)
     buf[p - s] = 0;
     units n;
     if (evaluate_expression(p + 1, &n))
-      set_number_reg(buf, n);
+      set_register(buf, n);
     delete[] buf;
   }
 }
@@ -8291,19 +8291,17 @@ static void init_registers()
 #endif /* not LONG_FOR_TIME_T */
     t = current_time();
   struct tm *tt = localtime(&t);
-  set_number_reg("seconds", int(tt->tm_sec));
-  set_number_reg("minutes", int(tt->tm_min));
-  set_number_reg("hours", int(tt->tm_hour));
-  set_number_reg("dw", int(tt->tm_wday + 1));
-  set_number_reg("dy", int(tt->tm_mday));
-  set_number_reg("mo", int(tt->tm_mon + 1));
-  set_number_reg("year", int(1900 + tt->tm_year));
-  set_number_reg("yr", int(tt->tm_year));
-  set_number_reg("$$", getpid());
+  set_register("seconds", int(tt->tm_sec));
+  set_register("minutes", int(tt->tm_min));
+  set_register("hours", int(tt->tm_hour));
+  set_register("dw", int(tt->tm_wday + 1));
+  set_register("dy", int(tt->tm_mday));
+  set_register("mo", int(tt->tm_mon + 1));
+  set_register("year", int(1900 + tt->tm_year));
+  set_register("yr", int(tt->tm_year));
+  set_register("$$", getpid());
   register_dictionary.define(".A",
-			       new readonly_text_register(ascii_output_flag
-						? "1"
-						: "0"));
+      new readonly_text_register(ascii_output_flag ? "1" : "0"));
 }
 
 /*

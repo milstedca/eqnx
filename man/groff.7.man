@@ -5494,12 +5494,7 @@ part of the register name.
 .
 Predefined registers whose identifiers start with a dot are read-only.
 .
-Many are Boolean-valued,
-interpolating a true or false value testable with
-.request .if ,
-.request .ie ,
-or
-.request .while .
+Many are Boolean-valued.
 .
 Some are string-valued,
 meaning that they interpolate text.

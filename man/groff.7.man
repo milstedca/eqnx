@@ -3426,7 +3426,13 @@ and filename to
 .TPx
 .REQ .lg "N"
 Set ligature mode to
-.IR N .
+.I N
+.RB ( 0
+= disable,
+.B 1
+= enable,
+.B 2
+= enable for two-letter ligatures only).
 .
 .TPx
 .REQ .ll

@@ -3413,14 +3413,14 @@ Disable line-tabs mode.
 .
 .TPx
 .REQ .lf "N"
-Set input line number to
+Set number of next input line to
 .IR N .
 .
 .TPx
 .REQ .lf "N file"
-Set input line number to
+Set number of next input line to
 .I N
-and filename to
+and input file name to
 .IR file .
 .
 .TPx

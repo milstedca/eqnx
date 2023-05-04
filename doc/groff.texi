@@ -4477,9 +4477,9 @@ spread the dots.  The width of the page number field is stored in the
 The @code{groff} @file{ms} macros are an independent reimplementation,
 using no @acronym{AT&T} code.  Since they take advantage of the extended
 features of @code{groff}, they cannot be used with @acronym{AT&T}
-@code{troff}.  @code{groff} @file{ms} supports several features
-described above as Berkeley and Tenth Edition Research Unix extensions,
-and adds several of its own.
+@code{troff}.  @code{groff} @file{ms} supports features described above
+as Berkeley and Tenth Edition Research Unix extensions, and adds several
+of its own.
 
 @itemize @bullet
 @item
@@ -4495,7 +4495,7 @@ manual.@footnote{@cite{Typing Documents on the UNIX System: Using the
 
 @item
 The error-handling policy of @code{groff} @file{ms} is to detect and
-report errors, rather than silently to ignore them.
+report errors, rather than to ignore them silently.
 
 @item
 Tenth Edition @c possibly 9th
@@ -4813,8 +4813,8 @@ The following conventions are used for names of macros, strings, and
 registers.  External names available to documents that use the
 @code{groff} @file{ms} macros contain only uppercase letters and digits.
 
-Internally the macros are divided into modules.  The naming conventions
-are as follows.
+Internally, the macros are divided into modules.  Conventions for
+identifier names are as follows.
 
 @itemize @bullet
 @item

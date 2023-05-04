@@ -3914,7 +3914,7 @@ manual [Lesk 1978].
 The error-handling policy of
 .I groff ms
 is to detect and report errors,
-rather than silently to ignore them.
+rather than to ignore them silently.
 .
 .
 .PP
@@ -3938,8 +3938,9 @@ it aborts processing with a diagnostic message.
 .
 .
 .PP
-Multiple line spacing is not supported
-(use a larger vertical spacing instead).
+Multiple line spacing is not supported.
+.
+Use a larger vertical spacing instead.
 .
 .
 .PP

@@ -7698,18 +7698,43 @@ found in @ref{Register Index}.
 We present here a few built-in registers that are not described
 elsewhere in this manual; they have to do with invariant properties of
 GNU @code{troff}, or obtain information about the formatter's
-command-line options or the operating environment.  Date- and
-time-related registers are set per the local time as determined by
-@cite{localtime@r{(3)}} when the formatter launches.  This
-initialization can be overridden by @env{SOURCE_DATE_EPOCH} and
-@env{TZ}; see @ref{Environment}.
+command-line options or the operating environment.
 
 @table @code
+@item \n[.A]
+@vindex .A
+@cindex approximation output register (@code{.A})
+@cindex plain text approximation output register (@code{.A})
+Approximate output is being formatted (Boolean-valued); see
+@command{groff} @option{-a} option (@ref{Groff Options}).
+
+@item \n[.c]
+@vindex .c
+@itemx \n[c.]
+@vindex c.
+@cindex input line number register (@code{.c}, @code{c.})
+@cindex line number, input, register (@code{.c}, @code{c.})
+Input line number.  @samp{c.} is a writable synonym,
+@c introduced in AT&T device-independent troff (CSTR #54, 1981-01)
+affecting subsequent interpolations of both @samp{.c} and @samp{c.}.
+
 @item \n[.F]
 @cindex current input file name register (@code{.F})
 @cindex input file name, current, register (@code{.F})
 @vindex .F
 Name of input file (string-valued).
+
+@item \n[.g]
+@vindex .g
+@cindex GNU @code{troff}, identification register (@code{.g})
+@cindex GNU-specific register (@code{.g})
+Always true in GNU @code{troff} (Boolean-valued).  Documents can use
+this to ask the formatter if it claims @code{groff} compatibility.
+
+@item \n[.P]
+@vindex .P
+Output page selection status (Boolean-valued); see @command{groff}
+@option{-o} option (@ref{Groff Options}).
 
 @item \n[.R]
 @cindex number of registers register (@code{.R})
@@ -7718,6 +7743,11 @@ Name of input file (string-valued).
 Count of available unused registers; always 10,000 in GNU
 @code{troff}.@footnote{GNU @code{troff} dynamically allocates memory for
 as many registers as required.}
+
+@item \n[.T]
+@vindex .T
+Indicator of output device selection (Boolean-valued); see
+@command{groff} @option{-T} option (@ref{Groff Options}).
 
 @item \n[.U]
 @cindex safer mode
@@ -7728,6 +7758,44 @@ as many registers as required.}
 Unsafe mode enablement status (Boolean-valued); see @command{groff}
 @option{-U} option (@ref{Groff Options}).
 
+@item \n[.x]
+@vindex .x
+@cindex major version number register (@code{.x})
+@cindex version number, major, register (@code{.x})
+Major version number of the running GNU @code{troff} formatter.  For
+example, if the version number is 1.23.0, then @code{.x}
+contains@tie{}@samp{1}.
+
+@item \n[.y]
+@vindex .y
+@cindex minor version number register (@code{.y})
+@cindex version number, minor, register (@code{.y})
+Minor version number of the running GNU @code{troff} formatter.  For
+example, if the version number is 1.23.0, then @code{.y}
+contains@tie{}@samp{23}.
+
+@item \n[.Y]
+@vindex .Y
+@cindex revision number register (@code{.Y})
+Revision number of the running GNU @code{troff} formatter.  For example,
+if the version number is 1.23.0, then @code{.Y} contains@tie{}@samp{0}.
+
+@item \n[$$]
+@vindex $$
+@cindex process ID of GNU @code{troff} register (@code{$$})
+@cindex PID of GNU @code{troff} register (@code{$$})
+@cindex GNU @code{troff}, process ID register (@code{$$})
+@cindex GNU @code{troff}, PID register (@code{$$})
+Process identifier (PID) of the GNU @code{troff} program in its
+operating environment.
+@end table
+
+Date- and time-related registers are set per the local time as
+determined by @cite{localtime@r{(3)}} when the formatter launches.  This
+initialization can be overridden by @env{SOURCE_DATE_EPOCH} and
+@env{TZ}; see @ref{Environment}.
+
+@table @code
 @item \n[seconds]
 @cindex seconds, current time (@code{seconds})
 @cindex time, current, seconds (@code{seconds})
@@ -7801,71 +7869,6 @@ or, for portability across many @code{roff} programs, to the following.
 .nr y4 1900+\n(yr
 This document was formatted in \n(y4.
 @endExample
-
-@item \n[.c]
-@vindex .c
-@itemx \n[c.]
-@vindex c.
-@cindex input line number register (@code{.c}, @code{c.})
-@cindex line number, input, register (@code{.c}, @code{c.})
-Input line number.  @samp{c.} is a writable synonym,
-@c introduced in AT&T device-independent troff (CSTR #54, 1981-01)
-affecting subsequent interpolations of both @samp{.c} and @samp{c.}.
-
-@item \n[.x]
-@vindex .x
-@cindex major version number register (@code{.x})
-@cindex version number, major, register (@code{.x})
-Major version number of the running GNU @code{troff} formatter.  For
-example, if the version number is 1.23.0, then @code{.x}
-contains@tie{}@samp{1}.
-
-@item \n[.y]
-@vindex .y
-@cindex minor version number register (@code{.y})
-@cindex version number, minor, register (@code{.y})
-Minor version number of the running GNU @code{troff} formatter.  For
-example, if the version number is 1.23.0, then @code{.y}
-contains@tie{}@samp{23}.
-
-@item \n[.Y]
-@vindex .Y
-@cindex revision number register (@code{.Y})
-Revision number of the running GNU @code{troff} formatter.  For example,
-if the version number is 1.23.0, then @code{.Y} contains@tie{}@samp{0}.
-
-@item \n[$$]
-@vindex $$
-@cindex process ID of GNU @code{troff} register (@code{$$})
-@cindex PID of GNU @code{troff} register (@code{$$})
-@cindex GNU @code{troff}, process ID register (@code{$$})
-@cindex GNU @code{troff}, PID register (@code{$$})
-Process identifier (PID) of the GNU @code{troff} program in its
-operating environment.
-
-@item \n[.g]
-@vindex .g
-@cindex GNU @code{troff}, identification register (@code{.g})
-@cindex GNU-specific register (@code{.g})
-Always true in GNU @code{troff} (Boolean-valued).  Documents can use
-this to ask the formatter if it claims @code{groff} compatibility.
-
-@item \n[.A]
-@vindex .A
-@cindex approximation output register (@code{.A})
-@cindex plain text approximation output register (@code{.A})
-Approximate output is being formatted (Boolean-valued); see
-@command{groff} @option{-a} option (@ref{Groff Options}).
-
-@item \n[.P]
-@vindex .P
-Output page selection status (Boolean-valued); see @command{groff}
-@option{-o} option (@ref{Groff Options}).
-
-@item \n[.T]
-@vindex .T
-Indicator of output device selection (Boolean-valued); see
-@command{groff} @option{-T} option (@ref{Groff Options}).
 @end table
 
 

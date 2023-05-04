@@ -142,6 +142,15 @@ or user-defined macros.
 .
 All three approaches can be combined.
 .
+If no
+.I file
+operands are given on the command line,
+or if
+.I file
+is
+.RB \[lq] \- \[rq],
+the standard input stream is read.
+.
 .
 .P
 A reimplementation and extension of the typesetter from AT&T Unix,

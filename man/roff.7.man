@@ -167,10 +167,10 @@ The exceptions separate words.
 .P
 A
 .I roff
-formatter attempts to detect the boundaries between sentences,
+formatter attempts to detect boundaries between sentences,
 and supplies additional inter-sentence space between them.
 .
-It does this by flagging certain characters
+It flags certain characters
 (normally
 .RB \[lq] !\& \[rq],
 .RB \[lq] ?\& \[rq],
@@ -184,7 +184,7 @@ at the end of an input line,
 or one of them is followed by two (unescaped) spaces on the same input
 line,
 it appends an inter-word space
-followed by an inter-sentence space in the formatted output.
+followed by an inter-sentence space in the output.
 .
 The dummy character escape sequence
 .B \[rs]&
@@ -738,7 +738,7 @@ In
 the distinction between those two elements is not always obvious
 (and a full discussion is beyond our scope).
 .
-To roughly characterize,
+In brief,
 \[lq]A\[rq] is a character when we consider it in the abstract:
 to make it a glyph,
 we must select a typeface with which to render it,

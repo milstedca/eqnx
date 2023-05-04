@@ -8144,8 +8144,14 @@ Break (unless the no-break control character is used), center the output
 of the next @var{nnn} productive input lines without filling, then break
 again (regardless of the control character).  The count of lines
 remaining to be centered is stored in the read-only register @code{.ce}
-and is associated with the environment
-(@pxref{Environments}).
+and is associated with the environment (@pxref{Environments}).
+@var{nnn} specifies the number of lines to be centered.  If the argument
+is not positive, centering is disabled.  Omitting the argument implies
+an @var{nnn} of @samp{1}.
+
+The basis for centering text is the line length (as set with the
+@code{ll} request) minus the indentation (as set with the @code{in}
+request).  Temporary indentation is ignored.
 
 @cindex @code{ce} request, difference from @w{@samp{.ad c}}
 While the @w{@samp{.ad c}} request also centers text, it fills the text
@@ -8172,14 +8178,6 @@ between the `.ce' and the `.ad c' requests.
     @result{}         the @quoteleft{}.ad c@quoteright{} requests.
 @endExample
 
-With no arguments, @code{ce} centers the next line of text.  @var{nnn}
-specifies the number of lines to be centered.  If the argument is zero
-or negative, centering is disabled.
-
-The basis for centering text is the line length (as set with the
-@code{ll} request) minus the indentation (as set with the @code{in}
-request).  Temporary indentation is ignored.
-
 The previous example illustrates a common idiom of turning centering on
 for a quantity of lines far in excess of what is required, and off again
 after the text to be centered.  This technique relieves humans of
@@ -8197,7 +8195,9 @@ of the next @var{nnn} productive input lines to the right margin without
 filling, then break again (regardless of the control character).  The
 count of lines remaining to be right-aligned is stored in the read-only
 register @code{.rj} and is associated with the environment
-(@pxref{Environments}).
+(@pxref{Environments}).  @var{nnn} specifies the number of lines to
+right-align.  If the argument is not positive, right-alignment is
+disabled.  Omitting the argument implies an @var{nnn} of @samp{1}.
 @endDefreq
 
 @DefreqList {ss, word-space-size [@Var{additional-sentence-space-size}]}
@@ -11328,8 +11328,8 @@ a non-negative font position or the name of a font.
 @DefregListEndx {.b}
 @cindex imitating boldface (@code{bd})
 @cindex boldface, imitating (@code{bd})
-Artificially create a bold font by printing each glyph twice, slightly
-offset.
+Embolden @var{font} by overstriking its glyphs offset by @var{offset}
+units minus one.
 
 Two syntax forms are available.
 
@@ -15714,8 +15714,27 @@ vice versa.
 Transparently output the contents of @var{file}.  Each line is output as
 if it were preceded by @code{\!}; however, the lines are @emph{not}
 subject to copy mode interpretation.  If the file does not end with a
-newline, then a newline is added (@code{trf} only).  For example, to
-define a macro@tie{}@code{x} containing the contents of
+newline, @code{trf} adds one.  Both requests cause a break.
+
+When used in a diversion, these requests embed a node (@pxref{Gtroff
+Internals}) in it that, when reread, causes the contents of @var{file}
+to be transparently copied to the output.  In @acronym{AT&T}
+@code{troff}, the contents of @var{file} are immediately copied to the
+output regardless of whether there is a current diversion; this
+behaviour is so anomalous that it must be considered a bug.
+
+@cindex @code{trf} request, and invalid characters
+@cindex characters, invalid for @code{trf} request
+@cindex invalid characters for @code{trf} request
+While @code{cf} copies the contents of @var{file} completely
+unprocessed, @code{trf} disallows characters such as NUL that are not
+valid @code{gtroff} input characters (@pxref{Identifiers}).
+
+For @code{cf}, within a diversion, ``completely unprocessed'' means that
+each line of a file to be inserted is handled as if it were preceded by
+@code{\!\\!}.
+
+To define a macro@tie{}@code{x} containing the contents of
 file@tie{}@file{f}, use
 
 @Example
@@ -15729,28 +15748,6 @@ file@tie{}@file{f}, use
 @noindent
 The calls to @code{ev} prevent the partially collected output line
 from becoming part of the diversion (@pxref{Diversions}).
-
-Both @code{trf} and @code{cf}, when used in a diversion, embed a node
-(@pxref{Gtroff Internals}) in it that, when reread, causes the contents
-of @var{file} to be transparently copied to the output.  In
-@acronym{AT&T} @code{troff}, the contents of @var{file} are immediately
-copied through to the output regardless of whether there is a current
-diversion; this behaviour is so anomalous that it must be considered a
-bug.
-
-@cindex @code{trf} request, and invalid characters
-@cindex characters, invalid for @code{trf} request
-@cindex invalid characters for @code{trf} request
-
-While @code{cf} copies the contents of @var{file} completely
-unprocessed, @code{trf} disallows characters such as NUL that are not
-valid @code{gtroff} input characters (@pxref{Identifiers}).
-
-For @code{cf}, within a diversion, `completely unprocessed' means that
-each line of a file to be inserted is handled as if it were preceded by
-@code{\!\\!}.
-
-Both requests cause a line break.
 @endDefreq
 
 @Defreq {nx, [@Var{file}]}
@@ -16302,23 +16299,23 @@ But we can fake it with `\&'.  |
 @endExample
 @endDefreq
 
-@DefreqList {psbb, filename}
+@DefreqList {psbb, file}
 @DefregItemx {llx}
 @DefregItemx {lly}
 @DefregItemx {urx}
 @DefregListEndx {ury}
 @cindex PostScript, bounding box
 @cindex bounding box
-Retrieve the bounding box of the PostScript image found in
-@var{filename}.  The file must conform to Adobe's @dfn{Document
-Structuring Conventions} (DSC); the command searches for a
-@code{%%BoundingBox} comment and extracts the bounding box values into
-the registers @code{llx}, @code{lly}, @code{urx}, and @code{ury}.  If an
-error occurs (for example, @code{psbb} cannot find the
-@code{%%BoundingBox} comment), it sets the four registers to zero.
+Retrieve the bounding box of the PostScript image found in @var{file},
+which must conform to Adobe's @dfn{Document Structuring Conventions}
+(DSC).  The request searches for a @code{%%BoundingBox} comment and
+extracts the bounding box values into the registers @code{llx},
+@code{lly}, @code{urx}, and @code{ury}.  If an error occurs (for
+example, @code{psbb} cannot find the @code{%%BoundingBox} comment), it
+sets the four registers to zero.
 
-The search path for @var{filename} can be controlled with the
-@option{-I} command-line option.
+The search path for @var{file} can be controlled with the @option{-I}
+command-line option.
 @endDefreq
 
 
@@ -16498,32 +16495,32 @@ environments, registers, and page location traps to the standard error
 stream.
 @c END Keep parallel with section "Debugging" of groff(7).
 
-@Defreq {lf, line [@Var{filename}]}
+@Defreq {lf, line [@Var{file}]}
 @pindex soelim
 @cindex multi-file documents
 @cindex documents, multi-file
 @cindex setting input line number (@code{lf})
 @cindex input line number, setting (@code{lf})
 @cindex number, input line, setting (@code{lf})
-Change the line number and optionally the file name GNU @code{troff}
-shall use for error and warning messages.  @var{line} is the input line
-number of the @emph{next} line.  Without an argument, the request is
-ignored.
+Set the input line number (and, optionally, the file name) GNU
+@code{troff} shall use for error and warning messages.  @var{line} is
+the input line number of the @emph{next} line.  Without an argument, the
+request is ignored.
 
-This request is primarily a debugging aid for documents that undergo
-preprocessing.  Programs like @command{tbl} that transform input in
-their own languages to @code{roff} requests use it so that any
-diagnostic messages emitted by @code{troff} correspond to the original
-source document.
+@code{lf}'s primary purpose is to aid the debugging of documents that
+undergo preprocessing.  Programs like @command{tbl} that transform input
+in their own languages intoto @code{roff} requests use it so that any
+diagnostic messages emitted by @code{troff} correspond to the source
+document.
 @endDefreq
 
-@DefreqList {tm, contents}
-@DefreqItemx {tm1, contents}
-@DefreqListEndx {tmc, contents}
+@DefreqList {tm, message}
+@DefreqItemx {tm1, message}
+@DefreqListEndx {tmc, message}
 @cindex printing to stderr (@code{tm}, @code{tm1}, @code{tmc})
 @cindex stderr, printing to (@code{tm}, @code{tm1}, @code{tmc})
-Send @var{contents}, which consumes the remainder of the input line, to
-the standard error stream.
+Send @var{message}, which consumes the remainder of the input line and
+cannot contain special characters, to the standard error stream.
 
 The @code{tm} request ignores leading spaces of @var{contents};
 @code{tm1} handles its argument similarly to the @code{ds} request: an
@@ -16534,9 +16531,9 @@ The @code{tmc} request is similar to @code{tm1} but does not append a
 newline (as is done in @code{tm} and @code{tm1}).
 @endDefreq
 
-@Defreq {ab, [@Var{contents}]}
+@Defreq {ab, [@Var{message}]}
 @cindex aborting (@code{ab})
-Write any @var{contents} to the standard error stream (like @code{tm})
+Write any @var{message} to the standard error stream (like @code{tm})
 and then abort GNU @code{troff}; that is, stop processing and terminate
 with a failure status.
 @endDefreq
@@ -16624,7 +16621,7 @@ This request causes a line break.
 @Defreq {backtrace, }
 @cindex backtrace of input stack (@code{backtrace})
 @cindex input stack, backtrace (@code{backtrace})
-Write a backtrace of the input stack to the standard error stream.
+Write the state of the input stack to the standard error stream.
 
 Consider the following in a file @file{test}.
 

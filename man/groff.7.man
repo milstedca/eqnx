@@ -2240,6 +2240,14 @@ Escape sequences may generally be used freely in
 except when it is read in copy mode.
 .
 .TPx
+.I message
+is a character sequence to be emitted on the standard error stream.
+.
+Special character escape sequences are
+.I not
+interpreted.
+.
+.TPx
 .I n
 is a numeric expression.
 .
@@ -2317,7 +2325,9 @@ Not all details of request behavior are outlined here.
 .
 See the
 .I groff
-Texinfo manual or
+Texinfo manual or,
+for features new to GNU
+.IR troff , \" GNU
 .MR groff_diff @MAN7EXT@ .
 .
 .
@@ -2377,8 +2387,8 @@ indicate Roman numerals and basic Latin alphabetics,
 respectively,
 in the lettercase specified.
 .
-The default is \[lq]0\[rq].
-.
+The default is
+.BR 0 .
 .
 .TPx
 .REQ .aln "new old"
@@ -2490,28 +2500,49 @@ Unformat ASCII characters, spaces, and some escape sequences in
 .
 .TPx
 .REQ .backtrace
-Write a backtrace of the input stack to the standard error stream.
+Write the state of the input stack to the standard error stream.
 .
-Also see the
+See the
 .B \-b
 option of
 .MR groff @MAN1EXT@ .
 .
 .TPx
+.REQ .bd font
+Stop emboldening font
+.I font.
+.
+.TPx
 .REQ .bd "font N"
 Embolden
 .I font
-by
+by overstriking its glyphs offset by
 .IR N \-1
 units.
 .
-.TPx
-.REQ .bd "S font N"
-Embolden Special Font
-.I S
-when current font is
-.IR font .
+See
+.register .b .
 .
+.TPx
+.REQ .bd "special-font font"
+Stop emboldening
+.I special-font
+when
+.I font
+is selected.
+.
+.TPx
+.REQ .bd "special-font font N"
+Embolden
+.I special-font,
+overstriking its glyphs offset by
+.IR N \-1
+units when
+.I font
+is selected.
+.
+See
+.register .b .
 .
 .TPx
 .REQ .blm
@@ -2612,14 +2643,15 @@ productive input lines without filling,
 then break again.
 .
 If
-.IR npl =0,
+.I npl
+\[<=] 0,
 stop centering.
 .
 .TPx
-.REQ .cf "filename"
-Copy contents of file
-.I filename
-unprocessed to stdout or to the diversion.
+.REQ .cf file
+Copy contents of
+.I file
+without formatting to the (top-level) diversion.
 .
 .TPx
 .REQ .cflags "n c1 c2 \fR\&.\|.\|.\&\fP"
@@ -3659,23 +3691,24 @@ See
 Immediately jump to end of current file.
 .
 .TPx
-.REQ .nx "filename"
-Immediately continue processing with file
-.IR file .
+.REQ .nx file
+Stop formatting current file and begin reading
+.I file.
 .
 .TPx
-.REQ .open "stream filename"
+.REQ .open "stream file"
 Open
-.I filename
+.I file
 for writing and associate the stream named
 .I stream
 with it.
 .
 .TPx
-.REQ .opena "stream filename"
-Like
-.request .open
-but append to it.
+.REQ .opena "stream file"
+As
+.request .open ,
+but append to
+.I file.
 .
 .TPx
 .REQ .os
@@ -3779,9 +3812,16 @@ also see
 .esc[] s \[+-]N .
 .
 .TPx
-.REQ .psbb "filename"
-Get the bounding box of a PostScript image
-.IR filename .
+.REQ .psbb file
+Retrieve the bounding box of the PostScript image found in
+.I file,
+which must conform to Adobe's Document Structuring Conventions (DSC).
+.
+See registers
+.BR llx ,
+.BR lly ,
+.BR urx ,
+.BR ury .
 .
 .TPx
 .REQ .pso "command"
@@ -3857,7 +3897,8 @@ productive input lines without filling,
 then break again.
 .
 If
-.IR npl =0,
+.I npl
+\[<=] 0,
 stop right-aligning.
 .
 .TPx
@@ -4183,25 +4224,26 @@ Enable track kerning for
 Three-part title.
 .
 .TPx
-.REQ .tm contents
-Print
-.I contents
-on stderr.
+.REQ .tm message
+Write
+.I message,
+followed by a newline,
+to the standard error stream.
 .
 .TPx
-.REQ .tm1 contents
-Print
-.I anything
-on stderr,
+.REQ .tm1 message
+As
+.request .tm ,
 but an initial neutral double quote in
-.I contents
-is stripped off to allow embedding of leading spaces.
+.I message
+is removed,
+allowing it to contain leading spaces.
 .
 .TPx
-.REQ .tmc contents
-Similar to
-.request .tm1
-without emitting a final newline.
+.REQ .tmc message
+As
+.request .tm1 ,
+without emitting a newline.
 .
 .TPx
 .REQ .tr "abcd\fR\&.\|.\|.\&\fP"
@@ -4215,9 +4257,15 @@ to
 etc.\& on output.
 .
 .TPx
-.REQ .trf "filename"
-Transparently output the contents of file
-.IR filename .
+.REQ .trf file
+Transparently output the contents of
+.I file.
+.
+Unlike
+.request .cf ,
+invalid input characters in
+.I file
+are rejected.
 .
 .TPx
 .REQ .trin "abcd\fR\&.\|.\|.\&\fP"

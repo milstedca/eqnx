@@ -7424,7 +7424,8 @@ any.
 @cindex renaming a register (@code{rnn})
 @cindex register, renaming (@code{rnn})
 Rename register @var{ident1} to @var{ident2}.  If @var{ident1} doesn't
-exist, the request is ignored.
+exist, the request is ignored.  Renaming a built-in register does not
+otherwise alter its properties.
 @endDefreq
 
 @Defreq {aln, new old}
@@ -7682,6 +7683,13 @@ Predefined registers whose identifiers start with a dot are read-only.
 Many are Boolean-valued, interpolating a true or false value testable
 with the @code{if}, @code{ie}, or @code{while} requests.  Some read-only
 registers are string-valued, meaning that they interpolate text.
+
+@cindex removing a built-in register
+@cindex register, built-in, removing
+@cindex built-in register, removing
+@strong{Caution:@:} Built-in registers are subject to removal like
+others; once removed, they can be recreated only as normal writable
+registers and will not reflect formatter state.
 
 A register name (without the dot) is often associated with a request of
 the same name.  A complete listing of all built-in registers can be
@@ -12183,7 +12191,7 @@ Gray codes are explored in \*[cite Morgan 1998].
 @cindex trailing spaces in string definitions and appendments
 @cindex comments, with @code{ds}
 @cindex @code{ds} request, and comments
-@strong{Caution:} Unlike other requests, the second argument to the
+@strong{Caution:@:} Unlike other requests, the second argument to the
 @code{ds} request consumes the remainder of the input line, including
 trailing spaces.  This means that comments on a line with such a request
 can introduce unwanted space into a string when they are set off from
@@ -17154,6 +17162,13 @@ string is a common feature of post-CSTR@tie{}#54
 @code{troff}s@footnote{DWB@tie{}3.3, Solaris, Heirloom Doctools, and
 Plan@tie{}9 @code{troff} all support it.} but valid values are specific
 to each implementation.
+
+@cindex removal of read-only registers, incompatibility with @acronym{AT&T} @code{troff}
+@cindex register, read-only, removal, incompatibility with @acronym{AT&T} @code{troff}
+@cindex read-only register removal, incompatibility with @acronym{AT&T} @code{troff}
+@acronym{AT&T} @code{troff} ignored attempts to remove read-only
+registers; GNU @code{troff} honors such requests.  @xref{Built-in
+Registers}.
 
 @cindex output device usage register (@code{.T}), incompatibility with @acronym{AT&T} @code{troff}
 The (read-only) register @code{.T} interpolates@tie{}1 if GNU

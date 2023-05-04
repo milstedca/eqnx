@@ -3912,7 +3912,7 @@ manual [Lesk 1978].
 .
 .PP
 The error-handling policy of
-.I groff ms
+.I "groff ms"
 is to detect and report errors,
 rather than to ignore them silently.
 .
@@ -3923,7 +3923,7 @@ Research Unix supported
 .B P1 /
 .B P2
 macros to bracket code examples;
-.I groff ms
+.I "groff ms"
 does not.
 .
 .
@@ -4059,7 +4059,7 @@ it does.
 .
 .PP
 To make
-.I groff ms
+.I "groff ms"
 use the default page offset
 (which also specifies the left margin),
 the

@@ -1730,6 +1730,19 @@ macros\[rq],
 by Deri James.
 .
 .
+.TP
+.I present.tmac
+is part of
+.UR https://\:bob\:.diertens\:.org/\:corner/\:useful/\:gpresent/
+gpresent
+.UE ,
+a software package by Bob Diertens that works with
+.I groff
+to produce presentations
+(\[lq]foils\[rq],
+or \[lq]slide decks\[rq]).
+.
+.
 .P
 .MR afmtodit @MAN1EXT@ ,
 .MR groff @MAN1EXT@ ,

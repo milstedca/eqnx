@@ -273,8 +273,6 @@ must be in the format output by
 This is described in
 .MR groff_out @MAN5EXT@ .
 .
-.
-.LP
 In addition, the device and font description files for the device used
 must meet certain requirements:
 .

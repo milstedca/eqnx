@@ -182,7 +182,7 @@ Search the directory
 .I dir
 for files named in
 .B \[rs]X\[aq]pdf: pdfpic\[aq]
-escape sequences.
+device control commands.
 .
 .B \-I
 may be specified more than once;
@@ -235,7 +235,7 @@ complains about this line if it is included, but works anyway.
 .TP
 .BR \-u \~[\c
 .IR cmap-file ]
-.B gropdf
+.I gropdf
 normally includes a ToUnicode CMap with any font created using
 .I text.enc
 as the encoding file,
@@ -664,7 +664,8 @@ the \[lq]hand pointing left\[rq] glyph
 .RB ( \[rs][lh] )
 is available since it has been defined using the
 .B \[rs]X\[aq]pdf: xrev\[aq]
-extension which reverses the direction of letters within words.
+device control command,
+which reverses the direction of letters within words.
 .
 .
 .LP
@@ -674,21 +675,22 @@ and
 .B \[rs]M
 is black.
 .
+.
 .LP
 .I gropdf
-understands some of the X\~commands produced using the
-.B \[rs]X
-escape sequences supported by
-.B grops.
-Specifically, the following is supported.
+understands some of the device control commands supported by
+.MR grops 1 .
+.
 .
 .TP
 .B \[rs]X\[aq]ps: invis\[aq]
 Suppress output.
 .
+.
 .TP
 .B \[rs]X\[aq]ps: endinvis\[aq]
 Stop suppressing output.
+.
 .
 .TP
 .BI "\[rs]X\[aq]ps: exec gsave currentpoint 2 copy translate\~" n\~\c
@@ -698,21 +700,25 @@ where
 is the angle of rotation.
 .
 This is to support the
-.I align
+.B align
 command in
-.BR gpic .
+.MR @g@pic 1 .
+.
 .
 .TP
 .B \[rs]X\[aq]ps: exec grestore\[aq]
-Again used by
-.B gpic
-to restore after rotation.
+Used by
+.MR @g@pic 1
+to restore state after rotation.
+.
 .
 .TP
 .BI "\[rs]X\[aq]ps: exec " "n\~" "setlinejoin\[aq]"
 where
 .I n
 can be one of the following values.
+.
+.
 .IP
 0 = Miter join
 .br
@@ -720,11 +726,14 @@ can be one of the following values.
 .br
 2 = Bevel join
 .
+.
 .TP
 .BI "\[rs]X\[aq]ps: exec " "n " "setlinecap\[aq]"
 where
 .I n
 can be one of the following values.
+.
+.
 .IP
 0 = Butt cap
 .br
@@ -779,6 +788,8 @@ commands are already available in other macro packages.
 These commands are implemented with
 .I groff
 X commands:-
+.
+.
 .LP
 .TP
 .B \[rs]X\[aq]ps: exec %%%%PAUSE\[aq]
@@ -797,7 +808,7 @@ is available as a macro.
 .B \[rs]X\[aq]ps: exec %%%%BEGINONCE\[aq]
 Any text following this command (up to %%%%ENDONCE) is shown only once,
 the next %%%%PAUSE will remove it.
-If producing a non presentation pdf, i.e.\&
+If producing a non-presentation PDF, i.e.\&
 ignoring the pauses, see
 .I \%GROPDF_NOSLIDE
 below, this text is ignored.
@@ -812,10 +823,10 @@ is what implements the \&.BLOCKS Once/.BLOCKE commands in
 .
 .LP
 The
-.B mom
-macro set already has integration with these extensions so you can build
-slides with
-.BR mom .
+.I mom
+macro package already integrates these extensions,
+so you can build slides with
+.IR mom .
 .
 .
 .LP
@@ -825,7 +836,9 @@ with
 .I gropdf
 there is no need to run the program
 .MR presentps @MAN1EXT@
-since the output will already be a presentation pdf.
+since the output will already be a presentation PDF.
+.
+.
 .LP
 All other
 .B ps:
@@ -835,7 +848,8 @@ tags are silently ignored.
 .LP
 One
 .B \[rs]X
-special used by the DVI driver is also recognised:
+device control command used by the DVI driver is also recognised.
+.
 .
 .TP
 .BI \[rs]X\[aq]papersize= paper-format \[aq]
@@ -857,17 +871,14 @@ it must be done before you start creating the page.
 .
 .
 .LP
-In addition,
 .I gropdf
-supports its own suite of
+supports several more device control features using the
 .B pdf:
-tags.
+tag.
 .
 Some have counterpart
 .I convenience macros
-which take the same arguments and behave equivalently.
-.
-The following tags are supported:
+that take the same arguments and behave equivalently.
 .
 .
 .TP
@@ -889,14 +900,14 @@ If
 .I alignment
 is
 .B \-L
-the drawing is left aligned.
+the drawing is left-aligned.
 .
 If it is
 .B \-C
 or
 .B \-R
 a
-.I linelength
+.I line-length
 greater than the width of the drawing is required as well.
 .
 If
@@ -914,14 +925,17 @@ height.
 .
 .TP
 .B \[rs]X\[aq]pdf: xrev\[aq]
-This toggles a flag which reverses the direction of printing
-.IR "letter by letter" ,
-i.e., each separate letter is reversed, not the entire word.
+Toggle the reversal of glyph direction.
 .
-This is useful for reversing the direction of glyphs in the Dingbats
-font.
+This feature works \[lq]letter by letter\[rq],
+that is,
+each letter in a word is reversed left-to-right,
+not the entire word.
 .
-To return to normal printing repeat the command again.
+One application is the reversal of glyphs in the Zapf Dingbats font.
+.
+To restore the normal glyph orientation,
+repeat the command.
 .
 .
 .TP
@@ -1611,10 +1625,13 @@ and
 .
 .TP
 .I GROPDF_NOSLIDE
-If this is set true,
+If set and evaluates to a true value
+(to Perl),
+.\" XXX: The above is inconsistent with the way grotty(1) handles
+.\" "GROFF_NO_SGR".
 .I gropdf
-will ignore all commands which produce a presentation pdf,
-and produce a normal pdf instead.
+ignores commands specific to presentation PDFs,
+producing a normal PDF instead.
 .
 .
 .TP
@@ -1624,7 +1641,7 @@ A timestamp
 to use as the output creation timestamp in place of the current time.
 .
 The time is converted to human-readable form using Perl's
-.I localtime()
+.I \%localtime()
 function and recorded in a PDF comment.
 .
 .

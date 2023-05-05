@@ -1582,6 +1582,7 @@ convenient names, like @samp{letter} or @samp{a4}; see
 @cite{groff_tmac@r{(5)}}.  The default used by the formatter depends on
 its build configuration, but is usually one of the foregoing, as
 geographically appropriate.
+@c groff(1), being generated, says what the default is.
 
 It is up to each macro package to respect the page dimensions configured
 in this way.

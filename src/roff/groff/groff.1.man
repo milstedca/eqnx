@@ -847,9 +847,7 @@ like \[lq]letter\[rq] or
 see
 .MR groff_tmac @MAN5EXT@ .
 .
-The default used by the formatter depends on its build configuration;
-in this installation,
-it is
+The formatter's default in this installation is
 .RB \[lq] @PAGE@ \[rq].
 .
 .

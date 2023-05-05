@@ -5429,6 +5429,8 @@ prevents unwanted space from creeping into them during source document
 maintenance.
 .
 .
+.br
+.ne 3v
 .P
 Several requests exist to perform rudimentary string operations.
 .

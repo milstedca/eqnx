@@ -1257,6 +1257,8 @@ but
 is not recognized if called with arguments.
 .
 .
+.br
+.ne 4v \" XXX: should need only 3v!
 .TP
 .BI include\~ file
 .TQ

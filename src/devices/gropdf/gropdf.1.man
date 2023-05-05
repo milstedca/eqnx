@@ -747,13 +747,19 @@ or
 .
 A subset of these macros are installed automatically when you use
 .B \-Tpdf
-so you should not need to use \[oq]\-m pdfmark\[cq] for using most of
-the PDF functionality.
+so you should not need to use
+.RB \[lq] "\-m pdfmark" \[rq]
+to access most PDF functionality.
+.
 .
 .LP
 .I gropdf
-also supports a subset of the commands introduced in present.tmac.
+also supports a subset of the commands introduced in
+.IR present.tmac .
+.
 Specifically it supports:-
+.
+.
 .IP
 PAUSE
 .br
@@ -761,10 +767,14 @@ BLOCKS
 .br
 BLOCKE
 .
+.
 .LP
 Which allows you to create presentation type PDFs.
+.
 Many of the other
 commands are already available in other macro packages.
+.
+.
 .LP
 These commands are implemented with
 .I groff
@@ -780,9 +790,9 @@ transition setting
 .RB \[lq] "\[rs]X\[aq]pdf: transition\[aq]" \[rq]
 below).
 .
-This command
-can be introduced using the macro
-.BR .pdfpause .
+Equivalently,
+.B \%.pdfpause
+is available as a macro.
 .TP
 .B \[rs]X\[aq]ps: exec %%%%BEGINONCE\[aq]
 Any text following this command (up to %%%%ENDONCE) is shown only once,
@@ -796,15 +806,22 @@ below, this text is ignored.
 .B \[rs]X\[aq]ps: exec %%%%ENDONCE\[aq]
 This terminates the block defined by %%%%BEGINONCE.
 This pair of commands
-is what implements the \&.BLOCKS Once/.BLOCKE commands in present.tmac.
+is what implements the \&.BLOCKS Once/.BLOCKE commands in
+.IR present.tmac .
+.
+.
 .LP
 The
 .B mom
 macro set already has integration with these extensions so you can build
 slides with
 .BR mom .
+.
+.
 .LP
-If you use present.tmac with
+If you use
+.I present.tmac
+with
 .I gropdf
 there is no need to run the program
 .MR presentps @MAN1EXT@
@@ -846,7 +863,12 @@ supports its own suite of
 .B pdf:
 tags.
 .
+Some have counterpart
+.I convenience macros
+which take the same arguments and behave equivalently.
+.
 The following tags are supported:
+.
 .
 .TP
 .BI "\[rs]X\[aq]pdf: pdfpic\~" file\~\c
@@ -906,10 +928,12 @@ To return to normal printing repeat the command again.
 .BI "\[rs]X\[aq]pdf: markstart " "/ANN-definition" \[aq]
 .TQ
 .B \[rs]X\[aq]pdf: markend\[aq]
-The macros which support PDF bookmarks use these calls internally to
-start and stop (respectively) the definition of bookmark hot spot;
-the user will have called \[lq].pdfhref\~L\[rq] with the text which will
-become the hot spot region).
+Macros that support PDF bookmarks use these calls internally to
+start and stop (respectively) the placement of the bookmark's
+.I hot spot;
+the user will have called
+.RB \[lq] .pdfhref\~L \[rq]
+with the text of the hot spot.
 .
 Normally,
 these are never used except from within the
@@ -921,33 +945,35 @@ macros.
 .B \[rs]X\[aq]pdf: marksuspend\[aq]
 .TQ
 .B \[rs]X\[aq]pdf: markrestart\[aq]
-If you are using page traps to produce headings, footings, etc., you
-need to use these in case a \[oq]hot spot\[cq] crosses a page
-boundary, otherwise any text output by the heading or footing macro
-will be marked as part of the \[oq]hot spot\[cq].
+If you use a page location trap to produce a header or footer,
+or otherwise interrupt a document's text,
+you need to use these commands if a PDF
+.I hot spot
+crosses a trap boundary;
+otherwise any text output by the trap will be marked as part of the hot
+spot.
 .
-To stop this happening just place \[oq].pdfmarksuspend\[cq] and
-\[oq].pdfmarkrestart\[cq] at the start and end of the page trap macro,
+To prevent this error,
+place these device control commands or their corresponding
+convenience macros
+.B \%.pdfmarksuspend
+and
+.B \%.pdfmarkrestart
+at the start and end of the trap macro,
 respectively.
-.
-(These are just convenience macros which emit the corresponding
-.B \[rs]X
-escapes sequence.
-.
-These macros must be used only within page traps.)
 .
 .
 .TP
 .BI "\[rs]X\[aq]pdf: pagename\~" name \[aq]
-This gives the current page a
+Assign the current page a
 .IR name .
-.IP
-There are two default names for any document which do not need to
-be declared
-.RI \[oq] top "\[cq] and \[oq]" bottom \[cq].
-.IP
-The convenience command for this is
-.BR .pdfpagename .
+.
+All documents bear two default names,
+.RB \[oq] top "\[cq] and \[oq]" bottom \[cq].
+.
+The convenience macro for this command is
+.BR \%.pdfpagename .
+.
 .
 .TP
 .BI "\[rs]X'pdf: switchtopage\~" "when name" \[aq]
@@ -960,15 +986,16 @@ can be either
 .RI \[oq] after "\[cq] or \[oq]" before \[cq].
 If it is omitted it defaults to
 .RI \[oq] before \[cq].
-.IP
-The convenience command for this is
-.BR .pdfswitchtopage .
+.
 It should be used at the end of the page before you want the switch to
 happen.
-.IP
+.
 This allows pages such as a TOC to be moved to elsewhere in the
 document,
 but more esoteric uses are possible.
+.
+The convenience macro for this command is
+.BR \%.pdfswitchtopage .
 .
 .
 .TP
@@ -1734,7 +1761,7 @@ by Deri James.
 .I present.tmac
 is part of
 .UR https://\:bob\:.diertens\:.org/\:corner/\:useful/\:gpresent/
-gpresent
+.I gpresent
 .UE ,
 a software package by Bob Diertens that works with
 .I groff

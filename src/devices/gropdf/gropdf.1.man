@@ -1341,6 +1341,38 @@ see
 .
 .
 .\" ====================================================================
+.SS Macros
+.\" ====================================================================
+.
+.IR gropdf 's
+support macros in
+.I pdf\.tmac
+define the convenience macros described above.
+.
+Some features have no direct device control command counterpart.
+.
+.
+.\" pdfhref
+.
+.
+.TP
+.BI ".pdfinfo /" "field content"\~\c
+\&.\|.\|.
+Define PDF metadata.
+.
+.I field
+may be be one of
+.BR Title ,
+.BR Author ,
+.BR Subject ,
+.BR Keywords ,
+or another datum supported by the PDF standard or your reader.
+.
+.I field
+must be prefixed with a slash.
+.
+.
+.\" ====================================================================
 .SS "Importing graphics"
 .\" ====================================================================
 .

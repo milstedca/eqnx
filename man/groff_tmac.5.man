@@ -93,12 +93,14 @@ macros\[rq].
 .
 .
 .P
-A macro package must be named
+A macro file must have a name in the form
 .RI name .tmac
+(or
+.IR tmac. name)
 and be placed in a
 .RI \[lq] tmac
 directory\[rq] to be loadable with the
-.B \-m
+.BI \-m name
 option.
 .
 Section \[lq]Environment\[rq] of

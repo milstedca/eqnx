@@ -1436,12 +1436,10 @@ colons, to separate the directories in the lists described above.
 @cindex searching macros
 @cindex macros, searching
 
-All macro file names must be named @code{@var{name}.tmac} or
-@code{tmac.@var{name}} to make the @option{-m@var{name}} command-line
-option work.  The @code{mso} request doesn't have this restriction; any
-file name can be used, and @code{gtroff} won't try to append or prepend
-the @samp{tmac} string.
-
+A macro file must have a name in the form @code{@var{name}.tmac} or
+@code{tmac.@var{name}} and be placed in a @dfn{tmac directory} to be
+found by the @option{-m@var{name}} command-line option.@footnote{The
+@code{mso} request does not have these limitations.  @xref{I/O}.}
 @cindex tmac, directory
 @cindex directory, for tmac files
 @cindex tmac, path
@@ -1452,18 +1450,18 @@ the @samp{tmac} string.
 @cindex locating macro packages
 @cindex macro package search path
 @cindex package, macro, search path
-Macro files are kept in the @dfn{tmac directories}, all of which
-constitute the @dfn{tmac path}.  The elements of the search path for
-macro files are (in that order):
+Together, these directories constitute the @dfn{tmac path}.  Each
+directory is searched in the following order until the desired macro
+file is found or the list is exhausted.
 
 @itemize @bullet
 @item
-The directories specified with @code{gtroff}'s or @code{groff}'s
+Directories specified with GNU @code{troff}'s or @code{groff}'s
 @option{-M} command-line option.
 
 @item
 @tindex GROFF_TMAC_PATH@r{, environment variable}
-The directories given in the @env{GROFF_TMAC_PATH} environment variable.
+Directories listed in the @env{GROFF_TMAC_PATH} environment variable.
 
 @item
 @cindex safer mode
@@ -1472,21 +1470,24 @@ The directories given in the @env{GROFF_TMAC_PATH} environment variable.
 @cindex mode, unsafe
 @cindex current directory
 @cindex directory, current
-The current directory (only if in unsafe mode using the @option{-U}
-command-line switch).
+The current working directory (only if in unsafe mode using the
+@option{-U} command-line option).
 
 @item
 @cindex home directory
 @cindex directory, home
-The home directory.
+The user's home directory, @env{HOME}.
 
 @item
-@cindex site-specific directory
-@cindex directory, site-specific
+@cindex site-local directory
+@cindex directory, site-local
 @cindex platform-specific directory
 @cindex directory, platform-specific
-A platform-dependent directory, a site-specific (platform-independent)
-directory, and the main tmac directory; the default locations are
+A platform-dependent directory, a site-local (platform-independent)
+directory, and the main @slanted{tmac} directory.  The locations
+corresponding to your installation are listed in section ``Environment''
+of @cite{gtroff@r{(1)}}.  If not otherwise configured, they are as
+follows.
 
 @Example
 /usr/local/lib/groff/site-tmac
@@ -1495,9 +1496,9 @@ directory, and the main tmac directory; the default locations are
 @endExample
 
 @noindent
-assuming that the version of @code{groff} is 1.23.0, and the
-installation prefix was @file{/usr/local}.  It is possible to fine-tune
-those directories during the installation process.
+The foregoing assumes that the version of @code{groff} is 1.23.0, and
+that the installation prefix was @file{/usr/local}.  It is possible to
+fine-tune these locations during the source configuration process.
 @end itemize
 
 
@@ -1510,41 +1511,44 @@ those directories during the installation process.
 @cindex searching fonts
 @cindex fonts, searching
 
-Basically, there is no restriction how font files for @code{groff} are
-named and how long font names are; however, to make the font family
-mechanism work (@pxref{Font Families}), fonts within a family should
-start with the family name, followed by the shape.  For example, the
-Times family uses @samp{T} for the family name and @samp{R}, @samp{B},
-@samp{I}, and @samp{BI} to indicate the shapes `roman', `bold',
-`italic', and `bold italic', respectively.  Thus the final font names
-are @samp{TR}, @samp{TB}, @samp{TI}, and @samp{TBI}.
+@code{groff} enforces few restrictions on how font description files are
+named.  For its family/style mechanism to work (@pxref{Font Families}),
+the names of fonts within a family should start with the family name,
+followed by the style.  For example, the Times family uses @samp{T} for
+the family name and @samp{R}, @samp{B}, @samp{I}, and @samp{BI} to
+indicate the styles `roman', `bold', `italic', and `bold italic',
+respectively.  Thus the final font names are @samp{TR}, @samp{TB},
+@samp{TI}, and @samp{TBI}.
 
 @cindex font path
 @cindex path, for font files
-All font files are kept in the @dfn{font directories}, which constitute
-the @dfn{font path}.  The file search functions always append the
-directory @code{dev}@var{name}, where @var{name} is the name of the
-output device.  Assuming, say, DVI output, and @file{/foo/bar} as a font
-directory, the font files for @command{grodvi} must be in
-@file{/foo/bar/devdvi}.
-
-The elements of the search path for font files are (in that order):
+Font description files are kept in @dfn{font directories}, which
+together constitute the @dfn{font path}.  The search procedure
+always appends the directory @code{dev}@var{name}, where @var{name} is
+the name of the output device.  Assuming @TeX{} DVI output, and
+@file{/foo/bar} as a font directory, the font description files for
+@command{grodvi} must be in @file{/foo/bar/devdvi}.
+Each directory in the font path is searched in the following order until
+the desired font description file is found or the list is exhausted.
 
 @itemize @bullet
 @item
-The directories specified with @code{gtroff}'s or @code{groff}'s
-@option{-F} command-line option.  All device drivers and some
-preprocessors also have this option.
+Directories specified with GNU @code{troff}'s or @code{groff}'s
+@option{-f} command-line option.  All output drivers (and some
+preprocessors) support this option as well, because they require
+information about the glyphs to be rendered in the document.
 
 @item
 @tindex GROFF_FONT_PATH@r{, environment variable}
-The directories given in the @env{GROFF_FONT_PATH} environment variable.
+Directories listed in the @env{GROFF_FONT_PATH} environment variable.
 
 @item
-@cindex site-specific directory
-@cindex directory, site-specific
-A site-specific directory and the main font directory; the default
-locations are
+@cindex site-local directory
+@cindex directory, site-local
+A site-local directory and the main font description directory.
+The locations corresponding to your installation are listed in section
+``Environment'' of @cite{gtroff@r{(1)}}.  If not otherwise configured,
+they are as follows.
 
 @Example
 /usr/local/share/groff/site-font
@@ -1552,9 +1556,9 @@ locations are
 @endExample
 
 @noindent
-assuming that the version of @code{groff} is 1.23.0, and the
-installation prefix was @file{/usr/local}.  It is possible to fine-tune
-those directories during the installation process.
+The foregoing assumes that the version of @code{groff} is 1.23.0, and
+that the installation prefix was @file{/usr/local}.  It is possible to
+fine-tune these locations during the source configuration process.
 @end itemize
 
 

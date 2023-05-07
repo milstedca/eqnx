@@ -581,7 +581,7 @@ output driver library handles them.
 .
 .
 .TP
-.command m "scheme \f[R][\f[]component\f[R]] .\|.\|."
+.command m "scheme \f[R][\f[]component\f[R] .\|.\|.]"
 Select the stroke color using the
 .IR component s
 in the color space

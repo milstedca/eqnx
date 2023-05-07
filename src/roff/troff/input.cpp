@@ -8815,14 +8815,16 @@ static void do_error(error_type type,
     fputs("debug: ", stderr);
     break;
   case OUTPUT_WARNING:
-    double fromtop = topdiv->get_vertical_position().to_units() / warn_scale;
-    fprintf(stderr, "warning [p %d, %.1f%c",
+    double fromtop = topdiv->get_vertical_position().to_units() \
+		     / warn_scale;
+    fprintf(stderr, "warning [page %d, %.1f%c",
 	    topdiv->get_page_number(), fromtop, warn_scaling_indicator);
     if (topdiv != curdiv) {
       double fromtop1 = curdiv->get_vertical_position().to_units()
 			/ warn_scale;
-      fprintf(stderr, ", div '%s', %.1f%c",
-	      curdiv->get_diversion_name(), fromtop1, warn_scaling_indicator);
+      fprintf(stderr, " (diversion '%s', %.1f%c)",
+	      curdiv->get_diversion_name(), fromtop1,
+	      warn_scaling_indicator);
     }
     fprintf(stderr, "]: ");
     break;

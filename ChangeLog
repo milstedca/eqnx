@@ -1,3 +1,12 @@
+2023-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Revise output warning diagnostic format.
+
+	* src/roff/troff/input.cpp (do_error): For the `OUTPUT_WARNING`
+	value of the `error_type` enum, spell out the words "page" and
+	"diversion" instead of abbreviating them, and place the
+	diversion information (if present) in parentheses.
+
 2023-05-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Trivially refactor.

@@ -8826,7 +8826,29 @@ diversion, any @var{distance} argument is ignored.  The default scaling
 unit is @samp{v}.  If @var{distance} is not specified, @samp{1v} is
 assumed.
 
-You may wish to use the following macros to set the baseline of the next
+@Example
+.pl 5v \" Set page length to 5 vees.
+.de xx
+\-\-\-
+.  br
+..
+.wh 0 xx \" Set a trap at the top of the page.
+foo on page \n%
+.sp 2v
+bar on page \n%
+.sp 50v \" This will cause a page break.
+baz on page \n%
+.pl \n(nlu \" Truncate page to current position.
+    @result{} ---
+    @result{} foo on page 1
+    @result{}
+    @result{}
+    @result{} bar on page 1
+    @result{} ---
+    @result{} baz on page 2
+@endExample
+
+You might use the following macros to set the baseline of the next
 output text at a given distance from the top or the bottom of the page.
 We subtract one line height (@code{\n[.v]}) because the @code{|}
 operator moves to one vee below the page top (recall @ref{Numeric
@@ -8845,26 +8867,6 @@ Expressions}).
 @noindent
 A call to @samp{.y-from-bot-up 10c} means that the next text baseline
 will be 10@tie{}cm from the bottom edge of the paper.
-
-@Example
-.de xxx
-..
-.
-.wh 0 xxx
-.
-.pl 5v
-foo
-.sp 2
-bar
-.sp 50
-baz
-    @result{} foo
-    @result{}
-    @result{}
-    @result{} bar
-    @result{}
-    @result{} baz
-@endExample
 @endDefreq
 
 @DefreqList {ls, [@Var{count}]}
@@ -8884,8 +8886,8 @@ value before the last @code{ls} call.  The default is @code{1}.
 @c @endExample
 
 @cindex line spacing register (@code{.L})
-The read-only register @code{.L} contains the current line spacing.  The
-line spacing is associated with the environment (@pxref{Environments}).
+The read-only register @code{.L} contains the current line spacing; it
+is associated with the environment (@pxref{Environments}).
 @endDefreq
 
 The @code{ls} request is a coarse mechanism.  @xref{Changing the Type
@@ -8894,17 +8896,17 @@ Size}, for the requests @code{vs} and @code{pvs} as alternatives to
 
 @DefescList {\\x, @code{'}, spacing, @code{'}}
 @DefregListEndx {.a}
-Sometimes, an output line required additional vertical spacing, for
+Sometimes, an output line requires additional vertical spacing, for
 instance to allow room for a tall construct like an inline equation with
-exponents or subscripts (particularly if they are iterated).
-The @code{\x} escape sequence takes a delimited measurement (like
+exponents or subscripts (particularly if they are iterated).  The
+@code{\x} escape sequence takes a delimited measurement (like
 @samp{\x'3p'}) to increase the vertical spacing of the pending output
 line.  The default scaling unit is @samp{v}.  If the measurement is
 positive, extra vertical space is inserted below the current line; a
 negative measurement adds space above.  If @code{\x} is applied to the
 pending output line multiple times, the maxima of the positive and
-negative adjustments are used.  The delimiter need not be a neutral
-apostrophe; see @ref{Delimiters}.
+negative adjustments are separately applied.  The delimiter need not be
+a neutral apostrophe; see @ref{Delimiters}.
 
 @cindex extra post-vertical line space register (@code{.a})
 The @code{.a} read-only register contains the extra vertical spacing
@@ -8914,32 +8916,36 @@ encountered on that line.)  This quantity is exposed via a register
 because if an output line requires this ``extra post-vertical line
 spacing'', and the subsequent output line requires ``extra pre-vertical
 line spacing'' (a negative argument to @code{\x}), then applying both
-can lead to excessive spacing between the output lines.
+can lead to excessive spacing between the output lines.  Text that is
+piling high on line @var{n} might not require (as much) extra
+pre-vertical line spacing if line @var{n}@minus{}1 carries extra
+post-vertical line spacing.
 
-Use of @code{\x} can be necessary in combination with the @code{\b}
-escape sequence, as the following example shows.
+Use of @code{\x} can be necessary in combination with the
+bracket-building escape sequence @code{\b},@footnote{@xref{Drawing
+Requests}.} as the following example shows.
 
 @Example
-This is a test of \[rs]b.
-.br
-This is a test of \[rs]b.
-.br
-This is a test of \b'xyz'\x'-1m'\x'1m'.
-.br
-This is a test of \[rs]b.
-.br
-This is a test of \[rs]b.
-    @result{} This is a test of \b.
-    @result{} This is a test of \b.
+.nf
+This is a test of \[rs]b (1).
+This is a test of \[rs]b (2).
+This is a test of \b'xyz'\x'-1m'\x'1m' (3).
+This is a test of \[rs]b (4).
+This is a test of \[rs]b (5).
+    @result{} This is a test of \b (1).
+    @result{} This is a test of \b (2).
     @result{}                   x
-    @result{} This is a test of y.
+    @result{} This is a test of y (3).
     @result{}                   z
-    @result{} This is a test of \b.
-    @result{} This is a test of \b.
+    @result{} This is a test of \b (4).
+    @result{} This is a test of \b (5).
 @endExample
 @endDefesc
 
-@need 1000
+@noindent
+Without @code{\x}, the backslashes on the lines marked @samp{(2)} and
+@samp{(4)} would be overprinted.
+
 @DefreqList {ns, }
 @DefreqItemx {rs, }
 @DefregListEndx {.ns}

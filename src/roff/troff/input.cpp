@@ -116,7 +116,7 @@ bool have_multiple_params = false;	// e.g., \[e aa], \*[foo bar]
 double spread_limit = -3.0 - 1.0;	// negative means deactivated
 
 double warn_scale;
-char warn_scaling_indicator;
+char warn_scaling_unit;
 int debug_state = 0;		// turns on debugging of the html troff state
 
 search_path *mac_path = &safer_macro_path;
@@ -6927,7 +6927,7 @@ void warnscale_request()
 	      "scaling unit '%1' invalid; using 'i' instead", c);
       c = 'i';
     }
-    warn_scaling_indicator = c;
+    warn_scaling_unit = c;
   }
   skip_line();
 }
@@ -8199,7 +8199,7 @@ int main(int argc, char **argv)
   sizescale = font::sizescale;
   device_has_tcommand = font::has_tcommand;
   warn_scale = (double)units_per_inch;
-  warn_scaling_indicator = 'i';
+  warn_scaling_unit = 'i';
   if (!fflag && font::family != 0 && *font::family != '\0')
     default_family = symbol(font::family);
   font_size::init_size_table(font::sizes);
@@ -8818,13 +8818,13 @@ static void do_error(error_type type,
     double fromtop = topdiv->get_vertical_position().to_units() \
 		     / warn_scale;
     fprintf(stderr, "warning [page %d, %.1f%c",
-	    topdiv->get_page_number(), fromtop, warn_scaling_indicator);
+	    topdiv->get_page_number(), fromtop, warn_scaling_unit);
     if (topdiv != curdiv) {
       double fromtop1 = curdiv->get_vertical_position().to_units()
 			/ warn_scale;
       fprintf(stderr, " (diversion '%s', %.1f%c)",
 	      curdiv->get_diversion_name(), fromtop1,
-	      warn_scaling_indicator);
+	      warn_scaling_unit);
     }
     fprintf(stderr, "]: ");
     break;

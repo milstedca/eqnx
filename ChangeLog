@@ -1,5 +1,13 @@
 2023-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/input.cpp (top level, warnscale_request, main,
+	do_error): Rename global `warn_scaling_indicator` to
+	`warn_scaling_unit`, to align with our documentation.
+
+2023-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Revise output warning diagnostic format.
 
 	* src/roff/troff/input.cpp (do_error): For the `OUTPUT_WARNING`

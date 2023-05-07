@@ -1,4 +1,4 @@
-/* Copyright (C) 1989-2022 Free Software Foundation, Inc.
+/* Copyright (C) 1989-2023 Free Software Foundation, Inc.
      Written by James Clark (jjc@jclark.com)
 
 This file is part of groff.
@@ -175,11 +175,11 @@ static void assign_escape_character()
   char already_cc[] = "the control character is already";
   char already_nbcc[] = "the no-break control character is already";
   char *already_message = 0 /* nullptr */;
-  if (ec == curenv->control_char) {
+  if (curenv->get_control_character() == ec) {
       already_message = already_cc;
       do_nothing = true;
   }
-  else if (ec == curenv->no_break_control_char) {
+  else if (curenv->get_no_break_control_character() == ec) {
       already_message = already_nbcc;
       do_nothing = true;
   }
@@ -213,6 +213,82 @@ void save_escape_char()
 void restore_escape_char()
 {
   escape_char = saved_escape_char;
+  skip_line();
+}
+
+void assign_control_character()
+{
+  char cc = '\0';
+  bool is_invalid = false;
+  if (has_arg()) {
+    if (tok.ch() == 0)
+      is_invalid = true;
+    else
+      cc = tok.ch();
+  }
+  else
+    cc = '\\';
+  bool do_nothing = false;
+  char already_ec[] = "the escape character is already";
+  char already_nbcc[] = "the no-break control character is already";
+  char *already_message = 0 /* nullptr */;
+  if (cc == escape_char) {
+      already_message = already_ec;
+      do_nothing = true;
+  }
+  else if (curenv->get_no_break_control_character() == cc) {
+      already_message = already_nbcc;
+      do_nothing = true;
+  }
+  if (do_nothing)
+    error("ignoring control character change request; %1%2 %3",
+	  is_invalid ? "cannot select invalid control character, and"
+	  : "", already_message, input_char_description(cc));
+  else if (is_invalid) {
+    error("cannot select invalid control character; using '.'");
+    assert(curenv->set_control_character('.'));
+  }
+  else
+    assert(curenv->set_control_character(cc));
+  skip_line();
+}
+
+void assign_no_break_control_character()
+{
+  char nbcc = '\0';
+  bool is_invalid = false;
+  if (has_arg()) {
+    if (tok.ch() == 0)
+      is_invalid = true;
+    else
+      nbcc = tok.ch();
+  }
+  else
+    nbcc = '\\';
+  bool do_nothing = false;
+  char already_ec[] = "the escape character is already";
+  char already_cc[] = "the (breaking) control character is already";
+  char *already_message = 0 /* nullptr */;
+  if (nbcc == escape_char) {
+      already_message = already_ec;
+      do_nothing = true;
+  }
+  else if (curenv->get_control_character() == nbcc) {
+      already_message = already_cc;
+      do_nothing = true;
+  }
+  if (do_nothing)
+    error("ignoring no-break control character change request; %1%2 %3",
+	  is_invalid ? "cannot select invalid no-break control"
+	               " character, and"
+	  : "", already_message, input_char_description(nbcc));
+  else if (is_invalid) {
+    error("cannot select invalid no-break control character;"
+	  " using \"\'\"");
+    assert(curenv->set_no_break_control_character('\''));
+  }
+  else
+    assert(curenv->set_no_break_control_character(nbcc));
   skip_line();
 }
 
@@ -2867,9 +2943,9 @@ void process_input_stack()
       {
 	unsigned char ch = tok.c;
 	if (bol && !have_input
-	    && (ch == curenv->control_char
-		|| ch == curenv->no_break_control_char)) {
-	  break_flag = ch == curenv->control_char;
+	    && (curenv->get_control_character() == ch
+		|| curenv->get_no_break_control_character() == ch)) {
+	  break_flag = (curenv->get_control_character() == ch);
 	  // skip tabs as well as spaces here
 	  do {
 	    tok.next();
@@ -8388,6 +8464,8 @@ void init_input_requests()
   init_request("backtrace", backtrace_request);
   init_request("blm", blank_line_macro);
   init_request("break", while_break_request);
+  init_request("cc", assign_control_character);
+  init_request("c2", assign_no_break_control_character);
   init_request("cf", copy_file);
   init_request("cflags", char_flags);
   init_request("char", define_character);

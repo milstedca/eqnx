@@ -6636,14 +6636,18 @@ with the @code{cc} and @code{c2} requests, respectively.
 @Defreq {cc, [@Var{o}]}
 Recognize the ordinary character@tie{}@var{o} as the control character.
 If@tie{}@var{o} is absent or invalid, the default control character
-@samp{.} is selected.  The identity of the control character is
+@samp{.} is selected.  If @var{o} (or @samp{.} if @var{o} is invalid) is
+already the escape or no-break control character, an error is diagnosed
+and the request ignored.  The identity of the control character is
 associated with the environment (@pxref{Environments}).
 @endDefreq
 
 @Defreq {c2, [@Var{o}]}
 Recognize the ordinary character@tie{}@var{o} as the no-break control
 character.  If@tie{}@var{o} is absent or invalid, the default no-break
-control character @samp{'} is selected.  The identity of the no-break
+control character @samp{'} is selected.  If @var{o} (or @samp{'} if
+@var{o} is invalid) is already the escape or control character, an error
+is diagnosed and the request ignored.  The identity of the no-break
 control character is associated with the environment
 (@pxref{Environments}).
 @endDefreq

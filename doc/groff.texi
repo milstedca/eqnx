@@ -7926,16 +7926,19 @@ This line returns to normal filling and adjustment.
 @noindent
 @cindex pending output line
 @cindex partially collected line
-Output line properties like page offset, indentation, and adjustment are
-not determined until the line has been broken.  An output line is said
-to be @dfn{pending} if some input has been collected but an output line
-corresponding to it has not yet been written; such an output line is
-also termed @dfn{partially collected}.  If no output line is pending, it
-is as if a break has already happened; additional breaks, whether
-explicit or implicit, have no effect.  If the vertical drawing
-position is negative---as it is when the formatter starts up---a break
-starts a new page (even if no output line is pending) unless an
-end-of-input macro is being interpreted.  @xref{End-of-input Traps}.
+@cindex output line properties
+@cindex properties of output lines
+Output line properties like page offset, indentation, adjustment, and
+even the location of its text baseline, are not determined until the
+line has been broken.  An output line is said to be @dfn{pending} if
+some input has been collected but an output line corresponding to it has
+not yet been written; such an output line is also termed @dfn{partially
+collected}.  If no output line is pending, it is as if a break has
+already happened; additional breaks, whether explicit or implicit, have
+no effect.  If the vertical drawing position is negative---as it is when
+the formatter starts up---a break starts a new page (even if no output
+line is pending) unless an end-of-input macro is being interpreted.
+@xref{End-of-input Traps}.
 
 @Defreq {br, }
 Break the line: emit any pending output line without adjustment.
@@ -8802,9 +8805,6 @@ The hyphenation space adjustment threshold is available in the
 @code{.hys} read-only register.
 @endDefreq
 
-@codequotebacktick off
-@codequoteundirected off
-
 
 @c =====================================================================
 
@@ -8814,16 +8814,22 @@ The hyphenation space adjustment threshold is available in the
 @cindex spacing, manipulating
 
 @Defreq {sp, [@Var{distance}]}
-Space downward by @var{distance}.  Inside a diversion, any
-@var{distance} argument is ignored.  Otherwise, a negative argument
-moves the drawing position up the page.  This request causes a break.
-The default scaling unit is @samp{v}.  If @var{distance} is not
-specified, @samp{1v} is assumed.
+Break the line and place the next text baseline @var{distance} lower
+than it would otherwise be, or until springing a page location
+trap.@footnote{@xref{Page Location Traps}.}  If invoked with the
+no-break control character, @code{sp} moves the pending output line's
+text baseline by @var{distance}.  If @var{distance} would move the
+text baseline below the bottom of the page, the page is broken and
+any leftover distance discarded.  A negative distance moves the text
+baseline up the page, but will not reduce it below zero.  Inside a
+diversion, any @var{distance} argument is ignored.  The default scaling
+unit is @samp{v}.  If @var{distance} is not specified, @samp{1v} is
+assumed.
 
 You may wish to use the following macros to set the baseline of the next
 output text at a given distance from the top or the bottom of the page.
 We subtract one line height (@code{\n[.v]}) because the @code{|}
-operator moves to one vee below the page top (@pxref{Numeric
+operator moves to one vee below the page top (recall @ref{Numeric
 Expressions}).
 
 @Example
@@ -8838,14 +8844,7 @@ Expressions}).
 
 @noindent
 A call to @samp{.y-from-bot-up 10c} means that the next text baseline
-will be at 10@tie{}cm from the bottom edge of the paper.
-
-@cindex @code{sp} request, and traps
-@cindex discarded space in traps
-@cindex space, discarded, in traps
-@cindex traps, and discarded space
-If a vertical position trap is sprung during execution of @code{sp}, the
-amount of vertical space after the trap is discarded.
+will be 10@tie{}cm from the bottom edge of the paper.
 
 @Example
 .de xxx
@@ -8866,57 +8865,56 @@ baz
     @result{}
     @result{} baz
 @endExample
-
-The amount of discarded space is available in the register
-@code{.trunc}.
-
-To protect @code{sp} against vertical position traps, use the @code{vpt}
-request to disable them.  @xref{Vertical Position Traps}.
-
-@Example
-.vpt 0
-.sp -3
-.vpt 1
-@endExample
 @endDefreq
 
-@DefreqList {ls, [@Var{nnn}]}
+@DefreqList {ls, [@Var{count}]}
 @DefregListEndx {.L}
 @cindex double-spacing (@code{ls})
-Output @w{@var{nnn}@minus{}1} blank lines after each line of text.  With
-no argument, @code{gtroff} uses the previous value before the last
-@code{ls} call.
+Set the line spacing; add @w{@var{count}@minus{}1} blank lines after each
+line of text.  With no argument, GNU @code{troff} uses the previous
+value before the last @code{ls} call.  The default is @code{1}.
 
-@Example
-.ls 2    \" This causes double-spaced output
-.ls 3    \" This causes triple-spaced output
-.ls      \" Again double-spaced
-@endExample
+@c This example is fairly obvious, doesn't realistically reflect the
+@c fact that formatted text would occur between each of these requests,
+@c and doesn't fit well on the (PDF) page as of this writing.
+@c @Example
+@c .ls 2    \" begin double-spaced output
+@c .ls 3    \" begin triple-spaced output
+@c .ls      \" return to double-spaced output
+@c @endExample
 
 @cindex line spacing register (@code{.L})
-The read-only register @code{.L} contains the current line spacing
-setting.  The line spacing is associated with the environment
-(@pxref{Environments}).
+The read-only register @code{.L} contains the current line spacing.  The
+line spacing is associated with the environment (@pxref{Environments}).
 @endDefreq
 
-@xref{Changing the Type Size}, for the requests @code{vs} and @code{pvs}
-as alternatives to @code{ls}.
+The @code{ls} request is a coarse mechanism.  @xref{Changing the Type
+Size}, for the requests @code{vs} and @code{pvs} as alternatives to
+@code{ls}.
 
 @DefescList {\\x, @code{'}, spacing, @code{'}}
 @DefregListEndx {.a}
-Sometimes, extra vertical spacing is needed only occasionally, for
-instance to allow room for a tall construct like an inline equation.
+Sometimes, an output line required additional vertical spacing, for
+instance to allow room for a tall construct like an inline equation with
+exponents or subscripts (particularly if they are iterated).
 The @code{\x} escape sequence takes a delimited measurement (like
-@samp{\x'3p'}); the default scaling unit is @samp{v}.  If the
-measurement is positive, extra vertical space is inserted below the
-current line; a negative measurement adds space above.  If @code{\x} is
-used multiple times on the same output line, the maxima of the positive
-and negative adjustments are used.  The delimiter need not be a neutral
+@samp{\x'3p'}) to increase the vertical spacing of the pending output
+line.  The default scaling unit is @samp{v}.  If the measurement is
+positive, extra vertical space is inserted below the current line; a
+negative measurement adds space above.  If @code{\x} is applied to the
+pending output line multiple times, the maxima of the positive and
+negative adjustments are used.  The delimiter need not be a neutral
 apostrophe; see @ref{Delimiters}.
 
 @cindex extra post-vertical line space register (@code{.a})
-The @code{.a} read-only register contains the most recent (non-negative)
-extra vertical line space.
+The @code{.a} read-only register contains the extra vertical spacing
+@emph{after} the text baseline of the most recently emitted output line.
+(In other words, it is the largest positive argument to @code{\x}
+encountered on that line.)  This quantity is exposed via a register
+because if an output line requires this ``extra post-vertical line
+spacing'', and the subsequent output line requires ``extra pre-vertical
+line spacing'' (a negative argument to @code{\x}), then applying both
+can lead to excessive spacing between the output lines.
 
 Use of @code{\x} can be necessary in combination with the @code{\b}
 escape sequence, as the following example shows.
@@ -8931,22 +8929,17 @@ This is a test of \b'xyz'\x'-1m'\x'1m'.
 This is a test of \[rs]b.
 .br
 This is a test of \[rs]b.
-@endExample
-
-@noindent
-produces
-
-@Example
-This is a test of \b.
-This is a test of \b.
-                  x
-This is a test of y.
-                  z
-This is a test of \b.
-This is a test of \b.
+    @result{} This is a test of \b.
+    @result{} This is a test of \b.
+    @result{}                   x
+    @result{} This is a test of y.
+    @result{}                   z
+    @result{} This is a test of \b.
+    @result{} This is a test of \b.
 @endExample
 @endDefesc
 
+@need 1000
 @DefreqList {ns, }
 @DefreqItemx {rs, }
 @DefregListEndx {.ns}
@@ -8955,19 +8948,23 @@ This is a test of \b.
 @cindex mode, no-space (@code{ns})
 @cindex blank lines, disabling
 @cindex lines, blank, disabling
-Enable @dfn{no-space mode}.  In this mode, spacing (either via @code{sp}
-or via blank lines) is disabled.  The @code{bp} request to advance to
-the next page is also disabled, except if it is accompanied by a page
-number (@pxref{Page Control}).  This mode ends when actual text is
-output or the @code{rs} request is encountered, which ends no-space
-mode.  The read-only register @code{.ns} is set to@tie{}1 as long as
-no-space mode is active.
+Enable @dfn{no-space mode}.  Vertical spacing, whether by @code{sp}
+requests or blank input lines, is disabled.  The @code{bp} request to
+advance to the next page is also disabled, unless it is accompanied by a
+page number (@pxref{Page Control}).  No-space mode ends automatically
+when text@footnote{or geometric primitives; see @ref{Drawing Requests}}
+is formatted for output @footnote{to the top-level diversion; see
+@ref{Diversions}} or the @code{rs} request is invoked, which ends
+no-space mode.  The read-only register @code{.ns} interpolates a Boolean
+value indicating the enablement of no-space mode.
 
-This request is useful for macros that conditionally insert vertical
-space before the text starts (for example, a paragraph macro could
-insert some space except when it is the first paragraph after a section
-header).
+A paragraphing macro might ordinarily insert vertical space to separate
+paragraphs.  A section heading macro could invoke @code{ns} to suppress
+this spacing for the first paragraph in a section.
 @endDefreq
+
+@codequotebacktick off
+@codequoteundirected off
 
 
 @c =====================================================================

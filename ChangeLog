@@ -1,5 +1,16 @@
 2023-05-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Fix Savannah #64104.
+
+	* src/roff/troff/input.cpp (set_escape_char): Rename this...
+	(assign_escape_character): ...to this.  Don't permit the escape
+	character to be set to the same thing as the control or no-break
+	control characters.
+	* doc/groff.texi (Using Escape Sequences): Document
+	restrictions.
+
+2023-05-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Don't quote a character with itself in diagnostics.
 
 	* src/roff/troff/input.cpp (token::description)

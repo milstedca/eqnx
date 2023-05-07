@@ -159,18 +159,40 @@ void process_input_stack();
 void chop_macro();	// declare to avoid friend name injection
 
 
-void set_escape_char()
+static void assign_escape_character()
 {
+  char ec = '\0';
+  bool is_invalid = false;
   if (has_arg()) {
-    if (tok.ch() == 0) {
-      error("cannot select invalid escape character; using '\\'");
-      escape_char = '\\';
-    }
+    if (tok.ch() == 0)
+      is_invalid = true;
     else
-      escape_char = tok.ch();
+      ec = tok.ch();
   }
   else
+    ec = '\\';
+  bool do_nothing = false;
+  char already_cc[] = "the control character is already";
+  char already_nbcc[] = "the no-break control character is already";
+  char *already_message = 0 /* nullptr */;
+  if (ec == curenv->control_char) {
+      already_message = already_cc;
+      do_nothing = true;
+  }
+  else if (ec == curenv->no_break_control_char) {
+      already_message = already_nbcc;
+      do_nothing = true;
+  }
+  if (do_nothing)
+    error("ignoring escape character change request; %1%2 %3",
+	  is_invalid ? "cannot select invalid escape character, and"
+	  : "", already_message, input_char_description(ec));
+  else if (is_invalid) {
+    error("cannot select invalid escape character; using '\\'");
     escape_char = '\\';
+  }
+  else
+    escape_char = ec;
   skip_line();
 }
 
@@ -8386,7 +8408,7 @@ void init_input_requests()
   init_request("do", do_request);
   init_request("ds", define_string);
   init_request("ds1", define_nocomp_string);
-  init_request("ec", set_escape_char);
+  init_request("ec", assign_escape_character);
   init_request("ecr", restore_escape_char);
   init_request("ecs", save_escape_char);
   init_request("el", else_request);

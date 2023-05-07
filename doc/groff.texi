@@ -6994,7 +6994,9 @@ sequence in interpretation mode.
 @cindex character, escape, changing (@code{ec})
 Recognize the ordinary character@tie{}@var{o} as the escape character.
 If@tie{}@var{o} is absent or invalid, the default escape character
-@samp{\} is selected.
+@samp{\} is selected.  If @var{o} (or @samp{\} if @var{o} is invalid) is
+already the control or no-break control character, an error is diagnosed
+and the request ignored.
 @endDefreq
 
 Switching escape sequence interpretation off to define a macro and back

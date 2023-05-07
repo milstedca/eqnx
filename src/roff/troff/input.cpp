@@ -2404,8 +2404,12 @@ const char *token::description()
   case TOKEN_BACKSPACE:
     return "a backspace character";
   case TOKEN_CHAR:
-    if (c == INPUT_DELETE)
+    if (INPUT_DELETE == c)
       return "a delete character";
+    else if ('\'' == c) {
+      (void) snprintf(buf, bufsz, "character \"%c\"", c);
+      return buf;
+    }
     else {
       (void) snprintf(buf, bufsz, "character '%c'", c);
       return buf;
@@ -6682,9 +6686,16 @@ const char *input_char_description(int c)
     return buf;
   }
   if (csprint(c)) {
-    buf[0] = '\'';
-    buf[1] = c;
-    buf[2] = '\'';
+    if ('\'' == c) {
+      buf[0] = '"';
+      buf[1] = c;
+      buf[2] = '"';
+    }
+    else {
+      buf[0] = '\'';
+      buf[1] = c;
+      buf[2] = '\'';
+    }
     return buf;
   }
   sprintf(buf, "character code %d", c);

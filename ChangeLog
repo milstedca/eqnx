@@ -1,3 +1,11 @@
+2023-05-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Don't quote a character with itself in diagnostics.
+
+	* src/roff/troff/input.cpp (token::description)
+	(input_char_description): When quoting the ' character in
+	diagnostics, use double-quotes, not apostrophes.
+
 2023-05-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Trivially refactor.

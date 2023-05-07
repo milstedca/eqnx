@@ -8963,9 +8963,6 @@ paragraphs.  A section heading macro could invoke @code{ns} to suppress
 this spacing for the first paragraph in a section.
 @endDefreq
 
-@codequotebacktick off
-@codequoteundirected off
-
 
 @c =====================================================================
 
@@ -9291,9 +9288,6 @@ environment (@pxref{Environments}).
 
 
 @c =====================================================================
-
-@codequotebacktick on
-@codequoteundirected on
 
 @node Character Translations, @code{troff} and @code{nroff} Modes, Tabs and Fields, GNU troff Reference
 @section Character Translations

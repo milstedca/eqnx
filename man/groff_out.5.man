@@ -616,7 +616,7 @@ black in most cases).
 .
 .
 .TP
-.command mg "gray"
+.command mg gray
 Use a grayscale color scheme with a component ranging
 between 0 (black) and \n[@maxcolor] (white).
 .
@@ -645,7 +645,8 @@ Typeset the glyph with
 .RI index\~ n
 in the current font.
 .
-.IR n\~ is normally a non-negative integer.
+.IR n\~ is
+normally a non-negative integer.
 .
 The drawing position is not advanced.
 .
@@ -662,8 +663,8 @@ is taken and interpreted in basic units.
 .
 .
 .TP
-.command n b\ a
-Describe a line break.
+.command n b\~a
+Describe a break.
 .
 In AT&T
 .IR troff ,
@@ -674,13 +675,14 @@ describe the vertical space amounts before and after the break,
 respectively,
 to make the output more readable by humans.
 .
-.I groff
+GNU
+.I troff \" GNU
 reports these values but its output driver library ignores them.
 .
-Vertical space is applied with
-.B V
-.RB or\~ v
-commands.
+See
+.B v
+and
+.BR V .
 .
 .
 .TP
@@ -696,10 +698,10 @@ The vertical drawing position is set to\~0.
 .
 All positioning,
 writing,
-and drawing command are done in the context of a page,
+and drawing commands are interpreted in the context of a page,
 so a
 .BR p \~command
-must precede any of these.
+must precede them.
 .
 .
 .TP
@@ -818,15 +820,19 @@ output driver library handles them.
 .
 .TP
 .command w
-Describe an adjustable space.
+Describe an inter-word space.
 .
 This performs no action;
-it is present for documentary purposes.
+it is present to make the output more readable by humans.
 .
-Horizontal space is applied with
-.B H
-.RB or\~ h
-commands.
+Only adjustable,
+breakable inter-word spaces are thus described;
+those resulting from horizontal motion escape sequences are not.
+.
+See
+.B h
+and
+.BR H .
 .
 .
 .\" ====================================================================

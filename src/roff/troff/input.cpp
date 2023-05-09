@@ -1798,18 +1798,20 @@ token::~token()
 token::token(const token &t)
 : nm(t.nm), c(t.c), val(t.val), dim(t.dim), type(t.type)
 {
-  // Use two statements to work around bug in SGI C++.
-  node *tem = t.nd;
-  nd = tem ? tem->copy() : 0;
+  if (t.nd != 0 /* nullptr */)
+    nd = t.nd->copy();
+  else
+    nd = 0 /* nullptr */;
 }
 
 void token::operator=(const token &t)
 {
   delete nd;
   nm = t.nm;
-  // Use two statements to work around bug in SGI C++.
-  node *tem = t.nd;
-  nd = tem ? tem->copy() : 0;
+  if (t.nd != 0 /* nullptr */)
+    nd = t.nd->copy();
+  else
+    nd = 0 /* nullptr */;
   c = t.c;
   val = t.val;
   dim = t.dim;

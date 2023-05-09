@@ -1,3 +1,12 @@
+2023-05-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Trivially refactor.
+
+	* src/roff/troff/input.cpp (token::~token, token::operator=):
+	Drop workaround for bug in compiler (SGI C++) that dates back to
+	groff 1.07 (March 1993).  But don't go back to using the ternary
+	operator.
+
 2023-05-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Fix Savannah #64104.

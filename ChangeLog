@@ -1,3 +1,14 @@
+2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Fix Savannah #64166.
+
+	* src/roff/troff/node.cpp (bold_font): Add `WARN_MISSING`
+	diagnostic if request given no arguments; it does nothing, and
+	the behavior of this request is sufficiently complex that it's
+	worth saying so.  Stop throwing font lookup error if second
+	argument cannot be resolved as a font name; it might be an
+	emboldening amount instead.
+
 2023-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/s.tmac (PE): Turn on no-space mode after a pic(1)

@@ -6415,21 +6415,24 @@ hunits env_narrow_space_width(environment *env)
     return font_table[fn]->get_narrow_space_width(fs);
 }
 
+// XXX: We can only conditionally (un)embolden a font specified by name,
+// not position.  Does ".bd 1 2" mean "embolden font position 1 by 2
+// units" (really one unit), or "stop conditionally emboldening font 2
+// when font 1 is selected"?
+
 void bold_font()
 {
   font_lookup_info finfo;
-  if (!has_font(&finfo))
+  if (!(has_arg()))
+    warning(WARN_MISSING, "font name or position expected in"
+	    " emboldening request");
+  else if (!has_font(&finfo))
     font_lookup_error(finfo, "for emboldening");
   else {
     int n = finfo.position;
     if (has_arg()) {
-      // This is a bit non-orthogonal, but faithful to CSTR #54.  We can
-      // only conditionally embolden a font specified by name, not
-      // position, so ".bd S B 4" works but ".bd 5 3 4" does not.  The
-      // latter bolds the font at position 5 unconditionally, and
-      // ignores the third argument.
       if (tok.usable_as_delimiter()) {
-      font_lookup_info finfo2;
+	font_lookup_info finfo2;
 	if (!has_font(&finfo2))
 	  font_lookup_error(finfo2, "for conditional emboldening");
 	else {
@@ -6442,9 +6445,7 @@ void bold_font()
 	}
       }
       else {
-	font_lookup_info finfo2;
-	  if (!has_font(&finfo2))
-	    font_lookup_error(finfo2, "for conditional emboldening");
+	// A numeric second argument must be an emboldening amount.
 	units offset;
 	if (get_number(&offset, 'u') && offset >= 1)
 	  font_table[n]->set_bold(hunits(offset - 1));

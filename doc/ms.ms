@@ -197,15 +197,17 @@ command.
 can be useful for previewing.
 .
 .
+.if n .ftr TI I
 .TS
 box center;
 Lf(CR)1 Lf(CB).
-$	editor radical.ms # vim, emacs, ...
-$	nroff -ww -z -ms radical.ms # check for errors
+$	editor radical.ms \f[TI]# vim, emacs, .\|.\|.
+$	nroff -ww -z -ms radical.ms \f[TI]# check for errors
 $	nroff \-ms radical.ms | less \-R
 $	groff \-T pdf \-ms radical.ms > radical.pdf
-$	see radical.pdf # or your favorite PDF viewer
+$	see radical.pdf \f[TI]# or your favorite PDF viewer
 .TE
+.if n .ftr TI
 .
 .
 .PP

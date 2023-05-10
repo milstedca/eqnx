@@ -1,3 +1,9 @@
+2023-05-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/s.tmac (PE): Turn on no-space mode after a pic(1)
+	display, when not flying back with `PF`.  Continues fix for
+	Savannah #62688.
+
 2023-05-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Trivially refactor.

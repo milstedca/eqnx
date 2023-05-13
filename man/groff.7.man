@@ -5919,13 +5919,13 @@ and
 .
 .TP
 .REG .ss
-Size of minimal inter-word spacing in twelfths of the space width of
+Size of minimal inter-word space in twelfths of the space width of the
 selected font.
 .
 .TP
 .REG .sss
 Size of additional inter-sentence space in twelfths of the space width
-of selected font.
+of the selected font.
 .
 .TP
 .REG .sty

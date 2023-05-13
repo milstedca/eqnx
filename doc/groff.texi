@@ -8230,31 +8230,24 @@ disabled.  Omitting the argument implies an @var{nnn} of @samp{1}.
 @cindex size of sentence space register (@code{.sss})
 @cindex space between sentences register (@code{.sss})
 Set the sizes of spaces between words and
-sentences.@footnote{@xref{Filling} and @ref{Sentences} for the
-definitions of word and sentence boundaries, respectively.}  Their units
-are twelfths of the space width of the current font.  Initially both the
-@var{word-space-size} and @var{additional-sentence-space-size}
-are@tie{}12.  Negative values are not permitted.  The request is ignored
-if there are no arguments.
-
+sentences@footnote{Recall @ref{Filling} and @ref{Sentences} for the
+definitions of word and sentence boundaries, respectively.} in twelfths
+of current font's space width (usually one-third em for Western
+scripts).  Initially, both the @var{word-space-size} and
+@var{additional-sentence-space-size} are@tie{}12.  Negative values are
+erroneous.
 @cindex inter-word spacing, minimal
 @cindex minimal inter-word spacing
 @cindex space, between words
 The first argument, the inter-word space size, is a minimum; if an
 output line undergoes adjustment, such spaces may increase in width.
-
 @cindex inter-sentence space, additional
 @cindex additional inter-sentence space
 @cindex space, between sentences
 The optional second argument sets the amount of additional space
 separating sentences on the same output line.  If omitted, this amount
-is set to @var{word-space-size}.
-
-The read-only registers @code{.ss} and @code{.sss} hold the values of
-minimal inter-word space and additional inter-sentence space,
-respectively.  These parameters are associated with the environment
-(@pxref{Environments}), and rounded down to the nearest multiple
-of@tie{}12 on terminal output devices.
+is set to @var{word-space-size}.  The request is ignored if there are no
+parameters.
 
 @cindex filling, and inter-sentence space
 @cindex mode, fill, and inter-sentence space
@@ -8267,6 +8260,12 @@ becomes an inter-sentence space in the output.  Additional
 inter-sentence space is not adjusted, but the inter-word space that
 always precedes it may be.  Further input spaces after the second, if
 present, are adjusted as normal.
+
+The read-only registers @code{.ss} and @code{.sss} hold the minimal
+inter-word space and additional inter-sentence space amounts,
+respectively.  These parameters are part of the environment
+(@pxref{Environments}), and rounded down to the nearest multiple
+of@tie{}12 on terminals.
 
 @cindex discardable horizontal space
 @cindex space, discardable, horizontal

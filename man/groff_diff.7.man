@@ -3838,10 +3838,19 @@ If omitted,
 this amount is set to
 .IR word-space-size .
 .
-The arguments' units are twelfths of the space width of the current font
+Both arguments are in twelfths of current font's space width
+(usually one-third em for Western scripts;
 (see
 .MR groff_font @MAN5EXT@ )
-and default to\~12.
+.
+Initially,
+both the
+.I word-space-size
+and
+.I additional-sentence-space-size
+are\~12.
+.
+Negative values are erroneous.
 .
 .
 .TP

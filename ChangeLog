@@ -1,3 +1,8 @@
+2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/tests/an-ext_SY-and-YS-work.sh: Add test.
+	* tmac/tmac.am (tmac_TESTS): Run test.
+
 2023-04-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: Skip an Autoconf check if not necessary.

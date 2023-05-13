@@ -2744,7 +2744,9 @@ Enable compatibility mode.
 .REQ .cp "N"
 If
 .I N
-is zero disable compatibility mode, otherwise enable it.
+is zero,
+disable compatibility mode,
+otherwise enable it.
 .
 .TPx
 .REQ .cs "font N M"

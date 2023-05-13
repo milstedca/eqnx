@@ -1,5 +1,22 @@
 2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp: Rename request-handling functions to
+	better describe their operation.
+	(font_translate, font_position, style, underline_font)
+	(define_font_special_character, remove_font_special_character)
+	(font_special_request, special_request, font_zoom_request)
+	(bold_font, track_kern, constant_space, ligature, kern_request)
+	(set_soft_hyphen_char): Rename these...
+	(translate_font, mount_font_at_position)
+	(associate_style_with_font_position, select_underline_font)
+	(define_font_specific_character, remove_font_specific_character)
+	(set_font_specific_special_fonts, set_special_fonts, zoom_font)
+	(embolden_font, configure_track_kerning, constantly_space_font)
+	(set_ligature_mode, set_kerning_mode)
+	(set_soft_hyphen_character): ...to these.
+
+2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (font_translate, font_position, style)
 	(underline_font, define_font_special_character)
 	(remove_font_special_character, font_special_request)

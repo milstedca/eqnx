@@ -6022,7 +6022,7 @@ bool mount_style(int n, symbol name)
   return true;
 }
 
-static void font_translate()
+static void translate_font()
 {
   symbol from = get_name(true /* required */);
   if (!from.is_null()) {
@@ -6035,7 +6035,7 @@ static void font_translate()
   skip_line();
 }
 
-static void font_position()
+static void mount_font_at_position()
 {
   int n;
   if (get_integer(&n)) {
@@ -6147,7 +6147,7 @@ void font_family::invalidate_fontno(int n)
   }
 }
 
-static void style()
+static void associate_style_with_font_position()
 {
   int n;
   if (get_integer(&n)) {
@@ -6203,7 +6203,7 @@ static bool has_font(font_lookup_info *finfo)
 
 static int underline_fontno = 2;
 
-static void underline_font()
+static void select_underline_font()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6218,7 +6218,7 @@ int get_underline_fontno()
   return underline_fontno;
 }
 
-static void define_font_special_character()
+static void define_font_specific_character()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo)) {
@@ -6234,7 +6234,7 @@ static void define_font_special_character()
   }
 }
 
-static void remove_font_special_character()
+static void remove_font_specific_character()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6285,7 +6285,7 @@ static void read_special_fonts(special_font_list **sp)
   }
 }
 
-static void font_special_request()
+static void set_font_specific_special_fonts()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6296,13 +6296,13 @@ static void font_special_request()
   skip_line();
 }
 
-static void special_request()
+static void set_special_fonts()
 {
   read_special_fonts(&global_special_fonts);
   skip_line();
 }
 
-static void font_zoom_request()
+static void zoom_font()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6418,7 +6418,7 @@ hunits env_narrow_space_width(environment *env)
 // units" (really one unit), or "stop conditionally emboldening font 2
 // when font 1 is selected"?
 
-static void bold_font()
+static void embolden_font()
 {
   font_lookup_info finfo;
   if (!(has_arg()))
@@ -6509,7 +6509,7 @@ hunits track_kerning_function::compute(int size)
     return H0;
 }
 
-static void track_kern()
+static void configure_track_kerning()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6533,7 +6533,7 @@ static void track_kern()
   skip_line();
 }
 
-static void constant_space()
+static void constantly_space_font()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6555,7 +6555,7 @@ static void constant_space()
   skip_line();
 }
 
-static void ligature()
+static void set_ligature_mode()
 {
   int lig;
   if (has_arg() && get_integer(&lig) && lig >= 0 && lig <= 2)
@@ -6565,7 +6565,7 @@ static void ligature()
   skip_line();
 }
 
-static void kern_request()
+static void set_kerning_mode()
 {
   int k;
   if (has_arg() && get_integer(&k))
@@ -6575,7 +6575,7 @@ static void kern_request()
   skip_line();
 }
 
-static void set_soft_hyphen_char()
+static void set_soft_hyphen_character()
 {
   soft_hyphen_char = get_optional_char();
   if (!soft_hyphen_char)
@@ -6618,21 +6618,21 @@ const char *printing_reg::get_string()
 
 void init_node_requests()
 {
-  init_request("bd", bold_font);
-  init_request("cs", constant_space);
-  init_request("fp", font_position);
-  init_request("fschar", define_font_special_character);
-  init_request("fspecial", font_special_request);
-  init_request("fzoom", font_zoom_request);
-  init_request("ftr", font_translate);
-  init_request("kern", kern_request);
-  init_request("lg", ligature);
-  init_request("rfschar", remove_font_special_character);
-  init_request("shc", set_soft_hyphen_char);
-  init_request("special", special_request);
-  init_request("sty", style);
-  init_request("tkf", track_kern);
-  init_request("uf", underline_font);
+  init_request("bd", embolden_font);
+  init_request("cs", constantly_space_font);
+  init_request("fp", mount_font_at_position);
+  init_request("fschar", define_font_specific_character);
+  init_request("fspecial", set_font_specific_special_fonts);
+  init_request("fzoom", zoom_font);
+  init_request("ftr", translate_font);
+  init_request("kern", set_kerning_mode);
+  init_request("lg", set_ligature_mode);
+  init_request("rfschar", remove_font_specific_character);
+  init_request("shc", set_soft_hyphen_character);
+  init_request("special", set_special_fonts);
+  init_request("sty", associate_style_with_font_position);
+  init_request("tkf", configure_track_kerning);
+  init_request("uf", select_underline_font);
   register_dictionary.define(".fp", new next_available_font_position_reg);
   register_dictionary.define(".kern",
 			       new readonly_register(&global_kern_mode));

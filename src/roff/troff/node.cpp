@@ -6022,9 +6022,7 @@ bool mount_style(int n, symbol name)
   return true;
 }
 
-/* global functions */
-
-void font_translate()
+static void font_translate()
 {
   symbol from = get_name(true /* required */);
   if (!from.is_null()) {
@@ -6037,7 +6035,7 @@ void font_translate()
   skip_line();
 }
 
-void font_position()
+static void font_position()
 {
   int n;
   if (get_integer(&n)) {
@@ -6149,7 +6147,7 @@ void font_family::invalidate_fontno(int n)
   }
 }
 
-void style()
+static void style()
 {
   int n;
   if (get_integer(&n)) {
@@ -6205,7 +6203,7 @@ static bool has_font(font_lookup_info *finfo)
 
 static int underline_fontno = 2;
 
-void underline_font()
+static void underline_font()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6220,7 +6218,7 @@ int get_underline_fontno()
   return underline_fontno;
 }
 
-void define_font_special_character()
+static void define_font_special_character()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo)) {
@@ -6236,7 +6234,7 @@ void define_font_special_character()
   }
 }
 
-void remove_font_special_character()
+static void remove_font_special_character()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6287,7 +6285,7 @@ static void read_special_fonts(special_font_list **sp)
   }
 }
 
-void font_special_request()
+static void font_special_request()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6298,13 +6296,13 @@ void font_special_request()
   skip_line();
 }
 
-void special_request()
+static void special_request()
 {
   read_special_fonts(&global_special_fonts);
   skip_line();
 }
 
-void font_zoom_request()
+static void font_zoom_request()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6420,7 +6418,7 @@ hunits env_narrow_space_width(environment *env)
 // units" (really one unit), or "stop conditionally emboldening font 2
 // when font 1 is selected"?
 
-void bold_font()
+static void bold_font()
 {
   font_lookup_info finfo;
   if (!(has_arg()))
@@ -6511,7 +6509,7 @@ hunits track_kerning_function::compute(int size)
     return H0;
 }
 
-void track_kern()
+static void track_kern()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6535,7 +6533,7 @@ void track_kern()
   skip_line();
 }
 
-void constant_space()
+static void constant_space()
 {
   font_lookup_info finfo;
   if (!has_font(&finfo))
@@ -6557,7 +6555,7 @@ void constant_space()
   skip_line();
 }
 
-void ligature()
+static void ligature()
 {
   int lig;
   if (has_arg() && get_integer(&lig) && lig >= 0 && lig <= 2)
@@ -6567,7 +6565,7 @@ void ligature()
   skip_line();
 }
 
-void kern_request()
+static void kern_request()
 {
   int k;
   if (has_arg() && get_integer(&k))
@@ -6577,7 +6575,7 @@ void kern_request()
   skip_line();
 }
 
-void set_soft_hyphen_char()
+static void set_soft_hyphen_char()
 {
   soft_hyphen_char = get_optional_char();
   if (!soft_hyphen_char)

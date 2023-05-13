@@ -1,5 +1,14 @@
 2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (font_translate, font_position, style)
+	(underline_font, define_font_special_character)
+	(remove_font_special_character, font_special_request)
+	(special_request, font_zoom_request, bold_font, track_kern)
+	(constant_space, ligature, kern_request, set_soft_hyphen_char):
+	Declare functions as `static`.
+
+2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Fix Savannah #64166.
 
 	* src/roff/troff/node.cpp (bold_font): Add `WARN_MISSING`

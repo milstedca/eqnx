@@ -834,6 +834,9 @@ Headings are available with and without automatic numbering.
 Text on input lines following the macro call becomes the heading's
 title.
 .
+Call a paragraphing macro to end the heading text and start the
+section's content.
+.
 .
 .TP
 .BR .NH \~[\c
@@ -1439,9 +1442,13 @@ End any display.
 .P
 The distance stored in
 .B \[rs]n[DD]
-is inserted before and after each pair of display macros,
-replacing any adjacent inter-paragraph distance;
+is inserted before and after each pair of display macros;
 this is a Berkeley extension.
+.
+In
+.IR "groff ms" ,
+this distance replaces any adjacent inter-paragraph distance
+or subsequent spacing prior to a section heading.
 .
 The
 .B DI

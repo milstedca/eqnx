@@ -36,8 +36,8 @@
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ie t .nr PI 3.5n
 .el   .nr PI 4n
-.ND April 2023
-.EH '%''April 2023'
+.ND May 2023
+.EH '%''May 2023'
 .EF ''''
 .OH 'Using \f[I]groff\f[] with the \f[I]ms\f[] macros''%'
 .OF ''''
@@ -1210,6 +1210,9 @@ Headings are available with and without automatic numbering.
 .
 Text on input lines following the macro call becomes the heading's
 title.
+.
+Call a paragraphing macro to end the heading text and start the
+section's content.
 .
 .
 .TS
@@ -2394,9 +2397,13 @@ cf(CR) s | lx .
 .PP
 The distance stored in
 .CW \[rs]n[DD]
-is inserted before and after each pair of display macros,
-replacing any adjacent inter-paragraph distance;
+is inserted before and after each pair of display macros;
 this is a Berkeley extension.
+.
+In
+.I "groff ms" ,
+this distance replaces any adjacent inter-paragraph distance
+or subsequent spacing prior to a section heading.
 .
 The
 .CW DI

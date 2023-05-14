@@ -3340,7 +3340,9 @@ Use headings to create a sequential or hierarchical structure for your
 document.  The @file{ms} macros print headings in @strong{bold} using
 the same font family and, by default, type size as the body text.
 Headings are available with and without automatic numbering.  Text on
-input lines following the macro call becomes the heading's title.
+input lines following the macro call becomes the heading's title.  Call
+a paragraphing macro to end the heading text and start the section's
+content.
 
 @DefmacList {NH, [@Var{depth}], ms}
 @DefmacListEnd {NH, @t{S} @Var{heading-depth-index} @dots{}, ms}
@@ -3916,13 +3918,14 @@ End any display.
 @endDefmac
 
 The distance stored in the @code{DD} register is inserted before and
-after each pair of display macros, replacing any adjacent
-inter-paragraph distance; this is a Berkeley extension.  The @code{DI}
-register is a GNU extension; its value is an indentation applied to
-displays created with @samp{.DS} and @samp{.ID} without arguments, to
-@samp{.DS I} without an indentation argument, and to indented equations
-set with @samp{.EQ}.  Changes to either register take effect at the next
-display boundary.
+after each pair of display macros; this is a Berkeley extension.  In
+@code{groff} @file{ms}, this distance replaces any adjacent
+inter-paragraph distance or subsequent spacing prior to a section
+heading.  The @code{DI} register is a GNU extension; its value is an
+indentation applied to displays created with @samp{.DS} and @samp{.ID}
+without arguments, to @samp{.DS I} without an indentation argument, and
+to indented equations set with @samp{.EQ}.  Changes to either register
+take effect at the next display boundary.
 
 @c ---------------------------------------------------------------------
 

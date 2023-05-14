@@ -4251,6 +4251,7 @@ lf(CR).
 \&.rm UX
 \&.ds UX Unix\[rs]"
 .TE
+.rs \" XXX: Work around Savannah #64005.
 .\"KE
 .
 .
@@ -4377,6 +4378,7 @@ _
 \[rs]*[oe]	Interpolate small oe ligature.
 \[rs]*[OE]	Interpolate capital oe ligature.
 .TE
+.rs \" XXX: Work around Savannah #64005.
 .
 .
 .\" ------------------------

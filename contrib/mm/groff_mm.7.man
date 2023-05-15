@@ -256,12 +256,13 @@ where
 .I xx
 is an ISO\~639 two-letter language identifier.
 .
-For Swedish,
-this is
-.IR sv.tmac ;
-\[lq]sv\[rq],
-not
-\[lq]se\[rq].
+Localization packages should be loaded after
+.IR mm ;
+for example,
+you might format a Swedish
+.I mm
+document with the command
+.RB \[lq] "groff \-mm \-msv" \[rq].
 .
 .
 .P

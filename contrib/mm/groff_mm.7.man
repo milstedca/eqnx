@@ -91,6 +91,53 @@ document might use only
 .B P
 for paragraphing.
 .
+Set numbered and unnumbered section headings with
+.B H
+and
+.BR HU ,
+respectively.
+.
+Change the style of the typeface with
+.BR B ,
+.BR I ,
+and
+.BR R ;
+you can alternate styles with
+.BR BI ,
+.BR BR ,
+.BR IB ,
+.BR IR ,
+.BR RB ,
+and
+.BR RI .
+.
+Several nestable list types are available via
+.BR AL ,
+.BR BL ,
+.BR BVL ,
+.BR DL ,
+.BR ML ,
+.BR RL ,
+and
+.BR VL ;
+each of these begins a list,
+to which
+.B LI
+adds an item and
+.B LE
+ends the (nested) list.
+.
+Customized list arrangements are supported by
+.BR LB .
+.
+.B DS
+and
+.B DF
+start static and floating displays,
+respectively;
+either is terminated with
+.BR DE .
+.
 .
 .P
 .I groff mm

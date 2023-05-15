@@ -423,11 +423,15 @@ o The "ptx.tmac" macro file, a counterpart to the GNU coreutils ptx(1)
   long been part of the source distribution.
 
 o The s (ms) macro package now enables the formatter's "no-space mode"
-  after ending displays (`DE`) and equations (`EN`); this is to improve
-  the fidelity of rendering of historical ms(7) documents such as
-  Kernighan & Cherry's "Typesetting Mathematics".  This change means
-  that display distance spacing (the `DD` register) overrides paragraph
-  spacing (the `PD` register) instead of accumulating with it.
+  after ending displays (`DE`), equations (`EN`), tables (`TS`), and
+  pictures without flyback (`PE`).  This means that display distance
+  spacing (the `DD` register) overrides the spacing that may follow in a
+  subsequent paragraph, section heading, or display instead of
+  accumulating with that distance.  This change is to make the behavior
+  of the package more predictable; you can fine-tune such spacing by
+  setting the `DD` register in desired places.  It has also helped us to
+  improve groff ms's rendering of historical ms(7) documents such as
+  Kernighan & Cherry's "Typesetting Mathematics".
 
 o The s (ms) macro package supports a new string, `FR`, which defines
   the ratio of the footnote line length to the current line length.  The

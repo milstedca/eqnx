@@ -81,6 +81,18 @@ and books.
 .
 .
 .P
+Call an
+.I mm
+macro at the beginning of a document to initialize the package.
+.
+A simple
+.I mm
+document might use only
+.B P
+for paragraphing.
+.
+.
+.P
 .I groff mm
 is intended to be compatible with the
 .I mm
@@ -228,17 +240,6 @@ historically used by AT&T Bell Laboratories.
 Your document can select at most one of these approaches;
 when used,
 each disables the others.
-.
-A simple
-.I mm
-document might use only
-.B H
-(or
-.BR HU )
-and
-.B P
-for headings and paragraphing,
-respectively.
 .
 .
 .\" ====================================================================

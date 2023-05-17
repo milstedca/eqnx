@@ -2053,6 +2053,65 @@ without space between the arguments.
 End the address specification after
 .BR IA .
 .
+.
+.TP
+.BI IND\  "arg1 \fR[\fParg2 \fR[.\|.\|.]]\fP"
+Write a line in the index file selected by
+.B INITI
+with all arguments and the page number or header mark separated by tabs.
+.
+.RS
+.IP
+.B Examples
+.
+.IP
+arg1\[rs]tpage number
+.br
+arg1\[rs]targ2\[rs]tpage number
+.br
+arg1\[rs]theader mark
+.br
+arg1\[rs]tpage number\[rs]theader mark
+.RE
+.
+.TP
+.B INDP
+Print the index by running the command specified by the string
+.BR Indcmd ,
+which has
+.RB \[lq] sort\~\-t\[rs]t \[rq]
+as the default value.
+.
+.B INDP
+reads the output from the command to form the index,
+by default in two columns (this can be changed by defining
+.BR TYIND ).
+.
+The index is printed with the string
+.B Index
+as header;
+the default is \[lq]INDEX\[rq].
+.
+One-column processing is reactivated after the list.
+.
+.B INDP
+calls the user-defined macros
+.BR TXIND ,
+.BR TYIND ,
+and
+.B TZIND
+if defined.
+.
+.B TXIND
+is called before printing the string \[lq]INDEX\[rq],
+.B TYIND
+is called instead of printing \[lq]INDEX\[rq],
+and
+.B TZIND
+is called after the printing and should take care of restoring to
+normal operation again.
+.
+.
 .TP
 .BI INITI\  "type filename \fR[\fPmacro\fR]\fP"
 Initialize the new index system and set the filename to collect index
@@ -2120,64 +2179,6 @@ See
 .BR GETPN ,
 and
 .BR GETHN .
-.
-.
-.TP
-.BI IND\  "arg1 \fR[\fParg2 \fR[.\|.\|.]]\fP"
-Write a line in the index file selected by
-.B INITI
-with all arguments and the page number or header mark separated by tabs.
-.
-.RS
-.IP
-.B Examples
-.
-.IP
-arg1\[rs]tpage number
-.br
-arg1\[rs]targ2\[rs]tpage number
-.br
-arg1\[rs]theader mark
-.br
-arg1\[rs]tpage number\[rs]theader mark
-.RE
-.
-.TP
-.B INDP
-Print the index by running the command specified by the string
-.BR Indcmd ,
-which has
-.RB \[lq] sort\~\-t\[rs]t \[rq]
-as the default value.
-.
-.B INDP
-reads the output from the command to form the index,
-by default in two columns (this can be changed by defining
-.BR TYIND ).
-.
-The index is printed with the string
-.B Index
-as header;
-the default is \[lq]INDEX\[rq].
-.
-One-column processing is reactivated after the list.
-.
-.B INDP
-calls the user-defined macros
-.BR TXIND ,
-.BR TYIND ,
-and
-.B TZIND
-if defined.
-.
-.B TXIND
-is called before printing the string \[lq]INDEX\[rq],
-.B TYIND
-is called instead of printing \[lq]INDEX\[rq],
-and
-.B TZIND
-is called after the printing and should take care of restoring to
-normal operation again.
 .
 .
 .TP
@@ -2429,6 +2430,12 @@ This is a list of the standard options:
 .TS
 tab(@);
 l lx.
+AT@T{
+Attention.
+Prints \[lq]ATTENTION:\[rq] and the argument below the inside address.
+See also string
+.BR LetAT .
+T}
 CN@T{
 Confidential notation.
 Prints \[lq]CONFIDENTIAL\[rq] on the second line below the date line.
@@ -2445,12 +2452,6 @@ date line.
 .
 See also string
 .BR LetRN .
-T}
-AT@T{
-Attention.
-Prints \[lq]ATTENTION:\[rq] and the argument below the inside address.
-See also string
-.BR LetAT .
 T}
 SA@T{
 Salutation.

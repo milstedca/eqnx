@@ -3841,7 +3841,7 @@ this amount is set to
 Both arguments are in twelfths of current font's space width
 (usually one-third em for Western scripts;
 (see
-.MR groff_font @MAN5EXT@ )
+.MR groff_font @MAN5EXT@ ).
 .
 Initially,
 both the

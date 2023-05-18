@@ -516,7 +516,7 @@ are mounted at font positions
 respectively.
 .
 Internally,
-font positions are used for backwards compatibility.
+font positions are used for backward compatibility.
 .
 From a practical point of view,
 it doesn't make a big difference\[em]a different font family can still
@@ -747,7 +747,7 @@ and made empty otherwise.
 .BI APPSK\~ "id n" \~\c
 .RI [ title ]
 As
-.BR .APP ,
+.BR APP ,
 but increment the page number by
 .IR n .
 .
@@ -790,13 +790,13 @@ placement@Effect
 0@T{
 The abstract appears on page\~1 and cover sheet if the document is a
 \[lq]released paper\[rq] memorandum
-.RB ( ".MT 4" );
+.RB (\[lq] ".MT 4" \[rq]);
 otherwise,
 it appears on page\~1 without a cover sheet.
 T}
 1@T{
 The abstract appears only on the cover sheet
-.RB ( ".MT 4"
+.RB (\[lq] ".MT 4" \[rq]
 only).
 T}
 .\" XXX: This does not appear to be implemented.
@@ -811,7 +811,7 @@ T}
 .
 .IP
 An abstract does not appear at all in external letters
-.RB ( ".MT 5" ).
+.RB (\[lq] ".MT 5" \[rq]).
 .
 .RI A\~ placement
 of
@@ -1141,9 +1141,7 @@ End the cover description.
 .
 .TP
 .B DE
-Display end.
-.
-Ends a block of text or display that begins with
+End static or floating display begun with
 .B DS
 or
 .BR DF .
@@ -2175,12 +2173,12 @@ by running the command specified in the
 string.
 .
 The index is preceded by a centered header interpolating the string
-.BR INDEX .
+.BR Index .
 .
 The output of
 .B Indcmd
 is set in two columns;
-afterwards,
+afterward,
 single-column output is selected again.
 .
 .
@@ -2209,6 +2207,10 @@ indexing system.
 Argument
 .I location-type
 selects how the location of each index entry is reported.
+.
+.I file-type
+defines an internal string used later by
+.BR INDP .
 .
 .
 .IP
@@ -2461,9 +2463,10 @@ If only
 is specified,
 it replaces the configured mark.
 .
-When a second argument is supplied,
+A second argument
+prefixes
 .I mark
-is prefixed to the configured mark;
+to the configured mark;
 an
 .I item-mark-mode
 value of\~1 places an unbreakable space after
@@ -3091,9 +3094,9 @@ are aligned to the respective locations on the line.
 .
 A
 .RB \[lq] % \[rq]
-character appearing within
+character in
 .I arg
-is replaced by the current page number.
+is replaced by the page number.
 .
 If the argument is absent,
 no page header is set.
@@ -3213,7 +3216,9 @@ without space between the arguments.
 .
 .
 .TP
-.BI RL\  \fR[\fPtext-indent \fR[\fP1\fR]]\fP
+.BR RL \~[\c
+.IR text-indent \~[\c
+.BR 1 ]]
 Begin reference list.
 .
 Each item is preceded by an automatically incremented number between
@@ -3231,8 +3236,10 @@ and
 .B LE
 to end the list.
 .
-A third argument suppresses the blank line that normally precedes each
-list item.
+A second argument,
+conventionally
+.BR 1 ,
+suppresses the blank line that normally precedes each list item.
 .
 .
 .TP
@@ -3279,7 +3286,7 @@ contains the reference page caption.
 .ne 5v
 .TP
 .BR RS \~[\c
-.IR string-name ]
+.IR reference-string ]
 Begin an automatically numbered reference definition.
 .
 By default,
@@ -3293,32 +3300,41 @@ where the reference mark should be and write the reference between
 .BR RS / RF
 on an input line after the reference mark.
 .
-.
-.IP
-If the
-.I string-name
-argument is given,
+If
+.I reference-string
+is specified,
 .I "groff ms"
-also defines a string with that identifier containing the current
-reference mark.
-.
-This string can interpolated as
-.BI \[rs]*[ string-name ]
+also stores the reference mark in a string of that name,
+which can be interpolated as
+.BI \[rs]*[ reference-string ]
 subsequently.
 .
 .
 .TP
-.BI S\  "\fR[\fPsize \fR[\fPspacing\fR]]\fP"
-Set point size and vertical spacing.
+.BR S \~[\c
+.IR type-size \~[ vertical-spacing ]]
+Set type size and vertical spacing.
 .
-If any argument is equal to \[lq]P\[rq],
-the previous value is used.
+Each argument is a
+.I groff
+measurement,
+using an appropriate scaling unit and an optional
+.B +
+or
+.B \-
+prefix to increment or decrement the current value.
 .
-A \[lq]C\[rq] means the current value,
-and \[lq]D\[rq] the default value.
+An argument of
+.B P
+restores the previous value,
+.B C
+indicates the current value,
+and
+.B D
+requests the default.
 .
-If \[lq]+\[rq] or \[lq]\-\[rq] is used before the value,
-the current value is incremented or decremented, respectively.
+An empty or omitted argument is treated as
+.BR P .
 .
 .
 .TP

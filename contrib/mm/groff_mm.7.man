@@ -2167,17 +2167,12 @@ Output the index set up by
 .B INITI
 and populated by
 .B IND
-calls
-by running the command specified in the
-.B Indcmd
-string.
+calls.
 .
 The index is preceded by a centered header interpolating the string
 .BR Index .
 .
-The output of
-.B Indcmd
-is set in two columns;
+The index is laid out in two columns;
 afterward,
 single-column output is selected again.
 .
@@ -4059,14 +4054,6 @@ The default is
 .TP
 .B Index
 \[lq]INDEX\[rq]
-.
-.
-.TP
-.B Indcmd
-Contains the index command.
-.
-Default value is
-.RB \[lq] sort\~\-t\[rs]t \[rq].
 .
 .
 .TP

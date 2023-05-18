@@ -1,3 +1,10 @@
+2023-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (pg@next-page): Break the line before `ne`eding a large
+	amount of space to force a page (or column) break.
+
+	Fixes <https://savannah.gnu.org/bugs/?64207>.
+
 2023-07-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* mmroff.pl: Honor `GROFF_BIN_PATH` environment variable.

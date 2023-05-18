@@ -1,3 +1,8 @@
+2023-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (Indcmd): Drop relic string.  Nothing interpolates it;
+	it hasn't been used since before groff 1.16 (February 2000).
+
 2023-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (let@print-head): Unconditionally `sp`ace after setting

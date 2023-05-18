@@ -1,3 +1,9 @@
+2023-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/hvunits.h: Boolify.
+	(class vunits, class hunits, vunits::is_zero, hunits::is_zero):
+	Do it.
+
 2023-05-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp: Rename request-handling functions to

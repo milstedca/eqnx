@@ -8163,22 +8163,18 @@ Went the day well?
 @cindex centering lines (@code{ce})
 @cindex lines, centering (@code{ce})
 Break (unless the no-break control character is used), center the output
-of the next @var{nnn} productive input lines without filling, then break
-again (regardless of the control character).  The count of lines
-remaining to be centered is stored in the read-only register @code{.ce}
-and is associated with the environment (@pxref{Environments}).
-@var{nnn} specifies the number of lines to be centered.  If the argument
-is not positive, centering is disabled.  Omitting the argument implies
-an @var{nnn} of @samp{1}.
-
-The basis for centering text is the line length (as set with the
-@code{ll} request) minus the indentation (as set with the @code{in}
-request).  Temporary indentation is ignored.
+of the next @var{nnn} productive input lines with respect to the line
+length and indentation, then break again regarding of the invoking
+control character.  Temporary indentation is ignored.  The count of
+lines remaining to be centered is stored in the read-only register
+@code{.ce} and is associated with the environment
+(@pxref{Environments}).
 
 @cindex @code{ce} request, difference from @w{@samp{.ad c}}
 While the @w{@samp{.ad c}} request also centers text, it fills the text
-as well.  The following example demonstrates the difference.
+as well.
 
+@c Wrap example at 56 columns.
 @Example
 .de FR
 This is a small text fragment that shows the differences
@@ -8222,6 +8218,7 @@ right-align.  If the argument is not positive, right-alignment is
 disabled.  Omitting the argument implies an @var{nnn} of @samp{1}.
 @endDefreq
 
+@need 2000
 @DefreqList {ss, word-space-size [@Var{additional-sentence-space-size}]}
 @DefregItemx {.ss}
 @DefregListEndx {.sss}

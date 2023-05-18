@@ -1,5 +1,13 @@
 2023-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (let@print-head): Unconditionally `sp`ace after setting
+	the text produced by ".LO SJ", instead of only doing so if the
+	letter type was not "simplified" (".LT SP").
+
+	Fixes <https://savannah.gnu.org/bugs/?64209>.
+
+2023-05-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (pg@next-page): Break the line before `ne`eding a large
 	amount of space to force a page (or column) break.
 

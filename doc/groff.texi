@@ -6938,16 +6938,10 @@ Interpolate the escape character.
 
 @cindex formatting a backslash glyph (@code{\[rs]})
 @cindex backslash glyph, formatting (@code{\[rs]})
-To format a backslash glyph on the output, use the @code{\[rs]} special
-character escape sequence.  In macro and string definitions, two further
-input sequences @code{\\} and @code{\E} come into play, permitting
-deferred interpretation of escape sequences.  @xref{Copy Mode}.
-
-Outside of copy mode, escape sequence interpretation can be switched off
-and back on.  This procedure can obviate the need to double the escape
-character inside macro definitions.  @xref{Writing Macros}.  (This
-approach is not available if your macro needs to interpolate values at
-the time it is @emph{defined}---but many do not.)
+The @code{\[rs]} special character escape sequence formats a backslash
+glyph.  In macro and string definitions, the input sequences @code{\\}
+and @code{\E} defer interpretation of escape sequences.  @xref{Copy
+Mode}.
 
 @Defreq {eo, }
 @cindex disabling @code{\} (@code{eo})
@@ -6963,19 +6957,16 @@ sequence in interpretation mode.
 Recognize the ordinary character@tie{}@var{o} as the escape character.
 If@tie{}@var{o} is absent or invalid, the default escape character
 @samp{\} is selected.
-
-Changing the escape character globally likely breaks macro packages,
-since GNU @code{troff} has no mechanism to ``intern'' macros, that is,
-to convert a macro definition into an internal form independent of its
-representation.@footnote{@TeX{} does have such a mechanism.} When a
-macro is called, its contents are interpreted literally.
-@c XXX: all that stuff mapped into the C0 and C1 controls seems pretty
-@c close to an interning mechanism to me, though... --GBR
 @endDefreq
 
+Switching escape sequence interpretation off to define a macro and back
+on afterward can obviate the need to double the escape character within
+the definition.  @xref{Writing Macros}.  This technique is not available
+if your macro needs to interpolate values at the time it is
+@emph{defined}---but many do not.
+
 @Example
-.\" This is a simplified version of the `BR` macro from
-.\" the man(7) macro package.
+.\" simplified `BR` macro from the man(7) macro package
 .eo
 .de BR
 .  ds result \&
@@ -6999,6 +6990,15 @@ has been saved.
 
 Use these requests together to temporarily change the escape character.
 @endDefreq
+
+Using a different escape character, or disbling it, when calling macros
+not under your control will likely cause errors, since GNU @code{troff}
+has no mechanism to ``intern'' macros---that is, to convert a macro
+definition into a form independent of its
+representation.@footnote{@TeX{} does have such a mechanism.}  When a
+macro is called, its contents are interpreted literally.
+@c XXX: all that stuff mapped into the C0 and C1 controls seems pretty
+@c close to an interning mechanism to me, though... --GBR
 
 @c XXX: Motivation?  Why are we directing the reader to these?
 @c @xref{Diversions}, and @ref{Identifiers}.
@@ -8129,7 +8129,7 @@ This is an uninteresting sentence.
 To clearly present the next couple of requests, we must introduce the
 concept of ``productive'' input lines.  A @dfn{productive input line} is
 one that directly produces formatted output.  Text lines produce
-output (unless diverted; see @ref{Diversions}), as do control
+output,@footnote{unless diverted; see @ref{Diversions}} as do control
 lines containing requests like @code{tl} or escape sequences like
 @code{\D}.  Macro calls are not @emph{directly} productive, and thus not
 counted, but their interpolated contents can be.  Empty requests, and
@@ -8138,7 +8138,7 @@ the formatting environment (as with changes to the size, face, height,
 slant, or color of the type) are not productive.  We will also preview
 the output line continuation escape sequence, @code{\c}, which
 ``connects'' two input lines that would otherwise be counted separately.
-@xref{Line Continuation}.
+@footnote{@xref{Line Continuation}.}
 
 @Example
 @c .ll 56n

@@ -1,5 +1,16 @@
 2023-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Improve input validation of `INITI`, `IND` macros.
+
+	* m.tmac (INITI): Validate the index type (first argument) here
+	instead of only later when `IND` is called.  Actually verify
+	that the second argument is present and usable.
+	(IND): Verify that we're given arguments.
+
+	Fixes <https://savannah.gnu.org/bugs/?64205>.
+
+2023-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* m.tmac (Indcmd): Drop relic string.  Nothing interpolates it;
 	it hasn't been used since before groff 1.16 (February 2000).
 

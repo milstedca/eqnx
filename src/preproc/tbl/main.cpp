@@ -995,6 +995,10 @@ format *process_format(table_input &in, options *opt,
 	  do {
 	    c = in.get();
 	  } while (c == ' ' || c == '\t');
+	  if (c == EOF) {
+	    error("'p' column modifier missing type size parameter");
+	    break;
+	  }
 	  if (c == '+' || c == '-') {
 	    ps.inc = (c == '+' ? 1 : -1);
 	    c = in.get();
@@ -1040,6 +1044,11 @@ format *process_format(table_input &in, options *opt,
 	  do {
 	    c = in.get();
 	  } while (c == ' ' || c == '\t');
+	  if (c == EOF) {
+	    error("'v' column modifier missing vertical spacing"
+		  " parameter");
+	    break;
+	  }
 	  if (c == '+' || c == '-') {
 	    vs.inc = (c == '+' ? 1 : -1);
 	    c = in.get();
@@ -1071,6 +1080,10 @@ format *process_format(table_input &in, options *opt,
 	do {
 	  c = in.get();
 	} while (c == ' ' || c == '\t');
+	if (c == EOF) {
+	  error("'w' column modifier missing width parameter");
+	  break;
+	}
 	if (c == '(') {
 	  list->width = "";
 	  c = in.get();

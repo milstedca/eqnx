@@ -1,5 +1,12 @@
 2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/main.cpp (process_format): Check for EOF after
+	eating spaces and tabs when processing [pPvVwW] column
+	modifiers, and emit an appropriate error diagnostic.  This was
+	already being done for [fFmM].
+
+2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/main.cpp (process_format): Accept (and
 	discard) space and tab characters after [pPvV] in a column
 	descriptor, as is already done for [fFmMwW].  Modify [wW] to use

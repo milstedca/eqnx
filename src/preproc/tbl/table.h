@@ -37,14 +37,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #define LEADER "a"
 #define LEADER_CHAR 'a'
 
-struct inc_number {
-  short inc;
-  short val;
+struct size_expression {
+  enum { DECREMENT = -1, ABSOLUTE, INCREMENT } relativity;
+  int whole;
 };
 
 struct entry_modifier {
-  inc_number point_size;
-  inc_number vertical_spacing;
+  size_expression type_size;
+  size_expression vertical_spacing;
   string font;
   string macro;
   enum { CENTER, TOP, BOTTOM } vertical_alignment;

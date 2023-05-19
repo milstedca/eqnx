@@ -1000,21 +1000,22 @@ void set_modifier(const entry_modifier *m)
 {
   if (!m->font.empty())
     printfs(".ft %1\n", m->font);
-  if (m->point_size.val != 0) {
+  if (m->type_size.whole != 0) {
     prints(".ps ");
-    if (m->point_size.inc > 0)
+    if (m->type_size.relativity == size_expression::INCREMENT)
       prints('+');
-    else if (m->point_size.inc < 0)
+    else if (m->type_size.relativity == size_expression::DECREMENT)
       prints('-');
-    printfs("%1\n", as_string(m->point_size.val));
+    printfs("%1\n", as_string(m->type_size.whole));
   }
-  if (m->vertical_spacing.val != 0) {
+  if (m->vertical_spacing.whole != 0) {
     prints(".vs ");
-    if (m->vertical_spacing.inc > 0)
+    if (m->vertical_spacing.relativity == size_expression::INCREMENT)
       prints('+');
-    else if (m->vertical_spacing.inc < 0)
+    else if (m->vertical_spacing.relativity
+	     == size_expression::DECREMENT)
       prints('-');
-    printfs("%1\n", as_string(m->vertical_spacing.val));
+    printfs("%1\n", as_string(m->vertical_spacing.whole));
   }
   if (!m->macro.empty())
     printfs(".%1\n", m->macro);
@@ -1024,13 +1025,13 @@ void set_inline_modifier(const entry_modifier *m)
 {
   if (!m->font.empty())
     printfs("\\f[%1]", m->font);
-  if (m->point_size.val != 0) {
+  if (m->type_size.whole != 0) {
     prints("\\s[");
-    if (m->point_size.inc > 0)
+    if (m->type_size.relativity == size_expression::INCREMENT)
       prints('+');
-    else if (m->point_size.inc < 0)
+    else if (m->type_size.relativity == size_expression::DECREMENT)
       prints('-');
-    printfs("%1]", as_string(m->point_size.val));
+    printfs("%1]", as_string(m->type_size.whole));
   }
   if (m->stagger)
     prints("\\v'-.5v'");
@@ -1040,7 +1041,7 @@ void restore_inline_modifier(const entry_modifier *m)
 {
   if (!m->font.empty())
     prints("\\f[\\n[" SAVED_FONT_REG "]]");
-  if (m->point_size.val != 0)
+  if (m->type_size.whole != 0)
     prints("\\s[\\n[" SAVED_SIZE_REG "]]");
   if (m->stagger)
     prints("\\v'.5v'");

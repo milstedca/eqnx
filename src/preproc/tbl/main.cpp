@@ -535,8 +535,10 @@ options *process_options(table_input &in)
 entry_modifier::entry_modifier()
 : vertical_alignment(CENTER), zero_width(0), stagger(0)
 {
-  vertical_spacing.inc = vertical_spacing.val = 0;
-  point_size.inc = point_size.val = 0;
+  vertical_spacing.relativity = size_expression::ABSOLUTE;
+  vertical_spacing.whole = 0;
+  type_size.relativity = size_expression::ABSOLUTE;
+  type_size.whole = 0;
 }
 
 entry_modifier::~entry_modifier()
@@ -585,21 +587,21 @@ void entry_format::debug_print() const
     assert(0 == "invalid column classifier in switch");
     break;
   }
-  if (point_size.val != 0) {
+  if (type_size.whole != 0) {
     putc('p', stderr);
-    if (point_size.inc > 0)
+    if (type_size.relativity == size_expression::INCREMENT)
       putc('+', stderr);
-    else if (point_size.inc < 0)
+    else if (type_size.relativity == size_expression::DECREMENT)
       putc('-', stderr);
-    fprintf(stderr, "%d ", point_size.val);
+    fprintf(stderr, "%d ", type_size.whole);
   }
-  if (vertical_spacing.val != 0) {
+  if (vertical_spacing.whole != 0) {
     putc('v', stderr);
-    if (vertical_spacing.inc > 0)
+    if (vertical_spacing.relativity == size_expression::INCREMENT)
       putc('+', stderr);
-    else if (vertical_spacing.inc < 0)
+    else if (vertical_spacing.relativity == size_expression::DECREMENT)
       putc('-', stderr);
-    fprintf(stderr, "%d ", vertical_spacing.val);
+    fprintf(stderr, "%d ", vertical_spacing.whole);
   }
   if (!font.empty()) {
     putc('f', stderr);
@@ -988,9 +990,9 @@ format *process_format(table_input &in, options *opt,
       case 'p':
       case 'P':
 	{
-	  inc_number &ps = list->point_size;
-	  ps.val = 0;
-	  ps.inc = 0;
+	  size_expression &ps = list->type_size;
+	  ps.relativity = size_expression::ABSOLUTE;
+	  ps.whole = 0;
 	  c = in.get();
 	  do {
 	    c = in.get();
@@ -1000,27 +1002,30 @@ format *process_format(table_input &in, options *opt,
 	    break;
 	  }
 	  if (c == '+' || c == '-') {
-	    ps.inc = (c == '+' ? 1 : -1);
+	    if (c == '+')
+	      ps.relativity = size_expression::INCREMENT;
+	    else if (c == '-')
+	      ps.relativity = size_expression::DECREMENT;
 	    c = in.get();
 	  }
 	  if (c == EOF || !csdigit(c)) {
 	    warning("'p' column modifier must be followed by"
 		    " (optionally signed) integer; ignoring");
-	    ps.inc = 0;
+	    ps.relativity = size_expression::ABSOLUTE;
 	  }
 	  else {
 	    do {
-	      ps.val *= 10;
-	      ps.val += c - '0';
+	      ps.whole *= 10;
+	      ps.whole += c - '0';
 	      c = in.get();
 	    } while (c != EOF && csdigit(c));
 	  }
-	  if (ps.val > MAX_POINT_SIZE || ps.val < -MAX_POINT_SIZE) {
+	  if (ps.whole > MAX_POINT_SIZE || ps.whole < -MAX_POINT_SIZE) {
 	    warning("'p' column modifier argument magnitude of %1"
-		    " points out of range (> %2); ignoring", ps.val,
+		    " points out of range (> %2); ignoring", ps.whole,
 		    MAX_POINT_SIZE);
-	    ps.val = 0;
-	    ps.inc = 0;
+	    ps.whole = 0;
+	    ps.relativity = size_expression::ABSOLUTE;
 	  }
 	  break;
 	}
@@ -1037,9 +1042,9 @@ format *process_format(table_input &in, options *opt,
       case 'v':
       case 'V':
 	{
-	  inc_number &vs = list->vertical_spacing;
-	  vs.val = 0;
-	  vs.inc = 0;
+	  size_expression &vs = list->vertical_spacing;
+	  vs.whole = 0;
+	  vs.relativity = size_expression::ABSOLUTE;
 	  c = in.get();
 	  do {
 	    c = in.get();
@@ -1050,28 +1055,32 @@ format *process_format(table_input &in, options *opt,
 	    break;
 	  }
 	  if (c == '+' || c == '-') {
-	    vs.inc = (c == '+' ? 1 : -1);
+	    if (c == '+')
+	      vs.relativity = size_expression::INCREMENT;
+	    else if (c == '-')
+	      vs.relativity = size_expression::DECREMENT;
 	    c = in.get();
 	  }
 	  if (c == EOF || !csdigit(c)) {
 	    warning("'v' column modifier must be followed by"
 		    " (optionally signed) integer; ignoring");
-	    vs.inc = 0;
+	    vs.whole = 0;
+	    vs.relativity = size_expression::ABSOLUTE;
 	  }
 	  else {
 	    do {
-	      vs.val *= 10;
-	      vs.val += c - '0';
+	      vs.whole *= 10;
+	      vs.whole += c - '0';
 	      c = in.get();
 	    } while (c != EOF && csdigit(c));
 	  }
-	  if (vs.val > MAX_VERTICAL_SPACING
-	      || vs.val < -MAX_VERTICAL_SPACING) {
+	  if (vs.whole > MAX_VERTICAL_SPACING
+	      || vs.whole < -MAX_VERTICAL_SPACING) {
 	    warning("'v' column modifier argument magnitude of %1"
-		    " points out of range (> %2); ignoring", vs.val,
+		    " points out of range (> %2); ignoring", vs.whole,
 		    MAX_VERTICAL_SPACING);
-	    vs.val = 0;
-	    vs.inc = 0;
+	    vs.whole = 0;
+	    vs.relativity = size_expression::ABSOLUTE;
 	  }
 	  break;
 	}

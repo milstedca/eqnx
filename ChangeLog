@@ -1,5 +1,20 @@
 2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Refactor handling of type size and vertical spacing.
+
+	* src/preproc/tbl/table.h (struct inc_number): Rename this...
+	(struct size_expression): ...to this, and change its member
+	types.  The `inc` `short` becomes a `relativity` enum
+	because it only ever takes 3 values.  The `val` short becomes an
+	`int`, undoing what I suspect to be premature optimization.
+	* src/preproc/tbl/main.cpp (entry_modifier::entry_modifier)
+	(entry_format::debug_print, process_format):
+	* src/preproc/tbl/table.cpp (set_modifier, set_inline_modifier)
+	(restore_inline_modifier): Update to reflect new types and
+	enum literals.
+
+2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/tbl/main.cpp (process_format): Check for EOF after
 	eating spaces and tabs when processing [pPvVwW] column
 	modifiers, and emit an appropriate error diagnostic.  This was

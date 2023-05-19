@@ -47,8 +47,10 @@ int delimiter_shortfall = 50;
 int null_delimiter_space = 12;
 int script_space = 5;
 int thin_space = 17;
+int half_space = 17;
 int medium_space = 22;
 int thick_space = 28;
+int full_space = 28;
 
 int num1 = 70;
 int num2 = 40;
@@ -94,6 +96,8 @@ struct S {
   { "thin_space", &thin_space },
   { "medium_space", &medium_space },
   { "thick_space", &thick_space },
+  { "half_space", &half_space },
+  { "full_space", &full_space },
   { "num1", &num1 },
   { "num2", &num2 },
   { "denom1", &denom1 },
@@ -597,7 +601,7 @@ half_space_box::half_space_box()
 void half_space_box::output()
 {
   if (output_format == troff)
-    printf("\\h'%dM'", thin_space);
+    printf("\\h'%dM'", half_space);
   else if (output_format == mathml)
     printf("<mtext>&ThinSpace;</mtext>");
 }
@@ -610,10 +614,9 @@ full_space_box::full_space_box()
 void full_space_box::output()
 {
   if (output_format == troff)
-    printf("\\h'%dM'", thick_space);
+    printf("\\h'%dM'", full_space);
   else if (output_format == mathml)
-    // &ThickSpace; doesn't display right under Firefox 1.5.
-    printf("<mtext>&ensp;</mtext>");
+    printf("<mtext>&ThickSpace;</mtext>");
 }
 
 thick_space_box::thick_space_box()
@@ -626,8 +629,7 @@ void thick_space_box::output()
   if (output_format == troff)
     printf("\\h'%dM'", thick_space);
   else if (output_format == mathml)
-    // &ThickSpace; doesn't display right under Firefox 1.5.
-    printf("<mtext>&ensp;</mtext>");
+    printf("<mtext>&ThickSpace;</mtext>");
 }
 
 thin_space_box::thin_space_box()

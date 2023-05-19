@@ -1239,11 +1239,6 @@ The width of subscripts and superscripts is increased by this amount
 This amount of space is automatically inserted after punctuation
 characters.
 .
-It also configures the width of the space produced by the
-.B \[ha]
-token
-.RB ( 17 ).
-.
 .
 .TP
 .B medium_space
@@ -1257,7 +1252,18 @@ binary operators
 This amount of space is automatically inserted on either side of
 relations.
 .
-It also configures the width of the space produced by the
+.
+.TP
+.B half_space
+configures the width of the space produced by the
+.B \[ha]
+token
+.RB ( 17 ).
+.
+.
+.TP
+.B full_space
+configures the width of the space produced by the
 .B \[ti]
 token
 .RB ( 28 ).

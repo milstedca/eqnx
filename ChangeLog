@@ -1,5 +1,29 @@
 2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[eqn]: Implement tunable "half_space" and "full_space"
+	parameters.  They default to the same widths as "thin_space" and
+	"thick_space", respectively, but control the widths of the '^'
+	and '~' input tokens.
+
+	* src/preproc/eqn/box.cpp: Add globals `half_space`,
+	`full_space`.
+	(struct S): Recognize "half_space" and "full_space" as
+	parameters to the "set" primitive, and map them to the globals.
+	(half_space_box::output): Format the half space width.
+	(full_space_box::output): Format the full space width.
+	(full_space_box::output, thick_space_box::output): Drop
+	workaround for Firefox 1.5 MathML bug (November 2005).  Emit
+	"&ThickSpace;" entity instead of "&ensp;".
+
+	* src/preproc/eqn/eqn.1.man (Customization): Document feature.
+
+	* NEWS: Add item.
+
+	Fixes <https://savannah.gnu.org/bugs/?64216>.  Thanks to Doug
+	McIlroy for the report and Damian McGuckin for the discussion.
+
+2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[eqn]: Add `thick_space` and `thin_space` classes.
 
 	* src/preproc/eqn/box.cpp:

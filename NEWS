@@ -19,6 +19,12 @@ o The "gifont" primitive replaces "gfont" as the means of configuring
   ease acquisition of the eqn language in light of GNU eqn's
   thirty-year-old extensions "gbfont" and "grfont".
 
+o New parameters tunable with the GNU eqn "set" primitive, "half_space"
+  and "full_space", enable a document to configure the space widths
+  produced by the eqn tokens '^' and '~', respectively.  Previously,
+  their widths were determined by the "thin_space" and "thick_space"
+  parameters used to tune GNU eqn's automatic spacing computations.
+
 Macro packages
 --------------
 

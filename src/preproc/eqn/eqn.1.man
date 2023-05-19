@@ -384,6 +384,7 @@ and operators.
 .SS "Automatic spacing"
 .\" ====================================================================
 .
+GNU
 .I eqn
 imputes a type to each component of an equation,
 adjusting the spacing between them accordingly.

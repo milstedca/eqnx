@@ -589,6 +589,19 @@ void tab_box::check_tabs(int level)
   }
 }
 
+half_space_box::half_space_box()
+{
+  spacing_type = SUPPRESS_TYPE;
+}
+
+void half_space_box::output()
+{
+  if (output_format == troff)
+    printf("\\h'%dM'", thin_space);
+  else if (output_format == mathml)
+    printf("<mtext>&ThinSpace;</mtext>");
+}
+
 full_space_box::full_space_box()
 {
   spacing_type = SUPPRESS_TYPE;
@@ -601,19 +614,6 @@ void full_space_box::output()
   else if (output_format == mathml)
     // &ThickSpace; doesn't display right under Firefox 1.5.
     printf("<mtext>&ensp;</mtext>");
-}
-
-half_space_box::half_space_box()
-{
-  spacing_type = SUPPRESS_TYPE;
-}
-
-void half_space_box::output()
-{
-  if (output_format == troff)
-    printf("\\h'%dM'", thin_space);
-  else if (output_format == mathml)
-    printf("<mtext>&ThinSpace;</mtext>");
 }
 
 void box_list::list_debug_print(const char *sep)

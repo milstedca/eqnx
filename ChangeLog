@@ -1,5 +1,12 @@
 2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/tbl/main.cpp (process_format): Accept (and
+	discard) space and tab characters after [pPvV] in a column
+	descriptor, as is already done for [fFmMwW].  Modify [wW] to use
+	the same loop style as the others, for consistency.
+
+2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/eqn/box.cpp (half_space_box::output)
 	(full_space_box::output, thick_space_box::output)
 	(half_space_box::output): Add assertions to catch unexpected

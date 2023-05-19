@@ -992,6 +992,9 @@ format *process_format(table_input &in, options *opt,
 	  ps.val = 0;
 	  ps.inc = 0;
 	  c = in.get();
+	  do {
+	    c = in.get();
+	  } while (c == ' ' || c == '\t');
 	  if (c == '+' || c == '-') {
 	    ps.inc = (c == '+' ? 1 : -1);
 	    c = in.get();
@@ -1034,6 +1037,9 @@ format *process_format(table_input &in, options *opt,
 	  vs.val = 0;
 	  vs.inc = 0;
 	  c = in.get();
+	  do {
+	    c = in.get();
+	  } while (c == ' ' || c == '\t');
 	  if (c == '+' || c == '-') {
 	    vs.inc = (c == '+' ? 1 : -1);
 	    c = in.get();
@@ -1062,9 +1068,9 @@ format *process_format(table_input &in, options *opt,
 	}
       case 'w':
       case 'W':
-	c = in.get();
-	while (c == ' ' || c == '\t')
+	do {
 	  c = in.get();
+	} while (c == ' ' || c == '\t');
 	if (c == '(') {
 	  list->width = "";
 	  c = in.get();

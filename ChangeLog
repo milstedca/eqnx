@@ -1,5 +1,12 @@
 2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/box.cpp (half_space_box::output)
+	(full_space_box::output, thick_space_box::output)
+	(half_space_box::output): Add assertions to catch unexpected
+	flow of control.
+
+2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[eqn]: Implement tunable "half_space" and "full_space"
 	parameters.  They default to the same widths as "thin_space" and
 	"thick_space", respectively, but control the widths of the '^'

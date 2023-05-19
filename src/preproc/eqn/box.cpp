@@ -604,6 +604,8 @@ void half_space_box::output()
     printf("\\h'%dM'", half_space);
   else if (output_format == mathml)
     printf("<mtext>&ThinSpace;</mtext>");
+  else
+    assert("unimplemented output format");
 }
 
 full_space_box::full_space_box()
@@ -617,6 +619,8 @@ void full_space_box::output()
     printf("\\h'%dM'", full_space);
   else if (output_format == mathml)
     printf("<mtext>&ThickSpace;</mtext>");
+  else
+    assert("unimplemented output format");
 }
 
 thick_space_box::thick_space_box()
@@ -630,6 +634,8 @@ void thick_space_box::output()
     printf("\\h'%dM'", thick_space);
   else if (output_format == mathml)
     printf("<mtext>&ThickSpace;</mtext>");
+  else
+    assert("unimplemented output format");
 }
 
 thin_space_box::thin_space_box()
@@ -643,6 +649,8 @@ void thin_space_box::output()
     printf("\\h'%dM'", thin_space);
   else if (output_format == mathml)
     printf("<mtext>&ThinSpace;</mtext>");
+  else
+    assert("unimplemented output format");
 }
 
 void box_list::list_debug_print(const char *sep)

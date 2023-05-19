@@ -1,3 +1,10 @@
+2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[eqn]: Add `thick_space` and `thin_space` classes.
+
+	* src/preproc/eqn/box.cpp:
+	* src/preproc/eqn/box.h: Do it.
+
 2023-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[eqn]: Trivially refactor.  Rename "space_box" class to

@@ -182,6 +182,20 @@ public:
   void debug_print();
 };
 
+class thick_space_box : public simple_box {
+public:
+  thick_space_box();
+  void output();
+  void debug_print();
+};
+
+class thin_space_box : public simple_box {
+public:
+  thin_space_box();
+  void output();
+  void debug_print();
+};
+
 class tab_box : public box {
   int disabled;
 public:

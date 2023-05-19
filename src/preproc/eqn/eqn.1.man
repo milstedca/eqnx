@@ -229,6 +229,158 @@ or
 .
 .
 .\" ====================================================================
+.SS "Anatomy of an equation"
+.\" ====================================================================
+.
+.I eqn
+input consists of tokens.
+.
+Consider a form of Newton's second law of motion.
+.
+The input
+.
+.
+.P
+.RS
+.EX
+\&.EQ
+F =
+m a
+\&.EN
+.EE
+.RE
+.
+.
+.P
+becomes
+.EQ
+F =
+m a.
+.EN
+.
+Each of
+.BR F ,
+.BR = ,
+.BR m ,
+and
+.B a
+is a token.
+.
+.
+Spaces and newlines are interchangeable;
+they separate input tokens but do not break lines or produce space in
+the output.
+.
+Tab and leader characters separate tokens as well as advancing the
+drawing position to the next tab stop
+(but are seldom used in
+.I eqn
+input).
+.
+.
+.P
+A handful of tokens manage the grouping and spacing of other tokens.
+.
+.
+.TP
+.B "{ }"
+Left and right braces perform grouping.
+.
+Whereas
+.RB \[lq] "e sup a b" \[rq]
+expresses
+.ie n .RI \[lq]( e "\~to the\~" a )\~times\~ b \[rq],
+.el \{\
+.EQ
+e sup a b ,
+.EN
+.\}
+.RB \[lq] "e sup { a b }" \[rq]
+means
+.ie n .RI \[lq] e "\~to the\~(" a \~times\~ b )\[rq].
+.el \{\
+.EQ
+e sup { a b } .
+.EN
+.\}
+.
+.
+.TP
+.B \[ha]
+.TQ
+.B \[ti]
+are the
+.I "half space"
+and
+.I "full space,"
+respectively.
+.
+Use them to tune the appearance of the output.
+.
+.
+.P
+Other tokens are primitives,
+macros,
+an argument to either of the foregoing,
+or a component of an equation.
+.
+.
+.P
+.I Primitives
+are fundamental keywords of the
+.I eqn
+language.
+.
+They can configure an aspect of the preprocessor's state,
+such as by setting a \[lq]global\[rq] font selection or type size
+(as with
+.B gfont
+and
+.B gsize),
+declare or delete macros
+(as with
+.B define
+and
+.B undefine);
+these are termed
+.I commands.
+.
+Other primitives perform formatting operations on the tokens after them
+(as with
+.BR big ,
+.BR over ,
+.BR sqrt ,
+or
+.BR up ).
+.
+.
+.P
+.I Macros
+permit primitives and/or components of equations to be grouped together
+for convenience.
+.
+Predefined macros make convenient the preparation of
+.I eqn
+input in a form resembling its spoken expression;
+for example,
+consider
+.BR cos ,
+.BR hat ,
+.BR inf ,
+and
+.BR lim .
+.
+.
+.P
+Equation
+.I components
+include mathematical variables,
+constants,
+numeric literals,
+and operators.
+.
+.
+.\" ====================================================================
 .SS "Automatic spacing"
 .\" ====================================================================
 .
@@ -967,6 +1119,10 @@ The width of subscripts and superscripts is increased by this amount.
 This amount of space is automatically inserted after punctuation
 characters.
 .
+It also configures the width of the space produced by the
+.B \[ha]
+token.
+.
 .
 .TP
 .B medium_space
@@ -978,6 +1134,10 @@ binary operators.
 .B thick_space
 This amount of space is automatically inserted on either side of
 relations.
+.
+It also configures the width of the space produced by the
+.B \[ti]
+token.
 .
 .
 .TP

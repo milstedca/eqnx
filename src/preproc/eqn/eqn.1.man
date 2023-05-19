@@ -331,17 +331,15 @@ are fundamental keywords of the
 .I eqn
 language.
 .
-They can configure an aspect of the preprocessor's state,
-such as by setting a \[lq]global\[rq] font selection or type size
-(as with
-.B gfont
+They can configure an aspect of the preprocessor's state;
+as when setting a \[lq]global\[rq] font selection or type size
+.RB ( gfont
 and
-.B gsize),
-declare or delete macros
-(as with
-.B define
+.BR gsize ),
+or declaring or deleting macros
+.RB ( define
 and
-.B undefine);
+.BR undefine );
 these are termed
 .I commands.
 .
@@ -392,9 +390,10 @@ adjusting the spacing between them accordingly.
 Recognized types are as follows.
 .
 .
-.IP
+.RS 2n \" we need quite a bit of space for this table
+.P
 .TS
-lf(CR) l.
+Lf(CR) Lx.
 ordinary	T{
 an ordinary character such as \[lq]1\[rq] or
 .RI \[lq] x \[rq]
@@ -406,14 +405,15 @@ a large operator such as
 \*[Su]
 .rm Su
 T}
-binary	a binary operator such as \[lq]\[pl]\[rq]
-relation	a relation such as \[lq]=\[rq]
-opening	an opening bracket such as \[lq](\[rq]
-closing	a closing bracket such as \[lq])\[rq]
-punctuation	a punctuation character such as \[lq],\[rq]
-inner	a sub-formula contained within brackets
-suppress	a type without automatic spacing adjustment
+binary	binary operator such as \[lq]\[pl]\[rq]
+relation	relation such as \[lq]=\[rq]
+opening	opening bracket such as \[lq](\[rq]
+closing	closing bracket such as \[lq])\[rq]
+punctuation	punctuation character such as \[lq],\[rq]
+inner	sub-formula contained within brackets
+suppress	component to which automatic spacing is not applied
 .TE
+.RE
 .
 .
 .P
@@ -985,16 +985,16 @@ They have no effect when generating MathML mode,
 which pushes typesetting and fine motions downstream to a MathML
 rendering engine.
 .
-These parameters can be set using the
+Configure these parameters with the
 .B set
 primitive.
 .
 .
 .TP
 .BI set\~ "p n"
-This sets
+assigns
 .RI parameter\~ p
-to
+the
 .RI value\~ n ,
 where
 .IR n \~is
@@ -1019,12 +1019,11 @@ should assume an x\~height of 0.45\~ems.
 .
 .RS
 .LP
-Possible parameters are as follows.
+Available parameters are as follows.
 .
 Values are in units of hundredths of an em unless otherwise stated.
 .
-These descriptions are intended to be expository rather than
-definitive.
+We intend these descriptions to be expository rather than rigorous.
 .
 .
 .TP

@@ -203,7 +203,7 @@ simple:
 	| '^'
 		{ $$ = new half_space_box; }
 	| '~'
-		{ $$ = new space_box; }
+		{ $$ = new full_space_box; }
 	| '\t'
 		{ $$ = new tab_box; }
 	| '{' equation '}'

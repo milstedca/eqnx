@@ -589,12 +589,12 @@ void tab_box::check_tabs(int level)
   }
 }
 
-space_box::space_box()
+full_space_box::full_space_box()
 {
   spacing_type = SUPPRESS_TYPE;
 }
 
-void space_box::output()
+void full_space_box::output()
 {
   if (output_format == troff)
     printf("\\h'%dM'", thick_space);
@@ -635,7 +635,7 @@ void half_space_box::debug_print()
   fprintf(stderr, "^");
 }
 
-void space_box::debug_print()
+void full_space_box::debug_print()
 {
   fprintf(stderr, "~");
 }

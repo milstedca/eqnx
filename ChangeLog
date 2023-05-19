@@ -1,5 +1,20 @@
 2023-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[eqn]: Trivially refactor.  Rename "space_box" class to
+	"full_space_box" for clarity and to prepare for adding distinct
+	thin and thick space box classes.
+
+	* src/preproc/eqn/box.cpp (space_box::space_box)
+	(space_box::output, space_box::debug_print):
+	* src/preproc/eqn/box.h (class space_box): Rename these...
+	* src/preproc/eqn/box.cpp (full_space_box::full_space_box)
+	(full_space_box::output, full_space_box::debug_print):
+	* src/preproc/eqn/box.h (class full_space_box): ...to these.
+	* src/preproc/eqn/eqn.ypp (simple): Construct item using new
+	type name.
+
+2023-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/hvunits.h: Boolify.
 	(class vunits, class hunits, vunits::is_zero, hunits::is_zero):
 	Do it.

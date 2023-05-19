@@ -1,4 +1,3 @@
-// -*- C++ -*-
 /* Copyright (C) 1989-2020 Free Software Foundation, Inc.
      Written by James Clark (jjc@jclark.com)
 
@@ -176,9 +175,9 @@ public:
   void debug_print();
 };
 
-class space_box : public simple_box {
+class full_space_box : public simple_box {
 public:
-  space_box();
+  full_space_box();
   void output();
   void debug_print();
 };
@@ -276,3 +275,9 @@ void init_char_table();
 void init_extensible();
 void define_extensible(const char *name, const char *ext, const char *top = 0,
 		       const char *mid = 0, const char *bot = 0);
+
+// Local Variables:
+// fill-column: 72
+// mode: C++
+// End:
+// vim: set cindent noexpandtab shiftwidth=2 textwidth=72:

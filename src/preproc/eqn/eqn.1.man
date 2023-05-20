@@ -1021,7 +1021,8 @@ should assume an x\~height of 0.45\~ems.
 .LP
 Available parameters are as follows.
 .
-Values are in units of hundredths of an em unless otherwise stated.
+Values are in units of hundredths of an em unless otherwise stated,
+with defaults shown in parentheses.
 .
 We intend these descriptions to be expository rather than rigorous.
 .
@@ -1029,22 +1030,26 @@ We intend these descriptions to be expository rather than rigorous.
 .TP
 .B minimum_size
 .I @g@eqn
-won't set anything at a smaller type size than this.
+will set equation components at a type size no smaller than this.
 .
-The value is in points.
+The value is in points
+.RB ( 5 ).
 .
 .
 .TP
 .B fat_offset
+.RS
 The
 .B fat
 primitive emboldens an equation by overprinting two copies of the
-equation horizontally offset by this amount.
+equation horizontally offset by this amount
+.RB ( 4 ).
 .
-This parameter is not used in MathML mode;
-fat text uses
+.B \%fat_offset
+is not used in MathML mode;
+.B fat
+components use
 .
-.RS
 .RS
 .EX
 <mstyle mathvariant=\[aq]double\-struck\[aq]>
@@ -1060,7 +1065,8 @@ instead.
 A fraction bar is longer by twice this amount than
 the maximum of the widths of the numerator and denominator;
 in other words,
-it overhangs the numerator and denominator by at least this amount.
+it overhangs the numerator and denominator by at least this amount
+.RB ( 0 ).
 .
 .
 .TP
@@ -1070,7 +1076,8 @@ When
 or
 .B \%under
 is applied to a single character,
-the line is this long.
+the line is this long
+.RB ( 31 ).
 .
 Normally,
 .B bar
@@ -1090,7 +1097,8 @@ and
 .B right
 primitives have a combined height and depth of at least this many
 thousandths of twice the maximum amount by which the sub-equation that
-the delimiters enclose extends away from the axis.
+the delimiters enclose extends away from the axis
+.RB ( 900 ).
 .
 .
 .TP
@@ -1101,17 +1109,20 @@ and
 .B right
 primitives have a combined height and depth not less than the
 difference of twice the maximum amount by which the sub-equation that
-the delimiters enclose extends away from the axis and this amount.
+the delimiters enclose extends away from the axis and this amount
+.RB ( 50 ).
 .
 .
 .TP
 .B null_delimiter_space
-This much horizontal space is inserted on each side of a fraction.
+This much horizontal space is inserted on each side of a fraction
+.RB ( 12 ).
 .
 .
 .TP
 .B script_space
-The width of subscripts and superscripts is increased by this amount.
+The width of subscripts and superscripts is increased by this amount
+.RB ( 5 ).
 .
 .
 .TP
@@ -1121,13 +1132,15 @@ characters.
 .
 It also configures the width of the space produced by the
 .B \[ha]
-token.
+token
+.RB ( 17 ).
 .
 .
 .TP
 .B medium_space
 This amount of space is automatically inserted on either side of
-binary operators.
+binary operators
+.RB ( 22 ).
 .
 .
 .TP
@@ -1137,18 +1150,21 @@ relations.
 .
 It also configures the width of the space produced by the
 .B \[ti]
-token.
+token
+.RB ( 28 ).
 .
 .
 .TP
 .B x_height
-The height of lowercase letters without ascenders such as \[lq]x\[rq].
+The height of lowercase letters without ascenders such as \[lq]x\[rq]
+.RB ( 45 ).
 .
 .
 .TP
 .B axis_height
 The height above the baseline of the center of characters such as
-\[lq]\[pl]\[rq] and \[lq]\[mi]\[rq].
+\[lq]\[pl]\[rq] and \[lq]\[mi]\[rq]
+.RB ( 26 ).
 .
 It is important that this value is correct for the font
 you are using.
@@ -1161,40 +1177,46 @@ This should be set to the thickness of the
 character,
 or the thickness of horizontal lines produced with the
 .B \[rs]D
-escape sequence.
+escape sequence
+.RB ( 4 ).
 .
 .
 .TP
 .B num1
 The
 .B over
-primitive shifts up the numerator by at least this amount.
+primitive shifts up the numerator by at least this amount
+.RB ( 70 ).
 .
 .
 .TP
 .B num2
 The
 .B smallover
-primitive shifts up the numerator by at least this amount.
+primitive shifts up the numerator by at least this amount
+.RB ( 36 ).
 .
 .
 .TP
 .B denom1
 The
 .B over
-primitive shifts down the denominator by at least this amount.
+primitive shifts down the denominator by at least this amount
+.RB ( 70 ).
 .
 .
 .TP
 .B denom2
 The
 .B smallover
-primitive shifts down the denominator by at least this amount.
+primitive shifts down the denominator by at least this amount
+.RB ( 36 ).
 .
 .
 .TP
 .B sup1
-Normally superscripts are shifted up by at least this amount.
+Normally superscripts are shifted up by at least this amount
+.RB ( 42 ).
 .
 .
 .TP
@@ -1202,9 +1224,11 @@ Normally superscripts are shifted up by at least this amount.
 Superscripts within superscripts or upper limits
 or numerators of
 .B smallover
-fractions are shifted up by at least this amount.
+fractions are shifted up by at least this amount
+.RB ( 37 ).
 .
-This is usually less than
+Conventionally,
+this is less than
 .BR sup1 .
 .
 .
@@ -1212,68 +1236,80 @@ This is usually less than
 .B sup3
 Superscripts within denominators or square roots
 or subscripts or lower limits are shifted up by at least
-this amount.
+this amount
+.RB ( 28 ).
 .
-This is usually less than
+Conventionally,
+this is less than
 .BR sup2 .
 .
 .
 .TP
 .B sub1
-Subscripts are normally shifted down by at least this amount.
+Subscripts are normally shifted down by at least this amount
+.RB ( 20 ).
 .
 .
 .TP
 .B sub2
 When there is both a subscript and a superscript,
-the subscript is shifted down by at least this amount.
+the subscript is shifted down by at least this amount
+.RB ( 23 ).
 .
 .
 .TP
 .B sup_drop
 The baseline of a superscript is no more than this much below the top of
-the object on which the superscript is set.
+the object on which the superscript is set
+.RB ( 38 ).
 .
 .
 .TP
 .B sub_drop
 The baseline of a subscript is at least this much below the bottom of
-the object on which the subscript is set.
+the object on which the subscript is set
+.RB ( 5 ).
 .
 .
 .TP
 .B big_op_spacing1
 The baseline of an upper limit is at least this much above the top of
-the object on which the limit is set.
+the object on which the limit is set
+.RB ( 11 ).
 .
 .
 .TP
 .B big_op_spacing2
 The baseline of a lower limit is at least this much below the bottom
-of the object on which the limit is set.
+of the object on which the limit is set
+.RB ( 17 ).
 .
 .
 .TP
 .B big_op_spacing3
 The bottom of an upper limit is at least this much above the top of
-the object on which the limit is set.
+the object on which the limit is set
+.RB ( 20 ).
 .
 .
 .TP
 .B big_op_spacing4
 The top of a lower limit is at least this much below the bottom of the
-object on which the limit is set.
+object on which the limit is set
+.RB ( 60 ).
 .
 .
 .TP
 .B big_op_spacing5
-This much vertical space is added above and below limits.
+This much vertical space is added above and below limits
+.RB ( 10 ).
 .
 .
 .TP
 .B baseline_sep
 The baselines of the rows in a pile or matrix are normally this far
-apart.
+apart
+.RB ( 140 ).
 .
 In most cases this should be equal to the sum of
 .B num1
@@ -1284,7 +1320,8 @@ and
 .TP
 .B shift_down
 The midpoint between the top baseline and the bottom baseline in a
-matrix or pile is shifted down by this much from the axis.
+matrix or pile is shifted down by this much from the axis
+.RB ( 26 ).
 .
 In most cases this should be equal to
 .BR axis_height .
@@ -1292,50 +1329,68 @@ In most cases this should be equal to
 .
 .TP
 .B column_sep
-This much space is added between columns in a matrix.
+This much space is added between columns in a matrix
+.RB ( 100 ).
 .
 .
 .TP
 .B matrix_side_sep
-This much space is added at each side of a matrix.
+This much space is added at each side of a matrix
+.RB ( 17 ).
 .
 .
+.br
+.ne 4v
 .TP
 .B draw_lines
-If this is non-zero,
-lines are drawn using the
+If non-zero,
+.I @g@eqn
+draws lines using the
+.I troff \" generic
 .B \[rs]D
 escape sequence,
-rather than with the
+rather than the
 .B \[rs]l
 escape sequence and the
 .B \[rs][ru]
-character.
+special character.
+.
+The default is determined by the
+.I eqnrc
+file
+.RB ( 0 \~on
+most devices;
+.BR 1 \~on
+.BR ps ,
+.BR html ,
+and the X11 devices.)
 .
 .
 .TP
 .B body_height
 The amount by which the height of the equation exceeds this is added as
 extra space before the line containing the equation
-(using
-.BR \[rs]x ).
-.
-The default value is 85.
+using the
+.I troff \" generic
+.B \[rs]x
+escape sequence
+.RB ( 85 ).
 .
 .
 .TP
 .B body_depth
 The amount by which the depth of the equation exceeds this is added as
 extra space after the line containing the equation
-(using
-.BR \[rs]x ).
-.
-The default value is 35.
+using the
+.I troff \" generic
+.B \[rs]x
+escape sequence
+.RB ( 35 ).
 .
 .
 .TP
 .B nroff
-If this is non-zero,
+If non-zero,
 then
 .B \%ndefine
 behaves like
@@ -1351,16 +1406,17 @@ and
 .B \%ndefine
 is ignored.
 .
-The default value is\~0;
-the
+The default is determined by the
 .I eqnrc
-file sets it to\~1 for the
+file
+.RB ( 0 \~on
+most devices;
+.BR 1 \~on
 .BR ascii ,
 .BR latin1 ,
 .BR utf8 ,
 and
-.B cp1047
-output devices.
+.BR cp1047 ).
 .
 .
 .P

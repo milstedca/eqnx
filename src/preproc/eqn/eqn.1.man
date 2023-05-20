@@ -116,7 +116,7 @@ except that lines between
 .B .EQ
 and
 .B .EN
-(or \[lq]inline\[rq] within a pair of user-specified delimiters)
+(or within a pair of user-specified delimiters)
 are interpreted as equation descriptions.
 .
 Normally,
@@ -152,7 +152,7 @@ is
 the standard input stream is read.
 .
 .
-.LP
+.P
 Unless the
 .B \-R
 option is given,
@@ -580,11 +580,11 @@ The
 .B over
 primitive corresponds to the \*[tx]
 .B \[rs]over
-primitive in display styles;
+primitive in displayed equation styles;
 .B smallover
 corresponds to
 .B \[rs]over
-in non-display styles.
+in non-display (\[lq]inline\[rq]) styles.
 .
 .
 .TP
@@ -689,7 +689,8 @@ but
 .I text
 is not subject to macro expansion because it is quoted;
 .I text
-is split up and the spacing between individual characters is adjusted.
+is split up and the spacing between individual characters adjusted
+per subsection \[lq]Automatic spacing\[rq] above.
 .
 .
 .TP
@@ -710,8 +711,9 @@ but because
 .I text
 is not quoted it is subject to macro expansion;
 .I text
-is not split up and the spacing between individual characters is not
-adjusted.
+is not split up and the spacing between individual characters
+.I not
+adjusted per subsection \[lq]Automatic spacing\[rq] above.
 .
 .
 .TP
@@ -753,11 +755,9 @@ that is not the first character on the input line is treated like
 .
 .
 .TP
-.BI special\~ "text e"
-Construct an object by calling the
-.I troff \" generic
-macro
-.I text
+.BI special\~ "troff-macro e"
+Construct an object by calling
+.I troff-macro
 .RI on\~ e .
 .
 The
@@ -805,8 +805,7 @@ of the result.
 .
 .
 .IP
-For example,
-suppose you wanted a construct that \[lq]cancels\[rq] an expression by
+Suppose you want a construct that \[lq]cancels\[rq] an expression by
 drawing a diagonal line through it.
 .
 .
@@ -918,10 +917,10 @@ picture.
 recognizes an
 .RB \[lq] on \[rq]
 argument to the
-.B delim
+.B \%delim
 primitive specially,
 restoring any delimiters previously disabled with
-.RB \[lq] "delim off" \[rq].
+.RB \%\[lq] "delim off" \[rq].
 .
 If delimiters haven't been specified,
 neither command has effect.
@@ -961,7 +960,7 @@ using
 escape sequence
 (the value has no effect in MathML mode).
 .
-Negative values are possible but have no effect.
+Negative values are accepted but have no effect.
 .
 If more than one
 .I n
@@ -981,9 +980,8 @@ input,
 the appearance of equations is controlled by a large number of
 parameters.
 .
-They have no effect when generating MathML mode,
-which pushes typesetting and fine motions downstream to a MathML
-rendering engine.
+They have no effect when generating MathML,
+which delegates typesetting to a MathML rendering engine.
 .
 Configure these parameters with the
 .B set
@@ -1014,11 +1012,11 @@ set x_height 45
 .IP
 says that
 .I @g@eqn
-should assume an x\~height of 0.45\~ems.
+should assume that the font's x-height is 0.45\~ems.
 .
 .
 .RS
-.LP
+.P
 Available parameters are as follows.
 .
 Values are in units of hundredths of an em unless otherwise stated,
@@ -1029,10 +1027,9 @@ We intend these descriptions to be expository rather than rigorous.
 .
 .TP
 .B minimum_size
-.I @g@eqn
-will set equation components at a type size no smaller than this.
-.
-The value is in points
+sets a floor for the type size
+(in scaled points)
+at which equations are set
 .RB ( 5 ).
 .
 .
@@ -1710,10 +1707,11 @@ even when followed by a character other than space or newline.
 .BI \-d\~ xy
 Specify delimiters
 .I x
+for left
 .RI and\~ y
-for the left and right ends,
-respectively,
-of inline equations.
+for right ends
+of equations not bracketed by
+.BR .EQ / .EN .
 .
 .I x
 and
@@ -1721,8 +1719,8 @@ and
 need not be distinct.
 .
 Any
-.B delim
-.I xy
+.RB \%\[lq] delim
+.IR xy \[rq]
 statements in the source file override this option.
 .
 .
@@ -1735,11 +1733,9 @@ is equivalent to
 .
 .TP
 .BI \-m\~ n
-Set the minimum type size to
-.IR n \~points.
-.
-.I @g@eqn
-will not reduce the size of sub- or superscripts beyond this size.
+is equivalent to
+.RB \[lq] "set \%minimum_size"
+.IR n \[rq].
 .
 .
 .TP
@@ -1787,10 +1783,9 @@ Don't load
 .
 .TP
 .BI \-s\~ n
-This is equivalent to a
+is equivalent to
 .RB \[lq] gsize
-.IR n \[rq]
-command.
+.IR n \[rq].
 .
 This option is deprecated.
 .
@@ -1849,26 +1844,30 @@ does.
 .
 Thus:
 .
+.
 .IP \[bu] 2n
 .I @g@eqn
 parameters have no effect on the generated MathML.
 .
+.
 .IP \[bu]
 The
-.BR special ,
+.BR \%special ,
 .BR up ,
 .BR down ,
 .BR fwd ,
 and
 .B back
-operations cannot be implemented,
+primitives cannot be implemented,
 and yield a MathML \%\[lq]<merror>\[rq] message instead.
+.
 .
 .IP \[bu]
 The
 .B vcenter
-keyword is silently ignored,
+primitive is silently ignored,
 as centering on the math axis is the MathML default.
+.
 .
 .IP \[bu]
 Characters that
@@ -1879,7 +1878,7 @@ mode\[em]notably the integral sign\[em]may appear too small and need to
 have their \[lq]<mstyle>\[rq] wrappers adjusted by hand.
 .
 .
-.LP
+.P
 As in its
 .I troff \" mode
 mode,
@@ -1888,17 +1887,20 @@ in MathML mode leaves the
 .B .EQ
 and
 .B .EN
-delimiters in place for displayed equations,
-but emits no explicit delimiters around inline equations.
+tokens in place,
+but emits nothing corresponding to
+.B \%delim
+delimiters.
 .
 They can,
 however,
-be recognized as strings that begin with \[lq]<math>\[rq] and end with
-\[lq]</math>\[rq] and do not cross line boundaries.
+be recognized as character sequences that begin with \[lq]<math>\[rq],
+end with \[lq]</math>\[rq],
+and do not cross line boundaries.
 .
 .
 .\" ====================================================================
-.SH Bugs
+.SH Caveats
 .\" ====================================================================
 .
 Words must be quoted anywhere they occur in
@@ -1920,33 +1922,24 @@ For instance,
 the
 .I eqn \" generic
 command
-.
-.RS
-.EX
-gfont PI
-.EE
-.RE
-.
+.RB \%\[lq]\^ "gfont PI" \^\[rq]
 does not select
 .IR groff 's
-Palatino italic font for the \[lq]global\[rq] equation face;
+Palatino italic font for the global italic face;
 you must use
-.
-.RS
-.EX
-gfont "PI"
-.EE
-.RE
-.
+.RB \%\[lq]\^ "gfont \[dq]PI\[dq]" \^\[rq]
 instead.
 .
 .
 .P
-Inline equations are set at the type size that is current at the
+Delimited equations are set at the type size that is current at the
 beginning of the input line.
 .
 .
-.LP
+.\" ====================================================================
+.SH Bugs
+.\" ====================================================================
+.
 In MathML mode,
 the
 .B mark
@@ -1959,7 +1952,7 @@ in theory,
 be implemented with \[lq]<maligngroup>\[rq] elements.
 .
 .
-.LP
+.P
 In MathML mode,
 each digit of a numeric literal gets a separate \[lq]<mn>\:</mn>\[rq]
 pair,
@@ -1981,14 +1974,14 @@ and Lorinda L.\& Cherry,
 AT&T Bell Laboratories Computing Science Technical Report No.\& 17.
 .
 .
-.LP
+.P
 .IR The\~\*[tx]book ,
 by Donald E.\& Knuth,
 1984,
 Addison-Wesley Professional.
 .
 .
-.LP
+.P
 .MR groff_char @MAN7EXT@ ,
 particularly subsections \[lq]Logical symbols\[rq],
 \[lq]Mathematical symbols\[rq],
@@ -1997,7 +1990,7 @@ documents a variety of special character escape sequences useful in
 mathematical typesetting.
 .
 .
-.LP
+.P
 .MR groff @MAN1EXT@ ,
 .MR @g@troff @MAN1EXT@ ,
 .MR @g@pic @MAN1EXT@ ,

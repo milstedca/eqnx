@@ -14270,6 +14270,7 @@ Environments save us considerable effort.
 
 @c =====================================================================
 
+@need 1000
 @c BEGIN Keep (roughly) parallel with subsection "Traps" of groff(7).
 @node Traps, Diversions, Deferring Output, GNU troff Reference
 @section Traps
@@ -14328,12 +14329,13 @@ A page can't be ejected if @code{vpt} is set to zero.
 
 @menu
 * Page Location Traps::
+* The Implicit Trap::
 * Diversion Traps::
 @end menu
 
 @c ---------------------------------------------------------------------
 
-@node Page Location Traps, Diversion Traps, Vertical Position Traps, Vertical Position Traps
+@node Page Location Traps, The Implicit Trap, Vertical Position Traps, Vertical Position Traps
 @subsubsection Page Location Traps
 @cindex page location traps
 @cindex traps, page location
@@ -14343,9 +14345,12 @@ Call macro @var{name} when the vertical position @var{dist} on the page
 is reached or passed in the downward direction.  The default scaling
 unit is @samp{v}.  Non-negative values for @var{dist} set the trap
 relative to the top of the page; negative values set the trap relative
-to the bottom of the page.  An existing @emph{visible} trap (see below)
-at @var{dist} is removed; this is @code{wh}'s sole function if
-@var{name} is missing.
+to the bottom of the page.  It is not possible to plant a trap less than
+one basic unit from the page bottom: a @var{dist} of @code{-0} is
+interpreted as @code{0}, the top of the page.@footnote{@xref{The
+Implicit Trap}.} An existing @emph{visible} trap (see below) at
+@var{dist} is removed; this is @code{wh}'s sole function if @var{name}
+is missing.
 
 A trap is sprung only if it is @dfn{visible}, meaning that its location
 is reachable on the page@footnote{A trap planted at @samp{20i} or
@@ -14353,27 +14358,45 @@ is reachable on the page@footnote{A trap planted at @samp{20i} or
 is not hidden by another trap at the same location already planted
 there.
 
+@need 1000
 @cindex page headers
 @cindex page footers
 @cindex headers
 @cindex footers
-An example of how a macro package might set headers and footers follows.
+A macro package might set headers and footers as follows; this example
+configures vertical margins of one inch to the body text, and one
+half-inch to the titles.  Observe the use of the no-break control
+character with @code{sp} request to position our text baselines,
+and the page number character @samp{%} used with the @code{tl} request.
 
 @Example
-.de hd                \" page header
+.\" hdfo.roff
+.de hd                  \" page header
 '  sp .5i
-.  tl '\\*[Title]''\\*[Date]'
-'  sp .3i
+'  tl '\\*(Ti''\\*(Da'  \" title and date strings
+'  sp .5i
 ..
-.
-.de fo                \" page footer
-'  sp 1v
+.de fo                  \" page footer
+'  sp .5i
 .  tl ''%''
-'  bp
+.  bp
 ..
-.
-.wh 0   hd            \" trap at top of the page
-.wh -1i fo            \" trap one inch from bottom
+.wh 0   hd             \" trap at top of the page
+.wh -1i fo             \" trap 1 inch from bottom
+@endExample
+
+To use these traps, copy the above (or load it from a file with the
+@code{so} or @code{mso} requests), then set up the strings it uses.
+
+@Example
+.so hdfo.roff
+.ds Ti Final Report\"
+.ds Da 21 May 2023\"
+.ti
+On 5 August of last year,
+this committe tasked me with the investigation of the
+CFIT (controlled flight into terrain) incident of
+.\" @i{...and so on...}
 @endExample
 
 A trap above the top or at or below the bottom of the page can be made
@@ -14385,8 +14408,7 @@ vertical position.
 @cindex debugging page location traps
 We can use the @code{ptr} request to dump our page location traps to the
 standard error stream (@pxref{Debugging}).  Their positions are reported
-in basic units appropriate to the device; an @code{nroff} device example
-follows.
+in basic units; an @code{nroff} device example follows.
 
 @Example
 .pl 5i
@@ -14473,9 +14495,8 @@ diversion to allow more space at the bottom of the page for them.
 The same macro can be installed simultaneously at multiple locations;
 however, only the earliest-planted instance---that has not yet been
 deleted with @code{wh}---will be moved by @code{ch}.  The following
-example (using an @code{nroff} device) illustrates this
-behavior.@footnote{@dots{}which is compatible with Heirloom Doctools
-@code{troff}.}  Blank lines have been elided from the output.
+example (using an @code{nroff} device) illustrates this behavior.  Blank
+lines have been elided from the output.
 
 @Example
 .de T
@@ -14518,10 +14539,8 @@ qux
 The read-only register @code{.ne} contains the amount of space that was
 needed in the last @code{ne} request that caused a trap to be sprung;
 it is useful in conjunction with the @code{.trunc} register.  @xref{Page
-Control}.
-
-Since the @code{.ne} register is set only by traps, it doesn't make
-sense to interpolate it outside of macros called by traps.
+Control}.  Since the @code{.ne} register is set only by traps, it
+doesn't make sense to interpolate it outside of macros called by traps.
 @endDefreg
 
 @Defreg {.trunc}
@@ -14534,7 +14553,6 @@ minus the amount of vertical motion produced by the @code{ne}
 request.  In other words, at the point a trap is sprung, it
 represents the difference of what the vertical position would have
 been but for the trap, and what the vertical position actually is.
-
 Since the @code{.trunc} register is set only by traps, it doesn't make
 sense to interpolate it outside of macros called by traps.
 @endDefreg
@@ -14543,45 +14561,71 @@ sense to interpolate it outside of macros called by traps.
 @cindex @code{bp} request, and traps (@code{.pe})
 @cindex traps, sprung by @code{bp} request (@code{.pe})
 @cindex page ejecting register (@code{.pe})
-A read-only register containing@tie{}1 while a page is being ejected
-with the @code{bp} request (or by the end of input), and
-0@tie{}otherwise.
+This Boolean-valued, read-only register interpolates@tie{}1 while a page
+is being ejected, and 0@tie{}otherwise.
 
-In the following example, only the second call to@tie{}@code{x} is
-caused by @code{bp}.
+In the following example, we plant the same trap at the top and the
+bottom of the page.  We also make the trap report its name and the
+vertical drawing position.
 
 @Example
-.de x
-\&.pe=\\n[.pe]
-.br
+.de T
+.tm \\$0: page \\n%, nl=\\n[nl] .pe=\\n[.pe]
 ..
-.wh 1v x
-.wh 4v x
-A line.
-.br
-Another line.
-.br
-    @result{} A line.
-       .pe=0
-       Another line.
-
-       .pe=1
+.ll 46n
+.wh 0 T
+.wh -1v T
+Those who can make you believe absurdities can make you
+commit atrocities. \[em] Voltaire
+    @error{} T: page 1, nl=0 .pe=0
+    @error{} T: page 1, nl=2600 .pe=1
+    @result{} Those who can make you believe absurdities can
+    @result{} make you commit atrocities. -- Voltaire
 @endExample
 @endDefreg
 
 @cindex diversions, and traps
 @cindex traps, and diversions
-An important fact to consider while designing macros is that diversions
-and traps do not interact normally.  For example, if a trap calls a
-header macro (while outputting a diversion) that tries to change the
-font on the current page, the effect is not visible before the diversion
-has completely been printed (except for input protected with @code{\!}
-or @code{\?}) since the data in the diversion is already formatted.  In
-most cases, this is not the expected behaviour.
+When designing macros, keep in mind that diversions and traps do
+normally interact.  For example, if a trap calls a header macro (while
+outputting a diversion) that tries to change the font on the current
+page, the effect is not visible before the diversion has completely been
+printed (except for input protected with @code{\!} or @code{\?}) since
+the data in the diversion is already formatted.  In most cases, this is
+not the expected behaviour.
 
 @c ---------------------------------------------------------------------
 
-@node Diversion Traps, Input Line Traps, Page Location Traps, Vertical Position Traps
+@c BEGIN Keep (roughly) parallel with subsection "The implicit trap" of
+@c groff(7).
+@node The Implicit Trap, Diversion Traps, Page Location Traps, Vertical Position Traps
+@subsubsection The Implicit Trap
+@cindex implicit trap
+@cindex trap, implicit
+
+If, after starting @code{troff} without loading a macro package, you use
+the @code{ptr} request to dump a list of the active traps to the
+standard error stream,@footnote{@xref{Debugging}.}  nothing is reported.
+Yet the @code{.t} register will report a steadily decreasing value with
+every output line your document produces, and once the value of
+@code{.t} gets to within @code{.V} of zero, you will notice that
+something trap-like happens---the page is ejected, a new one begins, and
+the value of @code{.t} becomes large once more.
+
+This @dfn{implicit page trap} always exists in the top-level
+diversion;@footnote{@xref{Diversions}.} it works like a trap in some
+ways but not others.  Its purpose is to eject the current page and start
+the next one.  It has no name, so it cannot be moved or deleted with
+@code{wh} or @code{ch} requests.  You cannot hide it by placing another
+trap at its location, and can move it only by redefining the page length
+with @code{pl}.  Its operation is suppressed when vertical page traps
+are disabled with GNU @code{troff}'s @code{vpt} request.
+@c END Keep (roughly) parallel with subsection "The implicit trap" of
+@c groff(7).
+
+@c ---------------------------------------------------------------------
+
+@node Diversion Traps, Input Line Traps, The Implicit Trap, Vertical Position Traps
 @subsubsection Diversion Traps
 @cindex diversion traps
 @cindex traps, diversion

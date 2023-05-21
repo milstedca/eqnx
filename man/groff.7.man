@@ -6766,6 +6766,92 @@ with its corresponding amount of motion
 .
 .
 .\" ====================================================================
+.SS "Page location traps"
+.\" ====================================================================
+.
+A
+.I page location trap
+is called when the vertical drawing position reaches or passes the place
+at which it is planted
+(with
+.B .wh
+or
+.BR .ch ).
+.
+Non-negative page locations given to these requests set the trap
+relative to the top of the page;
+negative values set the trap relative to the bottom of the page.
+.
+It is not possible to plant a trap less than one basic unit from the
+page bottom:
+a location of \[lq]\-0\[rq] is interpreted as \[lq]0\[rq],
+the top of the page.
+.
+An existing
+.I visible
+trap
+(see below)
+at the same location is removed;
+this is
+.BR .wh 's
+sole function if its second argument is missing.
+.
+.
+.P
+A trap is sprung only if it is
+.I visible,
+meaning that its location is reachable on the page and it is not hidden
+by another trap at the same location already planted there.
+.
+(A trap planted at \[lq]20i\[rq] or \[lq]\-30i\[rq] will not be sprung
+on a page of length \[lq]11i\[rq].)
+.
+.
+.P
+A trap above the top or at or below the bottom of the page can be made
+visible by either moving it into the page area or increasing the page
+length so that the trap is on the page.
+.
+Negative trap values always use the
+.I current
+page length;
+they are not converted to an absolute vertical position.
+.
+Use
+.B .ptr
+to dump page location traps to the standard error stream;
+their positions are reported in basic units.
+.
+.
+.\" ====================================================================
+.SS "The implicit trap"
+.\" ====================================================================
+.
+An
+.I implicit page trap
+always exists in the top-level diversion;
+it works like a trap in some ways but not others.
+.
+Its purpose is to eject the current page and start the next one.
+.
+It has no name,
+so it cannot be moved or deleted with
+.B wh
+or
+.B ch
+requests.
+.
+You cannot hide it by placing another trap at its location,
+and can move it only by redefining the page length with
+.BR .pl .
+.
+Its operation is suppressed when vertical page traps are disabled with
+the
+.B vpt
+request.
+.
+.
+.\" ====================================================================
 .SH Diversions
 .\" ====================================================================
 .
@@ -7352,7 +7438,7 @@ You can browse it interactively with \[lq]info groff\[rq].
 .
 .
 .br
-.ne 2v
+.ne 4v
 .P
 \[lq]Troff User's Manual\[rq]
 by Joseph F.\& Ossanna,

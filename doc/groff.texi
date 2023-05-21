@@ -8157,18 +8157,20 @@ Went the day well?
   @result{} Went the day well?
 @endExample
 
-@DefreqList {ce, [@Var{nnn}]}
+@DefreqList {ce, [@Var{n}]}
 @DefregListEndx {.ce}
 @cindex centered text (unfilled)
 @cindex centering lines (@code{ce})
 @cindex lines, centering (@code{ce})
 Break (unless the no-break control character is used), center the output
-of the next @var{nnn} productive input lines with respect to the line
-length and indentation, then break again regarding of the invoking
-control character.  Temporary indentation is ignored.  The count of
-lines remaining to be centered is stored in the read-only register
-@code{.ce} and is associated with the environment
-(@pxref{Environments}).
+of the next @var{n} productive input lines with respect to the line
+length and indentation without filling, then break again regardless of
+the invoking control character.
+@c Temporary indentation is ignored.
+If the argument is not positive, centering is disabled.  Omitting the
+argument implies an @var{n} of @samp{1}.  The count of lines remaining
+to be centered is stored in the read-only register @code{.ce} and is
+associated with the environment (@pxref{Environments}).
 
 @cindex @code{ce} request, difference from @w{@samp{.ad c}}
 While the @w{@samp{.ad c}} request also centers text, it fills the text
@@ -8203,19 +8205,31 @@ counting lines for requests that take a count of input lines as an
 argument.
 @endDefreq
 
-@DefreqList {rj, [@Var{nnn}]}
+@DefreqList {rj, [@Var{n}]}
 @DefregListEndx {.rj}
 @cindex justifying text (@code{rj})
 @cindex text, justifying (@code{rj})
 @cindex right-justifying (@code{rj})
 Break (unless the no-break control character is used), align the output
-of the next @var{nnn} productive input lines to the right margin without
-filling, then break again (regardless of the control character).  The
-count of lines remaining to be right-aligned is stored in the read-only
-register @code{.rj} and is associated with the environment
-(@pxref{Environments}).  @var{nnn} specifies the number of lines to
-right-align.  If the argument is not positive, right-alignment is
-disabled.  Omitting the argument implies an @var{nnn} of @samp{1}.
+of the next @var{n} productive input lines to the right margin without
+filling, then break again regardless of the control character.
+@c Temporary indentation is ignored.
+If the argument is not positive, right-alignment is disabled.  Omitting
+the argument implies an @var{n} of @samp{1}.  The count of lines
+remaining to be right-aligned is stored in the read-only register
+@code{.rj} and is associated with the environment
+(@pxref{Environments}).
+
+@Example
+.ll 49n
+.rj 3
+At first I hoped that such a technically unsound
+project would collapse but I soon realized it was
+doomed to success. \[em] C. A. R. Hoare
+    @result{}  At first I hoped that such a technically unsound
+    @result{} project would collapse but I soon realized it was
+    @result{}              doomed to success. -- C. A. R. Hoare
+@endExample
 @endDefreq
 
 @need 2000

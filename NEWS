@@ -297,8 +297,9 @@ o The an (man) macro package no longer honors an `ll` request to set the
   deprecated in groff 1.18 (July 2002), and all known man program and
   macro package implementations either have set an LL register since
   2002 (man-db man), 2005 (Brouwer/Lucifredi man), or don't let the user
-  vary the line length freely (DWB troff, Solaris troff, Plan 9 troff)
-  or at all (mandoc, Heirloom Doctools troff).
+  vary the line length freely (DWB troff, Solaris troff, Plan 9 troff,
+  mandoc), don't permit its configuation via the `ll` request (mandoc),
+  or at all (Heirloom Doctools troff).
 
 o The an (man) macro package now interprets the value of the `HY`
   register as a Boolean; using it to set a specific hyphenation mode is

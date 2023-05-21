@@ -6340,14 +6340,6 @@ disables hyphenation of the last word on a page.
 (Hyphenation is prevented if the next page location trap is closer to
 the vertical drawing position than the next text baseline would be.
 .
-.I groff
-automatically inserts an implicit page location trap at the end of each
-page to cause a page transition.
-.
-Users or macro packages can set such traps explicitly to prevent
-hyphenation of the last word in a column in multi-column page layouts or
-before floating figures or tables.
-.
 See section \[lq]Traps\[rq] below.)
 .
 .
@@ -6477,9 +6469,8 @@ line containing this ending token,
 but a tab immediately after the token prevents its recognition as the
 end of a macro definition.
 .
-Macro definitions can be nested;
-this requires use of unique end macros for each nested definition or
-escaping of the line with the ending token.
+Macro definitions can be nested if they use distinct end macros or if
+their ending tokens are sufficiently escaped.
 .
 An end macro need not be defined until it is called.
 .
@@ -6751,6 +6742,8 @@ if its condition is fulfilled.
 .\" END Keep (roughly) parallel with groff.texi node "Traps".
 .
 .
+.br
+.ne 5v
 .P
 Registers associated with trap management include
 vertical position trap enablement status

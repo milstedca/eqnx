@@ -8320,7 +8320,7 @@ user-specified and automatically determined hyphenation points.  The
 machine-driven determination of hyphenation points in words requires
 algorithms and data, and is susceptible to conventions and preferences.
 Before tackling such @dfn{automatic hyphenation}, let us consider how
-hyphenation points can be set manually.
+hyphenation points can be set explicitly.
 
 @cindex hyphenation, explicit
 @cindex explicit hyphenation
@@ -8516,13 +8516,8 @@ restrictions relative to that basis.
 @item 2
 disables hyphenation of the last word on a page,@footnote{Hyphenation is
 prevented if the next page location trap is closer to the vertical
-drawing position than the next text baseline would be.  GNU @code{troff}
-automatically inserts an implicit vertical position trap at the end of
-each page to cause a page transition.  Users or macro packages can set
-such traps explicitly to prevent hyphenation of the last word in a
-column in multi-column page layouts or before floating figures or
-tables.  @xref{Page Location Traps}.} even for manually hyphenated
-words.
+drawing position than the next text baseline would be.  @xref{Page
+Location Traps}.} even for explicitly hyphenated words.
 
 @item 4
 disables hyphenation before the last two characters of a word.

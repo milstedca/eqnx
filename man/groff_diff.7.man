@@ -3839,16 +3839,11 @@ this amount is set to
 .IR word-space-size .
 .
 Both arguments are in twelfths of current font's space width
-(usually one-third em for Western scripts;
-(see
+(typically one-fourth to one-third em for Western scripts;
+see
 .MR groff_font @MAN5EXT@ ).
 .
-Initially,
-both the
-.I word-space-size
-and
-.I additional-sentence-space-size
-are\~12.
+The default for both parameters is\~12.
 .
 Negative values are erroneous.
 .

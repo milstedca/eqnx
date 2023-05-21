@@ -8232,15 +8232,14 @@ disabled.  Omitting the argument implies an @var{nnn} of @samp{1}.
 Set the sizes of spaces between words and
 sentences@footnote{Recall @ref{Filling} and @ref{Sentences} for the
 definitions of word and sentence boundaries, respectively.} in twelfths
-of current font's space width (usually one-third em for Western
-scripts).  Initially, both the @var{word-space-size} and
-@var{additional-sentence-space-size} are@tie{}12.  Negative values are
-erroneous.
+of font's space width (typically one-fourth to one-third em for Western
+scripts).  The default for both parameters is@tie{}12.  Negative values
+are erroneous.
 @cindex inter-word spacing, minimal
 @cindex minimal inter-word spacing
 @cindex space, between words
-The first argument, the inter-word space size, is a minimum; if an
-output line undergoes adjustment, such spaces may increase in width.
+The first argument is a minimum; if an output line undergoes adjustment,
+such spaces may increase in width.
 @cindex inter-sentence space, additional
 @cindex additional inter-sentence space
 @cindex space, between sentences

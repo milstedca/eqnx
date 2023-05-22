@@ -2249,7 +2249,7 @@ interpreted.
 .
 .TPx
 .I n
-is a numeric expression.
+is a numeric expression that evaluates to a non-negative integer.
 .
 .TPx
 .I npl
@@ -2269,14 +2269,8 @@ Macro calls are not themselves productive,
 but their interpolated contents can be.
 .
 .TPx
-.I N
-is an optionally signed numeric expression.
-.
-.TPx
 .I \[+-]N
-has three meanings,
-depending on its sign.
-.
+is a numeric expression with a meaning dependent on its sign.
 .RE
 .LE
 .
@@ -2513,15 +2507,16 @@ Stop emboldening font
 .I font.
 .
 .TPx
-.REQ .bd "font N"
+.REQ .bd "font n"
 Embolden
 .I font
 by overstriking its glyphs offset by
-.IR N \-1
+.IR n \-1
 units.
 .
 See
 .register .b .
+.\" XXX: negative values accepted; check AT&T troff
 .
 .TPx
 .REQ .bd "special-font font"
@@ -2532,11 +2527,11 @@ when
 is selected.
 .
 .TPx
-.REQ .bd "special-font font N"
+.REQ .bd "special-font font n"
 Embolden
 .I special-font,
 overstriking its glyphs offset by
-.IR N \-1
+.IR n \-1
 units when
 .I font
 is selected.
@@ -2655,8 +2650,8 @@ without formatting to the (top-level) diversion.
 .
 .TPx
 .REQ .cflags "n c1 c2 \fR\&.\|.\|.\&\fP"
-Assign properties encoded by the number
-.I n
+Assign properties encoded
+.RI by\~ n
 to characters
 .IR c1 ,
 .IR c2 ,
@@ -2670,11 +2665,11 @@ Unplant page location trap
 .
 .
 .TPx
-.REQ .ch "name N"
+.REQ .ch "name vertical-position"
 Change a planted page location trap
 .I name
 by moving its location to
-.I N
+.I vertical-position
 (default scaling unit\~\c
 .scaleindicator v ).
 .
@@ -2715,13 +2710,14 @@ Enable output of color-related device-independent output commands.
 .
 .
 .TPx
-.REQ .color "N"
+.REQ .color n
 If
-.I N
+.I n
 is zero,
 disable output of color-related device-independent output commands;
 otherwise,
 enable them.
+.\" XXX: Should probably interpret negative values as false.
 .
 .
 .TPx
@@ -2741,21 +2737,22 @@ Finish the current iteration of a while loop.
 Enable compatibility mode.
 .
 .TPx
-.REQ .cp "N"
+.REQ .cp n
 If
-.I N
+.I n
 is zero,
 disable compatibility mode,
 otherwise enable it.
 .
 .TPx
-.REQ .cs "font N M"
+.REQ .cs "font n m"
 Set constant character width mode for
 .I font
 to
-.IR N /36
+.IR n /36
 ems with em
-.IR M .
+.IR m .
+.\" XXX: m parameter needs more explanation.
 .
 .
 .TPx
@@ -2973,13 +2970,12 @@ Clear diversion trap.
 .
 .
 .TPx
-.REQ .dt "N name"
-Set diversion trap to
-macro
+.REQ .dt "vertical-position name"
+Set the diversion trap to macro
 .I name
-at position
-.I N
-(default scaling indicator\~\c
+at
+.I vertical-position
+(default scaling unit\~\c
 .scaleindicator v ).
 .
 .
@@ -3292,7 +3288,7 @@ Set the (right) hyphenation margin to
 .REQ .hym length
 Set the (right) hyphenation margin to
 .I length
-(default scaling indicator\~\c
+(default scaling unit\~\c
 .scaleindicator m ).
 .
 .TPx
@@ -3310,7 +3306,7 @@ or
 if it can be justified by adding no more than
 .I hyphenation-space
 extra space to each inter-word space
-(default scaling indicator\~\c
+(default scaling unit\~\c
 .scaleindicator m ).
 .
 .
@@ -3406,10 +3402,12 @@ escape sequence are not counted.
 Enable pairwise kerning.
 .
 .TPx
-.REQ .kern "n"
+.REQ .kern n
 If
 .I n
-is zero, disable pairwise kerning, otherwise enable it.
+is zero,
+disable pairwise kerning,
+otherwise enable it.
 .
 .
 .TPx
@@ -3446,27 +3444,29 @@ Disable line-tabs mode.
 .
 .
 .TPx
-.REQ .lf "N"
+.REQ .lf n
 Set number of next input line to
-.IR N .
+.IR n .
+.\" XXX: negative values accepted; check AT&T troff
 .
 .TPx
-.REQ .lf "N file"
+.REQ .lf "n file"
 Set number of next input line to
-.I N
+.I n
 and input file name to
 .IR file .
 .
 .TPx
-.REQ .lg "N"
+.REQ .lg m
 Set ligature mode to
-.I N
+.I m
 .RB ( 0
 = disable,
 .B 1
 = enable,
 .B 2
 = enable for two-letter ligatures only).
+.\" XXX: negative values accepted (mapped to 1); check AT&T troff
 .
 .TPx
 .REQ .ll
@@ -3487,24 +3487,23 @@ Unset the leading space macro (trap).
 .
 Restore default handling of lines with leading spaces.
 .
-.
 .TPx
 .REQ .lsm name
 Set the leading space macro (trap) to
 .IR name .
-.
 .
 .TPx
 .REQ .ls
 Change to the previous value of additional intra-line skip.
 .
 .TPx
-.REQ .ls "N"
+.REQ .ls n
 Set additional intra-line skip value to
-.IR N ,
+.IR n ,
 i.e.,
-.IR N \-1
+.IR n \-1
 blank lines are inserted after each text output line.
+.\" XXX: negative values accepted; check AT&T troff
 .
 .TPx
 .REQ .lt
@@ -3529,12 +3528,13 @@ Print glyph\~\c
 after each text line at actual distance from right margin.
 .
 .TPx
-.REQ .mc "c N"
+.REQ .mc "c d"
 Set margin glyph to\~\c
 .I c
 and distance to\~\c
-.I N
-from right margin (default scaling indicator\~\c
+.I d
+from right margin
+(default scaling unit\~\c
 .scaleindicator m ).
 .
 .TPx
@@ -3578,10 +3578,10 @@ Disable output line adjustment.
 Break page if distance to next page location trap is less than one vee.
 .
 .TPx
-.REQ .ne "N"
-Break page if distance to next page location trap is less than
-.I N
-(default scaling unit:
+.REQ .ne d
+Break page if distance to next page location trap is less than distance
+.I d
+(default scaling unit\~\c
 .scaleindicator v ).
 .
 .
@@ -3607,26 +3607,27 @@ Deactivate output line numbering.
 .TPx
 .REQ .nm \[+-]N
 .TQ
-.REQ .nm "\[+-]N M"
+.REQ .nm "\[+-]N m"
 .TQ
-.REQ .nm "\[+-]N M S"
+.REQ .nm "\[+-]N m s"
 .TQ
-.REQ .nm "\[+-]N M S I"
+.REQ .nm "\[+-]N m s i"
 Activate output line numbering:
 number the next output line
-.IR N ,
+.I \[+-]N,
 writing numbers every
-.I M
+.I m
 lines,
 with
-.I S
+.I s
 numeral widths
 .RB ( \[rs]0 )
 between the line number and the output
 (default 1),
 and indenting the line number by
-.I I
-numeral widths (default 0).
+.I i
+numeral widths
+(default 0).
 .
 .TPx
 .REQ .nn
@@ -3643,6 +3644,7 @@ output lines to be numbered with
 If
 .IR n =0,
 cancel suppression.
+.\" XXX: negative values accepted; check AT&T troff
 .
 .
 .TPx
@@ -3762,7 +3764,7 @@ The current page length is stored in register
 .REQ .pl "\[+-]N"
 Change page length to
 .I \[+-]N
-(default scaling indicator\~\c
+(default scaling unit\~\c
 .scaleindicator v ).
 .
 .TPx
@@ -3783,8 +3785,8 @@ Next page number
 .
 .TPx
 .REQ .pnr
-Print the names and contents of all currently defined registers
-on stderr.
+Write the names and contents of all defined registers to the standard
+error stream.
 .
 .TPx
 .REQ .po
@@ -3847,7 +3849,7 @@ Change to previous post-vertical line spacing.
 .REQ .pvs "\[+-]N"
 Change post-vertical line spacing according to
 .I \[+-]N
-(default scaling indicator\~\c
+(default scaling unit\~\c
 .scaleindicator p ).
 .
 .TPx
@@ -3954,6 +3956,7 @@ to vertical position
 (default scaling
 unit\~\c
 .scaleindicator v ).
+.\" XXX: negative values accepted; check AT&T troff
 .
 .TPx
 .REQ .schar "c contents"
@@ -3976,8 +3979,9 @@ Set the soft hyphen glyph
 .
 .
 .TPx
-.REQ .shift "n"
-In a macro, shift the arguments by
+.REQ .shift n
+In a macro definition,
+left-shift arguments by
 .IR n \~\c
 positions.
 .
@@ -4017,9 +4021,9 @@ Break line and move drawing position down one vee.
 .
 .
 .TPx
-.REQ .sp N
+.REQ .sp \[+-]N
 Break line and move drawing position vertically by
-.I N
+.I \[+-]N
 (default scaling unit\~\c
 .scaleindicator v ).
 .
@@ -4071,7 +4075,7 @@ A negative
 .I N
 is treated as 0.
 .
-The default scaling indicator is\~\c
+The default scaling unit is\~\c
 .scaleindicator m .
 .
 At startup,
@@ -4080,20 +4084,21 @@ is inactive and
 .I N
 is
 .scalednumber "3 m" .
+.\" XXX: negative values accepted; retain for future space-squeezing
 .
 .TPx
-.REQ .ss N
+.REQ .ss n
 Set minimal inter-word spacing to
-.IR N \~12ths
+.IR n \~12ths
 of the space width of the current font.
 .
 .TPx
-.REQ .ss "N M"
+.REQ .ss "n m"
 As
 .B .ss\~\c
-.IR N ,
+.IR n ,
 and set additional inter-sentence space to
-.IR M \~12ths
+.IR m \~12ths
 of the space width of the current font.
 .
 .TPx
@@ -4127,20 +4132,22 @@ inclusive.
 .
 Negative indices count backwards from the end of the string.
 .
-.
 .TPx
 .REQ .sv
 Save
 .scalednumber "1 v"
 of vertical space.
+.
 .TPx
-.REQ .sv "N"
+.REQ .sv n
 Save the vertical distance
-.I N
+.I n
 for later output with
 .request .os
-request (default scaling indicator\~\c
+request
+(default scaling unit\~\c
 .scaleindicator v ).
+.\" XXX: negative values accepted; check AT&T troff
 .
 .TPx
 .REQ .sy "command-line"
@@ -4351,7 +4358,7 @@ Change to previous vertical spacing.
 .REQ .vs "\[+-]N"
 Set vertical spacing to
 .I \[+-]N
-(default scaling indicator\~\c
+(default scaling unit\~\c
 .scaleindicator p ).
 .
 .
@@ -4381,36 +4388,28 @@ Set scaling unit used in warnings to
 .
 .
 .TPx
-.REQ .wh N
-Remove active trap at vertical position
-.IR N ;
-a negative value is measured upward from page bottom
+.REQ .wh vertical-position
+Remove active trap at
+.I vertical-position
 (default scaling unit\~\c
 .scaleindicator v ).
 .
 .
 .TPx
-.REQ .wh "N name"
+.REQ .wh "vertical-position name"
 Plant trap,
 calling macro
 .I name
 when page location
-.I N
-is reached or passed;
-a negative value is measured upward from page bottom
+.I vertical-position
+is reached or passed
 (default scaling unit\~\c
 .scaleindicator v ).
-.
-Any active trap already present at
-.I N
-is hidden.
 .
 .
 .TPx
 .REQ .while "cond-expr anything"
-Evaluate
-.IR cond-expr ,
-and repeatedly execute
+Repeatedly execute
 .I anything
 unless and until
 .I cond-expr

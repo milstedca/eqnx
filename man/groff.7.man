@@ -7414,12 +7414,16 @@ to the standard error stream.
 .\" ====================================================================
 .
 This document was written by
-.MT groff\-bernd\:.warken\-72@\:web\:.de
-Bernd Warken
-.ME
-and revised by
+by Trent A.\& Fisher,
+Werner Lemberg,
+and
 .MT g.branden\:.robinson@\:gmail\:.com
 G.\& Branden Robinson
+.ME .
+.
+Section \[lq]Underlining\[rq] was primarily written by
+.MT groff\-bernd\:.warken\-72@\:web\:.de
+Bernd Warken
 .ME .
 .
 .

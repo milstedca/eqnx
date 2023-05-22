@@ -377,6 +377,27 @@ constants,
 numeric literals,
 and operators.
 .
+.I eqn \" general
+remaps some input character sequences for convenience in equation entry
+and to ensure that glyphs from an unstyled font are used;
+see
+.MR groff_char @MAN7EXT@.
+.
+.
+.P
+.RS
+.TS
+tab(@);
+Lf(CR) Lf(CR).
++@\[rs][pl]
+-@\[rs][mi]
+\&=@\[rs][eq]
+\&\[aq]@\[rs][fm]
+<=@\[rs][<=]
+>=@\[rs][>=]
+.TE
+.RE
+.
 .
 .\" ====================================================================
 .SS "Automatic spacing"
@@ -431,21 +452,7 @@ Apply
 to
 .RI expression\~ e .
 .
-For example,
-.RB \[lq] times \[rq]
-is defined as if by the following.
 .
-.
-.RS
-.IP
-.EX
-define times \[aq] type "binary" \[rs](mu \[aq]
-.EE
-.RE
-.
-.
-.br
-.ne 7v
 .TP
 .BI chartype\~ "t text"
 Each (unquoted) character
@@ -466,19 +473,40 @@ also assigns a typeface to each character in
 .
 See subsection \[lq]Fonts\[rq] below.
 .
-As an example,
-the default spacing for some punctuation characters is set up as if
-by the following
-.I eqn \" generic
-command.
 .
+.P
+.I @g@eqn \" GNU
+sets up default spacings as if by the following commands.
 .
+.P
 .RS
-.IP
-.EX
-chartype "punctuation" .,;:
-.EE
+.TS
+tab(@);
+Lf(CR) Lf(CR).
+chartype letter@abcdefghiklmnopqrstuvwxyz
+chartype letter@ABCDEFGHIKLMNOPQRSTUVWXYZ
+chartype binary@*\[rs][pl]\[rs][mi]
+chartype relation@<>\[rs][eq]\[rs][<=]\[rs][>=]
+chartype opening@{([
+chartype closing@})]
+chartype punctuation@,;:.
+chartype suppress@\[ha]\[ti]
+.TE
 .RE
+.
+.
+.P
+.I @g@eqn
+assigns all other ordinary and special
+.I roff
+characters,
+including numerals 0\[en]9,
+the
+.B ordinary
+type.
+.
+.\" XXX: Talk about lowercase Greek letters once our story is straight.
+.\" See Savannah #64231.
 .
 .
 .\" ====================================================================

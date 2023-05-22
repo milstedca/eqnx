@@ -381,7 +381,7 @@ and operators.
 remaps some input character sequences for convenience in equation entry
 and to ensure that glyphs from an unstyled font are used;
 see
-.MR groff_char @MAN7EXT@.
+.MR groff_char @MAN7EXT@ .
 .
 .
 .P
@@ -1977,7 +1977,7 @@ features don't work.
 .
 These could,
 in theory,
-be implemented with \[lq]<maligngroup>\[rq] elements.
+be implemented with \%\[lq]<maligngroup>\[rq] elements.
 .
 .
 .P

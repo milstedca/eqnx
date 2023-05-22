@@ -149,7 +149,8 @@ or if
 .I file
 is
 .RB \[lq] \- \[rq],
-the standard input stream is read.
+.I @g@eqn
+reads the standard input stream.
 .
 .
 .P
@@ -400,13 +401,14 @@ Lf(CR) Lf(CR).
 .
 .
 .\" ====================================================================
-.SS "Automatic spacing"
+.SS "Spacing and typeface"
 .\" ====================================================================
 .
 GNU
 .I eqn
 imputes a type to each component of an equation,
-adjusting the spacing between them accordingly.
+assigning a typeface to
+and adjusting the spacing between them accordingly.
 .
 Recognized types are as follows.
 .
@@ -414,13 +416,20 @@ Recognized types are as follows.
 .RS 2n \" we need quite a bit of space for this table
 .P
 .TS
+Lf(CR) Lx
+Af(CR) Lx
+Af(CR) Lx
 Lf(CR) Lx.
 ordinary	T{
-an ordinary character such as \[lq]1\[rq] or
-.RI \[lq] x \[rq]
+character such as \[lq]1\[rq],
+\[lq]a\[rq],
+\[lq]!\&\[rq],
+or \[lq]\[mu]\[rq]
 T}
+letter	alphabetic character
+digit	numeral
 operator	T{
-a large operator such as
+large operator such as
 .ds Su \[lq]\s+5\[*S]\s0\[rq]
 .if \n(.g .if !c\[*S] .ds Su the summation operator
 \*[Su]
@@ -439,10 +448,6 @@ suppress	component to which automatic spacing is not applied
 .
 .P
 Two primitives apply types to equation components.
-.
-Quote type names in
-.I eqn
-commands to prevent macro expansion from being attempted on their names.
 .
 .
 .TP
@@ -464,11 +469,9 @@ persistently.
 If
 .I t
 is
-.RB \[lq] letter \[rq]
-or
-.RB \[lq] digit \[rq],
+.RB \[lq] letter \[rq],
 .B \%chartype
-also assigns a typeface to each character in
+also assigns the italic typeface to each character in
 .IR text .
 .
 See subsection \[lq]Fonts\[rq] below.
@@ -483,14 +486,25 @@ sets up default spacings as if by the following commands.
 .TS
 tab(@);
 Lf(CR) Lf(CR).
-chartype letter@abcdefghiklmnopqrstuvwxyz
-chartype letter@ABCDEFGHIKLMNOPQRSTUVWXYZ
-chartype binary@*\[rs][pl]\[rs][mi]
-chartype relation@<>\[rs][eq]\[rs][<=]\[rs][>=]
-chartype opening@{([
-chartype closing@})]
-chartype punctuation@,;:.
-chartype suppress@\[ha]\[ti]
+chartype \[dq]letter\[dq]@abcdefghiklmnopqrstuvwxyz
+chartype \[dq]letter\[dq]@ABCDEFGHIKLMNOPQRSTUVWXYZ
+.T&
+Lf(CR)t Lf(CR)
+^ Lf(CR)
+^ Lf(CR)
+^ Lf(CR).
+chartype \[dq]letter\[dq]@\[rs][*a]\[rs][*b]\[rs][*x]\[rs][*d]\[rs][*e]\[rs][*y]
+\&@\[rs][*g]\[rs][*i]\[rs][*k]\[rs][*l]\[rs][*m]\[rs][*n]
+\&@\[rs][*w]\[rs][*o]\[rs][*f]\[rs][*p]\[rs][*q]\[rs][*r]
+\&@\[rs][*s]\[rs][*t]\[rs][*h]\[rs][*u]\[rs][*c]\[rs][*z]
+.T&
+Lf(CR) Lf(CR).
+chartype \[dq]binary\[dq]@*\[rs][pl]\[rs][mi]
+chartype \[dq]relation\[dq]@<>\[rs][eq]\[rs][<=]\[rs][>=]
+chartype \[dq]opening\[dq]@{([
+chartype \[dq]closing\[dq]@})]
+chartype \[dq]punctuation\[dq]@,;:.
+chartype \[dq]suppress\[dq]@\[ha]\[ti]
 .TE
 .RE
 .
@@ -502,11 +516,23 @@ assigns all other ordinary and special
 characters,
 including numerals 0\[en]9,
 the
-.B ordinary
+.RB \[lq] ordinary \[rq]
 type.
 .
-.\" XXX: Talk about lowercase Greek letters once our story is straight.
-.\" See Savannah #64231.
+(The
+.RB \[lq] digit \[rq]
+type is not used by default,
+but is available for customization.)
+.\" XXX: How would you actually customize it, though?  There doesn't
+.\" seem to be a means of replacing the font associated with a type.
+.\" Is the "digit" type just cruft?
+.
+In keeping with common practice in mathematical typesetting,
+lowercase,
+but not uppercase,
+Greek letters are assigned the
+.RB \[lq] letter \[rq]
+type to style them in italics.
 .
 .
 .\" ====================================================================
@@ -557,7 +583,7 @@ The GNU extension primitives
 .RB \[lq] type \[rq]
 and
 .B \%chartype
-are discussed in subsection \[lq]Automatic spacing\[rq] above;
+are discussed in subsection \[lq]Spacing and typeface\[rq] above;
 .RB \[lq] set \[rq]
 in subsection \[lq]Customization\[rq] below;
 and
@@ -718,7 +744,7 @@ but
 is not subject to macro expansion because it is quoted;
 .I text
 is split up and the spacing between individual characters adjusted
-per subsection \[lq]Automatic spacing\[rq] above.
+per subsection \[lq]Spacing and typeface\[rq] above.
 .
 .
 .TP
@@ -741,7 +767,7 @@ is not quoted it is subject to macro expansion;
 .I text
 is not split up and the spacing between individual characters
 .I not
-adjusted per subsection \[lq]Automatic spacing\[rq] above.
+adjusted per subsection \[lq]Spacing and typeface\[rq] above.
 .
 .
 .TP
@@ -937,6 +963,8 @@ It has no effect if the equation is part of a
 picture.
 .
 .
+.br
+.ne 8v
 .\" ====================================================================
 .SS "Extended primitives"
 .\" ====================================================================
@@ -1053,7 +1081,7 @@ with defaults shown in parentheses.
 We intend these descriptions to be expository rather than rigorous.
 .
 .
-.TP
+.TP 18n
 .B minimum_size
 sets a floor for the type size
 (in scaled points)
@@ -1336,7 +1364,7 @@ The baselines of the rows in a pile or matrix are normally this far
 apart
 .RB ( 140 ).
 .
-In most cases this should be equal to the sum of
+Usually equal to the sum of
 .B num1
 and
 .BR denom1 .
@@ -1348,7 +1376,7 @@ The midpoint between the top baseline and the bottom baseline in a
 matrix or pile is shifted down by this much from the axis
 .RB ( 26 ).
 .
-In most cases this should be equal to
+Usually equal to
 .BR axis_height .
 .
 .
@@ -1442,13 +1470,6 @@ most devices;
 .BR utf8 ,
 and
 .BR cp1047 ).
-.
-.
-.P
-Appendix\~H
-of
-.I "The \*[tx]book"
-discusses many of these parameters in greater detail.
 .RE
 .
 .
@@ -1622,12 +1643,11 @@ The lowercase classical Greek letters are available as
 and
 .BR zeta .
 .
-Obtain their uppercase forms by spelling these names with an initial
-capital letter or in full capitals,
-as in
-.B \%Alpha
-or
-.BR \%ALPHA .
+Spell them with an initial capital letter
+.RB \%( Alpha )
+or in full capitals
+.RB \%( ALPHA )
+to obtain uppercase forms.
 .
 .
 .P
@@ -1678,8 +1698,8 @@ primitive
 sets a character's type,
 which determines the face used to set it.
 .
-The \[lq]letter\[rq] type is set in italics,
-and \[lq]digit\[rq] in roman.
+The \[lq]letter\[rq] type is set in italics;
+others are set in roman.
 .
 Use the
 .B bold
@@ -1968,6 +1988,13 @@ beginning of the input line.
 .SH Bugs
 .\" ====================================================================
 .
+In
+.I nroff \" mode
+mode,
+lowercase Greek letters are rendered in roman instead of italic style.
+.
+.
+.P
 In MathML mode,
 the
 .B mark
@@ -2007,6 +2034,10 @@ AT&T Bell Laboratories Computing Science Technical Report No.\& 17.
 by Donald E.\& Knuth,
 1984,
 Addison-Wesley Professional.
+.
+Appendix\~H
+discusses many of the parameters from section \[lq]Customization\[rq]
+above in greater detail.
 .
 .
 .P

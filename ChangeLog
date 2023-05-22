@@ -1,3 +1,20 @@
+2023-05-22  Dave Kemper <saint.snit@gmail.com>
+
+	[docs]: Correct minor punctuation, grammar, and spelling issues.
+
+	Also remove a couple instances of unnecessarily telling the
+	reader to note something.
+
+	* doc/groff.texi:
+	* man/groff.7.man:
+	* man/groff_char.7.man:
+	* man/groff_diff.7.man:
+	* man/roff.7.man:
+	* src/roff/nroff/nroff.1.man: Do it.
+
+	Fixes <https://savannah.gnu.org/bugs/?64230>.  [I threw in a few
+	more fixes.  --GBR]
+
 2023-04-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[docs]: Attempt to further clarify end-of-sentence detection.

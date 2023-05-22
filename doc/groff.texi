@@ -908,9 +908,9 @@ built).  It can optionally preprocess with any of @code{gpic},
 @code{geqn}, @code{gtbl}, @code{ggrn}, @code{grap}, @code{gchem},
 @code{grefer}, @code{gsoelim}, or @code{preconv}.
 
-This section only documents options to the @code{groff} front end.  Many
-of the arguments to @code{groff} are passed on to @code{gtroff},
-therefore those are also included.  Arguments to preprocessors and
+This section documents only options to the @code{groff} front end.  Many
+of the arguments to @code{groff} are passed on to @code{gtroff};
+therefore, those are also included.  Arguments to preprocessors and
 output drivers can be found in the man pages @cite{gpic@r{(1)}},
 @cite{geqn@r{(1)}}, @cite{gtbl@r{(1)}}, @cite{ggrn@r{(1)}},
 @cite{grefer@r{(1)}}, @cite{gchem@r{(1)}}, @cite{gsoelim@r{(1)}},
@@ -2165,7 +2165,7 @@ groff -m man -m ms foo.man bar.doc
 @cindex auxiliary macro package
 @cindex package, macro, auxiliary
 @cindex macro package, auxiliary
-Many auxiliary, or ``minor'' macro packages are also available.  They
+Many auxiliary, or ``minor'', macro packages are also available.  They
 may in general be used with any full-service macro package and handle a
 variety of tasks from character encoding selection, to language
 localization, to inlining of raster images.  See the
@@ -2506,7 +2506,7 @@ don't.
 
 After that, start typing normally.  It is a good practice to start each
 sentence on a new line, or to put two spaces after sentence-ending
-puncutation, so that the formatter knows where the sentence boundaries
+punctuation, so that the formatter knows where the sentence boundaries
 are.  You can separate paragraphs with further paragraphing macros, or
 with blank lines, and you can indent with tabs.  When you need one of
 the features mentioned earlier (@pxref{ms}), return to this part of the
@@ -5043,7 +5043,7 @@ Barnum.
 ``Barnum'' doesn't begin a sentence!  What to do?  Let us meet our first
 @dfn{escape sequence}, a series of input characters that give
 instructions to GNU @code{troff} instead of being used to construct
-output device glyphs.@footnote{This statement oversimplifes; there are
+output device glyphs.@footnote{This statement oversimplifies; there are
 escape sequences whose purpose is precisely to produce glyphs on the
 output device, and input characters that @emph{aren't} part of escape
 sequences can undergo a great deal of processing before getting to the
@@ -5348,7 +5348,7 @@ Heywood Jabuzzoff
 
 In fact, the ending marker is itself the name of a macro to be
 called, or a request to be invoked, if it is defined at the time its
-contol line is read.
+control line is read.
 
 @Example
 .de END
@@ -5736,7 +5736,7 @@ scripts.}  The @dfn{text baseline} is a (usually invisible) line upon
 which the glyphs of a typeface are aligned.  A glyph therefore
 ``starts'' at its bottom-left corner.  If drawn at the origin, a typical
 letter glyph would lie partially or wholly off the page, depending on
-whether, like ``g'', it features a decender below the baseline.
+whether, like ``g'', it features a descender below the baseline.
 
 @cindex page offset
 @cindex offset, page
@@ -6991,7 +6991,7 @@ has been saved.
 Use these requests together to temporarily change the escape character.
 @endDefreq
 
-Using a different escape character, or disbling it, when calling macros
+Using a different escape character, or disabling it, when calling macros
 not under your control will likely cause errors, since GNU @code{troff}
 has no mechanism to ``intern'' macros---that is, to convert a macro
 definition into a form independent of its
@@ -7473,10 +7473,10 @@ Register contents are interpolated with the @code{\n} escape sequence.
 Interpolate register with name @var{ident} (one-character
 name@tie{}@var{i}, two-character name @var{id}).  @code{\n} is
 interpreted even in copy mode (@pxref{Copy Mode}).  If the register is
-undefined, it is created, assigned a value of@tie{}@samp{0}, that value
-is interpolated, and a warning in category @samp{reg} is emitted.
-@xref{Warnings}, for information about the enablement and suppression
-of warnings.
+undefined, it is created and assigned a value of@tie{}@samp{0}, that
+value is interpolated, and a warning in category @samp{reg} is emitted.
+@xref{Warnings}, for information about the enablement and suppression of
+warnings.
 
 @Example
 .nr a 5
@@ -10771,10 +10771,10 @@ Examples:
 @table @code
 @item \[A ho]
 @samp{A} maps to @code{u0041}, @samp{ho} maps to @code{u02DB}, thus the
-final glyph name would be @code{u0041_02DB}.  Note this is not the
-expected result: The ogonek glyph @samp{ho} is a spacing ogonek, but for
-a proper composite a non-spacing ogonek (U+0328) is necessary.  Looking
-into the file @file{composite.tmac} one can find @w{@samp{.composite ho
+final glyph name would be @code{u0041_02DB}.  This is not the expected
+result:@: the ogonek glyph @samp{ho} is a spacing ogonek, but for a
+proper composite a non-spacing ogonek (U+0328) is necessary.  Looking
+into the file @file{composite.tmac}, one can find @w{@samp{.composite ho
 u0328}}, which changes the mapping of @samp{ho} while a composite glyph
 name is constructed, causing the final glyph name to be
 @code{u0041_0328}.
@@ -10967,8 +10967,8 @@ numeric ranges like ``3000--5000'', insert
 @endExample
 
 @noindent
-into your document.  Note, however, that this can lead to bad layout if
-done without thinking; in most situations, a better solution instead of
+into your document.  However, this practice can lead to bad layout if
+done thoughtlessly; in most situations, a better solution instead of
 changing the @code{cflags} value is to insert @code{\:} right after the
 hyphen at the places that really need a break point.
 @end table
@@ -16461,11 +16461,10 @@ the @code{unformat} request.
 Macros only contain elements in the token list (and the node list is
 empty); diversions and strings can contain elements in both lists.
 
-Note that the @code{chop} request simply reduces the number of elements
-in a macro, string, or diversion by one.  Exceptions are
-@dfn{compatibility save} and @dfn{compatibility ignore} input tokens,
-which are ignored.  The @code{substring} request also ignores those
-input tokens.
+The @code{chop} request simply reduces the number of elements in a
+macro, string, or diversion by one.  Exceptions are @dfn{compatibility
+save} and @dfn{compatibility ignore} input tokens, which are ignored.
+The @code{substring} request also ignores those input tokens.
 
 Some requests like @code{tr} or @code{cflags} work on glyph identifiers
 only; this means that the associated glyph can be changed without
@@ -18724,7 +18723,7 @@ The @var{code} field gives a numeric identifier that the postprocessor
 uses to render the glyph.  The glyph can be specified to @code{troff}
 using this code by means of the @code{\N} escape sequence.  @var{code}
 can be any integer.@footnote{that is, any integer parsable by the C
-standard library's @code{strotol} function}
+standard library's @code{strtol} function}
 
 The @var{entity-name} field defines an identifier for the glyph that the
 postprocessor uses to print the GNU @code{troff} glyph @var{name}.  This

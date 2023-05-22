@@ -2270,7 +2270,7 @@ but their interpolated contents can be.
 .
 .TPx
 .I N
-is an optionally-signed numeric expression.
+is an optionally signed numeric expression.
 .
 .TPx
 .I \[+-]N
@@ -4517,7 +4517,7 @@ as arguments.
 .
 .TP
 .ESC $0
-Interpolate name by which currently-executing macro was invoked.
+Interpolate name by which currently executing macro was invoked.
 .
 .
 .TP

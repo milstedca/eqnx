@@ -4878,7 +4878,7 @@ delim off
 .
 .
 .P
-Fill colors are implmenented with another set of extensions.
+Fill colors are implemented with another set of extensions.
 .
 .
 .TP

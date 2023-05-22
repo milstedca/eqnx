@@ -177,7 +177,7 @@ After that,
 start typing normally.
 .
 It is a good practice to start each sentence on a new line,
-or to put two spaces after sentence-ending puncutation,
+or to put two spaces after sentence-ending punctuation,
 so that the formatter knows where the sentence boundaries are.
 .
 You can separate paragraphs with further paragraphing macro calls,

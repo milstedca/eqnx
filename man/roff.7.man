@@ -567,7 +567,7 @@ If drawn at the origin,
 a typical letter glyph would lie partially or wholly off the page,
 depending on whether,
 like \[lq]g\[rq],
-it features a decender below the baseline.
+it features a descender below the baseline.
 .
 .
 .P
@@ -1186,7 +1186,7 @@ the Bell Labs site in Murray Hill acquired a Graphic Systems C/A/T
 phototypesetter,
 and with it came the necessity of expanding the capabilities of a
 .I roff
-system to cope with a variety of proportionally-spaced typefaces at
+system to cope with a variety of proportionally spaced typefaces at
 multiple sizes.
 .
 Ossanna wrote a parallel implementation of
@@ -1420,7 +1420,7 @@ it has been used by practically all GNU/Linux and BSD operating systems.
 continues to be developed,
 is available for almost all operating systems in common use
 (along with several obscure ones),
-and it is free.
+and is free.
 .
 These factors make
 .I groff
@@ -1855,7 +1855,7 @@ Eric Allman),
 (from \[lq]memorandum macros\[rq]),
 and
 .IR mom ,
-a punningly-named package exercising many
+a punningly named package exercising many
 .I groff
 extensions.
 .
@@ -1879,7 +1879,7 @@ string variables,
 registers for storage of numbers or dimensions,
 and control of execution flow.
 .
-The theoretically-minded will observe that a
+The theoretically minded will observe that a
 .I roff
 is not a mere markup language,
 but Turing-complete.
@@ -2441,7 +2441,7 @@ contributors and enthusiasts.
 an online article maintained by the mdocml project,
 provides an overview of
 .I roff
-development from Salzer's
+development from Saltzer's
 .I RUNOFF
 to 2008,
 with links to original documentation and recollections of the authors

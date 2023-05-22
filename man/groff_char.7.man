@@ -1277,7 +1277,7 @@ L Lf(CR) L Lx.
 .SS Brackets
 .\" ====================================================================
 .
-On typestter devices,
+On typesetting devices,
 the bracket extensions are font-invariant glyphs;
 that is,
 they are rendered the same way regardless of font

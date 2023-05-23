@@ -4017,20 +4017,24 @@ does not exist.
 .
 .TPx
 .REQ .sp
-Break line and move drawing position down one vee.
+Break and move the next text baseline down by one vee,
+or until springing a page location trap.
 .
 .
 .TPx
-.REQ .sp \[+-]N
-Break line and move drawing position vertically by
-.I \[+-]N
+.REQ .sp dist
+Break and move the next text baseline down by
+.IR dist ,
+or until springing a page location trap
 (default scaling unit\~\c
 .scaleindicator v ).
 .
-Positive values are downwards.
+A negative
+.I dist
+will not reduce the position of the text baseline below zero.
 .
 Prefixing
-.I N
+.I dist
 with the
 .B \[or]
 operator moves to a position relative to the page top for positive
@@ -4040,9 +4044,9 @@ and the bottom if
 is negative;
 in all cases,
 one line height (vee) is added
-.RI to\~ N .
+.RI to\~ dist .
 .
-.I N
+.I dist
 is ignored inside a diversion.
 .
 .

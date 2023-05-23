@@ -8821,17 +8821,14 @@ The hyphenation space adjustment threshold is available in the
 @cindex spacing, manipulating
 
 @Defreq {sp, [@Var{distance}]}
-Break the line and place the next text baseline @var{distance} lower
-than it would otherwise be, or until springing a page location
-trap.@footnote{@xref{Page Location Traps}.}  If invoked with the
-no-break control character, @code{sp} moves the pending output line's
-text baseline by @var{distance}.  If @var{distance} would move the
-text baseline below the bottom of the page, the page is broken and
-any leftover distance discarded.  A negative distance moves the text
-baseline up the page, but will not reduce it below zero.  Inside a
-diversion, any @var{distance} argument is ignored.  The default scaling
-unit is @samp{v}.  If @var{distance} is not specified, @samp{1v} is
-assumed.
+Break and move the next text baseline down by @var{distance}, or until
+springing a page location trap.@footnote{@xref{Page Location Traps}.}
+If invoked with the no-break control character, @code{sp} moves the
+pending output line's text baseline by @var{distance}.  A negative
+@var{distance}, but will not reduce the position of the text baseline
+below zero.  Inside a diversion, any @var{distance} argument is ignored.
+The default scaling unit is @samp{v}.  If @var{distance} is not
+specified, @samp{1v} is assumed.
 
 @Example
 .pl 5v \" Set page length to 5 vees.

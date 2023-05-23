@@ -8933,14 +8933,18 @@ Requests}.} as the following example shows.
 .nf
 This is a test of \[rs]b (1).
 This is a test of \[rs]b (2).
+.sp
 This is a test of \b'xyz'\x'-1m'\x'1m' (3).
+.sp
 This is a test of \[rs]b (4).
 This is a test of \[rs]b (5).
     @result{} This is a test of \b (1).
     @result{} This is a test of \b (2).
+    @result{}
     @result{}                   x
     @result{} This is a test of y (3).
     @result{}                   z
+    @result{}
     @result{} This is a test of \b (4).
     @result{} This is a test of \b (5).
 @endExample

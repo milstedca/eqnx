@@ -11811,19 +11811,19 @@ type size (such as @samp{12000}), or a range of sizes (such as
 @cindex changing vertical line spacing (@code{vs})
 @cindex vertical line spacing, changing (@code{vs})
 @cindex vertical line spacing register (@code{.v})
-Change (increase, decrease) the vertical spacing by @var{space}.  The
-default scaling unit is @samp{p}.  If @code{vs} is called without an
-argument, the vertical spacing is reset to the previous value before the
-last call to @code{vs}.
+Set the vertical spacing to, or alter it by, @var{space}.  The default
+scaling unit is @samp{p}.  If @code{vs} is called without an argument,
+the vertical spacing is reset to the previous value before the last call
+to @code{vs}.
 @cindex @code{.V} register, and @code{vs}
-GNU @code{gtroff} emits a warning in category @samp{range} if
-@var{space} is negative; the vertical spacing is then set to the
-smallest possible positive value, the vertical motion quantum (as found
-in the @code{.V} register).
+GNU @code{troff} emits a warning in category @samp{range} if @var{space}
+is negative; the vertical spacing is then set to the smallest possible
+positive value, the vertical motion quantum (as found in the @code{.V}
+register).
 
 @w{@samp{.vs 0}} isn't saved in a diversion since it doesn't result in
 a vertical motion.  You must explicitly issue this request before
-calling the diversion.
+interpolating the diversion.
 
 The read-only register @code{.v} contains the vertical spacing; it is
 associated with the environment (@pxref{Environments}).
@@ -11875,9 +11875,9 @@ the @code{ls} request.
 @cindex @code{ls} request, alternative to (@code{pvs})
 @cindex post-vertical line spacing, changing (@code{pvs})
 @cindex post-vertical line spacing register (@code{.pvs})
-Change (increase, decrease) the post-vertical spacing by @var{space}.
-The default scaling unit is @samp{p}.  If @code{pvs} is called without
-an argument, the post-vertical spacing is reset to the previous value
+Set the post-vertical spacing to, or alter it by, @var{space}.  The
+default scaling unit is @samp{p}.  If @code{pvs} is called without an
+argument, the post-vertical spacing is reset to the previous value
 before the last call to @code{pvs}.  GNU @code{troff} emits a warning in
 category @samp{range} if @var{space} is negative; the post-vertical
 spacing is then set to zero.

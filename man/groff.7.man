@@ -4447,6 +4447,10 @@ or
 default:
 .BR i ).
 .
+Ignored in
+.B nroff
+mode.
+.
 .
 .TPx
 .REQ .wh vpos

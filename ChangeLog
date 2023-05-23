@@ -1,3 +1,13 @@
+2023-05-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (do_error): Describe vertical page
+	locations in output warning diagnostics in terms of lines on
+	nroff devices.
+	* doc/groff.texi (Debugging) <warnscale>:
+	* man/groff.7.man (Request short reference) <warnscale>:
+	Document this change.
+	* NEWS: Add item.
+
 2023-05-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tbl]: Refactor handling of type size and vertical spacing.

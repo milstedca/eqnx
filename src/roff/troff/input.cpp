@@ -8928,7 +8928,21 @@ static void do_error(error_type type,
     fputs("debug: ", stderr);
     break;
   case OUTPUT_WARNING:
-    double fromtop = topdiv->get_vertical_position().to_units() \
+    if (nroff_mode) {
+      int fromtop = topdiv->get_vertical_position().to_units()
+		    / vresolution;
+      fprintf(stderr, "warning [page %d, line %d",
+	      topdiv->get_page_number(), fromtop);
+      if (topdiv != curdiv) {
+	int fromdivtop = curdiv->get_vertical_position().to_units()
+			 / vresolution;
+	fprintf(stderr, ", diversion '%s', line %d",
+		curdiv->get_diversion_name(), fromdivtop);
+      }
+      fprintf(stderr, "]: ");
+    }
+    else {
+    double fromtop = topdiv->get_vertical_position().to_units()
 		     / warn_scale;
     fprintf(stderr, "warning [page %d, %.1f%c",
 	    topdiv->get_page_number(), fromtop, warn_scaling_unit);
@@ -8940,6 +8954,7 @@ static void do_error(error_type type,
 	      warn_scaling_unit);
     }
     fprintf(stderr, "]: ");
+    }
     break;
   }
   errprint(format, arg1, arg2, arg3);

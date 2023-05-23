@@ -11534,8 +11534,8 @@ ugly.  Use this escape sequence whenever an upright glyph is followed
 immediately by an oblique glyph without any intervening space.
 @endDefesc
 
-@c TODO: Move this node earlier in the text due to dummy characters'
-@c multifarious effects.
+@c XXX: Can we move this node earlier in the text?  Should it come
+@c before some of the dummy character's multifarious effects?
 @need 1000
 @node Dummy Characters,  , Italic Corrections, Fonts and Symbols
 @subsection Dummy Characters
@@ -11556,15 +11556,13 @@ not treat it like a space.  Ossanna called it a ``non-printing,
 zero-width character'', but the character causes @emph{output} even
 though it does not ``print''.  If no output line is pending, the dummy
 character starts one.  Contrast an empty input document with one
-containing only @code{\&} (and a newline).  The former produces no
-output; the latter, a blank page.}  Its presence alters the
-interpretation context of a subsequent input character, and enjoys
-several applications.
+containing only @code{\&}.  The former produces no output; the latter, a
+blank page.}  Its presence alters the interpretation context of a
+subsequent input character, and enjoys several applications.
 
 @itemize @bullet
 @item
-It prevents insertion of extra space after an end-of-sentence character
-(@pxref{Sentences}).
+Prevent insertion of extra space after an end-of-sentence character.
 
 @Example
 Test.
@@ -11576,8 +11574,7 @@ Test.
 @endExample
 
 @item
-It prevents interpretation of a control character at the beginning of an
-input line.
+Prevent recognition of a control character.
 
 @Example
 .Test
@@ -11587,7 +11584,7 @@ input line.
 @endExample
 
 @item
-It prevents kerning between two glyphs.
+Prevent kerning between two glyphs.
 
 @iftex
 @c can't use @Example...@endExample here
@@ -11602,8 +11599,14 @@ V\&A
 @end iftex
 
 @item
-It permits the @code{tr} request to remap a character to nothing
-(@pxref{Character Translations}).
+Translate a character to nothing.
+
+@Example
+.tr JIjiK\&k\&UVuv
+@c XXX: I might have the wrong noun declension in "university" here.
+Post universitum, alea jacta est, OK?
+    @result{} Post vniversitvm, alea iacta est, O?
+@endExample
 @end itemize
 
 The dummy character escape sequence sees use in macro definitions as a

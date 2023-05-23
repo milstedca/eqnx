@@ -3519,22 +3519,24 @@ default scaling unit\~\c
 .
 .TPx
 .REQ .mc
-Margin glyph off.
+Cease writing margin character.
 .
 .TPx
-.REQ .mc "c"
-Print glyph\~\c
-.I c
-after each text line at actual distance from right margin.
+.REQ .mc c
+Begin writing margin
+.RI character\~ c
+to the right of each output line.
 .
 .TPx
 .REQ .mc "c d"
-Set margin glyph to\~\c
-.I c
-and distance to\~\c
-.I d
-from right margin
-(default scaling unit\~\c
+Begin writing margin
+.RI character\~ c
+on each output line at
+.RI distance\~ d
+to the right of the right margin
+(default distance
+.scalednumber 10 p ,
+default scaling unit\~\c
 .scaleindicator m ).
 .
 .TPx

@@ -16285,82 +16285,74 @@ The output lines correctly report their numbering status.
   This line ISN'T numbered.
 @endExample
 
-@codequotebacktick off
-@codequoteundirected off
-
-@Defreq {mc, glyph [@Var{dist}]}
+@Defreq {mc, [@Var{margin-character} [@Var{distance}]}
 @cindex margin glyph (@code{mc})
 @cindex glyph, for margins (@code{mc})
-Print a @dfn{margin character} to the right of the
-text.@footnote{@dfn{Margin character} is a misnomer since it is an
-output glyph.}  The first argument is the glyph to be printed.  The
-second argument is the distance away from the right margin.  If missing,
-the previously set value is used; the default is 10@tie{}points.  For
-text lines that are too long (that is, longer than the text length plus
-@var{dist}), the margin character is directly appended to the lines.
-
-With no arguments the margin character is turned off.  If this occurs
-before a break, no margin character is printed.
-
-For compatibility with @acronym{AT&T} @code{troff}, a call to @code{mc}
-to set the margin character can't be undone immediately; at least one
-line gets a margin character.  Thus
-
-@Example
-.ll 1i
-.mc \[br]
-.mc
-xxx
-.br
-xxx
-@endExample
-
-@noindent
-produces
-
-@Example
-xxx        |
-xxx
-@endExample
-
+Begin (or, with no arguments, cease) writing a @dfn{margin-character} to
+the right of each output line.  The @var{distance} argument separates
+@var{margin-character} from the right margin.  If absent, the most
+recent value is used; the default is 10@tie{}points.  If an output line
+exceeds the line length, the margin character is appended to it.
 @cindex @code{tl} request, and @code{mc}
-For empty lines and lines produced by the @code{tl} request no margin
-character is emitted.
+No margin character is written on lines produced by the @code{tl}
+request.
+
+The margin character is a property of the output line; the margin
+character last configured when the line is output controls.  If the
+margin character is disabled before an output line breaks, none is
+output (but see below).
 
 The margin character is associated with the environment
 (@pxref{Environments}).
 
-@pindex nrchbar
-@pindex changebar
-This is quite useful for indicating text that has changed, and, in fact,
-there are programs available for doing this (they are called
-@code{nrchbar} and @code{changebar} and can be found in any
-@samp{comp.sources.unix} archive).
-
 @Example
-.ll 3i
-.mc |
-This paragraph is highlighted with a margin
-character.
+.ll 5i
+.nf
+.mc \[br]
+This paragraph is marked with a margin character.
 .sp
-Vertical space isn't marked.
-.br
+As seen above, vertical space isn't thus marked.
 \&
-.br
-But we can fake it with `\&'.
-@endExample
-
-Result:
-
-@Example
-This  paragraph is highlighted |
-with a margin character.       |
-
-Vertical space isn't marked.   |
-                               |
-But we can fake it with `\&'.  |
+An output line that is present, but empty, is.
+@c We deliberately overset these lines to mimic `mc`'s behavior.
+    @result{} This paragraph is marked with a margin character.  |
+    @result{}
+    @result{} As seen above, vertical space isn@quoteright{}t thus marked.   |
+    @result{}                                                    |
+    @result{} An output line that is present, but empty, is.     |
 @endExample
 @endDefreq
+
+For compatibility with @acronym{AT&T} @code{troff}, a call to @code{mc}
+to set the margin character can't be undone immediately; at least one
+line gets a margin character.
+
+@Example
+.ll 10n
+.nf
+.mc |
+.mc *
+.mc
+foo
+bar
+    @result{} foo        *
+    @result{} bar
+@endExample
+
+@pindex gdiffmk
+@pindex nrchbar
+@pindex changebar
+@pindex diffmk
+The margin character mechanism is commonly used to annotate changes in
+documents.  The @code{groff} distribution ships a program,
+@command{gdiffmk}, to assist with this task.@footnote{Historically,
+tools named @command{nrchbar} and @command{changebar} were developed for
+this task and could be found in archives of the @code{comp.sources.unix}
+USENET group.  Some proprietary Unices also offer(ed) a @command{diffmk}
+program.}
+
+@codequotebacktick off
+@codequoteundirected off
 
 @DefreqList {psbb, file}
 @DefregItemx {llx}

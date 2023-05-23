@@ -11697,9 +11697,8 @@ default, GNU @code{troff} uses 10@tie{}point type on 12@tie{}point
 spacing.
 @cindex leading
 Typographers call the difference between type size and vertical spacing
-@dfn{leading}.@footnote{Pronounce ``leading'' to rhyme with
-``sledding''; it refers to the use of lead metal (Latin: @emph{plumbum})
-in traditional typesetting.}
+@dfn{leading}.@footnote{Rhyme with ``sledding''; mechanical typography
+used lead metal (Latin @emph{plumbum}).}
 
 @menu
 * Changing the Type Size::

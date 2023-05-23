@@ -11723,8 +11723,20 @@ Use the @code{ps} request or the @code{\s} escape sequence to change
 (increase, decrease) the type size (in scaled points).  Specify
 @var{size} as either an absolute type size, or as a relative change from
 the current size.  @code{ps} with no argument restores the previous
-size.  The @code{ps} request's default scaling unit is @samp{z}.  If the
-requested size is non-positive, it is set to 1@dmn{u}.
+size.  The @code{ps} request's default scaling unit is @samp{z}.  The
+requested size is rounded to the nearest valid size (with ties rounding
+down) within the limits supported by the device.  If the requested size
+is non-positive, it is treated as 1@dmn{u}.
+
+@cindex CSTR@tie{}#54 errata
+@cindex CSTR@tie{}#54 erratum, @code{ps} request
+@cindex CSTR@tie{}#54 erratum, @code{\s} escape sequence
+Type size is alteration is incorrectly documented in the @acronym{AT&T}
+@code{troff} manual, which claims ``if [the requested size] is invalid,
+the next larger valid size will result, with a maximum of
+36''.@footnote{The claim appears to have been true of Ossanna
+@code{troff} for the C/A/T device; Kernighan made device-independent
+@code{troff} more flexible.}
 
 @cindex type size registers (@code{.s}, @code{.ps})
 @cindex point size registers (@code{.s}, @code{.ps})
@@ -11733,15 +11745,6 @@ size in points as a decimal fraction; it is associated with the
 environment (@pxref{Environments}).  To obtain the type size in scaled
 points, interpolate the @code{.ps} register instead (@pxref{Using
 Fractional Type Sizes}).
-
-@Example
-snap, snap,
-.ps +2
-grin, grin,
-.ps +2
-wink, wink, \s+2nudge, nudge,\s+8 say no more!
-.ps 10
-@endExample
 
 The @code{\s} escape sequence supports a variety of syntax forms.
 
@@ -11763,12 +11766,20 @@ digits.
 @itemx \s-(@var{nn}
 @itemx \s(+@var{nn}
 @itemx \s(-@var{nn}
-Increase or decrease the type size by @var{nn}@tie{}points.  @var{nn}
-must be exactly two digits.
+Alter the type size in points by the two-digit value @var{nn}.
 @end table
 
 @xref{Using Fractional Type Sizes}, for further syntactical forms of the
 @code{\s} escape sequence that additionally accept decimal fractions.
+
+@Example
+snap, snap,
+.ps +2
+grin, grin,
+.ps +2
+wink, wink, \s+2nudge, nudge,\s+8 say no more!
+.ps 10
+@endExample
 @endDefreq
 
 The @code{\s} escape sequence affects the environment immediately and
@@ -11781,15 +11792,12 @@ argument, to change the type size on the fly.
 @endExample
 
 @Defreq {sizes, s1 s2 @dots{} sn [@t{0}]}
-Some devices may permit only certain type sizes, in which case GNU
-@code{troff} rounds to the nearest permissible size.  The @file{DESC}
-file normally specifies which type sizes are allowed by the device.
-
-Use the @code{sizes} request to change the permissible sizes for the
-output device.  Arguments are in scaled points; @xref{Using Fractional
-Type Sizes}.  Each can be a single type size (such as @samp{12000}), or
-a range of sizes (such as @samp{4000-72000}).  You can optionally end
-the list with a zero.
+The @file{DESC} file specifies which type sizes are allowed by the
+output device; see @ref{DESC File Format}.  Use the @code{sizes} request
+to change this set of permissible sizes.  Arguments are in scaled
+points; see @ref{Using Fractional Type Sizes}.  Each can be a single
+type size (such as @samp{12000}), or a range of sizes (such as
+@samp{4000-72000}).  You can optionally end the list with a @samp{0}.
 @endDefreq
 
 @need 1000

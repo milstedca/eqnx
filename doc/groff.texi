@@ -9574,18 +9574,16 @@ Calling .in and .ll without parameters restores
 the previous values.
 @endExample
 
-Result:
-
 @Example
-This  is text without indenta-
-tion.   The  line  length  has
-been set to 3 inches.
-     Now   the  left  and
-     right  margins   are
-     both increased.
-Calling  .in  and  .ll without
-parameters restores the previ-
-ous values.
+    @result{} This  is text without indenta-
+    @result{} tion.   The  line  length  has
+    @result{} been set to 3 inches.
+    @result{}      Now   the  left  and
+    @result{}      right  margins   are
+    @result{}      both increased.
+    @result{} Calling  .in  and  .ll without
+    @result{} parameters restores the previ-
+    @result{} ous values.
 @endExample
 
 @DefreqList {po, [@Var{offset}]}

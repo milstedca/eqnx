@@ -16728,9 +16728,9 @@ exhausted.  The default is 1,000.
 @endDefreg
 
 @Defreq {warnscale, si}
-Set the scaling indicator used in warnings to @var{si}.  Valid values
-for @var{si} are @samp{u}, @samp{i}, @samp{c}, @samp{p}, and @samp{P}.
-At startup, it is set to @samp{i}.
+Set the scaling unit used in certain warnings @c `output_warning()`
+to @var{si}.  Valid values for @var{si} are @samp{u}, @samp{i},
+@samp{c}, @samp{p}, and @samp{P}.  At startup, it is set to @samp{i}.
 @endDefreq
 
 @Defreq {spreadwarn, [@Var{limit}]}

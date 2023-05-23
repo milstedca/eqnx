@@ -4389,8 +4389,18 @@ see
 .
 .TPx
 .REQ .warnscale "su"
-Set scaling unit used in warnings to
-.IR su .
+Set scaling unit used in certain warnings \" `output_warning()`
+to
+.I su
+(one of
+.BR u ,
+.BR i ,
+.BR c ,
+.BR p ,
+or
+.BR P ;
+default:
+.BR i ).
 .
 .
 .TPx

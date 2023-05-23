@@ -10117,6 +10117,7 @@ special symbols (Greek, mathematics).
 * Special Fonts::
 * Artificial Fonts::
 * Ligatures and Kerning::
+* Italic Corrections::
 * Dummy Characters::
 @end menu
 
@@ -11493,9 +11494,13 @@ for large values it is thus recommended to increase the line length by
 the same amount to compensate.
 @endDefreq
 
-Sometimes, when typesetting letters of different fonts, more or less
-space at such boundaries is needed.  Two escape sequences help with
-this.
+@c ---------------------------------------------------------------------
+
+@node Italic Corrections, Dummy Characters, Ligatures and Kerning, Fonts and Symbols
+@subsection Italic Corrections
+
+When typesetting adjacent glyphs from typefaces of different slants, the
+space between them may require adjustment.
 
 @Defesc {\\/, , , }
 @cindex italic correction (@code{\/})
@@ -11531,7 +11536,8 @@ immediately by an oblique glyph without any intervening space.
 
 @c TODO: Move this node earlier in the text due to dummy characters'
 @c multifarious effects.
-@node Dummy Characters,  , Ligatures and Kerning, Fonts and Symbols
+@need 1000
+@node Dummy Characters,  , Italic Corrections, Fonts and Symbols
 @subsection Dummy Characters
 
 As discussed in @ref{Requests and Macros}, the first character on an
@@ -11622,6 +11628,11 @@ the side effects on formatting that you desire except for sticking an
 ugly ampersand in the midst of your text, the dummy character is what
 you want in its place.
 
+@c XXX: This feature seems nearly impossible to motivate.  The _only_
+@c use of it in the groff source tree is for the mdoc package, for which
+@c it seems to be special pleading for that package's unique approach to
+@c macro argument reprocessing, which also involves an idiosyncratic
+@c approach to punctuation characters in macro argument lists.
 @Defesc {\\), , , }
 @cindex transparent dummy character (@code{\)})
 @cindex character, transparent dummy (@code{\)})
@@ -11661,6 +11672,7 @@ And a third.
 @c _honor_ vertical spacing (to within their crude vertical motion
 @c quanta).
 
+@need 2000
 @node Manipulating Type Size and Vertical Spacing, Colors, Fonts and Symbols, GNU troff Reference
 @section Manipulating Type Size and Vertical Spacing
 @cindex manipulating type size and vertical spacing

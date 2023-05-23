@@ -6863,7 +6863,7 @@ request.
 .\" BEGIN Keep (roughly) parallel with groff.texi node "Diversions".
 In
 .I roff
-systems systems it is possible to format text as if for output,
+systems it is possible to format text as if for output,
 but instead of writing it immediately,
 one can
 .I divert

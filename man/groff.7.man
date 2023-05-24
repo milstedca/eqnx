@@ -6839,7 +6839,7 @@ their positions are reported in basic units.
 .
 .
 .\" ====================================================================
-.SS "The implicit trap"
+.SS "The implicit page trap"
 .\" ====================================================================
 .
 An

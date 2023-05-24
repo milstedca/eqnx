@@ -14350,13 +14350,13 @@ A page can't be ejected if @code{vpt} is set to zero.
 
 @menu
 * Page Location Traps::
-* The Implicit Trap::
+* The Implicit Page Trap::
 * Diversion Traps::
 @end menu
 
 @c ---------------------------------------------------------------------
 
-@node Page Location Traps, The Implicit Trap, Vertical Position Traps, Vertical Position Traps
+@node Page Location Traps, The Implicit Page Trap, Vertical Position Traps, Vertical Position Traps
 @subsubsection Page Location Traps
 @cindex page location traps
 @cindex traps, page location
@@ -14369,7 +14369,7 @@ relative to the top of the page; negative values set the trap relative
 to the bottom of the page.  It is not possible to plant a trap less than
 one basic unit from the page bottom: a @var{dist} of @code{-0} is
 interpreted as @code{0}, the top of the page.@footnote{@xref{The
-Implicit Trap}.} An existing @emph{visible} trap (see below) at
+Implicit Page Trap}.} An existing @emph{visible} trap (see below) at
 @var{dist} is removed; this is @code{wh}'s sole function if @var{name}
 is missing.
 
@@ -14617,10 +14617,10 @@ not the expected behaviour.
 
 @c ---------------------------------------------------------------------
 
-@c BEGIN Keep (roughly) parallel with subsection "The implicit trap" of
-@c groff(7).
-@node The Implicit Trap, Diversion Traps, Page Location Traps, Vertical Position Traps
-@subsubsection The Implicit Trap
+@c BEGIN Keep (roughly) parallel with subsection "The implicit page
+@c trap" of groff(7).
+@node The Implicit Page Trap, Diversion Traps, Page Location Traps, Vertical Position Traps
+@subsubsection The Implicit Page Trap
 @cindex implicit trap
 @cindex trap, implicit
 
@@ -14646,7 +14646,7 @@ are disabled with GNU @code{troff}'s @code{vpt} request.
 
 @c ---------------------------------------------------------------------
 
-@node Diversion Traps, Input Line Traps, The Implicit Trap, Vertical Position Traps
+@node Diversion Traps, Input Line Traps, The Implicit Page Trap, Vertical Position Traps
 @subsubsection Diversion Traps
 @cindex diversion traps
 @cindex traps, diversion

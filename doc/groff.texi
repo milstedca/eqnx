@@ -16166,101 +16166,86 @@ Control Commands}).
 Reserved for internal use.
 @endDefreq
 
-@codequotebacktick off
-@codequoteundirected off
-
 
 @c =====================================================================
 
 @node Miscellaneous, Gtroff Internals, Postprocessor Access, GNU troff Reference
 @section Miscellaneous
 
-This section documents parts of @code{gtroff} that cannot (yet) be
-categorized elsewhere in this manual.
+We document here GNU @code{troff} features that fit poorly elsewhere.
 
-@DefreqList {nm, [@Var{start} [@Var{inc} [@Var{space} [@Var{indent}]]]]}
+@DefreqList {nm, [@Var{start} [@Var{increment} [@Var{space} [@Var{indentation}]]]]}
 @DefregItemx {ln}
 @DefregListEndx {.nm}
 @cindex printing line numbers (@code{nm})
 @cindex line numbers, printing (@code{nm})
 @cindex numbers, line, printing (@code{nm})
-Print line numbers.  @var{start} is the line number of the @emph{next}
-output line.  @var{inc} indicates which line numbers are printed.  For
-example, the value@tie{}5 means to emit only line numbers that are
-multiples of@tie{}5; this defaults to@tie{}1.  @var{space} is the space
-to be left between the number and the text; this defaults to one digit
-space.  The fourth argument is the indentation of the line numbers,
-defaulting to zero.  Both @var{space} and @var{indent} are given as
-multiples of digit spaces; they can be negative also.  Without any
-arguments, line numbers are turned off.
+Begin (or, with no arguments, cease) numbering output lines.
+@var{start} assigns the number of the @emph{next} output line.  Only
+line numbers divisible by @var{increment} are marked (default:
+@samp{1}).  @var{space} configures the horizontal spacing between the
+number and the text (default: @samp{1}).  Any given @var{indentation} is
+applied to the numbers (default: @samp{0}).  The third and fourth
+arguments are reckoned in numeral widths (@code{\0}).  @var{start} must
+be non-negative and @var{increment} positive.
 
-@code{gtroff} reserves three digit spaces for the line number (which is
-printed right-justified) plus the amount given by @var{indent}; the
-output lines are concatenated to the line numbers, separated by
-@var{space}, and @emph{without} reducing the line length.  Depending on
-the value of the horizontal page offset (as set with the @code{po}
-request), line numbers that are longer than the reserved space stick
-out to the left, or the whole line is moved to the right.
+The formatter aligns the number to the right in a width of three numeral
+spaces plus @var{indentation}, then catenates @var{space} and the output
+line.  The line length is @emph{not} reduced.  Depending on the value of
+the page offset,@footnote{Recall @ref{Line Layout}.} numbers wider than
+the allocated space protrude into the left margin, or shift the output
+line to the right.
 
-Parameters corresponding to missing arguments are not changed; any
-non-digit argument (to be more precise, any argument starting with a
-character valid as a delimiter for identifiers) is also treated as
-missing.
-
-If line numbering has been disabled with a call to @code{nm} without an
-argument, it can be reactivated with @samp{.nm +0}, using the previously
-active line numbering parameters.
+Line numbering parameters corresponding to missing arguments are not
+altered.  After numbering is disabled, @samp{.nm +0} resumes it using
+the previously active parameters.
 
 The parameters of @code{nm} are associated with the environment
 (@pxref{Environments}).
 
 @cindex output line number register (@code{ln})
 @cindex line number, output, register (@code{ln})
-While line numbering is enabled, the output line number register
-@code{ln} is updated as each line is output, even if no line number is
-formatted with it because it is being skipped (it is not a multiple of
-@var{inc}) or because numbering is suppressed (see the @code{nn} request
-below).
+While numbering is enabled, the output line number register @code{ln} is
+updated as each line is output, even if no line number is formatted with
+it because it is being skipped (it is not a multiple of @var{increment})
+or because numbering is suppressed (see the @code{nn} request below).
 
-The @code{.nm} register tracks the enablement status of line numbering.
+The @code{.nm} register tracks the enablement status of numbering.
 Temporary suspension of numbering with the @code{nn} request does
 @emph{not} alter its value.
 
 @Example
-.po 1m
-.ll 2i
-This test shows how line numbering works with groff.
-.nm 999
-This test shows how line numbering works with groff.
-.br
-.nm xxx 3 2
-.ll -\w'0'u
-This test shows how line numbering works with groff.
+.po 5n
+.ll 44n
+Programming,
+when stripped of all its circumstantial irrelevancies,
+.nm 999 1 1 -4
+boils down to no more and no less than
+.nm +0 3
+very effective thinking so as to avoid unmastered
 .nn 2
-This test shows how line numbering works with groff.
-@endExample
-
-@noindent
-The result is as follows.
-
-@Example
- This  test shows how
- line numbering works
- 999 with   groff.   This
-1000 test shows how  line
-1001 numbering works with
-1002 groff.
-      This test shows how
-      line      numbering
- works  with  groff.
- This test shows how
-1005  line      numbering
-      works with groff.
+complexity,
+to very vigorous separation of your many
+different concerns.
+.br
+\(em Edsger Dijkstra
+.sp
+.nm 1 1 1
+This guy's arrogance takes your breath away.
+.br
+\(em John Backus
+    @result{}      Programming,  when  stripped of all its cir-
+    @result{}  999 cumstantial irrelevancies, boils down to  no
+    @result{}      more  and no less than very effective think-
+    @result{}      ing so as to avoid unmastered complexity, to
+    @result{}      very vigorous separation of your  many  dif-
+    @result{}      ferent concerns.
+    @result{} 1002 -- Edsger Dijkstra
+    @result{}
+    @result{}    1 This guy@quoteright{}s arrogance takes your breath away.
+    @result{}    2 -- John Backus
 @endExample
 @endDefreq
-
-@codequotebacktick on
-@codequoteundirected on
 
 @DefreqList {nn, [@Var{skip}]}
 @DefregListEndx {.nn}

@@ -12590,6 +12590,7 @@ translation is applied.
 True if the document is being processed in @code{troff} mode.
 @xref{@code{troff} and @code{nroff} Modes}.
 
+@pindex vtroff
 @item v
 Always false.  This condition is recognized only for compatibility with
 certain other @code{troff} implementations.@footnote{This refers to
@@ -16274,6 +16275,7 @@ their numbering suppressed.
 This count is associated with the environment (@pxref{Environments}).
 @endDefreq
 
+@need 1000
 To test whether the current output line will be numbered, you must check
 both the @code{.nm} and @code{.nn} registers.
 
@@ -16369,9 +16371,9 @@ The margin character mechanism is commonly used to annotate changes in
 documents.  The @code{groff} distribution ships a program,
 @command{gdiffmk}, to assist with this task.@footnote{Historically,
 tools named @command{nrchbar} and @command{changebar} were developed for
-this task and could be found in archives of the @code{comp.sources.unix}
-USENET group.  Some proprietary Unices also offer(ed) a @command{diffmk}
-program.}
+marking changes with margin characters and could be found in archives of
+the @code{comp.sources.unix} USENET group.  Some proprietary Unices also
+offer(ed) a @command{diffmk} program.}
 
 @codequotebacktick off
 @codequoteundirected off

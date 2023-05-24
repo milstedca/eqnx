@@ -8825,10 +8825,10 @@ Break and move the next text baseline down by @var{distance}, or until
 springing a page location trap.@footnote{@xref{Page Location Traps}.}
 If invoked with the no-break control character, @code{sp} moves the
 pending output line's text baseline by @var{distance}.  A negative
-@var{distance}, but will not reduce the position of the text baseline
-below zero.  Inside a diversion, any @var{distance} argument is ignored.
-The default scaling unit is @samp{v}.  If @var{distance} is not
-specified, @samp{1v} is assumed.
+@var{distance} will not reduce the position of the text baseline below
+zero.  Inside a diversion, any @var{distance} argument is ignored.  The
+default scaling unit is @samp{v}.  If @var{distance} is not specified,
+@samp{1v} is assumed.
 
 @Example
 .pl 5v \" Set page length to 5 vees.
@@ -11734,7 +11734,7 @@ is non-positive, it is treated as 1@dmn{u}.
 @cindex CSTR@tie{}#54 errata
 @cindex CSTR@tie{}#54 erratum, @code{ps} request
 @cindex CSTR@tie{}#54 erratum, @code{\s} escape sequence
-Type size is alteration is incorrectly documented in the @acronym{AT&T}
+Type size alteration is incorrectly documented in the @acronym{AT&T}
 @code{troff} manual, which claims ``if [the requested size] is invalid,
 the next larger valid size will result, with a maximum of
 36''.@footnote{The claim appears to have been true of Ossanna

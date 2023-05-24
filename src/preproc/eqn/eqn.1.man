@@ -2035,7 +2035,7 @@ by Donald E.\& Knuth,
 1984,
 Addison-Wesley Professional.
 .
-Appendix\~H
+Appendix\~G
 discusses many of the parameters from section \[lq]Customization\[rq]
 above in greater detail.
 .

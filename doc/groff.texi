@@ -14415,7 +14415,7 @@ To use these traps, copy the above (or load it from a file with the
 .ds Da 21 May 2023\"
 .ti
 On 5 August of last year,
-this committe tasked me with the investigation of the
+this committee tasked me with the investigation of the
 CFIT (controlled flight into terrain) incident of
 .\" @i{...and so on...}
 @endExample

@@ -1454,8 +1454,9 @@ Heirloom Doctools
 .
 .
 .P
-In 2012, \" according to its Git history
-Ali Gholami Rudi began working on
+.\" https://lists.gnu.org/archive/html/groff/2013-07/msg00001.html
+In July 2013,
+Ali Gholami Rudi announced
 .UR https://\:github\:.com/\:aligrudi/\:neatroff
 .IR neatroff ,
 .UE

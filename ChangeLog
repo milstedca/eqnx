@@ -1,5 +1,19 @@
 2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[eqn]: Trivially refactor.  Boolify `tab_box` member variable
+	`disabled`.
+
+	* src/preproc/eqn/box.cpp (tab_box::tab_box)
+	(tab_box::check_tabs):
+	* src/preproc/eqn/box.h (class tab_box): Do it.
+
+	* src/preproc/eqn/box.cpp (tab_box::check_tabs): Also recast
+	diagnostic message to clarify what "level" we're talking about:
+	it's lexical.  Which, sadly, probably won't help any but
+	CS/SWeng people...
+
+2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Validate a font family before trying to use it.
 
 	* src/roff/troff/env.cpp (is_family_valid): New function checks

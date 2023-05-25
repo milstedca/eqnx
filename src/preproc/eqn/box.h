@@ -197,7 +197,7 @@ public:
 };
 
 class tab_box : public box {
-  int disabled;
+  bool disabled;
 public:
   tab_box();
   void output();

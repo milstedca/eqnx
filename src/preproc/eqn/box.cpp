@@ -573,7 +573,7 @@ void quoted_text_box::output()
   }
 }
 
-tab_box::tab_box() : disabled(0)
+tab_box::tab_box() : disabled(false)
 {
 }
 
@@ -588,8 +588,8 @@ void tab_box::output()
 void tab_box::check_tabs(int level)
 {
   if (level > 0) {
-    error("tabs allowed only at outermost level");
-    disabled = 1;
+    error("tabs allowed only at outermost lexical level");
+    disabled = true;
   }
 }
 

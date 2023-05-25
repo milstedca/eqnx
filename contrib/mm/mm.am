@@ -61,6 +61,7 @@ EXTRA_DIST += \
   contrib/mm/mmroff.pl
 
 mm_TESTS = \
+  contrib/mm/tests/LT-should-space-after-inside-address.sh \
   contrib/mm/tests/LT_SP_AU_without_AT_works.sh \
   contrib/mm/tests/LT_SP_multi-word_LO_SJ_works.sh \
   contrib/mm/tests/MT-1-reports-all-TM-numbers.sh \

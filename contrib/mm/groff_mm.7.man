@@ -1792,17 +1792,22 @@ is unnecessary.
 specifies an optional title;
 it must be double-quoted if it contains spaces.
 .
+.I mm
+appends
 .I suffix
-is appended to the heading title in the body of the document,
-but omitted from any table of contents
+to
+.I title
+in the body of the document,
+but omits it from any table of contents
 (see
 .BR TC ).
 .
 This facility can be used to annotate the heading title with a footnote.
 .
 .I suffix
-should not include
-.BR \[rs]*F ;
+should not interpolate
+.RB the\~ F
+string;
 specify a footnote mark explicitly.
 .
 See

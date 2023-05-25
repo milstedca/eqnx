@@ -2174,16 +2174,22 @@ and populated by
 .B IND
 calls.
 .
-The index is preceded by a centered header interpolating the string
+By default,
+.B INDP
+calls
+.B SK
+and writes a centered header interpolating the string
 .BR Index .
 .
-The index is laid out in two columns;
+It then disables filling and calls
+.BR 2C ;
 afterward,
-single-column output is selected again.
+it restores filling and calls
+.BR 1C .
 .
 .
 .IP
-You can define macros to customize the foregoing behavior.
+Define macros to customize this behavior.
 .
 .B INDP
 calls
@@ -2194,7 +2200,7 @@ before the header,
 of writing the header,
 and
 .B TZIND
-after formatting the index to return to the prevailing page layout.
+after formatting the index.
 .
 .
 .TP
@@ -2321,6 +2327,8 @@ they are simpler to use and may be preferred if they suit the desired
 purpose.
 .
 .
+.br
+.ne 5v
 .IP
 The nesting level of lists is tracked by
 .I mm;
@@ -2595,6 +2603,8 @@ which are extensible;
 see section \[lq]Internals\[rq] below.
 .
 .
+.br
+.ne 6v
 .IP
 .TS
 tab(@);

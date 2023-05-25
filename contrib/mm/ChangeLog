@@ -1,3 +1,9 @@
+2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* groff_mm.7.man (Macros) <INDP>: Clarify operation.
+
+	Fixes <https://savannah.gnu.org/bugs/?64206>.
+
 2023-02-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[mm]: Add `--help` option support to mmroff.

@@ -3385,10 +3385,10 @@ exceeds depth of nested lists (\\n[li*lvl])
 .	if !\\n[Cp] .pg@next-page
 .	\" print INDEX
 .	\" execute user-defined macros
-.	if d TXIND .TXIND
+.	ie d TXIND .TXIND
+.	el .SK
 .	ie d TYIND .TYIND
 .	el \{\
-.		SK
 .		ce
 \\*[Index]
 .		SP 3

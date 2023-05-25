@@ -1,3 +1,16 @@
+2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Slightly revise index output.
+
+	* m.tmac (INDP): Call `SK` if `TXIND` is not defined, instead of
+	as the first thing if `TYIND` is not defined.  This is easier to
+	rationalize in the documentation as something that happens
+	before the index caption is written.  This way any page breaking
+	or spacing prior to the index is strictly `TXIND`'s
+	responsibility, and the formatting of the index caption itself,
+	followed by any formatting changes appropriate to the index
+	entries, belongs to `TYIND`.
+
 2023-07-04 G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (IND): Use `hd@mark-trimmed` instead of `hd*mark` in

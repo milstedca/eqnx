@@ -85,11 +85,8 @@ Here are some portability notes on writing automated tests.
 * The GNU coreutils "seq" command is handy but not standardized by
   POSIX.  Replace it with a while loop.
 
-    seq 53
-    n=1; while [ $n -le 53 ]; do echo $n; n=$(( n + 1 )); done
-
-  "unset" is supported by POSIX-conformant shell; use it to remove
-  temporary shell variables after use.
+    # emulate "seq 53"
+    n=1; while [ $n -le 53 ]; do echo $n; n=$(( n + 1 )); done; unset n
 
 * The "od" command on macOS can put extra space characters (i.e., spaces
   that don't correspond to the input) at the ends of lines when using

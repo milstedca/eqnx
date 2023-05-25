@@ -8820,6 +8820,9 @@ The hyphenation space adjustment threshold is available in the
 @cindex manipulating spacing
 @cindex spacing, manipulating
 
+A break causes the formatter to update the vertical drawing position at
+which the new text baseline is aligned.  You can alter this location.
+
 @Defreq {sp, [@Var{distance}]}
 Break and move the next text baseline down by @var{distance}, or until
 springing a page location trap.@footnote{@xref{Page Location Traps}.}
@@ -8933,18 +8936,14 @@ Requests}.} as the following example shows.
 .nf
 This is a test of \[rs]b (1).
 This is a test of \[rs]b (2).
-.sp
 This is a test of \b'xyz'\x'-1m'\x'1m' (3).
-.sp
 This is a test of \[rs]b (4).
 This is a test of \[rs]b (5).
     @result{} This is a test of \b (1).
     @result{} This is a test of \b (2).
-    @result{}
     @result{}                   x
     @result{} This is a test of y (3).
     @result{}                   z
-    @result{}
     @result{} This is a test of \b (4).
     @result{} This is a test of \b (5).
 @endExample
@@ -8954,6 +8953,7 @@ This is a test of \[rs]b (5).
 Without @code{\x}, the backslashes on the lines marked @samp{(2)} and
 @samp{(4)} would be overprinted.
 
+@need 1000
 @DefreqList {ns, }
 @DefreqItemx {rs, }
 @DefregListEndx {.ns}
@@ -9760,11 +9760,11 @@ and ends on line \n[.c].
 @cindex interrupted line
 @cindex line, interrupted
 @cindex @code{\R}, after @code{\c}
-@code{\c} continues an output line.  Nothing on the input line after it
+@code{\c} continues an output line.  Nothing after it on the input line
 is formatted.  In contrast to @code{\@key{RET}}, a line after @code{\c}
-is treated as a new input line, so a control character is recognized at
-its beginning.  The visual results depend on whether filling is enabled;
-see @ref{Manipulating Filling and Adjustment}.
+remains a new input line, so a control character is recognized at its
+beginning.  The visual results depend on whether filling is enabled; see
+@ref{Manipulating Filling and Adjustment}.
 
 @itemize @bullet
 @item
@@ -16732,10 +16732,10 @@ there is no limit: recursion can continue until program memory is
 exhausted.  The default is 1,000.
 @endDefreg
 
-@Defreq {warnscale, si}
+@Defreq {warnscale, su}
 Set the scaling unit used in certain warnings @c `output_warning()`
-to @var{si}.  Valid values for @var{si} are @samp{u}, @samp{i},
-@samp{c}, @samp{p}, and @samp{P}.  At startup, it is set to @samp{i}.
+to @var{su}, which can take the values @samp{u}, @samp{i}, @samp{c},
+@samp{p}, and @samp{P}.  The default is @samp{i}.
 @endDefreq
 
 @Defreq {spreadwarn, [@Var{limit}]}

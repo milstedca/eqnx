@@ -1,5 +1,12 @@
 2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (let@print-head): Unconditionally put one vee of space
+	on the output before returning.
+
+	Fixes <https://savannah.gnu.org/bugs/?63695>.
+
+2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Regression-test Savannah #63695.
 
 	* tests/LT-should-space-after-inside-address.sh: Do it.

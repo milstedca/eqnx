@@ -1033,7 +1033,8 @@ numeric; got '\\$1'
 .ds \\$1 \\$[\\n[hd*sp-tmp]]
 ..
 .de HU
-.H 0 "\\$1"
+.if \\n[.$]=0 .@error \\$0: expected 1 or 2 arguments, got \\n[.$]
+.H 0 \\$@
 ..
 .\"-------------
 .de H

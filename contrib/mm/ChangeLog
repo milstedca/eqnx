@@ -1,5 +1,14 @@
 2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Accept a second argument to `HU`.
+
+	* m.tmac (HU): Pass `H` all of our arguments.  Also validate
+	quantity of arguments and throw error if called with none.
+
+	Fixes <https://savannah.gnu.org/bugs/?64204>.
+
+2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Slightly revise index output.
 
 	* m.tmac (INDP): Call `SK` if `TXIND` is not defined, instead of

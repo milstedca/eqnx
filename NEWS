@@ -16,6 +16,10 @@ Macro packages
 o The new macro file "koi8-r.tmac" supports the KOI8-R character
   encoding, which supports the new Russian locale for groff.
 
+o The m (mm) macro package's `HU` macro now supports a second argument
+  as a GNU extension.  It corresponds to the optional third argument of
+  the `H` macro.
+
 o The m (mm) macro package's `IND` macro (a GNU extension), now calls
   `SK` only if no `TXIND` macro is defined, instead of performing this
   action as part of the fallback when no `TYIND` macro is defined.

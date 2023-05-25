@@ -1,3 +1,9 @@
+2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.h (read_hyphen_file): Drop relic prototype
+	for undeclared function.  Should have been disposed of on
+	1992-09-21, per ChangeLog.115.
+
 2023-05-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (do_error): Describe vertical page

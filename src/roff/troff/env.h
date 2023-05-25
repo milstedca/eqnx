@@ -408,7 +408,6 @@ extern void pop_env();
 extern void push_env(int);
 
 void init_environments();
-void read_hyphen_file(const char *name);
 
 extern double spread_limit;
 

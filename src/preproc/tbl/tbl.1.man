@@ -128,7 +128,8 @@ or if
 .I file
 is
 .RB \[lq] \- \[rq],
-the standard input stream is read.
+.I @g@tbl
+reads the standard input stream.
 .
 .
 .\" ====================================================================
@@ -1350,7 +1351,7 @@ macro,
 and diversion names beginning with the
 .RB numeral\~ 3 .
 .
-A document to be preproccessed with GNU
+A document to be preprocessed with GNU
 .I tbl \" GNU
 should not use any such identifiers.
 .\" XXX: Why are they not named starting with "gtbl*" or something?  GNU

@@ -272,12 +272,6 @@ Spaces and newlines are interchangeable;
 they separate input tokens but do not break lines or produce space in
 the output.
 .
-Tab and leader characters separate tokens as well as advancing the
-drawing position to the next tab stop
-(but are seldom used in
-.I eqn
-input).
-.
 .
 .P
 A handful of tokens manage the grouping and spacing of other tokens.
@@ -285,7 +279,7 @@ A handful of tokens manage the grouping and spacing of other tokens.
 .
 .TP
 .B "{ }"
-Left and right braces perform grouping.
+Braces perform grouping.
 .
 Whereas
 .RB \[lq] "e sup a b" \[rq]
@@ -320,6 +314,22 @@ Use them to tune the appearance of the output.
 .
 .
 .P
+Tab and leader characters separate tokens as well as advancing the
+drawing position to the next tab stop,
+but are seldom used in
+.I eqn
+input.
+.
+When they occur,
+they must appear at the outermost lexical scope.
+.
+This roughly means that they can't appear within braces that are
+necessary to disambiguate the input;
+.I @g@eqn
+will diagnose an error in this event.
+.
+.
+.P
 Other tokens are primitives,
 macros,
 an argument to either of the foregoing,
@@ -332,7 +342,7 @@ are fundamental keywords of the
 .I eqn
 language.
 .
-They can configure an aspect of the preprocessor's state;
+They can configure an aspect of the preprocessor's state,
 as when setting a \[lq]global\[rq] font selection or type size
 .RB ( gfont
 and
@@ -346,7 +356,7 @@ these are termed
 .
 Other primitives perform formatting operations on the tokens after them
 (as with
-.BR big ,
+.BR fat ,
 .BR over ,
 .BR sqrt ,
 or
@@ -406,14 +416,19 @@ Lf(CR) Lf(CR).
 .
 GNU
 .I eqn
-imputes a type to each component of an equation,
-assigning a typeface to
-and adjusting the spacing between them accordingly.
+imputes types to the components of an equation,
+adjusting the spacing between them accordingly.
 .
-Recognized types are as follows.
+Recognized types are as follows;
+most affect spacing only,
+whereas the
+.RB \%\[lq] letter \[rq]
+subtype of
+.RB \%\[lq] ordinary \[rq]
+also assigns a style.
 .
 .
-.RS 2n \" we need quite a bit of space for this table
+.RS 2n \" we need quite a bit of horizontal space for this table
 .P
 .TS
 Lf(CR) Lx
@@ -423,11 +438,11 @@ Lf(CR) Lx.
 ordinary	T{
 character such as \[lq]1\[rq],
 \[lq]a\[rq],
-\[lq]!\&\[rq],
-or \[lq]\[mu]\[rq]
+or
+\[lq]!\&\[rq]
 T}
-letter	alphabetic character
-digit	numeral
+letter	character to be italicized by default
+digit	\f[I]n/a\f[]
 operator	T{
 large operator such as
 .ds Su \[lq]\s+5\[*S]\s0\[rq]
@@ -460,45 +475,31 @@ to
 .
 .TP
 .BI chartype\~ "t text"
-Each (unquoted) character
-.RI in\~ text
-is assigned
+Assign each character in (unquoted)
+.I text
 .RI type\~ t ,
 persistently.
-.
-If
-.I t
-is
-.RB \[lq] letter \[rq],
-.B \%chartype
-also assigns the italic typeface to each character in
-.IR text .
-.
-See subsection \[lq]Fonts\[rq] below.
 .
 .
 .P
 .I @g@eqn \" GNU
-sets up default spacings as if by the following commands.
+sets up spacings and styles as if by the following commands.
 .
 .P
 .RS
 .TS
 tab(@);
-Lf(CR) Lf(CR).
+Lf(CR)1 Lf(CR).
 chartype \[dq]letter\[dq]@abcdefghiklmnopqrstuvwxyz
 chartype \[dq]letter\[dq]@ABCDEFGHIKLMNOPQRSTUVWXYZ
-.T&
-Lf(CR)t Lf(CR)
-^ Lf(CR)
-^ Lf(CR)
-^ Lf(CR).
-chartype \[dq]letter\[dq]@\[rs][*a]\[rs][*b]\[rs][*x]\[rs][*d]\[rs][*e]\[rs][*y]
-\&@\[rs][*g]\[rs][*i]\[rs][*k]\[rs][*l]\[rs][*m]\[rs][*n]
-\&@\[rs][*w]\[rs][*o]\[rs][*f]\[rs][*p]\[rs][*q]\[rs][*r]
-\&@\[rs][*s]\[rs][*t]\[rs][*h]\[rs][*u]\[rs][*c]\[rs][*z]
-.T&
-Lf(CR) Lf(CR).
+chartype \[dq]letter\[dq]@\[rs][*a]\[rs][*b]\[rs][*x]\[rs][*d]\[rs][*e]\
+\[rs][*y]
+chartype \[dq]letter\[dq]@\[rs][*g]\[rs][*i]\[rs][*k]\[rs][*l]\[rs][*m]\
+\[rs][*n]
+chartype \[dq]letter\[dq]@\[rs][*w]\[rs][*o]\[rs][*f]\[rs][*p]\[rs][*q]\
+\[rs][*r]
+chartype \[dq]letter\[dq]@\[rs][*s]\[rs][*t]\[rs][*h]\[rs][*u]\[rs][*c]\
+\[rs][*z]
 chartype \[dq]binary\[dq]@*\[rs][pl]\[rs][mi]
 chartype \[dq]relation\[dq]@<>\[rs][eq]\[rs][<=]\[rs][>=]
 chartype \[dq]opening\[dq]@{([
@@ -516,12 +517,12 @@ assigns all other ordinary and special
 characters,
 including numerals 0\[en]9,
 the
-.RB \[lq] ordinary \[rq]
+.RB \%\[lq] ordinary \[rq]
 type.
 .
 (The
 .RB \[lq] digit \[rq]
-type is not used by default,
+type is not used,
 but is available for customization.)
 .\" XXX: How would you actually customize it, though?  There doesn't
 .\" seem to be a means of replacing the font associated with a type.
@@ -531,7 +532,7 @@ In keeping with common practice in mathematical typesetting,
 lowercase,
 but not uppercase,
 Greek letters are assigned the
-.RB \[lq] letter \[rq]
+.RB \%\[lq] letter \[rq]
 type to style them in italics.
 .
 .
@@ -595,7 +596,8 @@ in subsection \[lq]Fonts\[rq] below.
 .
 .TP
 .BI big\~ e
-Enlarges the expression it modifies;
+Enlarges the expression
+.IR e ;
 intended to have semantics like
 CSS \[lq]large\[rq].
 .
@@ -1048,11 +1050,10 @@ primitive.
 .BI set\~ "p n"
 assigns
 .RI parameter\~ p
-the
-.RI value\~ n ,
-where
+the integer
+.RI value\~ n ;
 .IR n \~is
-an integer.
+interpreted in units of hundredths of an em unless otherwise stated.
 .
 For example,
 .
@@ -1073,10 +1074,8 @@ should assume that the font's x-height is 0.45\~ems.
 .
 .RS
 .P
-Available parameters are as follows.
-.
-Values are in units of hundredths of an em unless otherwise stated,
-with defaults shown in parentheses.
+Available parameters are as follows;
+defaults are shown in parentheses.
 .
 We intend these descriptions to be expository rather than rigorous.
 .
@@ -1698,7 +1697,7 @@ primitive
 sets a character's type,
 which determines the face used to set it.
 .
-The \[lq]letter\[rq] type is set in italics;
+The \%\[lq]letter\[rq] type is set in italics;
 others are set in roman.
 .
 Use the
@@ -1885,17 +1884,15 @@ MathML is designed on the assumption that it cannot know the exact
 physical characteristics of the media and devices on which it will
 be rendered.
 .
-It does not support fine control of motions and sizes to the same
+It does not support control of motions and sizes to the same
 degree
 .I @g@troff
 does.
 .
-Thus:
-.
 .
 .IP \[bu] 2n
 .I @g@eqn
-parameters have no effect on the generated MathML.
+customization parameters have no effect on generated MathML.
 .
 .
 .IP \[bu]
@@ -1980,8 +1977,29 @@ instead.
 .
 .
 .P
-Delimited equations are set at the type size that is current at the
-beginning of the input line.
+Delimited equations are set at the type size current at the beginning of
+the input line,
+not that immediately preceding the opening delimiter.
+.
+.
+.P
+Unlike \*[tx],
+.I eqn \" generic
+does not inherently distinguish displayed and inline equation styles;
+see the
+.B smallover
+primitive above.
+.
+However,
+macro packages frequently define
+.B EQ
+and
+.B EN
+macros such that the equation within is displayed.
+.
+These macros may accept arguments permitting the equation to labeled or
+captioned;
+see the package's documentation.
 .
 .
 .\" ====================================================================
@@ -2015,6 +2033,70 @@ and decimal points are tagged with \[lq]<mo>\:</mo>\[rq].
 .
 This is allowed by the specification,
 but inefficient.
+.
+.
+.\" ====================================================================
+.SH Examples
+.\" ====================================================================
+.
+We first illustrate
+.I @g@eqn
+usage with a trigonometric identity.
+.
+.
+.RS
+.P
+.EX
+\&.EQ
+sin ( alpha + beta ) = sin alpha cos beta + cos alpha sin beta
+\&.EN
+.EE
+.if t \{\
+.
+.
+.P
+.EQ
+sin ( alpha + beta ) = sin alpha cos beta + cos alpha sin beta
+.EN
+.\}
+.RE
+.
+.
+.P
+It can be convenient to set up delimiters if mathematical content will
+appear frequently in running text.
+.
+.
+.RS
+.P
+.EX
+\&.EQ
+delim $$
+\&.EN
+.
+With a large table of logarithms in memory,
+we employed the property $ln ( x y ) = ln x + ln y$ to speed the
+calculation.
+.EE
+.if t \{\
+.
+.
+.P
+.EQ
+delim $$
+.EN
+.
+With a large table of logarithms in memory,
+we employed the property $ln ( x y ) = ln x + ln y$ to speed the
+calculation.
+.
+.\" We _must_ shut delimiters back off when serially processing man
+.\" pages, or subsequent documents cannot safely use those characters.
+.EQ
+delim off
+.EN
+.\}
+.RE
 .
 .
 .\" ====================================================================

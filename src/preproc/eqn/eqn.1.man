@@ -274,7 +274,7 @@ the output.
 .
 .
 .P
-A handful of tokens manage the grouping and spacing of other tokens.
+A handful of tokens manages the grouping and spacing of other tokens.
 .
 .
 .TP
@@ -365,8 +365,7 @@ or
 .
 .P
 .I Macros
-permit primitives and/or components of equations to be grouped together
-for convenience.
+permit primitives and/or components of equations to be grouped together.
 .
 Predefined macros make convenient the preparation of
 .I eqn
@@ -389,8 +388,8 @@ numeric literals,
 and operators.
 .
 .I eqn \" general
-remaps some input character sequences for convenience in equation entry
-and to ensure that glyphs from an unstyled font are used;
+remaps some input character sequences for economy in equation entry and
+to ensure that glyphs from an unstyled font are used;
 see
 .MR groff_char @MAN7EXT@ .
 .
@@ -1540,20 +1539,14 @@ are ignored.
 .BI ifdef\~ "name X anything X"
 If
 .I name
-has been defined by
-.B \%define
-(or has been automatically defined because
-.I name
-is the output driver)
-process
-.IR anything ;
-otherwise ignore
+is defined as a primitive or macro,
+interpret
 .IR anything .
 .
 .
 .TP
 .BI undef\~ name
-Remove definition of
+Remove definition of macro or primitive
 .IR name ,
 making it undefined.
 .
@@ -1697,7 +1690,9 @@ primitive
 sets a character's type,
 which determines the face used to set it.
 .
-The \%\[lq]letter\[rq] type is set in italics;
+The
+.RB \%\[lq] letter \[rq]
+type is set in italics;
 others are set in roman.
 .
 Use the
@@ -1835,10 +1830,6 @@ is equivalent to
 .IR n \[rq].
 .
 This option is deprecated.
-.
-.I @g@eqn
-normally sets equations at the type size current when the equation is
-encountered.
 .
 .
 .TP

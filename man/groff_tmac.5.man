@@ -110,7 +110,7 @@ lists these directories.
 Alternatively,
 a
 .I groff
-document wishing to use a macro file can load it with the
+document requiring a macro file can load it with the
 .B mso
 (\[lq]macro source\[rq]) request.
 .

@@ -5455,8 +5455,8 @@ standard location and suitable for use by a general audience, it is
 often termed a @dfn{macro package}.@footnote{Macro files and packages
 frequently define registers and strings as well.}  Macro packages can be
 loaded by supplying the @option{-m} option to GNU @command{troff} or a
-@code{groff} front end.  A document wishing to use a macro package can
-load it with the @code{mso} (``macro source'') request.
+@code{groff} front end.  Alternatively, a document requiring a macro
+package can load it with the @code{mso} (``macro source'') request.
 
 @c ---------------------------------------------------------------------
 

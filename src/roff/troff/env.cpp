@@ -1235,10 +1235,10 @@ void font_change()
 {
   symbol s = get_name();
   bool is_number = true;
-  if (s.is_null() || s == P_symbol) {
+  if (s.is_null())
     s = P_symbol;
+  if (s == P_symbol)
     is_number = false;
-  }
   else {
     for (const char *p = s.contents(); p != 0 && *p != 0; p++)
       if (!csdigit(*p)) {

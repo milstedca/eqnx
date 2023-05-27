@@ -1,5 +1,10 @@
 2023-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (font_change): Trivially refactor.
+	Simplify conditionals.
+
+2023-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[eqn]: Trivially refactor.  Rename `check_tabs` member functions
 	to `diagnose_tab_stop_usage`, to be more expressive and to
 	prepare for the diagnosis of leaders in the input as well.

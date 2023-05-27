@@ -73,7 +73,7 @@ or MathML
 .RB [ \-s
 .IR n ]
 .RB [ \-T
-.IR name ]
+.IR dev ]
 .RI [ file\~ .\|.\|.]
 .YS
 .
@@ -205,11 +205,8 @@ option.
 .IP \[bu]
 GNU
 .I eqn \" GNU
-does not provide the functionality of
-.IR neqn : \" AT&T
-it does not support low-resolution,
-typewriter-like devices
-(although it may work adequately for very simple input).
+does not support terminal devices well,
+though it may suffice for simple inputs.
 .
 .
 .IP \[bu]
@@ -301,9 +298,7 @@ e sup { a b } .
 .
 .
 .TP
-.B \[ha]
-.TQ
-.B \[ti]
+.B "\[ha] \[ti]
 are the
 .I "half space"
 and
@@ -336,6 +331,8 @@ an argument to either of the foregoing,
 or a component of an equation.
 .
 .
+.br
+.ne 2v
 .P
 .I Primitives
 are fundamental keywords of the
@@ -398,13 +395,10 @@ see
 .RS
 .TS
 tab(@);
-Lf(CR) Lf(CR).
-+@\[rs][pl]
--@\[rs][mi]
-\&=@\[rs][eq]
-\&\[aq]@\[rs][fm]
-<=@\[rs][<=]
->=@\[rs][>=]
+Lf(CR) Lf(CR) Lw(1i) Lf(CR) Lf(CR).
++@\[rs][pl]@\&@\[aq]@\[rs][fm]
+-@\[rs][mi]@\&@<=@\[rs][<=]
+\&=@\[rs][eq]@\&@>=@\[rs][>=]
 .TE
 .RE
 .
@@ -534,6 +528,15 @@ Greek letters are assigned the
 .RB \%\[lq] letter \[rq]
 type to style them in italics.
 .
+The macros for producing ellipses,
+.RB \[lq] .\|.\|. \[rq],
+.BR cdots ,
+and
+.BR ldots ,
+use the
+.RB \%\[lq] inner \[rq]
+type.
+.
 .
 .\" ====================================================================
 .SS Primitives
@@ -599,16 +602,18 @@ can be any character not appearing in the parameter thus bracketed.
 .
 .TP
 .IB e1 \~accent\~ e2
-This sets
+Set
 .I e2
 as an accent over
 .IR e1 .
+.
 .I e2
-is assumed to be at the correct height for a lowercase letter;
-.I e2
-is moved down according to whether
-.I e1
-is taller or shorter than a lowercase letter.
+is assumed to be at the appropriate height for a lowercase letter
+without an ascender;
+.I @g@ eqn
+vertically shifts it depending on
+.IR e1 's
+height.
 .
 For example,
 .B hat
@@ -637,15 +642,14 @@ primitive.
 .
 .TP
 .BI big\~ e
-Enlarges the expression
+Enlarge the expression
 .IR e ;
-intended to have semantics like
-CSS \[lq]large\[rq].
+semantics like those of CSS \[lq]large\[rq] are intended.
 .
 In
 .I @g@troff
 output,
-the type size is increased by\~5.
+the type size is increased by\~5 scaled points.
 .
 MathML output emits the following.
 .
@@ -682,45 +686,30 @@ interpret
 .
 .TP
 .BI nosplit\~ text
-This has the same effect as
-.
-.
-.RS
-.IP
-.EX
-.RI \[dq] text \[dq]
-.EE
-.RE
-.
-.
-.IP
-but because
+As
+.RI \[dq] text \[dq],
+but since
 .I text
 is not quoted it is subject to macro expansion;
-.I text
-is not split up and the spacing between individual characters
-.I not
-adjusted per subsection \[lq]Spacing and typeface\[rq] above.
+it is not split up and the spacing between characters not adjusted per
+subsection \[lq]Spacing and typeface\[rq] above.
 .
 .
 .TP
 .IB e\~ opprime
-This is a variant of
-.B prime
-that acts as an operator
+As
+.BR prime ,
+but set the prime symbol as an operator
 .RI on\~ e .
 .
-It produces a different result from
-.B prime
-in a case such as
-.RB \[lq] "A opprime sub 1" \[rq]:
-with
-.B \%opprime
+In the input
+.RB \[lq] "A opprime sub 1" \[rq],
 the\~\[lq]1\[rq] is tucked under the prime as a subscript to
 the\~\[lq]A\[rq]
 (as is conventional in mathematical typesetting),
-whereas with
+whereas when
 .B prime
+is used,
 the\~\[lq]1\[rq] is a subscript to the prime character.
 .
 The precedence of
@@ -728,8 +717,8 @@ The precedence of
 is the same as that of
 .B bar
 and
-.BR \%under ,
-which is higher than that of everything except
+.RB \%\[lq] under \[rq],
+and higher than that of other primitives except
 .B \%accent
 and
 .BR uaccent .
@@ -752,16 +741,15 @@ is not recognized as a macro if called with arguments.
 .
 .TP
 .IB e1 \~smallover\~ e2
-This is similar to
-.BR over ;
-.B smallover
-reduces the size of
+As
+.BR over ,
+but reduces the type size of
 .I e1
 and
-.IR e2 ;
-it also puts less vertical space between
+.IR e2 ,
+and puts less vertical space between
 .I e1
-or
+and
 .I e2
 and the fraction bar.
 .
@@ -933,37 +921,28 @@ box(foo) \[ti] "bar"
 .
 .TP
 .BI "split \[dq]" text \[dq]
-This has the same effect as simply
-.
-.
-.RS
-.IP
-.EX
+As
+.IR text ,
+but since
 .I text
-.EE
-.RE
-.
-.
-.IP
-but
-.I text
-is not subject to macro expansion because it is quoted;
-.I text
-is split up and the spacing between individual characters adjusted
-per subsection \[lq]Spacing and typeface\[rq] above.
+is quoted,
+it is not subject to macro expansion;
+it is split up and the spacing between characters adjusted per
+subsection \[lq]Spacing and typeface\[rq] above.
 .
 .
 .TP
 .IB e1 \~uaccent\~ e2
-This sets
+Set
 .I e2
 as an accent under
 .IR e1 .
+.
 .I e2
-is assumed to be at the correct height for a character without a
+is assumed to be at the appropriate height for a letter without a
 descender;
-.I e2
-is moved down if
+.I @g@ eqn
+vertically shifts it depending on whether
 .I e1
 has a descender.
 .
@@ -982,13 +961,12 @@ making it undefined.
 .
 .TP
 .BI vcenter\~ e
-This vertically centers
+Vertically center
 .I e
-about the math axis.
-.
-The math axis is the vertical position about which characters such as
-\[lq]\[pl]\[rq] and \[lq]\[mi]\[rq] are centered;
-it is also the vertical position used for fraction bars.
+about the
+.IR "math axis" ,
+a horizontal line upon which fraction bars and characters such as
+\[lq]\[pl]\[rq] and \[lq]\[mi]\[rq] are aligned.
 .
 For example,
 .B sum
@@ -1012,6 +990,16 @@ is silently ignored when generating MathML.
 .SS "Extended primitives"
 .\" ====================================================================
 .
+GNU
+.I eqn \" GNU
+extends the syntax of some AT&T
+.I eqn \" AT&T
+primitives,
+introducing one deliberate incompatibility.
+.
+.
+.TP
+.B "delim on"
 .I @g@eqn
 recognizes an
 .RB \[lq] on \[rq]
@@ -1023,6 +1011,16 @@ restoring any delimiters previously disabled with
 .
 If delimiters haven't been specified,
 neither command has effect.
+.
+Few
+.I eqn \" generic
+documents are expected to use \[lq]o\[rq] and \[lq]n\[rq] as left and
+right delimiters,
+respectively.
+.
+If yours does,
+consider swapping them,
+or select others.
 .
 .
 .TP
@@ -1121,7 +1119,7 @@ defaults are shown in parentheses.
 We intend these descriptions to be expository rather than rigorous.
 .
 .
-.TP 18n
+.TP 17n
 .B minimum_size
 sets a floor for the type size
 (in scaled points)
@@ -1131,25 +1129,23 @@ at which equations are set
 .
 .TP
 .B fat_offset
-.RS
 The
 .B fat
 primitive emboldens an equation by overprinting two copies of the
 equation horizontally offset by this amount
 .RB ( 4 ).
 .
+In MathML mode,
+components to which
 .B \%fat_offset
-is not used in MathML mode;
-.B fat
-components use
+applies instead use the following.
 .
+.RS
 .RS
 .EX
 <mstyle mathvariant=\[aq]double\-struck\[aq]>
 .EE
 .RE
-.
-instead.
 .RE
 .
 .
@@ -1448,23 +1444,22 @@ escape sequence and the
 .B \[rs][ru]
 special character.
 .
-The default is determined by the
+The
 .I eqnrc
-file
-.RB ( 0 \~on
-most devices;
+file sets the default:
 .BR 1 \~on
 .BR ps ,
 .BR html ,
-and the X11 devices.)
+and the X11 devices,
+.RB otherwise\~ 0 .
 .
 .
 .TP
 .B body_height
-The amount by which the height of the equation exceeds this is added as
-extra space before the line containing the equation
-using the
-.I troff \" generic
+is the presumed height of an equation above the text baseline;
+.I @g@eqn
+adds any excess as extra pre-vertical line spacing with
+.IR troff 's\" generic
 .B \[rs]x
 escape sequence
 .RB ( 85 ).
@@ -1472,10 +1467,10 @@ escape sequence
 .
 .TP
 .B body_depth
-The amount by which the depth of the equation exceeds this is added as
-extra space after the line containing the equation
-using the
-.I troff \" generic
+is the presumed depth of an equation below the text baseline;
+.I @g@eqn
+adds any excess as extra post-vertical line spacing with
+.IR troff 's\" generic
 .B \[rs]x
 escape sequence
 .RB ( 35 ).
@@ -1499,17 +1494,17 @@ and
 .B \%ndefine
 is ignored.
 .
-The default is determined by the
+The
 .I eqnrc
-file
-.RB ( 0 \~on
-most devices;
+file sets the default:
 .BR 1 \~on
 .BR ascii ,
 .BR latin1 ,
 .BR utf8 ,
 and
-.BR cp1047 ).
+.B cp1047
+devices,
+.RB otherwise\~ 0 .
 .RE
 .
 .
@@ -1716,6 +1711,8 @@ as the roman font.
 This is a GNU extension.
 .
 .
+.br
+.ne 4v
 .\" ====================================================================
 .SH Options
 .\" ====================================================================
@@ -1827,13 +1824,13 @@ This option is deprecated.
 .
 .
 .TP
-.BI \-T\~ name
+.BI \-T\~ dev
 Prepare output for the device
-.IR name .
+.IR dev .
 .
 In most cases,
 the effect of this is to define a macro
-.I name
+.I dev
 with a value
 .RB of\~ 1 ;
 .I eqnrc
@@ -1982,8 +1979,8 @@ and
 .B EN
 macros such that the equation within is displayed.
 .
-These macros may accept arguments permitting the equation to labeled or
-captioned;
+These macros may accept arguments permitting the equation to be labeled
+or captioned;
 see the package's documentation.
 .
 .
@@ -2040,9 +2037,11 @@ sin ( alpha + beta ) = sin alpha cos beta + cos alpha sin beta
 .
 .
 .P
+.RS
 .EQ
 sin ( alpha + beta ) = sin alpha cos beta + cos alpha sin beta
 .EN
+.RE
 .\}
 .RE
 .
@@ -2059,27 +2058,27 @@ appear frequently in running text.
 delim $$
 \&.EN
 .
-With a large table of logarithms in memory,
-we employed the property $ln ( x y ) = ln x + ln y$ to speed the
-calculation.
+Having cached a table of logarithms,
+the property $ln ( x y ) = ln x + ln y$ sped calculations.
 .EE
 .if t \{\
 .
 .
 .P
+.RS
 .EQ
 delim $$
 .EN
 .
-With a large table of logarithms in memory,
-we employed the property $ln ( x y ) = ln x + ln y$ to speed the
-calculation.
+Having cached a table of logarithms,
+the property $ln ( x y ) = ln x + ln y$ sped calculations.
 .
 .\" We _must_ shut delimiters back off when serially processing man
 .\" pages, or subsequent documents cannot safely use those characters.
 .EQ
 delim off
 .EN
+.RE
 .\}
 .RE
 .

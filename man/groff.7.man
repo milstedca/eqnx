@@ -1137,8 +1137,7 @@ and its expression evaluates false.
 This unfortunate limitation maintains compatibility with AT&T
 .IR troff .\" AT&T
 .
-You can test a numeric expression for falsity by comparing it to a false
-value.
+Test a numeric expression for falsity by comparing it to a false value.
 .
 .
 .P

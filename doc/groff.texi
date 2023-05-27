@@ -6490,10 +6490,10 @@ Expressions} for the @code{\B} escape sequence.
 How GNU @code{troff} handles the interpretation of an undefined
 identifier depends on the context.  There is no way to invoke an
 undefined request; such syntax is interpreted as a macro call instead.
-If the identifier is being interpreted as a string, macro, or diversion,
-GNU @code{troff} emits a warning in category @samp{mac}, defines it as
-empty, and interpolates nothing.  If the identifier is being interpreted
-as a register, GNU @code{troff} emits a warning in category @samp{reg},
+If the identifier is interpreted as a string, macro, or diversion, GNU
+@code{troff} emits a warning in category @samp{mac}, defines it as
+empty, and interpolates nothing.  If the identifier is interpreted as a
+register, GNU @code{troff} emits a warning in category @samp{reg},
 initializes it to zero, and interpolates that value.  @xref{Warnings},
 @ref{Interpolating Registers}, and @ref{Strings}.  Attempting to use an
 undefined typeface, special character, color, character class,
@@ -9382,7 +9382,7 @@ set with the @code{shc} request.
 @item
 @cindex @code{\&}, and translations
 The pair @samp{@var{c}\&} (an arbitrary character@tie{}@var{c} followed
-by the dummy character) maps this character to nothing.
+by the dummy character) maps this character to ``nothing''.
 
 @Example
 .tr a\&
@@ -11600,7 +11600,7 @@ V\&A
 @end iftex
 
 @item
-Translate a character to nothing.
+Translate a character to ``nothing''.
 
 @Example
 .tr JIjiK\&k\&UVuv

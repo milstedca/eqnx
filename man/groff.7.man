@@ -1373,7 +1373,7 @@ context.
 There is no way to invoke an undefined request;
 such syntax is interpreted as a macro call instead.
 .
-If the identifier is being interpreted as a string,
+If the identifier is interpreted as a string,
 macro,
 or diversion,
 .I @g@troff
@@ -1382,7 +1382,7 @@ emits a warning in category
 defines it as empty,
 and interpolates nothing.
 .
-If the identifier is being interpreted as a register,
+If the identifier is interpreted as a register,
 .I @g@troff
 emits a warning in category
 .RB \[lq] reg \[rq],
@@ -1898,7 +1898,7 @@ input line,
 preventing kerning between two glyphs,
 and permitting the
 .B tr
-request to remap a character to nothing.
+request to remap a character to \[lq]nothing\[rq].
 .
 .B \[rs])
 works as

@@ -348,9 +348,9 @@ as when setting a \[lq]global\[rq] font selection or type size
 and
 .BR gsize ),
 or declaring or deleting macros
-.RB ( define
+.RB \%(\[lq] define \[rq]
 and
-.BR undefine );
+.BR undef );
 these are termed
 .I commands.
 .
@@ -599,30 +599,24 @@ can be any character not appearing in the parameter thus bracketed.
 .
 .TP
 .BI sdefine\~ "name X anything X"
-This is like the
-.B \%define
-primitive,
+As
+.RB \%\[lq] define \[rq],
 but
 .I name
-is not recognized if called with arguments.
+is not recognized as a macro if called with arguments.
 .
 .
-.br
-.ne 4v \" XXX: should need only 3v!
 .TP
 .BI include\~ file
 .TQ
 .BI copy\~ file
 Interpolate the contents of
-.IR file .
-.
-Lines in
-.I file
+.IR file ,
+omitting lines
 beginning with
 .B .EQ
 or
-.B .EN
-are ignored.
+.BR .EN .
 .
 .
 .TP

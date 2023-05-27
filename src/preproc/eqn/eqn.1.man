@@ -491,14 +491,14 @@ tab(@);
 Lf(CR)1 Lf(CR).
 chartype \[dq]letter\[dq]@abcdefghiklmnopqrstuvwxyz
 chartype \[dq]letter\[dq]@ABCDEFGHIKLMNOPQRSTUVWXYZ
-chartype \[dq]letter\[dq]@\[rs][*a]\[rs][*b]\[rs][*x]\[rs][*d]\[rs][*e]\
-\[rs][*y]
-chartype \[dq]letter\[dq]@\[rs][*g]\[rs][*i]\[rs][*k]\[rs][*l]\[rs][*m]\
-\[rs][*n]
-chartype \[dq]letter\[dq]@\[rs][*w]\[rs][*o]\[rs][*f]\[rs][*p]\[rs][*q]\
-\[rs][*r]
-chartype \[dq]letter\[dq]@\[rs][*s]\[rs][*t]\[rs][*h]\[rs][*u]\[rs][*c]\
+chartype \[dq]letter\[dq]@\[rs][*a]\[rs][*b]\[rs][*g]\[rs][*d]\[rs][*e]\
 \[rs][*z]
+chartype \[dq]letter\[dq]@\[rs][*y]\[rs][*h]\[rs][*i]\[rs][*k]\[rs][*l]\
+\[rs][*m]
+chartype \[dq]letter\[dq]@\[rs][*n]\[rs][*c]\[rs][*o]\[rs][*p]\[rs][*r]\
+\[rs][*s]
+chartype \[dq]letter\[dq]@\[rs][*t]\[rs][*u]\[rs][*f]\[rs][*x]\[rs][*q]\
+\[rs][*w]
 chartype \[dq]binary\[dq]@*\[rs][pl]\[rs][mi]
 chartype \[dq]relation\[dq]@<>\[rs][eq]\[rs][<=]\[rs][>=]
 chartype \[dq]opening\[dq]@{([
@@ -598,119 +598,6 @@ can be any character not appearing in the parameter thus bracketed.
 .
 .
 .TP
-.BI sdefine\~ "name X anything X"
-As
-.RB \%\[lq] define \[rq],
-but
-.I name
-is not recognized as a macro if called with arguments.
-.
-.
-.TP
-.BI include\~ file
-.TQ
-.BI copy\~ file
-Interpolate the contents of
-.IR file ,
-omitting lines
-beginning with
-.B .EQ
-or
-.BR .EN .
-.
-.
-.TP
-.BI ifdef\~ "name X anything X"
-If
-.I name
-is defined as a primitive or macro,
-interpret
-.IR anything .
-.
-.
-.TP
-.BI undef\~ name
-Remove definition of macro or primitive
-.IR name ,
-making it undefined.
-.
-.
-.TP
-.BI big\~ e
-Enlarges the expression
-.IR e ;
-intended to have semantics like
-CSS \[lq]large\[rq].
-.
-In
-.I @g@troff
-output,
-the type size is increased by\~5.
-.
-MathML output emits the following.
-.
-.
-.RS
-.IP
-.EX
-<mstyle \%mathsize=\[aq]big\[aq]>
-.EE
-.RE
-.
-.
-.TP
-.IB e1 \~smallover\~ e2
-This is similar to
-.BR over ;
-.B smallover
-reduces the size of
-.I e1
-and
-.IR e2 ;
-it also puts less vertical space between
-.I e1
-or
-.I e2
-and the fraction bar.
-.
-The
-.B over
-primitive corresponds to the \*[tx]
-.B \[rs]over
-primitive in displayed equation styles;
-.B smallover
-corresponds to
-.B \[rs]over
-in non-display (\[lq]inline\[rq]) styles.
-.
-.
-.TP
-.BI vcenter\~ e
-This vertically centers
-.I e
-about the math axis.
-.
-The math axis is the vertical position about which characters such as
-\[lq]\[pl]\[rq] and \[lq]\[mi]\[rq] are centered;
-it is also the vertical position used for fraction bars.
-.
-For example,
-.B sum
-is defined as follows.
-.
-.RS
-.IP
-.EX
-{ type "operator" vcenter size +5 \[rs](*S }
-.EE
-.RE
-.
-.IP
-.B vcenter
-is silently ignored when generating MathML.
-.
-.
-.TP
 .IB e1 \~accent\~ e2
 This sets
 .I e2
@@ -749,45 +636,48 @@ primitive.
 .
 .
 .TP
-.IB e1 \~uaccent\~ e2
-This sets
-.I e2
-as an accent under
-.IR e1 .
-.I e2
-is assumed to be at the correct height for a character without a
-descender;
-.I e2
-is moved down if
-.I e1
-has a descender.
+.BI big\~ e
+Enlarges the expression
+.IR e ;
+intended to have semantics like
+CSS \[lq]large\[rq].
 .
-.B utilde
-is predefined using
-.B uaccent
-as a tilde accent below the baseline.
+In
+.I @g@troff
+output,
+the type size is increased by\~5.
 .
-.
-.TP
-.BI "split \[dq]" text \[dq]
-This has the same effect as simply
+MathML output emits the following.
 .
 .
 .RS
 .IP
 .EX
-.I text
+<mstyle \%mathsize=\[aq]big\[aq]>
 .EE
 .RE
 .
 .
-.IP
-but
-.I text
-is not subject to macro expansion because it is quoted;
-.I text
-is split up and the spacing between individual characters adjusted
-per subsection \[lq]Spacing and typeface\[rq] above.
+.TP
+.BI copy\~ file
+.TQ
+.BI include\~ file
+Interpolate the contents of
+.IR file ,
+omitting lines
+beginning with
+.B .EQ
+or
+.BR .EN .
+.
+.
+.TP
+.BI ifdef\~ "name X anything X"
+If
+.I name
+is defined as a primitive or macro,
+interpret
+.IR anything .
 .
 .
 .TP
@@ -849,6 +739,68 @@ a neutral apostrophe
 .RB ( \[aq] )
 that is not the first character on the input line is treated like
 .BR \%opprime .
+.
+.
+.TP
+.BI sdefine\~ "name X anything X"
+As
+.RB \%\[lq] define \[rq],
+but
+.I name
+is not recognized as a macro if called with arguments.
+.
+.
+.TP
+.IB e1 \~smallover\~ e2
+This is similar to
+.BR over ;
+.B smallover
+reduces the size of
+.I e1
+and
+.IR e2 ;
+it also puts less vertical space between
+.I e1
+or
+.I e2
+and the fraction bar.
+.
+The
+.B over
+primitive corresponds to the \*[tx]
+.B \[rs]over
+primitive in displayed equation styles;
+.B smallover
+corresponds to
+.B \[rs]over
+in non-display (\[lq]inline\[rq]) styles.
+.
+.
+.br
+.ne 5v
+.TP
+.BI space\~ n
+Set extra vertical spacing around the equation,
+replacing the default values,
+where
+.IR n \~is
+an integer in hundredths of an em.
+.
+If positive,
+.IR n \~increases
+vertical spacing before the equation;
+if negative,
+it does so after the equation.
+.
+This primitive provides an interface to
+.IR groff 's
+.B \[rs]x
+escape sequence,
+but with the opposite sign convention.
+.
+It has no effect if the equation is part of a
+.MR @g@pic @MAN1EXT@
+picture.
 .
 .
 .TP
@@ -979,31 +931,79 @@ box(foo) \[ti] "bar"
 .RE
 .
 .
-.br
-.ne 5v
 .TP
-.BI space\~ n
-Set extra vertical spacing around the equation,
-replacing the default values,
-where
-.IR n \~is
-an integer in hundredths of an em.
+.BI "split \[dq]" text \[dq]
+This has the same effect as simply
 .
-If positive,
-.IR n \~increases
-vertical spacing before the equation;
-if negative,
-it does so after the equation.
 .
-This primitive provides an interface to
-.IR groff 's
-.B \[rs]x
-escape sequence,
-but with the opposite sign convention.
+.RS
+.IP
+.EX
+.I text
+.EE
+.RE
 .
-It has no effect if the equation is part of a
-.MR @g@pic @MAN1EXT@
-picture.
+.
+.IP
+but
+.I text
+is not subject to macro expansion because it is quoted;
+.I text
+is split up and the spacing between individual characters adjusted
+per subsection \[lq]Spacing and typeface\[rq] above.
+.
+.
+.TP
+.IB e1 \~uaccent\~ e2
+This sets
+.I e2
+as an accent under
+.IR e1 .
+.I e2
+is assumed to be at the correct height for a character without a
+descender;
+.I e2
+is moved down if
+.I e1
+has a descender.
+.
+.B utilde
+is predefined using
+.B uaccent
+as a tilde accent below the baseline.
+.
+.
+.TP
+.BI undef\~ name
+Remove definition of macro or primitive
+.IR name ,
+making it undefined.
+.
+.
+.TP
+.BI vcenter\~ e
+This vertically centers
+.I e
+about the math axis.
+.
+The math axis is the vertical position about which characters such as
+\[lq]\[pl]\[rq] and \[lq]\[mi]\[rq] are centered;
+it is also the vertical position used for fraction bars.
+.
+For example,
+.B sum
+is defined as follows.
+.
+.RS
+.IP
+.EX
+{ type "operator" vcenter size +5 \[rs](*S }
+.EE
+.RE
+.
+.IP
+.B vcenter
+is silently ignored when generating MathML.
 .
 .
 .br

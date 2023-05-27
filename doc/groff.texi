@@ -6496,8 +6496,8 @@ empty, and interpolates nothing.  If the identifier is being interpreted
 as a register, GNU @code{troff} emits a warning in category @samp{reg},
 initializes it to zero, and interpolates that value.  @xref{Warnings},
 @ref{Interpolating Registers}, and @ref{Strings}.  Attempting to use an
-undefined typeface, glyph, color, character class, environment, or
-stream generally provokes an error diagnostic.
+undefined typeface, special character, color, character class,
+environment, or stream generally provokes an error diagnostic.
 
 @need 1000
 @cindex name space, common, of macros, diversions, and strings

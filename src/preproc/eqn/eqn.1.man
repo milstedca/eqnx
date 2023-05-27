@@ -592,6 +592,54 @@ and
 .B gbfont
 in subsection \[lq]Fonts\[rq] below.
 .
+In the following synopses,
+.I X
+can be any character not appearing in the parameter thus bracketed.
+.
+.
+.TP
+.BI sdefine\~ "name X anything X"
+This is like the
+.B \%define
+primitive,
+but
+.I name
+is not recognized if called with arguments.
+.
+.
+.br
+.ne 4v \" XXX: should need only 3v!
+.TP
+.BI include\~ file
+.TQ
+.BI copy\~ file
+Interpolate the contents of
+.IR file .
+.
+Lines in
+.I file
+beginning with
+.B .EQ
+or
+.B .EN
+are ignored.
+.
+.
+.TP
+.BI ifdef\~ "name X anything X"
+If
+.I name
+is defined as a primitive or macro,
+interpret
+.IR anything .
+.
+.
+.TP
+.BI undef\~ name
+Remove definition of macro or primitive
+.IR name ,
+making it undefined.
+.
 .
 .TP
 .BI big\~ e
@@ -1501,54 +1549,6 @@ parenthesis are treated as comma-separated arguments.
 .
 Commas inside nested parentheses
 do not terminate an argument.
-.
-In the following synopses,
-.I X
-can be any character not appearing in the parameter thus bracketed.
-.
-.
-.TP
-.BI sdefine\~ "name X anything X"
-This is like the
-.B \%define
-primitive,
-but
-.I name
-is not recognized if called with arguments.
-.
-.
-.br
-.ne 4v \" XXX: should need only 3v!
-.TP
-.BI include\~ file
-.TQ
-.BI copy\~ file
-Interpolate the contents of
-.IR file .
-.
-Lines in
-.I file
-beginning with
-.B .EQ
-or
-.B .EN
-are ignored.
-.
-.
-.TP
-.BI ifdef\~ "name X anything X"
-If
-.I name
-is defined as a primitive or macro,
-interpret
-.IR anything .
-.
-.
-.TP
-.BI undef\~ name
-Remove definition of macro or primitive
-.IR name ,
-making it undefined.
 .
 .
 .\" ====================================================================

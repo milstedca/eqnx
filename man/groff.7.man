@@ -1217,7 +1217,7 @@ Most escape sequences do not;
 .B \[or]
 tells them to do so.
 .
-For vertical movements,
+For vertical motions,
 the
 .B \[or]
 operator specifies a distance from the first text baseline on the page

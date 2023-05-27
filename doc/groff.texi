@@ -1223,8 +1223,8 @@ document.
 @item ascii
 @cindex encoding, output, @acronym{ASCII}
 @cindex encoding, output, ISO@tie{}646
-@cindex @acronym{ASCII}, output encoding
-@cindex ISO@tie{}646, output encoding
+@cindex @acronym{ASCII} output encoding
+@cindex ISO@tie{}646 output encoding
 @cindex output encoding, @acronym{ASCII}
 @cindex output encoding, ISO@tie{}646
 For typewriter-like devices using the (7-bit) @acronym{ASCII}
@@ -1232,27 +1232,28 @@ For typewriter-like devices using the (7-bit) @acronym{ASCII}
 
 @item latin1
 @cindex encoding, output, @w{Latin-1} (ISO @w{8859-1})
-@cindex @w{Latin-1} (ISO @w{8859-1}), output encoding
-@cindex ISO @w{8859-1} (@w{Latin-1}), output encoding
+@cindex @w{Latin-1} (ISO @w{8859-1}) output encoding
+@cindex ISO @w{8859-1} (@w{Latin-1}) output encoding
 @cindex output encoding, @w{Latin-1} (ISO @w{8859-1})
 For typewriter-like devices that support the @w{Latin-1}
 (ISO@tie{}@w{8859-1}) character set.
 
 @item utf8
 @cindex encoding, output, @w{UTF-8}
-@cindex @w{UTF-8}, output encoding
+@cindex @w{UTF-8} output encoding
 @cindex output encoding, @w{UTF-8}
 For typewriter-like devices that use the Unicode (ISO@tie{}10646)
 character set with @w{UTF-8} encoding.
 
 @item cp1047
 @cindex encoding, output, @acronym{EBCDIC}
-@cindex @acronym{EBCDIC}, output encoding
+@cindex @acronym{EBCDIC} output encoding
 @cindex output encoding, @acronym{EBCDIC}
 @cindex encoding, output, code page 1047
-@cindex code page 1047, output encoding
+@cindex code page 1047 output encoding
 @cindex output encoding, code page 1047
 @cindex IBM code page 1047 output encoding
+@cindex CCSID 1047 output encoding (EBCDIC)
 For typewriter-like devices that use the @acronym{EBCDIC} encoding IBM
 code page 1047.
 
@@ -6762,8 +6763,8 @@ Consider calls to a hypothetical section heading macro @samp{uh}.
 .uh The\ Mouse\ Problem
 @endExample
 
-@cindex @code{\~}, difference to @code{\@key{SP}}
-@cindex @code{\@key{SP}}, difference to @code{\~}
+@cindex @code{\~}, difference from @code{\@key{SP}}
+@cindex @code{\@key{SP}}, difference from @code{\~}
 @noindent
 The first line calls @code{uh} with three arguments: @samp{The},
 @samp{Mouse}, and @samp{Problem}.  The remainder call the @code{uh}
@@ -7011,7 +7012,7 @@ macro is called, its contents are interpreted literally.
 @cindex delimiting escape sequence arguments
 @cindex escape sequence argument delimiters
 @cindex delimiters, for escape sequence arguments
-@cindex arguments, for escape sequences, delimiting
+@cindex arguments, to escape sequences, delimiting
 
 @cindex @code{'}, as delimiter
 @cindex @code{"}, as delimiter
@@ -7438,7 +7439,7 @@ otherwise alter its properties.
 @endDefreq
 
 @Defreq {aln, new old}
-@cindex alias, register, creation (@code{aln})
+@cindex alias, register, creating (@code{aln})
 @cindex creating alias for register (@code{aln})
 @cindex register, creating alias for (@code{aln})
 Create an alias @var{new} for an existing register @var{old}, causing
@@ -7447,9 +7448,9 @@ undefined, a warning in category @samp{reg} is produced and the request
 is ignored.  @xref{Warnings}, for information about the enablement and
 suppression of warnings.
 
-@cindex alias, register, removing (@code{aln})
-@cindex removing alias for register (@code{aln})
-@cindex register, removing alias for (@code{aln})
+@cindex alias, register, removing (@code{rr})
+@cindex removing alias for register (@code{rr})
+@cindex register, removing alias for (@code{rr})
 To remove a register alias, call @code{rr} on its name.  A register's
 contents do not become inaccessible until it has no more names.
 @endDefreq
@@ -7515,7 +7516,7 @@ value.  Together, these features are called
 considered an ``auto-decrement''.}
 
 @Defreq {nr, ident value incr}
-@cindex @code{\R}, difference to @code{nr}
+@cindex @code{\R}, difference from @code{nr}
 Set register @var{ident} to @var{value} and its auto-incrementation
 amount to to @var{incr}.  The @code{\R} escape sequence doesn't support
 an @var{incr} argument.
@@ -7565,8 +7566,9 @@ disable auto-incrementation of the register.
 
 @node Assigning Register Formats, Built-in Registers, Auto-increment, Registers
 @subsection Assigning Register Formats
-@cindex assigning formats (@code{af})
-@cindex formats, assigning (@code{af})
+@cindex assign number format to register (@code{af})
+@cindex number formats, assigning to register (@code{af})
+@cindex register, assigning number format to (@code{af})
 
 A writable register's value can be interpolated in several number
 formats.  By default, conventional Arabic numerals are used.
@@ -10643,9 +10645,11 @@ increasing font positions.  Consequently, it finds @code{BAZ} before
 @xref{Device and Font Description Files}, and @ref{Special Fonts}, for
 more details.
 
-@cindex list of available glyphs (@cite{groff_char@r{(7)}} man page)
-@cindex available glyphs, list (@cite{groff_char@r{(7)}} man page)
-@cindex glyphs, available, list (@cite{groff_char@r{(7)}} man page)
+@cindex list of special characters (@cite{groff_char@r{(7)}} man page)
+@cindex special characters, list of (@cite{groff_char@r{(7)}} man page)
+@cindex characters, special, list of (@cite{groff_char@r{(7)}} man page)
+@cindex available glyphs, list of (@cite{groff_char@r{(7)}} man page)
+@cindex glyphs, available, list of (@cite{groff_char@r{(7)}} man page)
 The list of available symbols is device dependent; see the
 @cite{groff_char@r{(7)}} man page for a complete list of all glyphs.
 For example, say
@@ -12187,7 +12191,7 @@ warnings.
 @cindex interpolation of strings (@code{\*})
 @cindex expansion of strings (@code{\*})
 @cindex string arguments
-@cindex arguments, of strings
+@cindex arguments, to strings
 Define a string called @var{name} with contents @var{contents}.  If
 @var{name} already exists as an alias, the target of the alias is
 redefined; see @code{als} and @code{rm} below.  If @code{ds} is called
@@ -12812,11 +12816,11 @@ To conveniently nest conditionals, keep reading.
 @DefescListEnd {\@\}, , , }
 @esindex \@{
 @esindex \@}
-@cindex begin of conditional block (@code{\@{})
+@cindex beginning of conditional block (@code{\@{})
 @cindex end of conditional block (@code{\@}})
-@cindex conditional block, begin (@code{\@{})
+@cindex conditional block, beginning (@code{\@{})
 @cindex conditional block, end (@code{\@}})
-@cindex block, conditional, begin (@code{\@{})
+@cindex block, conditional, beginning (@code{\@{})
 @cindex block, conditional, end (@code{\@}})
 @cindex brace escape sequences (@code{\@{}, @code{\@}})
 @cindex escape sequences, brace (@code{\@{}, @code{\@}})
@@ -15016,12 +15020,12 @@ create and alter diversions.
 
 @DefreqList {di, [@Var{name}]}
 @DefreqListEndx {da, [@Var{name}]}
-@cindex beginning diversion (@code{di})
-@cindex diversion, beginning (@code{di})
-@cindex ending diversion (@code{di})
-@cindex diversion, ending (@code{di})
-@cindex appending to a diversion (@code{da})
-@cindex diversion, appending (@code{da})
+@cindex beginning diversion (@code{di}, @code{box})
+@cindex diversion, beginning (@code{di}, @code{box})
+@cindex ending diversion (@code{di}, @code{box})
+@cindex diversion, ending (@code{di}, @code{box})
+@cindex appending to a diversion (@code{da}, @code{boxa})
+@cindex diversion, appending to (@code{da}, @code{boxa})
 Start collecting formatted output in a diversion called @var{name}.  The
 @code{da} request appends to a diversion called @var{name}, creating it
 if necessary.  If @var{name} already exists as an alias, the target of
@@ -15052,7 +15056,7 @@ After the diversion.
 @endExample
 @endDefreq
 
-@cindex box (diversion type)
+@cindex box (diversion operation)
 Because it is often desirable to exclude the partially collected line
 from a diversion, @code{groff} supports an alternative form of diversion
 known as a @dfn{box}.
@@ -15122,8 +15126,8 @@ This is a test.
     @result{} .h==40, nl==120
 @endExample
 
-@cindex @code{.h} register, difference to @code{nl}
-@cindex @code{nl} register, difference to @code{.h}
+@cindex @code{.h} register, difference from @code{nl}
+@cindex @code{nl} register, difference from @code{.h}
 @noindent
 As implied by the example, vertical motion does not produce text
 baselines and thus does not increase the value interpolated by

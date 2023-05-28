@@ -6374,8 +6374,9 @@ character class, environment, or stream.  Valid identifiers consist of
 one or more ordinary characters.
 @cindex ordinary character
 @cindex character, ordinary
-An @slanted{ordinary character} is an input character that is not a
-leader, tab, newline, or invalid as GNU @code{troff} input.
+An @slanted{ordinary character} is an input character that is not the
+escape character, a leader, tab, newline, or invalid as GNU @code{troff}
+input.
 
 @c XXX: We might move this discussion earlier since it is applicable to
 @c troff input in general, and include a reference to the `trin`

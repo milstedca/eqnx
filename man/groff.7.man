@@ -1273,7 +1273,8 @@ Valid identifiers consist of one or more ordinary characters.
 .
 An
 .I ordinary character
-is an input character that is not a leader,
+is an input character that is not the escape character,
+a leader,
 tab,
 newline,
 or invalid as GNU

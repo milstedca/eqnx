@@ -5762,6 +5762,8 @@ top.  Typographers term this unit a @slanted{vee}.
 
 @cindex page break
 @cindex break, page
+@cindex page ejection
+@cindex ejection, page
 Vertical spacing has an impact on page-breaking decisions.  Generally,
 when a break occurs, the formatter moves the drawing position to the
 next text baseline automatically.  If the formatter were already writing
@@ -9941,61 +9943,63 @@ We most often see titles used in page header and footer traps.
 @cindex page control
 @cindex control, page
 
-@DefreqList {bp, [@Var{page}]}
-@DefreqItem {bp, @t{+}@Var{page}}
-@DefreqItem {bp, @t{-}@Var{page}}
+@cindex page break
+@cindex break, page
+@cindex page ejection
+@cindex ejection, page
+Discretionary page breaks can prevent the unwanted separation of
+content.  A new page number takes effect during page ejection; see
+@ref{The Implicit Page Trap}.
+
+@DefreqList {bp, [@Var{page-number}]}
+@DefreqItem {bp, @t{+}@Var{page-number}}
+@DefreqItem {bp, @t{-}@Var{page-number}}
 @DefregListEndx {%}
 @cindex new page (@code{bp})
 @cindex page, new (@code{bp})
-Stop processing the current page and move to the next page.  This
-request causes a break.  It can also take an argument to set (increase,
-decrease) the page number of the next page (which becomes the current
-page after @code{bp} has finished).  The difference between @code{bp}
-and @code{pn} is that @code{pn} does not cause a break or actually
-eject a page.  @xref{Page Layout}.
-@cindex CSTR@tie{}#54 errata
-@cindex CSTR@tie{}#54 erratum, @code{bp} request
-This request is incorrectly documented in the @acronym{AT&T}
-@code{troff} manual as having a default scaling indicator of @samp{v}.
-
-@Example
-.de newpage                         \" define macro
-'bp                                 \" begin page
-'sp .5i                             \" vertical space
-.tl 'left top'center top'right top' \" title
-'sp .3i                             \" vertical space
-..                                  \" end macro
-@endExample
-
+Break the page and change (increase or decrease) the next page number
+per the numeric expression @var{page-number}.  If @var{page-number} is
+invalid, GNU @code{troff} emits a warning in category @samp{number} and
+ignores the argument.  This request causes a break.  A page break
+advances the vertical drawing position to the bottom of the page,
+springing traps.  @xref{Page Location Traps}.
 @cindex @code{bp} request, and top-level diversion
 @cindex top-level diversion, and @code{bp}
 @cindex diversion, top-level, and @code{bp}
-@code{bp} has no effect if not called within the top-level diversion
-(@pxref{Diversions}).
+@code{bp} has effect only if invoked within the top-level
+diversion.@footnote{@xref{Diversions}.}
+@cindex CSTR@tie{}#54 errata
+@cindex CSTR@tie{}#54 erratum, @code{bp} request
+This request is incorrectly documented in the @acronym{AT&T}
+@code{troff} manual as having a default scaling unit of @samp{v}.
 
 @cindex page number register (@code{%})
 @cindex current page number (@code{%})
-The writable register@tie{}@code{%} holds the current page number.
+The register @code{%} interpolates the current page number.
 
-The register @code{.pe} is set to@tie{}1 while @code{bp} is active.
-@xref{Page Location Traps}.
+@Example
+.de BP
+'  bp \" schedule page break once current line is output
+..
+@endExample
 @endDefreq
 
 @Defreq {ne, [@Var{space}]}
 @cindex orphan lines, preventing with @code{ne}
 @cindex conditional page break (@code{ne})
 @cindex page break, conditional (@code{ne})
-Your text may @slanted{need} a certain amount of vertical space before a
-page break occurs.  For instance, you may wish to ensure that the first
-output line of a paragraph is not @dfn{orphaned} at the bottom of a
-page.  The @code{ne} request tests the amount of distance to the next
-page location trap (or the page bottom if none is planted earlier; see
-@ref{Page Location Traps}), and breaks the page if less than @var{space}
-is available.  The default scaling unit is @samp{v}.  If @var{space} is
+Force a page break if insufficient vertical space is available (assert
+``needed'' space).  @code{ne} tests the distance to the next page
+location trap; see @ref{Page Location Traps}, and breaks the page if
+that amount is less than @var{space}.  The default scaling unit is
+@samp{v}.  If @var{space} is invalid, GNU @code{troff} emits a warning
+in category @samp{number} and ignores the argument.  If @var{space} is
 not specified, @samp{1v} is assumed.
 
-For example, to require room for at least the first two output lines of
-a paragraph, you can do the following.
+@cindex widow
+We can require space for at least the first two output lines of a
+paragraph, preventing its first line from being @slanted{widowed} at the
+page bottom.
 
 @Example
 .ne 2v
@@ -10004,6 +10008,9 @@ how tremendous the spiritual change that it brings,
 how astonishing,
 when the lights of health go down,
 the undiscovered countries that are then disclosed,
+what wastes and deserts of the soul a slight attack
+of influenza brings to view,
+@c -- Virgina Woolf, "On Being Ill", 1926
 @endExample
 
 @c XXX: Some of this might be better placed in a revised Chapter 3.
@@ -10013,6 +10020,8 @@ their paragraphing macros perform the break.  You may need to experiment
 with placing the @code{ne} after the paragraphing macro, or @code{br}
 and @code{ne} before it.
 
+@cindex orphan
+@cindex widow
 @code{ne} is also useful to force grouping of section headings with
 their subsequent paragraphs, or tables with their captions and/or
 explanations.  Macro packages often use @code{ne} with diversions to
@@ -10023,19 +10032,17 @@ parameters for widow and orphan management.
 @DefreqList {sv, [@Var{space}]}
 @DefreqListEndx {os, }
 @cindex @code{ne} request, comparison with @code{sv}
-The @code{sv} request is similar to @code{ne}, but @slanted{saves} the
-specified vertical space.  If @var{space} is available before the next
-page location trap (or the page bottom if none is planted earlier; see
-@ref{Page Location Traps}), the space is output immediately.  Any
-partially collected line is ignored.  Otherwise, the vertical space is
-saved.  Output the space on demand with @code{os}.
+Require vertical space as @code{ne} does, but also @slanted{save} it for
+later output by the @code{os} request.  If @var{space} is available
+before the next page location trap, it is output immediately.  Both
+requests ignore a partially collected line, taking effect at the next
+break.
 @cindex @code{sv} request, and no-space mode
 @cindex @code{os} request, and no-space mode
-Both @code{sv} and @code{os} ignore no-space mode (recall
-@ref{Manipulating Spacing}).  While the @code{sv} request allows
-negative values for @var{space}, @code{os} ignores them.  The default
-scaling unit is @samp{v}.  If @var{space} is not specified, @samp{1v} is
-assumed.
+@code{sv} and @code{os} ignore no-space mode (recall @ref{Manipulating
+Spacing}).  While the @code{sv} request allows negative values for
+@var{space}, @code{os} ignores them.  The default scaling unit is
+@samp{v}.  If @var{space} is not specified, @samp{1v} is assumed.
 @endDefreq
 
 @Defreg {nl}
@@ -10050,30 +10057,26 @@ value to @code{nl} to spring it if that page has already started
 (@pxref{Page Location Traps}).
 
 @Example
-.de header
+.de HD
 .  sp
 .  tl ''Goldbach Solution''
 .  sp
 ..
 .
 First page.
-@r{@dots{}}
 .bp
-.wh 0 header \" plant header trap at top of page
+.wh 0 HD \" plant header trap at top of page
 .nr nl (-1)
 Second page.
-@r{@dots{}}
-@endExample
-@Example
     @result{} First page.
     @result{}
-    @result{} @r{@dots{}}
+    @result{} @r{@i{(blank lines elided)}}
     @result{}
-    @result{}                   Goldbach Solution
+    @result{}                         Goldbach Solution
+    @result{}
+    @result{} @r{@i{(blank lines elided)}}
     @result{}
     @result{} Second page.
-    @result{}
-    @result{} @r{@dots{}}
 @endExample
 
 @noindent
@@ -14342,6 +14345,10 @@ that controls whether vertical position traps are enabled is global.
 Initially, vertical position traps are enabled.  The current value is
 stored in the @code{.vpt} read-only register.
 
+@cindex page break, prevented by @code{vpt}
+@cindex break, page, prevented by @code{vpt}
+@cindex page ejection, prevented by @code{vpt}
+@cindex ejection, page, prevented by @code{vpt}
 A page can't be ejected if @code{vpt} is set to zero.
 @endDefreq
 
@@ -14582,7 +14589,7 @@ sense to interpolate it outside of macros called by traps.
 @Defreg {.pe}
 @cindex @code{bp} request, and traps (@code{.pe})
 @cindex traps, sprung by @code{bp} request (@code{.pe})
-@cindex page ejecting register (@code{.pe})
+@cindex page ejection status register (@code{.pe})
 This Boolean-valued, read-only register interpolates@tie{}1 while a page
 is being ejected, and 0@tie{}otherwise.
 
@@ -14625,6 +14632,10 @@ not the expected behaviour.
 @cindex implicit trap
 @cindex trap, implicit
 
+@cindex page break
+@cindex break, page
+@cindex page ejection
+@cindex ejection, page
 If, after starting @code{troff} without loading a macro package, you use
 the @code{ptr} request to dump a list of the active traps to the
 standard error stream,@footnote{@xref{Debugging}.}  nothing is reported.
@@ -14895,6 +14906,10 @@ partially collected line remains.@footnote{While processing an
 end-of-input macro, the formatter assumes that the next page break must
 be the last; it goes into ``sudden death overtime''.}
 
+@cindex page break, final
+@cindex break, page, final
+@cindex page ejection, of final page
+@cindex ejection, page, of final page
 Let us assume that there is no @code{\c} in the above @code{approval}
 macro, that the page is full, and last output line has been broken with,
 say, a @code{br} request.  Because there is no more room, a @code{ne}

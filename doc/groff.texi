@@ -12806,6 +12806,11 @@ To conveniently nest conditionals, keep reading.
 @cindex conditional blocks
 @cindex blocks, conditional
 
+It is frequently desirable for a control structure to govern more than
+one request, macro call, text line, or a combination of the foregoing.
+The opening and closing brace escape sequences @code{\@{} and @code{\@}}
+perform such grouping; such @dfn{conditional blocks} can be nested.
+
 @DefescList {\@\{, , , }
 @DefescListEnd {\@\}, , , }
 @esindex \@{
@@ -12822,22 +12827,42 @@ To conveniently nest conditionals, keep reading.
 @cindex closing brace escape sequence (@code{\@})}
 @cindex brace escape sequence, opening (@code{\@})}
 @cindex brace escape sequence, closing (@code{\@})}
-It is frequently desirable for a control structure to govern more than
-one request, macro call, text line, or a combination of the foregoing.
-The opening and closing brace escape sequences @code{\@{} and @code{\@}}
-perform such grouping; such @dfn{conditional blocks} can be nested.
+@code{\@{} begins a conditional block; it @code{\@{} must appear (after
+optional spaces and tabs) immediately subsequent to the conditional
+expression of an @code{if}, @code{ie}, or @code{while}
+request,@footnote{@xref{while}.} or as the argument to an @code{el}
+request.
+
+@code{\@}} ends a condition block and should appear on a line with other
+occurrences of itself as necessary to match @code{\@{} sequences.  It
+can be preceded by a control character, spaces, and tabs.  Input after
+any quantity of @code{\@}} sequences on the same line is processed only
+if all of the preceding conditions to which they correspond are true.
+Furthermore, a @code{\@}} closing the body of a @code{while} request
+must be the last such escape sequence on an input line.
+
 Brace escape sequences outside of control structures have no meaning and
 produce no output.
 
-@code{\@{} should appear (after optional spaces and tabs) immediately
-subsequent to the request's conditional expression.  @code{\@}} should
-appear on a line with other occurrences of itself as necessary to match
-@code{\@{} sequences.  It can be preceded by a control character,
-spaces, and tabs.  Input after any quantity of @code{\@}} sequences on
-the same line is processed only if all of the preceding conditions to
-which they correspond are true.  Furthermore, a @code{\@}} closing the
-body of a @code{while} request (discussed below) must be the last such
-escape sequence on an input line.
+@strong{Caution:@:} Input lines using @code{\@{} often end with
+@code{\RET}, especially in macros that consist primarily of control
+lines.  Forgetting to use @code{\RET} on an input line after @code{\@{}
+is a common source of error.
+@endDefesc
+
+@need 1000
+We might write the following in a page header macro.  If we delete
+@code{\RET}, the header will carry an unwanted extra empty line (except
+on page@tie{}1).
+
+@Example
+.if (\\n[%] != 1) \@{\
+.  ie ((\\n[%] % 2) = 0) .tl \\*[even-numbered-page-title]
+.  el                    .tl \\*[odd-numbered-page-title]
+.\@}
+@endExample
+
+Let us take a closer look at how conditional blocks nest.
 
 @Example
 A
@@ -12861,36 +12886,10 @@ U
 
 The above behavior may challenge the intuition; it was implemented to
 retain compatibility with @acronym{AT&T} @code{troff}.  For clarity, it
-is idiomatic to end input lines with @code{\@{}, followed by
-@code{\@key{RET}} if desired to prevent the newline from being
-interpreted as a blank text line, and to precede @code{\@}} on an input
+is idiomatic to end input lines with @code{\@{} (followed by
+@code{\@key{RET}} if appropriate), and to precede @code{\@}} on an input
 line with nothing more than a control character, spaces, tabs, and other
 instances of itself.
-
-@Example
-.de DEBUG
-debug =
-.ie \\$1 \@{\
-ON,
-development
-\@}
-.el \@{\
-OFF,
-production
-\@}
-version
-..
-.DEBUG 0
-.br
-.DEBUG 1
-@endExample
-
-Try omitting the @code{\@key{RET}}s from the foregoing example and see
-how the output changes.  Remember that, as noted above, after a true
-conditional (or after the @code{el} request if its counterpart @code{ie}
-condition was false) the remainder of the input line is interpreted
-@emph{as if it were on an input line by itself}.
-@endDefesc
 
 We can use @code{ie}, @code{el}, and conditional blocks to simulate the
 multi-way ``switch'' or ``case'' control structures of other languages.

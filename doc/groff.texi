@@ -8611,6 +8611,7 @@ Disable automatic hyphenation; i.e., set the hyphenation mode to@tie{}0
 remembered.
 @endDefreq
 
+@need 200
 @DefreqList {hpf, pattern-file}
 @DefreqItemx {hpfa, pattern-file}
 @DefreqListEndx {hpfcode, a b [c d] @dots{}}
@@ -10114,7 +10115,7 @@ In digital typography, a @dfn{font} is a collection of characters in a
 specific typeface that a device can render as glyphs at a desired
 size.@footnote{Terminals and some output devices have fonts that render
 at only one or two sizes.  As examples of the latter, take the
-@code{groff} @code{lj4} device's Lineprinter, and @code{lj4}'s Courier
+@code{groff} @code{lj4} device's Lineprinter, and @code{lbp}'s Courier
 and Elite faces.}  A @code{roff} formatter can change typefaces at any
 point in the text.  The basic faces are a set of @dfn{styles} combining
 upright and slanted shapes with normal and heavy stroke weights:
@@ -10148,8 +10149,8 @@ respect to each other.  Before using a font description, the formatter
 associates it with a @dfn{mounting position}, a place in an ordered list
 of available typefaces.  So that a document need not be strongly coupled
 to a specific font family, in GNU @code{troff} an output device can
-associate a style in the abstract with a mounting position.  Thus the
-current family can be combined with a style dynamically, producing a
+associate a style in the abstract sense with a mounting position.  Thus
+the current family can be combined with a style dynamically, producing a
 @dfn{resolved font name}.
 
 Fonts often have trademarked names, and even Free Software fonts can
@@ -10164,10 +10165,10 @@ special font @samp{S}.
 Each typesetting output device configures a default
 family;@footnote{@xref{DESC File Format}.} for those provided by
 @code{groff}, this is always @samp{T}.  Conventionally, the styles are
-arranged in the first four mounting position in the order shown above.
+arranged in the first four mounting positions in the order shown above.
 The default mounting position, and therefore style, is always @samp{1}
-(@samp{R}).  By issuing appropriate requests, you can change these
-defaults before your document writes its first glyph.
+(@samp{R}).  By issuing appropriate formatter instructions, you can
+override these defaults before your document writes its first glyph.
 
 Terminal output devices cannot change font families and lack special
 fonts.  They support style changes by overstriking, or by altering
@@ -10901,7 +10902,7 @@ include unnamed glyphs in the font description file by using a name of
 No kerning is applied to glyphs accessed with @code{\N}.
 @endDefesc
 
-Some escape sequences directly map onto special glyphs.
+A few more escape sequences are also special characters.
 
 @Defesc {\@code{'}, , , }
 A backslash followed by the apostrophe character,
@@ -10936,15 +10937,14 @@ Assign properties encoded by the number @var{n} to characters @var{c1},
 
 Input characters, including special characters introduced by an escape,
 have certain properties associated with them.@footnote{Output glyphs
-don't have such properties.  For GNU @code{troff}, a glyph is a
-box numbered with an index into a font, a given height above and depth
-below the baseline, and a width---nothing more.}  These properties can
-be modified with this request.  The first argument is the sum of the
-desired flags and the remaining arguments are the characters to be
-assigned those properties.  Spaces between the @var{cn} arguments are
-optional.  Any argument @var{cn} can be a character class defined with
-the @code{class} request rather than an individual character.
-@xref{Character Classes}.
+don't---to GNU @code{troff}, a glyph is simply a box with an index into
+a font, a given height above and depth below the baseline, and a width.}
+These properties can be modified with this request.  The first argument
+is the sum of the desired flags and the remaining arguments are the
+characters to be assigned those properties.  Spaces between the @var{cn}
+arguments are optional.  Any argument @var{cn} can be a character class
+defined with the @code{class} request rather than an individual
+character.  @xref{Character Classes}.
 
 The non-negative integer @var{n} is the sum of any of the following.
 Some combinations are nonsensical, such as @samp{33} (1 + 32).

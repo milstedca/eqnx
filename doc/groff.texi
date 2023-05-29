@@ -9825,124 +9825,114 @@ request invocation or macro call.}
 @cindex page layout
 @cindex layout, page
 
-GNU @code{troff} provides some primitive operations for controlling page
-layout.
+The formatter permits configuration of the page length and page number.
 
 @DefreqList {pl, [@Var{length}]}
 @DefreqItem {pl, @t{+}@Var{length}}
 @DefreqItem {pl, @t{-}@Var{length}}
 @DefregListEndx {.p}
-@cindex page length (@code{pl})
-@cindex length of page (@code{pl})
-Set the @dfn{page length} to @var{length} (or increment or decrement the
-current value by @var{length}).  This is the length of the physical
-output page.  The default scaling indicator is @samp{v}.
+@cindex page length, configuring (@code{pl})
+@cindex length of the page, configuring (@code{pl})
+@cindex configuring the page length (@code{pl})
+@cindex setting the page length (@code{pl})
+Change (increase or decrease) the page length per the numeric expression
+@var{length}.  The default scaling unit is @samp{v}.  A negative
+@var{length} is valid, but an uncommon application:@: it prevents page
+location traps from being sprung,@footnote{@xref{Traps}.}  and each
+output line is placed on a new page.  If @var{length} is invalid, GNU
+@code{troff} emits a warning in category @samp{number}.  If @var{length}
+is absent or invalid, @samp{11i} is assumed.
 
 @cindex page length register (@code{.p})
-The current setting can be found in the read-only register @samp{.p}.
+The read-only register @samp{.p} interpolates the current page length.
+@endDefreq
 
-@cindex top margin
-@cindex margin, top
-@cindex bottom margin
-@cindex margin, bottom
-This specifies only the size of the page, not the top and bottom
-margins.  Those are not set by GNU @code{troff} directly.  @xref{Traps},
-for further information on how to do this.
+@DefreqList {pn, num}
+@DefreqItem {pn, @t{+}@Var{num}}
+@DefreqItem {pn, @t{-}@Var{num}}
+@DefregListEndx {.pn}
+@cindex page number, configuring next (@code{pn})
+@cindex next page number, configuring (@code{pn})
+@cindex number, page, next, configuring (@code{pn})
+Change (increase or decrease) the page number of the @emph{next} page
+per the numeric expression @var{num}.  If @var{num} is invalid, GNU
+@code{troff} emits a warning in category @samp{number} and ignores the
+request.  Without an argument, @code{pn} is ignored.
 
-Negative @code{pl} values are possible also, but not very useful: no
-trap is sprung, and each line is output on a single page (thus
-suppressing all vertical spacing).
-
-If no argument or an invalid argument is given, @code{pl} sets the page
-length to 11@dmn{i}.
+@cindex next page number register (@code{.pn})
+@cindex page number, next, register (@code{.pn})
+The read-only register @code{.pn} interpolates @var{num} if set by
+@code{pn} on the current page, or the current page number plus@tie{}1.
 @endDefreq
 
 @cindex headers
 @cindex footers
 @cindex titles
-GNU @code{troff} provides several operations that help in setting up top
-and bottom titles (also known as headers and footers).
+The formatter offers special support for typesetting headers and
+footers, collectively termed @dfn{titles}.  Titles have an independent
+line length, and their placement on the page is not restricted.
 
 @Defreq {tl, @code{'}@Var{left}@code{'}@Var{center}@code{'}@Var{right}@code{'}}
-@cindex title line (@code{tl})
+@cindex title line, formatting (@code{tl})
+@cindex formatting a title line (@code{tl})
 @cindex three-part title (@code{tl})
 @cindex page number character (@code{%})
-Print a @dfn{title line}.  It consists of three parts: a left-justified
-portion, a centered portion, and a right-justified portion.  The
-argument separator @samp{'} can be replaced with any character not
-occurring in the title line.  The @samp{%} character is replaced with
-the current page number.  This character can be changed with the
-@code{pc} request (see below).  The delimiter need not be a neutral
-apostrophe: @code{tl} accepts the same delimiters as most escape
-sequences; see @ref{Delimiters}.  Without an argument, @code{tl} is
-ignored.
+Format an output line as a title consisting of @var{left}, @var{center},
+and @var{right}, each aligned accordingly.  The delimiter need not be a
+neutral apostrophe: @code{tl} accepts the same delimiters as most escape
+sequences; see @ref{Delimiters}.  If not used as the delimiter, any
+@dfn{page number character} character is replaced with the current page
+number; the default is @samp{%}; see the the @code{pc} request below.
+Without an argument, @code{tl} is ignored.  @code{tl} writes the title
+line immediately, ignoring any partially collected line.
 
-@itemize @bullet
-@item
-The line length set by the @code{ll} request is not honoured by
-@code{tl}; use the @code{lt} request (described below) instead, to
-control line length for text set by @code{tl}.
-
-@item
-A title line is not restricted to the top or bottom of a page.
-
-@item
-@code{tl} prints the title line immediately, ignoring a partially
-collected line (which stays untouched).
-
-@item
-It is not an error to omit closing delimiters.  For example,
-@w{@samp{.tl /foo}} is equivalent to @w{@samp{.tl /foo///}}: It prints a
-title line with the left-justified word @samp{foo}; the centered and
-right-justified parts are empty.
-@end itemize
+It is not an error to omit delimiters after the first.  For example,
+@w{@samp{.tl /Thesis}} is interpreted as @w{@samp{.tl /Thesis///}}:@: it
+sets a title line comprising only the left-aligned word @samp{Thesis}.
 @endDefreq
 
 @DefreqList {lt, [@Var{length}]}
 @DefreqItem {lt, @t{+}@Var{length}}
 @DefreqItem {lt, @t{-}@Var{length}}
 @DefregListEndx {.lt}
-@cindex length of title line (@code{lt})
-@cindex title line, length (@code{lt})
-@cindex title line length register (@code{.lt})
-The title line is printed using its own line length, which is specified
-(or incremented or decremented) with the @code{lt} request.  Initially,
-the title line length is set to 6.5@dmn{i}.  If a negative line length
-is specified (which is not allowed), @code{gtroff} emits a warning in
-category @samp{range} and sets the title line length to zero.  The
-default scaling indicator is @samp{m}.  If @code{lt} is called without
-an argument, the title length is reset to the previous value before the
-last call to @code{lt}.  The current setting is available in the
-@code{.lt} read-only register; it is associated with the environment
+@cindex length of title line, configuring (@code{lt})
+@cindex title length, configuring (@code{lt})
+Change (increase or decrease) the line length used by titles per the
+numeric expression @var{length}.  The default scaling unit is @samp{m}.
+If @var{length} is negative, GNU emits a warning in category
+@samp{range} and treats @var{length} as @samp{0}.  If @var{length} is
+invalid, GNU @code{troff} emits a warning in category @samp{number} and
+ignores the request.  The formatter's default title length is
+@samp{6.5i}.  With no argument, the title length is restored to the
+previous value.  The title length is is associated with the environment
 (@pxref{Environments}).
-@endDefreq
 
-@DefreqList {pn, page}
-@DefreqItem {pn, @t{+}@Var{page}}
-@DefreqItem {pn, @t{-}@Var{page}}
-@DefregListEndx {.pn}
-@cindex page number (@code{pn})
-@cindex number, page (@code{pn})
-Change (increase or decrease) the page number of the @emph{next} page.
-The only argument is the page number; the request is ignored without a
-parameter.
-
-The read-only register @code{.pn} contains the number of the next page:
-either the value set by a @code{pn} request, or the number of the
-current page plus@tie{}1.
+@cindex title line length register (@code{.lt})
+The read-only register @samp{.lt} interpolates the title line length.
 @endDefreq
 
 @Defreq {pc, [@Var{char}]}
 @cindex changing the page number character (@code{pc})
 @cindex page number character, changing (@code{pc})
 @vindex %
-Change the page number character (used by the @code{tl} request) to a
-different character.  With no argument, this mechanism is disabled.
-This doesn't affect the register@tie{}@code{%}.
+Set the page number character to @var{char}.  With no argument, the page
+number character is disabled.  @code{pc} does not affect the
+register@tie{}@code{%}.
 @endDefreq
 
-@xref{Traps}.
+The following example exercises title features.
 
+@Example
+.lt 50n
+This is my partially collected
+.tl 'Isomers 2023'%'Dextrose Edition'
+line.
+    @result{} Isomers 2023             1        Dextrose Edition
+    @result{} This is my partially collected line.
+@endExample
+
+We most often see titles used in page header and footer traps.
+@xref{Traps}.
 
 @c =====================================================================
 
@@ -14391,6 +14381,10 @@ there.
 @cindex page footers
 @cindex headers
 @cindex footers
+@cindex top margin
+@cindex margin, top
+@cindex bottom margin
+@cindex margin, bottom
 A macro package might set headers and footers as follows; this example
 configures vertical margins of one inch to the body text, and one
 half-inch to the titles.  Observe the use of the no-break control

@@ -2467,7 +2467,7 @@ Create string
 .I name
 with empty contents;
 no operation if
-.I string
+.I name
 already exists.
 .
 .TPx
@@ -3470,16 +3470,20 @@ Set ligature mode to
 .
 .TPx
 .REQ .ll
-Set length of subsequent output lines to previous value.
+Set line length to previous value.
+.
+Does not affect a pending output line.
 .
 .TPx
 .REQ .ll "\[+-]N"
-Set length of subsequent output lines to
+Set line length to
 .I \[+-]N
 (default length
 .scalednumber 6.5 i ,
 default scaling unit\~\c
 .scaleindicator m ).
+.
+Does not affect a pending output line.
 .
 .TPx
 .REQ .lsm
@@ -5799,7 +5803,7 @@ Line-tabs mode is enabled (Boolean-valued).
 .
 .TP
 .REG .ll
-Length of pending output line.
+Line length applicable to the pending output line.
 .
 .TP
 .REG .lt

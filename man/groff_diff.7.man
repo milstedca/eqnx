@@ -1445,18 +1445,24 @@ the default blank line behavior is (re-)established.
 .BI .box\~ name
 .TQ
 .BI .boxa\~ name
-These requests are similar to the
+Divert
+(or append)
+output to
+.I name,
+similarly to the
 .B di
 and
 .B da
 requests,
-respectively,
-with the exception that any pending output line does not become part of
-the diversion
-(i.e.,
-a box diversion always starts on a new output line)
-but is restored after ending the diversion,
-discarding any partially collected line in the diversion.
+respectively.
+.
+Any pending output line is
+.I not
+included in the diversion.
+.
+Without an argument,
+stop diverting output;
+any pending output line inside the diversion is discarded.
 .
 .
 .TP
@@ -3444,21 +3450,20 @@ and less than or equal to
 the increase in width is a linear function of the type size.
 .
 .TP
-.BI .tm1\~ contents
-Similar to the
+.BI .tm1\~ message
+As
 .B tm
 request,
-.I contents
-is read in copy mode and written on the standard error,
-but an initial neutral double quote in
-.I contents
-is stripped off to allow embedding of leading spaces.
+but recognizes and strips a leading neutral double quote from
+.I message
+to allow the embedding of leading spaces.
 .
 .TP
-.BI .tmc\~ contents
-Similar to
+.BI .tmc\~ message
+As
 .B tm1
-but without writing a final newline.
+request,
+but does not append a newline.
 .
 .TP
 .BI .trf\~ filename

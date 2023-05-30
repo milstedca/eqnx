@@ -1961,7 +1961,7 @@ instead.
 .P
 Delimited equations are set at the type size current at the beginning of
 the input line,
-not that immediately preceding the opening delimiter.
+not necessarily that immediately preceding the opening delimiter.
 .
 .
 .P

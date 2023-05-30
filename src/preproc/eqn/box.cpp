@@ -307,7 +307,7 @@ void box::top_level()
     }
     current_roman_font = get_grfont();
     // This catches tabs used within \Z (which aren't allowed).
-    b->check_tabs(0);
+    b->diagnose_tab_stop_usage(0);
     int r = b->compute_metrics(DISPLAY_STYLE);
     printf(".ft \\n[" SAVED_PREV_FONT_REG "]\n");
     printf(".ft \\n[" SAVED_FONT_REG "]\n");
@@ -417,7 +417,7 @@ void box::output()
 {
 }
 
-void box::check_tabs(int)
+void box::diagnose_tab_stop_usage(int)
 {
 }
 
@@ -474,10 +474,10 @@ box_list::~box_list()
   delete[] p;
 }
 
-void box_list::list_check_tabs(int level)
+void box_list::list_diagnose_tab_stop_usage(int level)
 {
   for (int i = 0; i < len; i++)
-    p[i]->check_tabs(level);
+    p[i]->diagnose_tab_stop_usage(level);
 }
 
 
@@ -514,9 +514,9 @@ void pointer_box::compute_skew()
 	 uid, p->uid);
 }
 
-void pointer_box::check_tabs(int level)
+void pointer_box::diagnose_tab_stop_usage(int level)
 {
-  p->check_tabs(level);
+  p->diagnose_tab_stop_usage(level);
 }
 
 int simple_box::compute_metrics(int)
@@ -585,7 +585,7 @@ void tab_box::output()
     printf("\\t");
 }
 
-void tab_box::check_tabs(int level)
+void tab_box::diagnose_tab_stop_usage(int level)
 {
   if (level > 0) {
     error("tabs allowed only at outermost lexical level");

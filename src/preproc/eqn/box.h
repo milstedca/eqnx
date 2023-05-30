@@ -42,7 +42,7 @@ public:
   enum { FOUND_NOTHING = 0, FOUND_MARK = 1, FOUND_LINEUP = 2 };
   void set_spacing_type(char *type);
   virtual void hint(unsigned);
-  virtual void check_tabs(int);
+  virtual void diagnose_tab_stop_usage(int);
 };
 
 class box_list {
@@ -55,7 +55,7 @@ public:
   box_list(box *);
   ~box_list();
   void append(box *);
-  void list_check_tabs(int);
+  void list_diagnose_tab_stop_usage(int);
   void list_debug_print(const char *sep);
   friend class list_box;
 };
@@ -75,7 +75,7 @@ public:
   int compute_metrics(int);
   void compute_subscript_kern();
   void output();
-  void check_tabs(int);
+  void diagnose_tab_stop_usage(int);
   void append(box *);
   list_box *to_list_box();
   void handle_char_type(int, int);
@@ -107,7 +107,7 @@ public:
   int compute_metrics(int);
   void output();
   void debug_print();
-  void check_tabs(int);
+  void diagnose_tab_stop_usage(int);
   void set_alignment(alignment a) { col.set_alignment(a); }
   void set_space(int n) { col.set_space(n); }
   void append(box *p) { col.append(p); }
@@ -124,7 +124,7 @@ public:
   void append(column *);
   int compute_metrics(int);
   void output();
-  void check_tabs(int);
+  void diagnose_tab_stop_usage(int);
   void debug_print();
 };
 
@@ -138,7 +138,7 @@ public:
   void compute_subscript_kern();
   void compute_skew();
   void debug_print() = 0;
-  void check_tabs(int);
+  void diagnose_tab_stop_usage(int);
 };
 
 class vcenter_box : public pointer_box {
@@ -202,7 +202,7 @@ public:
   tab_box();
   void output();
   void debug_print();
-  void check_tabs(int);
+  void diagnose_tab_stop_usage(int);
 };
 
 class size_box : public pointer_box {

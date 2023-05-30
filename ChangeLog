@@ -1,3 +1,78 @@
+2023-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[eqn]: Trivially refactor.  Rename `check_tabs` member functions
+	to `diagnose_tab_stop_usage`, to be more expressive and to
+	prepare for the diagnosis of leaders in the input as well.
+
+	* src/preproc/eqn/box.cpp (box::check_tabs):
+	(box_list::list_check_tabs):
+	(pointer_box::check_tabs):
+	(tab_box::check_tabs):
+	* src/preproc/eqn/box.h (box::check_tabs):
+	(box_list::list_check_tabs):
+	(list_box::check_tabs):
+	(pile_box::check_tabs):
+	(matrix_box::check_tabs):
+	(pointer_box::check_tabs):
+	(tab_box::check_tabs):
+	* src/preproc/eqn/delim.cpp (delim_box::check_tabs):
+	* src/preproc/eqn/limit.cpp (limit_box::check_tabs):
+	* src/preproc/eqn/list.cpp (list_box::check_tabs):
+	* src/preproc/eqn/other.cpp (accent_box::check_tabs):
+	(uaccent_box::check_tabs):
+	* src/preproc/eqn/over.cpp (over_box::check_tabs):
+	* src/preproc/eqn/pile.cpp (pile_box::check_tabs):
+	(matrix_box::check_tabs):
+	* src/preproc/eqn/script.cpp (script_box::check_tabs):
+	* src/preproc/eqn/sqrt.cpp (sqrt_box::check_tabs):
+	Rename these...
+	* src/preproc/eqn/box.cpp (box::check_tabs):
+	(box::diagnose_tab_stop_usage):
+	(box_list::list_diagnose_tab_stop_usage):
+	(pointer_box::list_diagnose_tab_stop_usage):
+	(tab_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/box.h (box::diagnose_tab_stop_usage):
+	(box_list::list_diagnose_tab_stop_usage):
+	(list_box::diagnose_tab_stop_usage):
+	(pile_box::diagnose_tab_stop_usage):
+	(matrix_box::diagnose_tab_stop_usage):
+	(pointer_box::diagnose_tab_stop_usage):
+	(tab_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/delim.cpp
+	(delim_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/limit.cpp
+	(limit_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/list.cpp (list_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/other.cpp
+	(accent_box::diagnose_tab_stop_usage):
+	(uaccent_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/over.cpp (over_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/pile.cpp (pile_box::diagnose_tab_stop_usage):
+	(matrix_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/script.cpp
+	(script_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/sqrt.cpp (sqrt_box::diagnose_tab_stop_usage):
+	...to these.
+
+	* src/preproc/eqn/box.cpp (box::top_level)
+	(box_list::list_diagnose_tab_stop_usage):
+	(pointer_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/delim.cpp
+	(delim_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/limit.cpp
+	(limit_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/list.cpp (list_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/other.cpp
+	(accent_box::diagnose_tab_stop_usage):
+	(uaccent_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/over.cpp (over_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/pile.cpp (pile_box::diagnose_tab_stop_usage):
+	(matrix_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/script.cpp
+	(script_box::diagnose_tab_stop_usage):
+	* src/preproc/eqn/sqrt.cpp (sqrt_box::diagnose_tab_stop_usage):
+	Update call sites.
+
 2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[eqn]: Trivially refactor.  Boolify `tab_box` member variable

@@ -170,7 +170,7 @@ public:
   ~delim_box();
   int compute_metrics(int);
   void output();
-  void check_tabs(int);
+  void diagnose_tab_stop_usage(int);
   void debug_print();
 };
 
@@ -397,9 +397,9 @@ void delim_box::output()
   }
 }
 
-void delim_box::check_tabs(int level)
+void delim_box::diagnose_tab_stop_usage(int level)
 {
-  p->check_tabs(level);
+  p->diagnose_tab_stop_usage(level);
 }
 
 void delim_box::debug_print()

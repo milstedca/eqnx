@@ -156,7 +156,7 @@ reads the standard input stream.
 .P
 Unless the
 .B \-R
-option is given,
+option is used,
 .I @g@eqn
 searches for the file
 .I eqnrc
@@ -2080,6 +2080,54 @@ delim off
 .EN
 .RE
 .\}
+.RE
+.
+.
+.P
+The quadratic formula illustrates use of fractions and radicals,
+and affords an opportunity to use the full space token
+.BR \[ti] .
+.
+.
+.RS
+.P
+.EX
+\&.EQ
+x = { \- b \[ti] \[rs][+\-] \[ti] sqrt { b sup 2 \- 4 a c } } \
+over { 2 a }
+\&.EN
+.EE
+.if t \{\
+.
+.
+.P
+.RS
+.EQ
+x = { - b ~ \[+-] ~ sqrt { b sup 2 - 4 a c } } over { 2 a }
+.EN
+.RE
+.\}
+.RE
+.
+.
+.P
+We could alternatively define the plus-minus sign as a binary operator.
+.
+The default parameters put 0.06 em less space on either side of that
+symbol,
+this being the difference between the
+.B medium_space
+used by binary operators and the width of the full space.
+.
+.
+.RS
+.P
+.EX
+\&.EQ
+chartype "binary" \[rs][+-]
+x = { \- b \[rs][+\-] sqrt { b sup 2 \- 4 a c } } over { 2 a }
+\&.EN
+.EE
 .RE
 .
 .

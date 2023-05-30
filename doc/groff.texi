@@ -8442,25 +8442,23 @@ default).  The hyphenation character is associated with the environment
 (@pxref{Environments}).
 @endDefreq
 
-@Defreq {shc, [@Var{glyph}]}
+@Defreq {shc, [@Var{c}]}
 @cindex soft hyphen character, setting (@code{shc})
 @cindex character, soft hyphen, setting (@code{shc})
 @cindex glyph, soft hyphen (@code{hy})
 @cindex soft hyphen glyph (@code{hy})
 @cindex @code{char} request, and soft hyphen character
 @cindex @code{tr} request, and soft hyphen character
-Set the @dfn{soft hyphen character},@footnote{``Soft hyphen
-@emph{character}'' is a misnomer since it is an output glyph.} inserted
-when a word is hyphenated automatically or at a hyphenation character,
-to@tie{}@var{glyph}.@footnote{``Soft'' because it appears in output only
-where a hyphenation break is performed; a ``hard'' hyphen, as in
+Set the @dfn{soft hyphen character}, inserted when a word is hyphenated
+automatically or at a hyphenation character, to the ordinary or special
+character@tie{}@var{c}.@footnote{``Soft'' because it appears in output
+only where a hyphenation break is performed; a ``hard'' hyphen, as in
 ``long-term'', always appears.}  If the argument is omitted, the soft
-hyphen glyph is set to the default, @code{\[hy]}.  If the selected glyph
-does not exist in the font in use at a potential hyphenation point, then
-the line is not broken at that point.  Neither character definitions
-(specified with the @code{char} and similar requests) nor translations
-(specified with the @code{tr} request) are considered when assigning the
-soft hyphen glyph.
+hyphen character is set to the default, @code{\[hy]}.  If no glyph for
+@var{c} exists in the font in use at a potential hyphenation point, then
+the line is not broken there.  Neither character definitions (specified
+with the @code{char} and similar requests) nor translations (specified
+with the @code{tr} request) are applied to @var{c}.
 @endDefreq
 
 @cindex hyphenation parameters, automatic
@@ -9145,21 +9143,19 @@ uses the register @code{.S} for this purpose.}
 @endExample
 @endDefreq
 
-@Defreq {tc, [@Var{fill-glyph}]}
+@Defreq {tc, [@Var{c}]}
 @cindex tab repetition character (@code{tc})
 @cindex character, tab repetition (@code{tc})
 @cindex glyph, tab repetition (@code{tc})
-Normally, GNU @code{troff} writes no glyph when moving to a tab stop
-(some output devices may explicitly output space characters to achieve
-this motion).  A @dfn{tab repetition character} can be specified with
-the @code{tc} request, causing GNU @code{troff} to write as many
-instances of @var{fill-glyph} as are necessary to occupy the interval
-from the current horizontal location to the next tab stop.  With no
-argument, GNU @code{troff} reverts to the default behavior.  The tab
-repetition character is associated with the environment
-(@pxref{Environments}).@footnote{Tab repetition @emph{character} is a
-misnomer since it is an output glyph.}  Only a single @var{fill-glyph}
-is recognized; any excess is ignored.
+Set the tab repetition character to the ordinary or special character
+@var{c}; normally, no glyph is written when moving to a tab stop (and
+some output devices may output space characters to achieve this motion).
+A @dfn{tab repetition character} causes the formatter to write as many
+instances of @var{c} as are necessary to occupy the interval from the
+horizontal drawing position to the next tab stop.  With no argument, GNU
+@code{troff} reverts to the default behavior.  The tab repetition
+character is associated with the environment (@pxref{Environments}).
+Only a single character of @var{c} is recognized; any excess is ignored.
 @endDefreq
 
 @DefreqList {linetabs, n}
@@ -9231,20 +9227,20 @@ period @samp{.}.
 Interpolate a leader in copy mode; see @ref{Copy Mode}.
 @endDefesc
 
-@Defreq {lc, [@Var{fill-glyph}]}
+@Defreq {lc, [@Var{c}]}
 @cindex leader repetition character (@code{lc})
 @cindex character, leader repetition (@code{lc})
 @cindex glyph, leader repetition (@code{lc})
-When writing a leader, GNU @code{troff} fills the space to the next tab
-stop with dots @samp{.}.  A different @dfn{leader repetition character}
-can be specified with the @code{lc} request, causing GNU @code{troff} to
-write as many instances of @var{fill-glyph} as are necessary to occupy
-the interval from the current horizontal location to the next tab stop.
-With no argument, GNU @code{troff} treats leaders the same as tabs.  The
-leader repetition character is associated with the environment
-(@pxref{Environments}).@footnote{Leader repetition @emph{character} is a
-misnomer since it is an output glyph.}  Only a single @var{fill-glyph}
-is recognized; any excess is ignored.
+Set the leader repetition character to the ordinary or special character
+@var{c}.  Recall @ref{Tabs and Leaders}:@: when encountering a leader
+character in the input, the formatter writes as many dots @samp{.} as
+are necessary until
+reaching the next tab stop; this is the @dfn{leader definition
+character}.  Omitting @var{c} unsets the leader
+character.  With no argument, GNU @code{troff} treats leaders the same
+as tabs.  The leader repetition character is associated with the
+environment (@pxref{Environments}).  Only a single @var{c} is
+recognized; any excess is ignored.
 @endDefreq
 
 @cindex table of contents
@@ -10853,11 +10849,10 @@ instead, you have to define @code{u0041_0328}.
 @Defesc {\\C, @code{'}, xxx, @code{'}}
 @cindex named character (@code{\C})
 @cindex character, named (@code{\C})
-Typeset the glyph named @var{xxx}.@footnote{@code{\C} is actually a
-misnomer since it accesses an output glyph.}  Normally it is more
-convenient to use @code{\[@var{xxx}]}, but @code{\C} has the advantage
-that it is compatible with newer versions of @acronym{AT&T} @code{troff}
-and is available in compatibility mode.
+Typeset the glyph of the special character @var{xxx}.  Normally, it is
+more convenient to use @code{\[@var{xxx}]}, but @code{\C} has the
+advantage that it is compatible with @acronym{AT&T} device-independent
+@code{troff} and is available in compatibility mode.
 @endDefesc
 
 @Defreq {composite, from to}
@@ -16856,10 +16851,8 @@ circumstances.
 @table @samp
 @item char
 @itemx 1
-An undefined glyph was requested for output.@footnote{@code{char} is a
-misnomer since it reports missing glyphs---there are no ``missing''
-input characters, only invalid ones.}  This category is enabled by
-default.
+No mounted font defines a glyph for the requested character.  This
+category is enabled by default.
 
 @item number
 @itemx 2

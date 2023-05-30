@@ -3409,19 +3409,16 @@ is zero,
 disable pairwise kerning,
 otherwise enable it.
 .
-.
 .TPx
 .REQ .lc
-Remove leader repetition glyph.
-.
+Unset leader repetition character.
 .
 .TPx
 .REQ .lc "c"
-Set leader repetition glyph
+Set leader repetition character
 .RI to\~ c
 (default:
 .RB \[lq] . \[rq]).
-.
 .
 .TPx
 .REQ .length "reg anything"
@@ -3974,13 +3971,13 @@ as
 .
 .TPx
 .REQ .shc
-Reset the soft hyphen glyph to
+Reset the soft hyphen character to
 .esc [hy] .
 .
 .
 .TPx
 .REQ .shc c
-Set the soft hyphen glyph
+Set the soft hyphen character
 .RI to\~ c .
 .
 .
@@ -4207,22 +4204,21 @@ and
 .RB \[lq] R \[rq]
 for right-aligned.
 .
-.
+.br
+.ne 4v \" XXX: should need only 2v
 .TPx
 .REQ .tag
 .TQ
 .REQ .taga
 Reserved for internal use.
 .
-.
 .TPx
 .REQ .tc
-Remove tab repetition glyph.
-.
+Unset tab repetition character.
 .
 .TPx
 .REQ .tc "c"
-Set tab repetition glyph
+Set tab repetition character
 .RI to\~ c
 (default: none).
 .

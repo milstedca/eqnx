@@ -1492,7 +1492,7 @@ See section \[lq]Strings\[rq] below.
 .br
 .ne 4v
 .P
-There is no general limit on argument length or quantity.
+There is no inherent limit on argument length or quantity.
 .
 Most requests take one or more arguments,
 and ignore any they do not expect.

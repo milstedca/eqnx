@@ -519,9 +519,9 @@ stack as the current device configuration data.
 .
 .
 .TP
-.command C xxx \[la]white-space\[ra]
+.command C id \[la]white-space\[ra]
 Typeset the glyph of the special character
-.IR xxx .
+.IR id .
 .
 Trailing syntactical space is necessary to allow special character names
 of arbitrary length.
@@ -535,7 +535,7 @@ The drawing position is not advanced.
 .TP
 .command c c
 Typeset the glyph of the ordinary character
-.IR c .
+.RI character\~ c .
 .
 The drawing position is not advanced.
 .\" XXX: Why does it matter that we read its size if we don't advance
@@ -664,20 +664,22 @@ is taken and interpreted in basic units.
 .
 .TP
 .command n b\~a
-Describe a break.
+Indicate a break.
 .
-In AT&T
-.IR troff ,
-the integer arguments
+No action is performed;
+the command is present to make the output more easily parsed.
+.
+The integers
 .I b
 .RI and\~ a
 describe the vertical space amounts before and after the break,
-respectively,
-to make the output more readable by humans.
+respectively.
 .
 GNU
 .I troff \" GNU
-reports these values but its output driver library ignores them.
+issues this command but
+.IR groff 's
+output driver library ignores it.
 .
 See
 .B v
@@ -820,14 +822,20 @@ output driver library handles them.
 .
 .TP
 .command w
-Describe an inter-word space.
+Indicate an inter-word space.
 .
-This performs no action;
-it is present to make the output more readable by humans.
+No action is performed;
+the command is present to make the output more easily parsed.
 .
 Only adjustable,
 breakable inter-word spaces are thus described;
 those resulting from horizontal motion escape sequences are not.
+.
+GNU
+.I troff \" GNU
+issues this command but
+.IR groff 's
+output driver library ignores it.
 .
 See
 .B h
@@ -1816,6 +1824,8 @@ describes the output device
 .IR name .
 .
 .
+.br
+.ne 4v
 .\" ====================================================================
 .SH Authors
 .\" ====================================================================

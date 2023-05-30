@@ -5158,16 +5158,15 @@ several parameters that can prevent it in certain circumstances.
 @cindex line break, output
 @cindex output line break
 
-Once an output line has been filled, whether or not hyphenation has
-occurred on that line, the next word read from the input will be placed
-on a different output line; this is called a @dfn{break}.  In this
-manual and in @code{roff} discussions generally, a ``break'' if not
-further qualified always refers to the termination of an output line.
-When the formatter is filling text, it introduces breaks automatically
-to keep output lines from exceeding the configured line length.  After
-an automatic break, GNU @code{troff} adjusts the line if applicable (see
-below), and then resumes collecting and filling text on the next output
-line.
+Once an output line is full, the next word (or remainder of a hyphenated
+one) is placed on a different output line; this is called a @dfn{break}.
+In this manual and in @code{roff} discussions generally, a ``break'' if
+not further qualified always refers to the termination of an output
+line.  When the formatter is filling text, it introduces breaks
+automatically to keep output lines from exceeding the configured line
+length.  After an automatic break, GNU @code{troff} adjusts the line if
+applicable (see below), and then resumes collecting and filling text on
+the next output line.
 
 Sometimes, a line cannot be broken automatically.  This usually does
 not happen with natural language text unless the output line length has

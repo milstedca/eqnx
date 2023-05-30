@@ -256,10 +256,10 @@ in certain circumstances.
 .
 .
 .P
-Once an output line has been filled,
-whether or not hyphenation has occurred on that line,
-the next word read from the input will be placed on a different output
-line;
+Once an output line is full,
+the next word
+(or remainder of a hyphenated one)
+is placed on a different output line;
 this is called a
 .I break.
 .

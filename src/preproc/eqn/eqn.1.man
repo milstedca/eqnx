@@ -1,4 +1,4 @@
-'\" t
+'\" et
 .TH @g@eqn @MAN1EXT@ "@MDATE@" "groff @VERSION@"
 .SH Name
 @g@eqn \- format equations for
@@ -444,7 +444,7 @@ large operator such as
 .rm Su
 T}
 binary	binary operator such as \[lq]\[pl]\[rq]
-relation	relation such as \[lq]=\[rq]
+relation	relational operator such as \[lq]=\[rq]
 opening	opening bracket such as \[lq](\[rq]
 closing	closing bracket such as \[lq])\[rq]
 punctuation	punctuation character such as \[lq],\[rq]

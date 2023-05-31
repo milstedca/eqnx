@@ -214,16 +214,12 @@ GNU
 .I eqn
 sets the input token
 .RB \[lq] .\|.\|.\& \[rq]
-as three periods or low dots,
-rather than the three centered dots of
-AT&T
+as an ellipsis on the text baseline,
+not the three centered dots of AT&T
 .IR eqn . \" AT&T
 .
-To get three centered dots,
-write
-.B cdots
-or
-.RB \[lq] "cdot cdot cdot" \[rq].
+Set an ellipsis on the math axis with the GNU extension macro
+.BR cdots .
 .
 .
 .\" ====================================================================

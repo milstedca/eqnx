@@ -1702,11 +1702,18 @@ parameters to other escape sequences.
 .
 .
 .P
-Requests permit escape sequence interpretation to be deactivated
+The escape character can be interpolated
+.RB ( \[rs]e ).
+.
+Requests permit the escape mechanism to be deactivated
 .RB ( eo )
 and restored,
 or the escape character changed
-.RB ( ec ).
+.RB ( ec ),
+and to save and restore it
+.RB ( ecs
+and
+.BR ecr ).
 .\" END Keep (roughly) parallel with groff.texi node "Using Escape
 .\" Sequences".
 .

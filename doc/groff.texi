@@ -6932,7 +6932,8 @@ escape sequences is necessary; see @ref{Strings}.}
 
 @c @need 1000
 The escape character is nearly always interpreted when encountered; it
-is therefore desirable to have a way to interpolate it.
+is therefore desirable to have a way to interpolate it, disable it, or
+change it.
 
 @cindex formatting the escape character (@code{\e})
 @cindex escape character, formatting (@code{\e})
@@ -7453,7 +7454,7 @@ suppression of warnings.
 @cindex alias, register, removing (@code{rr})
 @cindex removing alias for register (@code{rr})
 @cindex register, removing alias for (@code{rr})
-To remove a register alias, call @code{rr} on its name.  A register's
+To remove a register alias, invoke @code{rr} on its name.  A register's
 contents do not become inaccessible until it has no more names.
 @endDefreq
 @c END Keep (roughly) parallel with subsection "Registers" of groff(7).

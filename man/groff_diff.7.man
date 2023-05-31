@@ -1218,7 +1218,7 @@ a warning in category
 is generated and the request is ignored.
 .
 To remove a register alias,
-call
+invoke
 .B .rr
 on its name.
 .

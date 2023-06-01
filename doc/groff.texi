@@ -8784,8 +8784,8 @@ read-only register @code{.hlc}.
 Set the (right) hyphenation margin to @var{length}.  If the adjustment
 mode is not @samp{b} or @samp{n}, the line is not hyphenated if it is
 shorter than @var{length}.  Without an argument, the hyphenation margin
-is reset to its default value, 0.  The default scaling indicator is
-@samp{m}.  The hyphenation margin is associated with the environment
+is reset to its default value, 0.  The default scaling unit is @samp{m}.
+The hyphenation margin is associated with the environment
 (@pxref{Environments}).
 
 A negative argument resets the hyphenation margin to zero, emitting a
@@ -8805,7 +8805,7 @@ Suppress hyphenation of the line in adjustment modes @samp{b} or
 @samp{n} if it can be justified by adding no more than
 @var{hyphenation-space} extra space to each inter-word space.  Without
 an argument, the hyphenation space adjustment threshold is set to its
-default value, 0.  The default scaling indicator is @samp{m}.  The
+default value, 0.  The default scaling unit is @samp{m}.  The
 hyphenation space adjustment threshold is associated with the
 environment (@pxref{Environments}).
 
@@ -9631,7 +9631,7 @@ is no indentation.
 
 If @code{in} is called without an argument, the indentation is reset to
 the previous value before the last call to @code{in}.  The default
-scaling indicator is @samp{m}.
+scaling unit is @samp{m}.
 
 If a negative indentation value is specified (which is not allowed),
 @code{gtroff} emits a warning in category @samp{range} and sets the
@@ -9655,7 +9655,7 @@ increment or decrement value is specified, adjust the temporary
 indentation relative to the value set by the @code{in} request.
 
 This request causes a break; its value is associated with the
-environment (@pxref{Environments}).  The default scaling indicator is
+environment (@pxref{Environments}).  The default scaling unit is
 @samp{m}.  A call of @code{ti} without an argument is ignored.
 
 If the total indentation value is negative (which is not allowed),
@@ -9683,8 +9683,8 @@ indentation value or a temporary indentation value is active.
 Set the line length to @var{length} (or increment or decrement the
 current value by @var{length}).  Initially, the line length is set to
 6.5@dmn{i}.  The effect of @code{ll} is delayed until a partially
-collected line (if it exists) is output.  The default scaling indicator
-is @samp{m}.
+collected line (if it exists) is output.  The default scaling unit is
+@samp{m}.
 
 If @code{ll} is called without an argument, the line length is reset to
 the previous value before the last call to @code{ll}.  If a negative
@@ -11290,7 +11290,7 @@ necessary in GNU @code{troff}.  Nevertheless, they are supported.
 @cindex height, font, changing (@code{\H})
 Change (increment, decrement) the height of the current font, but not
 the width.  If @var{height} is zero, restore the original height.
-Default scaling indicator is @samp{z}.
+Default scaling unit is @samp{z}.
 
 The read-only register @code{.height} contains the font height as set by
 @code{\H}.
@@ -11446,8 +11446,8 @@ is taken from the current font size (as set with the @code{ps} request)
 when the font is effectively in use.  Without second and third argument,
 constant glyph space mode is deactivated.
 
-Default scaling indicator for @var{em-size} is @samp{z}; @var{width} is
-an integer.
+Default scaling unit for @var{em-size} is @samp{z}; @var{width} is an
+integer.
 @endDefreq
 
 @c ---------------------------------------------------------------------
@@ -11537,8 +11537,8 @@ width is increased by @var{n2}; if the type size is greater than or
 equal to @var{s1} and less than or equal to @var{s2} the increase in
 width is a linear function of the type size.
 
-The default scaling indicator is @samp{z} for @var{s1} and @var{s2},
-@samp{p} for @var{n1} and @var{n2}.
+The default scaling unit is @samp{z} for @var{s1} and @var{s2}, @samp{p}
+for @var{n1} and @var{n2}.
 
 The track kerning amount is added even to the rightmost glyph in a line;
 for large values it is thus recommended to increase the line length by
@@ -12107,7 +12107,7 @@ the range 0--65,535 (0--FFFF).
 @cindex scaling unit @code{f}
 Alternatively, each color component can be specified as a decimal
 fraction in the range 0--1, interpreted using a default scaling
-indicator of@tie{}@code{f}, which multiplies its value by 65,536 (but
+unit of@tie{}@code{f}, which multiplies its value by 65,536 (but
 clamps it at 65,535).
 
 @Example
@@ -13637,7 +13637,7 @@ The @code{rt} request returns @emph{upward} to the location marked with
 the last @code{mk} request.  If used with an argument, it returns to a
 vertical position@tie{}@var{dist} from the top of the page (no previous
 call to @code{mk} is necessary in this case).  The default scaling
-indicator is @samp{v}.
+unit is @samp{v}.
 
 If a page break occurs between a @code{mk} request and its matching
 @code{rt} request, the @code{rt} request is silently ignored.
@@ -13990,7 +13990,7 @@ and draws to the left, but the current location doesn't move.
 
 @var{l} can also be specified absolutely (i.e., with a leading
 @samp{|}), which draws back to the beginning of the input line.  Default
-scaling indicator is @samp{m}.
+scaling unit is @samp{m}.
 
 @cindex underscore glyph (@code{\[ru]})
 @cindex glyph, underscore (@code{\[ru]})
@@ -14003,7 +14003,7 @@ underscore glyph, @code{\[ru]}.
 @cindex dummy character (@code{\&}), effect on @code{\l} escape
 @cindex character, dummy (@code{\&}), effect on @code{\l} escape
 To separate the two arguments (to prevent @code{gtroff} from
-interpreting a drawing glyph as a scaling indicator if the glyph is
+interpreting a drawing glyph as a scaling unit if the glyph is
 represented by a single character) use @code{\&}.
 
 @Example
@@ -14030,11 +14030,11 @@ is negative, not moving the current point.
 @cindex box rule glyph (@code{\[br]})
 @cindex glyph, box rule (@code{\[br]})
 Draw vertical lines.  Its parameters are similar to the @code{\l}
-escape, except that the default scaling indicator is @samp{v}.  The
-movement is downward for positive values, and upward for negative
-values.  The default glyph is the box rule glyph, @code{\[br]}.  As with
-the vertical motion escape sequences, text processing blindly continues
-where the line ends.
+escape, except that the default scaling unit is @samp{v}.  The movement
+is downward for positive values, and upward for negative values.  The
+default glyph is the box rule glyph, @code{\[br]}.  As with the vertical
+motion escape sequences, text processing blindly continues where the
+line ends.
 
 @Example
 This is a \L'3v'test.
@@ -14057,7 +14057,7 @@ character devices, only vertical and horizontal lines are supported
 within @code{grotty}; other devices may only support a subset of the
 available drawing functions.
 
-The default scaling indicator for all subcommands of @code{\D} is
+The default scaling unit for all subcommands of @code{\D} is
 @samp{m} for horizontal distances and @samp{v} for vertical ones.
 Exceptions are @samp{\D'f @dots{}'} and @samp{\D't @dots{}'}, which use
 @code{u} as the default, and @samp{\D'F@var{x} @dots{}'}, which
@@ -16789,9 +16789,8 @@ Emit a @code{break} warning if the additional space inserted for each
 space between words in an output line adjusted to both margins with
 @w{@samp{.ad b}} is larger than or equal to @var{limit}.  A negative
 value is treated as zero; an absent argument toggles the warning on and
-off without changing @var{limit}.  The default scaling indicator is
-@samp{m}.  At startup, @code{spreadwarn} is inactive and @var{limit} is
-3@dmn{m}.
+off without changing @var{limit}.  The default scaling unit is @samp{m}.
+At startup, @code{spreadwarn} is inactive and @var{limit} is 3@dmn{m}.
 
 For example,
 
@@ -17309,10 +17308,10 @@ may exist, using any valid identifiers for their names
 @cindex sizes, fractional
 @cindex @code{ps} request, incompatibilities with @acronym{AT&T} @code{troff}
 Fractional type sizes cause one noteworthy incompatibility.  In
-@acronym{AT&T} @code{troff} the @code{ps} request ignores scale
-indicators and thus @samp{.ps 10u} sets the type size to
-10@tie{}points, whereas in GNU @code{troff} it sets the type size to
-10@tie{}@emph{scaled} points.  @xref{Using Fractional Type Sizes}.
+@acronym{AT&T} @code{troff} the @code{ps} request ignores scaling units
+and thus @samp{.ps 10u} sets the type size to 10@tie{}points, whereas in
+GNU @code{troff} it sets the type size to 10@tie{}@emph{scaled} points.
+@xref{Using Fractional Type Sizes}.
 
 @cindex @code{ab} request, incompatibilities with @acronym{AT&T} @code{troff}
 The @code{ab} request differs from @acronym{AT&T} @code{troff}:
@@ -17322,8 +17321,8 @@ successful one.
 
 @cindex @code{bp} request, incompatibilities with @acronym{AT&T} @code{troff}
 The @code{bp} request differs from @acronym{AT&T} @code{troff}:
-GNU @code{troff} does not accept a scaling indicator on the argument, a
-page number; the former (somewhat uselessly) does.
+GNU @code{troff} does not accept a scaling unit on the argument, a page
+number; the former (somewhat uselessly) does.
 
 @cindex @code{pm} request, incompatibilities with @acronym{AT&T} @code{troff}
 The @code{pm} request differs from @acronym{AT&T} @code{troff}:
@@ -17559,11 +17558,11 @@ can occur everywhere.  They are just ignored.
 @subsubsection Argument Units
 
 Some commands take integer arguments that are assumed to represent
-values in a measurement unit, but the letter for the corresponding scale
-indicator is not written with the output command arguments.  Most
-commands assume the scaling indicator @samp{u}, the basic unit of the
-device, some use @samp{z}, the scaled point unit of the device, while
-others, such as the color commands, expect plain integers.
+values in a measurement unit, but the letter for the corresponding
+scaling unit is not written with the output command arguments.  Most
+commands assume the scaling unit @samp{u}, the basic unit of the device,
+some use @samp{z}, the scaled point unit of the device, while others,
+such as the color commands, expect plain integers.
 
 Single characters can have the eighth bit set, as can the names of
 fonts and special characters.  The names of characters and fonts can be
@@ -18492,8 +18491,8 @@ The default is@tie{}@code{1}.  @xref{Using Fractional Type Sizes}.
 
 @item styles @var{S1} @r{@dots{}} @var{Sm}
 @kindex styles
-The first@tie{}@var{m} font mounting positions are associated with
-styles @var{S1}, @dots{}, @var{Sm}.
+The first@tie{}@var{m} mounting positions are associated with styles
+@var{S1}, @dots{}, @var{Sm}.
 
 @item tcommand
 @kindex tcommand

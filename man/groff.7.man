@@ -3059,11 +3059,11 @@ Exit with successful status.
 .
 .TPx
 .REQ .fam
-Return to previous font family.
+Set default font family to previous value.
 .
 .TPx
 .REQ .fam "name"
-Set the current font family to
+Set default font family to
 .IR name .
 .
 .TPx
@@ -3116,20 +3116,20 @@ Sets
 Flush output buffer.
 .
 .TPx
-.REQ .fp "n font"
-Mount
-.I font
-at position
-.IR n .
+.REQ .fp "pos id"
+Mount font with font description file name
+.I id
+at non-negative
+.RI position\~ n .
 .
 .TPx
-.REQ .fp "n internal external"
-Mount font with description file
-.I external
-under the name
-.I internal
-at position
-.IR n .
+.REQ .fp "pos id font-description-file-name"
+Mount font with
+.I font-description-file-name
+as name
+.I id
+at non-negative
+.RI position\~ n .
 .
 .TPx
 .REQ .fschar "f c anything"
@@ -3158,7 +3158,10 @@ are special.
 .
 .TPx
 .REQ .ft
-Select previous style or font;
+.TQ
+.REQ ".ft P"
+Select previous font mounting position
+(abstract style or font);
 same as
 .esc f[]
 or
@@ -3166,13 +3169,19 @@ or
 .
 .TPx
 .REQ .ft "font"
-Select style,
-font name,
-or mounting position
-.IR font ;
+Select typeface
+.I font,
+which can be a
+mounting position,
+abstract style,
+or font name;
 same as
 .esc[] f font
 escape sequence.
+.
+.I font
+cannot be
+.BR P .
 .
 .TPx
 .REQ .ftr "font1 font2"
@@ -4129,7 +4138,7 @@ with its uppercase version.
 .
 .TPx
 .REQ .sty "n style"
-Associate
+Associate abstract
 .I style
 with font position
 .IR n .
@@ -4839,57 +4848,67 @@ As
 .esc e ,
 but not interpreted in copy mode.
 .
+.TP
+.ESC fP
+Select previous font mounting position
+(abstract style or font);
+same as
+.RB \[lq] .ft \[rq]
+or
+.RB \[lq] .ft\~P \[rq].
 .
 .TP
 .ESC f F
-Change to font or style with one-character name or one-digit
+Select font mounting position,
+abstract style,
+or font with one-character name or one-digit
 .RI position\~ F .
 .
-.
-.TP
-.ESC fP
-Switch to previous font or style.
-.
+.IR F \~cannot
+be
+.BR P .
 .
 .TP
 .ESC f( ft
-Change to font with two-character name or two-digit
+Select font mounting position,
+abstract style,
+or font with two-character name or two-digit
 .RI position\~ ft .
-.
 .
 .TP
 .ESC[] f font
-Change to font with arbitrarily long name or position
+Select font mounting position,
+abstract style,
+or font with arbitrarily long name or position
 .IR font .
 .
+.I font
+cannot be
+.BR P .
 .
 .TP
 .ESC[] f ""
-Switch to previous font or style.
-.
+Select previous font mounting position
+(abstract style or font).
 .
 .TP
 .ESC F f
-Change to font family with one-character
+Set default font family to that with one-character
 .RI name\~ f .
-.
 .
 .TP
 .ESC F( fm
-Change to font family with two-character
+Set default font family to that with two-character
 .RI name\~ fm .
-.
 .
 .TP
 .ESC[] F fam
-Change to font family with arbitrarily long name
+Set default font family to that with arbitrarily long name
 .IR fam .
-.
 .
 .TP
 .ESC[] F ""
-Switch to previous font family.
-.
+Set default font family to previous value.
 .
 .TP
 .ESC g r
@@ -5689,7 +5708,7 @@ see
 .
 .TP
 .REG .fam
-Name of font family (string-valued).
+Name of default font family (string-valued).
 .
 .TP
 .REG .fn
@@ -5951,7 +5970,7 @@ of the selected font.
 .
 .TP
 .REG .sty
-Font style (string-valued);
+Selected abstract style (string-valued);
 see
 .request .ft
 and
@@ -6381,7 +6400,7 @@ in GNU
 an output device can associate a style in the abstract sense with a
 mounting position.
 .
-Thus the current family can be combined with a style dynamically,
+Thus the default family can be combined with a style dynamically,
 producing a
 .I "resolved font name."
 .
@@ -6416,14 +6435,13 @@ and a special font
 .
 .
 .P
-Each typesetting output device configures a default family;
-for those provided by
-.I groff,
-this is always
-.BR T .
+The default family used with abstract styles can be changed at any time;
+initially,
+it
+.RB is\~ T .
 .
-Conventionally,
-the styles are arranged in the first four mounting positions in the
+Typically,
+abstract styles are arranged in the first four mounting positions in the
 order shown above.
 .
 The default mounting position,

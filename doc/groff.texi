@@ -8546,7 +8546,7 @@ mode@tie{}12 causes GNU @code{troff} to hyphenate neither the last two
 nor the first two characters of a word.  Some values cannot be used
 together because they contradict; for instance, values 4 and@tie{}16,
 and values 8 and@tie{}32.  As noted, it is superfluous to add 1 to any
-nonzero even mode.
+non-zero even mode.
 
 @cindex hyphenation pattern files
 @cindex pattern files, for hyphenation
@@ -9163,7 +9163,7 @@ Only a single character of @var{c} is recognized; any excess is ignored.
 @cindex tab, line-tabs mode
 @cindex line-tabs mode
 @cindex mode, line-tabs
-If @var{n} is missing or nonzero, activate @dfn{line-tabs}; deactivate
+If @var{n} is missing or non-zero, activate @dfn{line-tabs}; deactivate
 it otherwise (the default).  Active line-tabs cause GNU @code{troff}
 to compute tab distances relative to the start of the output line
 instead of the input line.
@@ -10545,7 +10545,7 @@ current font or style for later recall.
 @endExample
 
 @cindex next free font position register (@code{.fp})
-The index of the next (nonzero) free font position is available in the
+The index of the next (non-zero) free font position is available in the
 read-only register @samp{.fp}.
 @cindex @file{DESC} file, and font mounting
 Fonts not listed in the @file{DESC} file are automatically mounted at
@@ -12824,7 +12824,7 @@ requests may be interposed between the @code{ie} branch and the
 
 @Example
 .nr a 0
-.ie \na a is nonzero.
+.ie \na a is non-zero.
 .nr a +1
 .el a was not positive but is now \na.
     @result{} a was not positive but is now 1.

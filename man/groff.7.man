@@ -5701,7 +5701,7 @@ and
 .
 .TP
 .REG .fp
-Next free font mounting position index.
+Next non-zero free font mounting position index.
 .
 .TP
 .REG .g
@@ -6579,7 +6579,7 @@ values 4 and\~16,
 and values 8 and\~32.
 .
 As noted,
-it is superfluous to add\~1 to any nonzero even mode.
+it is superfluous to add\~1 to any non-zero even mode.
 .
 .
 .P

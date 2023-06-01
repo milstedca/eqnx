@@ -3353,7 +3353,7 @@ Set an automatically numbered heading.
 any depth desired, with the numbering of each depth increasing
 automatically and being reset to zero when a more significant level is
 increased.  ``1''@tie{}is the most significant or coarsest division of
-the document.  Only nonzero values are output.  If @var{depth} is
+the document.  Only non-zero values are output.  If @var{depth} is
 omitted, it is taken to be @samp{1}.
 
 If you specify @var{depth} such that an ascending gap occurs relative to

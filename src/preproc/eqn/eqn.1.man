@@ -262,12 +262,13 @@ is a token.
 .
 .
 Spaces and newlines are interchangeable;
-they separate input tokens but do not break lines or produce space in
+they separate tokens but do not break lines or produce space in
 the output.
 .
 .
 .P
-A handful of tokens manages the grouping and spacing of other tokens.
+The following input characters not only separate tokens,
+but manage their grouping and spacing as well.
 .
 .
 .TP

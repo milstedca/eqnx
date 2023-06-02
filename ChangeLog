@@ -1,3 +1,40 @@
+2023-06-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Slightly refactor.
+
+	[grodvi, grops, xditview, libbib, libgroff, eqn, pre-grohtml,
+	preconv, refer, troff, tfmtodit]: Store return value of
+	`strlen()` in a `size_t` (or `ptrdiff_t` if we're performing
+	subtraction on it) instead of an `int`.  Change temporaries
+	{loop indices and similar} to use the same types.
+
+	* src/devices/grodvi/dvi.cpp (dvi_printer::do_special):
+	* src/devices/grops/ps.cpp (ps_output::comment_arg):
+	(ps_output::put_string, ps_output::put_number):
+	(ps_output::put_float, ps_output::put_color):
+	* src/devices/grops/ps.cpp (class ps_output) <put_string, col>:
+	<max_line_length>:
+	* src/devices/xditview/Dvi.c (ClassInitialize):
+	* src/include/symbol.h (class symbol) <block_size>:
+	* src/libs/libbib/index.cpp (index_search_item::munge_filename):
+	(index_search_item::search_item):
+	* src/libs/libgroff/fontfile.cpp (font::open_file):
+	* src/libs/libgroff/string.cpp (string::operator=):
+	(string::operator+):
+	* src/libs/libgroff/symbol.cpp (symbol::symbol):
+	(symbol::block_size):
+	* src/preproc/eqn/delim.cpp (define_extensible_string):
+	* src/preproc/html/pre-html.cpp (char_buffer::can_see):
+	* src/preproc/html/pushback.cpp (pushBackBuffer::isString):
+	* src/preproc/preconv/preconv.cpp (emacs2mine):
+	* src/preproc/refer/label.ypp (format_expr::evaluate):
+	* src/roff/troff/input.cpp (make_temp_iterator, pipe_source):
+	* src/utils/tfmtodit/tfmtodit.cpp (main): Do it.
+
+	* src/preproc/html/pushback.cpp (pushBackBuffer::isString): Drop
+	`while` loop that is now tautologically true due to comparison
+	of unsigned types.
+
 2023-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/env.cpp (font_change): Trivially refactor.

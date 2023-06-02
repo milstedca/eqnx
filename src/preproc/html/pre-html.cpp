@@ -702,8 +702,8 @@ void char_buffer::write_upto_newline(char_block **t, int *i,
 
 bool char_buffer::can_see(char_block **t, int *i, const char *str)
 {
-  int j = 0;
-  int l = strlen(str);
+  size_t j = 0;
+  size_t l = strlen(str);
   int k = *i;
   char_block *s = *t;
 

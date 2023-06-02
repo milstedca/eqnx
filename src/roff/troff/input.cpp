@@ -3749,7 +3749,7 @@ input_iterator *make_temp_iterator(const char *s)
   if (s == 0)
     return new temp_iterator(s, 0);
   else {
-    int n = strlen(s);
+    size_t n = strlen(s);
     return new temp_iterator(s, n);
   }
 }
@@ -6170,15 +6170,15 @@ void pipe_source()
       int c;
       while ((c = get_copy(0)) == ' ' || c == '\t')
 	;
-      int buf_size = 24;
+      size_t buf_size = 24;
       char *buf = new char[buf_size];
-      int buf_used = 0;
+      size_t buf_used = 0;
       for (; c != '\n' && c != EOF; c = get_copy(0)) {
 	const char *s = asciify(c);
-	int slen = strlen(s);
+	size_t slen = strlen(s);
 	if (buf_used + slen + 1> buf_size) {
 	  char *old_buf = buf;
-	  int old_buf_size = buf_size;
+	  size_t old_buf_size = buf_size;
 	  buf_size *= 2;
 	  buf = new char[buf_size];
 	  memcpy(buf, old_buf, old_buf_size);

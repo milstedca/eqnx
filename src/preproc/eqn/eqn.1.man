@@ -381,9 +381,11 @@ constants,
 numeric literals,
 and operators.
 .
-.I eqn \" general
-remaps some input character sequences for economy in equation entry and
-to ensure that glyphs from an unstyled font are used;
+.I %g%eqn
+remaps some input character sequences to
+.I groff
+special character escape sequences for economy in equation entry and to
+ensure that glyphs from an unstyled font are used;
 see
 .MR groff_char @MAN7EXT@ .
 .

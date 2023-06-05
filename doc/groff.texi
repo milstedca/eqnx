@@ -4857,9 +4857,6 @@ Names containing the characters @code{*}, @code{@@}, and@tie{}@code{:}.
 Names containing only uppercase letters and digits.
 @end itemize
 
-@codequotebacktick off
-@codequoteundirected off
-
 
 @c =====================================================================
 @c =====================================================================
@@ -4917,9 +4914,6 @@ not interested in details.
 
 
 @c =====================================================================
-
-@codequotebacktick on
-@codequoteundirected on
 
 @c BEGIN Keep roughly parallel with roff(7) section "Concepts".
 @node Text, Measurements, GNU troff Reference, GNU troff Reference
@@ -16166,10 +16160,14 @@ its escape character stripped.  So that the basic Latin subset of the
 Unicode character set@footnote{that is, ISO@tie{}646:1991-IRV or,
 popularly, ``US-ASCII''} can be reliably encoded in device control
 commands, seven special character escape sequences (@samp{\-},
-@samp{\aq}, @samp{\dq}, @samp{\ga}, @samp{\ha}, @samp{\rs}, and
-@samp{\ti},) are mapped to basic Latin glyphs; see the
-@cite{groff_char@r{(7)}} man page.  The use of any other escape sequence
-in @code{\X} arguments is normally an error.
+@samp{\[aq]}, @samp{\[dq]}, @samp{\[ga]}, @samp{\[ha]}, @samp{\[rs]},
+and @samp{\[ti]},) are mapped to basic Latin glyphs; see the
+@cite{groff_char@r{(7)}} man page.  For this transformation, character
+translations and special character definitions are
+ignored.@footnote{They are bypassed because these parameters are not
+rendered as glyphs in the output; instead, they remain abstract
+characters---in a PDF bookmark or a URL, for example.} The use of any
+other escape sequence in @code{\X} arguments is normally an error.
 
 @kindex use_charnames_in_special
 @cindex @file{DESC} file, and @code{use_charnames_in_special} keyword
@@ -16311,23 +16309,15 @@ both the @code{.nm} and @code{.nn} registers.
   Test line numbering.
   .is-numbered
   .nm 1
-  .nn 2
-  .is-numbered
+  .nn 1
   .is-numbered
   .is-numbered
   .nm
   .is-numbered
-@endExample
-
-@noindent
-The output lines correctly report their numbering status.
-
-@Example
-  Test line numbering.  This line ISN'T numbered.
-  This line ISN'T numbered.
-  This line ISN'T numbered.
-    1 This line IS numbered.
-  This line ISN'T numbered.
+    @result{} Test line numbering.  This line ISN@quoteright{}T numbered.
+    @result{} This line ISN@quoteright{}T numbered.
+    @result{}   1 This line IS numbered.
+    @result{} This line ISN@quoteright{}T numbered.
 @endExample
 
 @Defreq {mc, [@Var{margin-character} [@Var{distance}]}
@@ -16393,11 +16383,8 @@ documents.  The @code{groff} distribution ships a program,
 @command{gdiffmk}, to assist with this task.@footnote{Historically,
 tools named @command{nrchbar} and @command{changebar} were developed for
 marking changes with margin characters and could be found in archives of
-the @code{comp.sources.unix} USENET group.  Some proprietary Unices also
-offer(ed) a @command{diffmk} program.}
-
-@codequotebacktick off
-@codequoteundirected off
+the @code{comp.sources.unix} @acronym{USENET} group.  Some proprietary
+Unices also offer(ed) a @command{diffmk} program.}
 
 @DefreqList {psbb, file}
 @DefregItemx {llx}
@@ -16408,15 +16395,18 @@ offer(ed) a @command{diffmk} program.}
 @cindex bounding box
 Retrieve the bounding box of the PostScript image found in @var{file},
 which must conform to Adobe's @dfn{Document Structuring Conventions}
-(DSC).  The request searches for a @code{%%BoundingBox} comment and
-extracts the bounding box values into the registers @code{llx},
+(DSC), locate a @code{%%BoundingBox} comment, and store the (upper-,
+lower-, @w{-left}, @w{-right}) values into the registers @code{llx},
 @code{lly}, @code{urx}, and @code{ury}.  If an error occurs (for
-example, @code{psbb} cannot find the @code{%%BoundingBox} comment), it
-sets the four registers to zero.
+example, if no @code{%%BoundingBox} comment is present), the formatter
+sets these registers to@tie{}0.
 
 The search path for @var{file} can be controlled with the @option{-I}
 command-line option.
 @endDefreq
+
+@codequotebacktick off
+@codequoteundirected off
 
 
 @c =====================================================================

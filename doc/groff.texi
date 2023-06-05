@@ -844,9 +844,6 @@ contributed much of the material on the @file{ms} macro package.
 @c =====================================================================
 @c =====================================================================
 
-@codequotebacktick on
-@codequoteundirected on
-
 @node Invoking groff, Tutorial for Macro Users, Introduction, Top
 @chapter Invoking @code{groff}
 @cindex invoking @code{groff}
@@ -9499,9 +9496,6 @@ file @file{tty.tmac}, which is loaded by the startup file
 
 @xref{Conditionals and Loops}, for more details on built-in conditions.
 
-@codequotebacktick off
-@codequoteundirected off
-
 
 @c =====================================================================
 
@@ -9809,9 +9803,6 @@ request invocation or macro call.}
 
 
 @c =====================================================================
-
-@codequotebacktick on
-@codequoteundirected on
 
 @node Page Layout, Page Control, Line Continuation, GNU troff Reference
 @section Page Layout
@@ -10545,9 +10536,6 @@ position @samp{\n[.fp]} when selected with the @code{ft} request or
 explicitly with the @code{fp} request, this same practice should be
 followed, although GNU @code{troff} does not enforce this strictly.
 @endDefreq
-
-@codequotebacktick off
-@codequoteundirected off
 
 @c ---------------------------------------------------------------------
 
@@ -13925,9 +13913,6 @@ an actual emergency!
 @endExample
 @endDefesc
 
-@codequotebacktick off
-@codequoteundirected off
-
 
 @c =====================================================================
 
@@ -14217,9 +14202,6 @@ Examples:
 @endDefesc
 
 @xref{Graphics Commands}.
-
-@codequotebacktick on
-@codequoteundirected on
 
 @Defesc {\\b, @code{'}, contents, @code{'}}
 @cindex pile, glyph (@code{\b})
@@ -16551,6 +16533,9 @@ restore tokens are removed.
 
 @c =====================================================================
 
+@codequotebacktick on
+@codequoteundirected on
+
 @need 1000
 @c BEGIN Keep parallel with section "Debugging" of groff(7).
 @node Debugging, Implementation Differences, Gtroff Internals, GNU troff Reference
@@ -16713,7 +16698,6 @@ Write the state of the input stack to the standard error stream.
 
 Consider the following in a file @file{test}.
 
-@codequoteundirected on
 @Example
 .de xxx
 .  backtrace
@@ -16727,7 +16711,6 @@ Consider the following in a file @file{test}.
     @error{} troff: backtrace: 'test':5: macro 'yyy'
     @error{} troff: backtrace: file 'test':8
 @endExample
-@codequoteundirected off
 
 The @option{-b} option of GNU @code{troff} causes a backtrace to be
 generated on each error or warning.  Some warnings have to be enabled;
@@ -16972,9 +16955,6 @@ targeting @code{groff} are encouraged to use this setting.
 @c END Keep parallel with section "Warnings" of troff(1).
 
 @c =====================================================================
-
-@codequotebacktick on
-@codequoteundirected on
 
 @node Implementation Differences, Safer Mode, Debugging, GNU troff Reference
 @section Implementation Differences
@@ -17397,6 +17377,9 @@ following two sections describe their format.
 
 
 @c =====================================================================
+
+@codequotebacktick on
+@codequoteundirected on
 
 @c BEGIN TODO: Make parallel with groff_out(5).
 @node gtroff Output, Device and Font Description Files, File Formats, File Formats
@@ -18082,9 +18065,6 @@ commands @samp{t} and @samp{u} provide a better functionality.
 
 @c ---------------------------------------------------------------------
 
-@codequotebacktick on
-@codequoteundirected on
-
 @node Intermediate Output Examples, Output Language Compatibility, Command Reference, gtroff Output
 @subsection Intermediate Output Examples
 
@@ -18211,9 +18191,6 @@ Due to the obsolete jump-and-write command, the text clusters in the
 @acronym{AT&T} @code{troff} output are almost unreadable.
 @end table
 
-@codequotebacktick off
-@codequoteundirected off
-
 @c ---------------------------------------------------------------------
 
 @node Output Language Compatibility,  , Intermediate Output Examples, gtroff Output
@@ -18286,9 +18263,6 @@ follow quite naturally.
 
 
 @c =====================================================================
-
-@codequotebacktick on
-@codequoteundirected on
 
 @c BEGIN Keep parallel with groff_font(5).
 @node Device and Font Description Files,  , gtroff Output, File Formats

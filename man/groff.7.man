@@ -3726,12 +3726,18 @@ for writing and associate the stream named
 .I stream
 with it.
 .
+Unsafe request;
+disabled by default.
+.
 .TPx
 .REQ .opena "stream file"
 As
 .request .open ,
 but append to
 .I file.
+.
+Unsafe request;
+disabled by default.
 .
 .TPx
 .REQ .os
@@ -3771,6 +3777,9 @@ Pipe output to
 .I program
 .RI ( nroff
 only).
+.
+Unsafe request;
+disabled by default.
 .
 .TPx
 .REQ .pl
@@ -3854,6 +3863,8 @@ with
 .MR popen 3
 and interpolate its output.
 .
+Unsafe request;
+disabled by default.
 .
 .TPx
 .REQ .ptr
@@ -4186,6 +4197,8 @@ Execute
 with
 .MR system 3 .
 .
+Unsafe request;
+disabled by default.
 .
 .TPx
 .REQ .ta "n1 n2 \fR\&.\|.\|.\&\fP n\fRn\fP \f[CB]T\f[] r1 r2 \

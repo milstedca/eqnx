@@ -3765,12 +3765,12 @@ Page number character.
 Report the state of the current environment followed by that of all
 other environments to the standard error stream.
 .
-.
 .TPx
 .REQ .pi "program"
 Pipe output to
 .I program
-(nroff only).
+.RI ( nroff
+only).
 .
 .TPx
 .REQ .pl
@@ -3847,11 +3847,12 @@ See registers
 .BR ury .
 .
 .TPx
-.REQ .pso "command"
-This behaves like the
-.request .so
-request except that input comes from the standard output of
-.IR command .
+.REQ .pso "command-line"
+Execute
+.I command-line
+with
+.MR popen 3
+and interpolate its output.
 .
 .
 .TPx
@@ -4157,14 +4158,20 @@ Negative indices count backwards from the end of the string.
 .
 .TPx
 .REQ .sv
-Save
+As
+.request .ne ,
+but save
 .scalednumber "1 v"
-of vertical space.
+for output with
+.request .os
+request.
 .
 .TPx
-.REQ .sv n
-Save the vertical distance
-.I n
+.REQ .sv d
+As
+.request .ne ,
+but save distance
+.I d
 for later output with
 .request .os
 request
@@ -4174,8 +4181,10 @@ request
 .
 .TPx
 .REQ .sy "command-line"
-Execute program
-.IR command-line .
+Execute
+.I command-line
+with
+.MR system 3 .
 .
 .
 .TPx

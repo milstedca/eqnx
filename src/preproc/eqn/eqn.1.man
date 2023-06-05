@@ -1950,7 +1950,7 @@ input if they are not to be recognized as names of macros or primitives,
 or if they are to be interpreted by
 .IR troff . \" generic
 .
-In particlar,
+In particular,
 short ones like
 .RB \[lq] pi \[rq]
 and

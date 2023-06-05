@@ -12828,7 +12828,8 @@ To conveniently nest conditionals, keep reading.
 It is frequently desirable for a control structure to govern more than
 one request, macro call, text line, or a combination of the foregoing.
 The opening and closing brace escape sequences @code{\@{} and @code{\@}}
-perform such grouping; such @dfn{conditional blocks} can be nested.
+define such groups.  These @dfn{conditional blocks} can furthermore be
+nested.
 
 @DefescList {\@\{, , , }
 @DefescListEnd {\@\}, , , }
@@ -12846,9 +12847,9 @@ perform such grouping; such @dfn{conditional blocks} can be nested.
 @cindex closing brace escape sequence (@code{\@})}
 @cindex brace escape sequence, opening (@code{\@})}
 @cindex brace escape sequence, closing (@code{\@})}
-@code{\@{} begins a conditional block; it @code{\@{} must appear (after
-optional spaces and tabs) immediately subsequent to the conditional
-expression of an @code{if}, @code{ie}, or @code{while}
+@code{\@{} begins a conditional block; it must appear (after optional
+spaces and tabs) immediately subsequent to the conditional expression of
+an @code{if}, @code{ie}, or @code{while}
 request,@footnote{@xref{while}.} or as the argument to an @code{el}
 request.
 

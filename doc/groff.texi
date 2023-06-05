@@ -10505,7 +10505,7 @@ Send a \f(SChand-written\fP thank-you note.
 Are \f[Emph]these names\f[] \f[Strong]comfortable\f[]?
 @endExample
 
-@samp{DESC} and non-negative integers are not usable as font
+@samp{DESC}, @samp{P}, and non-negative integers are not usable as font
 identifiers.
 @c XXX: TODO: Catch the DESC case earlier and throw an error for it.
 @c XXX: This identifier could be used as a style name, but no one's
@@ -10517,8 +10517,8 @@ The position of the currently selected font (or abstract style) is
 available in the read-only register @samp{.f}.  It is associated with
 the environment (@pxref{Environments}).
 
-The value of @code{.f} can be copied to another register to save the
-selected font for later recall.
+You can copy the value of @code{.f} to another register to save it for
+later use.
 
 @Example
 .nr saved-font \n[.f]
@@ -10805,21 +10805,22 @@ instead, you have to define @code{u0041_0328}.
 @cindex named character (@code{\C})
 @cindex character, named (@code{\C})
 Typeset the glyph of the special character @var{xxx}.  Normally, it is
-more convenient to use @code{\[@var{xxx}]}, but @code{\C} has the
-advantage that it is compatible with @acronym{AT&T} device-independent
-@code{troff} and is available in compatibility mode.
+more convenient to use @code{\[@var{xxx}]}, but @code{\C} has some
+advantages: it is compatible with @acronym{AT&T} device-independent
+@code{troff} (and therefore available in compatibility
+mode@footnote{@xref{Compatibility Mode}.}) and can interpolate special
+characters with @samp{]} in their names.  The delimiter need not be
+a neutral apostrophe; see @ref{Delimiters}.
 @endDefesc
 
-@Defreq {composite, from to}
+@Defreq {composite, id1 id2}
 @pindex composite.tmac
-Map glyph name @var{from} to glyph name @var{to} if it is used in
-@code{\[...]} with more than one component.  See above for examples.
-
-This mapping is based on glyph names only; no check for the existence of
-either glyph is done.
-
-A set of default mappings for many accents can be found in the file
-@file{composite.tmac}, which is loaded at startup.
+Map special character name @var{id1} to @var{id2} if @var{id1} is used
+in @code{\[...]} with more than one component.  See above for examples.
+This is a strict rewriting of the special character name; no check is
+performed for the existence of a glyph for either.  A set of default
+mappings for many accents can be found in the file
+@file{composite.tmac}, loaded by the default @file{troffrc} at startup.
 @endDefreq
 
 @Defesc {\\N, @code{'}, n, @code{'}}
@@ -10849,32 +10850,29 @@ description file after the @code{charset} command.  It is possible to
 include unnamed glyphs in the font description file by using a name of
 @samp{---}; the @code{\N} escape sequence is the only way to use these.
 
-No kerning is applied to glyphs accessed with @code{\N}.
+No kerning is applied to glyphs accessed with @code{\N}.  The delimiter
+need not be a neutral apostrophe; see @ref{Delimiters}.
 @endDefesc
 
-A few more escape sequences are also special characters.
+A few escape sequences are also special characters.
 
 @Defesc {\@code{'}, , , }
-A backslash followed by the apostrophe character,
-@acronym{ASCII} character @code{0x27} (@acronym{EBCDIC} character
-@code{0x7D}), is a synonym for @code{\[aa]}, the acute accent.
+An escaped neutral apostrophe is a synonym for @code{\[aa]} (acute
+accent).
 @endDefesc
 
 @Defesc {\@code{`}, , , }
-A backslash followed by @acronym{ASCII} character @code{0x60}
-(@acronym{EBCDIC} character @code{0x79} [usually]), is a synonym for
-@code{\[ga]}, the grave accent.
+An escaped grave accent is a synonym for @code{\[ga]} (grave accent).
 @endDefesc
 
 @Defesc {\\-, , , }
-A backslash followed by a dash is a synonym for @code{\[-]}, the minus
-sign.
+An escaped hyphen-minus is a synonym for @code{\[-]} (minus sign).
 @endDefesc
 
 @Defesc {\\_, , , }
-A backslash followed by an underscore is a synonym for @code{\[ul]}, the
-underrule.  On @code{troff}-mode (typesetter) devices it may be
-font-invariant and drawn lower than the underscore glyph @samp{_}.
+An escaped underscore (``low line'') is a synonym for @code{\[ul]}
+(underrule).  On typesetting devices, the underrule is font-invariant
+and drawn lower than the underscore @samp{_}.
 @endDefesc
 
 @Defreq {cflags, n c1 c2 @dots{}}

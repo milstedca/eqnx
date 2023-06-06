@@ -4894,7 +4894,7 @@ not interested in details.
 * Conditionals and Loops::
 * Writing Macros::
 * Page Motions::
-* Drawing Requests::
+* Drawing Geometric Objects::
 * Deferring Output::
 * Traps::
 * Diversions::
@@ -5938,7 +5938,7 @@ quanta, respectively, of the output device in basic units.
 @endDefreg
 
 For example, we might draw short baseline rules on a terminal device as
-follows.  @xref{Drawing Requests}.
+follows.  @xref{Drawing Geometric Objects}.
 
 @Example
 .tm \n[.H]
@@ -8926,7 +8926,7 @@ post-vertical line spacing.
 
 Use of @code{\x} can be necessary in combination with the
 bracket-building escape sequence @code{\b},@footnote{@xref{Drawing
-Requests}.} as the following example shows.
+Geometric Objects}.} as the following example shows.
 
 @Example
 .nf
@@ -8962,9 +8962,9 @@ Enable @dfn{no-space mode}.  Vertical spacing, whether by @code{sp}
 requests or blank input lines, is disabled.  The @code{bp} request to
 advance to the next page is also disabled, unless it is accompanied by a
 page number (@pxref{Page Control}).  No-space mode ends automatically
-when text@footnote{or geometric objects; see @ref{Drawing Requests}} is
-formatted for output @footnote{to the top-level diversion; see
-@ref{Diversions}} or the @code{rs} request is invoked, which ends
+when text@footnote{or geometric objects; see @ref{Drawing Geometric
+Objects}} is formatted for output @footnote{to the top-level diversion;
+see @ref{Diversions}} or the @code{rs} request is invoked, which ends
 no-space mode.  The read-only register @code{.ns} interpolates a Boolean
 value indicating the enablement of no-space mode.
 
@@ -13562,7 +13562,7 @@ sequence for the minus sign glyph.
 
 @c =====================================================================
 
-@node Page Motions, Drawing Requests, Writing Macros, GNU troff Reference
+@node Page Motions, Drawing Geometric Objects, Writing Macros, GNU troff Reference
 @section Page Motions
 @cindex page motions
 @cindex motions, page
@@ -13914,17 +13914,16 @@ an actual emergency!
 
 @c =====================================================================
 
-@node Drawing Requests, Traps, Page Motions, GNU troff Reference
-@section Drawing Requests
+@node Drawing Geometric Objects, Traps, Page Motions, GNU troff Reference
+@section Drawing Geometric Objects
 @cindex drawing requests
 @cindex requests for drawing
 
-@code{gtroff} provides a number of ways to draw lines and other figures
-on the page.  Used in combination with the page motion commands
-(@pxref{Page Motions}), a wide variety of figures can be drawn.
-However, for complex drawings these operations can be quite cumbersome,
-and it may be wise to use graphic preprocessors like @code{gpic} or
-@code{ggrn}.
+A few of the formatter's escape sequences draw lines and other geometric
+objects.  Combined with each other and with page motion commands
+(@pxref{Page Motions}), a wide variety of figures is possible.  For
+complex drawings, these operations can be cumbersome; the preprocessors
+@code{gpic} or @code{ggrn} are typically used instead.
 
 All drawing is done via escape sequences.
 
@@ -14234,7 +14233,7 @@ follows.
 
 @c =====================================================================
 
-@node Deferring Output, Traps, Drawing Requests, GNU troff Reference
+@node Deferring Output, Traps, Drawing Geometric Objects, GNU troff Reference
 @section Deferring Output
 @cindex deferred output
 
@@ -17767,7 +17766,7 @@ for vertical distances where positive means down, negative up.  All
 these distances are offsets relative to the current location.
 
 Each graphics command directly corresponds to a similar @code{gtroff}
-@code{\D} escape sequence.  @xref{Drawing Requests}.
+@code{\D} escape sequence.  @xref{Drawing Geometric Objects}.
 
 Unknown @samp{D} commands are assumed to be device-specific.  Its
 arguments are parsed as strings; the whole information is then sent to

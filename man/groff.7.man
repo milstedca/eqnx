@@ -4988,21 +4988,28 @@ Mark horizontal position in register with arbitrarily long
 .
 .
 .TP
-.ESCq l N\f[R][\f[]c\f[R]]
+.ESCq l N\/\f[R][\f[]c\f[R]]
 Draw horizontal line of length
-.IR N \~ems
-(or specified units),
-optionally using
-.RI glyph\~ c .
+.I N
+with character
+.B c
+(default:
+.BR \[rs][ru] ;
+default scaling unit\~\c
+.scaleindicator m ).
+.
 .
 .
 .TP
-.ESCq L N\f[R][\f[]g\f[R]]
+.ESCq L N\/\f[R][\f[]c\f[R]]
 Draw vertical line of length
-.IR N \~vees
-(or specified units),
-optionally using
-.RI glyph\~ g .
+.I N
+with character
+.B c
+(default:
+.BR \[rs][br] ;
+default scaling unit\~\c
+.scaleindicator v ).
 .
 .
 .TP

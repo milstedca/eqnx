@@ -13925,36 +13925,32 @@ objects.  Combined with each other and with page motion commands
 complex drawings, these operations can be cumbersome; the preprocessors
 @code{gpic} or @code{ggrn} are typically used instead.
 
-All drawing is done via escape sequences.
+The @code{\l} and @code{\L} escape sequences draw horizontal and
+vertical sequences of glyphs, respectively.  Even the simplest of
+output devices supports them.
 
 @DefescList {\\l, @code{'}, l, @code{'}}
 @DefescListEnd {\\l, @code{'}, lc, @code{'}}
 @cindex drawing horizontal lines (@code{\l})
 @cindex horizontal line, drawing (@code{\l})
 @cindex line, horizontal, drawing (@code{\l})
-Draw a line horizontally.  @var{l} is the length of the line to be
-drawn.  If it is positive, start the line at the current location and
-draw to the right; its end point is the new current location.  Negative
-values are handled differently: The line starts at the current location
-and draws to the left, but the current location doesn't move.
+Draw a horizontal line of length @var{l} from the drawing position.
+Rightward motion is positive.  Afterward, the drawing position is at the
+right end of the line.  @var{l} can employ the boundary-relative motion
+operator @samp{|}.  The default scaling unit is @samp{m}.
 
-@var{l} can also be specified absolutely (i.e., with a leading
-@samp{|}), which draws back to the beginning of the input line.  Default
-scaling unit is @samp{m}.
-
-@cindex underscore glyph (@code{\[ru]})
+@cindex baseline rule special character(@code{\[ru]})
 @cindex glyph, underscore (@code{\[ru]})
 @cindex line drawing glyph
 @cindex glyph, for line drawing
-The optional second parameter@tie{}@var{c} is a glyph to draw the line
-with.  If this second argument is not specified, @code{gtroff} uses the
-underscore glyph, @code{\[ru]}.
+The optional second parameter@tie{}@var{c} is a character with which to
+draw the line.  The default is the baseline rule special character,
+@code{\[ru]}.
 
-@cindex dummy character (@code{\&}), effect on @code{\l} escape
-@cindex character, dummy (@code{\&}), effect on @code{\l} escape
-To separate the two arguments (to prevent @code{gtroff} from
-interpreting a drawing glyph as a scaling unit if the glyph is
-represented by a single character) use @code{\&}.
+@cindex dummy character (@code{\&}), effect on @code{\l} escape sequence
+@cindex character, dummy (@code{\&}), effect on @code{\l} escape sequence
+If @var{c} is a valid scaling unit, put @code{\&} after @var{l} to
+disambiguate the input.
 
 @Example
 .de textbox
@@ -13963,15 +13959,17 @@ represented by a single character) use @code{\&}.
 @endExample
 
 @noindent
-The above works by outputting a box rule (a vertical line), then the
-text given as an argument and then another box rule.  Finally, the
-line-drawing escape sequences both draw from the current location to the
-beginning of the @emph{input} line---this works because the line length
-is negative, not moving the current point.
+The foregoing outputs a box rule (a vertical line), the text
+argument(s), and another box rule.  Finally, the line-drawing escape
+sequences draw a radical extender (a form of overline) and an underline
+from the drawing position to the position coresponding to beginning of
+the @emph{input} line.  The drawing position returns to just after the
+right-hand box rule because the lengths of the drawn lines are negative,
+as noted above.
 @endDefesc
 
 @DefescList {\\L, @code{'}, l, @code{'}}
-@DefescListEnd {\\L, @code{'}, lg, @code{'}}
+@DefescListEnd {\\L, @code{'}, lc, @code{'}}
 @cindex drawing vertical lines (@code{\L})
 @cindex vertical line drawing (@code{\L})
 @cindex line, vertical, drawing (@code{\L})
@@ -13979,26 +13977,25 @@ is negative, not moving the current point.
 @cindex glyph for line drawing
 @cindex box rule glyph (@code{\[br]})
 @cindex glyph, box rule (@code{\[br]})
-Draw vertical lines.  Its parameters are similar to the @code{\l}
-escape, except that the default scaling unit is @samp{v}.  The movement
-is downward for positive values, and upward for negative values.  The
-default glyph is the box rule glyph, @code{\[br]}.  As with the vertical
-motion escape sequences, text processing blindly continues where the
-line ends.
+Draw a vertical line of length @var{l} from the drawing position.
+Downward motion is positive.  The default scaling unit is @samp{v}.  The
+default character is the box rule, @code{\[br]}.  As with vertical
+motion escape sequences, text processing continues where the line ends.
+@code{\L} is otherwise similar to @code{\l}.
 
 @Example
+$ nroff <<EOF
 This is a \L'3v'test.
+EOF
+    @result{} This is a
+    @result{}           |
+    @result{}           |
+    @result{}           |test.
 @endExample
 
 @noindent
-Here is the result, produced with @code{grotty}.
-
-@Example
-This is a
-          |
-          |
-          |test.
-@endExample
+When writing text, the drawing position is at the text baseline; recall
+@ref{Page Geometry}.
 @endDefesc
 
 @Defesc {\\D, @code{'}, command arg @dots{}, @code{'}}

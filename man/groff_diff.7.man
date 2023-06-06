@@ -689,8 +689,8 @@ are intended for internal use by
 .B \[rs]O1
 Disable and enable,
 respectively,
-the emission of glyphs and geometric primitives to the output driver,
-provided that this sequence occurs at the outermost level
+the emission of glyphs and geometric objects to the output driver,
+provided that this sequence occurs at the outermost suppression level
 (see
 .B \[rs]O3
 and
@@ -708,13 +708,13 @@ and
 to\~\-1.
 .
 These four registers mark the top left and bottom right hand corners of
-a box encompassing all written glyphs.
+a box encompassing all written or drawn output.
 .
 .
 .TP
 .B \[rs]O2
-Provided that this sequence occurs at the outermost level,
-enable emission of glyphs and geometric primitives,
+At the outermost suppression level,
+enable emission of glyphs and geometric objects,
 and write to the standard error stream the page number and values of the
 four aforementioned registers encompassing glyphs written since the last
 interpolation of a
@@ -733,20 +733,23 @@ Numeric values are in basic units.
 .B \[rs]O3
 .TQ
 .B \[rs]O4
-Begin and end a nesting level,
+Begin and end a nested suppression level,
 respectively.
 .
-This is an internal mechanism for
 .I \%grohtml
-while producing images.
+uses this mechanism to create images of output preprocessed with
+.IR @g@pic ,
+.IR @g@eqn ,
+and
+.IR @g@tbl .
 .
 At startup,
 .I @g@troff
-is at the outermost level.
+is at the outermost suppression level.
 .
-These sequences are generated when processing the source document with
-.IR pre\-grohtml ,
-which uses
+.I \%pre\-grohtml
+generates these sequences when processing the document,
+using
 .I @g@troff
 with the
 .B ps
@@ -754,16 +757,16 @@ output device,
 Ghostscript,
 and the PNM tools to produce images in PNG format.
 .
-They start a new page if the device is not
+These sequences start a new page if the device is not
 .B html
 or
 .BR xhtml ,
-to reduce the possibility of images crossing a page boundary.
+to reduce the number of images crossing a page boundary.
 .
 .
 .TP
 .BI \[rs]O5[ Pfile ]
-Provided that this sequence occurs at the outermost level,
+At the outermost suppression level,
 write the name
 .I file
 to the standard error stream at position

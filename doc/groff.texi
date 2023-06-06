@@ -15657,20 +15657,21 @@ line emitted in the environment.
 @Defesc {\\O, [, num, ]}
 @cindex suppressing output (@code{\O})
 @cindex output, suppressing (@code{\O})
-Suppress GNU @code{troff} output of glyphs and geometric primitives.
-The sequences @code{\O2}, @code{\O3}, @code{\O4}, and @code{\O5} are
+Suppress GNU @code{troff} output of glyphs and geometric objects.  The
+sequences @code{\O2}, @code{\O3}, @code{\O4}, and @code{\O5} are
 intended for internal use by @code{grohtml}.
 
 @table @samp
 @item \O0
-Disable the emission of glyphs and geometric primitives to the output
-driver, provided that this sequence occurs at the outermost level
-(see @code{\O3} and @code{\04} below).  Horizontal motions corresponding
-to non-overstruck glyph widths still occur.
+Disable the emission of glyphs and geometric objects to the output
+driver, provided that this sequence occurs at the outermost suppression
+level (see @code{\O3} and @code{\04} below).  Horizontal motions
+corresponding to non-overstruck glyph widths still occur.
 
 @item \O1
-Enable the emission of glyphs and geometric primitives to the output
-driver, provided that this sequence occurs at the outermost level.
+Enable the emission of glyphs and geometric objects to the output
+driver, provided that this sequence occurs at the outermost suppression
+level.
 @end table
 
 @vindex opminx
@@ -15680,40 +15681,41 @@ driver, provided that this sequence occurs at the outermost level.
 @code{\O0} and @code{\O1} also reset the four registers @code{opminx},
 @code{opminy}, @code{opmaxx}, and @code{opmaxy} to @minus{}1.  These
 four registers mark the top left and bottom right hand corners of a box
-encompassing all written glyphs.
+encompassing all written or drawn output.
 
 @table @samp
 @item \O2
-Provided that this sequence occurs at the outermost level, enable
-emission of glyphs and geometric primitives, and write to the standard
-error stream the page number and values of the four aforementioned
-registers encompassing glyphs written since the last interpolation of a
-@code{\O} sequence, as well as the page offset, line length, image file
-name (if any), horizontal and vertical device motion quanta, and input
-file name.  Numeric values are in basic units.
+At the outermost suppression level, enable emission of glyphs and
+geometric objects, and write to the standard error stream the page
+number and values of the four aforementioned registers encompassing
+glyphs written since the last interpolation of a @code{\O} sequence, as
+well as the page offset, line length, image file name (if any),
+horizontal and vertical device motion quanta, and input file name.
+Numeric values are in basic units.
 
 @item \O3
-Begin a nesting level.  This is an internal mechanism for @code{grohtml}
-while producing images.  At startup, @code{gtroff} is at the outermost
-level.  These sequences are generated when processing the source
-document with @command{pre-grohtml}, which uses @command{gtroff} with
+Begin a nested suppression level.  @command{grohtml} uses this mechanism
+to create images of output preprocessed with @command{gpic},
+@command{geqn}, and @command{gtbl}.  At startup, GNU @code{troff} is at
+the outermost suppression level.  @command{pre-grohtml} generates these
+sequences when processing the document, using GNU @command{troff} with
 the @code{ps} output device, Ghostscript, and the PNM tools to produce
 images in PNG format.  They start a new page if the device is not
-@code{html} or @code{xhtml}, to reduce the possibility of images
-crossing a page boundary.
+@code{html} or @code{xhtml}, to reduce the number of images crossing a
+page boundary.
 
 @item \O4
-End a nesting level.
+End a nested suppression level.
 @end table
 
 @table @samp
 @item \O[5@var{P}@var{file}]
-Provided that this sequence occurs at the outermost level, write the
-name @code{file} to the standard error stream at position @var{P}, which
-must be one of @code{l}, @code{r}, @code{c}, or@tie{}@code{i},
-corresponding to left, right, centered, and inline alignments within the
-document, respectively.  @var{file} is a name associated with the
-production of the next image.
+At the outermost suppression level, write the name @code{file} to the
+standard error stream at position @var{P}, which must be one of
+@code{l}, @code{r}, @code{c}, or@tie{}@code{i}, corresponding to left,
+right, centered, and inline alignments within the document,
+respectively.  @var{file} is a name associated with the production of
+the next image.
 @end table
 @endDefesc
 

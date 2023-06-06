@@ -5088,14 +5088,14 @@ and so on.
 .TP
 .ESC O0
 At the outermost suppression level,
-disable emission of glyphs and geometric primitives to the output
+disable emission of glyphs and geometric objects to the output
 driver.
 .
 .
 .TP
 .ESC O1
 At the outermost suppression level,
-enable emission of glyphs and geometric primitives to the output driver.
+enable emission of glyphs and geometric objects to the output driver.
 .
 .
 .TP

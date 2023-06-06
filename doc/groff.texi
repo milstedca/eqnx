@@ -5718,7 +5718,7 @@ within numeric ranges corresponding to the page boundaries.
 While the formatter (and, later, output driver) is processing a page, it
 keeps track of its @dfn{drawing position}, which is the location at
 which the next glyph will be written, from which the next motion will be
-measured, or where a geometric primitive will commence rendering.
+measured, or where a geometric object will commence rendering.
 @cindex text baseline
 @cindex baseline, text
 Notionally, glyphs are drawn from the text baseline upward and to the
@@ -8962,8 +8962,8 @@ Enable @dfn{no-space mode}.  Vertical spacing, whether by @code{sp}
 requests or blank input lines, is disabled.  The @code{bp} request to
 advance to the next page is also disabled, unless it is accompanied by a
 page number (@pxref{Page Control}).  No-space mode ends automatically
-when text@footnote{or geometric primitives; see @ref{Drawing Requests}}
-is formatted for output @footnote{to the top-level diversion; see
+when text@footnote{or geometric objects; see @ref{Drawing Requests}} is
+formatted for output @footnote{to the top-level diversion; see
 @ref{Diversions}} or the @code{rs} request is invoked, which ends
 no-space mode.  The read-only register @code{.ns} interpolates a Boolean
 value indicating the enablement of no-space mode.
@@ -17447,7 +17447,7 @@ refers to this intermediate output language, and never to the
 @code{groff} language intended for direct use by document authors.
 Intermediate output commands comprise several categories: glyph output;
 font, color, and text size selection; motion of the printing position;
-page advancement; drawing of geometric primitives; and device control
+page advancement; drawing of geometric objects; and device control
 commands, a catch-all for operations not easily classified as any of the
 foregoing, such as directives to start and stop output, identify the
 intended output device, or place URL hyperlinks in supported output

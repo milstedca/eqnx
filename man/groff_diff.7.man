@@ -670,7 +670,7 @@ Interpolate register
 .BI \[rs]O[ n ]
 Suppress
 .I @g@troff
-output of glyphs and geometric primitives.
+output of glyphs and geometric objects.
 .
 The sequences
 .BR \[rs]O2 ,

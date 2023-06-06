@@ -548,7 +548,7 @@ it keeps track of its
 .I drawing position,
 which is the location at which the next glyph will be written,
 from which the next motion will be measured,
-or where a geometric primitive will commence rendering.
+or where a geometric object will commence rendering.
 .
 Notionally,
 glyphs are drawn from the text baseline upward and to the right.
@@ -727,7 +727,7 @@ see
 .I groff
 supports named
 .I colors
-for glyph rendering and drawing of geometric primitives.
+for glyph rendering and drawing of geometric objects.
 .
 Stroke and fill colors are distinct;
 the stroke color is used for glyphs.

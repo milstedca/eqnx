@@ -14364,15 +14364,18 @@ A page can't be ejected if @code{vpt} is set to zero.
 @cindex page location traps
 @cindex traps, page location
 
+A @dfn{page location trap} is sprung when the vertical drawing position
+reaches or passes, in the downward direction, the place at which it is
+planted.
+
 @Defreq {wh, dist [@Var{name}]}
-Call macro @var{name} when the vertical position @var{dist} on the page
-is reached or passed in the downward direction.  The default scaling
-unit is @samp{v}.  Non-negative values for @var{dist} set the trap
-relative to the top of the page; negative values set the trap relative
-to the bottom of the page.  It is not possible to plant a trap less than
-one basic unit from the page bottom: a @var{dist} of @code{-0} is
-interpreted as @code{0}, the top of the page.@footnote{@xref{The
-Implicit Page Trap}.} An existing @emph{visible} trap (see below) at
+Plant macro @var{name} as page location trap at @var{dist}.  The default
+scaling unit is @samp{v}.  Non-negative values for @var{dist} set the
+trap relative to the top of the page; negative values set the trap
+relative to the bottom of the page.  It is not possible to plant a trap
+less than one basic unit from the page bottom: a @var{dist} of @code{-0}
+is interpreted as @code{0}, the top of the page.@footnote{@xref{The
+Implicit Page Trap}.}  An existing @emph{visible} trap (see below) at
 @var{dist} is removed; this is @code{wh}'s sole function if @var{name}
 is missing.
 

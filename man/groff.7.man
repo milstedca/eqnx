@@ -2672,11 +2672,13 @@ Unplant page location trap
 .
 .
 .TPx
-.REQ .ch "name vertical-position"
-Change a planted page location trap
+.REQ .ch "name vpos"
+Change page location trap
 .I name
+planted by
+.request .wh
 by moving its location to
-.I vertical-position
+.I vpos
 (default scaling unit\~\c
 .scaleindicator v ).
 .
@@ -4442,23 +4444,22 @@ default:
 .
 .
 .TPx
-.REQ .wh vertical-position
-Remove active trap at
-.I vertical-position
+.REQ .wh vpos
+Remove visible page location trap at
+.I vpos
 (default scaling unit\~\c
 .scaleindicator v ).
 .
 .
 .TPx
-.REQ .wh "vertical-position name"
-Plant trap,
-calling macro
+.REQ .wh "vpos name"
+Plant macro
 .I name
-when page location
-.I vertical-position
-is reached or passed
+as page location trap at
+.I vpos
 (default scaling unit\~\c
-.scaleindicator v ).
+.scaleindicator v ),
+removing any visible trap already there.
 .
 .
 .TPx
@@ -6999,8 +7000,9 @@ with its corresponding amount of motion
 .
 A
 .I page location trap
-is called when the vertical drawing position reaches or passes the place
-at which it is planted
+is sprung when the vertical drawing position reaches or passes,
+in the downward direction,
+the place at which it is planted
 (with
 .B .wh
 or

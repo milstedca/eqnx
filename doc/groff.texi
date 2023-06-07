@@ -16141,7 +16141,7 @@ translations and special character definitions are
 ignored.@footnote{They are bypassed because these parameters are not
 rendered as glyphs in the output; instead, they remain abstract
 characters---in a PDF bookmark or a URL, for example.} The use of any
-other escape sequence in @code{\X} arguments is normally an error.
+other escape sequence in @code{\X} parameters is normally an error.
 
 @kindex use_charnames_in_special
 @cindex @file{DESC} file, and @code{use_charnames_in_special} keyword

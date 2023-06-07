@@ -2908,20 +2908,25 @@ As
 .request ".dei\~\f[I]macro\~end\f[]" ,
 but disable compatibility mode during macro expansion.
 .
-.
 .TPx
 .REQ .device "anything"
 Write
 .IR anything ,
 read in copy mode,
-to the intermediate output as a device control command.
+to
+.I @g@troff
+output as a device control command.
+.
+An initial neutral double quote is stripped to allow embedding of
+leading spaces.
 .
 .TPx
 .REQ .devicem "name"
 Write contents of macro or string
 .I name
-to the intermediate output as a device control command.
-.
+to
+.I @g@troff
+output as a device control command.
 .
 .TPx
 .REQ .di
@@ -5288,35 +5293,73 @@ Increase vertical spacing of pending output line by
 negative before,
 positive after).
 .
-.
 .TP
 .ESCq X anything
 Write
-.IR anything ,
-read in copy mode,
-to the intermediate output as a device control command.
+.I anything
+to
+.I @g@troff
+output as a device control command.
 .
+Within
+.IR anything ,
+the escape sequences
+.BR \[rs]& ,
+.BR \[rs]) ,
+.BR \[rs]% ,
+and
+.B \[rs]:
+are ignored;
+.BI \[rs] space
+and
+.B \[rs]\[ti]
+are converted to single space characters;
+and
+.B \[rs]\[rs]
+has its escape character stripped.
+.
+So that the basic Latin subset of the Unicode character
+set can be reliably encoded in
+.I anything,
+the special character escape sequences
+.BR \[rs]\- ,
+.BR \[rs][aq] ,
+.BR \[rs][dq] ,
+.BR \[rs][ga] ,
+.BR \[rs][ha] ,
+.BR \[rs][rs] ,
+and
+.B \[rs][ti]
+are mapped to basic Latin characters;
+see
+.MR groff_char @MAN7EXT@ .
+.
+For this transformation,
+character translations and special character definitions are ignored.
 .
 .TP
 .ESC Y n
 Write contents of macro or string
 .I n
-to the intermediate output as a device control command.
-.
+to
+.I @g@troff
+output as a device control command.
 .
 .TP
 .ESC Y( nm
 Write contents of macro or string
 .I nm
-to the intermediate output as a device control command.
-.
+to
+.I @g@troff
+output as a device control command.
 .
 .TP
 .ESC[] Y name
 Write contents of macro or string
 .I name
-to the intermediate output as a device control command.
-.
+to
+.I @g@troff
+output as a device control command.
 .
 .TP
 .ESC z c
@@ -5498,6 +5541,32 @@ this is the default.
 .LE
 .\" END Keep (roughly) parallel with groff.texi node "Drawing
 .\" commands".
+.
+.
+.\" ====================================================================
+.SS "Device control commands"
+.\" ====================================================================
+.
+The
+.B .device
+and
+.B .devicem
+requests,
+and
+.B \[rs]X
+and
+.B \[rs]Y
+escape sequences,
+enable documents to pass information directly to a postprocessor.
+.
+These are useful for
+exercising device-specific capabilities that the
+.I groff
+language does not abstract or generalize;
+examples include the embedding of hyperlinks and image files.
+.
+Device-specific functions are documented in
+each output driver's man page.
 .
 .
 .\" ====================================================================

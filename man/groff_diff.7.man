@@ -936,23 +936,27 @@ So that the basic Latin subset of the Unicode character set
 ISO\~646:1991-IRV or,
 popularly,
 \[lq]US-ASCII\[rq])
-can be reliably encoded in device control commands,
-seven special character escape sequences
-.RB ( \[rs]\- ,
+can be reliably encoded in
+.I anything,
+the special character escape sequences
+.BR \[rs]\- ,
 .BR \[rs][aq] ,
 .BR \[rs][dq] ,
 .BR \[rs][ga] ,
 .BR \[rs][ha] ,
 .BR \[rs][rs] ,
 and
-.BR \[rs][ti] )
-are mapped to basic Latin glyphs;
+.B \[rs][ti]
+are mapped to basic Latin characters;
 see
 .MR groff_char @MAN7EXT@ .
 .
+For this transformation,
+character translations and special character definitions are ignored.
+.
 The use of any other escape sequence in
 .B \[rs]X
-arguments is normally an error.
+parameters is normally an error.
 .
 .
 .IP
@@ -2152,27 +2156,25 @@ is executed.
 .
 .
 .TP
-.BI .device\~ contents
-This request performs (almost) the same operation as the
-.B \[rs]X
-escape sequence.
+.BI .device\~ anything
+Write
+.IR anything ,
+read in copy mode,
+to
+.I @g@troff
+output as a device control command.
 .
-.I contents
-is read in copy mode.
-.
-An initial neutral double quote in
-.I contents
-is stripped off to allow embedding of leading spaces.
+An initial neutral double quote is stripped to allow embedding of
+leading spaces.
 .
 .
 .TP
 .BI .devicem\~ name
-This request performs the same operation as the
-.B \[rs]Y
-escape sequence,
-embedding the contents of a macro in the intermediate output as a
-.RB \[lq] "x X" \[rq]
-device control command.
+Write contents of macro or string
+.I name
+to
+.I @g@troff
+output as a device control command.
 .
 .
 .TP

@@ -700,12 +700,13 @@ argument).
 .
 .
 .TP
-.BI \[rs]f[ xxx ]
-Select font
-.IR xxx ,
-which may be a font name,
-mounting position,
-or abstract style to select the typeface.
+.BI \[rs]f[ font ]
+Select
+.IR font ,
+which may be a mounting position,
+abstract style,
+or font name,
+to select the typeface.
 .
 .B \[rs]f[]
 is a synonym of
@@ -2503,7 +2504,9 @@ must a non-negative integer multiple of 1/1000th.
 If it is missing or is equal to zero, it means the same as 1000, namely
 no magnification.
 .IR f \~\c
-must be a real font name, not a style.
+must be a resolved font name,
+not an abstract style.
+.\" XXX: What about a mounting position?  It's not rejected...
 .
 .
 .TP
@@ -4102,13 +4105,9 @@ This is a string-valued register.
 .
 .TP
 .B \[rs]n[.fn]
-The current (internal) real font name.
+The resolved font name.
 .
 This is a string-valued register.
-.
-If the current font is a style, the value of
-.B \[rs]n[.fn]
-is the proper concatenation of family and style name.
 .
 .TP
 .B \[rs]n[.fp]

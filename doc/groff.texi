@@ -10294,7 +10294,6 @@ Font translations cannot be chained.
 @endExample
 @endDefreq
 
-@c TODO: Move `fzoom` to "Artificial Fonts"?
 @DefreqList {fzoom, f [@Var{zoom}]}
 @DefregListEndx {.zoom}
 @cindex magnification of a font (@code{fzoom})
@@ -10319,8 +10318,9 @@ Palatino and \f[CR]Courier\f[]
 @endExample
 
 A missing or zero value of @var{zoom} is the same as a value of 1000,
-which means no magnification.  @var{f}@tie{}must be a real font name,
-not a style.
+which means no magnification.  @var{f}@tie{}must be a resolved font
+name, not an abstract style.
+@c XXX: What about a mounting position?  It's not rejected...
 
 The magnification of a font is completely transparent to GNU
 @code{troff}; a change of the zoom factor doesn't cause any effect

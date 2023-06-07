@@ -13876,33 +13876,34 @@ A read-only register containing the current horizontal output position
 (relative to the current indentation).
 @endDefreg
 
-@Defesc {\\o, @code{'}, abc, @code{'}}
+@Defesc {\\o, @code{'}, abc@dots{}, @code{'}}
 @cindex overstriking glyphs (@code{\o})
 @cindex glyphs, overstriking (@code{\o})
-Overstrike glyphs @var{a}, @var{b}, @var{c}, @dots{}; the glyphs are
-centered, and the resulting spacing is the largest width of the affected
-glyphs.
+Overstrike the glyphs of characters @var{a}, @var{b}, @var{c}, @dots{};
+the glyphs are centered, written, and the drawing position advanced by
+the widest of the glyphs.
 @endDefesc
 
 @Defesc {\\z, , c, }
 @cindex zero-width printing (@code{\z}, @code{\Z})
 @cindex printing, zero-width (@code{\z}, @code{\Z})
-Print glyph @var{c} with zero width, i.e., without spacing.  Use this to
-overstrike glyphs left-aligned.
+Format the character @var{c} with zero width; that is, without advancing
+the drawing position.  Use @code{\z} to overstrike glyphs aligned to
+their left edges, in contrast to @code{\o}'s centering.
 @endDefesc
 
 @Defesc {\\Z, @code{'}, anything, @code{'}}
 @cindex zero-width printing (@code{\z}, @code{\Z})
 @cindex printing, zero-width (@code{\z}, @code{\Z})
-Save the drawing position, format @var{anything}, then restore it.  The
-argument may not contain tabs or leaders.
+Save the drawing position, format @var{anything}, then restore it.  Tabs
+and leaders in the argument are ignored with an error diagnostic.
 
-An example of a strike-through macro follows.
+We might implement a strike-through macro thus.
 
 @Example
 .de ST
-.nr ww \w'\\$1'
-\Z@@\v'-.25m'\l'\\n[ww]u'@@\\$1
+.nr width \w'\\$1'
+\Z@@\v'-.25m'\l'\\n[width]u'@@\\$1
 ..
 .
 This is

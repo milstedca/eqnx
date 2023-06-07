@@ -1007,8 +1007,7 @@ format
 .IR anything ,
 then restore it.
 .
-.I anything
-may not contain tabs or leaders.
+Tabs and leaders in the argument are ignored with an error diagnostic.
 .
 .
 .TP

@@ -5083,15 +5083,13 @@ Interpolate glyph with
 .RI index\~ n
 in the current font.
 .
-.
 .TP
-.ESCq o abc\fR\&.\|.\|.\&\fP
-Overstrike glyphs
+.ESCq o abc\f[R].\|.\|.\f[]
+Overstrike centered glyphs of characters
 .IR a ,
 .IR b ,
 .IR c ,
 and so on.
-.
 .
 .TP
 .ESC O0
@@ -5363,11 +5361,9 @@ output as a device control command.
 .
 .TP
 .ESC z c
-Output glyph
+Format character
 .I c
-without advancing the print position,
-as if it were zero-width.
-.
+with zero width\[em]without advancing the drawing position.
 .
 .TP
 .ESCq Z anything

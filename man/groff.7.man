@@ -2805,9 +2805,9 @@ occurs at the start of a control line in the current conditional block.
 Define or redefine
 .I macro
 until
-.BI . end
-is called at the start of a control line in the current conditional
-block.
+.I end
+is invoked or called at the start of a control line in the current
+conditional block.
 .
 .
 .TPx
@@ -2819,7 +2819,8 @@ but disable compatibility mode during macro expansion.
 .TPx
 .REQ .de1 "macro end"
 As
-.request ".de\~\f[I]macro\~end\f[]" ,
+.RB \[lq] .de
+.IR "macro end" \[rq],
 but disable compatibility mode during macro expansion.
 .
 .
@@ -3198,16 +3199,20 @@ to
 .IR font2 .
 .
 .TPx
-.REQ .fzoom "font"
-Don't magnify
+.REQ .fzoom font
+.TQ
+.REQ .fzoom font\~\f[CB]0\f[]
+Stop magnifying
 .IR font .
 .
 .TPx
-.REQ .fzoom "font zoom"
+.REQ .fzoom "font z"
 Set zoom factor for
 .I font
-(in multiples of 1/1000th).
-.
+.RI to\~ z
+(in thousandths;
+default:
+1000).
 .
 .TPx
 .REQ .gcolor
@@ -3265,20 +3270,19 @@ Append hyphenation patterns from
 .
 .TPx
 .REQ .hpfcode "a b \fR[\fPc d\fR] .\|.\|.\fP"
-Define mapping values for character codes in pattern files read with the
+Define mappings for character codes in hyphenation pattern files read
+with
 .request .hpf
 and
-.request .hpfa
-requests.
+.request .hpfa .
 .
 .TPx
 .REQ .hw "word \fR.\|.\|.\fP"
-Define how each
-.I  word
-is to be hyphenated,
-with each hyphen
+Define hyphenation overrides for each
+.I word;
+a hyphen
 .RB \[lq] \- \[rq]
-indicating a hyphenation point.
+indicates a hyphenation point.
 .
 .
 .TPx
@@ -3322,13 +3326,13 @@ Set the hyphenation space to
 .
 .TPx
 .REQ .hys hyphenation-space
-Suppress hyphenation of the line in adjustment modes
+Suppress automatic hyphenation in adjustment modes
 .RB \[lq] b \[rq]
 or
 .RB \[lq] n \[rq]
-if it can be justified by adding no more than
+if the line can be justified with the addition of up to
 .I hyphenation-space
-extra space to each inter-word space
+to each inter-word space
 (default scaling unit\~\c
 .scaleindicator m ).
 .
@@ -4132,16 +4136,16 @@ is
 .REQ .ss n
 Set minimal inter-word spacing to
 .IR n \~12ths
-of the space width of the current font.
+of current font's space width.
 .
 .TPx
 .REQ .ss "n m"
 As
-.B .ss\~\c
-.IR n ,
+.RB \[lq] .ss\~\c
+.IR n \[rq],
 and set additional inter-sentence space to
 .IR m \~12ths
-of the space width of the current font.
+of current font's space width.
 .
 .TPx
 .REQ .stringdown stringvar
@@ -4281,7 +4285,7 @@ Enable track kerning for
 .TPx
 .REQ .tl "\f[CB]\[aq]\f[]left\f[CB]\[aq]\f[]center\f[CB]\[aq]\f[]right\
 \f[CB]\[aq]\f[]"
-Three-part title.
+Format three-part title.
 .
 .TPx
 .REQ .tm message
@@ -4307,14 +4311,14 @@ without emitting a newline.
 .
 .TPx
 .REQ .tr "abcd\fR\&.\|.\|.\&\fP"
-Translate
+Translate ordinary or special characters
 .I a
 to
 .IR b ,
 .I c
 to
 .IR d ,
-etc.\& on output.
+and so on prior to output.
 .
 .TPx
 .REQ .trf file
@@ -4329,19 +4333,17 @@ are rejected.
 .
 .TPx
 .REQ .trin "abcd\fR\&.\|.\|.\&\fP"
-This is the same as the
-.request .tr
-request except that the
-.B asciify
-request uses the character code (if any) before the character
-translation.
+As
+.request .tr ,
+except that
+.request .asciify
+ignores the translation when a diversion is interpolated.
 .
 .TPx
 .REQ .trnt "abcd\fR\&.\|.\|.\&\fP"
-This is the same as the
-.request .tr
-request except that the translations do not apply to text that is
-transparently throughput into a diversion with
+As
+.request .tr ,
+except that translations are suppressed in the argument to
 .esc ! .
 .
 .TPx
@@ -5559,7 +5561,7 @@ These are useful for
 exercising device-specific capabilities that the
 .I groff
 language does not abstract or generalize;
-examples include the embedding of hyperlinks and image files.
+such functions include the embedding of hyperlinks and image files.
 .
 Device-specific functions are documented in
 each output driver's man page.

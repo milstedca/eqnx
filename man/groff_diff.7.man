@@ -447,11 +447,11 @@ is a Unicode basic Latin character;
 a
 .I groff
 special character
-.BI \[rs]( xx
+.BI \[rs]( ch
 or
-.BI \[rs][ xxx\c
+.BI \[rs][ char\c
 .BR ] ;
-.BI \[rs]N\[aq] xxx\c
+.BI \[rs]N\[aq] idx\c
 .BR \[aq] ;
 or has been defined by any of the
 .BR .char ,
@@ -580,7 +580,7 @@ and then by symbol roughly in Unicode code point order.
 .\" order more agreeable to the development of a topic.
 .
 .
-.TP
+.TP 7.5 \" sinfully obtain better pagination on typesetters
 .BI \[rs]A\[aq] anything \[aq]
 Interpolate 1 if
 .I anything
@@ -607,7 +607,7 @@ and\~0 otherwise.
 You might use
 .B \[rs]B
 along with the
-.RB \[lq] if \[rq]
+.RB \[lq]\| if \|\[rq]
 request to filter out invalid macro or string arguments.
 .
 .
@@ -720,7 +720,7 @@ it selects the previous font.
 .TQ
 .BI \[rs]F( fm
 .TQ
-.BI \[rs]F[ fam ]
+.BI \[rs]F[ family ]
 Select font family.
 .
 See the
@@ -747,11 +747,11 @@ or arbitrarily long
 .
 .
 .TP
-.BI \[rs]m x
+.BI \[rs]m c
 .TQ
-.BI \[rs]m( xx
+.BI \[rs]m( cl
 .TQ
-.BI \[rs]m[ xxx ]
+.BI \[rs]m[ col ]
 Set the stroke color.
 .
 .B \[rs]m[]
@@ -759,11 +759,11 @@ restores the previous stroke color.
 .
 .
 .TP
-.BI \[rs]M x
+.BI \[rs]M c
 .TQ
-.BI \[rs]M( xx
+.BI \[rs]M( cl
 .TQ
-.BI \[rs]M[ xxx ]
+.BI \[rs]M[ col ]
 Set the fill color.
 .
 .B \[rs]M[]
@@ -771,9 +771,9 @@ restores the previous fill color.
 .
 .
 .TP
-.BI \[rs]n[ xxx ]
+.BI \[rs]n[ reg ]
 Interpolate register
-.IR xxx .
+.IR reg .
 .
 .
 .TP
@@ -928,13 +928,13 @@ is a numeric expression with a default scaling unit
 .br
 .ne 5v
 .TP
-.BI \[rs]V x
+.BI \[rs]V e
 .TQ
-.BI \[rs]V( xx
+.BI \[rs]V( ev
 .TQ
-.BI \[rs]V[ xxx ]
+.BI \[rs]V[ env ]
 Interpolate the contents of the environment variable
-.IR xxx ,
+.IR env ,
 as returned by
 .MR getenv 3 .
 .
@@ -1010,17 +1010,18 @@ is currently employed only by
 .
 .
 .TP
-.BI \[rs]Y x
+.BI \[rs]Y m
 .TQ
-.BI \[rs]Y( xx
+.BI \[rs]Y( ma
 .TQ
-.BI \[rs]Y[ xxx ]
+.BI \[rs]Y[ mac ]
 This is approximately equivalent to
-.BI \[rs]X\[aq]\[rs]*[ xxx ]\[aq]\f[R].
+.BI \[rs]X\[aq]\[rs]*[ mac ]\[aq]\f[R].
 However the contents of the string or macro
-.I xxx
-are not interpreted; also it is permitted for
-.I xxx
+.I mac
+are not interpreted;
+also it is permitted for
+.I mac
 to have been defined as a macro and thus contain newlines (it is not
 permitted for the argument to
 .B \[rs]X
@@ -1123,10 +1124,10 @@ does not.
 .
 .
 .TP
-.BI \[rs]*[ "xxx arg1 arg2\~"\c
+.BI \[rs]*[ "string arg1 arg2\~"\c
 \&.\|.\|.]
-Interpolate string
-.IR xxx ,
+Interpolate
+.IR string ,
 taking
 .IR arg1 ,
 .IR arg2 ,
@@ -1262,9 +1263,9 @@ prints\~\c
 .BR 4 .
 .
 .TP
-.BI \[rs][ xxx ]
+.BI \[rs][ char ]
 Typeset the special character (glyph)
-.IR xxx .
+.IR char .
 .
 .TP
 .BI \[rs][ "base-char combining-component\~"\c

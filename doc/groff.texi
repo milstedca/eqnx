@@ -16135,7 +16135,7 @@ Unicode character set@footnote{that is, ISO@tie{}646:1991-IRV or,
 popularly, ``US-ASCII''} can be reliably encoded in device control
 commands, seven special character escape sequences (@samp{\-},
 @samp{\[aq]}, @samp{\[dq]}, @samp{\[ga]}, @samp{\[ha]}, @samp{\[rs]},
-and @samp{\[ti]},) are mapped to basic Latin glyphs; see the
+and @samp{\[ti]},) are mapped to basic Latin characters; see the
 @cite{groff_char@r{(7)}} man page.  For this transformation, character
 translations and special character definitions are
 ignored.@footnote{They are bypassed because these parameters are not

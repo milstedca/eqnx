@@ -1267,10 +1267,10 @@ Typeset the special character (glyph)
 .IR xxx .
 .
 .TP
-.BI \[rs][ "base-glyph combining-component\~"\c
+.BI \[rs][ "base-char combining-component\~"\c
 \&.\|.\|.]
 Typeset a composite glyph consisting of
-.I base-glyph
+.I base-char
 overlaid with one or more
 .IR combining-component s.
 .

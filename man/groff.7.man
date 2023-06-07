@@ -4770,9 +4770,9 @@ Interpolate glyph with name
 .
 .
 .TP
-.ESC[] "" "base-glyph comp1 comp2 \fR\&.\|.\|."
+.ESC[] "" "base-char comp1 comp2 \fR\&.\|.\|."
 Interpolate composite glyph constructed from
-.I base-glyph
+.I base-char
 and components
 .IR comp1 ,
 .IR comp2 ,
@@ -4795,10 +4795,10 @@ in uppercase hexadecimal.
 .
 .
 .TP
-.ESC[] "" "\f[CB]u\f[]base-glyph\f[R][\f[]\f[CB]_\f[]\
+.ESC[] "" "\f[CB]u\f[]base-char\f[R][\f[]\f[CB]_\f[]\
 combining-component\f[R]].\|.\|."
 Interpolate composite glyph from Unicode character
-.I base-glyph
+.I base-char
 and
 .IR combining-components .
 .

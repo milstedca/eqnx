@@ -7729,22 +7729,21 @@ after
 .SS "Underlining by overstriking with \e(ul"
 .\" ====================================================================
 .
-You can use the
+The
 .B \[rs]z
-escape sequence to format a glyph while suppressing advancement of its
-drawing position;
-this is another form of overstriking.
+escape sequence writes a glyph without advancing the
+drawing position,
+enabling overstriking.
 .
 Thus,
 .BI \[rs]z c \[rs](ul
 formats
 .I c
-without advancement,
-then draws the underrule glyph on top of it.
+with an underrule glyph on top of it.
 .
-Because video terminals implement the underrule glyph by setting the
-underline attribute on the character cell,
-this works in both
+Video terminals implement the underrule by setting a character cell's
+underline attribute,
+so this technique works in both
 .I nroff \" mode
 and
 .I troff \" mode

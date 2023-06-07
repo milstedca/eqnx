@@ -13936,8 +13936,7 @@ output devices supports them.
 @cindex line, horizontal, drawing (@code{\l})
 Draw a horizontal line of length @var{l} from the drawing position.
 Rightward motion is positive.  Afterward, the drawing position is at the
-right end of the line.  @var{l} can employ the boundary-relative motion
-operator @samp{|}.  The default scaling unit is @samp{m}.
+right end of the line.  The default scaling unit is @samp{m}.
 
 @cindex baseline rule special character(@code{\[ru]})
 @cindex glyph, underscore (@code{\[ru]})
@@ -13960,10 +13959,11 @@ disambiguate the input.
 
 @noindent
 The foregoing outputs a box rule (a vertical line), the text
-argument(s), and another box rule.  Finally, the line-drawing escape
-sequences draw a radical extender (a form of overline) and an underline
-from the drawing position to the position coresponding to beginning of
-the @emph{input} line.  The drawing position returns to just after the
+argument(s), and another box rule.  We employ the boundary-relative
+motion operator @samp{|}.  Finally, the line-drawing escape sequences
+draw a radical extender (a form of overline) and an underline from the
+drawing position to the position coresponding to beginning of the
+@emph{input} line.  The drawing position returns to just after the
 right-hand box rule because the lengths of the drawn lines are negative,
 as noted above.
 @endDefesc
@@ -13998,29 +13998,108 @@ When writing text, the drawing position is at the text baseline; recall
 @ref{Page Geometry}.
 @endDefesc
 
-@Defesc {\\D, @code{'}, command arg @dots{}, @code{'}}
-The @code{\D} escape provides a variety of drawing functions.  On
-character devices, only vertical and horizontal lines are supported
-within @code{grotty}; other devices may only support a subset of the
-available drawing functions.
+@c BEGIN Keep (roughly) parallel with subsection "Drawing commands" of
+@c groff(7).
+The @code{\D} escape sequence provides @dfn{drawing commands} that
+direct the output device to render geometrical objects rather than
+glyphs.  Specific devices may support only a subset, or may feature
+additional ones; consult the man page for the output driver in use.
+Terminal devices in particular implement almost none.  @xref{Graphics
+Commands}.
 
-The default scaling unit for all subcommands of @code{\D} is
-@samp{m} for horizontal distances and @samp{v} for vertical ones.
-Exceptions are @samp{\D'f @dots{}'} and @samp{\D't @dots{}'}, which use
-@code{u} as the default, and @samp{\D'F@var{x} @dots{}'}, which
-arguments are treated similar to the @code{defcolor} request.
+Rendering starts at the drawing position; when finished, the drawing
+position is left at the rightmost point of the object, even for closed
+figures, except where noted.  GNU @code{troff} draws stroked (outlined)
+objects with the stroke color, and shades filled ones with the fill
+color.  @xref{Colors}.  Coordinates @var{h} and @var{v} are horizontal
+and vertical motions relative to the drawing position or previous point
+in the command.  The default scaling unit for horizontal measurements is
+@samp{m}; for vertical ones, @samp{v}.
+
+Circles, ellipses, and polygons can be drawn filled or stroked.  These
+are independent properties; if you want a filled, stroked figure, you
+must draw the same figure twice using each drawing command.  A filled
+figure is always smaller than an outlined one because the former is
+drawn only within its defined area, whereas strokes have a line
+thickness (set with @samp{\D't'}).
+
+@Example
+\h'1i'\v'1i'\
+\# increase line thickness
+\Z'\D't 5p''\
+\# draw stroked (unfilled) polygon
+\Z'\D'p 3 3 -6 0''\
+\# draw filled (solid) polygon
+\Z'\D'P 3 3 -6 0''
+@endExample
+
+@need 500
+@Defesc {\\D, @code{'}, command argument @dots{}, @code{'}}
+Drawing command escape sequence parameters begin with an ordinary
+character, @var{command}, selecting the type of object to be drawn,
+followed by @var{argument}s whose meaning is determined by
+@var{command}.
 
 @table @code
+@item \D'~ @var{h1} @var{v1} @dots{} @var{hn} @var{vn}'
+@cindex drawing a spline (@samp{\D'~ @dots{}'})
+@cindex spline, drawing (@samp{\D'~ @dots{}'})
+Draw a B-spline to each point in sequence, leaving the drawing position
+at (@var{hn}, @var{vn}).
+
+@item \D'a @var{hc} @var{vc} @var{h} @var{v}'
+@cindex arc, drawing (@samp{\D'a @dots{}'})
+@cindex drawing an arc (@samp{\D'a @dots{}'})
+Draw a circular arc centered at (@var{hc}, @var{vc}) counterclockwise
+from the drawing position to a point (@var{h}, @var{v}) relative to the
+center.  @footnote{(@var{hc}, @var{vc}) is adjusted to the point nearest
+the perpendicular bisector of the arc's chord.}
+
+@item \D'c @var{d}'
+@cindex circle, stroked, drawing (@samp{\D'c @dots{}'})
+@cindex drawing a stroked circle (@samp{\D'c @dots{}'})
+@cindex stroked circle, drawing (@samp{\D'c @dots{}'})
+@cindex circle, outlined, drawing (@samp{\D'c @dots{}'})
+@cindex drawing an outlined circle (@samp{\D'c @dots{}'})
+@cindex outlined circle, drawing (@samp{\D'c @dots{}'})
+Draw a circle of diameter @var{d} with its leftmost point at the drawing
+position.
+
+@item \D'C @var{d}'
+@cindex circle, filled, drawing (@samp{\D'C @dots{}'})
+@cindex drawing a filled circle (@samp{\D'C @dots{}'})
+@cindex filled circle, drawing (@samp{\D'C @dots{}'})
+@cindex circle, solid, drawing (@samp{\D'C @dots{}'})
+@cindex drawing a solid circle (@samp{\D'C @dots{}'})
+@cindex solid circle, drawing (@samp{\D'C @dots{}'})
+As @samp{\D'C @r{@dots{}}'}, but the circle is filled.
+
+@item \D'e @var{h} @var{v}'
+@cindex ellipse, stroked, drawing (@samp{\D'e @dots{}'})
+@cindex drawing a stroked ellipse (@samp{\D'e @dots{}'})
+@cindex stroked ellipse, drawing (@samp{\D'e @dots{}'})
+@cindex ellipse, outlined, drawing (@samp{\D'e @dots{}'})
+@cindex drawing an outlined ellipse (@samp{\D'e @dots{}'})
+@cindex outlined ellipse, drawing (@samp{\D'e @dots{}'})
+Draw an ellipse of width @var{h} and height @var{v} with its leftmost
+point at the drawing position.
+
+@item \D'E @var{x} @var{y}'
+@cindex ellipse, filled, drawing (@samp{\D'E @dots{}'})
+@cindex drawing a filled ellipse (@samp{\D'E @dots{}'})
+@cindex filled ellipse, drawing (@samp{\D'E @dots{}'})
+@cindex ellipse, solid, drawing (@samp{\D'E @dots{}'})
+@cindex drawing a solid ellipse (@samp{\D'E @dots{}'})
+@cindex solid ellipse, drawing (@samp{\D'E @dots{}'})
+As @samp{\D'e @r{@dots{}}'}, but the ellipse is filled.
+
 @item \D'l @var{dx} @var{dy}'
 @cindex line, drawing (@samp{\D'l @dots{}'})
 @cindex drawing a line (@samp{\D'l @dots{}'})
-Draw a line from the current location to the relative point specified by
-(@var{dx},@var{dy}), where positive values mean right and down,
-respectively.  The end point of the line is the new current location.
+Draw line from the drawing position to (@var{h}, @var{v}).
 
-The following example is a macro for creating a box around a text
-string; for simplicity, the box margin is taken as a fixed value,
-0.2@dmn{m}.
+The following is a macro for drawing a box around a text argument; for
+simplicity, the box margin is a fixed at 0.2@dmn{m}.
 
 @Example
 .de TEXTBOX
@@ -14038,96 +14117,41 @@ string; for simplicity, the box margin is taken as a fixed value,
 @endExample
 
 @noindent
-First, the width of the string is stored in register @code{@@wd}.  Then,
-four lines are drawn to form a box, properly offset by the box margin.
-The registers @code{rst} and @code{rsb} are set by the @code{\w} escape,
-containing the largest height and depth of the whole string.
+The argument is measured with the @code{\w} escape sequence.  Its width
+is stored in register @code{@@wd}.  @code{\w} also sets the registers
+@code{rst} and @code{rsb}; these contain its maximum vertical extents of
+the argument.  Then, four lines are drawn to form a box, offset by the
+box margin.
 
-@item \D'c @var{d}'
-@cindex circle, drawing (@samp{\D'c @dots{}'})
-@cindex drawing a circle (@samp{\D'c @dots{}'})
-Draw a circle with a diameter of@tie{}@var{d} with the leftmost point at
-the current position.  After drawing, the current location is positioned
-at the rightmost point of the circle.
-
-@item \D'C @var{d}'
-@cindex circle, solid, drawing (@samp{\D'C @dots{}'})
-@cindex drawing a solid circle (@samp{\D'C @dots{}'})
-@cindex solid circle, drawing (@samp{\D'C @dots{}'})
-Draw a solid circle with the same parameters and behaviour as an
-outlined circle.  No outline is drawn.
-
-@item \D'e @var{x} @var{y}'
-@cindex drawing an ellipse (@samp{\D'e @dots{}'})
-@cindex ellipse, drawing (@samp{\D'e @dots{}'})
-Draw an ellipse with a horizontal diameter of @var{x} and a vertical
-diameter of @var{y} with the leftmost point at the current position.
-After drawing, the current location is positioned at the rightmost point
-of the ellipse.
-
-@item \D'E @var{x} @var{y}'
-@cindex ellipse, solid, drawing (@samp{\D'E @dots{}'})
-@cindex drawing a solid ellipse (@samp{\D'E @dots{}'})
-@cindex solid ellipse, drawing (@samp{\D'E @dots{}'})
-Draw a solid ellipse with the same parameters and behaviour as an
-outlined ellipse.  No outline is drawn.
-
-@item \D'a @var{dx1} @var{dy1} @var{dx2} @var{dy2}'
-@cindex arc, drawing (@samp{\D'a @dots{}'})
-@cindex drawing an arc (@samp{\D'a @dots{}'})
-Draw an arc clockwise from the current location through the two
-specified relative locations (@var{dx1},@var{dy1}) and
-(@var{dx2},@var{dy2}).  The coordinates of the first point are relative
-to the current position, and the coordinates of the second point are
-relative to the first point.  After drawing, the current position is
-moved to the final point of the arc.
-
-@item \D'~ @var{dx1} @var{dy1} @var{dx2} @var{dy2} @dots{}'
-@cindex drawing a spline (@samp{\D'~ @dots{}'})
-@cindex spline, drawing (@samp{\D'~ @dots{}'})
-Draw a spline from the current location to the relative point
-(@var{dx1},@var{dy1}) and then to (@var{dx2},@var{dy2}), and so on.  The
-current position is moved to the terminal point of the drawn curve.
-
-@item \D'f @var{n}'
-@cindex gray shading (@samp{\D'f @dots{}'})
-@cindex shading filled objects (@samp{\D'f @dots{}'})
-Set the shade of gray to be used for filling solid objects
-to@tie{}@var{n}; @var{n}@tie{}must be an integer between 0
-and@tie{}1000, where 0 corresponds solid white and 1000 to solid black,
-and values in between correspond to intermediate shades of gray.  This
-applies only to solid circles, solid ellipses, and solid polygons.  By
-default, a level of 1000 is used.
-
-Nonintuitively, the current point is moved horizontally to the
-right by@tie{}@var{n}.
-
-@cindex @samp{\D'f @dots{}'} and horizontal motion quantum
-Don't use this command!  It has the serious drawback that it is always
-rounded to the next integer multiple of the horizontal motion quantum
-(the value of the @code{hor} keyword in the @file{DESC} file).  Use
-@code{\M} (@pxref{Colors}) or @samp{\D'Fg @dots{}'} instead.
-
-@item \D'p @var{dx1} @var{dy1} @var{dx2} @var{dy2} @dots{}'
-@cindex drawing a polygon (@samp{\D'p @dots{}'})
-@cindex polygon, drawing (@samp{\D'p @dots{}'})
-Draw a polygon from the current location to the relative position
-(@var{dx1},@var{dy1}) and then to (@var{dx2},@var{dy2}) and so on.  When
-the specified data points are exhausted, a line is drawn back to the
-starting point.  The current position is changed by adding the sum of
-all arguments with odd index to the actual horizontal position and the
-even ones to the vertical position.
+@item \D'p @var{h1} @var{v1} @dots{} @var{hn} @var{vn}'
+@cindex polygon, stroked, drawing (@samp{\D'p @dots{}'})
+@cindex drawing a stroked polygon (@samp{\D'p @dots{}'})
+@cindex stroked polygon, drawing (@samp{\D'p @dots{}'})
+@cindex polygon, outlined, drawing (@samp{\D'p @dots{}'})
+@cindex drawing an outlined polygon (@samp{\D'p @dots{}'})
+@cindex outlined polygon, drawing (@samp{\D'p @dots{}'})
+Draw polygon with vertices at drawing position and each point in
+sequence.  GNU @code{troff} closes the polygon by drawing a line from
+(@var{hn}, @var{vn}) back to the initial drawing position.
+@c XXX: This would be the "STUPID_DRAWING_POSITIONING" complained of in
+@c src/libs/libdriver/input.cpp.  It is neither the rightmost point
+@c of the figure nor the initial drawing position that GNU troff
+@c automatically returned to to close the figure.
+Afterward, the drawing position is left at (@var{hn}, @var{vn}).
 
 @item \D'P @var{dx1} @var{dy1} @var{dx2} @var{dy2} @dots{}'
+@cindex polygon, filled, drawing (@samp{\D'P @dots{}'})
+@cindex drawing a filled polygon (@samp{\D'P @dots{}'})
+@cindex filled polygon, drawing (@samp{\D'P @dots{}'})
 @cindex polygon, solid, drawing (@samp{\D'P @dots{}'})
 @cindex drawing a solid polygon (@samp{\D'P @dots{}'})
 @cindex solid polygon, drawing (@samp{\D'P @dots{}'})
-Draw a solid polygon with the same parameters and behaviour as an
-outlined polygon.  No outline is drawn.
+As @samp{\D'P @r{@dots{}}'}, but the polygon is filled.
 
-Here a better variant of the box macro to fill the box with some color.
-The box must be drawn before the text since colors in GNU @code{troff}
-are not transparent; the filled polygon would hide the text completely.
+The following macro is like the @samp{\D'l'} example, but shades the
+box.  We draw the box before writing the text because colors in GNU
+@code{troff} have no transparency; in othe opposite order, the filled
+polygon would hide occlude the text.
 
 @Example
 .de TEXTBOX
@@ -14146,63 +14170,28 @@ are not transparent; the filled polygon would hide the text completely.
 ..
 @endExample
 
-If you want a filled polygon that has exactly the same size as an
-unfilled one, you must draw both an unfilled and a filled polygon.  A
-filled polygon is always smaller than an unfilled one because the latter
-uses straight lines with a given line thickness to connect the polygon's
-corners, while the former simply fills the area defined by the
-coordinates.
-
-@Example
-\h'1i'\v'1i'\
-\# increase line thickness
-\Z'\D't 5p''\
-\# draw unfilled polygon
-\Z'\D'p 3 3 -6 0''\
-\# draw filled polygon
-\Z'\D'P 3 3 -6 0''
-@endExample
-
 @item \D't @var{n}'
 @cindex line thickness (@samp{\D't @dots{}'})
 @cindex thickness of lines (@samp{\D't @dots{}'})
-Set the current line thickness to @var{n}@tie{}basic units.  A value
-of zero selects the smallest available line thickness.  A negative value
-makes the line thickness proportional to the current type size (this is
-the default behaviour of @acronym{AT&T} @code{troff}).
-
-Nonintuitively, the current point is moved horizontally to the
-right by@tie{}@var{n}.
-
-@item \D'F@var{scheme} @var{color_components}'
-@cindex unnamed fill colors (@code{\D'F@dots{}'})
-@cindex fill colors, unnamed (@code{\D'F@dots{}'})
-@cindex colors, fill, unnamed (@code{\D'F@dots{}'})
-Change current fill color.  @var{scheme} is a single letter denoting the
-color scheme: @samp{r} (rgb), @samp{c} (cmy), @samp{k} (cmyk), @samp{g}
-(gray), or @samp{d} (default color).  The color components use exactly
-the same syntax as in the @code{defcolor} request (@pxref{Colors}); the
-command @code{\D'Fd'} doesn't take an argument.
-
-@emph{No} position changing!
-
-Examples:
-
-@Example
-\D'Fg .3'      \" same gray as \D'f 700'
-\D'Fr #0000ff' \" blue
-@endExample
+Set the stroke thickness of geometric objects to @var{n} basic units.  A
+zero @var{n} selects the minimal supported thickness.  A negative
+@var{n} selects a thickness proportional to the type size; this is the
+default.
 @end table
 @endDefesc
+@c END Keep (roughly) parallel with subsection "Drawing commands" of
+@c groff(7).
 
-@xref{Graphics Commands}.
+In a hazy penumbra between text rendering and drawing commands we locate
+the bracket-building escape sequence, @code{\b}.  It can assemble
+apparently large glyphs by vertically stacking ordinary ones.
 
 @Defesc {\\b, @code{'}, contents, @code{'}}
 @cindex pile, glyph (@code{\b})
 @cindex glyph pile (@code{\b})
 @cindex stacking glyphs (@code{\b})
 Pile and center a sequence of glyphs vertically on the output line.
-@dfn{Piling} vertically stacks glyphs corresponding to each character in
+@dfn{Piling} stacks glyphs corresponding to each character in
 @var{contents}, read from left to right, and placed from top to bottom.
 GNU @code{troff} separates the glyphs vertically by 1@dmn{m}, and the
 pile itself is centered 0.5@dmn{m} above the text baseline.  The
@@ -14215,16 +14204,19 @@ This rather inflexible positioning algorithm doesn't work with the
 @code{dvi} output device since its bracket pieces vary in height.
 Instead, use the @code{geqn} preprocessor.
 
-@xref{Manipulating Spacing}, to see how to adjust the vertical spacing
+@ref{Manipulating Spacing} describes how to adjust the vertical spacing
 of the output line with the @code{\x} escape sequence.
 
-The idiomatic use of @code{\b} is for building large brackets and
-braces, hence its name.  We might construct a large opening brace as
-follows.
+The application of @code{\b} that lends its name is construction of
+brackets, braces, and parentheses when typesetting mathematics.  We
+might construct a large opening (left) brace as follows.
 
 @Example
 \b'\[lt]\[bv]\[lk]\[bv]\[lb]'
 @endExample
+
+See @cite{groff_char@r{(7)}} for a list of special character
+identifiers.
 @endDefesc
 
 

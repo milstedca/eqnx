@@ -498,6 +498,32 @@ to a form suitable for Versatec and Benson-Varian plotters.)
 .
 .
 .\" ====================================================================
+.SS "Drawing commands"
+.\" ====================================================================
+.
+Circles,
+ellipses,
+and polygons can be drawn solid or stroked.
+.
+GNU
+.I troff \" GNU
+draws open,
+stroked (outlined) objects with the selected stroke color;
+solid (filled) ones are shaded with the fill color.
+.
+These are independent properties;
+if you want a solid,
+stroked figure,
+you must draw the same figure twice using each drawing command.
+.
+A solid figure is always smaller than an outlined one because the former
+is drawn only within its defined area,
+whereas strokes have a line thickness
+(set with
+.BR \[rs]D\[aq]t\[aq] ).
+.
+.
+.\" ====================================================================
 .SS "Escape sequences"
 .\" ====================================================================
 .
@@ -553,15 +579,70 @@ along with the
 .RB \[lq] if \[rq]
 request to filter out invalid macro or string arguments.
 .
-.TP
-.BR \[rs]D\[aq] .\|.\|. \[aq]
-All drawing commands supported by the
-.RI AT&T\~ troff
-device-independent
-intermediate output format are accepted.
 .
-See subsection \[lq]Drawing Commands\[rq] below
-for GNU extensions.
+.TP
+.BI \[rs]D\[aq]C\~ "d" \[aq]
+Draw solid circle of diameter
+.I d
+with its leftmost point at the drawing position.
+.
+.
+.TP
+.BI \[rs]D\[aq]E\~ "h v" \[aq]
+Draw solid ellipse of diameter
+.I d
+with its leftmost point at the drawing position.
+.
+.
+.TP
+.BI \[rs]D\[aq]p\~ "h1 v1"\~\c
+.RI .\|.\|.\~ "hn vn"\c
+.B \[aq]
+Draw polygon with vertices at drawing position and each point
+in sequence.
+.
+GNU
+.I troff \" GNU
+closes the polygon by drawing a line from
+.RI ( hn ,\~ vn )
+back to the initial drawing position;
+DWB and Heirloom
+.IR troff s \" DWB, Heirloom
+do not.
+.
+.\" XXX: This would be the "STUPID_DRAWING_POSITIONING" complained of in
+.\" src/libs/libdriver/input.cpp.  It is neither the rightmost point
+.\" of the figure nor the initial drawing position that GNU troff
+.\" automatically returned to to close the figure.
+Afterward,
+the drawing position is left at
+.RI ( hn ,\~ vn ).
+.
+.
+.TP
+.BI \[rs]D\[aq]P\~ "h1 v1"\~\c
+.RI .\|.\|.\~ "hn vn"\c
+.B \[aq]
+As
+.BR \[rs]D\[aq]p\[aq] ,
+but the polygon is solid.
+.
+.
+.TP
+.BI \[rs]D\[aq]t\~ "n" \[aq]
+Set line thickness of geometric objects to
+.RI to\~ n
+basic units.
+.
+A zero
+.I n
+selects the minimal supported thickness.
+.
+A negative
+.I n
+selects a thickness proportional to the type size;
+this is the default.
+.
 .
 .TP
 .B \[rs]E
@@ -4721,7 +4802,7 @@ request in nroff mode and is ignored otherwise.
 .
 .
 .\" ====================================================================
-.SS "Drawing commands"
+.SS "Extended drawing commands"
 .\" ====================================================================
 .
 The

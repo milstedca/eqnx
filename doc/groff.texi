@@ -11977,9 +11977,9 @@ the read-only string-valued register @code{.sr}.  Both are associated
 with the environment (@pxref{Environments}).
 
 For example, if a type size of 10.95 points is requested, and the
-nearest size permitted by a @code{sizes} request (or a @code{sizescale}
-directive in the device's @file{DESC} file) is 11 points, the latter
-value is used by the output driver.
+nearest size permitted by a @code{sizes} request (or by the @code{sizes}
+or @code{sizescale} directives in the device's @file{DESC} file) is 11
+points, the output driver uses the latter value.
 @endDefreg
 
 The @code{\s} escape sequence offers the following syntax forms that

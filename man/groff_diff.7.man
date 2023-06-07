@@ -128,6 +128,33 @@ within can be of arbitrary length.
 .
 .
 .\" ====================================================================
+.SS "Fonts"
+.\" ====================================================================
+.
+GNU
+.I troff \" GNU
+groups typefaces into
+.I families
+containing each of the styles
+.RB \[lq] R \[rq],
+.RB \[lq] I \[rq],
+.RB \[lq] B \[rq],
+and
+.RB \[lq] BI \[rq].
+.
+So that a document need not be strongly coupled to a specific font
+family,
+in GNU
+.I troff \" GNU
+an output device can associate a style in the abstract sense with a
+mounting position.
+.
+Thus the default family can be combined with a style dynamically,
+producing a
+.I "resolved font name."
+.
+.
+.\" ====================================================================
 .SS Colors
 .\" ====================================================================
 .
@@ -298,6 +325,8 @@ and
 scaling units.
 .
 .
+.br
+.ne 2v
 .P
 Output devices may be limited in the type sizes they can employ.
 .
@@ -323,13 +352,15 @@ if a type size of 10.95\~points is requested,
 and the nearest size permitted by a
 .B sizes
 request
-(or a
+(or by the
+.B sizes
+or
 .B sizescale
-directive in the device's
+directives in the device's
 .I DESC
 file)
 is 11\~points,
-the latter value is used by the output driver.
+the output driver uses the latter value.
 .\" END Keep (roughly) parallel with groff.texi node "Using Fractional
 .\" Type Sizes".
 .
@@ -453,7 +484,7 @@ were opened with the
 request
 (that is,
 font translation and
-styles are applied),
+abstract styles are applied),
 without actually mounting it.
 .
 This test doesn't load the complete font,
@@ -674,13 +705,12 @@ Select font
 .IR xxx ,
 which may be a font name,
 mounting position,
-or registered style that is then combined with the current font family
-to select the typeface.
+or abstract style to select the typeface.
 .
 .B \[rs]f[]
 is a synonym of
 .BR \[rs]fP ;
-i.e.,
+that is,
 it selects the previous font.
 .
 .

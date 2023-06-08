@@ -113,13 +113,14 @@ into mathematical notation typeset by
 .
 It copies each
 .IR file 's
-to the standard output stream,
-except that input between lines starting with
+contents to the standard output stream,
+translating each
+.I equation
+between lines starting with
 .B .EQ
 and
 .BR .EN ,
-or within a pair of user-specified delimiters,
-is translated as above.
+or within a pair of user-specified delimiters.
 .
 Normally,
 .I @g@eqn
@@ -1951,7 +1952,8 @@ or if they are to be interpreted by
 .IR troff . \" generic
 .
 In particular,
-short ones like
+short ones,
+like
 .RB \[lq] pi \[rq]
 and
 .RB \[lq] PI \[rq],
@@ -2002,6 +2004,17 @@ see the package's documentation.
 .SH Bugs
 .\" ====================================================================
 .
+.I eqn \" generic
+abuses terminology\[em]its
+\[lq]equations\[rq]
+can be inequalities,
+bare expressions,
+or unintelligible gibberish.
+.
+But there's no changing it now.
+.
+.
+.P
 In
 .I nroff \" mode
 mode,

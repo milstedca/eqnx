@@ -1,3 +1,21 @@
+2023-06-08  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man, mdoc]: Parameterize page offset.
+
+	* tmac/mdoc/doc-ditroff (doc-setup-page-layout):
+	* tmac/mdoc/doc-nroff (doc-setup-page-layout):  Stop forcing the
+	page offset to the device defaults, redundantly.
+
+	* tmac/an.tmac:
+	* tmac/mdoc/doc-ditroff (doc-setup-page-layout):
+	* tmac/mdoc/doc-nroff (doc-setup-page-layout):  Honor `PO`
+	register if set at startup.
+
+	* tmac/groff_man.7.man.in (Options):
+	* tmac/groff_mdoc.7.man (Options): Document it.
+
+	* NEWS: Add item.
+
 2023-06-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Slightly refactor.

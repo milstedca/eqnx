@@ -36,6 +36,9 @@ o New parameters tunable with the GNU eqn "set" primitive, "half_space"
 Macro packages
 --------------
 
+o The an (man) and doc (mdoc) macro packages now support a `PO` register
+  to configure the page offset used by the formatter.
+
 o The new macro file "koi8-r.tmac" supports the KOI8-R character
   encoding, which supports the new Russian locale for groff.
 

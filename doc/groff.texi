@@ -12121,17 +12121,9 @@ the color on the fly:
 @DefescItem {\\M, (, co, }
 @DefescItem {\\M, [, color, ]}
 @DefregListEndx {.M}
-Set fill color for objects drawn with @code{\D'@dots{}'} escape
-sequences.
-
-Create an ellipse with a red interior as follows.
-
-@Example
-\M[red]\h'0.5i'\D'E 2i 1i'\M[]
-@endExample
-
-The escape sequence @code{\M[]} restores the previous fill color, as
-does an @code{fcolor} request without an argument.
+Set the fill color for objects drawn with @code{\D'@dots{}'} escape
+sequences.  The escape sequence @code{\M[]} restores the previous fill
+color, as does an @code{fcolor} request without an argument.
 
 @cindex background color name register (@code{.M})
 @cindex name, background color, register (@code{.M})
@@ -12142,9 +12134,14 @@ does an @code{fcolor} request without an argument.
 The name of the current fill color is available in the read-only
 string-valued register @samp{.M}; it is associated with the environment
 (@pxref{Environments}).  It interpolates nothing when the fill color
-is the default.
+is the default.  @code{\M} doesn't produce an input token in GNU
+@code{troff}.
 
-@code{\M} doesn't produce an input token in GNU @code{troff}.
+Create an ellipse with a red interior as follows.
+
+@Example
+\M[red]\h'0.5i'\D'E 2i 1i'\M[]
+@endExample
 @endDefesc
 @c END Keep (roughly) parallel with section "Colors" of groff(7).
 

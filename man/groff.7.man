@@ -6615,7 +6615,15 @@ properties.)
 .
 A
 .I "text font"
-is a combination of a family with a style.
+is thus often a family combined with a style,
+but it need not be:
+consider the
+.B ps
+and
+.B pdf
+devices'
+.B ZCMI
+(Zapf Chancery Medium italic).
 .
 On typesetting devices,
 at least one

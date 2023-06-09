@@ -10102,10 +10102,12 @@ upright and slanted shapes with normal and heavy stroke weights:
 @slanted{bold-italic}.  For linguistic text, GNU @code{troff} groups
 typefaces into @dfn{families} containing each of these
 styles.@footnote{Font designers prepare families such that the styles
-share esthetic properties.}   A @dfn{text font} is a combination of a
-family with a style.  On typesetting devices, at least one @dfn{special
-font} is available, comprising @dfn{unstyled} glyphs for mathematical
-operators and other purposes.
+share esthetic properties.}  A @dfn{text font} is thus often a family
+combined with a style, but it need not be:@: consider the @code{ps} and
+@code{pdf} devices' @code{ZCMI} (Zapf Chancery Medium italic).  On
+typesetting devices, at least one @dfn{special font} is available,
+comprising @dfn{unstyled} glyphs for mathematical operators and other
+purposes.
 
 @cindex font description file
 @cindex description file, font

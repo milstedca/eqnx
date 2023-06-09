@@ -296,6 +296,13 @@ e sup { a b } .
 .EN
 .\}
 .
+When immediately preceded by a
+.RB \[lq] left \[rq]
+or
+.RB \[lq] right \[rq]
+primitive,
+a brace loses its special meaning.
+.
 .
 .TP
 .B "\[ha] \[ti]
@@ -335,7 +342,7 @@ or components of an equation.
 .
 .
 .br
-.ne 2v
+.ne 4v
 .P
 .I Primitives
 are fundamental keywords of the
@@ -977,20 +984,21 @@ about the
 a horizontal line upon which fraction bars and characters such as
 \[lq]\[pl]\[rq] and \[lq]\[mi]\[rq] are aligned.
 .
-For example,
+MathML already behaves this way,
+so
+.I @g@eqn
+ignores this primitive when producing that output format.
+.
+The built-in
 .B sum
-is defined as follows.
+macro is defined as if by the following.
 .
 .RS
 .IP
 .EX
-{ type "operator" vcenter size +5 \[rs](*S }
+define sum ! { type "operator" vcenter size +5 \[rs](*S } !
 .EE
 .RE
-.
-.IP
-.B vcenter
-is silently ignored when generating MathML.
 .
 .
 .br

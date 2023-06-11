@@ -611,69 +611,47 @@ resources.
 @cindex @code{groff} capabilities
 @cindex capabilities of @code{groff}
 
-So what exactly is @code{groff} capable of doing?  @code{groff} provides
-a wide range of low-level text formatting operations.  Using these, it
-is possible to perform a wide range of formatting tasks, such as
-footnotes, table of contents, multiple columns, etc.  Here's a list of
-the most important operations supported by @code{groff}:
+GNU @code{troff} is a typesetting document formatter; it provides a wide
+range of low-level text and page operations within the framework of a
+programming language.  These operations compose to generate footnotes,
+tables of contents, mathematical equations, diagrams, multi-column text,
+and other elements of typeset works.  Here is a survey of formatter
+features; all are under precise user control.
 
 @itemize @bullet
 @item
-text filling, adjustment, and centering
+text filling, breaking, alignment to the left or right margin; centering
 
 @item
-hyphenation
+adjustment of inter-word space size to justify text, and of
+inter-sentence space size to suit local style conventions
 
 @item
-page control
+automatic determination of hyphenation break points
 
 @item
-font and glyph size control
+pagination control
 
 @item
-vertical spacing (e.g., double-spacing)
+selection of any font available to the output device
 
 @item
-line length and indenting
+adjustment of type size and vertical spacing (or ``leading'')
 
 @item
-macros, strings, diversions, and traps
+configuration of line length and indentation amounts; columnation
 
 @item
-registers
+drawing of geometric primitives (lines, arcs, polygons, circles,
+@dots{})
 
 @item
-tabs, leaders, and fields
+configuration of stroke and fill colors (where supported by the output
+device)
 
 @item
-input and output conventions and character translation
-
-@item
-overstrike, bracket, line drawing, and zero-width functions
-
-@item
-local horizontal and vertical motions and the width function
-
-@item
-three-part titles
-
-@item
-output line numbering
-
-@item
-conditional acceptance of input
-
-@item
-environment switching
-
-@item
-insertions from the standard input
-
-@item
-input/output file switching
-
-@item
-output and error messages
+embedding of hyperlinks, images, document metadata, and other inclusions
+(where supported by the output device)
 @end itemize
 
 
@@ -684,14 +662,15 @@ output and error messages
 @cindex macro package, introduction
 @cindex package, macro, introduction
 
-Since @code{groff} provides such low-level facilities, it can be quite
-difficult to use by itself.  However, @code{groff} provides a
+Since GNU @code{troff} concentrates on elemental typesetting functions,
+it can be challenging to use directly.  However, @code{groff} provides a
 @dfn{macro} facility to specify how certain routine operations, such as
-starting paragraphs, or printing headers and footers, should be done.
-These macros can be collected together into a @dfn{macro package}.
-There are a number of macro packages available; the most common (and the
-ones described in this manual) are @file{man}, @file{mdoc}, @file{me},
-@file{ms}, and @file{mm}.
+starting paragraphs, or printing headers and footers, should be
+performed in terms of those low-level elements.  Macros can be collected
+together into a @dfn{macro package}.  Several macro packages available;
+the most widely used are provided with @code{groff}.  They are
+@file{man}, @file{mdoc}, @file{me}, @file{mm}, @file{mom}, and
+@file{ms}.
 
 
 @c =====================================================================
@@ -700,37 +679,36 @@ ones described in this manual) are @file{man}, @file{mdoc}, @file{me},
 @section Preprocessors
 @cindex preprocessors
 
-Although @code{groff} provides most functions needed to format a
-document, some operations would be unwieldy (e.g., to draw pictures).
-Therefore, programs called @dfn{preprocessors} were written that
-understand their own language and produce the necessary @code{groff}
-operations.  These preprocessors are able to differentiate their own
-input from the rest of the document via markers.
+While GNU @code{troff} provides the necessary functions to format a
+document, some are unwieldy to use at a low level, as when constructing
+tables, setting mathematics, or drawing diagrams.  A @dfn{preprocessors}
+employs a domian-specific language to ease the generation of such
+object in terms that are convenient for human entry.  The preprocessors
+read a document and translate the parts of it that apply to them into
+GNU @code{troff} input.
 
-To use a preprocessor, Unix pipes are used to feed the output from the
-preprocessor into @code{groff}.  Any number of preprocessors may be used
-on a given document; in this case, the preprocessors are linked together
-into one pipeline.  However, with @code{groff}, the user does not need
-to construct the pipe, but only tell @code{groff} what preprocessors to
-use.
+Conventionally, preprocessors are sequenced in a Unix pipeline to send
+their output to each other and then to GNU @code{troff}.  The
+@command{groff} command manages the construction of such pipelines.
+Give command-line options to @command{groff} to tell it which
+preprocessors to use.
 
-@code{groff} currently has preprocessors for producing tables
-(@code{tbl}), typesetting equations (@code{eqn}), drawing pictures
-(@code{pic} and @code{grn}), processing bibliographies
-(@code{refer}), and drawing chemical structures (@code{chem}).  An
-associated program that is useful when dealing with preprocessors is
-@code{soelim}.
+@code{groff} provides preprocessors for laying out tables
+(@command{gtbl}), typesetting equations (@command{geqn}), drawing
+diagrams (@command{gpic} and @command{ggrn}), inserting bibliographic
+references (@command{grefer}), and drawing chemical structures
+(@command{gchem}).  An associated program that is useful when dealing
+with preprocessors is @command{gsoelim}.
 
-A free implementation of @code{grap}, a preprocessor for drawing graphs,
-can be obtained as an extra package; @code{groff} can use @code{grap}
-also.
+@code{groff} also supports @code{grap}, a preprocessor for drawing
+graphs.  A free implementation of it can be obtained separately.
 
 Unique to @code{groff} is the @code{preconv} preprocessor that enables
-@code{groff} to handle documents in various input encodings.
+@code{groff} to handle documents in a variety of input encodings.
 
-Other preprocessors exist, but, unfortunately, no free implementations
-are available.  Among them is a preprocessor for drawing mathematical
-pictures (@code{ideal}).
+Other preprocessors exist, but no free implementations
+are known.  An example is @command{ideal}, which draws diagrams using a
+mathematical constraint language.
 
 
 @c =====================================================================
@@ -741,12 +719,14 @@ pictures (@code{ideal}).
 @cindex output devices
 @cindex devices for output
 
-@code{groff} produces device-independent code that may be fed into a
-postprocessor to produce output for a particular device.  Currently,
-@code{groff} has postprocessors for PostScript devices, character
-terminals, X11 (for previewing), DVI, HP LaserJet@tie{}4 and Canon LBP
-printers (which use @acronym{CaPSL}), @acronym{HTML}, @acronym{XHTML},
-and @acronym{PDF}.
+GNU @code{troff}'s output is in a device-independent page description
+language, which is then read by an @dfn{output driver} that translates
+this language into a file format or byte stream that a piece of
+(possibly emulated) hardware understands.  @code{groff} features output
+drivers for PostScript devices, terminal emulators (and other simple
+typewriter-like machines), X11 (for previewing), @TeX{} DVI, HP
+LaserJet@tie{}4/PCL5 and Canon LBP printers (which use @acronym{CaPSL}),
+@acronym{HTML}, @acronym{XHTML}, and @acronym{PDF}.
 
 
 @c =====================================================================
@@ -755,9 +735,10 @@ and @acronym{PDF}.
 @section Installation
 @cindex installation
 
-Installation procedures are documented by the files @file{INSTALL},
+Locate installation instructions in the files @file{INSTALL},
 @file{INSTALL.extra}, and @file{INSTALL.REPO} in the @code{groff} source
-distribution.
+distribution.  Being a GNU project, @code{groff} supports the familiar
+@samp{./configure && make} command sequence.
 
 
 @c =====================================================================
@@ -835,9 +816,11 @@ formally.@footnote{@xref{Line Layout}.}
 @section Credits
 @cindex credits
 
-Large portions of this manual were taken from existing documents---most
-notably, the manual pages for the @code{groff} package by James Clark,
-and Eric Allman's papers on the @file{me} macro package.  Larry Kollar
+We adapted portions of this manual from existing documents.  James
+Clark's man pages were an essential resource; we have updated them in
+parallel with the development of this manual.  We based the tutorial for
+macro users on Eric Allman's introduction to his @file{me} macro package
+(which we also provide, little altered from 4.4BSD).  Larry Kollar
 contributed much of the material on the @file{ms} macro package.
 
 

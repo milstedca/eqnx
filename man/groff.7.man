@@ -6623,7 +6623,9 @@ and
 .B pdf
 devices'
 .B ZCMI
-(Zapf Chancery Medium italic).
+(Zapf Chancery Medium italic)\[em]\c
+often,
+no other style of Zapf Chancery Medium is provided.
 .
 On typesetting devices,
 at least one
@@ -6726,7 +6728,8 @@ Terminal output devices cannot change font families and lack special
 fonts.
 .
 They support style changes by overstriking,
-or by altering ISO\~6429/\:ECMA-48 \[lq]graphic renditions\[rq]
+or by altering ISO\~6429/\:ECMA-48
+.I "graphic renditions"
 (character cell attributes).
 .\" END Keep (roughly) parallel with groff.texi node "Using Fonts".
 .

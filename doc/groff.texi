@@ -10087,10 +10087,10 @@ typefaces into @dfn{families} containing each of these
 styles.@footnote{Font designers prepare families such that the styles
 share esthetic properties.}  A @dfn{text font} is thus often a family
 combined with a style, but it need not be:@: consider the @code{ps} and
-@code{pdf} devices' @code{ZCMI} (Zapf Chancery Medium italic).  On
-typesetting devices, at least one @dfn{special font} is available,
-comprising @dfn{unstyled} glyphs for mathematical operators and other
-purposes.
+@code{pdf} devices' @code{ZCMI} (Zapf Chancery Medium italic)---often,
+no other style of Zapf Chancery Medium is provided.  On typesetting
+devices, at least one @dfn{special font} is available, comprising
+@dfn{unstyled} glyphs for mathematical operators and other purposes.
 
 @cindex font description file
 @cindex description file, font
@@ -10136,9 +10136,14 @@ mounting position, and therefore style, is always @samp{1} (@samp{R}).
 By issuing appropriate formatter instructions, you can override these
 defaults before your document writes its first glyph.
 
+@cindex graphic renditions
+@cindex renditions, graphic
+@cindex character cell attributes
+@cindex attributes, character cell
+@cindex cell, character, attributes
 Terminal output devices cannot change font families and lack special
 fonts.  They support style changes by overstriking, or by altering
-ISO@tie{}6429/ECMA-48 ``graphic renditions'' (character cell
+ISO@tie{}6429/ECMA-48 @dfn{graphic renditions} (character cell
 attributes).
 @c END Keep (roughly) parallel with section "Using fonts" of groff(7).
 

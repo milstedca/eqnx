@@ -11,7 +11,7 @@ This file summarizes the structure of the groff source distribution.
 
   BUG-REPORT    A template for bug reports.
   ChangeLog     Log of changes since last groff minor version release.
-  ChangeLog.*   Log of changes in past groff versions.
+  ChangeLog.*   Logs of changes in past groff versions.
   COPYING       The GNU General Public License (GPL).
   FDL           The GNU Free Documentation License (FDL).
   FOR-RELEASE   Release procedures for groff maintainer(s) to follow.
@@ -22,7 +22,7 @@ This file summarizes the structure of the groff source distribution.
   LICENSES      Copyright and licensing information.
   MANIFEST      The file you are reading.
   MORE.STUFF    Useful stuff in other packages.
-  NEWS          Recent user-visible changes in groff.
+  NEWS          Log of feature changes in groff.
   PROBLEMS      Tips to handle known situations of concern.
   PROJECTS      Long-term additions to groff.
   README        Introduction to and contact information for groff.
@@ -135,6 +135,7 @@ This file summarizes the structure of the groff source distribution.
 
 Various directories contain a "tests" subdirectory.  These are automated
 tests performed when groff's Makefile is run with the "check" target.
+
 
 3) Documentation
 

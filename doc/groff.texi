@@ -17571,7 +17571,7 @@ of whitespace.  Optionally, syntactical space can be inserted before,
 after, and between the command letter and its arguments.  All of these
 commands are stackable; i.e., they can be preceded by other simple
 commands or followed by arbitrary other commands on the same line.  A
-separating syntactical space is only necessary when two integer
+separating syntactical space is necessary only when two integer
 arguments would clash or if the preceding argument ends with a string
 argument.
 

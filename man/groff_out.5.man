@@ -488,7 +488,7 @@ same line.
 .
 A separating
 .I syntactical space
-is only necessary when two integer arguments would clash or if the
+is necessary only when two integer arguments would clash or if the
 preceding argument ends with a string argument.
 .
 .

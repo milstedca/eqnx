@@ -156,10 +156,8 @@ To a
 system,
 a
 .I word
-is any sequence of one or more characters that aren't
-spaces,
-tabs,
-or newlines.
+is any sequence of one or more characters that aren't spaces or
+newlines.
 .
 The exceptions separate words.
 .
@@ -377,7 +375,7 @@ there are many details to track
 when using the \[lq]tab\[rq] and \[lq]field\[rq] low-level features,
 so most users turn to the
 .MR @g@tbl @MAN1EXT@
-preprocessor for table construction.
+preprocessor to lay out tables.
 .\" END Keep roughly parallel with groff.texi nodes "Text" through "Tab
 .\" Stops".
 .

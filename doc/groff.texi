@@ -682,8 +682,8 @@ the most widely used are provided with @code{groff}.  They are
 An alternative approach to complexity management, particularly when
 constructing tables, setting mathematics, or drawing diagrams, lies in
 preprocessing.  A @dfn{preprocessor} employs a domian-specific language
-to ease the generation of tables, equations, and so forth terms that are
-convenient for human entry.  Each preprocessor reads a document and
+to ease the generation of tables, equations, and so forth in terms that
+are convenient for human entry.  Each preprocessor reads a document and
 translates the parts of it that apply to it into GNU @code{troff} input.
 Command-line options to @command{groff} tell it which preprocessors to
 use.
@@ -4943,11 +4943,12 @@ line-ending convention.  It reads input a character at a time,
 collecting words as it goes, and fits as many words together on an
 output line as it can---this is known as @dfn{filling}.  To GNU
 @code{troff}, a @dfn{word} is any sequence of one or more characters
-that aren't spaces, tabs, or newlines.  The exceptions separate
-words.@footnote{There are also @emph{escape sequences} which can
-function as word characters, word separators, or neither---the last
-simply have no effect on GNU @code{troff}'s idea of whether an input
-character is within a word or not.}  To disable filling, see
+that aren't spaces or newlines.  The exceptions separate
+words.@footnote{@slanted{Tabs} and @slanted{leaders} also separate
+words.  @slanted{Escape sequences} can function as word characters, word
+separators, or neither---the last simply have no effect on GNU
+@code{troff}'s idea of whether an input character is within a word.
+We'll discuss all of these in due course.}  To disable filling, see
 @ref{Manipulating Filling and Adjustment}.
 
 @Example
@@ -5233,7 +5234,7 @@ mechanism for table arrangement.} The tab and leader glyphs can be
 configured, and further facilities for sophisticated table composition
 are available; see @ref{Tabs and Fields}.  There are many details to
 track when using such low-level features, so most users turn to the
-@cite{tbl@r{(1)}} preprocessor for table construction.
+@cite{tbl@r{(1)}} preprocessor to lay out tables.
 
 @c ---------------------------------------------------------------------
 
@@ -6667,14 +6668,14 @@ them.
 .de center
 .  if \\n[.br] \
 .    br
-.  ce \\$@@
+.  ce \\$1
 ..
 .
 .
 .de right-align
 .@arrow{}if \\n[.br] \
 .@arrow{}@arrow{}br
-.@arrow{}rj \\$@@
+.@arrow{}rj \\$1
 ..
 @endExample
 
@@ -6691,14 +6692,14 @@ definitions (or any input lines) with blank lines.
 .de center
 .  if \\n[.br] \
 .    br
-.  ce \\$@@
+.  ce \\$1
 ..
 
 
 .de right-align
 .@arrow{}if \\n[.br] \
 .@arrow{}@arrow{}br
-.@arrow{}rj \\$@@
+.@arrow{}rj \\$1
 ..
 
 .blm             \" deactivate blank line trap
@@ -7344,10 +7345,10 @@ traces, the check for the overfull line hasn't been done yet at the
 point where @code{\R} gets handled, and you get a value for the
 @code{.k} register that is even greater than the current line length.
 
-In the second input line, the insertion of @code{\h'0'} to emit an
-invisible zero-width space forces GNU @code{troff} to check the line
-length, which in turn causes the start of a new output line.  Now
-@code{.k} returns the expected value.
+In the second input line, the insertion of @code{\h'0'} to cause a
+zero-width motion forces GNU @code{troff} to check the line length,
+which in turn causes the start of a new output line.  Now @code{.k}
+returns the expected value.
 @endDefreq
 
 @code{nr} and @code{\R} each have two additional special forms to
@@ -7682,7 +7683,7 @@ found in @ref{Register Index}.
 We present here a few built-in registers that are not described
 elsewhere in this manual; they have to do with invariant properties of
 GNU @code{troff}, or obtain information about the formatter's
-command-line options or the operating environment.
+command-line options, processing progress, or the operating environment.
 
 @table @code
 @item \n[.A]
@@ -9175,7 +9176,7 @@ interpolates@tie{}1 if line-tabs are active, and 0 otherwise.
 Sometimes it is desirable to fill a tab stop with a given glyph,
 but also use tab stops normally on the same output line.  An example is
 a table of contents entry that uses dots to bridge the entry name with
-its page number, which is itself aligned within a tab stop.  The
+its page number, which is itself aligned between tab stops.  The
 @code{roff} language provides @dfn{leaders} for this
 purpose.@footnote{This is pronounced to rhyme with ``feeder'', and
 refers to how the glyphs ``lead'' the eye across the page to the
@@ -9185,8 +9186,8 @@ corresponding page number or other datum.}
 A leader character (@acronym{ISO} and @acronym{EBCDIC} code
 point@tie{}1, also known as @acronym{SOH} or ``start of heading''),
 behaves similarly to a tab character:@: it moves to the next tab stop.
-The difference is that for this movement, the default fill glyph is a
-period @samp{.}.
+The difference is that for this movement, the default fill character is
+a period @samp{.}.
 
 @Defesc {\\a, , , }
 @cindex leader character, non-interpreted (@code{\a})

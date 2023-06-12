@@ -646,7 +646,7 @@ drawing of geometric primitives (lines, arcs, polygons, circles,
 @dots{})
 
 @item
-configuration of stroke and fill colors (where supported by the output
+setup of stroke and fill colors (where supported by the output
 device)
 
 @item
@@ -662,12 +662,12 @@ embedding of hyperlinks, images, document metadata, and other inclusions
 @cindex macro package, introduction
 @cindex package, macro, introduction
 
-Since GNU @code{troff} concentrates on elemental typesetting functions,
-it can be challenging to use directly.  However, @code{groff} provides a
-@dfn{macro} facility to specify how certain routine operations, such as
-starting paragraphs, or printing headers and footers, should be
-performed in terms of those low-level elements.  Macros can be collected
-together into a @dfn{macro package}.  Several macro packages available;
+Elemental typesetting functions can be be challenging to use directly
+with complex documents.  A @dfn{macro} facility specifies how certain
+routine operations, such as starting paragraphs, or printing headers and
+footers, should be performed in terms of those low-level instructions.
+Macros can be specific to one document or collected together into a
+@dfn{macro package} for use by many.  Several macro packages available;
 the most widely used are provided with @code{groff}.  They are
 @file{man}, @file{mdoc}, @file{me}, @file{mm}, @file{mom}, and
 @file{ms}.
@@ -679,26 +679,22 @@ the most widely used are provided with @code{groff}.  They are
 @section Preprocessors
 @cindex preprocessors
 
-While GNU @code{troff} provides the necessary functions to format a
-document, some are unwieldy to use at a low level, as when constructing
-tables, setting mathematics, or drawing diagrams.  A @dfn{preprocessors}
-employs a domian-specific language to ease the generation of such
-object in terms that are convenient for human entry.  The preprocessors
-read a document and translate the parts of it that apply to them into
-GNU @code{troff} input.
-
-Conventionally, preprocessors are sequenced in a Unix pipeline to send
-their output to each other and then to GNU @code{troff}.  The
-@command{groff} command manages the construction of such pipelines.
-Give command-line options to @command{groff} to tell it which
-preprocessors to use.
+An alternative approach to complexity management, particularly when
+constructing tables, setting mathematics, or drawing diagrams, lies in
+preprocessing.  A @dfn{preprocessor} employs a domian-specific language
+to ease the generation of tables, equations, and so forth terms that are
+convenient for human entry.  Each preprocessor reads a document and
+translates the parts of it that apply to it into GNU @code{troff} input.
+Command-line options to @command{groff} tell it which preprocessors to
+use.
 
 @code{groff} provides preprocessors for laying out tables
 (@command{gtbl}), typesetting equations (@command{geqn}), drawing
 diagrams (@command{gpic} and @command{ggrn}), inserting bibliographic
 references (@command{grefer}), and drawing chemical structures
 (@command{gchem}).  An associated program that is useful when dealing
-with preprocessors is @command{gsoelim}.
+with preprocessors is @command{gsoelim}.@footnote{The @samp{g} prefix is
+not used on all systems; see @ref{Invoking groff}.}
 
 @code{groff} also supports @code{grap}, a preprocessor for drawing
 graphs.  A free implementation of it can be obtained separately.

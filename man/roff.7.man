@@ -1380,8 +1380,7 @@ project historically has been
 .IR groff ,
 the GNU implementation of
 .IR troff ,
-developed from scratch by James Clark starting in 1989 and distributed
-under
+developed by James Clark starting in 1989 and distributed under
 .UR http://\:www\:.gnu\:.org/\:copyleft
 copyleft
 .UE
@@ -1394,15 +1393,15 @@ systems to that point.
 .
 .I groff
 rapidly attracted contributors,
-and has served as a complete replacement for almost all applications of
-AT&T
+and has served as a replacement for almost all applications of AT&T
 .I troff
 (exceptions include
 .IR mv ,
 a macro package for preparation of viewgraphs and slides,
 and the
 .I ideal
-preprocessor for producing diagrams from a constraint-based language).
+preprocessor,
+which produces diagrams from mathematical constraints).
 .
 Beyond that,
 it has added numerous features;
@@ -1434,7 +1433,7 @@ standard today.
 .
 In 2007, \" TODO: verify
 Caldera/SCO and Sun Microsystems,
-having acquired rights to AT&T Documenter's Workbench
+having acquired rights to AT&T Documenter's Workbench (DWB)
 .I troff
 (a descendant of the Bell Labs code),
 released it under a free but GPL-incompatible license.
@@ -1456,8 +1455,8 @@ Heirloom Doctools
 In July 2013,
 Ali Gholami Rudi announced
 .UR https://\:github\:.com/\:aligrudi/\:neatroff
-.IR neatroff ,
-.UE
+.I neatroff
+.UE ,
 a permissively licensed new implementation.
 .
 .
@@ -1576,7 +1575,7 @@ man pages are a prominent example.
 Many features of the
 .I roff
 language are seldom needed by users;
-only authors of macro packages need a substantial command of them.
+only authors of macro packages require a substantial command of them.
 .
 .
 .\" ====================================================================
@@ -1814,8 +1813,7 @@ The macro definitions of a package are typically kept in a file called
 .BI tmac. name\/\c\" Italic correction comes before \c !
 ).
 .
-Details on the naming of macro packages and their placement is found
-in
+Find details on the naming and placement of macro packages in
 .MR groff_tmac @MAN5EXT@ .
 .
 .
@@ -2563,8 +2561,7 @@ system potentially has many man pages,
 each describing an aspect of it.
 .
 Unfortunately,
-there is no general naming scheme for the documentation among the
-different
+there is no consistent naming scheme for these pages among the different
 .I roff
 implementations.
 .

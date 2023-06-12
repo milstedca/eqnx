@@ -1460,6 +1460,20 @@ Ali Gholami Rudi announced
 a permissively licensed new implementation.
 .
 .
+.P
+Another descendant of DWB
+.I troff \" DWB
+is part of
+.UR https://\:9fans\:.github\:.io/\:plan9port/
+Plan\~9 from User Space
+.UE .
+.
+Since 2021,
+this
+.I troff \" Plan 9 from User Space
+has been available under permissive terms.
+.
+.
 .\" ====================================================================
 .SH "Using \f[I]roff\f[]"
 .\" ====================================================================

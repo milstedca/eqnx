@@ -10011,8 +10011,10 @@ Spacing}).  While the @code{sv} request allows negative values for
 @cindex vertical drawing position (@code{nl})
 @cindex vertical position, drawing (@code{nl})
 @cindex drawing position, vertical (@code{nl})
+@c TODO: We should talk somewhere prior to this point about how the
+@c formatter doesn't start a page until it has to.
 @code{nl} interpolates or sets the vertical drawing position.  When the
-formatter starts and first page transition hasn't happened yet,
+formatter starts, the first page transition hasn't happened yet, and
 @code{nl} is negative.  If a header trap has been planted on the page
 (typically at vertical position @code{0}), you can assign a negative
 value to @code{nl} to spring it if that page has already started

@@ -79,12 +79,12 @@ lkbib \- search bibliographic databases
 .SH Description
 .\" ====================================================================
 .
-.I lkbib
+.I \%lkbib
 searches bibliographic databases for references that contain the keys
 .I key
 \&.\|.\|.\& and prints any references found on the standard output.
 .
-.I lkbib
+.I \%lkbib
 will search any databases given by
 .B \-p
 options,

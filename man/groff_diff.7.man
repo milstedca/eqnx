@@ -1269,7 +1269,7 @@ Typeset the special character (glyph)
 .
 .TP
 .BI \[rs][ "base-char combining-component\~"\c
-\&.\|.\|.]
+.RB .\|.\|. ]
 Typeset a composite glyph consisting of
 .I base-char
 overlaid with one or more

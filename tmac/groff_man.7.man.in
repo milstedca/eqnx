@@ -208,7 +208,7 @@ in subsection \(lqDeprecated features\(rq below.
 .
 .P
 Throughout Unix documentation,
-a manual entry is referred simply to as a \(lqman page\(rq,
+a manual entry is referred to simply as a \(lqman page\(rq,
 regardless of its length,
 without gendered implication,
 and irrespective of the macro package selected for its composition.

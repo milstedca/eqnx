@@ -4818,210 +4818,267 @@ The arguments are integers in the range 0 to 65535.
 .
 .P
 The
-.BR x \~\c
+.B x
 device control command has been extended.
 .
+.
 .TP
-\f[B]x u \f[I]n\f[R]
+.BI "x u\~" n
 If
 .I n
-is\~1, start underlining of spaces.
+is\~1,
+start underlining of spaces.
 .
 If
 .I n
-is\~0, stop underlining of spaces.
+is\~0,
+stop underlining of spaces.
 .
-This is needed for the
+This facility is needed for the
 .B cu
-request in nroff mode and is ignored otherwise.
+request in
+.I nroff \" mode
+mode and is ignored otherwise.
 .
 .
 .\" ====================================================================
 .SS "Extended drawing commands"
 .\" ====================================================================
 .
-The
-.B D
-drawing command has been extended.
-.
-These extensions are not used by GNU pic if the
+GNU
+.I pic \" GNU
+does not produce
+.I @g@troff
+escape sequences employing these extensions if its
 .B \-n
 option is given.
 .
+.
 .TP
-\f[B]Df \f[I]n\/\f[R]\*[ic]\[rs]n
-Set the shade of gray to be used for filling solid objects to
-.IR n ;
-.I n
-must be an integer between 0 and 1000, where 0 corresponds solid white
-and 1000 to solid black, and values in between correspond to
-intermediate shades of gray.
+.BI Df\~ n
+Set the shade of gray used to fill geometric objects to
+.IR n ,
+which must be an integer.
 .
-This applies only to solid circles, solid ellipses and solid
-polygons.
+0 corresponds to white and 1000 to black.
 .
-By default, a level of 1000 is used.
+A grayscale ramp spans the two.
 .
-Whatever color a solid object has, it should completely obscure
-everything beneath it.
+A value outside this range uses the stroke color as the fill color.
 .
-A value greater than 1000 or less than\~0 can also be used: this means
-fill with the shade of gray that is currently being used for lines and
-text.
+The fill color is opaque.
 .
-Normally this is black, but some drivers may provide a way of
-changing this.
+Normally the default is black,
+but some drivers may provide a way of changing this.
+.
+.B Df
+is obsolete since 2002, \" commit ea5a42d080, 2002-01-24
+superseded by
+.B DFg
+below.
+.
 .
 .IP
 The corresponding
-.BR \[rs]D\[aq]f .\|.\|.\& \[aq]
-command shouldn't be used since its argument is always rounded to an
-integer multiple of the horizontal motion quantum,
-which can lead to surprising results.
+.B \[rs]D\[aq]f\^\[aq]
+escape sequence should not be used:
+its argument is rounded to an integer multiple of the horizontal motion
+quantum,
+which can limit the precision
+.RI of\~ n .
+.
 .
 .TP
-\f[B]DC \f[I]\/d\f[R]\*[ic]\[rs]n
-Draw a solid circle with a diameter of
+.BI DC\~ d
+Draw a filled circle of diameter
 .I d
-with the leftmost point at the current position.
+with its leftmost point at the drawing position.
+.
 .
 .TP
-\f[B]DE \f[I]dx dy\/\f[R]\*[ic]\[rs]n
-Draw a solid ellipse with a horizontal diameter of
-.I dx
-and a vertical diameter of
-.I dy
-with the leftmost point at the current position.
+.BI DE\~ "h v"
+Draw a filled ellipse,
+of horizontal axis
+.I h
+and vertical axis
+.IR v ,
+with its leftmost point at the drawing position.
 .
+.
+.br
+.ne 4v
 .EQ
 delim $$
 .EN
 .TP
-\f[B]Dp\f[R] $dx sub 1$ $dy sub 1$ $dx sub 2$ $dy sub 2$ $...$ \c
-$dx sub n$ $dy sub n$\[rs]n
-Draw a polygon with, for $i = 1 ,..., n+1$, the
-.IR i -th
-vertex at the current position
+.\" `BR`, not `BI`, here, because eqn will take care of font changes.
+.BR Dp\~ "$dx sub 1 ~ dy sub 1 ~ ldots ~ dx sub n ~ dy sub n$"
+Draw a polygon with,
+for $i = 1 , ldots , n + 1$,
+its
+.IR i th
+vertex at the drawing position
 .
-$+ sum from j=1 to i-1 ( dx sub j , dy sub j )$.
+$+ sum from { j = 1 } to { i - 1 } ( dx sub j , dy sub j )$.
 .
-At the moment, GNU pic only uses this command to generate triangles
-and rectangles.
+.\" The following is implied by the math above, but let's be kind.
+.I groff
+output drivers automatically close polygons,
+drawing a line from $( dx sub n , dy sub n )$ back to
+$( dx sub 1 , dy sub 1 )$.
+.
+The drawing position is left at the last
+.I specified
+vertex,
+but this may change in a future version of GNU
+.IR troff . \" GNU
+.
+Heirloom Doctools
+.IR troff , \" Heirloom
+like DWB
+.IR troff , \" DWB
+by default does not close the polygon.
+.
+In its
+.I groff
+compatibility mode,
+Heirloom closes the polygon but leaves the drawing position
+.IR unchanged \[em]that
+is,
+at the polygon's
+.I initial
+drawing position.
+.
+.
+.IP
+At the moment,
+GNU
+.I pic \" GNU
+uses this command only to generate triangles and rectangles.
+.
 .
 .TP
-\f[B]DP\f[R] $dx sub 1$ $dy sub 1$ $dx sub 2$ $dy sub 2$ $...$ \c
-$dx sub n$ $dy sub n$\[rs]n
+.BR DP\~ "$dx sub 1 ~ dy sub 1 ~ ldots ~ dx sub n ~ dy sub n$"
+As
+.BR Dp ,
+but draw a filled rather than a stroked polygon.
 .
-Like
-.B Dp
-but draw a solid rather than outlined polygon.
 .
 .TP
-\f[B]Dt \f[I]n\/\f[R]\*[ic]\[rs]n
-Set the current line thickness to
+.BI Dt\~ n
+Set the line thickness to
 .IR n \~\c
-machine units.
+basic units.
 .
-Traditionally,
 .RI AT&T\~ troff
-drivers use a line thickness proportional to the current type size;
-drivers should continue to do this if no
-.B Dt
-command has been given, or if a
-.B Dt
-command has been given with a negative value of\~\c
-.IR n .
-A zero value of\~\c
-.I n
-selects the smallest available line thickness.
+output drivers use a thickness proportional to the type size;
+this is the GNU
+.I troff \" GNU
+default.
+.
+A
+.RI negative\~ n
+requests this explicitly.
+.
+.RI An\~ n
+of zero selects the smallest available line thickness.
+.
 .
 .P
-A difficulty arises in how the current position should be changed after
+A difficulty arises in how the drawing position should be changed after
 the execution of these commands.
 .
-This is not of great importance since the code generated by GNU pic
-does not depend on this.
+This has little importance to most users,
+since the output of GNU
+.I grn \" GNU
+and
+.I pic \" GNU
+does not depend on it.
 .
 Given a drawing command of the form
-.IP
-\f[B]\[rs]D\[aq]\f[I]c\f[R] $x sub 1$ $y sub 1$ $x sub 2$ $y sub 2$ \c
-$...$ $x sub n$ $y sub n$\f[B]\[aq]\f[R]
-.
-.P
+.BI D z
+$x sub 1 ~ y sub 1 ~ ldots ~ x sub n ~ y sub n$,
 where
-.I c
-is not one of
-.BR c ,
+.I z
+is not
+.B c
+or
 .BR e ,
-.BR l ,
-.BR a ,
-or\~\c
-.BR \[ti] ,
 .RI AT&T\~ troff
-treats each of the $x sub i$ as a horizontal quantity,
-and each of the $y sub i$ as a vertical quantity and assumes that
-the width of the drawn object is $sum from i=1 to n x sub i$,
-and that the height is $sum from i=1 to n y sub i$.
+treats each $x sub i$ as a horizontal motion,
+each $y sub i$ as a vertical one,
+and therefore assumes that the width of the drawn object is
+$sum from { i = 1 } to n x sub i$,
+and its height is $sum from { i = 1 } to n y sub i$.
 .
-(The assumption about the height can be seen by examining the
+(Verify its assumption about height by examining the
 .B st
 and
 .B sb
-registers after using such a
-.BR D \~\c
-command in a
+registers after using such a drawing command in a
 .B \[rs]w
 escape sequence).
 .
-This rule also holds for all the original drawing commands with the
-exception of
-.BR De .
-For the sake of compatibility GNU troff also follows this rule, even
-though it produces an ugly result in the case of the
+For the sake of compatibility,
+GNU
+.I troff \" GNU
+also follows this rule,
+even though it frustrates extensions to the
+.B D
+command that set drawing parameters rather than rendering objects,
+producing ugly results in the case of the
 .B Dt
 and
 .BR Df ,
-and, to a lesser extent,
-.B DE
-commands.
+or otherwise don't parameterize objects as a series of vertices,
+as with
+GNU
+.IR troff 's \" GNU
+filled ellipse,
+.BR DE .
 .
 Thus after executing a
-.BR D \~\c
-command of the form
-.IP
-\f[B]D\f[I]c\f[R] $x sub 1$ $y sub 1$ $x sub 2$ $y sub 2$ $...$ \c
-$x sub n$ $y sub n$\[rs]n
+.BR D \~command
+of the form
+.BI D z
+$x sub 1 ~ y sub 1 ~ ldots ~ x sub n ~ y sub n$,
+the drawing position should be increased by
 .
-.P
-the current position should be increased by
-.
-$( sum from i=1 to n x sub i , sum from i=1 to n y sub i )$.
+$( sum from { i = 1 } to n x sub i , sum from { i = 1 } to n y sub i )$.
 .EQ
 delim off
 .EN
 .
+In a future release,
+GNU
+.I troff \" GNU
+and its output drivers may abandon the application of this assumption to
+drawing commands not explicitly specified in the AT&T \[lq]Troff User's
+Manual\[rq].
+.
 .
 .P
-Fill colors are implemented with another set of extensions.
+Fill color selection is implemented with another set of extensions.
 .
 .
 .TP
-\f[B]DFc \f[I]cyan magenta yellow\f[R]\*[ic]\[rs]n
+.BI DFc\~ "cyan magenta yellow"
 .TQ
-\f[B]DFd\f[R]\*[ic]\[rs]n
+.B DFd
 .TQ
-\f[B]DFg \f[I]gray\/\f[R]\*[ic]\[rs]n
+.BI DFg\~ gray
 .TQ
-\f[B]DFk \f[I]cyan magenta yellow black\f[R]\*[ic]\[rs]n
+.BI DFk\~ "cyan magenta yellow black"
 .TQ
-\f[B]DFr \f[I]red green blue\f[R]\*[ic]\[rs]n
-Set the components of the fill color similarly to the
-.BR m \~commands
-above.
+.BI DFr\~ "red green blue"
+Set the components of the fill color as described under the
+.B \[rs]M
+escape sequence above.
 .
+.B DFd
+restores the device's default fill color.
 .
-.IP
-The drawing position isn't changed by these color commands,
+The drawing position is not updated,
 in contrast to
 .BR Df .
 .

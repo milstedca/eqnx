@@ -2845,7 +2845,10 @@ end
 .    ds $RL_INDENT \\$2
 .    ds $RL_LENGTH \\$3
 .    ie !'\\$4'' .ds $RL_COLOR  \\$4
-.    el          .ds $RL_COLOR \\n[.m]
+.    el \{\
+.       ie '\\n[.m]'' .ds $RL_COLOR \\*[default]
+.       el .ds $RL_COLOR \\n[.m]
+.    \}
 .    nr #SAVED_WEIGHT     \\n[#RULE_WEIGHT]
 .    nr #SAVED_WEIGHT_ADJ \\n[#RULE_WEIGHT_ADJ]
 .    di NULL
@@ -2968,7 +2971,10 @@ end
 .    ds $RL_DEPTH  \\$3
 .    ie !'\\$4'' \
 .       ds $RL_COLOR  \\$4
-.    el .ds $RL_COLOR \\n[.m]
+.    el \{\
+.       ie '\\n[.m]'' .ds $RL_COLOR \\*[default]
+.       el .ds $RL_COLOR \\n[.m]
+.    \}
 .    nr #SAVED_WEIGHT     \\n[#RULE_WEIGHT]
 .    nr #SAVED_WEIGHT_ADJ \\n[#RULE_WEIGHT_ADJ]
 .    RULE_WEIGHT \\*[$RL_WEIGHT]
@@ -3042,7 +3048,10 @@ end
 .       ie d$\\$5_FILL .ds $BX_COLOR \\*[$\\$5_FILL]
 .       el             .ds $BX_COLOR \\$5
 .    \}
-.    el .ds $BX_COLOR \\n[.m]
+.    el \{\
+.       ie '\\n[.m]'' .ds $BX_COLOR \\*[default]
+.       el .ds $BX_COLOR \\n[.m]
+.    \}
 .    nr #SAVED_WEIGHT     \\n[#RULE_WEIGHT]
 .    nr #SAVED_WEIGHT_ADJ \\n[#WEIGHT_ADJ]
 .    if !'\\$1'SOLID' .RULE_WEIGHT \\*[$BX_WEIGHT]
@@ -3129,7 +3138,10 @@ end
 .       ie d$\\$5_FILL .ds $CL_COLOR \\*[$\\$5_FILL]
 .       el             .ds $CL_COLOR \\$5
 .    \}
-.    el .ds $CL_COLOR \\n[.m]
+.    el \{\
+.       ie '\\n[.m]'' .ds $CL_COLOR \\*[default]
+.       el .ds $CL_COLOR \\n[.m]
+.    \}
 .    nr #SAVED_WEIGHT     \\n[#RULE_WEIGHT]
 .    nr #SAVED_WEIGHT_ADJ \\n[#WEIGHT_ADJ]
 .    if !'\\$1'SOLID' .RULE_WEIGHT \\*[$CL_WEIGHT]

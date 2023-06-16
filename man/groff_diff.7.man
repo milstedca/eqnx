@@ -76,8 +76,9 @@ the typesetting system originating in Unix systems of the 1970s.
 At the same time,
 .I groff
 removes many arbitrary limitations and adds features,
-both to the language and to the intermediate,
-device-independent output format.
+both to the language and to the page description language output by the
+.I troff \" generic
+formatter.
 .
 Differences arising from
 .IR groff 's
@@ -107,14 +108,17 @@ present in AT&T
 .
 .I groff
 introduces many new requests;
-with three exceptions,\" .cp, .do, .rj
-they all have names longer than two characters.
+with three exceptions
+.RB ( cp ,
+.BR do ,
+.BR rj ),
+they have names longer than two characters.
 .
 The names of registers,
 fonts,
 strings/\:macros/\:diversions,
 environments,
-special characters (glyphs),
+special characters,
 and colors can be of any length.
 .
 More generally,
@@ -128,7 +132,7 @@ within can be of arbitrary length.
 .
 .
 .\" ====================================================================
-.SS "Fonts"
+.SS "Font families and abstract styles"
 .\" ====================================================================
 .
 GNU
@@ -154,6 +158,34 @@ producing a
 .I "resolved font name."
 .
 .
+.P
+When the requests
+.BR cs ,
+.BR bd ,
+.BR tkf ,
+.BR uf ,
+or
+.B \%fspecial
+are applied to an abstract style,
+they instead affect the member of the default family corresponding to
+that style.
+.
+The default family can be set with the
+.B \-f
+command-line option.
+.
+The
+.B styles
+command in the output device's
+.I DESC
+file controls which mounting positions
+(if any)
+are initially associated with abstract styles rather than fonts,
+and the
+.B sty
+request can update this association.
+.
+.
 .\" ====================================================================
 .SS Colors
 .\" ====================================================================
@@ -172,14 +204,14 @@ the
 .I stroke color,
 with which glyphs,
 rules (lines),
-and geometric objects like circles and polygons are drawn,
+and geometric figures are drawn,
 and the
 .I fill color,
-which can be used to paint the interior of closed geometric figures.
+which paints the interior of filled geometric figures.
 .
 The
 .BR color ,
-.BR defcolor ,
+.BR \%defcolor ,
 .BR gcolor ,
 and
 .B fcolor
@@ -355,7 +387,7 @@ request
 (or by the
 .B sizes
 or
-.B sizescale
+.B \%sizescale
 directives in the device's
 .I DESC
 file)
@@ -376,10 +408,11 @@ and
 which multiplies by 65,536.
 .
 The latter provides convenient fractions for color definitions with the
-.B .defcolor
+.B \%defcolor
 request.
 .
-For example, 0.5f equals 32768u.
+For example,
+0.5f equals 32768u.
 .
 .
 .\" ====================================================================
@@ -427,23 +460,24 @@ ignore scaling units in the evaluation
 .\" ====================================================================
 .
 More conditions can be tested with the
-.B .if
+.RB \[lq]\| if \|\[rq]
 and
-.B .ie
+.B ie
 requests,
 as well as the new
-.B .while
+.RB \[lq] while \[rq]
 request.
 .
 .
 .TP
-.BI c\~ g
-True if a glyph
-.I g
+.BI c\~ c
+True if a character
+.I c
 is available,
 where
-.I g
-is a Unicode basic Latin character;
+.I c
+is an ordinary character
+(Unicode basic Latin excluding control characters and the space);
 a
 .I groff
 special character
@@ -454,63 +488,66 @@ or
 .BI \[rs]N\[aq] idx\c
 .BR \[aq] ;
 or has been defined by any of the
-.BR .char ,
-.BR .fchar ,
-.BR .fschar ,
+.BR char ,
+.BR fchar ,
+.BR fschar ,
 or
-.B .schar
+.B schar
 requests.
 .
 .
 .TP
-.BI d\~ name
-True if there is a string,
+.BI d\~ nam
+True if a string,
 macro,
 diversion,
-or request called
-.IR name .
+or request
+.I nam
+is defined.
 .
 .
 .TP
-.BI F\~ font
-True if a font called
-.I font
-exists.
+.BI F\~ fnt
+True if a font
+.I fnt
+is available;
+.I fnt
+can be an abstract style
+or a font name.
 .
-.I font
+.I fnt
 is handled as if it
 were opened with the
-.B .ft
+.B ft
 request
 (that is,
-font translation and
-abstract styles are applied),
-without actually mounting it.
-.
-This test doesn't load the complete font,
-but only its header,
-to verify its validity.
+abstract styles and font translation are applied),
+but
+.I fnt
+cannot be a mounting position and it is not mounted.
 .
 .
 .TP
-.BI m\~ color
-True if there is a color called
-.IR color .
+.BI m\~ col
+True if a color
+.I col
+is defined.
 .
 .
 .TP
 .BI r\~ reg
-True if there is a register called
-.IR reg .
+True if a register
+.I reg
+is defined.
 .
 .
 .TP
-.BI S\~ style
-True if a style called
-.I style
-has been registered.
+.BI S\~ sty
+True if a style
+.I sty
+is registered.
 .
-Font translation is applied.
+Font translation applies.
 .
 .
 .TP
@@ -532,22 +569,27 @@ to a form suitable for Versatec and Benson-Varian plotters.)
 .SS "Drawing commands"
 .\" ====================================================================
 .
-Circles,
-ellipses,
-and polygons can be drawn solid or stroked.
-.
 GNU
 .I troff \" GNU
-draws open,
-stroked (outlined) objects with the selected stroke color;
-solid (filled) ones are shaded with the fill color.
+closes polygons
+.RB ( \[rs]D\[aq]p\[aq] )
+automatically
+(unlike DWB
+.IR troff ). \" DWB
+.
+Circles,
+ellipses,
+and polygons can be filled.
+.
+Stroked (outlined) objects are drawn with the stroke color and
+filled (solid) ones shaded with the fill color.
 .
 These are independent properties;
-if you want a solid,
+if you want a filled,
 stroked figure,
 you must draw the same figure twice using each drawing command.
 .
-A solid figure is always smaller than an outlined one because the former
+A filled figure is always smaller than a stroked one because the former
 is drawn only within its defined area,
 whereas strokes have a line thickness
 (set with

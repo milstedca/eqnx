@@ -69,8 +69,8 @@ The GNU
 .I roff
 text processing system,
 .IR groff ,
-is largely compatible with
-.RI AT&T\~ troff ,
+is largely compatible with AT&T
+.IR troff , \" AT&T
 the typesetting system originating in Unix systems of the 1970s.
 .
 At the same time,
@@ -81,8 +81,8 @@ device-independent output format.
 .
 Differences arising from
 .IR groff 's
-implementation of
-.RI AT&T\~ troff
+implementation of AT&T
+.I troff \" AT&T
 features are also noted.
 .
 .
@@ -97,8 +97,8 @@ adds new escape sequences and requests,
 provides new conditional expression operators,
 recognizes additional scaling units and numeric operators,
 and extends the function of some escape sequences and requests
-present in
-.RI AT&T\~ troff .
+present in AT&T
+.IR troff . \" AT&T
 .
 .
 .\" ====================================================================
@@ -118,8 +118,8 @@ special characters (glyphs),
 and colors can be of any length.
 .
 More generally,
-anywhere
-.RI AT&T\~ troff
+anywhere AT&T
+.I troff \" AT&T
 supports an escape form that uses an opening parenthesis \[lq](\[rq]
 to introduce a two-character argument,
 .I groff
@@ -523,8 +523,8 @@ implementations only.
 .
 (This refers to
 .IR vtroff ,
-a translator that would convert the C/A/T output from early-vintage
-.RI AT&T\~ troff
+a translator that would convert the C/A/T output from early-vintage AT&T
+.I troff \" AT&T
 to a form suitable for Versatec and Benson-Varian plotters.)
 .
 .
@@ -560,8 +560,8 @@ whereas strokes have a line thickness
 .
 .I groff
 introduces several new escape sequences
-and extends the syntax of a few
-.RI AT&T\~ troff
+and extends the syntax of a few AT&T
+.I troff \" AT&T
 escape sequences
 (namely,
 .BR \[rs]D ,
@@ -1027,8 +1027,8 @@ permitted for the argument to
 .B \[rs]X
 to contain newlines).
 .
-The inclusion of newlines requires an extension to the
-.RI AT&T\~ troff
+The inclusion of newlines requires an extension to the AT&T
+.I troff \" AT&T
 output format,
 and confuses drivers that do not know about this extension.
 .
@@ -3918,8 +3918,8 @@ which, when reread, will cause the contents of
 .I filename
 to be transparently copied through to the output.
 .
-In
-.RI AT&T\~ troff,
+In AT&T
+.IR troff ,
 the contents of
 .I filename
 are immediately copied through to the output regardless of whether there
@@ -4524,7 +4524,8 @@ fixed at compile time.
 .B \[rs]n[year]
 The current year.
 .
-.RI AT&T\~ troff 's
+AT&T
+.IR troff 's \" AT&T
 .B \[rs]n[yr]
 register stores the current year minus 1900.
 .
@@ -4970,7 +4971,8 @@ Set the line thickness to
 .IR n \~\c
 basic units.
 .
-.RI AT&T\~ troff
+AT&T
+.I troff \" AT&T
 output drivers use a thickness proportional to the type size;
 this is the GNU
 .I troff \" GNU
@@ -5004,7 +5006,8 @@ is not
 .B c
 or
 .BR e ,
-.RI AT&T\~ troff
+AT&T
+.I troff \" AT&T
 treats each $x sub i$ as a horizontal motion,
 each $y sub i$ as a vertical one,
 and therefore assumes that the width of the drawn object is
@@ -5196,8 +5199,8 @@ text.
 .
 .P
 .I groff
-does not always hyphenate words as
-.RI AT&T\~ troff
+does not always hyphenate words as AT&T
+.I troff \" AT&T
 does.
 .
 The AT&T implementation uses a set of hard-coded rules specific to
@@ -5222,7 +5225,8 @@ Long names may be
 .IR groff 's
 most obvious innovation.
 .
-.RI AT&T\~ troff
+AT&T
+.I troff \" AT&T
 interprets
 .RB \[lq] .dsabcd \[rq]
 as defining a string
@@ -5235,7 +5239,8 @@ Normally,
 interprets this as a call of a macro named
 .RB \[lq] dsabcd \[rq].
 .
-.RI AT&T\~ troff
+AT&T
+.I troff \" AT&T
 also interprets
 .B \[rs]*[
 and
@@ -5310,8 +5315,8 @@ layers of inclusion.
 You cannot use the same register name everywhere lest you
 \[lq]clobber\[rq] the value from a preceding or enclosing context.
 .
-The two-character register name space of
-.RI AT&T\~ troff
+The two-character register name space of AT&T
+.I troff \" AT&T
 is confining and mnemonically challenging;
 you may wish to use
 .IR groff 's
@@ -5510,7 +5515,8 @@ macros,
 diversions,
 registers,
 fonts, or environments;
-.RI AT&T\~ troff
+AT&T
+.I troff \" AT&T
 does.
 .
 The
@@ -5528,8 +5534,8 @@ accepts only a single character
 (a digit)
 for
 .IR n ,
-consistently with other forms that originated in
-.RI AT&T\~ troff ,
+consistently with other forms that originated in AT&T
+.IR troff , \" AT&T
 like
 .BR \[rs]* ,
 .BR \[rs]$ ,
@@ -5552,8 +5558,8 @@ form.
 .
 [Background:
 The Graphic Systems C/A/T phototypesetter
-(the original device target for
-.RI AT&T\~ troff )
+(the original device target for AT&T
+.IR troff ) \" AT&T
 supported only a few discrete type sizes in the range 6\[en]36 points,
 so Ossanna contrived a special case in the parser to do what the user
 must have meant.
@@ -5566,8 +5572,8 @@ McIlroy referred to it as a \[lq]living fossil\[rq].]
 .P
 Fractional type sizes cause one noteworthy incompatibility.
 .
-In
-.RI AT&T\~ troff
+In AT&T
+.I troff \" AT&T
 the
 .B .ps
 request ignores scaling units and thus
@@ -5608,8 +5614,8 @@ does.
 .
 .
 .P
-In
-.RI AT&T\~ troff
+In AT&T
+.I troff \" AT&T
 the
 .B .pm
 request reports
@@ -5626,8 +5632,8 @@ ignores any arguments and reports the sizes in bytes.
 .
 .
 .P
-Unlike
-.RI AT&T\~ troff ,
+Unlike AT&T
+.IR troff , \" AT&T
 .I groff
 does not ignore the
 .B .ss
@@ -5718,8 +5724,8 @@ this always prints a single instance of the current escape character,
 regardless of whether or not it is used in a diversion;
 it also works in both
 .I groff
-and
-.RI AT&T\~ troff .
+and AT&T
+.IR troff . \" AT&T
 .
 (Naturally,
 if you've changed the escape character,
@@ -5741,8 +5747,8 @@ or
 for \[lq]reverse solidus\[rq],
 from its name in the ECMA-6 (ISO/IEC\~646) standard.
 .
-[This escape sequence is not portable to
-.RI AT&T\~ troff ,
+[This escape sequence is not portable to AT&T
+.IR troff , \" AT&T
 but is to its lineal descendant,
 Heirloom Doctools
 .IR troff ,
@@ -5788,8 +5794,8 @@ Its extensions notwithstanding,
 the
 .I groff
 intermediate output format has some incompatibilities
-with that of
-.RI AT&T\~ troff ,
+with that of AT&T
+.IR troff , \" AT&T
 but full compatibility is sought;
 problem reports and patches are welcome.
 .
@@ -5797,14 +5803,14 @@ The following incompatibilities are known.
 .
 .
 .IP \[bu]
-The positioning after drawing polygons conflicts with the
-.RI AT&T\~ troff
+The positioning after drawing polygons conflicts with the AT&T
+.I troff \" AT&T
 practice.
 .
 .
 .IP \[bu]
-The intermediate output cannot be rescaled to other devices as
-.RI AT&T\~ troff 's
+The intermediate output cannot be rescaled to other devices as AT&T
+.IR troff 's \" AT&T
 could.
 .
 .
@@ -5842,8 +5848,8 @@ device and font description file formats,
 and device-independent output format
 referred to collectively in
 .I groff
-documentation as
-.RI \[lq]AT&T\~ troff \[rq].
+documentation as AT&T
+.IR troff . \" AT&T
 .
 .
 .PP

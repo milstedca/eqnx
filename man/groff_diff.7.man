@@ -600,6 +600,18 @@ whereas strokes have a line thickness
 .SS "Escape sequences"
 .\" ====================================================================
 .
+.\" TODO: Some of the synopses here and in "New requests" get pretty
+.\" discursive.  It would be better to lift the introduction of new
+.\" concepts in groff programming to new subsections above.  Examples
+.\" include: string parameterization, user-definable characters,
+.\" character properties (cflags), character classes; the hyphenation
+.\" language, code, and pattern file system; file stream manipulation;
+.\"
+.\" _Maybe_ output suppression.  It's a big enough concept, but only
+.\" well understood by retired contributors, only used by the grohtml
+.\" output driver (still beta after 20 years), and we have some Savannah
+.\" tickets that point the way to radically simplifying its design,
+.\" eliminating its need to groff before you groff.
 .I groff
 introduces several new escape sequences
 and extends the syntax of a few AT&T
@@ -629,8 +641,8 @@ Interpolate 1 if
 is a valid identifier,
 and\~0 otherwise.
 .
-Because invalid input characters are
-removed, invalid identifiers are empty or contain spaces,
+Because invalid input characters are removed,
+invalid identifiers are empty or contain spaces,
 tabs,
 or newlines.
 .
@@ -655,16 +667,18 @@ request to filter out invalid macro or string arguments.
 .
 .TP
 .BI \[rs]D\[aq]C\~ "d" \[aq]
-Draw solid circle of diameter
+Draw filled circle of diameter
 .I d
 with its leftmost point at the drawing position.
 .
 .
 .TP
 .BI \[rs]D\[aq]E\~ "h v" \[aq]
-Draw solid ellipse of diameter
-.I d
-with its leftmost point at the drawing position.
+Draw filled ellipse with
+.I h
+and
+.I v
+as the axes and the leftmost point at the drawing position.
 .
 .
 .TP
@@ -698,7 +712,7 @@ the drawing position is left at
 .B \[aq]
 As
 .BR \[rs]D\[aq]p\[aq] ,
-but the polygon is solid.
+but the polygon is filled.
 .
 .
 .TP
@@ -719,26 +733,19 @@ this is the default.
 .
 .TP
 .B \[rs]E
-This is equivalent to an escape character, but it is not interpreted in
-copy mode.
+Embed an escape character that is not interpreted in copy mode
+(compare with
+.B \[rs]a
+and
+.BR \[rs]t ).
 .
-Strings to start and end superscripting could be defined as follows.
+You can use it to ease the writing of nested macro definitions.
 .
-.RS
-.IP
-.EX
-\&.ds { \[rs]v\[aq]\-.3m\[aq]\[rs]s\[aq]\[rs]En[.s]*6u/10u\[aq]
-\&.ds } \[rs]s0\[rs]v\[aq].3m\[aq]
-.EE
-.RE
-.
-.IP
-The use of
-.B \[rs]E
-ensures that these definitions work even if
-.B \[rs]*{
-gets interpreted in copy mode (for example, by being used in a macro
-argument).
+It is also convenient to define strings containing escape sequences that
+need to work when used in copy mode
+(for example,
+as macro arguments),
+or which will be interpolated at varying macro nesting depths.
 .
 .
 .TP
@@ -748,7 +755,7 @@ Select
 which may be a mounting position,
 abstract style,
 or font name,
-to select the typeface.
+to choose the typeface.
 .
 .B \[rs]f[]
 is a synonym of
@@ -763,15 +770,16 @@ it selects the previous font.
 .BI \[rs]F( fm
 .TQ
 .BI \[rs]F[ family ]
-Select font family.
+Select default font family.
 .
 See the
-.B .fam
+.B fam
 request below.
 .
 .B \[rs]F[]
-selects the previous font family,
-or the default family if there is none.
+makes the previous font family the default
+(if there is none,
+the output device's or formatter's default is selected).
 .
 .B \[rs]FP
 does not;
@@ -782,9 +790,10 @@ it selects font family \[lq]P\[rq] instead.
 .BI \[rs]k( rg
 .TQ
 .BI \[rs]k[ reg ]
-Mark horizontal position in register with two-character
+Mark horizontal drawing position in
+two-character register
 .RI name\~ rg
-or arbitrarily long
+or arbitrary register
 .RI name\~ reg .
 .
 .
@@ -797,7 +806,8 @@ or arbitrarily long
 Set the stroke color.
 .
 .B \[rs]m[]
-restores the previous stroke color.
+restores the previous stroke color,
+or the default if there is none.
 .
 .
 .TP
@@ -809,7 +819,8 @@ restores the previous stroke color.
 Set the fill color.
 .
 .B \[rs]M[]
-restores the previous fill color.
+restores the previous fill color,
+or the default if there is none.
 .
 .
 .TP
@@ -876,7 +887,8 @@ interpolation of a
 sequence,
 as well as the page offset,
 line length,
-image file name (if any),
+image file name
+(if any),
 horizontal and vertical device motion quanta,
 and input file name.
 .
@@ -975,7 +987,7 @@ is a numeric expression with a default scaling unit
 .BI \[rs]V( ev
 .TQ
 .BI \[rs]V[ env ]
-Interpolate the contents of the environment variable
+Interpolate contents of the environment variable
 .IR env ,
 as returned by
 .MR getenv 3 .
@@ -1025,16 +1037,14 @@ see
 .MR groff_char @MAN7EXT@ .
 .
 For this transformation,
-character translations and special character definitions are ignored.
+character translations and definitions are ignored.
 .
-The use of any other escape sequence in
-.B \[rs]X
-parameters is normally an error.
+Other escape sequences are not supported.
 .
 .
 .IP
 If the
-.B use_charnames_in_special
+.B \%use_charnames_in_special
 directive appears in the output device's
 .I DESC
 file,
@@ -1046,7 +1056,7 @@ they are simply output verbatim
 characters,
 discussed above).
 .
-.B use_charnames_in_special
+.B \%use_charnames_in_special
 is currently employed only by
 .MR grohtml @MAN1EXT@ .
 .
@@ -1057,22 +1067,26 @@ is currently employed only by
 .BI \[rs]Y( ma
 .TQ
 .BI \[rs]Y[ mac ]
-This is approximately equivalent to
-.BI \[rs]X\[aq]\[rs]*[ mac ]\[aq]\f[R].
-However the contents of the string or macro
-.I mac
-are not interpreted;
-also it is permitted for
-.I mac
-to have been defined as a macro and thus contain newlines (it is not
-permitted for the argument to
-.B \[rs]X
-to contain newlines).
+Interpolate a macro as a device control command.
 .
-The inclusion of newlines requires an extension to the AT&T
+This is similar to
+.BI \[rs]X\[aq]\[rs]*[ mac ]\[aq]\f[R],
+except the contents of
+.I mac
+are not interpreted,
+and
+.I mac
+can be a macro and thus contain newlines,
+whereas the argument to
+.B \[rs]X
+cannot.
+.
+This inclusion of newlines requires an extension to the AT&T
+device-independent
 .I troff \" AT&T
 output format,
-and confuses drivers that do not know about this extension.
+and will confuse postprocessors that do not know about it.
+.
 .
 .TP
 .BI \[rs]Z\[aq] anything \[aq]
@@ -1112,32 +1126,39 @@ see the
 .B als
 request.
 .
+.
 .TP
 .BI \[rs]$( nn
 .TQ
 .BI \[rs]$[ nnn ]
-In a macro or string, this gives the
-.IR nn -th
+In a macro or string,
+this gives the
+.IR nn th
 or
-.IR nnn -th
+.IR nnn th
 argument.
 .
 Macros and strings can have an unlimited number of arguments.
 .
+.
 .TP
 .B \[rs]$*
-In a macro or string, the concatenation of all the arguments separated
-by spaces.
+In a macro or string,
+the concatenation of all the arguments separated by spaces.
+.
 .
 .TP
 .B \[rs]$@
-In a macro or string, the concatenation of all the arguments with each
-surrounded by double quotes, and separated by spaces.
+In a macro or string,
+the concatenation of all the arguments with each surrounded by double
+quotes,
+and separated by spaces.
+.
 .
 .TP
 .B \[rs]$\[ha]
-In a macro, the representation of all parameters as if they were an
-argument to the
+In a macro,
+the representation of all parameters as if they were an argument to the
 .B ds
 request.
 .
@@ -1244,9 +1265,9 @@ Insert a non-printing break point.
 .
 That is,
 a word can break there,
-but the soft hyphen glyph is not written to the output if it does
+but the soft hyphen character does not mark the break point if it does
 (in contrast to
-.RB \[lq] \[rs]% \[rq]).
+.RB \[lq]\^ \[rs]% \[rq]).
 .
 This escape sequence is an input word boundary,
 so the remainder of the word is subject to hyphenation as normal.
@@ -1265,7 +1286,8 @@ When the diversion is reread,
 .I anything
 is interpreted.
 .I anything
-may not contain newlines; use
+may not contain newlines;
+use
 .B \[rs]!\&
 if you want to embed newlines in a diversion.
 .
@@ -1275,6 +1297,7 @@ is also recognized in copy mode and becomes an internal code;
 it is this code that terminates
 .IR anything .
 Thus
+.
 .
 .RS
 .IP
@@ -1300,14 +1323,17 @@ Thus
 .EE
 .RE
 .
+.
 .IP
 prints\~\c
 .BR 4 .
 .
+.
 .TP
 .BI \[rs][ char ]
-Typeset the special character (glyph)
+Typeset the special character
 .IR char .
+.
 .
 .TP
 .BI \[rs][ "base-char combining-component\~"\c
@@ -1318,7 +1344,7 @@ overlaid with one or more
 .IR combining-component s.
 .
 For example,
-.RB \[lq] \[rs][A\~ho] \[rq]
+.RB \[lq]\| \[rs][A\~ho] \^\[rq]
 is a capital letter \[lq]A\[rq] with a \[lq]hook accent\[rq] (ogonek).
 .
 See
@@ -1326,10 +1352,10 @@ See
 the
 .I groff
 Texinfo manual,
-for details of how a glyph name for a composite glyph is constructed,
+for details of composite glyph name construction,
 and
 .MR groff_char @MAN7EXT@
-for a list of glyph name components used in composite glyph names.
+for a list of components used in composite glyph names.
 .
 .
 .TP

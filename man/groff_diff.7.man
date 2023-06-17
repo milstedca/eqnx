@@ -4011,41 +4011,50 @@ request.
 is read in copy mode.
 .
 .
+.br
+.ne 6v
 .\" ====================================================================
 .SS "Extended requests"
 .\" ====================================================================
 .
+.\" XXX: .cf might better belong in "Implementation differences".
 .TP
-.BI .cf\~ filename
-When used in a diversion, this embeds in the diversion an object
-which, when reread, will cause the contents of
-.I filename
-to be transparently copied through to the output.
+.BI .cf\~ file
+In a diversion,
+embed an object which,
+when reread,
+will cause the contents of
+.I file
+to be copied verbatim to the output.
 .
 In AT&T
 .IR troff ,
 the contents of
-.I filename
-are immediately copied through to the output regardless of whether there
-is a current diversion;
+.I file
+are immediately copied to the output regardless of whether a diversion
+is being written to;
 this behavior is so anomalous that it must be considered a bug.
 .
 .
 .TP
-.BI .de\~ "xx yy"
+.BI .de\~ name\~\c
+.RI [ end-name ]
 .TQ
-.BI .am\~ "xx yy"
+.BI .am\~ name\~\c
+.RI [ end-name ]
 .TQ
-.BI .ds\~ "xx yy"
+.BI .ds\~ name\~\c
+.RI [ contents ]
 .TQ
-.BI .as\~ "xx yy"
+.BI .as\~ name\~\c
+.RI [ contents ]
 In compatibility mode,
 these requests behave similarly to
-.BR .de1 ,
-.BR .am1 ,
-.BR .ds1 ,
+.BR de1 ,
+.BR am1 ,
+.BR ds1 ,
 and
-.BR .as1 ,
+.BR as1 ,
 respectively:
 a \[lq]compatibility save\[rq] token is inserted at the beginning,
 and a \[lq]compatibility restore\[rq] token at the end,
@@ -4060,11 +4069,10 @@ and the latter enables hyphenation after the first character in a word.
 .
 .
 .TP
-.BI .ss\~ "word-space-size additional-sentence-space-size"
-A second argument to the
-.B .ss
-request sets the amount of additional space separating sentences on the
-same output line.
+.BI .ss\~ word-space-size\~\c
+.RI [ additional-sentence-space-size ]
+A second argument sets the amount of additional space separating
+sentences on the same output line.
 .
 If omitted,
 this amount is set to

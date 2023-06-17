@@ -4728,8 +4728,8 @@ interpolates the Gregorian year minus 1900.
 .
 GNU
 .I troff \" GNU
-predefines a string,
-.B \[rs]*[.T]
+predefines one string,
+.BR .T ,
 containing the argument given to the
 .B \-T
 command-line option,
@@ -4739,58 +4739,70 @@ namely the output device
 or
 .BR utf8 ).
 .
-The (read-only) register
-.B \[rs]n[.T]
-interpolates\~1 if
-.I @g@troff
-is called with the
+The (read-only)
+.I register
+.B .T
+interpolates\~1 if GNU
+.I troff \" GNU
+is run with the
 .B \-T
 command-line option,
 and 0\~otherwise.
 .
 .
 .P
-Fonts not listed in the
+A font not listed in the output device's
 .I DESC
-file are automatically mounted on the next available font position
-when they are referenced.
+file's
+.B fonts
+directive is automatically mounted at the next available font position
+when it is selected.
 .
-If a font is to be mounted explicitly with the
-.B .fp
-request on an unused font position,
-it should be mounted on the first unused font position,
+If you mount a font explicitly with the
+.B fp
+request,
+you should do so on the first unused position,
 which can be found in the
-.B \[rs]n[.fp]
-register;
-although
-.I @g@troff
-does not enforce that strictly.
-.
-Rather,
-it does not allow a font to be mounted at a position whose number is
-much greater than that of any currently used position.
+.B .fp
+register.
 .
 .
 .P
-Interpolating a string does not hide existing macro arguments.
+String interpolation does not conceal the arguments to a macro being
+interpreted.
 .
 Thus,
-in a macro,
-a more efficient way of doing
+in a macro definition,
+the call of another macro with the existing argument list,
 .
-.IP
+.RS
+.EX
 .BI . xx\~ \[rs]\[rs]$@
+.EE
+.RE
 .
+is more efficiently done with
 .
-.P
-is
-.
-.IP
+.RS
+.EX
 .BI \[rs]\[rs]*[ xx ]\[rs]\[rs]
+.EE
+.RE
+.
+(that is,
+with string interpolation).
+.
+The trailing backslashes prevent the final newline in the macro
+definition from being interpolated,
+potentially putting an unwanted blank line on the output.
+.
+See section \[lq]Punning Names\[rq] in
+.MR groff @MAN7EXT@ .
 .
 .
+.\" XXX: Is this really not an AT&T troff feature?
 .P
-If the font description file contains pairwise kerning information,
+If a font description file contains pairwise kerning information,
 glyphs from that font are kerned.
 .
 Kerning between two glyphs can be inhibited by placing a dummy character
@@ -4799,51 +4811,51 @@ between them.
 .
 .
 .P
-In a string comparison in a condition,
-characters that appear at different interpolation depths from the first
-delimiter character are not recognized as the second or third
-delimiters.
+GNU
+.I troff \" GNU
+keeps track of the nesting depth of escape sequence
+interpolations and other uses of delimiters,
+as in the
+.B tl
+request and the output comparison operator
+(that is,
+input like
+.B \[aq]foo\[aq]bar\[aq]
+as a conditional expression),
+so the only characters you need to avoid using as
+delimiters are those that appear in the arguments you input,
+not any that result from interpolation.
 .
-This also applies to the
-.B .tl
-request.
+Typically,
+.B \[aq]
+works fine.
 .
-In a
-.B \[rs]w
-escape sequence,
-a character that appears at a different interpolation depth from the
-starting delimiter character is not recognized as the closing delimiter
-character.
-.
-The same is true for
-.BR \[rs]A ,
-.BR \[rs]b ,
-.BR \[rs]B ,
-.BR \[rs]C ,
-.BR \[rs]l ,
-.BR \[rs]L ,
-.BR \[rs]o ,
-.BR \[rs]X ,
-and
-.BR \[rs]Z .
-.
-When decoding a macro or string argument that is delimited by double
-quotes,
-a character that appears at a different interpolation depth from the
-starting delimiter character is not recognized as the closing delimiter
-character.
+Use visible characters as delimiters in GNU
+.IR troff , \" GNU
+not \[lq]ASCII\[rq] controls like BEL (Control+G).
 .
 The implementation of
 .B \[rs]$@
-ensures that the double quotes surrounding an argument appear at the
-same interpolation depth,
-which is differs from the depth of the argument itself.
+ensures that the double quotes surrounding an argument appear at an
+interpolation depth different from that of the arguments themselves.
 .
-In a long escape name
+Similarly,
+in bracket-form escape sequences like
+.B \[rs]f[ZCMI],
+a right bracket
 .B ]
-is not recognized as a closing delimiter except when it occurs at
-the same interpolation depth as the
-.RB opening\~ [ .
+does not end the sequence unless it occurs at the same interpolation
+depth as the
+.RB opening\~ [ ,
+so input like
+.
+.RS
+.EX
+\[rs]f[\[rs]*[my-family]\[rs]*[my-style]]
+.EE
+.RE
+.
+works as desired.
 .
 In compatibility mode,
 no attention is paid to the interpolation depth.
@@ -4851,33 +4863,50 @@ no attention is paid to the interpolation depth.
 .
 .P
 In
-.IR groff ,
+GNU
+.IR troff , \" GNU
 the
-.B .tr
-request can map characters onto
-.BR \[rs]\[ti] .
+.B tr
+request can map characters to the horizontal motion escape sequence
+.B \[rs]\[ti]
+as a special case
+.RB ( tr
+normally operates only on
+.IR characters ).
+.
+This feature replaces the odd-parity
+.B tr
+mapping trick used in AT&T
+.I troff \" troff
+documents,
+where a character,
+often
+.BR \[ti] ,
+was \[lq]sacrificed\[rq] by mapping it to \[lq]nothing\[rq],
+drafting it into use as an unadjustable,
+unbreakable space.
+.
+Often,
+it makes more sense to use
+GNU
+.IR troff 's \" GNU
+.B \[rs]\[ti]
+escape sequence instead,
+which has been adopted by every other active
+.I troff
+implementation except that of Illumos,
+as well as by the
+.RI non -troff
+.IR mandoc .
 .
 .
 .P
-A font can control the widths of spaces
-emitted by the
-.B \[rs]|
-and
-.B \[rs]\[ha]
-escape sequences by defining glyphs of these names
-(including the leading backslash).
+GNU
+.I troff \" GNU
+permits tabs and spaces after the first dot on a control line that ends
+a macro definition.
 .
-.
-.P
-In
-.IR groff ,
-tabs and spaces are allowed between the first and second dots
-(or between the dot and the name of the ending macro)
-that end a macro definition.
-.
-Example:
-.
-.IP
+.RS
 .ne 5v+\n(.Vu
 .EX
 \&.if t \[rs]{\[rs]
@@ -4886,6 +4915,7 @@ Example:
 \&.\&  .
 \&.\[rs]}
 .EE
+.RS
 .
 .
 .\" ====================================================================

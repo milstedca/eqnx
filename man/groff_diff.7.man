@@ -4131,9 +4131,14 @@ and so on.
 .SS "New registers"
 .\" ====================================================================
 .
-The following read-only registers are available:
+GNU
+.I troff \" GNU
+exposes more formatter state via many new read-only registers.
 .
-.TP
+Many of their names correspond to the requests that manipulate them.
+.
+.
+.TP 12n
 .B \[rs]n[.br]
 Within a macro call,
 interpolate\~1
@@ -4142,6 +4147,8 @@ if the macro is called with the \[lq]normal\[rq] control character
 and\~0 otherwise.
 .
 This facility allows the reliable modification of requests.
+.
+Using this register outside of a macro definition makes no sense.
 .
 .
 .RS
@@ -4159,257 +4166,283 @@ This facility allows the reliable modification of requests.
 .RE
 .
 .
-.IP
-Using this register outside of a macro makes no sense (it always returns
-zero in such cases).
-.
 .TP
 .B \[rs]n[.C]
-1\~if compatibility mode is in effect,
+Interpolate 1\~if compatibility mode is in effect,
 0\~otherwise.
+.
+See
+.BR cp .
+.
 .
 .TP
 .B \[rs]n[.cdp]
-The depth of the last glyph added to the current environment.
+Interpolate depth of last glyph added to the environment.
 .
 It is positive if the glyph extends below the baseline.
 .
+.
 .TP
 .B \[rs]n[.ce]
-The number of lines remaining to be centered,
-as set by the
-.B ce
-request.
+Interpolate number of input lines remaining to be centered.
+.
 .
 .TP
 .B \[rs]n[.cht]
-The height of the last glyph added to the current environment.
+Interpolate height of last glyph added to the environment.
 .
 It is positive if the glyph extends above the baseline.
 .
+.
 .TP
 .B \[rs]n[.color]
-1\~if colors are enabled,
+Interpolate 1\~if colors are enabled,
 0\~otherwise.
+.
 .
 .TP
 .B \[rs]n[.cp]
 Within a
 .RB \[lq] do \[rq]
 request,
-holds the saved value of compatibility mode
+interpolate the saved value of compatibility mode
 (see
 .B \[rs]n[.C]
 above).
 .
+.
 .TP
 .B \[rs]n[.csk]
-The skew of the last glyph added to the current environment.
+Interpolate skew of last glyph added to the environment.
 .
 The
 .I skew
-of a glyph is how far to the right of the center of a glyph
-the center of an accent over that glyph should be placed.
+of a glyph is how far to the right of the center of a glyph the center
+of an accent over that glyph should be placed.
+.
 .
 .TP
 .B \[rs]n[.ev]
-The name or number of the current environment.
+Interpolate name of current environment.
 .
 This is a string-valued register.
+.
 .
 .TP
 .B \[rs]n[.fam]
-The current font family.
+Interpolate name of default font family.
 .
 This is a string-valued register.
+.
 .
 .TP
 .B \[rs]n[.fn]
-The resolved font name.
+Interpolate resolved name of the selected font.
 .
 This is a string-valued register.
 .
+.
 .TP
 .B \[rs]n[.fp]
-The number of the next free font position.
+Interpolate next free font mounting position.
+.
 .
 .TP
 .B \[rs]n[.g]
-Always\~1.
+Interpolate\~1.
 .
-Macros should use this to determine whether they are running under GNU
-troff.
+Test with
+.RB \[lq]\| if \|\[rq]
+or
+.B ie
+to check whether GNU
+.I troff \" GNU
+is the formatter.
+.
 .
 .TP
 .B \[rs]n[.height]
-The current height of the font as set with
+Interpolate font height.
+.
+See
 .BR \[rs]H .
 .
 .
 .TP
 .B \[rs]n[.hla]
-The hyphenation language in the current environment.
+Interpolate hyphenation language of the environment.
+.
+This is a string-valued register.
 .
 .
 .TP
 .B \[rs]n[.hlc]
-The count of immediately preceding consecutive hyphenated lines in the
-current environment.
+Interpolate count of immediately preceding consecutive hyphenated lines
+in the environment.
 .
 .
 .TP
 .B \[rs]n[.hlm]
-The maximum number of consecutive hyphenated lines allowed in the
-current environment.
+Interpolate maximum number of consecutive hyphenated lines allowed in
+the environment.
 .
 .
 .TP
 .B \[rs]n[.hy]
-The hyphenation mode in the current environment.
+Interpolate hyphenation mode of the environment.
 .
 .
 .TP
 .B \[rs]n[.hym]
-The hyphenation margin in the current environment.
+Inteprolate hyphenation margin of the environment.
 .
 .
 .TP
 .B \[rs]n[.hys]
-The hyphenation space adjustment threshold in the current environment.
+Interpolate hyphenation space adjustment threshold of the environment.
 .
 .
 .TP
 .B \[rs]n[.in]
-The indentation that applies to the current output line.
+Interpolate indentation amount applicable to the pending output line.
+.
 .
 .TP
 .B \[rs]n[.int]
-Set to a positive value if last output line is interrupted
-(i.e.,
-if it contains
-.BR \[rs]c ).
+Interpolate\~1 if the previous output line was interrupted
+(ended with
+.BR \[rs]c ),
+0\~otherwise.
+.
 .
 .TP
 .B \[rs]n[.kern]
-1\~if pairwise kerning is enabled,
+Interpolate\~1 if pairwise kerning is enabled,
 0\~otherwise.
+.
 .
 .TP
 .B \[rs]n[.lg]
-The current ligature mode (as set by the
-.B lg
-request).
+Interpolate ligature mode.
+.
 .
 .TP
 .B \[rs]n[.linetabs]
-The current line-tabs mode (as set by the
-.B linetabs
-request).
+Interpolate\~1 if line-tabs mode is enabled,
+0\~otherwise.
+.
 .
 .TP
 .B \[rs]n[.ll]
-The line length that applies to the current output line.
+Interpolate line length applicable to the pending output line.
+.
 .
 .TP
 .B \[rs]n[.lt]
-The title length as set by the
-.B lt
-request.
+Interpolate title line length.
 .
 .
 .TP
 .B \[rs]n[.m]
-The name of the current stroke color.
+Interpolate name of the selected stroke color.
 .
 This is a string-valued register.
 .
 .
 .TP
 .B \[rs]n[.M]
-The name of the current fill color.
+Interpolate name of the selected fill color.
 .
 This is a string-valued register.
 .
 .
 .TP
 .B \[rs]n[.ne]
-The amount of space that was needed in the last
+Interpolate amount of space demanded by the most recent
 .B ne
-request that caused a trap to be sprung.
+request that caused a page location trap to be sprung.
 .
-Useful in conjunction with the
-.B \[rs]n[.trunc]
-register.
+See
+.BR \[rs]n[.trunc] .
 .
 .
 .TP
 .B \[rs]n[.nm]
-1\~if output line numbering is enabled
+Interpolate\~1 if output line numbering is enabled
 (even if temporarily suppressed),
 0\~otherwise.
 .
 .
 .TP
 .B \[rs]n[.ns]
-1\~if no-space mode is active, 0\~otherwise.
+Interpolate\~1 if no-space mode is enabled,
+0\~otherwise.
 .
 .
 .TP
 .B \[rs]n[.O]
-The current output level as set with
+Interpolate output suppression level.
+.
+See
 .BR \[rs]O .
 .
 .
 .TP
 .B \[rs]n[.P]
-1\~if the current page is in the output list set with
-.BR \-o .
+Interpolate\~1 if the current page is selected for output.
+.
+See
+.B \-o
+command-line option to
+.MR @g@troff @MAN1EXT@ .
 .
 .
 .TP
 .B \[rs]n[.pe]
-1\~during a page ejection caused by the
-.B bp
-request,
+Interpolate\~1 during page ejection,
 0\~otherwise.
 .
 .
 .TP
 .B \[rs]n[.pn]
-The number of the next page,
-either the value set by a
-.B pn
-request,
-or the number of the current page plus\~1.
+Interpolate next page number
+(either that set by
+.BR pn ,
+or that of the current page plus\~1).
+.
 .
 .TP
 .B \[rs]n[.ps]
-The current type size in scaled points.
+Interpolate type size in scaled points.
+.
 .
 .TP
 .B \[rs]n[.psr]
-The last-requested type size in scaled points.
+Interpolate most recently requested type size in scaled points.
+.
 .
 .TP
 .B \[rs]n[.pvs]
-The current post-vertical line space as set with the
-.B pvs
-request.
+Interpolate post-vertical line spacing amount.
+.
 .
 .TP
 .B \[rs]n[.rj]
-The number of lines to be right-justified as set by the
-.B rj
-request.
+Interpolate number of input lines remaining to be right-aligned.
+.
 .
 .TP
 .B \[rs]n[.slant]
-The slant of the current font as set with
+Interpolate font slant.
+.
+See
 .BR \[rs]S .
+.
 .
 .TP
 .B \[rs]n[.sr]
-The last requested type size in points as a decimal fraction.
+Interpolate most recently requested type size in points as a decimal
+fraction.
 .
 This is a string-valued register.
 .
@@ -4418,34 +4451,32 @@ This is a string-valued register.
 .B \[rs]n[.ss]
 .TQ
 .B \[rs]n[.sss]
-The values of minimal inter-word spacing and additional inter-sentence
-space,
+Interpolate values of minimal inter-word space and additional
+inter-sentence space,
 respectively,
-in twelfths of the space width of the current font.
-.
-Set by the
-.B ss
-request.
+in twelfths of the space width of the selected font.
 .
 .
 .TP
 .B \[rs]n[.sty]
-The current font style.
+Interpolate selected abstract font style,
+if any.
 .
 This is a string-valued register.
 .
+.
 .TP
 .B \[rs]n[.tabs]
-A string representation of the current tab settings suitable for use
-as an argument to the
+Interpolate representation of the tab stop settings in a form suitable
+for passage to the
 .B ta
 request.
 .
 .
 .TP
 .B \[rs]n[.trunc]
-The amount of vertical space truncated by the most recently sprung
-vertical position trap,
+Interpolate amount of vertical space truncated by the most recently
+sprung page location trap,
 or,
 if the trap was sprung by an
 .B ne
@@ -4456,44 +4487,44 @@ request.
 .
 In other words,
 at the point a trap is sprung,
-it represents the difference of what the vertical position would have
+.B \[rs]n[.trunc]
+represents the difference of what the vertical position would have
 been but for the trap,
 and what the vertical position actually is.
 .
-Useful in conjunction with the
-.B \[rs]n[.ne]
-register.
+See
+.BR \[rs]n[.ne] .
 .
 .
 .TP
 .B \[rs]n[.U]
-Set to\~1 if in unsafe mode
-(as determined by
-.IR @g@troff 's
+Interpolate\~1 if in unsafe mode,
+0\~otherwise.
+.
+See
 .B \-U
-command-line option)
-and 0\~otherwise.
+command-line option to
+.MR @g@troff @MAN1EXT@ .
 .
 .
 .TP
 .B \[rs]n[.vpt]
-1\~if vertical position traps are enabled,
+Interpolate\~1 if vertical position traps are enabled,
 0\~otherwise.
 .
 .
 .TP
 .B \[rs]n[.warn]
-The sum of the numbers associated with each of the currently enabled
-warnings.
+Interpolate warning mode.
 .
-The number associated with each warning is listed in
+See section \[lq]Warnings\[rq] of
 .MR @g@troff @MAN1EXT@ .
 .\" TODO: Maybe move that table to groff(7).
 .
 .
 .TP
 .B \[rs]n[.x]
-The major version number of the running
+Interpolate major version number of the running
 .I @g@troff
 formatter.
 .
@@ -4506,7 +4537,7 @@ contains\~1.
 .
 .TP
 .B \[rs]n[.y]
-The minor version number of the running
+Interpolate minor version number of the running
 .I @g@troff
 formatter.
 .
@@ -4519,7 +4550,7 @@ contains\~23.
 .
 .TP
 .B \[rs]n[.Y]
-The revision number of the running
+Interpolate revision number of the running
 .I @g@troff
 formatter.
 .
@@ -4532,9 +4563,18 @@ contains\~0.
 .
 .TP
 .B \[rs]n[.zoom]
-The zoom value of the current font,
-in multiples of 1/1000th.
-Zero if no magnification.
+Interpolate magnification of font,
+in thousandths,
+or\~0 if magnification unused.
+.
+See
+.BR fzoom .
+.
+.
+.P
+These following read/\:write registers are set by the
+.B psbb
+request.
 .
 .
 .TP
@@ -4545,10 +4585,13 @@ Zero if no magnification.
 .B \[rs]n[urx]
 .TQ
 .B \[rs]n[ury]
-These four read/\:write registers are set by the
-.B psbb
-request and contain the bounding box values (in PostScript units) of a
-given PostScript image.
+Interpolate the
+(upper,
+lower,
+left,
+right)
+bounding box values
+(in PostScript units) of the most recently processed PostScript image.
 .
 .
 .P
@@ -4557,7 +4600,7 @@ The following read/\:write registers are set by the
 escape sequence.
 .
 .
-.TP
+.TP 8n
 .B \[rs]n[rst]
 .TQ
 .B \[rs]n[rsb]
@@ -4597,77 +4640,86 @@ over that glyph.
 .
 .
 .P
-Other available read/write registers are:
+Other available read/write registers are as follows.
 .
-.TP
+Those relating to date and time are initialized using
+.MR localtime 3
+at formatter startup.
+.
+.
+.\" The `.c` register was documented in the January 1981 "Addendum to
+.\" the Nroff/Troff User's Manual" (presumably by Kernighan), and is
+.\" widely supported by descendants of his device-independent troff, but
+.\" appears to have been overlooked in his 1992 revision of CSTR #54.
+.TP 12n
 .B \[rs]n[c.]
-The current input line number.
+Interpolate input line number.
+.
 .B \[rs]n[.c]
-is a read-only alias to this register.
+is a read-only alias of this register.
+.
 .
 .TP
 .B \[rs]n[hours]
-The number of hours past midnight.
+Interpolate number of hours elapsed since midnight.
 .
-Initialized at startup.
 .
 .TP
 .B \[rs]n[hp]
-The current horizontal position at input line.
+Interpolate horizontal position relative to that at the start of the
+input line.
 .
 .
+.br
+.ne 3v
 .TP
 .B \[rs]n[lsn]
 .TQ
 .B \[rs]n[lss]
-If there are leading spaces on an input line,
-these registers hold the count of leading spaces and the amount of
+Interpolate count of leading spaces on input line and amount of
 corresponding horizontal motion,
 respectively.
 .
 .
 .TP
 .B \[rs]n[minutes]
-The number of minutes after the hour.
+Interpolate number of minutes elapsed in the hour.
 .
-Initialized at startup.
 .
 .TP
 .B \[rs]n[seconds]
-The number of seconds after the minute.
+Interpolate number of minutes elapsed in the minute.
 .
-Initialized at startup.
 .
 .TP
 .B \[rs]n[systat]
-The return value of the system() function executed by the last
+Interpolate return value of
+.MR system 3
+function executed by most recent
 .B sy
 request.
 .
 .
 .TP
 .B \[rs]n[slimit]
-If greater than\~0,
-sets the maximum quantity of objects on
+Interpolates maximum quantity of objects on
 .IR @g@troff 's
-internal input stack.
+internal input stack
+(default: 1000).
 .
-If less than or equal to\~0,
+If non-positive,
 there is no limit:
 recursion can continue until program memory is exhausted.
-.
-The default value is 1000,
-fixed at compile time.
 .
 .
 .TP
 .B \[rs]n[year]
-The current year.
+Interpolate Gregorian year.
 .
 AT&T
 .IR troff 's \" AT&T
-.B \[rs]n[yr]
-register stores the current year minus 1900.
+.B \[rs][yr]
+interpolates the Gregorian year minus 1900.
 .
 .
 .\" ====================================================================

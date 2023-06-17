@@ -4919,16 +4919,38 @@ a macro definition.
 .
 .
 .\" ====================================================================
-.SH "Intermediate output format"
+.SH "Formatter output"
 .\" ====================================================================
 .
-The output format of
-.I groff
+The page description language output by GNU
+.I troff \" GNU
 is modeled after that used by AT&T
 .I troff \" AT&T
-once it adopted a device-independent approach in the early 1980s.
+once the latter adopted a device-independent approach in the early
+1980s.
 .
 Only the differences are documented here.
+.
+For a fuller discussion,
+see
+.MR groff_out @MAN5EXT@ .
+.\"
+.\"
+.\" XXX: This feature is unused and documenting it gives a valuable
+.\" hostage to fortune.
+.\".P
+.\"Note that single characters can have the eighth bit set, as can the
+.\"names of fonts and special characters.
+.
+.
+.P
+Glyph and font names can be of arbitrary length;
+postprocessors should not assume that they are at most two characters.
+.
+A glyph to be formatted is always drawn from the current font;
+in contrast to AT&T device-independent
+.IR troff , \" AT&T
+drivers need not search special fonts to find a glyph.
 .
 .
 .\" ====================================================================
@@ -4938,7 +4960,7 @@ Only the differences are documented here.
 The argument to the
 .BR s \~command
 is in scaled points
-(in units of
+(units of
 .RI points/ n ,
 where
 .I n
@@ -4949,87 +4971,88 @@ command in the
 file).
 .
 The argument to the
-.B x Height
+.RB \[lq] "x H" \[rq]
 command is also in scaled points.
 .
 .
 .\" ====================================================================
-.SS "Text commands"
+.SS "Simple commands"
 .\" ====================================================================
 .
-.TP
-.BI N n
-Print glyph with index\~\c
-.I n
-(a non-negative integer)
-of the current font.
-.
+.\" BEGIN Keep in sync with relevant portions of section "Simple
+.\" commands" from groff_out(5).
 .P
 If the
 .B tcommand
-line is present in the
+directive is present in the output device's
 .I DESC
 file,
 GNU
 .I troff \" GNU
-uses the following two commands.
+employs the following two commands.
+.
 .
 .TP
-.BI t xxx
-.I xxx
-is any sequence of characters terminated by a space or a newline
-(to be more precise,
-it is a sequence of glyphs which are accessed with the corresponding
-characters);
-the first character should be printed at the current position,
-the current horizontal position should be increased by the width of the
-first character,
-and so on for each character.
+.BI t\~ xyz\c
+\&.\|.\|.
+Typeset word
+.IR xyz ;
+that is,
+set a sequence of ordinary glyphs named
+.IR x ,
+.IR y ,
+.IR z ,
+\&.\|.\|.\|,
+terminated by a space or newline;
+an optional second integer argument is ignored
+(this allows the formatter to generate an even number of arguments).
+.\" XXX: Why?
 .
-The width of the glyph is that given in the font file,
-appropriately scaled for the current type size,
-and rounded so that it is a multiple of the horizontal motion quantum.
+Each glyph is set at the current drawing position,
+and the position is then advanced horizontally by the glyph's width.
 .
-Special characters cannot be printed using this command.
+A glyph's width is read from its metrics in the font description file,
+scaled to the current type size,
+and rounded to a multiple of the horizontal motion quantum.
+.
+Only ordinary characters can be set with
+.BR t ;
+use the
+.B C
+command to emplace special characters.
+.
 .
 .TP
-.BI u n\~xxx
-This is same as the
-.BR t \~command
-except that after printing each character, the current
-horizontal position is increased by the sum of the width of that
-character
-.RI and\~ n .
+.BI u\~ "n xyz"\c
+\&.\|.\|.
+Typeset word
+.I xyz
+with track kerning.
 .
-.P
-Note that single characters can have the eighth bit set, as can the
-names of fonts and special characters.
+As
+.BR t ,
+but after placing each glyph,
+the drawing position is further advanced horizontally
+.RI by\~ n
+basic units.
+.\" END Keep in sync with relevant portions of section "Simple commands"
+.\" from groff_out(5).
 .
-.P
-The names of glyphs and fonts can be of arbitrary length; drivers
-should not assume that they are only two characters long.
-.
-.P
-When a glyph is to be printed, that glyph is always
-in the current font.
-.
-Unlike device-independent troff, it is not necessary for drivers to
-search special fonts to find a glyph.
 .
 .P
 New commands implement color support.
 .
 .
 .TP
-\f[B]mc \f[I]cyan magenta yellow\f[R]
+.BI mc\~ "cyan magenta yellow"
 .TQ
-\f[B]md\f[R]
+.B md
 .TQ
-\f[B]mg \f[I]gray\f[R]
+.BI mg\~ gray
 .TQ
-\f[B]mk \f[I]cyan magenta yellow black\f[R]
+.BI mk\~ "cyan magenta yellow black"
 .TQ
-\f[B]mr \f[I]red green blue\f[R]
+.BI mr\~ "red green blue"
 Set the components of the stroke color with respect to various color
 spaces.
 .
@@ -5040,9 +5063,7 @@ The arguments are integers in the range 0 to 65535.
 .
 .
 .P
-The
-.B x
-device control command has been extended.
+A new device control subcommand is available.
 .
 .
 .TP
@@ -5309,40 +5330,58 @@ in contrast to
 .
 .
 .\" ====================================================================
-.SS "Device control commands"
+.SS "Device control syntax extension"
 .\" ====================================================================
 .
-There is a continuation convention which permits the argument to the
+GNU
+.I troff \" GNU
+introduces a line continuation convention,
+permitting the argument to the
 .B x X
-command to contain newlines: when outputting the argument to the
+command to contain newlines.
+.
+A newline in the input is transformed to the sequence
+.RI \[lq] newline\c
+.BR + \[rq].
+.
+When interpreting an
 .B x X
-command, GNU troff follows each newline in the argument with a
-.B +
-character (as usual, it terminates the entire argument with a
-newline); thus if the line after the line containing the
-.B x X
-command starts with
-.BR + ,
-then the newline ending the line containing the
-.B x X
-command should be treated as part of the argument to the
-.B x X
-command, the
-.B +
-should be ignored, and the part of the line following the
-.B +
-should be treated like the part of the line following the
+command,
+a postprocessor should therefore be prepared for a plus sign after a
+newline;
+if it occurs,
+preserve the newline,
+discard the plus sign,
+and continue to collect the input into the argument of the
 .B x X
 command.
 .
+A newline
+.I not
+followed by a plus sign terminates the
+.B x X
+command.
+.
+An application of this feature is the embedding of PostScript or PDF
+language command streams into
+.I troff \"
+output.
+.
+.
 .P
-The first three output commands are guaranteed to be:
-.IP
+GNU
+.I troff \" GNU
+guarantees that the first three output commands it emits are as follows.
+.
+.
+.P
+.RS
+.EX
 .BI x\~T\~ device
-.br
 .BI x\~res\~ n\~h\~v
-.br
 .B x init
+.EE
+.RE
 .
 .
 .\" ====================================================================

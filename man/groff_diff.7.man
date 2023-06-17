@@ -4135,11 +4135,14 @@ The following read-only registers are available:
 .
 .TP
 .B \[rs]n[.br]
-Within a macro call, it is set to\~1 if the macro is called with the
-\[oq]normal\[cq] control character (\[oq].\[cq] by default), and set
-to\~0 otherwise.
+Within a macro call,
+interpolate\~1
+if the macro is called with the \[lq]normal\[rq] control character
+(\[lq].\[rq] by default),
+and\~0 otherwise.
 .
-This allows the reliable modification of requests.
+This facility allows the reliable modification of requests.
+.
 .
 .RS
 .IP
@@ -4155,13 +4158,15 @@ This allows the reliable modification of requests.
 .EE
 .RE
 .
+.
 .IP
 Using this register outside of a macro makes no sense (it always returns
 zero in such cases).
 .
 .TP
 .B \[rs]n[.C]
-1\~if compatibility mode is in effect, 0\~otherwise.
+1\~if compatibility mode is in effect,
+0\~otherwise.
 .
 .TP
 .B \[rs]n[.cdp]
@@ -4171,7 +4176,8 @@ It is positive if the glyph extends below the baseline.
 .
 .TP
 .B \[rs]n[.ce]
-The number of lines remaining to be centered, as set by the
+The number of lines remaining to be centered,
+as set by the
 .B ce
 request.
 .
@@ -4183,12 +4189,13 @@ It is positive if the glyph extends above the baseline.
 .
 .TP
 .B \[rs]n[.color]
-1\~if colors are enabled, 0\~otherwise.
+1\~if colors are enabled,
+0\~otherwise.
 .
 .TP
 .B \[rs]n[.cp]
 Within a
-.B .do
+.RB \[lq] do \[rq]
 request,
 holds the saved value of compatibility mode
 (see
@@ -4277,13 +4284,15 @@ The indentation that applies to the current output line.
 .
 .TP
 .B \[rs]n[.int]
-Set to a positive value if last output line is interrupted (i.e., if
-it contains
+Set to a positive value if last output line is interrupted
+(i.e.,
+if it contains
 .BR \[rs]c ).
 .
 .TP
 .B \[rs]n[.kern]
-1\~if pairwise kerning is enabled, 0\~otherwise.
+1\~if pairwise kerning is enabled,
+0\~otherwise.
 .
 .TP
 .B \[rs]n[.lg]
@@ -4344,27 +4353,34 @@ register.
 .B \[rs]n[.ns]
 1\~if no-space mode is active, 0\~otherwise.
 .
+.
 .TP
 .B \[rs]n[.O]
 The current output level as set with
 .BR \[rs]O .
+.
 .
 .TP
 .B \[rs]n[.P]
 1\~if the current page is in the output list set with
 .BR \-o .
 .
+.
 .TP
 .B \[rs]n[.pe]
 1\~during a page ejection caused by the
 .B bp
-request, 0\~otherwise.
+request,
+0\~otherwise.
+.
 .
 .TP
 .B \[rs]n[.pn]
-The number of the next page, either the value set by a
+The number of the next page,
+either the value set by a
 .B pn
-request, or the number of the current page plus\~1.
+request,
+or the number of the current page plus\~1.
 .
 .TP
 .B \[rs]n[.ps]
@@ -4408,7 +4424,7 @@ respectively,
 in twelfths of the space width of the current font.
 .
 Set by the
-.B .ss
+.B ss
 request.
 .
 .
@@ -4425,18 +4441,24 @@ as an argument to the
 .B ta
 request.
 .
+.
 .TP
 .B \[rs]n[.trunc]
 The amount of vertical space truncated by the most recently sprung
-vertical position trap, or, if the trap was sprung by an
+vertical position trap,
+or,
+if the trap was sprung by an
 .B ne
-request, minus the amount of vertical motion produced by the
+request,
+minus the amount of vertical motion produced by the
 .B ne
 request.
 .
-In other words, at the point a trap is sprung, it represents the
-difference of what the vertical position would have been but for the
-trap, and what the vertical position actually is.
+In other words,
+at the point a trap is sprung,
+it represents the difference of what the vertical position would have
+been but for the trap,
+and what the vertical position actually is.
 .
 Useful in conjunction with the
 .B \[rs]n[.ne]
@@ -4455,7 +4477,8 @@ and 0\~otherwise.
 .
 .TP
 .B \[rs]n[.vpt]
-1\~if vertical position traps are enabled, 0\~otherwise.
+1\~if vertical position traps are enabled,
+0\~otherwise.
 .
 .
 .TP
@@ -4509,8 +4532,10 @@ contains\~0.
 .
 .TP
 .B \[rs]n[.zoom]
-The zoom value of the current font, in multiples of 1/1000th.
+The zoom value of the current font,
+in multiples of 1/1000th.
 Zero if no magnification.
+.
 .
 .TP
 .B \[rs]n[llx]
@@ -4561,12 +4586,15 @@ as doing.
 The amount of horizontal space (possibly negative) that should be
 added to the last glyph before a subscript.
 .
+.
 .TP
 .B \[rs]n[skw]
 How far to right of the center of the last glyph in the
 .B \[rs]w
-argument, the center of an accent from a roman font should be placed
+argument,
+the center of an accent from a roman font should be placed
 over that glyph.
+.
 .
 .P
 Other available read/write registers are:

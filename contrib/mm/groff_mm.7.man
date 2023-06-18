@@ -836,9 +836,9 @@ The default is\~0.
 .\" or Licon?  It is usefully localizable.
 .TP
 .BR AST \~\c
-.RI [ heading ]
-Set the heading above the abstract to
-.IR heading ,
+.RI [ caption ]
+Set the caption above the abstract to
+.IR caption ,
 or clear it if there is no argument.
 .
 The default is \[lq]ABSTRACT\[rq].
@@ -1673,7 +1673,7 @@ the footnote marker in the body text must be explicitly written.
 .
 .TP
 .BI GETHN\  "refname \fR[\fPvarname\fR]\fP"
-Include the header number where the corresponding
+Include the heading number where the corresponding
 .RB \[lq] .SETR
 .IR refname \[rq]
 was placed.
@@ -1689,7 +1689,7 @@ is used,
 .B GETHN
 sets the string
 .I varname
-to the header number.
+to the heading number.
 .
 .TP
 .BI GETPN\  "refname \fR[\fPvarname\fR]\fP"
@@ -1738,7 +1738,8 @@ and
 .B Qrfp
 are set by
 .B GETR
-and contain the page and header number, respectively.
+and contain the page and heading number,
+respectively.
 .
 .TP
 .BI GETST\  "refname \fR[\fPvarname\fR]\fP"
@@ -1867,7 +1868,7 @@ configures the indentation of text after headings.
 .
 Threshold register
 .B Hc
-enables the centering of headers;
+enables the centering of headings;
 a heading level below both of the
 .B Hb
 and
@@ -2031,7 +2032,7 @@ The default is
 .I mm
 calls
 .B HY
-after determing the header typeface and size.
+after determing the heading typeface and size.
 .
 It could be used to change indentation.
 .
@@ -2178,7 +2179,7 @@ By default,
 .B INDP
 calls
 .B SK
-and writes a centered header interpolating the string
+and writes a centered caption interpolating the string
 .BR Index .
 .
 It then disables filling and calls
@@ -2194,10 +2195,10 @@ Define macros to customize this behavior.
 .B INDP
 calls
 .B TXIND
-before the header,
+before the caption,
 .B TYIND
 .I instead
-of writing the header,
+of writing the caption,
 and
 .B TZIND
 after formatting the index.
@@ -3382,7 +3383,7 @@ the default adjustment is restored.
 .
 .TP
 .BI SETR\  "refname \fR[\fPstring\fR]\fP"
-Remember the current header and page number as
+Remember the current heading and page numbers as
 .IR refname .
 .
 Saves
@@ -3650,18 +3651,20 @@ See
 .BR TS .
 .
 .TP
-.B TH \fR[\fPN\fR]\fP
-Table header.
+.B TH
+End table heading.
+.
+It is repeated after page breaks within a table.
 .
 See
 .BR TS .
 .
-.B TH
-ends the header of the table.
-.
-This header is printed again if a page break occurs.
-.
-Argument \[lq]N\[rq] isn't implemented yet.
+The
+.B N
+argument supported by DWB
+.I mm
+is not implemented by
+.I "groff mm."
 .
 .
 .TP
@@ -3697,14 +3700,11 @@ Declare technical memorandum number(s) used by
 .B TP
 Top-of-page user-defined macro.
 .
-This macro is called instead of the normal page header.
+This macro is called instead of the normal page header,
+enabling user control of the header.
 .
-It is possible to get complete control over the header.
-.
-Note that the header and the footer are printed in a separate
-environment.
-.
-Line length is preserved, though.
+The header and the footer are formatted in a separate environment,
+which uses the line length of the body text by default.
 .
 See
 .BR EOP .
@@ -3736,7 +3736,7 @@ ends with
 .
 Argument \[lq]H\[rq] tells
 .I mm
-that the table has a header.
+that the table has a heading.
 .
 See
 .BR TH .

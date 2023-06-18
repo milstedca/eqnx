@@ -2156,15 +2156,15 @@ If the Boolean register
 is true,
 write an index entry as a specially prepared
 .I roff
-comment to the standard error stream.
+comment to the standard error stream,
+with each
+.I argument
+separated from its predecessor by a tab character.
 .
-The entry is arranged as configured by the most recent
+The entry's location information is arranged as configured by the most
+recent
 .B INITI
 call.
-.
-Each
-.I argument
-is separated from its predecessor by a tab character.
 .
 .
 .TP
@@ -2215,8 +2215,8 @@ Argument
 .I location-type
 selects how the location of each index entry is reported.
 .
-.I file-type
-defines an internal string used later by
+.I file-name
+populates an internal string used later by
 .BR INDP .
 .
 .

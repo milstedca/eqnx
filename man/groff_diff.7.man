@@ -6068,7 +6068,7 @@ will not.
 .
 .
 .\" ====================================================================
-.SS "Intermediate output format"
+.SS "Formatter output incompatibilities"
 .\" ====================================================================
 .
 Its extensions notwithstanding,
@@ -6077,30 +6077,36 @@ the
 intermediate output format has some incompatibilities
 with that of AT&T
 .IR troff , \" AT&T
-but full compatibility is sought;
+but better compatibility is sought;
 problem reports and patches are welcome.
 .
 The following incompatibilities are known.
 .
 .
-.IP \[bu]
-The positioning after drawing polygons conflicts with the AT&T
+.IP \[bu] 2n
+The drawing position after rendering polygons is inconsistent with AT&T
 .I troff \" AT&T
 practice.
 .
+Other implementations have diverged on this point as well.
+.
 .
 .IP \[bu]
-The intermediate output cannot be rescaled to other devices as AT&T
+The output cannot be easily rescaled to other devices as AT&T
 .IR troff 's \" AT&T
 could.
+.\" XXX: Why?  What's the problem?  sizescale?  That could be written
+.\" into the output as a comment or x command.  --GBR
 .
 .
 .\" ====================================================================
 .SH Authors
 .\" ====================================================================
 .
-This document was written by James Clark and modified by Werner Lemberg
-and Bernd Warken.
+This document was written by James Clark,
+Werner Lemberg,
+Bernd Warken,
+and G.\& Branden Robinson.
 .
 .
 .\" ====================================================================
@@ -6116,7 +6122,9 @@ manual.
 You can browse it interactively with \[lq]info groff\[rq].
 .
 .
-.PP
+.br
+.ne 4v
+.P
 \[lq]Troff User's Manual\[rq]
 by Joseph F.\& Ossanna,
 1976
@@ -6133,7 +6141,7 @@ documentation as AT&T
 .IR troff . \" AT&T
 .
 .
-.PP
+.P
 \[lq]A Typesetter-independent TROFF\[rq]
 by Brian W.\& Kernighan,
 1982,
@@ -6143,7 +6151,7 @@ device and font description file formats
 and device-independent output format.
 .
 .
-.PP
+.P
 .MR groff @MAN1EXT@ ,
 .MR groff @MAN7EXT@ ,
 .MR roff @MAN7EXT@

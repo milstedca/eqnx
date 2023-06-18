@@ -1049,11 +1049,14 @@ and output between the footnote area and footer of each page.
 .
 .
 .\" XXX: Couldn't this have been done with an extra parameter to `VL`?
+.\" Or a register influencing VL behavior?
 .TP
 .BR BVL \~[\c
 .IR text-indent \~[ mark-indent \~[\c
 .BR 1 ]]]
-Begin broken variable-item list.
+Begin broken variable-item
+(or \[lq]tagged\[rq])
+list.
 .
 Each item is expected to supply its own mark.
 .
@@ -1402,12 +1405,10 @@ see
 .
 .TP
 .B EOP
-End-of-page user-defined macro.
+If defined,
+this macro is called in lieu of normal page footer layout.
 .
-This macro is called instead of the normal printing of the footer.
-.
-The macro is executed in a separate environment,
-without any trap active.
+Headers and footers are formatted in a separate environment.
 .
 See
 .BR TP .
@@ -2626,8 +2627,8 @@ Semi-blocked:
 as
 .BR BL ,
 but the first line of each paragraph is indented by
-.BR 5n .
-.\" XXX: 5m or 5n?
+.BR 5m .
+.\" XXX: https://savannah.gnu.org/bugs/?64315
 T}
 FB@T{
 Fully blocked:
@@ -2859,7 +2860,9 @@ a list of names or attachments lies within
 .
 If
 .I code
-is absent or does not match one of the values listed below,
+is absent or does not match one of the values listed under the
+.B Letns
+string description below,
 each line of notations is formatted as
 .RI "\[lq]Copy (" line ") to\[rq]."
 .
@@ -2881,30 +2884,6 @@ see the strings
 and
 .B Letnsdef
 below.
-.
-.
-.IP
-.TS
-tab(@);
-Lf(BI) Lb
-Lb L.
-code@Notation
-\f[I]none\f[]@Copy To
-1@Copy To (with att.\&) to
-2@Copy To (without att.\&) to
-3@Att.
-4@Atts.
-5@Enc.
-6@Encs.
-7@Under separate cover
-8@Letter to
-9@Memorandum to
-10@Copy (with atts.\&) to
-11@Copy (without atts.\&) to
-12@Abstract Only to
-13@Complete Memorandum to
-14@CC
-.TE
 .
 .
 .TP
@@ -2950,42 +2929,30 @@ Does not output an empty page if currently at the top of an odd page.
 .br
 .ne 4v
 .TP
-.BI P\  \fR[\fPtype\fR]\fP
+.BR P \~[\c
+.IR type ]
 Begin new paragraph.
-.
-.BR P \~without
-argument produces left\-justified text,
-even the first line of the paragraph.
-.
-This is the same as setting
-.I type
-to\~0.
 .
 If
 .I type
-is\~1,
-the first output line of the paragraph is indented by
+is missing or\~ 0,
+.BR P \~sets
+the paragraph fully left\-aligned.
+.
+A
+.I type
+of\~1
+idents the first line by
 .B \[rs][Pi]
 ens.
 .
-.IP
-Instead of giving an argument to\~\c
-.B P
-it is possible to set the paragraph type in register
-.BR Pt .
+Set the register
+.B Pt
+to select a default paragraph indentation style.
 .
-Using 0 and\~1 is the same as adding that value to
-.BR P .
-.
-A value of\~2 indents all paragraphs, except after headings, lists,
-and displays (this value can't be used as an argument to
-.B P
-itself).
-.
-.IP
-The space between two paragraphs is controlled by register
-.BR Ps ,
-and is\~1 by default (one blank line).
+The register
+.B Ps
+controls the vertical spacing between paragraphs.
 .
 .
 .TP
@@ -3110,11 +3077,6 @@ and
 Include PostScript document
 .IR file .
 .
-This macro depends on
-.MR mmroff @MAN1EXT@
-and
-.BR INITR .
-.
 The optional
 .B \-B
 argument draws a box around the picture.
@@ -3138,6 +3100,12 @@ Optional
 and
 .I height
 arguments resize the picture.
+.
+Use of this macro requires two-pass processing;
+see
+.B INITR
+and
+.MR mmroff @MAN1EXT@ .
 .
 .
 .TP
@@ -3301,7 +3269,7 @@ contains the reference page caption.
 Begin an automatically numbered reference definition.
 .
 By default,
-references are automatically numbered starting at 1;
+references are numbered starting at 1;
 the number is available in register
 .BR :R .
 .
@@ -3696,15 +3664,14 @@ Declare technical memorandum number(s) used by
 .BR MT .
 .
 .
+.br
+.ne 6v
 .TP
 .B TP
-Top-of-page user-defined macro.
+If defined,
+this macro is called in lieu of normal page header layout.
 .
-This macro is called instead of the normal page header,
-enabling user control of the header.
-.
-The header and the footer are formatted in a separate environment,
-which uses the line length of the body text by default.
+Headers and footers are formatted in a separate environment.
 .
 See
 .BR EOP .
@@ -3727,19 +3694,15 @@ TPoh@argument to \fBOH\fP
 .B TS \fR[\fPH\fR]\fP
 Table start.
 .
-This is the start of a table specification to
-.MR @g@tbl @MAN1EXT@ .
-.
-.B TS
-ends with
-.BR TE .
-.
 Argument \[lq]H\[rq] tells
 .I mm
 that the table has a heading.
 .
 See
-.BR TH .
+.BR TE ,
+.BR TH ,
+and
+.MR @g@tbl @MAN1EXT@ .
 .
 .
 .TP
@@ -3754,6 +3717,16 @@ controls several parameters.
 Add up the values of desired features;
 the default
 .RB is\~ 0 .
+.
+On typesetting devices,
+further arguments configure the
+.I type-size
+in scaled points,
+and the face
+.RI ( font );
+the default is
+.B CR
+(Courier roman).
 .
 .
 .IP
@@ -3778,15 +3751,6 @@ T}
 .TE
 .
 .
-.IP
-On typesetting devices,
-.I type-size
-selects a different type size in scaled points,
-and
-.I font
-chooses a face\[em]the default is Courier roman.
-.
-.
 .TP
 .B VERBOFF
 End verbatim display.
@@ -3796,9 +3760,12 @@ End verbatim display.
 .BR VL \~[\c
 .IR text-indent \~[ mark-indent \~[\c
 .BR 1 ]]]
-Begin variable-item list.
+Begin variable-item
+(or \[lq]tagged\[rq])
+list.
 .
-Each item is expected to supply its own mark.
+Each item should supply its own mark,
+or tag.
 .
 If the mark is wider than
 .I mark-indent,
@@ -3881,46 +3848,58 @@ The arguments give each sender a name and title.
 .
 .
 .TP
-.BI WC\  "\fR[\fPformat1\fR] [\fPformat2\fR] [.\|.\|.]\fP"
-Footnote and display width control.
+.BR WC \~[\c
+.IR format \~.\|.\|.]
+Control width of footnotes and displays.
 .
+.
+.IP
 .RS
 .TS
 tab(@);
-l lx.
+Lf(BI) Lb
+Lb Lx.
+format@Effect
 N@T{
-Set default mode which is equal to using the options
-.BR \-WF ,
-.BR \-FF ,
-.BR \-WD ,
-and
-.BR FB .
+equivalent to
+.RB \[lq] "\-WF \-FF \-WD" \[rq]
+.\" FB \" XXX: see Savannah ticket reference below
+(default)
 T}
 WF@T{
-Wide footnotes, wide also in two-column mode.
+set footnotes at full line length,
+even in two-column mode
+.\" XXX: what about multi-column modes more generally?
 T}
-\-WF@Normal footnote width, follow column mode.
+\-WF@T{
+set footnotes using column line length
+T}
 FF@T{
-All footnotes gets the same width as the first footnote encountered.
+apply width of first footnote to encountered to subsequent ones
 T}
 \-FF@T{
-Normal footnotes, width follows \fBWF\fP and \fB\-WF\fP.
+footnote width determined by
+.B WF
+and
+.B \-WF
 T}
 WD@T{
-Wide displays, wide also in two-column mode.
+set displays at full line length,
+even in two-column mode
+.\" XXX: what about multi-column modes more generally?
 T}
 \-WD@T{
-Normal display width, follow column mode.
-T}
-FB@T{
-Floating displays generates a line break when printed on the current
-page.
-T}
-\-FB@T{
-Floating displays does not generate line break.
+set displays using column line length
 T}
 .TE
 .RE
+.\" XXX: See <https://savannah.gnu.org/bugs/?64316>.
+.\"FB@T{
+.\"Break when outputting floating displays.
+.\"T}
+.\"\-FB@T{
+.\"Do not break when outputting floating displays.
+.\"T}
 .
 .
 .TP
@@ -3929,6 +3908,8 @@ End the writer's address begun with
 .BR WA .
 .
 .
+.br
+.ne 4v
 .\" ====================================================================
 .SH Strings
 .\" ====================================================================
@@ -4163,10 +4144,12 @@ Letns!to@ to \fI(note leading space)\fP
 .
 .TP
 .B Letnsdef
-Define the standard notation used when no argument is given to
-.BR .NS .
+Select the notation format used by
+.B .NS
+when it is given no argument.
 .
-Default is\~0.
+The default is
+.RB \[lq] 0 \[rq].
 .
 .
 .TP

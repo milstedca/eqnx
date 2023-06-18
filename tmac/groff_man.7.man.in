@@ -2716,9 +2716,9 @@ As shown above,
 it is up to you to account for italic corrections with
 .\" Normally we don't quote escape sequences, but these use
 .\" potentially-confusing prose punctuation.
-.RB \(lq \e/ \(rq
+.RB \(lq \^\e\|/\^ \(rq
 and
-.RB \(lq \e, \(rq,
+.RB \(lq \^\e\^, \(rq,
 which are themselves GNU extensions,
 if desired and if supported by your implementation.
 .

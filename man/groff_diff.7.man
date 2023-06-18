@@ -5439,14 +5439,16 @@ to the standard error stream.
 .SH "Implementation differences"
 .\" ====================================================================
 .
-.I groff
-has a number of features that cause incompatibilities with documents
-written using old versions of
-.IR roff .
+.\" TODO: Resync with the node of this name in our Texinfo manual.
+GNU
+.IR troff 's \" GNU
+features sometimes cause incompatibilities with documents written
+assuming old implementations of
+.IR troff . \" generic
 .
 Some GNU extensions to
-.I roff
-have become supported by other implementations.
+.I troff \" generic
+are supported by other implementations.
 .
 .
 .P
@@ -5454,40 +5456,41 @@ When adjusting to both margins,
 AT&T
 .I troff \" AT&T
 at first adjusts spaces starting from the right;
-.I @g@troff
+GNU
+.I troff \" GNU
 begins from the left.
 .
 Both implementations adjust spaces from opposite ends on alternating
-output lines in this adjustment mode to prevent \[lq]rivers\[rq] in the
-text.
+output lines to prevent \[lq]rivers\[rq] in the text.
 .
 .
 .P
-.I groff
+GNU
+.I troff \" GNU
 does not always hyphenate words as AT&T
 .I troff \" AT&T
 does.
 .
 The AT&T implementation uses a set of hard-coded rules specific to
 U.S.\& English,
-while
-.I groff
+while GNU
+.I troff \" GNU
 uses language-specific hyphenation pattern files derived from \*[tx].
 .
-Furthermore,
-in old versions of
-.I troff
-there was a limited amount of space to store hyphenation exceptions
+In some versions of
+.I troff \" generic
+there was limited space to store hyphenation exceptions
 (arguments to the
-.B .hw
+.B hw
 request);
-.I groff
+GNU
+.I troff \" GNU
 has no such restriction.
 .
 .
 .P
-Long names may be
-.IR groff 's
+Long names may be GNU
+.IR troff 's \" GNU
 most obvious innovation.
 .
 AT&T
@@ -5500,7 +5503,8 @@ with contents
 .RB \[lq] cd \[rq].
 .
 Normally,
-.I groff
+GNU
+.I troff \" GNU
 interprets this as a call of a macro named
 .RB \[lq] dsabcd \[rq].
 .
@@ -5515,22 +5519,23 @@ respectively,
 called
 .RB \[lq] [ \[rq].
 .
-In
-.IR groff ,
+In GNU
+.IR troff , \" GNU
 however,
 the
 .RB \[lq] [ \[rq]
-is normally interpreted as delimiting a long name.
+is normally interpreted as beginning the enclosure of a long identifier.
 .
 In compatibility mode,
-.I groff
+GNU
+.I troff \" GNU
 interprets names in the traditional way,
 which means that they are limited to one or two characters.
 .
 See the
 .B \-C
 option in
-.MR groff @MAN1EXT@
+.MR @g@troff @MAN1EXT@
 and,
 above,
 the
@@ -5539,9 +5544,9 @@ and
 .B .cp
 registers,
 and
-.B .cp
+.B cp
 and
-.B .do
+.RB \[lq] do \[rq]
 requests,
 for more on compatibility mode.
 .
@@ -5551,14 +5556,14 @@ The register
 .B \[rs]n[.cp]
 is specialized and may require a statement of rationale.
 .
-When writing macro packages or documents that use
-.I groff
+When writing macro packages or documents that use GNU
+.I troff \" GNU
 features and which may be mixed with other packages or documents that do
 not\[em]common scenarios include serial processing of man pages or use
 of the
-.B .so
+.RB \[lq] so \[rq]
 or
-.B .mso
+.B mso
 requests\[em]you may desire correct operation regardless of
 compatibility mode enablement in the surrounding context.
 .
@@ -5584,7 +5589,8 @@ The two-character register name space of AT&T
 .I troff \" AT&T
 is confining and mnemonically challenging;
 you may wish to use
-.IR groff 's
+GNU
+.IR troff 's \" GNU
 more capacious name space.
 .
 However,
@@ -5600,18 +5606,20 @@ is for,\[rq] you think,
 .
 The foregoing will always save zero to your register,
 because
-.B .do
+.RB \[lq] do \[rq]
 turns compatibility mode
 .I off
 while it interprets its argument list.
 .
 What you need is:
+.
 .RS
 .EX
 \&.do nr _my_saved_C \[rs]n[.cp]
 \&.cp 0
 .EE
 .RE
+.
 at the beginning of your file,
 followed by
 .RS
@@ -5638,9 +5646,11 @@ and Plan\~9
 .I troff \" foreign
 all support it\[em]but valid values are specific to each implementation.
 .
-This behavior of the
+The behavior of the
 .B .T
-register differs from AT&T
+register in GNU
+.I troff \" GNU
+differs from AT&T
 .IR troff , \" AT&T
 which interpolated\~1 only if
 .I nroff \" AT&T
@@ -5649,20 +5659,20 @@ was the formatter and was called with
 .
 .
 .P
-AT&T
-.I troff
-and other implementations handle
-.B .lf
-differently.
-.
-For them,
-its
-.I line
-argument changes the line number of the
+The
+.B lf
+request sets the number of the
 .I current
-line.
+input line in AT&T
+.IR troff ,\" AT&T
+and the
+.I next
+in GNU
+.IR troff .\" GNU
 .
 .
+.br
+.ne 2v
 .P
 AT&T
 .I troff
@@ -5679,25 +5689,17 @@ using any valid identifiers for their names.
 .
 .
 .P
-Normally,
-.I groff
-preserves the interpolation depth in delimited arguments,
+GNU
+.I troff \" GNU
+normally tracks the interpolation depth of escape sequence parameters
+and other delimited structures,
 but not in compatibility mode.
 .
-For example,
-on terminal devices,
-.RS
-.EX
-\&.ds xx \[aq]
-\&\[rs]w\[aq]abc\[rs]*(xxdef\[aq]
-.EE
-.RE
-produces \[lq]168\[rq] ordinarily,
-but \[lq]72def\[aq]\[rq] in compatibility mode.
+See section \[lq]Miscellaneous\[rq] above.
 .
 .
 .P
-Furthermore,
+In compatibility mode,
 the escape sequences
 .BR \[rs]f ,
 .BR \[rs]H ,
@@ -5707,12 +5709,18 @@ the escape sequences
 .BR \[rs]s ,
 and
 .B \[rs]S
-are transparent for the purpose of recognizing a control character at
-the beginning of a line only in compatibility mode.
+are transparent at the beginning of an input line for the purpose of
+recognizing a control character,
+because they modify formatter state
+.RB ( \[rs]R )
+or properties of the environment
+(the rest)
+and therefore do not create output nodes.
 .
 For example,
 this code produces bold output in both cases,
 but the text differs,
+.
 .RS
 .EX
 \&.de xx \[aq]
@@ -5721,17 +5729,19 @@ Hello!
 \&\[rs]fB.xx\[rs]fP
 .EE
 .RE
-producing \[lq].xx\[rq] in normal mode and \[lq]Hello!\[rq] in
-compatibility mode.
+.
+formatting \[lq].xx\[rq] normally and \[lq]Hello!\[rq] in compatibility
+mode.
 .
 .
 .P
-.I groff
+GNU
+.I troff \" GNU
 request names unrecognized by other
 .I troff \" generic
 implementations will likely be ignored;
-escape sequences that are
-.I groff
+escape sequences that are GNU
+.I troff \" GNU
 extensions are liable to be formatted literally.
 .
 For example,
@@ -5752,34 +5762,33 @@ and Plan\~9 from User Space
 .I troff \" Plan 9
 (commit 93f8143600,
 2022-08-12),
-but not by Solaris or Documenter's Workbench
-.IR troff s. \" Solaris, DWB
+but not by Solaris/Illumos
+.IR troff s. \" Solaris/Illumos
 .\" as of this writing, 2022-08-13
 .\" END Keep in sync with groff.texi node "Other Differences" and
 .\" groff_man_style(7).
 .
 .
 .P
-.I groff
+GNU
+.I troff \" GNU
 does not allow the use of the escape sequences
 .BR \[rs]| ,
 .BR \[rs]\[ha] ,
 .BR \[rs]& ,
 .BR \[rs]{ ,
 .BR \[rs]} ,
-.RB \[lq] \[rs]\~ \[rq] ,
+.BI \[rs] space\c
+,
 .BR \[rs]\[aq] ,
 .BR \[rs]\[ga] ,
 .BR \[rs]\- ,
 .BR \[rs]_ ,
 .BR \[rs]! ,
 .BR \[rs]% ,
-.BR \[rs]c ,
-in names of strings,
-macros,
-diversions,
-registers,
-fonts, or environments;
+or
+.B \[rs]c
+in identifiers;
 AT&T
 .I troff \" AT&T
 does.
@@ -5788,7 +5797,7 @@ The
 .B \[rs]A
 escape sequence
 (see subsection \[lq]Escape sequences\[rq] above)
-may be helpful in avoiding use of these escape sequences in names.
+may be helpful in avoiding their use.
 .
 .
 .P
@@ -5840,21 +5849,24 @@ Fractional type sizes cause one noteworthy incompatibility.
 In AT&T
 .I troff \" AT&T
 the
-.B .ps
+.B ps
 request ignores scaling units and thus
 .RB \[lq] .ps\~10u \[rq]
 sets the type size to 10\~points,
-whereas in
-.I groff
-it sets the type size to 10\~scaled points.
+whereas in GNU
+.I troff \" GNU
+it sets the type size to
+.RI 10\~ scaled
+points,
+which may be a much smaller measurement.
 .
-See subsection \[lq]Fractional type sizes and new scaling
-units\[rq] above.
+See subsection \[lq]Fractional type sizes and new scaling units\[rq]
+above.
 .
 .
 .P
 The
-.B .ab
+.B ab
 request differs from AT&T
 .IR troff : \" AT&T
 GNU
@@ -5866,7 +5878,7 @@ and it exits with a failure status instead of a successful one.
 .
 .P
 The
-.B .bp
+.B bp
 request differs from AT&T
 .IR troff : \" AT&T
 GNU
@@ -5882,7 +5894,7 @@ does.
 In AT&T
 .I troff \" AT&T
 the
-.B .pm
+.B pm
 request reports
 macro,
 string,
@@ -5892,19 +5904,21 @@ sizes in units of 128-byte blocks,
 and an argument reduces the report to a sum of the above in the same
 units.
 .
-.I groff
+GNU
+.I troff \" GNU
 ignores any arguments and reports the sizes in bytes.
 .
 .
 .P
 Unlike AT&T
 .IR troff , \" AT&T
-.I groff
+GNU
+.I troff \" GNU
 does not ignore the
-.B .ss
+.B ss
 request if the output is a terminal device;
 instead,
-the values of minimal inter-word and additional inter-sentence space are
+the values of minimum inter-word and additional inter-sentence space are
 each rounded down to the nearest multiple of\~12.
 .
 .
@@ -5952,6 +5966,8 @@ from which it was constructed might have had.
 For example,
 the input
 .
+.br
+.ne 5v
 .RS
 .EX
 \&.di x
@@ -5963,7 +5979,7 @@ the input
 .RE
 .
 produces
-.RB \[lq] \[rs]\[rs] \[rq]
+.RB \[lq]\^ \[rs]\[rs] \[rq]
 in GNU
 .IR troff . \" GNU
 Each pair of backslashes becomes one backslash
@@ -5981,14 +5997,13 @@ printing one
 .
 .
 .P
-One correct way to obtain a printable backslash in most documents is to
-use the
+One way to format a backslash in most documents is with the
 .B \[rs]e
 escape sequence;
-this always prints a single instance of the current escape character,
-regardless of whether or not it is used in a diversion;
-it also works in both
-.I groff
+this formats the glyph of the current escape character,
+regardless of whether it is used in a diversion;
+it also works in both GNU
+.I troff \" GNU
 and AT&T
 .IR troff . \" AT&T
 .
@@ -6033,7 +6048,7 @@ the new
 escape sequence.
 .
 See subsection \[lq]Escape sequences\[rq] above and sections
-\[lq]Diversions\[rq] and \[lq]Gtroff Internals\[rq] in
+\[lq]Diversions\[rq] and \[lq]gtroff Internals\[rq] in
 .IR "Groff: The GNU Implementation of troff" ,
 the
 .I groff
@@ -6047,7 +6062,8 @@ diversion has never existed,
 AT&T
 .I troff
 will output the partially collected line at the end of input;
-.I groff
+GNU
+.I troff \" GNU
 will not.
 .
 .

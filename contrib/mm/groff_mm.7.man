@@ -2987,6 +2987,34 @@ The space between two paragraphs is controlled by register
 .BR Ps ,
 and is\~1 by default (one blank line).
 .
+.
+.TP
+.B PE
+Picture end;
+see
+.MR @g@pic @MAN1EXT@ .
+.
+.
+.TP
+.BR PF\~ [ \[dq]\|\[aq]\c
+.IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
+]
+Define the page footer.
+.
+The footer is formatted at the bottom of each page;
+the argument is otherwise as described in
+.BR PH .
+.
+.B PF
+defines the string
+.BR EOPf .
+.
+See
+.BR EF ,
+.BR OF ,
+and
+.BR EOP .
+.
 .TP
 .BI PGFORM\  "\fR[\fPlinelength \fR[\fPpagelength \fR[\fPpageoffset\ " \fR[\fP1\fR]]]]\fP
 Set line length, page length, and/or page offset.
@@ -3017,75 +3045,6 @@ Suppress header on the next page.
 .
 This macro must be called before any macros that produce output to
 affect the layout of the first page.
-.
-.
-.TP
-.BR PIC \~\c
-.RB [ \-B ]\~\c
-.RB [ \-C |\c
-.BI \-I\~ n\c
-.RB | \-L \c
-.RB | \-R ]\~\c
-.IR file \~[ width \~[ height ]]
-Include PostScript document
-.IR file .
-.
-This macro depends on
-.MR mmroff @MAN1EXT@
-and
-.BR INITR .
-.
-The optional
-.B \-B
-argument draws a box around the picture.
-.
-The optional
-.BR \-L ,
-.BR \-C ,
-.BR \-R ,
-and
-.BI \-I\~ n
-arguments align the picture or indent it by
-.I n
-(assuming a scaling unit of
-.BR m ).
-.
-By default,
-the picture is left-aligned.
-.
-Optional
-.I width
-and
-.I height
-arguments resize the picture.
-.
-.
-.TP
-.B PE
-Picture end;
-see
-.MR @g@pic @MAN1EXT@ .
-.
-.
-.TP
-.BR PF\~ [ \[dq]\|\[aq]\c
-.IB left \[aq] center \[aq] right \[aq]\|\[dq]\c
-]
-Define the page footer.
-.
-The footer is formatted at the bottom of each page;
-the argument is otherwise as described in
-.BR PH .
-.
-.B PF
-defines the string
-.BR EOPf .
-.
-See
-.BR EF ,
-.BR OF ,
-and
-.BR EOP .
 .
 .
 .TP
@@ -3138,6 +3097,47 @@ See
 and
 .BR TP .
 .RE
+.
+.
+.TP
+.BR PIC \~\c
+.RB [ \-B ]\~\c
+.RB [ \-C |\c
+.BI \-I\~ n\c
+.RB | \-L \c
+.RB | \-R ]\~\c
+.IR file \~[ width \~[ height ]]
+Include PostScript document
+.IR file .
+.
+This macro depends on
+.MR mmroff @MAN1EXT@
+and
+.BR INITR .
+.
+The optional
+.B \-B
+argument draws a box around the picture.
+.
+The optional
+.BR \-L ,
+.BR \-C ,
+.BR \-R ,
+and
+.BI \-I\~ n
+arguments align the picture or indent it by
+.I n
+(assuming a scaling unit of
+.BR m ).
+.
+By default,
+the picture is left-aligned.
+.
+Optional
+.I width
+and
+.I height
+arguments resize the picture.
 .
 .
 .TP

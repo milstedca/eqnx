@@ -627,10 +627,10 @@ adjustment of inter-word space size to justify text, and of
 inter-sentence space size to suit local style conventions
 
 @item
-automatic determination of hyphenation break points
+automatic and manual determination of hyphenation break points
 
 @item
-pagination control
+pagination
 
 @item
 selection of any font available to the output device

@@ -92,22 +92,25 @@ features are also noted.
 .SH Language
 .\" ====================================================================
 .
-.I groff
-features identifiers of arbitrary length,
-supports non-integral type sizes,
-adds new escape sequences and requests,
-provides new conditional expression operators,
-recognizes additional scaling units and numeric operators,
-and extends the function of some escape sequences and requests
-present in AT&T
-.IR troff . \" AT&T
+GNU
+.I troff \" GNU
+features identifiers of arbitrary length;
+supports color output,
+non-integral type sizes,
+and user-defined characters;
+adds more conditional expression operators;
+recognizes additional scaling units and numeric operators;
+enables general file I/O
+(in \[lq]unsafe mode\[rq] only);
+and exposes more formatter state.
 .
 .
 .\" ====================================================================
 .SS "Long names"
 .\" ====================================================================
 .
-.I groff
+GNU
+.I troff \" GNU
 introduces many new requests;
 with three exceptions
 .RB ( cp ,
@@ -133,12 +136,12 @@ within can be of arbitrary length.
 .
 .
 .\" ====================================================================
-.SS "Font families and abstract styles"
+.SS "Font families, abstract styles, and translation"
 .\" ====================================================================
 .
 GNU
 .I troff \" GNU
-groups typefaces into
+can group text typefaces into
 .I families
 containing each of the styles
 .RB \[lq] R \[rq],
@@ -147,16 +150,18 @@ containing each of the styles
 and
 .RB \[lq] BI \[rq].
 .
-So that a document need not be strongly coupled to a specific font
-family,
-in GNU
-.I troff \" GNU
+So that a document need not be coupled to a specific font family,
 an output device can associate a style in the abstract sense with a
 mounting position.
 .
 Thus the default family can be combined with a style dynamically,
 producing a
 .I "resolved font name."
+.
+A document can
+.I translate
+or remap fonts with
+.BR ftr .
 .
 .
 .P
@@ -645,7 +650,7 @@ You might use
 .B \[rs]B
 along with the
 .RB \[lq]\| if \|\[rq]
-request to filter out invalid macro or string arguments.
+request to filter out invalid macro arguments.
 .
 .
 .TP
@@ -744,7 +749,7 @@ to choose the typeface.
 and
 .B \[rs]fP
 are synonyms;
-we recommend the first.
+we recommend the former.
 .
 .
 .TP
@@ -955,10 +960,7 @@ Synonymous with
 Set the type size to,
 or increment or decrement it by,
 .I n
-scaled points;
-.I n
-is a numeric expression with a default scaling unit
-.RB of\~\[lq] z \[rq].
+scaled points.
 .
 .
 .br
@@ -996,7 +998,8 @@ and
 are converted to single space characters;
 and
 .B \[rs]\[rs]
-has its escape character stripped.
+is reduced to
+.BR \[rs] .
 .
 So that the basic Latin subset of the Unicode character set
 (that is,
@@ -1932,12 +1935,12 @@ In particular,
 other characters can be translated to it with the
 .B tr
 request;
-it can be made the tab or leader fill characters with the
+it can be made the tab or leader fill character with the
 .B tc
 and
 .B lc
 requests;
-repeated patterns can be drawn with it using the
+sequences of it can be drawn with the
 .B \[rs]l
 and
 .B \[rs]L
@@ -2294,7 +2297,7 @@ output as a device control command.
 .
 .TP
 .BI .do\~ name\~\c
-\&.\|.\|.
+.RI [ arg \~.\|.\|.]
 Interpret the string,
 request,
 diversion,
@@ -2364,8 +2367,7 @@ as output.
 .
 .
 .TP
-.BI .ds1\~ name\~\c
-.RI [ contents ]
+.BI .ds1\~ "name contents"
 As
 .BR ds ,
 but compatibility mode is disabled while
@@ -6087,10 +6089,20 @@ could.
 .SH Authors
 .\" ====================================================================
 .
-This document was written by James Clark,
-Werner Lemberg,
-Bernd Warken,
-and G.\& Branden Robinson.
+This document was written by
+.MT jjc@\:jclark\:.com
+James Clark
+.ME ,
+.MT wl@\:gnu\:.org
+Werner Lemberg
+.ME ,
+.MT groff\-bernd\:.warken\-72@\:web\:.de
+Bernd Warken
+.ME ,
+and
+.MT g.branden\:.robinson@\:gmail\:.com
+G.\& Branden Robinson
+.ME .
 .
 .
 .\" ====================================================================

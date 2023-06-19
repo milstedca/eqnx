@@ -76,7 +76,8 @@ the typesetting system originating in Unix systems of the 1970s.
 At the same time,
 .I groff
 removes many arbitrary limitations and adds features,
-both to the language and to the page description language output by the
+both to the input language and to the page description language output
+by the
 .I troff \" generic
 formatter.
 .
@@ -124,8 +125,8 @@ and colors can be of any length.
 More generally,
 anywhere AT&T
 .I troff \" AT&T
-supports an escape form that uses an opening parenthesis \[lq](\[rq]
-to introduce a two-character argument,
+supports a parameterized escape sequence that uses an opening
+parenthesis \[lq](\[rq] to introduce a two-character argument,
 .I groff
 supports a square-bracketed form \[lq][]\[rq] where the argument
 within can be of arbitrary length.
@@ -176,7 +177,7 @@ command-line option.
 .
 The
 .B styles
-command in the output device's
+directive in the output device's
 .I DESC
 file controls which mounting positions
 (if any)
@@ -605,7 +606,7 @@ whereas strokes have a line thickness
 .\" concepts in groff programming to new subsections above.  Examples
 .\" include: string parameterization, user-definable characters,
 .\" character properties (cflags), character classes; the hyphenation
-.\" language, code, and pattern file system; file stream manipulation;
+.\" language, code, and pattern file system; file stream manipulation...
 .\"
 .\" _Maybe_ output suppression.  It's a big enough concept, but only
 .\" well understood by retired contributors, only used by the grohtml

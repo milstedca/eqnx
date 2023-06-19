@@ -4672,7 +4672,7 @@ Interpolate number of minutes elapsed in the hour.
 .
 .TP
 .B \[rs]n[seconds]
-Interpolate number of minutes elapsed in the minute.
+Interpolate number of seconds elapsed in the minute.
 .
 .
 .TP

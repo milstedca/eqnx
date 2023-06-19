@@ -1132,6 +1132,7 @@ are required.
 \&.AU
 \&.AT
 \&.AS
+.ne 2v
 \&.AE
 \&.COVEND
 .EE
@@ -3830,21 +3831,23 @@ to increase user control of page layout.
 .
 .TP
 .BR WA \~[\c
-.IR sender-name \~[\c
+.IR writer's-name \~[\c
 .IR title ]]
-Specify the writer's address in a letter.
+Specify the writer(s) of an
+.B LT
+letter.
 .
 Input is collected into the writer's address until
 .B WA
 is called,
 and then output.
 .
-You can specify multiple senders with empty
+You can specify multiple writers with empty
 .BR WA / WE
 pairs;
 only the last address is used.
 .
-The arguments give each sender a name and title.
+The arguments give each writer a name and title.
 .
 .
 .TP
@@ -4094,50 +4097,47 @@ The default is
 .
 .TP
 .B Letns
-is an array containing the different strings used in
-.BR .NS .
+is a group of strings structuring the notations produced by
+.BR NS .
 .
-Since
-.I roff
-languages lack true array types,
-it is implemented as a set of strings prefixed with
-.BR Letns! .
+If the
+.I code
+argument to
+.B NS
+has no corresponding string,
+the notation is included between parentheses,
+prefixed with
+.BR Letns!copy ,
+and suffixed with
+.BR Letns!to .
 .
-If the argument doesn't exist, it is included between
-.B ()
-with
-.B Letns!copy
-as a prefix and
-.B Letns!to
-as a suffix.
-.
-Observe the space after \[lq]Copy\[rq] and before \[lq]to\[rq].
+Observe the spaces after \[lq]Copy\[rq] and before \[lq]to\[rq].
 .
 .
 .RS
-.IP
+.P
 .TS
 tab(@);
-lb lb
-l l.
-Name@Value
-Letns!0@Copy to
-Letns!1@Copy (with att.\&) to
-Letns!2@Copy (without att.\&) to
-Letns!3@Att.
-Letns!4@Atts.
-Letns!5@Enc.
-Letns!6@Encs.
-Letns!7@Under separate cover
-Letns!8@Letter to
-Letns!9@Memorandum to
-Letns!10@Copy (with atts.\&) to
-Letns!11@Copy (without atts.\&) to
-Letns!12@Abstract Only to
-Letns!13@Complete Memorandum to
-Letns!14@CC
-Letns!copy@Copy \fI(with trailing space)\fP
-Letns!to@ to \fI(note leading space)\fP
+Lb Lb Lb
+L L L.
+NS code@String@Contents
+0@Letns!0@Copy to
+1@Letns!1@Copy (with att.\&) to
+2@Letns!2@Copy (without att.\&) to
+3@Letns!3@Att.
+4@Letns!4@Atts.
+5@Letns!5@Enc.
+6@Letns!6@Encs.
+7@Letns!7@Under separate cover
+8@Letns!8@Letter to
+9@Letns!9@Memorandum to
+10@Letns!10@Copy (with atts.\&) to
+11@Letns!11@Copy (without atts.\&) to
+12@Letns!12@Abstract Only to
+13@Letns!13@Complete Memorandum to
+14@Letns!14@CC
+\[em]@Letns!copy@Copy \fI(with trailing space)\fP
+\[em]@Letns!to@ to \fI(note leading space)\fP
 .TE
 .RE
 .
@@ -4145,7 +4145,7 @@ Letns!to@ to \fI(note leading space)\fP
 .TP
 .B Letnsdef
 Select the notation format used by
-.B .NS
+.B NS
 when it is given no argument.
 .
 The default is
@@ -4256,14 +4256,21 @@ the service mark sign.
 .
 .TP
 .B Tcst
-Contains the current status of the table of contents and list of
-figures, etc.
+interpolates an indicator of the
+.B TC
+macro's processing status.
 .
-Empty outside of
-.BR .TC .
+If
+.B TC
+is not operating,
+it is empty.
 .
-Useful in user-defined macros like
-.BR .TP .
+User-defined
+.B TP
+or
+.B EOP
+macros might condition page headers or footers on its contents.
+.
 .
 .IP
 .TS
@@ -4701,7 +4708,8 @@ devices:
 sets the heading level threshold for application of succeeding vertical
 space.
 .
-If the heading level is greater than this value,
+If the heading level is greater than
+.BR Hs ,
 the heading is followed by vertical space in the amount of
 .RB register\~ Hss ;
 see
@@ -5210,12 +5218,12 @@ see
 .SH Internals
 .\" ====================================================================
 .
-The letter macros use different submacros depending on the
-letter type.
+The
+.B LT
+letter macros call further macros depending on the letter type,
+with which they are suffixed.
 .
-The name of the submacro has the letter type as suffix.
-.
-It is therefore possible to define other letter types,
+It is therefore possible to define additional letter types,
 either in the territory-specific macro file,
 or as local additions.
 .
@@ -5224,34 +5232,38 @@ sets the registers
 .B Pt
 and
 .B Pi
-to 0 and\~5,
+to 0 and\~5, \" XXX: ...but doesn't use Pi for indentation...
 respectively.
+.\" XXX: and why aren't both of these actions the responsibility of
+.\" let@init_type as described below?
 .
-The following strings and macros must be defined for a new letter type.
+The following macros must be defined to support a new letter type.
+.
 .
 .TP
 .BI let@init_ type
-This macro is called directly by
-.BR LT .
+.B LT
+calls this macro to initialize any registers and other data needed by
+the letter type.
 .
-It is supposed to initialize registers and other stuff.
 .
 .TP
 .BI let@head_ type
-This macro prints the letter head,
-and is called instead of the normal page header.
+formats the letterhead;
+it is called instead of the usual page header macro.
 .
-It is supposed to remove the alias
-.BR let@header ,
-otherwise it is called for all pages.
+Its definition should remove the alias
+.B let@header
+unless the letterhead is desired on subsequent pages.
 .
 .
 .TP
 .BI let@sg_ type\~\c
-.IR "name title n is-surname\~" [ SG-arg\~ .\|.\|.]
+.IR "name title n is-final\~" [ SG-arg\~ .\|.\|.]
 .B SG
 calls this macro only for letters;
-memoranda have their own processing.
+.B MT
+memoranda have their own signature processing.
 .
 .I name
 and
@@ -5262,10 +5274,10 @@ are specified through
 .IR n \~is
 the index of the
 .IR n th
-author,
+writer,
 and
-.I is-surname
-is true for the last name.
+.I is-final
+is true for the last writer to be listed.
 .
 Further
 .B SG
@@ -5279,19 +5291,23 @@ This macro is called by
 and has the formal closing as the argument.
 .
 .
-.LP
+.P
 .B LO
-is implemented as a general option-macro.
+implements letter options.
 .
-It demands that a string named
+It requires that a string named
 .BI Let type
-is defined, where
+be defined,
+where
 .I type
 is the letter type.
 .
 .B LO
-then assigns the argument to the string
-.BI let*lo- type\fR.\fP
+then assigns its second argument
+.RI ( value )
+to the string
+.BI let*lo\- type\c
+\&.
 .
 .
 .\" ====================================================================

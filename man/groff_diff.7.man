@@ -420,9 +420,8 @@ For example,
 .SS "Numeric expressions"
 .\" ====================================================================
 .
-Spaces are permitted in a numeric expression within parentheses.
-.
-Three new operators are available as well.
+Spaces are permitted in a numeric expression within parentheses,
+and three new operators are available.
 .
 .
 .TP
@@ -447,13 +446,12 @@ Evaluate
 .I e
 using
 .I c
-as the default scaling unit.
-.
-If
+as the default scaling unit,
+ignoring scaling units in
+.I e
+if
 .I c
-is missing,
-ignore scaling units in the evaluation
-.RI of\~ e .
+is empty.
 .
 .
 .\" ====================================================================
@@ -478,23 +476,11 @@ is available,
 where
 .I c
 is an ordinary character
-(Unicode basic Latin excluding control characters and the space);
-a
-.I groff
-special character
-.BI \[rs]( ch
+(Unicode basic Latin excluding control characters and the space),
+a special character,
 or
-.BI \[rs][ char\c
-.BR ] ;
-.BI \[rs]N\[aq] idx\c
-.BR \[aq] ;
-or has been defined by any of the
-.BR char ,
-.BR fchar ,
-.BR fschar ,
-or
-.B schar
-requests.
+.BI \[rs]N\[aq] index\c
+.BR \[aq] .
 .
 .
 .TP
@@ -572,15 +558,11 @@ to a form suitable for Versatec and Benson-Varian plotters.)
 .
 GNU
 .I troff \" GNU
-closes polygons
-.RB ( \[rs]D\[aq]p\[aq] )
-automatically
-(unlike DWB
-.IR troff ). \" DWB
-.
-Circles,
-ellipses,
-and polygons can be filled.
+offers drawing commands to create filled
+circles and ellipses,
+and polygons.
+.\" CSTR #54 did not countenance polygons, but DWB 3.3 had outlined ones
+.\" as \D'p' as we do.  Filled polygons appear to be a GNU innovation.
 .
 Stroked (outlined) objects are drawn with the stroke color and
 filled (solid) ones shaded with the fill color.
@@ -593,7 +575,7 @@ you must draw the same figure twice using each drawing command.
 A filled figure is always smaller than a stroked one because the former
 is drawn only within its defined area,
 whereas strokes have a line thickness
-(set with
+(set with another new drawing command,
 .BR \[rs]D\[aq]t\[aq] ).
 .
 .
@@ -759,10 +741,10 @@ or font name,
 to choose the typeface.
 .
 .B \[rs]f[]
-is a synonym of
-.BR \[rs]fP ;
-that is,
-it selects the previous font.
+and
+.B \[rs]fP
+are synonyms;
+we recommend the first.
 .
 .
 .TP
@@ -773,18 +755,17 @@ it selects the previous font.
 .BI \[rs]F[ family ]
 Select default font family.
 .
+.B \[rs]F[]
+makes the previous font family the default.
+.
+.B \[rs]FP
+is unlike
+.BR \[rs]fP ;
+it selects font family \[lq]P\[rq] as the default.
+.
 See the
 .B fam
 request below.
-.
-.B \[rs]F[]
-makes the previous font family the default
-(if there is none,
-the output device's or formatter's default is selected).
-.
-.B \[rs]FP
-does not;
-it selects font family \[lq]P\[rq] instead.
 .
 .
 .TP
@@ -1118,7 +1099,7 @@ comment\[em]it leaves a blank line on the input stream.
 .\" Keep \$0 before \$( in spite of collation.
 .TP
 .B \[rs]$0
-The name by which the current macro was called.
+Interpolate the name by macro being interpreted was called.
 .
 In GNU
 .I troff \" GNU
@@ -1132,8 +1113,9 @@ request.
 .BI \[rs]$( nn
 .TQ
 .BI \[rs]$[ nnn ]
-In a macro or string,
-this gives the
+In a macro or string definition,
+interpolate
+the
 .IR nn th
 or
 .IR nnn th
@@ -1144,22 +1126,23 @@ Macros and strings can have an unlimited number of arguments.
 .
 .TP
 .B \[rs]$*
-In a macro or string,
-the concatenation of all the arguments separated by spaces.
+In a macro or string definition,
+interpolate the catenation of all arguments,
+separated by spaces.
 .
 .
 .TP
 .B \[rs]$@
-In a macro or string,
-the concatenation of all the arguments with each surrounded by double
-quotes,
-and separated by spaces.
+In a macro or string definition,
+interpolate the catenation of all arguments,
+with each surrounded by double quotes and separated by spaces.
 .
 .
 .TP
 .B \[rs]$\[ha]
-In a macro,
-the representation of all parameters as if they were an argument to the
+In a macro or string definition,
+interpolate the catenation of all arguments
+constructed in a form suitable for passage to the
 .B ds
 request.
 .
@@ -1168,8 +1151,7 @@ request.
 .B \[rs])
 Interpolate a
 .I transparent
-dummy character\[em]one that is transparent to end-of-sentence
-detection.
+dummy character\[em]one that is ignored by end-of-sentence detection.
 .
 It behaves as
 .BR \[rs]& ,
@@ -1188,13 +1170,13 @@ does not.
 .
 .
 .TP
-.BI \[rs]*[ "string arg1 arg2\~"\c
-\&.\|.\|.]
+.BI \[rs]*[ "string\~\c
+.RI [ arg \~.\|.\|.]\c
+.B ]
 Interpolate
-.IR string ,
-taking
-.IR arg1 ,
-.IR arg2 ,
+.I string,
+passing it
+.I arg
 \&.\|.\|.\&
 as arguments.
 .
@@ -1438,8 +1420,8 @@ is produced,
 and the request is ignored.
 .
 The
-.BR am ,
-.BR as ,
+.RB \[lq] am \[rq],
+.RB \[lq] as \[rq],
 .BR da ,
 .BR de ,
 .BR di ,
@@ -1480,7 +1462,7 @@ request on its name first.
 .RI [ end-name ]
 As
 .RB \[lq] am \[rq],
-but compatibility mode disabled while the appendment to
+but compatibility mode is disabled while the appendment to
 .I name
 is interpreted:
 a \[lq]compatibility save\[rq] token is inserted at its beginning,
@@ -1515,9 +1497,8 @@ below.
 .RI [ end-name ]
 As
 .BR ami ,
-but compatibility mode is disabled during
-.IR name 's
-interpretation.
+but compatibility mode is disabled during interpretation of the
+appendment.
 .
 .
 .TP
@@ -4136,7 +4117,7 @@ GNU
 .I troff \" GNU
 exposes more formatter state via many new read-only registers.
 .
-Many of their names correspond to the requests that manipulate them.
+Their names often correspond to the requests that affect them.
 .
 .
 .TP 12n
@@ -4573,7 +4554,7 @@ See
 .
 .
 .P
-These following read/\:write registers are set by the
+The following (writable) registers are set by the
 .B psbb
 request.
 .
@@ -4596,7 +4577,7 @@ bounding box values
 .
 .
 .P
-The following read/\:write registers are set by the
+The following (writable) registers are set by the
 .B \[rs]w
 escape sequence.
 .
@@ -4641,14 +4622,14 @@ over that glyph.
 .
 .
 .P
-Other available read/write registers are as follows.
+Other writable registers are as follows.
 .
 Those relating to date and time are initialized using
 .MR localtime 3
 at formatter startup.
 .
 .
-.\" The `.c` register was documented in the January 1981 "Addendum to
+.\" The `c.` register was documented in the January 1981 "Addendum to
 .\" the Nroff/Troff User's Manual" (presumably by Kernighan), and is
 .\" widely supported by descendants of his device-independent troff, but
 .\" appears to have been overlooked in his 1992 revision of CSTR #54.
@@ -5273,7 +5254,7 @@ also follows this rule,
 even though it frustrates extensions to the
 .B D
 command that set drawing parameters rather than rendering objects,
-producing ugly results in the case of the
+producing ugly results in the case of
 .B Dt
 and
 .BR Df ,
@@ -5743,11 +5724,11 @@ request names unrecognized by other
 implementations will likely be ignored;
 escape sequences that are GNU
 .I troff \" GNU
-extensions are liable to be formatted literally.
+extensions are liable to format their function selector character.
 .
 For example,
 the adjustable,
-non-breaking escape sequence
+non-breaking space escape sequence
 .B \[rs]\[ti]
 .\" BEGIN Keep in sync with groff.texi node "Other Differences" and
 .\" groff_man_style(7).
@@ -5764,7 +5745,9 @@ and Plan\~9 from User Space
 (commit 93f8143600,
 2022-08-12),
 but not by Solaris/Illumos
-.IR troff s. \" Solaris/Illumos
+.IR troff s, \" Solaris/Illumos
+which will render it as
+.BR \[ti] .
 .\" as of this writing, 2022-08-13
 .\" END Keep in sync with groff.texi node "Other Differences" and
 .\" groff_man_style(7).

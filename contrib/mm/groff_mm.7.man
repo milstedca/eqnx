@@ -846,7 +846,7 @@ The default is \[lq]ABSTRACT\[rq].
 .
 .TP
 .BI AT\~ title\c
-\~[.\|.\|.]
+\~.\|.\|.
 Specify author's title(s).
 .
 If present,
@@ -948,7 +948,9 @@ As
 .BR AV ,
 but the date,
 date rule,
-and approval notations are omitted.
+and approval notation
+.B Letapp
+are omitted.
 .
 .
 .TP

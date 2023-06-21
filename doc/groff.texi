@@ -1635,6 +1635,7 @@ required leading dashes @samp{-}
 @c No GNU roff postprocessor uses long options for anything except
 @c --help or --version.
 @c or @samp{--}
+@c XXX: grolbp does.
 because @command{groff} passes the arguments as-is to the postprocessor;
 this permits arbitrary arguments to be transmitted.  For example, to
 pass a title to the @command{gxditview} postprocessor,
@@ -8019,6 +8020,15 @@ register.  Using @code{ad} without an argument is the same as @samp{.ad
 lines in the same way it did before adjustment was disabled by
 invocation of the @code{na} request.
 
+@cindex adjustment mode register (@code{.j})
+The adjustment mode and enablement status are encoded in the read-only
+register @code{.j}.  These parameters are associated with the
+environment (@pxref{Environments}).
+
+The value of @code{.j} for any adjustment mode is an implementation
+detail and should not be relied upon as a programmer's interface.  Do
+not write logic to interpret or perform arithmetic on it.
+
 @Example
 .ll 48n
 .de AD
@@ -8052,15 +8062,6 @@ right
     @result{}                      center
     @result{}                                            right
 @endExample
-
-@cindex adjustment mode register (@code{.j})
-The adjustment mode and enablement status are encoded in the read-only
-register @code{.j}.  These parameters are associated with the
-environment (@pxref{Environments}).
-
-The value of @code{.j} for any adjustment mode is an implementation
-detail and should not be relied upon as a programmer's interface.  Do
-not write logic to interpret or perform arithmetic on it.
 @endDefreq
 
 @Defreq {na, }
@@ -8444,8 +8445,8 @@ within a word that are eligible for hyphenation are determined by
 language-specific data and lettercase relationships.  Furthermore,
 hyphenation of a word might be suppressed due to a limit on
 consecutive hyphenated lines (@code{hlm}), a minimum line length
-threshold, certain minimum length (@code{hym}), or because the line can
-instead be adjusted with additional inter-word space (@code{hys}).
+threshold (@code{hym}), or because the line can instead be adjusted with
+additional inter-word space (@code{hys}).
 
 @cindex hyphenation mode register (@code{.hy})
 @DefreqList {hy, [@Var{mode}]}
@@ -14323,7 +14324,8 @@ stored in the @code{.vpt} read-only register.
 @cindex break, page, prevented by @code{vpt}
 @cindex page ejection, prevented by @code{vpt}
 @cindex ejection, page, prevented by @code{vpt}
-A page can't be ejected if @code{vpt} is set to zero.
+A page can't be ejected if @code{vpt} is set to zero; see @ref{The
+Implicit Page Trap}.
 @endDefreq
 
 @menu
@@ -14613,8 +14615,8 @@ not the expected behaviour.
 @cindex break, page
 @cindex page ejection
 @cindex ejection, page
-If, after starting @code{troff} without loading a macro package, you use
-the @code{ptr} request to dump a list of the active traps to the
+If, after starting GNU @code{troff} without loading a macro package, you
+use the @code{ptr} request to dump a list of the active traps to the
 standard error stream,@footnote{@xref{Debugging}.}  nothing is reported.
 Yet the @code{.t} register will report a steadily decreasing value with
 every output line your document produces, and once the value of
@@ -14670,10 +14672,10 @@ error to invoke @code{dt} in the top-level diversion.
 @cindex input line trap, clearing (@code{it}, @code{itc})
 @cindex trap, input line, clearing (@code{it}, @code{itc})
 Set an input line trap, calling macro @var{name} after processing the
-next @var{n}@tie{}productive input lines (@pxref{Manipulating Filling
-and Adjustment}).  Any existing input line trap in the environment is
-replaced.  Without arguments, @code{it} and @code{itc} clear any
-input line trap that has not yet sprung.
+next @var{n}@tie{}productive input lines (recall @ref{Manipulating
+Filling and Adjustment}).  Any existing input line trap in the
+environment is replaced.  Without arguments, @code{it} and @code{itc}
+clear any input line trap that has not yet sprung.
 
 Consider a macro @samp{.ST @var{s n}} which sets the next
 @var{n}@tie{}input lines in the font style@tie{}@var{s}.
@@ -15435,8 +15437,8 @@ This is \*[xxx].
 @cindex environments
 
 As discussed in @ref{Deferring Output}, environments store most of the
-parameters that control text processing.  A default environment named
-@samp{0} exists when GNU @code{troff} starts up; it is modified by
+parameters that determine the appearance of text.  A default environment
+named @samp{0} exists when GNU @code{troff} starts up; it is modified by
 formatting-related requests and escape sequences.
 
 @cindex stack
@@ -17319,7 +17321,7 @@ the character escape @code{\(rs} or @code{\[rs]}, for ``reverse
 solidus'', from its name in the @acronym{ECMA-6} (@acronym{ISO/IEC} 646)
 standard.@footnote{The @code{rs} special character identifier was not
 defined in @acronym{AT&T} @code{troff}'s font description files, but is
-in those if its lineal descendant, Heirloom Doctools @code{troff}, as of
+in those of its lineal descendant, Heirloom Doctools @code{troff}, as of
 the latter's 060716 release (July 2006).}
 
 To store an escape sequence in a diversion that is interpreted when the

@@ -49,6 +49,32 @@
 
 	Fixes <https://savannah.gnu.org/bugs/?62973>.
 
+2023-05-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[docs]: Revise "Page Layout" material.
+
+	* doc/groff.texi:
+	- Recast generally.
+	- Describe behavior of `pl` in more detail.
+	- Migrate terminology from "scaling indicator" to "scaling
+	  unit".
+	- Stop discussing page margins in the context of the `pl`
+	  request.
+	- Move concept index entries regarding margins from here to
+	  "Traps".
+	- Move discussion of `pn` request to precede `tl` request.
+	- Add concept index entries.
+	- Recast description of `tl` request.  Migrate terminology from
+	  "justification" to "alignment".
+	- Recast description of `lt` request.  Describe behavior in more
+	  detail.
+	- Recast description of `pc` request.
+	- Add example of `lt` and `tl` usage.  Add forward reference to
+	  "Traps", mentioning page header and footer traps.
+
+	Fixes <https://savannah.gnu.org/bugs/?55124>.  Thanks to Dave
+	Kemper for the report.
+
 2023-05-22  Dave Kemper <saint.snit@gmail.com>
 
 	[docs]: Correct minor punctuation, grammar, and spelling issues.

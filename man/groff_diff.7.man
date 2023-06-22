@@ -69,11 +69,10 @@ The GNU
 .I roff
 text processing system,
 .IR groff ,
-is largely compatible with AT&T
+is an extension of AT&T
 .IR troff , \" AT&T
 the typesetting system originating in Unix systems of the 1970s.
 .
-At the same time,
 .I groff
 removes many arbitrary limitations and adds features,
 both to the input language and to the page description language output
@@ -86,6 +85,10 @@ Differences arising from
 implementation of AT&T
 .I troff \" AT&T
 features are also noted.
+.
+See
+.MR roff @MAN7EXT@
+for background.
 .
 .
 .\" ====================================================================
@@ -123,10 +126,10 @@ fonts,
 strings/\:macros/\:diversions,
 environments,
 special characters,
+streams,
 and colors can be of any length.
 .
-More generally,
-anywhere AT&T
+Anywhere AT&T
 .I troff \" AT&T
 supports a parameterized escape sequence that uses an opening
 parenthesis \[lq](\[rq] to introduce a two-character argument,
@@ -159,24 +162,27 @@ producing a
 .I "resolved font name."
 .
 A document can
-.I translate
-or remap fonts with
-.BR ftr .
+.I translate,
+or remap,
+fonts with the
+.B ftr
+request.
 .
 .
 .P
-When the requests
+Applying the requests
 .BR cs ,
 .BR bd ,
 .BR tkf ,
 .BR uf ,
 or
 .B \%fspecial
-are applied to an abstract style,
-they instead affect the member of the default family corresponding to
-that style.
+to an abstract style affects the member of the default family
+corresponding to that style.
 .
 The default family can be set with the
+.B fam
+request or
 .B \-f
 command-line option.
 .
@@ -268,10 +274,9 @@ where
 .I sizescale
 is specified in the device description file,
 .IR DESC ,
-and defaults to\~1.
-.
-(See
-.MR groff_font @MAN5EXT@ .)
+and defaults to\~1;
+see
+.MR groff_font @MAN5EXT@ .
 .
 Requests and escape sequences in GNU
 .I troff \" GNU
@@ -297,6 +302,16 @@ Scaled points may be specified explicitly with the
 .B z
 scaling unit.
 .
+In GNU
+.IR troff , \" GNU
+the register
+.B \[rs]n[.s]
+can interpolate a non-integral type size.
+.
+The register
+.B \[rs]n[.ps]
+interpolates the type size in scaled points.
+.
 .
 .P
 For example,
@@ -305,23 +320,12 @@ if
 is\~1000,
 then a scaled point is one thousandth of a point.
 .
-The request
+Consequently,
 .RB \[lq] ".ps 10.5" \[rq]
 is synonymous with
-.RB \[lq] ".ps 10.5z" \[rq]
-and sets the type size to 10,500\~scaled points,
+.RB \[lq] ".ps 10.5z" \[rq];
+both set the type size to 10,500\~scaled points,
 or 10.5\~points.
-.
-Consequently,
-in
-.IR groff ,
-the register
-.B \[rs]n[.s]
-can contain a non-integral type size.
-.
-The register
-.B \[rs]n[.ps]
-returns the type size in scaled points.
 .
 .
 .P
@@ -345,13 +349,15 @@ so GNU
 disallows this as well.
 .
 .
+.br
+.ne 2v
 .P
 Another new scaling unit,
 .RB \[lq] s \[rq],
 multiplies by the number of basic units in a scaled point.
 .
 Thus,
-.RB \[lq] \[rs]n[.ps]s \[rq]
+.RB \[lq]\^ \[rs]n[.ps]s \[rq]
 is equal to
 .RB \[lq] 1m \[rq]
 by definition.
@@ -410,7 +416,7 @@ are
 .RB \[lq] M \[rq],
 which indicates hundredths of an em,
 and
-.RB \[lq] f \[rq],
+.RB \[lq] f \^\[rq],
 which multiplies by 65,536.
 .
 The latter provides convenient fractions for color definitions with the
@@ -431,7 +437,7 @@ and three new operators are available.
 .
 .TP
 .IB e1 >? e2
-Compute the maximum of
+Interpolate the greater of
 .I e1
 and
 .IR e2 .
@@ -439,7 +445,7 @@ and
 .
 .TP
 .IB e1 <? e2
-Compute the minimum of
+Interpolate the lesser of
 .I e1
 and
 .IR e2 .
@@ -509,14 +515,15 @@ or a font name.
 .
 .I fnt
 is handled as if it
-were opened with the
+were accessed with the
 .B ft
 request
 (that is,
 abstract styles and font translation are applied),
 but
 .I fnt
-cannot be a mounting position and it is not mounted.
+cannot be a mounting position,
+and no font is mounted.
 .
 .
 .TP
@@ -1067,7 +1074,6 @@ whereas the argument to
 cannot.
 .
 This inclusion of newlines requires an extension to the AT&T
-device-independent
 .I troff \" AT&T
 output format,
 and will confuse postprocessors that do not know about it.
@@ -1102,11 +1108,11 @@ comment\[em]it leaves a blank line on the input stream.
 .\" Keep \$0 before \$( in spite of collation.
 .TP
 .B \[rs]$0
-Interpolate the name by macro being interpreted was called.
+Interpolate the name by which the macro being interpreted was called.
 .
 In GNU
 .I troff \" GNU
-this can vary;
+this name can vary;
 see the
 .B als
 request.
@@ -1193,15 +1199,15 @@ modify the spacing of the preceding glyph so that the distance between
 it and the following glyph is correct if the latter is of upright shape.
 .
 For example,
-if an italic\~\[lq]f\[rq] is followed immediately by a roman right
+if an italic\~\[lq]f\^\[rq] is followed immediately by a roman right
 parenthesis,
-then in many fonts the top right portion of the\~\[lq]f\[rq] overlaps
+then in many fonts the top right portion of the\~\[lq]f\^\[rq] overlaps
 the top left of the right parenthesis,
 .if t producing \f[I]f\f[R]),
 which is ugly.
 .
 Inserting
-.B \[rs]/
+.B \[rs]\^/
 between them
 .if t \{\
 .  nop produces
@@ -1224,9 +1230,9 @@ it and the preceding glyph is correct if the latter is of upright shape.
 .
 For example,
 if a roman left parenthesis is immediately followed by an
-italic\~\[lq]f\[rq],
-then in many fonts the bottom left portion of the\~\[lq]f\[rq] overlaps
-the bottom of the left parenthesis,
+italic\~\[lq]f\^\[rq],
+then in many fonts the bottom left portion of the\~\[lq]f\^\[rq]
+overlaps the bottom of the left parenthesis,
 .if t producing \f[R](\f[I]f\f[R],
 which is ugly.
 .
@@ -1333,12 +1339,14 @@ For example,
 .RB \[lq]\| \[rs][A\~ho] \^\[rq]
 is a capital letter \[lq]A\[rq] with a \[lq]hook accent\[rq] (ogonek).
 .
-See
+See the
+.B \%composite
+request below;
 .IR "Groff: The GNU Implementation of troff" ,
 the
 .I groff
 Texinfo manual,
-for details of composite glyph name construction,
+for details of composite glyph name construction;
 and
 .MR groff_char @MAN7EXT@
 for a list of components used in composite glyph names.
@@ -1381,11 +1389,11 @@ and
 .
 .TP
 .BI .aln\~ "new old"
-Create an alias
+Create alias
 .I new
-for an existing register named
+for existing register named
 .IR old ,
-causing the names to refer to the same stored object.
+causing the names to refer to the same stored value.
 .
 If
 .I old
@@ -1405,9 +1413,9 @@ names.
 .
 .TP
 .BI .als\~ "new old"
-Create an alias
+Create alias
 .I new
-for the existing request,
+for existing request,
 string,
 macro,
 or diversion named
@@ -2152,7 +2160,10 @@ to character name
 .I c2
 when
 .I c1
-is used in a composite special character.
+is a combining component in a composite glyph.
+.
+Typically,
+this remaps a spacing glyph to a combining one.
 .
 .
 .TP
@@ -3029,6 +3040,7 @@ is read in copy mode.
 .
 .TP
 .BI .linetabs\~ n
+.RS
 If
 .I n
 is non-zero or missing,
@@ -3044,13 +3056,13 @@ line.
 Line-tabs mode is a property of the environment.
 .
 .
-.IP
+.P
 For example,
 the following
 .
 .
 .RS
-.IP
+.P
 .ne 6v+\n(.Vu
 .EX
 \&.ds x a\[rs]t\[rs]c
@@ -3063,29 +3075,24 @@ the following
 .EE
 .RE
 .
-.
-.IP
 yields
 .
-.
 .RS
-.IP
 .EX
 a         b         c
 .EE
 .RE
 .
-.
-.IP
-In line-tabs mode,
+whereas in line-tabs mode,
 the same input gives
 .
-.
 .RS
-.IP
 .EX
 a         b                   c
 .EE
+.RE
+.
+instead.
 .RE
 .
 .
@@ -3134,7 +3141,7 @@ command-line option are
 If the file name to be interpolated has the form
 .IB name .tmac
 and it isn't found,
-.B .mso
+.B mso
 tries to include
 .BI tmac. name
 instead and vice versa.
@@ -3326,7 +3333,9 @@ or
 .B schar
 request.
 .
-Those supplied by font description files cannot be removed.
+Glyphs,
+which are defined by font description files,
+cannot be removed.
 .
 Spaces and tabs may separate
 .I c
@@ -4752,8 +4761,8 @@ register.
 .
 .
 .P
-String interpolation does not conceal the arguments to a macro being
-interpreted.
+Unparameterized string interpolation does not conceal the arguments to a
+macro being interpreted.
 .
 Thus,
 in a macro definition,
@@ -4851,7 +4860,7 @@ GNU
 .IR troff , \" GNU
 the
 .B tr
-request can map characters to the horizontal motion escape sequence
+request can map characters to the unbreakable space escape sequence
 .B \[rs]\[ti]
 as a special case
 .RB ( tr
@@ -4861,7 +4870,7 @@ normally operates only on
 This feature replaces the odd-parity
 .B tr
 mapping trick used in AT&T
-.I troff \" troff
+.I troff \" AT&T
 documents,
 where a character,
 often
@@ -4869,6 +4878,12 @@ often
 was \[lq]sacrificed\[rq] by mapping it to \[lq]nothing\[rq],
 drafting it into use as an unadjustable,
 unbreakable space.
+.
+(This feature was gratuitous even in early AT&T
+.I troff, \" AT&T
+which supported the
+.BI \[rs] space
+escape sequence by 1976.) \" see CSTR #54 of that year
 .
 Often,
 it makes more sense to use
@@ -4882,6 +4897,10 @@ implementation except that of Illumos,
 as well as by the
 .RI non -troff
 .IR mandoc .
+.
+Translation of a character to
+.B \[rs]\[ti]
+is unnecessary.
 .
 .
 .P
@@ -6130,7 +6149,7 @@ AT&T Bell Laboratories Computing Science Technical Report No.\& 54,
 widely called simply \[lq]CSTR\~#54\[rq],
 documents the language,
 device and font description file formats,
-and device-independent output format
+and output format
 referred to collectively in
 .I groff
 documentation as AT&T
@@ -6144,7 +6163,7 @@ by Brian W.\& Kernighan,
 AT&T Bell Laboratories Computing Science Technical Report No.\& 97,
 provides additional insights into the
 device and font description file formats
-and device-independent output format.
+and output format.
 .
 .
 .P

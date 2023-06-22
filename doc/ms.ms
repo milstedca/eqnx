@@ -2157,6 +2157,7 @@ For example,
 you may wish to structure lists hierarchically.
 .
 .
+.KS
 .TS
 box center;
 cb cb
@@ -2199,6 +2200,7 @@ Guns
 \&.\|.\|.
 T}
 .TE
+.KE
 .
 .
 .NH 2
@@ -4285,6 +4287,7 @@ See
 instead.
 .
 .
+.KS
 .NH 2
 AT&T
 .I ms
@@ -4316,6 +4319,7 @@ _
 .\" \*v was an undocumented (in Lesk 1978-11-13) synonym for \*C.
 \[rs]*[,]	Apply cedilla to subsequent glyph.
 .TE
+.KE
 .
 .
 .NH 2

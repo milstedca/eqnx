@@ -2692,10 +2692,9 @@ the page number of a division of the text until it has been set and
 output.  Since @file{ms} was designed for the production of hard copy,
 the traditional procedure was to manually relocate the pages containing
 the table of contents between the cover page and the body text.  Today,
-page resequencing can be done in the digital domain with tools like
-@cite{pdfjam@r{(1)}}.  An index works similarly, but because it
-typically needs to be sorted after collection, its preparation requires
-separate processing.
+page resequencing is more often done in the digital domain.  An index
+works similarly, but because it typically needs to be sorted after
+collection, its preparation requires separate processing.
 @end table
 
 @c ---------------------------------------------------------------------
@@ -4353,9 +4352,11 @@ maintaining it.  @file{ms} enables the collection of material to be
 presented in the table of contents as it appears, saving its page number
 along with it, and then emitting the collected contents on demand toward
 the end of the document.  The table of contents can then be resequenced
-to its desired location as part of post-processing---with a PDF page
-relocation tool, or by physically rearranging the pages of a printed
-document, depending on the output format and circumstances.
+to its desired location by physically rearranging the pages of a printed
+document, or as part of post-processing---with a @cite{sed@r{(1)}}
+script to reorder the pages in @command{troff}'s output, with
+@cite{pdfjam@r{(1)}}, or with @cite{gropdf@r{(1)}}'s
+@samp{.pdfswitchtopage} feature, for example.
 
 Define an entry to appear in the table of contents by bracketing its
 text between calls to the @code{XS} and @code{XE} macros.  A typical

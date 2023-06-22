@@ -496,8 +496,7 @@ the traditional procedure was to manually relocate the pages containing
 the table of contents between the cover page and the body text.
 .
 Today,
-page resequencing can be done in the digital domain with tools like
-.I pdfjam (1).
+page resequencing is more often done in the digital domain.
 .
 An index works similarly,
 but because it typically needs to be sorted after collection,
@@ -3442,9 +3441,19 @@ and then emitting the collected contents on demand toward the end of the
 document.
 .
 The table of contents can then be resequenced to its desired location
-as part of post-processing\[em]with a PDF page relocation tool,
-or by physically rearranging the pages of a printed document,
-depending on the output format and circumstances.
+by physically rearranging the pages of a printed document,
+or as part of post-processing\[em]with a
+.I sed (1)
+script to reorder the pages in
+.I troff 's
+output,
+with
+.I pdfjam (1),
+or with
+.I gropdf (1)'s
+.B .pdfswitchtopage
+feature,
+for example.
 .
 .
 .PP

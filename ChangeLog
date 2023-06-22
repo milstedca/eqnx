@@ -1,3 +1,19 @@
+2023-06-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[ms]: Offer advice to users of PDF who want a table of contents
+	at the front of the document.
+
+	* doc/groff.texi (ms Document Structure): Move mention of
+	pdfjam(1) from here...
+	(ms TOC): ...to here, and identify alternatives, including
+	gropdf(1)'s `pdfswitchtopage` macro.
+
+	* doc/ms.ms (General structure of an ms document):
+	(Creating a table of contents): Similar.
+
+	Fixes <https://savannah.gnu.org/bugs/?64278>.  Thanks to Michał
+	Kruszewski for the report.
+
 2023-06-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[docs]: Migrate terminology to "scaling unit".

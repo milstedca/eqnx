@@ -826,7 +826,9 @@ the command is present to make the output more easily parsed.
 .
 Only adjustable,
 breakable inter-word spaces are thus described;
-those resulting from horizontal motion escape sequences are not.
+those resulting from
+.B \[rs]\[ti]
+or horizontal motion escape sequences are not.
 .
 GNU
 .I troff \" GNU

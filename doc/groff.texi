@@ -17757,9 +17757,9 @@ such values, but @code{groff}'s output driver library handles them.
 Indicate an inter-word space.  No action is performed; the command is
 present to make the output more easily parsed.  Only adjustable,
 breakable inter-word spaces are thus described; those resulting from
-horizontal motion escape sequences are not.  GNU @code{troff} issues
-this command but @code{groff}'s output driver library ignores it.  See
-@code{h} and @code{H} above.
+@code{\~} or horizontal motion escape sequences are not.  GNU
+@code{troff} issues this command but @code{groff}'s output driver
+library ignores it.  See @code{h} and @code{H} above.
 @end table
 
 @node Graphics Commands, Device Control Commands, Simple Commands, Command Reference

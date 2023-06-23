@@ -17730,11 +17730,10 @@ Each glyph is set at the current drawing position, and the position is
 then advanced horizontally by the glyph's width.  A glyph's width is
 read from its metrics in the font description file, scaled to the
 current type size, and rounded to a multiple of the horizontal motion
-quantum.  Only ordinary characters can be set using this command; use
-the @code{C} command to emplace special characters.  The
-@code{t}@tie{}command is a @code{groff} extension and is output only for
-devices whose @file{DESC} file contains the @code{tcommand} directive;
-see @ref{DESC File Format}.
+quantum.  Use the @code{C} command to emplace glyphs of special
+characters.  The @code{t}@tie{}command is a @code{groff} extension and
+is output only for devices whose @file{DESC} file contains the
+@code{tcommand} directive; see @ref{DESC File Format}.
 
 @item u @var{n} @var{xyz}@angles{whitespace}
 Typeset word @var{xyz} with track kerning.  As @code{t}, but after

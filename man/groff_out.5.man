@@ -742,11 +742,9 @@ A glyph's width is read from its metrics in the font description file,
 scaled to the current type size,
 and rounded to a multiple of the horizontal motion quantum.
 .
-Only ordinary characters can be set with
-.BR t ;
-use the
+Use the
 .B C
-command to emplace special characters.
+command to emplace glyphs of special characters.
 .
 The
 .BR t \~command

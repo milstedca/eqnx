@@ -5413,8 +5413,9 @@ and
 are horizontal and vertical motions relative to the drawing position
 or previous point in the command.
 .
-The default scaling unit for horizontal measurements is
-.BR m ;
+The default scaling unit for horizontal measurements
+(and diameters of circles)
+.RB is\~ m ;
 for vertical ones,
 .BR v .
 .
@@ -5449,7 +5450,7 @@ leaving drawing position at
 .\" XXX: This is one case where a valid coordinate pair could be off the
 .\" page (even negative) and we need to discuss this frankly.
 .TP
-.BI \[rs]D\[aq]a\~ "hc hv h v" \[aq]
+.BI \[rs]D\[aq]a\~ "hc vc h v" \[aq]
 Draw circular arc centered at
 .RI ( hc ,\~ vc )
 counterclockwise from the drawing position to a point

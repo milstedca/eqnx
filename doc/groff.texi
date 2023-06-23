@@ -14045,8 +14045,8 @@ figures, except where noted.  GNU @code{troff} draws stroked (outlined)
 objects with the stroke color, and shades filled ones with the fill
 color.  @xref{Colors}.  Coordinates @var{h} and @var{v} are horizontal
 and vertical motions relative to the drawing position or previous point
-in the command.  The default scaling unit for horizontal measurements is
-@samp{m}; for vertical ones, @samp{v}.
+in the command.  The default scaling unit for horizontal measurements
+(and diameters of circles) is @samp{m}; for vertical ones, @samp{v}.
 
 Circles, ellipses, and polygons can be drawn filled or stroked.  These
 are independent properties; if you want a filled, stroked figure, you

@@ -1,3 +1,20 @@
+2023-06-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Add unit tests for drawing commands.
+
+	* src/roff/groff/tests/draw-arc.sh:
+	* src/roff/groff/tests/draw-circle.sh:
+	* src/roff/groff/tests/draw-ellipse.sh:
+	* src/roff/groff/tests/draw-filled-circle.sh:
+	* src/roff/groff/tests/draw-filled-ellipse.sh:
+	* src/roff/groff/tests/draw-filled-polygon.sh:
+	* src/roff/groff/tests/draw-line.sh:
+	* src/roff/groff/tests/draw-polygon.sh:
+	* src/roff/groff/tests/draw-spline.sh:
+	* src/roff/groff/tests/set-stroke-thickness.sh: Do it.
+
+	* src/roff/groff/groff.am (groff_TESTS): Run tests.
+
 2023-06-08  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[man, mdoc]: Parameterize page offset.

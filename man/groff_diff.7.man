@@ -431,8 +431,10 @@ For example,
 .SS "Numeric expressions"
 .\" ====================================================================
 .
-Spaces are permitted in a numeric expression within parentheses,
-and three new operators are available.
+GNU
+.I troff \" GNU
+permits spaces in a numeric expression within parentheses,
+and offers three new operators.
 .
 .
 .TP
@@ -480,12 +482,12 @@ request.
 .
 .
 .TP
-.BI c\~ c
+.BI c\~ chr
 True if a character
-.I c
+.I chr
 is available,
 where
-.I c
+.I chr
 is an ordinary character
 (Unicode basic Latin excluding control characters and the space),
 a special character,
@@ -5378,9 +5380,9 @@ guarantees that the first three output commands it emits are as follows.
 .P
 .RS
 .EX
-.BI x\~T\~ device
-.BI x\~res\~ n\~h\~v
-.B x init
+.RI x\~T\~ device
+.RI x\~res\~ n\~h\~v
+x init
 .EE
 .RE
 .

@@ -332,8 +332,8 @@ or terminal output.
 .SH "Input format"
 .\" ====================================================================
 .
-Input to
-.I @g@troff
+Input to GNU
+.I troff \" GNU
 must be in one of two character encodings it can recognize:
 IBM code page 1047 on EBCDIC systems,
 and ISO\~Latin-1 (8859-1) otherwise.
@@ -862,10 +862,12 @@ can be smaller to avoid problems with integer roundoff.
 .
 The minimum distances that a device can work with in the horizontal and
 vertical directions are termed its
-.I motion quanta,
-.B \[rs]n[.H]
+.I "motion quanta,"
+stored in the
+.B .H
 and
-.B \[rs]n[.V]
+.B .V
+registers,
 respectively.
 .
 Measurements are rounded to applicable motion quanta.

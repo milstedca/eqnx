@@ -7189,6 +7189,17 @@ or conditions on the input that,
 when reached or fulfilled,
 call a specified macro.
 .
+A
+.I "vertical position trap"
+calls a macro when the formatter's vertical drawing position reaches or
+passes,
+in the downward direction,
+a certain location on the output page or in a diversion.
+.
+Its applications include setting page headers and footers,
+body text in multiple columns,
+and footnotes.
+.
 These traps can occur at a given location on the page
 .RB ( .wh ,\~ .ch );
 at a given location in the current diversion
@@ -7196,7 +7207,20 @@ at a given location in the current diversion
 these are known as
 vertical position traps,
 which can be disabled and re-enabled
-.RB ( .vpt );
+.RB ( .vpt ).
+.
+.
+.P
+A diversion is not formatted in the context of a page,
+so it lacks page location traps;
+instead it can have a
+.I "diversion trap."
+.
+There can exist at most one such vertical position trap per diversion.
+.
+.
+.P
+Other kinds of trap can be planted
 at a blank line
 .RB ( .blm );
 at a line with leading space characters
@@ -7246,14 +7270,19 @@ with its corresponding amount of motion
 .\" ====================================================================
 .
 A
-.I page location trap
-is sprung when the vertical drawing position reaches or passes,
-in the downward direction,
-the place at which it is planted
-(with
-.B .wh
-or
-.BR .ch ).
+.I "page location trap"
+is a vertical position trap that applies to
+the page;
+that is,
+to undiverted output.
+.
+Many can be present;
+manage them with
+the
+.B wh
+and
+.B ch
+requests.
 .
 Non-negative page locations given to these requests set the trap
 relative to the top of the page;

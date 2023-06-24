@@ -14347,10 +14347,11 @@ It is said that a trap is @dfn{sprung} if its condition is fulfilled.
 @cindex vertical position traps
 @cindex traps, vertical position
 
-@dfn{Vertical position traps} perform an action when GNU @code{troff}
-reaches or passes a certain vertical location on the output page or in a
-diversion.  Their applications include setting page headers and footers,
-body text in multiple columns, and footnotes.
+A @dfn{vertical position trap} calls a macro when the formatter's
+vertical drawing position reaches or passes, in the downward direction,
+a certain location on the output page or in a diversion.  Its
+applications include setting page headers and footers, body text in
+multiple columns, and footnotes.
 
 @DefreqList {vpt, [@Var{flag}]}
 @DefregListEndx {.vpt}
@@ -14385,9 +14386,9 @@ Implicit Page Trap}.
 @cindex page location traps
 @cindex traps, page location
 
-A @dfn{page location trap} is sprung when the vertical drawing position
-reaches or passes, in the downward direction, the place at which it is
-planted.
+A @dfn{page location trap} is a vertical position trap that applies to
+the page; that is, to undiverted output.  Many can be present; manage
+them with the @code{wh} and @code{ch} requests.
 
 @Defreq {wh, dist [@Var{name}]}
 Plant macro @var{name} as page location trap at @var{dist}.  The default
@@ -14686,14 +14687,17 @@ are disabled with GNU @code{troff}'s @code{vpt} request.
 @cindex diversion traps
 @cindex traps, diversion
 
+A diversion is not formatted in the context of a page, so it lacks page
+location traps; instead it can have a @dfn{diversion trap}.  There can
+exist at most one such vertical position trap per diversion.
+
 @Defreq {dt, [@Var{dist} @Var{name}]}
 @cindex @code{.t} register, and diversions
 @cindex setting diversion trap (@code{dt})
 @cindex diversion trap, setting (@code{dt})
 @cindex trap, diversion, setting (@code{dt})
 Set a trap @emph{within} a diversion at location @var{dist}, which is
-interpreted relative to diversion rather than page boundaries.  There
-exists only a single diversion trap per diversion.  If invoked with
+interpreted relative to diversion rather than page boundaries.  If invoked with
 fewer than two arguments, any diversion trap in the current diversion is
 removed.  The register @code{.t} works within diversions.  It is an
 error to invoke @code{dt} in the top-level diversion.

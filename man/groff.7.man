@@ -334,7 +334,9 @@ or terminal output.
 .
 Input to GNU
 .I troff \" GNU
-must be in one of two character encodings it can recognize:
+is organized into lines separated by the Unix newline character
+(U+000A),
+and must be in one of two character encodings it can recognize:
 IBM code page 1047 on EBCDIC systems,
 and ISO\~Latin-1 (8859-1) otherwise.
 .
@@ -344,20 +346,13 @@ subset of ISO\~10646 (\[lq]Unicode\[rq]) is recommended;
 see
 .MR groff_char @MAN7EXT@ .
 .
-.MR groff @MAN1EXT@
-and the
+The
 .MR preconv @MAN1EXT@
-preprocessor can transform other encodings,
+preprocessor transforms other encodings,
 including UTF-8,
 to satisfy
 .IR @g@troff 's
 requirements.
-.
-.
-.P
-.I groff
-input is organized into lines separated by the Unix newline character
-(U+000A).
 .
 .
 .\" ====================================================================
@@ -393,12 +388,11 @@ request can change the control character.
 .
 .
 .IP \[aq]
-The neutral apostrophe is recognized where the control character is;
-it is the
-.I no-break control character.
+The neutral apostrophe is the
+.I "no-break control character,"
+recognized where the control character is.
 .
-It works as the control character does,
-but suppresses the break implied by the
+It suppresses the (first) break implied by the
 .request .bp ,
 .request .cf ,
 .request .fi ,
@@ -412,10 +406,7 @@ and
 .request .trf
 requests.
 .
-If the no-break control character is used with any of these requests,
-.I @g@troff
-suppresses the break;
-instead the requested operation takes effect at the next break.
+The requested operation takes effect at the next break.
 .
 It makes
 .request .br
@@ -915,11 +906,14 @@ see below.
 .\" expressions".
 A
 .I numeric expression
-evaluates to an integer:
-it can be as simple as a literal
-.RB \[lq] 0 \[rq]
-or it can be a complex sequence of register and string interpolations
-interleaved with measurement operators.
+evaluates to an integer.
+.
+The following operators are recognized.
+.\"evaluates to an integer:
+.\"it can be as simple as a literal
+.\".RB \[lq] 0 \[rq]
+.\"or it can be a complex sequence of register and string interpolations
+.\"interleaved with measurement operators.
 .
 .
 .P
@@ -2112,6 +2106,8 @@ T}
 .TE
 .
 .
+.br
+.ne 2v
 .P
 If the first argument to an
 .BR .if ,
@@ -4565,13 +4561,12 @@ Interpolate string with name
 .
 .
 .TP
-.ESC[] * "string arg1 arg2 \fR\&.\|.\|.\fP"
+.ESC[] * "string arg \fR\&.\|.\|.\fP"
 Interpolate string with name
 .I string
 (of arbitrary length),
 taking
-.IR arg1 ,
-.IR arg2 ,
+.I arg
 \&.\|.\|.\&
 as arguments.
 .
@@ -4774,13 +4769,11 @@ Interpolate glyph with name
 .
 .
 .TP
-.ESC[] "" "base-char comp1 comp2 \fR\&.\|.\|."
+.ESC[] "" "base-char comp \fR\&.\|.\|."
 Interpolate composite glyph constructed from
 .I base-char
-and components
-.IR comp1 ,
-.IR comp2 ,
-and so on.
+and each component
+.IR comp .
 .
 .
 .TP
@@ -5063,6 +5056,8 @@ Set fill color to that with arbitrarily long
 Restore previous fill color.
 .
 .
+.br
+.ne 4v \" XXX: why not 3v?
 .TP
 .ESC n r
 Interpolate contents of register with one-character
@@ -6872,6 +6867,8 @@ As noted,
 it is superfluous to add\~1 to any non-zero even mode.
 .
 .
+.br
+.ne 2v
 .P
 The places within a word that are eligible for hyphenation are
 determined by language-specific data
@@ -7141,6 +7138,8 @@ where
 expects them as control characters if you mean to use them literally.
 .
 .
+.br
+.ne 2v
 .P
 Macro definitions can be nested to arbitrary depth.
 .

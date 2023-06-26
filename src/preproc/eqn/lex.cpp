@@ -1094,7 +1094,7 @@ void do_delim()
     c = get_char();
   int d;
   if (c == EOF || (d = get_char()) == EOF)
-    lex_error("end of file while reading argument to 'delim'");
+    lex_error("end of input while reading argument to 'delim'");
   else {
     if (c == 'o' && d == 'f' && peek_char() == 'f') {
       (void)get_char();

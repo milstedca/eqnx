@@ -1,3 +1,12 @@
+2023-06-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[eqn]: Clarify diagnostic message.
+
+	* src/preproc/eqn/lex.cpp (do_delim): Do it.
+
+	Thanks to Doug McIlroy for the report <https://lists.gnu.org/\
+	archive/html/groff/2023-06/msg00158.html>.
+
 2023-06-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Add unit tests for drawing commands.

@@ -1,3 +1,8 @@
+2023-06-30  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tests/indexing-works.sh: Add unit test.
+	* mm.am (mm_TESTS): Run test.
+
 2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* groff_mm.7.man (Macros) <INDP>: Clarify operation.

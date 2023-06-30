@@ -1,3 +1,12 @@
+2023-06-30 G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Trivially refactor.
+
+	* m.tmac (let@mt-closing): Rename this...
+	(let@formal-closing): ...to this, since it has nothing to do
+	with memorandum types.
+	(FC, let@fc_BL, let@fc_SB): Update call and alias sites.
+
 2023-05-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (let@print-head): Unconditionally put one vee of space

@@ -3414,10 +3414,10 @@ exceeds depth of nested lists (\\n[li*lvl])
 .ie \\n[.$] .ds let*i \\$1
 .el .ds let*i \\*[Letfc]
 .ie d let*type .let@fc_\\*[let*type] "\\*[let*i]" \\$@
-.el .let@mt-closing "\\*[let*i]" \\$@
+.el .let@formal-closing "\\*[let*i]" \\$@
 ..
 .\"-------
-.de let@mt-closing
+.de let@formal-closing
 .ne 5v
 .in (u;\\n[.l]/2)
 .sp
@@ -3543,7 +3543,7 @@ undefined
 .if \w'\\$5'&\\$4 \\$5
 .fi
 ..
-.als let@fc_BL let@mt-closing
+.als let@fc_BL let@formal-closing
 .\"-----------
 .\" Semiblocked letter
 .de let@init_SB
@@ -3554,7 +3554,7 @@ undefined
 .let@print-head 1
 ..
 .als let@sg_SB let@sg_BL
-.als let@fc_SB let@mt-closing
+.als let@fc_SB let@formal-closing
 .\"-----------
 .\" Full-blocked letter
 .de let@init_FB

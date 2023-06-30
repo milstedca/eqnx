@@ -3368,6 +3368,7 @@ exceeds depth of nested lists (\\n[li*lvl])
 .if !d ind*file .@error \\$0: no active index; call INITI first
 .if \\n[.$]<1 .@error \\$0: expected at least 1 argument, got \\n[.$]
 .if '\\$1'' .@error \\$0: cannot record empty index entry
+.if \\n[nl]<0 .@error \\$0: cannot record index entry when not on a page
 .ds ind*line \\$1
 .while \\n[.$]>0 \{\
 .	shift

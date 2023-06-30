@@ -1,5 +1,11 @@
 2023-06-30 G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac (IND): Throw error if vertical drawing position is
+	negative.  (What page number can be recorded when that is the
+	case?)  Thanks to Damian McGuckin for raising this scenario.
+
+2023-06-30 G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Trivially refactor.
 
 	* m.tmac (let@mt-closing): Rename this...

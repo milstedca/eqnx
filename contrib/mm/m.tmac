@@ -3373,8 +3373,8 @@ exceeds depth of nested lists (\\n[li*lvl])
 .	as ind*line \t\\$1
 .\}
 .if '\\*[ind*type]'N' .ds ind*ref \\n[%]
-.if '\\*[ind*type]'H' .ds ind*ref \\*[hd*mark]
-.if '\\*[ind*type]'B' .ds ind*ref \\*[hd*mark]\t\\n[%]
+.if '\\*[ind*type]'H' .ds ind*ref \\*[hd@mark-trimmed]
+.if '\\*[ind*type]'B' .ds ind*ref \\*[hd@mark-trimmed]\t\\n[%]
 .as ind*line \\*[ind*ref]
 .if \\n[Ref] .tm .\\\\" IND \\*[ind*line]
 ..

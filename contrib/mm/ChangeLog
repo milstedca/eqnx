@@ -1,3 +1,9 @@
+2023-07-04 G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac (IND): Use `hd@mark-trimmed` instead of `hd*mark` in
+	index entries, just as is done with references; we don't want
+	trailing spaces in it.
+
 2023-05-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Improve input validation of `INITI`, `IND` macros.

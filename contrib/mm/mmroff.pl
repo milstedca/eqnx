@@ -1,5 +1,5 @@
 #!@PERL@
-# Copyright (C) 1989-2020 Free Software Foundation, Inc.
+# Copyright (C) 1989-2023 Free Software Foundation, Inc.
 #
 # This file is part of groff.
 #
@@ -18,6 +18,8 @@
 
 use strict;
 use warnings;
+
+use Config;
 
 (my $progname = $0) =~s @.*/@@;
 
@@ -47,10 +49,26 @@ if (grep(/^-x$/, @ARGV)) {
 	@ARGV = grep(!/^-x$/, @ARGV);
 }
 
+# Locate groff executable.
+my $path = $ENV{'GROFF_BIN_PATH'};
+my $groff;
+
+if ($path) {
+	for my $dir (split($Config{path_sep}, $path)) {
+		my $candidate = "$dir/groff";
+		if (-x $candidate) {
+			$groff = $candidate;
+			last;
+		}
+	}
+}
+
+$groff = "groff" if (!$groff);
+
 # mmroff should always have -mm, but not twice
 @ARGV = grep(!/^-mm$/, @ARGV);
-my $first_pass = "groff -rRef=1 -z -mm @ARGV";
-my $second_pass = "groff -mm @ARGV";
+my $first_pass = "$groff -rRef=1 -z -mm @ARGV";
+my $second_pass = "$groff -mm @ARGV";
 
 my (%cur, $rfilename, $max_height, $imacro, $max_width, @out, @indi);
 open(MACRO, "$first_pass 2>&1 |") || die "run $first_pass:$!";

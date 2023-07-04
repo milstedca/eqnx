@@ -373,10 +373,9 @@ Index		array!index
 .\" for .INITR
 .\"
 .\" Output references to stderr if non-zero
-.ie !r Ref \{\
+.if !r Ref \{\
 .	nr Ref 0
 .\}
-.el .warn 0
 .\"
 .\"---------------------------------------------
 .\" set local variables.

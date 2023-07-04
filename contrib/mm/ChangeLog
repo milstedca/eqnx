@@ -1,3 +1,10 @@
+2023-07-04 G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* m.tmac: Stop suppressing warnings if Boolean register `Ref` is
+	true.  Diagnostic output does not interfere with index/reference
+	output, the lines of which are prefixed in a way that is not
+	confusable with warnings.
+
 2023-06-30 G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (IND): Throw error if vertical drawing position is

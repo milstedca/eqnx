@@ -8,8 +8,8 @@
 # Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# groff is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# groff is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
 # for more details.
 #
@@ -49,11 +49,11 @@ if (grep(/^-x$/, @ARGV)) {
 
 # mmroff should always have -mm, but not twice
 @ARGV = grep(!/^-mm$/, @ARGV);
-my $check_macro = "groff -rRef=1 -z -mm @ARGV";
-my $run_macro = "groff -mm @ARGV";
+my $first_pass = "groff -rRef=1 -z -mm @ARGV";
+my $second_pass = "groff -mm @ARGV";
 
 my (%cur, $rfilename, $max_height, $imacro, $max_width, @out, @indi);
-open(MACRO, "$check_macro 2>&1 |") || die "run $check_macro:$!";
+open(MACRO, "$first_pass 2>&1 |") || die "run $first_pass:$!";
 while(<MACRO>) {
 	if (m#^\.\\" Rfilename: (\S+)#) {
 		# remove all directories just to be more secure
@@ -120,7 +120,7 @@ if ($rfilename) {
 }
 
 exit 0 if $no_exec;
-exit system($run_macro);
+exit system($second_pass);
 
 sub print_index {
 	my ($f, $ind, $macro) = @_;

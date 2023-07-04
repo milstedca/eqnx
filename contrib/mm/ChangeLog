@@ -1,3 +1,9 @@
+2023-07-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* mmroff.pl: Trivially refactor.  Rename scalars.
+	- `check_macro` -> `first_pass`
+	- `run_macro` -> `second_pass`
+
 2023-04-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* mmroff.pl: Document `--help` and `--version` options in usage

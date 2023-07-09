@@ -1389,15 +1389,16 @@ overrides @env{GROFF_TYPESETTER}.
 @tindex SOURCE_DATE_EPOCH@r{, environment variable}
 A timestamp (expressed as seconds since the Unix epoch) to use as the
 output creation timestamp in place of the current time.  The time is
-converted to human-readable form using @cite{localtime@r{(3)}} when the
-formatter starts up and stored in registers usable by documents and
-macro packages (@pxref{Built-in Registers}).
+converted to human-readable form using @cite{gmtime@r{(3)}} and
+@cite{asctime@r{(3)}} when the formatter starts up and stored in
+registers usable by documents and macro packages (@pxref{Built-in
+Registers}).
 
 @item TZ
 @tindex TZ@r{, environment variable}
-The time zone to use when converting the current time (or value of
-@env{SOURCE_DATE_EPOCH}) to human-readable form; see
-@cite{tzset@r{(3)}}.
+The time zone to use when converting the current time to human-readable
+form; see @cite{tzset@r{(3)}}.  If @env{SOURCE_DATE_EPOCH} is used, it
+is always converted to human-readable form using UTC.
 @end table
 
 MS-DOS and MS-Windows ports of @code{groff} use semicolons, rather than

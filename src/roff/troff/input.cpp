@@ -8398,21 +8398,15 @@ void warn_request()
 
 static void init_registers()
 {
-#ifdef LONG_FOR_TIME_T
-  long
-#else /* not LONG_FOR_TIME_T */
-  time_t
-#endif /* not LONG_FOR_TIME_T */
-    t = current_time();
-  struct tm *tt = localtime(&t);
-  set_register("seconds", int(tt->tm_sec));
-  set_register("minutes", int(tt->tm_min));
-  set_register("hours", int(tt->tm_hour));
-  set_register("dw", int(tt->tm_wday + 1));
-  set_register("dy", int(tt->tm_mday));
-  set_register("mo", int(tt->tm_mon + 1));
-  set_register("year", int(1900 + tt->tm_year));
-  set_register("yr", int(tt->tm_year));
+  struct tm *t = current_time();
+  set_register("seconds", int(t->tm_sec));
+  set_register("minutes", int(t->tm_min));
+  set_register("hours", int(t->tm_hour));
+  set_register("dw", int(t->tm_wday + 1));
+  set_register("dy", int(t->tm_mday));
+  set_register("mo", int(t->tm_mon + 1));
+  set_register("year", int(1900 + t->tm_year));
+  set_register("yr", int(t->tm_year));
   set_register("$$", getpid());
   register_dictionary.define(".A",
       new readonly_text_register(ascii_output_flag ? "1" : "0"));

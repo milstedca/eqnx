@@ -602,8 +602,8 @@
 
 	* src/roff/troff/input.cpp (token::description): Revise
 	construction of description of printable ordinary input
-	characters (U+0021 through U+007E).  This is to faciliate better
-	diagnostics from the `rchar` request in the future.  See
+	characters (U+0021 through U+007E).  This is to facilitate
+	better diagnostics from the `rchar` request in the future.  See
 	Savannah #63985.
 
 2023-04-01  G. Branden Robinson <g.branden.robinson@gmail.com>

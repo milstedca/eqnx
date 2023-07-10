@@ -760,7 +760,7 @@ $ \c
 $ \c
 .B echo \[dq]Hello, world!\[dq] | groff \-Tdvi > hello.dvi
 $ \c
-.B xdvi hello.html
+.B xdvi hello.dvi
 .EE
 .
 .

@@ -2020,7 +2020,7 @@ request to create a register of our own,
 We initialized it to zero and assigned it an auto-increment of 1.
 .
 Each time we use the escape sequence
-.CW \[rs]n+[PI]
+.CW \[rs]n+[step]
 (note the plus sign),
 the formatter applies the increment just before interpolating the
 register's value.

@@ -3716,10 +3716,10 @@ A numbered list:
 Here we have employed the @code{nr} request to create a register of our
 own, @samp{step}.  We initialized it to zero and assigned it an
 auto-increment of 1.  Each time we use the escape sequence
-@samp{\n+[PI]} (note the plus sign), the formatter applies the increment
-just before interpolating the register's value.  Preparing the @code{PI}
-register as well enables us to rearrange the list without the tedium of
-updating macro calls.
+@samp{\n+[step]} (note the plus sign), the formatter applies the
+increment just before interpolating the register's value.  Preparing the
+@code{PI} register as well enables us to rearrange the list without the
+tedium of updating macro calls.
 
 The next example illustrates a glossary-style list.
 @cindex example markup, glossary-style list [@file{ms}]

@@ -894,39 +894,48 @@ output drivers can be found in the man pages @cite{gpic@r{(1)}},
 @cite{gropdf@r{(1)}}, @cite{grohtml@r{(1)}}, @cite{grodvi@r{(1)}},
 @cite{grolj4@r{(1)}}, @cite{grolbp@r{(1)}}, and @cite{gxditview@r{(1)}}.
 
-The command-line format for @code{groff} is:
+A summary of @command{groff}'s usage is as follows.
 
 @Example
-groff [ -abceghijklpstvzCEGNRSUVXZ ] [ -d@var{cs} ] [ -D@var{arg} ]
-      [ -f@var{fam} ] [ -F@var{dir} ] [ -I@var{dir} ] [ -K@var{arg} ]
-      [ -L@var{arg} ] [ -m@var{name} ] [ -M@var{dir} ] [ -n@var{num} ]
-      [ -o@var{list} ] [ -P@var{arg} ] [ -r@var{cn} ] [ -T@var{dev} ]
-      [ -w@var{name} ] [ -W@var{name} ] [ @var{files}@dots{} ]
+groff [-abcCeEgGijklNpRsStUVXzZ] [-d @var{c}@var{s}]@
+[-d @var{string}=@var{text}]
+      [-D @var{fallback-encoding}] [-f @var{font-family}]
+      [-F @var{font-directory}] [-I @var{inclusion-directory}]
+      [-K @var{input-encoding}] [-L @var{spooler-argument}]
+      [-m @var{macro-package}] [-M @var{macro-directory}]
+      [-n @var{page-number}] [-o @var{page-list}]
+      [-P @var{postprocessor-argument}]@
+[-r @var{c}@var{numeric-expression}]
+      [-r @var{register}=@var{numeric-expression}]@
+[-T @var{output-device}]
+      [-w @var{warning-category}] [-W @var{warning-category}]
+      [@var{file} @dots{}]
 @endExample
 
-The command-line format for @code{gtroff} is as follows.
+@code{gtroff} shares much of this interface; @command{groff} passes
+relevant options and operands to it.
 
 @Example
-gtroff [ -abcivzCERU ] [ -d@var{cs} ] [ -f@var{fam} ] [ -F@var{dir} ]
-       [ -m@var{name} ] [ -M@var{dir} ] [ -n@var{num} ] [ -o@var{list} ]
-       [ -r@var{cn} ] [ -T@var{name} ] [ -w@var{name} ] [ -W@var{name} ]
-       [ @var{files}@dots{} ]
+gtroff [-abcCEiRUz] [-f @var{font-family}] [-F @var{font-directory}]
+       [-I @var{inclusion-directory}] [-m @var{macro-package}]
+       [-M @var{macro-directory}] [-n @var{page-number}]@
+[-o @var{page-list}]
+       [-r @var{c}@var{numeric-expression}]
+       [-r @var{register}=@var{numeric-expression}]@
+[-T @var{output-device}]
+       [-w @var{warning-category}] [-W @var{warning-category}]
+       [@var{file} @dots{}]
 @endExample
 
-@noindent
-Obviously, many of the options to @code{groff} are actually passed on to
-@code{gtroff}.
-
-Options without an argument can be grouped behind a
+Options that don't take arguments can be clustered after a
 single@tie{}@option{-}.  A filename of@tie{}@file{-} denotes the
-standard input.  Whitespace is permitted between an option and its
-argument.
+standard input stream.
 
-The @code{grog} command can be used to guess the correct @code{groff}
-command to format a file.  See its man page @cite{grog@r{(1)}}; type
-@samp{man grog} at the command line to view it.
+All @code{groff} commands accept a @option{--help} option, which
+summarizes usage similarly to the foregoing, and @option{--version},
+which discloses release information.  Both exit after reporting.
 
-@command{groff}'s command-line options are as follows.
+The rest of @command{groff}'s command-line options are as follows.
 
 @cindex command-line options
 @table @samp

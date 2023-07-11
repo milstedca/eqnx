@@ -1563,7 +1563,7 @@ fine-tune these locations during the source configuration process.
 
 In @code{groff}, the page dimensions for the formatter GNU @code{troff}
 and for output devices are handled separately.  @xref{Page Layout}, for
-vertical manipulation of the page size, and @xref{Line Layout}, for
+vertical manipulation of the page size, and @ref{Line Layout}, for
 horizontal changes.
 @pindex papersize.tmac
 @pindex troffrc
@@ -2150,9 +2150,10 @@ for @command{gpic}.
 @node Configuration and Customization,  , Preprocessor Support, Common Features
 @subsection Configuration and Customization
 
-Packages provide means of customizing many of the details of how the
-package behaves.  These range from setting the default type size to
-changing the appearance of section headers.
+Each package provides means of customizing details of its behavior.
+Often, this is achieved with register and string definitions.  Such
+parameters include the default type size and the appearance of section
+headings.
 
 @codequotebacktick off
 @codequoteundirected off

@@ -1684,8 +1684,8 @@ process; their users need not have mastered the full formatting
 language, nor understand features like diversions, traps, and
 environments.  This chapter aims to familiarize you with basic concepts
 and mechanisms common to many macro packages (like ``displays'').  If
-you prefer a meticulous and comprehensive presentation, try @ref{GNU
-troff Reference} instead.
+you prefer a meticulous and comprehensive presentation of the language
+and its formatter, peruse @ref{GNU troff Reference} instead.
 
 @menu
 * Basics::
@@ -1898,9 +1898,9 @@ do not, instead fulfilling narrow, specific tasks.  Find a list in the
 @cite{groff_tmac@r{(5)}} man page.  Type @samp{man groff_tmac} at the
 command line to view it.
 
-We survey several capabilities of full-service macro package below.
-Each package employs its own macros to exercise them.  For details,
-consult its man page or, for @file{ms}, see @ref{ms}.
+We present several capabilities of full-service macro packages below.
+Each package employs its own macro names to exercise them.  For details,
+consult the package's man page or, for @file{ms}, see @ref{ms}.
 
 @menu
 * Paragraphs::
@@ -1925,9 +1925,12 @@ consult its man page or, for @file{ms}, see @ref{ms}.
 @subsection Paragraphs
 @cindex paragraphs
 
-Paragraphs can be separated and indented in various ways.  Some start
-with a blank line and have a first-line indentation, like most of the
-ones in this manual.  Block paragraphs omit the indentation.
+@cindex indented paragraphs
+@cindex block paragraphs
+Paragraphs can be formatted in various ways.  Some indent their first
+line.  Block paragraphs like the following example omit this
+indentation, and must be separated with vertical space for readability.
+Separation can be configured for other paragraph types as well.
 
 @Example
   @result{} Some  men  look  at constitutions with sanctimonious
@@ -1938,9 +1941,9 @@ ones in this manual.  Block paragraphs omit the indentation.
 @cindex tags, paragraph
 @cindex tagged paragraphs
 @cindex lists
-@noindent
 We also frequently encounter @slanted{tagged} paragraphs, which begin
-with a tag or label at the left margin and indent the remaining text.
+with a label, or @slanted{tag}, at the left margin, and indent the
+remaining text.
 
 @Example
   @result{} one  This  is the first paragraph.  Notice how the
@@ -1949,7 +1952,7 @@ with a tag or label at the left margin and indent the remaining text.
 @endExample
 
 @noindent
-If the tag is too wide for the indentation, the line is broken.
+If the tag is too wide for the indentation amount, the line is broken.
 
 @Example
   @result{} longlabel
@@ -1957,7 +1960,6 @@ If the tag is too wide for the indentation, the line is broken.
   @result{}      lines, but they align with each other.
 @endExample
 
-@noindent
 A variation of the tagged paragraph is the itemized or enumerated
 paragraph, which might use punctuation or a digit for a tag,
 respectively.  These are frequently used to construct lists.
@@ -1986,7 +1988,11 @@ The simplest kind of section heading is unnumbered, set in a bold or
 italic style, and occupies a line by itself.  Others possess
 automatically numbered multi-level headings and/or different typeface
 styles or sizes at different levels.  More sophisticated macro packages
-supply macros for designating chapters and appendices.
+supply macros for designating chapters and appendices, and permit
+@cindex run-in headings
+@cindex headings, run-in
+``run-in headings'', where there is no break between the end of the
+heading text and the start of the subsequent paragraph.
 
 @c ---------------------------------------------------------------------
 
@@ -2023,17 +2029,17 @@ values.
 @cindex displays
 
 @slanted{Displays} are sections of text set off from the surrounding
-material (typically paragraphs), often differing in indentation, and/or
+material (typically paragraphs), often differing in indentation and/or
 spacing.  Tables, block quotations, and figures are displayed.
 Equations and code examples, when not much shorter than an output line,
-often are.  Lists may or may not be.  Packages for setting man pages
-support example displays but not keeps.
-@c XXX: man, mdoc keep support planned
+often are.  Lists may or may not be.
 
 @cindex keeps (introduction)
 A @slanted{keep} is a group of output lines, often a display, that is
 formatted on a single page if possible; it causes a page break to happen
-early so as to not interrupt the kept material.
+early so as to not interrupt the kept material.  Packages for setting
+man pages support example displays but not keeps.
+@c XXX: man, mdoc keep support planned
 
 @cindex keep, floating
 @cindex floating keep
@@ -2241,8 +2247,10 @@ command line to view it.
 @subsection Optional @file{man} extensions
 
 @pindex man.local
-Use the file @file{man.local} for local extensions to the @code{man}
-macros or for style changes.
+Use the file @file{man.local} to configure its rendering parameters on a
+persistent basis.  With care, its macros can be redefined there (except
+for @code{TH}, to which one should, at most, append with the @code{am}
+family of requests).
 
 @unnumberedsubsubsec Custom headers and footers
 @cindex @code{man} macros, custom headers and footers
@@ -2398,6 +2406,11 @@ are printed in Helvetica bold.
 @code{groff}'s implementation of the BSD @file{doc} package for man
 pages is documented in the @cite{groff_mdoc@r{(7)}} man page.  Type
 @samp{man groff_mdoc} at the command line to view it.
+
+Use the file @file{mdoc.local} to configure its rendering parameters on
+a persistent basis.  With care, its macros can be redefined there
+(except for @code{Dd}, to which one should, at most, append with the
+@code{am} family of requests).
 
 
 @c =====================================================================

@@ -190,8 +190,8 @@ void pushBackBuffer::skipUntilToken (void)
 
 int pushBackBuffer::isString (const char *s)
 {
-  size_t length=strlen(s);
-  size_t i=0;
+  ptrdiff_t length=ptrdiff_t(strlen(s));
+  ptrdiff_t i=0;
 
   while ((i<length) && (putPB(getPB())==s[i])) {
     if (getPB() != s[i]) {
@@ -203,8 +203,11 @@ int pushBackBuffer::isString (const char *s)
     return( TRUE );
   } else {
     i--;
-    if (putPB(s[i]) != s[i]) {
-      ERROR("assert failed");
+    while (i>=0) {
+      if (putPB(s[i]) != s[i]) {
+	ERROR("assert failed");
+      }
+      i--;
     }
   }
   return( FALSE );

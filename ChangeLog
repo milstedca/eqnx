@@ -1,3 +1,12 @@
+2023-07-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/html/pushback.cpp (pushBackBuffer::isString):
+	Partially revert commit 411b42f4ec, 2 June.  This member
+	function needs a signed type to iterate backwards for internal
+	validation purposes, so use `ptrdiff_t` instead of `size_t`.
+	Fixes post-1.23.0 problem with pre-grohtml infinitely looping on
+	complex documents like groff_char(7).  Mea culpa.
+
 2023-06-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[eqn]: Clarify diagnostic message.

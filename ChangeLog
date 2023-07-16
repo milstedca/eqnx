@@ -1,5 +1,14 @@
 2023-07-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m4/groff.m4 (GROFF_PROG_YACC): Behave more like `AC_PROG_YACC`
+	where useful, seeking "bison" first.  Drop comment claiming that
+	"Bison-generated parsers have problems with C++ compilers other
+	than g++", which dates back to groff 1.10, 26 November 1995.
+	Let us optimistically assume that GNU Bison (and C++ compilers)
+	have improved since then.
+
+2023-07-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/groff/groff.cpp (main): Update copyright notice and
 	warranty disclaimer.  Bump year.  Lead with declaration as free
 	software (join us now); specify GPL version and user's option to

@@ -1,5 +1,20 @@
 2023-07-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/groff/groff.cpp (main): Update copyright notice and
+	warranty disclaimer.  Bump year.  Lead with declaration as free
+	software (join us now); specify GPL version and user's option to
+	upgrade to later version.  Use a warranty disclaimer inspired by
+	GNU Bison.  Drop mention of "COPYING" file, which is not
+	installed by groff's "install" make(1) target and not sufficient
+	information to aid users of groff packages prepared by
+	distributors (which neverless are legally bound to provide
+	licensing information via some means, and do so with high
+	reliability).  After almost 35 years, we can have some hope that
+	people have heard of the GNU GPL and can locate a copy of it
+	without great difficulty.  Also drop use of term "subprogram".
+
+2023-07-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/man.local: Stop disabling hyperlinks on non-HTML output
 	devices.  less(1) version 566 and later are in wide distribution
 	now and will be more so by the time of the next groff release.

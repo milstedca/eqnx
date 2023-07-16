@@ -1,3 +1,17 @@
+2023-07-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/man.local: Stop disabling hyperlinks on non-HTML output
+	devices.  less(1) version 566 and later are in wide distribution
+	now and will be more so by the time of the next groff release.
+
+	* tmac/tests/an_UE-breaks-before-long-URIs.sh: Force hyperlinks
+	off with `-rU0` to preserve test validity.
+
+	* NEWS: Add item.
+
+	Thanks to Colin Watson for pioneering these changes in Debian's
+	groff 1.23.0-1 package.
+
 2023-07-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/preproc/html/pushback.cpp (pushBackBuffer::isString):

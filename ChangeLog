@@ -1,3 +1,26 @@
+2023-07-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* arch/djgpp/config.site:
+	* arch/misc/shdeps.sh:
+	* bootstrap:
+	* font/devdvi/generate/CompileFonts:
+	* font/devps/generate/afmname:
+	* font/devps/generate/make-zapfdr:
+	* font/util/make-Rproto:
+	* gendef.sh:
+	* m4/groff.m4:
+	* mdate.pl:
+	* src/devices/grops/grops.1.man:
+	* src/devices/xditview/ad2c:
+	* src/libs/libgroff/config.charset:
+	* src/libs/libgroff/make-uniuni:
+	* src/preproc/eqn/neqn.sh:
+	* src/roff/nroff/nroff.sh:
+	* src/utils/afmtodit/make-afmtodit-tables:
+	* test-groff.in:
+	* tmac/hyphenex.pl: Stop endorsing shebang line space myth.
+	Fixes <https://savannah.gnu.org/bugs/?64058>.
+
 2023-07-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m4/groff.m4 (GROFF_PROG_YACC): Behave more like `AC_PROG_YACC`

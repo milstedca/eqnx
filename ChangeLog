@@ -1,5 +1,15 @@
 2023-07-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Fix post-1.23.0 regression.
+
+	* src/preproc/tbl/main.cpp (process_format): Fix thinkos
+	introduced in commit ba420961c3, 19 May, which caused the first
+	character after [PpVv] column modifiers to be ignored.  Problem
+	visible in typeset renderings of our "ms.ms" document, where
+	some table entries were getting rendered at a type size of 1p.
+
+2023-07-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[ms]: Fix Savannah #64438.
 
 	* tmac/s.tmac (@PS): Stop treating excess arguments as

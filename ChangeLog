@@ -1,5 +1,17 @@
 2023-07-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[ms]: Fix Savannah #64438.
+
+	* tmac/s.tmac (@PS): Stop treating excess arguments as
+	erroneous, foregoing preparation for pic(1) output.  Fixes
+	regression from groff 1.22.4.
+
+	Fixes <https://savannah.gnu.org/bugs/?64438>.  Thanks to Doug
+	McIlroy for the report, Dave Kemper for root-cause analysis, and
+	Deri James for usability feedback.
+
+2023-07-17  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* arch/djgpp/config.site:
 	* arch/misc/shdeps.sh:
 	* bootstrap:

@@ -1,3 +1,25 @@
+2023-07-18  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[ms]: Improve documentation of pic(1) usage.
+
+	* tmac/groff_ms.7.man
+	(Tables, figures, equations, and references): Document the
+	mandatory arguments to `PS`.  Explain that pic(1) will supply
+	them.  (This is documentation of the _package's_ interface.)
+
+	* doc/groff.texi: As above, and add example of pic(1) input.
+	Also tighten wording.
+
+	* doc/ms.ms: As above, and supply pic output corresponding to
+	example (if typesetting).  Add a keep.
+
+	* doc/doc.am (doc/ms.ps): Preprocess with pic; call groff with
+	`-p` option when generating document.
+
+	* src/utils/grog/tests/smoke-test.sh: Drop a test case; we no
+	longer have an ms(7) document in the tree that uses tbl and eqn
+	but not pic.
+
 2023-07-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tbl]: Fix post-1.23.0 regression.

@@ -1,3 +1,8 @@
+2023-07-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/papersize.tmac: If not already defined, set `PO` register
+	to one inch to integrate with ms(7), man(7), and mdoc(7).
+
 2023-07-18  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[ms]: Improve documentation of pic(1) usage.

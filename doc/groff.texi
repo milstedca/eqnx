@@ -577,7 +577,7 @@ man page.
 
 @c =====================================================================
 
-@node What Is @code{groff}?, @code{groff} Capabilities, Introduction, Introduction
+@node What Is @code{groff}?, @code{groff} Capabilities, Background, Introduction
 @section What Is @code{groff}?
 @cindex what is @code{groff}?
 @cindex @code{groff}---what is it?

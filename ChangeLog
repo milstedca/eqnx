@@ -1,5 +1,11 @@
 2023-07-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* tmac/papersize.tmac: If the `paper` string is defined when
+	this macro file is loaded, set the `O` (mm page offset register)
+	independently of the `W` (mm line length ["width"] register).
+
+2023-07-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[docs]: Revise material in our Texinfo manual.
 
 	* doc/groff.texi (Manipulating Filling and Adjustment): Document

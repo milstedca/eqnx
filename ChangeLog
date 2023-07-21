@@ -1,5 +1,13 @@
 2023-07-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (unbreakable_space_node::tprint):
+	Write word marker ('w' command) to output.
+	* NEWS: Add item.
+
+	Fixes <https://savannah.gnu.org/bugs/?64356>.
+
+2023-07-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/papersize.tmac: Set register `#R_MARGIN` for mom(7)'s
 	benefit, not `R_MARGIN`, which it neither tests nor interpolates
 	as a register.  Continues commit bed42a77cb, 2022-11-16.

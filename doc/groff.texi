@@ -1855,7 +1855,7 @@ lines to center
 
 @noindent
 The @w{@samp{.ce 0}} request tells GNU @code{troff} to center zero more
-lines, in other words, stop centering.
+lines---in other words, to stop centering.
 
 @cindex right-aligning lines (introduction)
 @cindex lines, right-aligning (introduction)

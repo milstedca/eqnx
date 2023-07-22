@@ -990,7 +990,7 @@ The convenience macro for this command is
 .
 .
 .TP
-.BI "\[rs]X'pdf: switchtopage\~" "when name" \[aq]
+.BI "\[rs]X\[aq]pdf: switchtopage\~" "when name" \[aq]
 Normally each new page is appended to the end of the document,
 this command allows following pages to be inserted at a
 .I \[oq]named\[cq]

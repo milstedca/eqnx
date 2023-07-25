@@ -4132,18 +4132,24 @@ is
 .
 .TPx
 .REQ .ss n
-Set minimal inter-word spacing to
+Set minimum inter-word space and additional inter-sentence space sizes
+to
 .IR n \~12ths
-of current font's space width.
+of the selected font's
+.B spacewidth
+parameter
+(default: 12).
 .
 .TPx
 .REQ .ss "n m"
 As
 .RB \[lq] .ss\~\c
 .IR n \[rq],
-and set additional inter-sentence space to
-.IR m \~12ths
-of current font's space width.
+but set additional inter-sentence space size to
+.IR n \~12ths
+of the selected font's
+.B spacewidth
+parameter.
 .
 .TPx
 .REQ .stringdown stringvar

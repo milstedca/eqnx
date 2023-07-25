@@ -8327,12 +8327,16 @@ doomed to success. \[em] C. A. R. Hoare
 @cindex sentence space size register (@code{.sss})
 @cindex size of sentence space register (@code{.sss})
 @cindex space between sentences register (@code{.sss})
-Set the sizes of spaces between words and
-sentences@footnote{Recall @ref{Filling} and @ref{Sentences} for the
-definitions of word and sentence boundaries, respectively.} in twelfths
-of font's space width (typically one-fourth to one-third em for Western
-scripts).  The default for both parameters is@tie{}12.  Negative values
-are erroneous.
+@cindex CSTR@tie{}#54 errata
+@cindex CSTR@tie{}#54 erratum, @code{ss} request
+Set the sizes of spaces between words and sentences@footnote{Recall
+@ref{Filling} and @ref{Sentences} for the definitions of word and
+sentence boundaries, respectively.} in twelfths of the space width of
+the currently selected font.@footnote{@xref {Font Description File
+Format}.  This request is incorrectly documented in the @acronym{AT&T}
+@code{troff} manual as using units of 1/36 em.}  (An inter-word space is
+typically one-fourth to one-third em for Western scripts.)  The default
+for both parameters is@tie{}12.  Negative values are erroneous.
 @cindex inter-word spacing, minimal
 @cindex minimal inter-word spacing
 @cindex space, between words
@@ -8361,8 +8365,7 @@ present, are adjusted as normal.
 The read-only registers @code{.ss} and @code{.sss} hold the minimal
 inter-word space and additional inter-sentence space amounts,
 respectively.  These parameters are part of the environment
-(@pxref{Environments}), and rounded down to the nearest multiple
-of@tie{}12 on terminals.
+(@pxref{Environments}).
 
 @cindex discardable horizontal space
 @cindex space, discardable, horizontal
@@ -8386,7 +8389,7 @@ Reprints no longer available through FCS.
 
 @noindent
 If @emph{undiscardable} space is required, use the @code{\h} escape
-sequence.
+sequence to put horizontal motion on the output.
 @endDefreq
 
 
@@ -8909,17 +8912,20 @@ The hyphenation space adjustment threshold is available in the
 @cindex spacing, manipulating
 
 A break causes the formatter to update the vertical drawing position at
-which the new text baseline is aligned.  You can alter this location.
+which the new text baseline is placed; you can alter this location.
 
 @Defreq {sp, [@Var{distance}]}
 Break and move the next text baseline down by @var{distance}, or until
 springing a page location trap.@footnote{@xref{Page Location Traps}.}
 If invoked with the no-break control character, @code{sp} moves the
-pending output line's text baseline by @var{distance}.  A negative
-@var{distance} will not reduce the position of the text baseline below
-zero.  Inside a diversion, any @var{distance} argument is ignored.  The
-default scaling unit is @samp{v}.  If @var{distance} is not specified,
-@samp{1v} is assumed.
+text baseline applied to the entire pending output line by
+@var{distance}.@footnote{To shift the text baseline for
+@emph{part} of an output line---to set super- or subscripts, for
+instance--use the @code{\v} escape sequence.  @xref{Page Motions}.}  A
+negative @var{distance} will not reduce the position of the text
+baseline below zero.  Inside a diversion, any @var{distance} argument is
+ignored.  The default scaling unit is @samp{v}.  If @var{distance} is
+not specified, @samp{1v} is assumed.
 
 @Example
 .pl 5v \" Set page length to 5 vees.
@@ -8943,25 +8949,24 @@ baz on page \n%
     @result{} baz on page 2
 @endExample
 
-You might use the following macros to set the baseline of the next
-output text at a given distance from the top or the bottom of the page.
-We subtract one line height (@code{\n[.v]}) because the @code{|}
-operator moves to one vee below the page top (recall @ref{Numeric
-Expressions}).
+The following macros place the next text baseline relative to the page
+top or bottom.  We subtract one line height (@code{\n[.v]}) because the
+@code{|} operator moves the drawing position relative to the first
+baseline on the page (recall @ref{Numeric Expressions}).
 
 @Example
 .de y-from-top-down
 .  sp |\\$1-\\n[.v]u
 ..
-.
+@c . @c Restore this if it ever fits on a U.S. letter page again.
 .de y-from-bot-up
 .  sp |\\n[.p]u-\\$1-\\n[.v]u
 ..
 @endExample
 
 @noindent
-A call to @samp{.y-from-bot-up 10c} means that the next text baseline
-will be 10@tie{}cm from the bottom edge of the paper.
+The input @samp{.y-from-bot-up 10c} sets the next text baseline
+10@tie{}cm from the bottom edge of the paper.
 @endDefreq
 
 @DefreqList {ls, [@Var{count}]}
@@ -8971,15 +8976,6 @@ Set the line spacing; add @w{@var{count}@minus{}1} blank lines after each
 line of text.  With no argument, GNU @code{troff} uses the previous
 value before the last @code{ls} call.  The default is @code{1}.
 
-@c This example is fairly obvious, doesn't realistically reflect the
-@c fact that formatted text would occur between each of these requests,
-@c and doesn't fit well on the (PDF) page as of this writing.
-@c @Example
-@c .ls 2    \" begin double-spaced output
-@c .ls 3    \" begin triple-spaced output
-@c .ls      \" return to double-spaced output
-@c @endExample
-
 @cindex line spacing register (@code{.L})
 The read-only register @code{.L} contains the current line spacing; it
 is associated with the environment (@pxref{Environments}).
@@ -8988,6 +8984,19 @@ is associated with the environment (@pxref{Environments}).
 The @code{ls} request is a coarse mechanism.  @xref{Changing the Type
 Size}, for the requests @code{vs} and @code{pvs} as alternatives to
 @code{ls}.
+
+@Example
+.de SetNewLineSpacing
+.  if r *old-vs .ab cannot nest SetNewLineSpacing
+.  nr *old-vs \\n[.v]
+.  vs (\\n[.v] * \\$1)
+..
+.
+.de RestoreOldLineSpacing
+.  vs \\n[*old-vs]
+.  rr *old-vs
+..
+@endExample
 
 @DefescList {\\x, @code{'}, spacing, @code{'}}
 @DefregListEndx {.a}
@@ -10070,10 +10079,9 @@ that amount is less than @var{space}.  The default scaling unit is
 in category @samp{number} and ignores the argument.  If @var{space} is
 not specified, @samp{1v} is assumed.
 
-@cindex widow
 We can require space for at least the first two output lines of a
-paragraph, preventing its first line from being @slanted{widowed} at the
-page bottom.
+paragraph, preventing its first line from being isolated at the page
+bottom.
 
 @Example
 .ne 2v
@@ -10084,7 +10092,15 @@ when the lights of health go down,
 the undiscovered countries that are then disclosed,
 what wastes and deserts of the soul a slight attack
 of influenza brings to view,
-@c -- Virgina Woolf, "On Being Ill", 1926
+what precipices and lawns sprinkled with bright flowers
+a little rise of temperature reveals,
+what ancient and obdurate oaks are uprooted in us
+in the act of sickness,
+how we go down into the pit of death
+and feel the waters of annihilation
+close above our heads.\|.\|.
+.sp
+Virgina Woolf, \[lq]On Being Ill\[rq], 1926
 @endExample
 
 @c XXX: Some of this might be better placed in a revised Chapter 3.
@@ -13683,7 +13699,7 @@ You can @dfn{mark} a location on a page for subsequent @dfn{return}.
 @code{mk} takes an argument, a register name in which to store the
 current page location.  If given no argument, it stores the location in
 an internal register.  This location can be used later by the @code{rt}
-or the @code{sp} requests (or the @code{\v} escape).
+or the @code{sp} requests (or the @code{\v} escape sequence).
 
 The @code{rt} request returns @emph{upward} to the location marked with
 the last @code{mk} request.  If used with an argument, it returns to a

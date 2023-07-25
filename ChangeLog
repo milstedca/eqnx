@@ -53,6 +53,25 @@
 	Fixes <https://savannah.gnu.org/bugs/?64440>.  Thanks to Dave
 	Kemper for the report and review.
 
+2023-07-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/env.cpp (environment::print_env): Fix error in
+	report.  The units of {minimum inter-word, additional
+	inter-sentence} space size are 12ths of the font's "spacewidth"
+	parameter, not 36ths of an em.
+
+	Consider the following input.
+	  .\" groff -T ps -Z
+	  .nf
+	  foo bar1
+	  .ss 12
+	  foo bar2 \" cases 1 and 2 are the same
+	  foo\h'1m/3u'bar3 \" wider than 1 & 2
+	  foo\h'1m/36u*12u'bar4 \" slightly narrower than case 3
+	  .ss 11
+	  foo bar5 \" narrower than case 1 (as expected)
+	  foo\h'1m/36u*11u'bar6 \" between cases (1,2) and 4
+
 2023-07-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/papersize.tmac: If not already defined, set `PO` register

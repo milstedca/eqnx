@@ -36,7 +36,7 @@
 	request from `\v` escape sequence and cross reference the
 	latter.  Recast to squeeze presentation of `ss` request onto one
 	U.S. letter page when typeset.  Drop (commented-out) trivial
-	example of `ls` usage with a new example that illustrates some
+	example of `ls` usage in favor of new example illustrating some
 	macros using `vs` instead, for pedagogical purposes and to eat
 	up a lot of dead space on the page caused by a later lengthy
 	example.  (Knuth-Plass for the...uh...win.)

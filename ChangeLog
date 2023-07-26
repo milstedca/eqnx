@@ -1,3 +1,35 @@
+2023-07-26  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Add new `.trap` built-in register.
+
+	* src/roff/troff/div.h (class diversion, class macro_diversion,
+	class top_level_diversion): Declare new member function
+	`get_next_trap_name`.
+	* src/roff/troff/div.cpp (macro_diversion::get_next_trap_name):
+	New member function returns name of diversion trap if any, and
+	if its position is greater than the vertical drawing position,
+	otherwise an empty string.
+	(top_level_diversion::get_next_trap_name): New member function
+	returns the name of the next vertical position trap, if any,
+	otherwise an empty string.
+	(class next_trap_name_reg): New class has one member, a
+	`get_string()` function.
+	(next_trap_name_reg::get_string): New function.
+	(init_div_requests): Add `.trap` to the register dictionary and
+	wire it up to `next_trap_name_reg`.
+
+	* doc/groff.texi (Page Location Traps):
+	* man/groff.7.man (Read-only registers):
+	* man/groff_diff.7.man (New registers): Document it.
+
+	* src/roff/groff/tests/dot-trap_register_works.sh: Test it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+	* NEWS: Add item.
+
+	Fixes <https://savannah.gnu.org/bugs/?64212>.  Thanks to Dave
+	Kemper for feedback.
+
 2023-07-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp (unbreakable_space_node::tprint):

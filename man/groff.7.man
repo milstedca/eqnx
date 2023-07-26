@@ -6265,6 +6265,16 @@ Representation of tab settings suitable for use as argument to
 (string-valued).
 .
 .TP
+.REG .trap
+Name of the next vertical position trap that will be sprung
+(string-valued);
+see
+.request .wh ,
+.request .ch ,
+and
+.request .dt .
+.
+.TP
 .REG .trunc
 Amount of vertical space truncated by the most recently sprung
 vertical position trap,

@@ -4469,6 +4469,14 @@ request.
 .
 .
 .TP
+.B \[rs]n[.trap]
+Interpolate the name of the next vertical position trap that will be
+sprung.
+.
+This is a string-valued register.
+.
+.
+.TP
 .B \[rs]n[.trunc]
 Interpolate amount of vertical space truncated by the most recently
 sprung page location trap,

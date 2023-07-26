@@ -14693,6 +14693,13 @@ Since the @code{.trunc} register is set only by traps, it doesn't make
 sense to interpolate it outside of macros called by traps.
 @endDefreg
 
+@Defreg {.trap}
+@cindex next trap name register (@code{.trap})
+@cindex trap name, next, register (@code{.trap})
+This read-only, string-valued register interpolates the name of the next
+vertical position trap that will be sprung.
+@endDefreg
+
 @Defreg {.pe}
 @cindex @code{bp} request, and traps (@code{.pe})
 @cindex traps, sprung by @code{bp} request (@code{.pe})

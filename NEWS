@@ -23,6 +23,9 @@ o GNU troff output now reports unbreakable spaces (those produced with
   the `\~` escape sequence) as word breaks with the documentary 'w'
   command, just as regular breakable spaces do.
 
+o A new read-only, string-valued register, `.trap`, interpolates the
+  name of the next vertical position trap that will be sprung.
+
 eqn
 ---
 

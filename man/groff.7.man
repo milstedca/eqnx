@@ -494,7 +494,7 @@ the Control+A character (U+0001) in text is interpreted as a
 .
 .
 .P
-Horizontal white space characters are significant to
+Horizontal whitespace characters are significant to
 .I groff,
 but trailing spaces on text lines are ignored.
 .\" slack text for widow/orphan control: trailing tabs are not

@@ -424,20 +424,20 @@ arguments.  The use of compatibility mode is strongly discouraged.
 
 ----------------------------------------------------------------------
 
-* gtroff gives warnings about lines like
+* GNU troff gives warnings about lines like
   .ev	\" a comment
-  (with a tab after the .ev).
+  (with a tab after ".ev").
 
-A tab character cannot be used as a substitute for a space character
-(except in one case: between a control character at the beginning of a
-line and the name of a macro or request).  For example, in Unix troff
+A tab character cannot be used as a substitute for a space character,
+except immediately after a control character.  For example, in AT&T
+troff,
 
-  .ps	\" restore the previous point size
+  .ps	\" restore the previous type size
 
-(with a tab after the .ps) does NOT restore the previous point-size;
-instead it is silently ignored.  Since this is very likely to be an
-error, gtroff can give a warning about it.  If you want to align
-comments, you can do it like this:
+(with a tab after ".ps") does NOT restore the previous type size;
+instead it is silently ignored.  Since this is very likely unintended,
+GNU troff diagnoses it as an error.  If you want to align comments, you
+can do it like this.
 
   .ev\"				\" a comment
 
@@ -1018,7 +1018,7 @@ into
 
 (put .man at begin of the list).
 
-The bug is reported to the maintainer of the make(1) tool of those
+The bug has been reported to the maintainer of the make(1) tool of those
 systems.
 
 ----------------------------------------------------------------------

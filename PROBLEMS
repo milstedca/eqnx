@@ -568,22 +568,36 @@ available in the devps directory.
 
 ----------------------------------------------------------------------
 
-* I've configured groff for A4 paper, but gtroff still seems to think
-  that the length of a page (as returned by `\n(.p') is 11 inches.
+* I've configured groff for A4 paper, but GNU troff still seems to think
+  that the length of a page (interpolated by `\n(.p`) is 11 inches.
 
-This is intentional.  The PAGE option during configuration is used
-only by grops.  For compatibility with AT&T troff, the default page
-length in GNU troff is always 11 inches.  The page length can be changed
-with the `pl' request.
+This is intentional.  The PAGE option recognized during configuration
+populates the device description files for the output drivers grodvi(1),
+groplbp(1), grolj4(1), gropdf(1), and grops(1) with groff's new
+"papersize" directive.  If this directive is not present, the formatter
+assumes a page length of 11 inches for compatibility with AT&T troff.
 
-A convenient way to set paper dimensions is to use the -dpaper option
-of groff, together with proper -P options for the postprocessor
-(overriding the default).  For example, use the following command for
-PostScript output on A4 paper in landscape orientation.
+The page length can be changed with the `pl` request, but macro packages
+often do not support alteration of the paper format within a document.
+One might, for instance, want to switch between portrait and landscape
+orientations.  Packages do not take a consistent approach to
+configuration of parameters dependent on the paper format; some, like
+"ms", benefit from a preamble in the document prior to the first macro
+call, while others, like "mm", instead require the specification of
+registers on the command line to configure paper dimensions (including
+the page offset).
 
-  groff -Tps -dpaper=a4l -P-pa4 -P-l -ms foo.ms > foo.ps
+A convenient means of setting paper dimensions when formatting is to use
+the -dpaper option of groff(1) or troff(1) together with appropriate -P
+options for the output driver (overriding the default).  For example,
+use the following command for PostScript output on A4 paper in landscape
+orientation.
 
-See groff(1) and groff_tmac(5) for more information.
+  $ groff -Tps -dpaper=a4l -P-pa4 -P-l -ms foo.ms > foo.ps
+
+See groff(1), section "Paper format"; groff_tmac(5), subsection
+"Auxiliary packages", entry "papersize"; and groff_font(5), section
+"DESC file format", entry "papersize".
 
 ----------------------------------------------------------------------
 

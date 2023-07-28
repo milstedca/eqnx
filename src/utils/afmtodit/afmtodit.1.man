@@ -573,7 +573,7 @@ is
 is
 .BR \%Delta ,
 and
-.I XXX
+.I XXXX
 is
 .BR 0394 ,
 .I \%afmtodit

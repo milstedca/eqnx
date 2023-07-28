@@ -274,6 +274,18 @@ keys are bound to the
 action.
 .
 The
+.I p
+key with any modifier
+(Shift,
+Control,
+Alt,
+or
+Meta)
+is bound to the
+.B Print
+action.
+.
+The
 .I g
 key is bound to the
 .B SelectPage

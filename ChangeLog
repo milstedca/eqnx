@@ -1,5 +1,19 @@
 2023-07-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[gxditview]: Add accelerators for "Print" action.
+
+	An apparent bug in a support library affects some users; it
+	disables gxditview's pop-up menu.  (The menu pops up, but no
+	item can be selected.)  Also, "Print" was the only action for
+	which no keyboard accelerator was defined.  "p" (unmodified) is
+	already bound to `PreviousPage()`; bind "p" with any of the
+	modifiers Shift, Ctrl, Alt, or Meta to `Print()`.
+
+	* src/devices/xditview/GXditview.ad: Do it.
+	* src/devices/xditview/gxditview.1.man: Document it.
+
+2023-07-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/es.tmac: Scream the entire word "BIBLIOGRAPHÍA", instead
 	of dying off to a murmur at the last two letters.
 

@@ -3668,7 +3668,7 @@ before any other macros.
 .
 A
 .I man
-program or user typing,
+program or a user typing,
 for example,
 .RB \[lq] "groff \-mandoc page.1" \[rq],
 need not know which package the file
@@ -3977,10 +3977,10 @@ values.
 .
 .
 .IP
-Another approach you can use with tagged paragraphs is to place an
+Another approach to tagged paragraphs places an
 .B .RS
-call immediately after the paragraph tag;
-this will also force a break regardless of the width of the tag,
+call immediately after the tag;
+this will also force a break regardless of the tag's width,
 which some authors prefer.
 .
 Follow-up paragraphs under the tag can then be set with

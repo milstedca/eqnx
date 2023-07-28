@@ -164,7 +164,7 @@ the
 register;
 and the
 .B OK
-(other keywords),
+(other keywords)
 and
 .B PM
 (proprietary markings)

@@ -1473,9 +1473,13 @@ multiplied by the difference of
 and
 .I depth .
 .
+.CW GROWPS
+and
+.CW PSINCR
+are GNU extensions.
 .
-For example,
-the sequence
+.
+The input
 .
 .TS
 box center;
@@ -1495,10 +1499,10 @@ Machairodontinae
 .
 .
 .LP
-will cause \[lq]1. Carnivora\[rq] to be printed in 13-point text,
+causes \[lq]1. Carnivora\[rq] to be printed in 13-point text,
 followed by \[lq]1.1. Felinae\[rq] in 11.5-point text,
 while \[lq]1.1.1. Felis catus\[rq] and all more deeply nested headings
-will remain in the 10-point text specified by the
+remain in the 10-point text specified by the
 .CW PS
 register.
 .
@@ -1531,6 +1535,8 @@ region
 (see subsequent sections)
 between the heading and the subsequent paragraph suppresses this
 grouping.
+.
+This is a GNU extension.
 .
 .
 .\" The next table is huge and we need a lot of room for it, but we

@@ -3485,8 +3485,9 @@ heading produced by these macros increases by @code{PSINCR} units over
 the size specified by @code{PS} multiplied by the difference of
 @code{GROWPS} and @var{level}.  The value stored in @code{PSINCR} is
 interpreted in @code{groff} basic units; the @code{p} scaling unit
-should be employed when assigning a value specified in points.  For
-example, the sequence
+should be employed when assigning a value specified in points.
+
+The input
 
 @CartoucheExample
 .nr PS 10
@@ -3503,9 +3504,9 @@ Machairodontinae
 @endCartoucheExample
 
 @noindent
-will cause ``1. Carnivora'' to be printed in 13-point text, followed by
+causes ``1. Carnivora'' to be printed in 13-point text, followed by
 ``1.1. Felinae'' in 11.5-point text, while ``1.1.1. Felis catus'' and
-all more deeply nested heading levels will remain in the 10-point text
+all more deeply nested heading levels remains in the 10-point text
 specified by the @code{PS} register.  ``Machairodontinae'' is printed at
 11.5 points, since it corresponds to heading level@tie{}2.
 
@@ -3572,8 +3573,9 @@ use unbreakable space or horizontal motion escape sequences (@code{\~},
 @endDefmac
 
 @Defmac {UL, [@Var{text} [@Var{post}]], ms}
-Typeset @var{text} with an underline.  @var{post}, if present, is set
-after @var{text} with no intervening space.
+Typeset @var{text} with an underline.  On terminal devices, @var{text}
+is bracketed with underscores `_'.  @var{post}, if present, is set after
+@var{text} with no intervening space.
 @endDefmac
 
 @Defmac {LG, , ms}

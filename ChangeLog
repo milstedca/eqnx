@@ -1,3 +1,8 @@
+2023-07-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/es.tmac: Scream the entire word "BIBLIOGRAPHÍA", instead
+	of dying off to a murmur at the last two letters.
+
 2023-07-26  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Add new `.trap` built-in register.

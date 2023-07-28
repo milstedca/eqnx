@@ -5811,7 +5811,8 @@ The value of the increment is specified with a third argument to the
 .request .nr
 request,
 and a special interpolation syntax,
-.BI \[rs]n \[+-]
+.BI \[rs]n \[+-]\c
+,
 is used to alter and then retrieve
 the register's value.
 .
@@ -5946,9 +5947,8 @@ see
 .TP
 .REG .csk
 Skew of the last glyph formatted in the environment;
-.\" TODO: Give page a discussion of glyph properties and move this.
-skew is how far to the right of the center of a glyph the center of an
-accent over that glyph should be placed.
+see
+.register skw .
 .
 .TP
 .REG .d
@@ -6424,7 +6424,8 @@ Count of hours elapsed since midnight (0\[en]23).
 .
 .TP
 .REG hp
-Horizontal drawing position relative to start of input line.
+Horizontal drawing position relative to that at the start of the input
+line.
 .
 .TP
 .REG llx
@@ -6542,8 +6543,8 @@ after rendering into dummy environment by
 .TP
 .REG systat
 Return value of
-.I system()
-function; see
+.MR system 3 ;
+see
 .request .sy .
 .
 .TP
@@ -6955,9 +6956,17 @@ the definition ends with the control line
 .RB \[lq] .. \[rq]\&
 (two dots).
 .
+Tabs and spaces are permitted between the dots.
+.
 Alternatively,
-a second argument names a macro whose call syntax ends the definition;
-this \[lq]end macro\[rq] is then called normally.
+a second argument to
+.B .de
+names a macro whose call
+(or request whose invocation)
+syntax ends the definition;
+this
+.I "end macro"
+is then interpreted normally.
 .
 Spaces or tabs are permitted after the first control character in the
 line containing this ending token,
@@ -7001,7 +7010,7 @@ remove,
 and rename a macro,
 respectively.
 .
-.B .return
+.B \%.return
 stops the execution of a macro immediately,
 returning to the enclosing context.
 .
@@ -7358,7 +7367,8 @@ their positions are reported in basic units.
 .
 An
 .I implicit page trap
-always exists in the top-level diversion;
+always exists in the top-level diversion
+(see below);
 it works like a trap in some ways but not others.
 .
 Its purpose is to eject the current page and start the next one.
@@ -7462,7 +7472,7 @@ see section \[lq]Strings\[rq] above.
 .B box
 and
 .B boxa
-works similarly,
+work similarly,
 but ignore partially collected lines.
 .
 Call any of these macros again without an argument to end the diversion.
@@ -7490,9 +7500,9 @@ including the top level.
 .
 .P
 The
-.B \[rs]!\%
+.B \[rs]!\&
 and
-.B \[rs]?\%
+.B \[rs]?\&
 escape sequences and
 .B output
 request escape from a diversion,

@@ -622,7 +622,9 @@ escape sequences
 .BR \[rs]s ,
 .BR \[rs]$ ,
 and
-.BR \[rs]* ).
+.BR \[rs]* ),
+and alters the behavior of
+.BR \[rs]X .
 .
 In the following list,
 escape sequences are collated alphabetically at first,
@@ -1036,25 +1038,6 @@ character translations and definitions are ignored.
 Other escape sequences are not supported.
 .
 .
-.IP
-If the
-.B \%use_charnames_in_special
-directive appears in the output device's
-.I DESC
-file,
-the use of special character escape sequences is
-.I not
-an error;
-they are simply output verbatim
-(with the exception of the seven mapped to Unicode basic Latin
-characters,
-discussed above).
-.
-.B \%use_charnames_in_special
-is currently employed only by
-.MR grohtml @MAN1EXT@ .
-.
-.
 .TP
 .BI \[rs]Y m
 .TQ
@@ -1093,7 +1076,7 @@ Tabs and leaders in the argument are ignored with an error diagnostic.
 .
 .TP
 .B \[rs]#
-Everything up to and including the next newline is ignored.
+Ignore everything up to and including the next newline.
 .
 This escape sequence is interpreted even in copy mode.
 .
@@ -4053,7 +4036,11 @@ and
 respectively:
 a \[lq]compatibility save\[rq] token is inserted at the beginning,
 and a \[lq]compatibility restore\[rq] token at the end,
-with compatibility mode switched on during execution.
+with compatibility mode switched on during interpolation of the
+applicable macro definition,
+appendment,
+or string
+.I contents.
 .
 .
 .TP
@@ -4366,6 +4353,12 @@ See
 Interpolate\~1 if output line numbering is enabled
 (even if temporarily suppressed),
 0\~otherwise.
+.
+.
+.TP
+.B \[rs]n[.nn]
+Interpolate count of output lines remaining to have numbering
+suppressed.
 .
 .
 .TP

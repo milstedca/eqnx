@@ -1,3 +1,14 @@
+2023-07-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/pic/troff.cpp (troff_output::set_location): Do
+	more parameter validation.  Don't generate the two-argument form
+	of the `lf` request if the C string holding the new file name to
+	write isn't a null pointer.  Also `assert()` this since it
+	should be an invariant.
+
+	Fixes <https://savannah.gnu.org/bugs/?64488>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
 2023-07-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[gxditview]: Add accelerators for "Print" action.

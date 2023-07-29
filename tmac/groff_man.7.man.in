@@ -2571,7 +2571,7 @@ zero-width on terminals);
 a non-breaking space.
 .
 Used primarily in ellipses
-(\(lq.\e|.\e|.\(rq)
+(\(lq.\e|.\e|.\(rq)\&
 to space the dots more pleasantly on typesetting devices like
 .BR dvi ,
 .BR pdf ,

@@ -1,3 +1,10 @@
+2023-07-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/doc.tmac (doc-parse-args): Set ellipses in roman.
+
+	Thanks to Lennart Jablonka for reminding me of this issue on the
+	linux-man mailing list.
+
 2023-07-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/libs/libgroff/fontfile.cpp (font::open_file): Do more

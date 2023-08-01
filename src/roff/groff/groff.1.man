@@ -2270,6 +2270,21 @@ manual.
 You can browse it interactively with \[lq]info groff\[rq].
 .
 .
+.P
+A list of all
+.I groff
+man pages follows.
+.
+A few
+.RI ( \%grohtml ,
+.IR gropdf ,
+.IR gxditview ,
+and
+.IR xtotroff )
+will be unavailable if their corresponding programs were disabled during
+compilation.
+.
+.
 .\" groff ships 59 man pages generated from 58 source files.  The
 .\" numbered comments refer to their sorting order in the source tree,
 .\" so that it is easier to tell that we've enumerated all of them.

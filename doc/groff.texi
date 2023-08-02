@@ -10326,7 +10326,7 @@ mounting position is not a style and no font is mounted there, GNU
 @code{troff} emits a warning in category @samp{font} and ignores the
 request.
 
-If @var{font} matches a style name, it is combined with the current
+If @var{font} matches a style name, it is combined with the default
 family to make a resolved font name.  Otherwise, @var{font} is assumed
 to already be a resolved font name.
 
@@ -10360,8 +10360,8 @@ spam,
 and sausage.
 .br
 eggs, bacon, \fIspam,\fP and sausage.
-    @result{} eggs, bacon, @slanted{spam,} and sausage
-    @result{} eggs, bacon, @slanted{spam,} and sausage
+    @result{} eggs, bacon, @slanted{spam,} and sausage.
+    @result{} eggs, bacon, @slanted{spam,} and sausage.
 @endExample
 
 The current and previously selected fonts are properties of the
@@ -10399,19 +10399,10 @@ named@tie{}@var{f} is referred to in a @code{\f} escape sequence, in the
 @code{F} and @code{S} conditional operators, or in the @code{ft},
 @code{ul}, @code{bd}, @code{cs}, @code{tkf}, @code{special},
 @code{fspecial}, @code{fp}, or @code{sty} requests, font@tie{}@var{g} is
-used.  If @var{g} is missing or equal to@tie{}@var{f} the translation is
-undone.
+used.  If @var{g} is missing or equal to@tie{}@var{f}, the translation
+is undone.
 @c XXX: Do font translations work on mounting positions?  Abstract
 @c styles?
-
-Font translations cannot be chained.
-
-@Example
-.ftr XXX TR
-.ftr XXX YYY
-.ft XXX
-    @error{} warning: can't find font 'XXX'
-@endExample
 @endDefreq
 
 @DefreqList {fzoom, f [@Var{zoom}]}
@@ -10425,10 +10416,10 @@ Font translations cannot be chained.
 @cindex font, optical size
 @cindex size, optical, of a font
 Set magnification of font@tie{}@var{f} to factor @var{zoom}, which must
-be a non-negative integer multiple of 1/1000th.  This request is useful
-to adjust the optical size of a font in relation to the others.  In the
-example below, font @code{CR} is magnified by 10% (the zoom factor is
-thus 1.1).
+be a non-negative integer, a multiplier of the current type size in
+thousandths.  @code{fzoom} adjusts the apparent size of a font in
+relation to others.  In the example below, font @code{CR} is magnified
+by 10% (the zoom factor is thus 1.1).
 
 @Example
 .fam P
@@ -10437,19 +10428,19 @@ thus 1.1).
 Palatino and \f[CR]Courier\f[]
 @endExample
 
-A missing or zero value of @var{zoom} is the same as a value of 1000,
-which means no magnification.  @var{f}@tie{}must be a resolved font
-name, not an abstract style.
+A missing or zero value of @var{zoom} is treated as @samp{1000}, meaning
+no magnification.  @var{f}@tie{}must be a resolved font name, not an
+abstract style.
 @c XXX: What about a mounting position?  It's not rejected...
 
-The magnification of a font is completely transparent to GNU
-@code{troff}; a change of the zoom factor doesn't cause any effect
-except that the dimensions of glyphs, (word) spaces, kerns, etc., of the
-affected font are adjusted accordingly.
+The magnification of a font is transparent to GNU @code{troff}; a change
+of the zoom factor doesn't cause any effect except that the dimensions
+of glyphs, (word) spaces, kerns, etc., of the affected font are adjusted
+accordingly.
 
 The zoom factor of the current font is available in the read-only
-register @samp{.zoom}, in multiples of 1/1000th.  It returns zero if
-there is no magnification.
+register @samp{.zoom}.  It interpolates zero if there is no
+magnification.
 @endDefreq
 
 @c ---------------------------------------------------------------------
@@ -10540,7 +10531,7 @@ Associate an abstract style @var{style} with mounting
 position@tie{}@var{n}, which must be a non-negative integer.  If the
 requests @code{cs}, @code{bd}, @code{tkf}, @code{uf}, or @code{fspecial}
 are applied to an abstract style, they are instead applied to the member
-of the current family corresponding to that style.
+of the default family corresponding to that style.
 
 @pindex DESC
 @kindex styles

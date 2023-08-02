@@ -893,10 +893,10 @@ exception.} (with more or less compatible changes).  Similarly, we say
 @pindex preconv
 @code{groff} normally runs the @code{gtroff} program and a
 postprocessor appropriate for the selected device.  The default device
-is @samp{ps} (but it can be changed when @code{groff} is configured and
-built).  It can optionally preprocess with any of @code{gpic},
-@code{geqn}, @code{gtbl}, @code{ggrn}, @code{grap}, @code{gchem},
-@code{grefer}, @code{gsoelim}, or @code{preconv}.
+is @samp{ps} (but it can be changed at @code{groff}'s build-time
+configuration).  It can optionally preprocess input with any of
+@code{gpic}, @code{geqn}, @code{gtbl}, @code{ggrn}, @code{grap},
+@code{gchem}, @code{grefer}, @code{gsoelim}, or @code{preconv}.
 
 This section documents only options to the @code{groff} front end.  Many
 of the arguments to @code{groff} are passed on to @code{gtroff};

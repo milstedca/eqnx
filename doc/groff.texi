@@ -993,10 +993,10 @@ between @command{groff} and @acronym{AT&T} @command{troff}.
 Define @code{roff} string @var{c} or @var{string} as@tie{}@var{t} or
 @var{text}.  @var{c}@tie{}must be one character; @var{string} can be
 of arbitrary length.  Such string assignments happen before any macro
-file is loaded, including the startup file.  Due to @code{getopt_long}
-limitations, @var{c}@tie{}cannot be, and @var{string} cannot contain, an
-equals sign, even though that is a valid character in a @code{roff}
-identifier.
+file is loaded, including the startup file.  Due to
+@cite{getopt_long@r{(3)}} limitations, @var{c}@tie{}cannot be, and
+@var{string} cannot contain, an equals sign, even though that is a valid
+character in a @code{roff} identifier.
 
 @item -D@var{enc}
 Set fallback input encoding used by @command{preconv} to @var{enc};
@@ -1142,7 +1142,7 @@ Set @code{roff} register@tie{}@var{c} or @var{register} to the value
 @var{numeric-expression} (@pxref{Numeric Expressions}).
 @var{c}@tie{}must be one character; @var{register} can be of arbitrary
 length.  Such register assignments happen before any macro file is
-loaded, including the startup file.  Due to @code{getopt_long}
+loaded, including the startup file.  Due to @cite{getopt_long@r{(3)}}
 limitations, @var{c}@tie{}cannot be, and @var{register} cannot contain,
 an equals sign, even though that is a valid character in a @code{roff}
 identifier.

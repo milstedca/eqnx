@@ -1273,37 +1273,6 @@ The escape sequence
 is also recognized in copy mode and becomes an internal code;
 it is this code that terminates
 .IR anything .
-Thus
-.
-.
-.RS
-.IP
-.EX
-.ne 14v+\n(.Vu
-\&.nr x 1
-\&.nf
-\&.di d
-\&\[rs]?\[rs]\[rs]?\[rs]\[rs]\[rs]\[rs]?\[rs]\[rs]\[rs]\[rs]\[rs]\[rs]\
-\[rs]\c
-\&\[rs]nx\[rs]\[rs]\[rs]\[rs]?\[rs]\[rs]?\[rs]?
-\&.di
-\&.nr x 2
-\&.di e
-\&.d
-\&.di
-\&.nr x 3
-\&.di f
-\&.e
-\&.di
-\&.nr x 4
-\&.f
-.EE
-.RE
-.
-.
-.IP
-prints\~\c
-.BR 4 .
 .
 .
 .TP
@@ -1550,22 +1519,6 @@ for example,
 the following sets
 .RB register\~ n
 to\~1.
-.
-.
-.RS
-.IP
-.EX
-.ne 8v+\n(.Vu
-\&.tr @.
-\&.di x
-\&@nr n 1
-\&.br
-\&.di
-\&.tr @@
-\&.asciify x
-\&.x
-.EE
-.RE
 .
 .
 .IP
@@ -3557,22 +3510,6 @@ When they do not,
 use substrings and/or catenation.
 .
 .
-.IP
-.RS
-.RS
-.EX
-.B .ds resume R\e[\[aq]e]sum\e[\[aq]e]\e"
-.B \e*[resume]
-.B .stringdown resume
-.B \e*[resume]
-.B .stringup resume
-.B \e*[resume]
-R\['e]sum\['e] r\['e]sum\['e] R\['E]SUM\['E]
-.EE
-.RE
-.RE
-.
-.
 .TP
 .BI .sty\~ n\~s
 Associate abstract
@@ -3604,20 +3541,6 @@ Negative indices count backwards from the end of the string:
 the last character has index\~\-1,
 the character before the last has index\~\-2,
 and so on.
-.
-.
-.RS
-.IP
-.EX
-.B .ds xxx abcdefgh
-.B .substring xxx 1 \-4
-.B \e*[xxx]
-bcde
-.B .substring xxx 2
-.B \e*[xxx]
-de
-.EE
-.RE
 .
 .
 .TP
@@ -3714,32 +3637,6 @@ request uses the character code
 (if any)
 before the character translation.
 .
-Example:
-.
-.
-.RS
-.IP
-.EX
-\&.trin ax
-\&.di xxx
-\&a
-\&.br
-\&.di
-\&.xxx
-\&.trin aa
-\&.asciify xxx
-\&.xxx
-.EE
-.RE
-.
-.
-.IP
-The result is \[lq]x\~a\[rq].
-.
-Using
-.BR tr ,
-the result would be \[lq]x\~x\[rq].
-.
 .
 .TP
 .BI .trnt\~ abcd
@@ -3748,30 +3645,6 @@ This is the same as the
 request except that the translations do not apply to text that is
 transparently throughput into a diversion with
 .BR \[rs]! .
-For example,
-.
-.
-.RS
-.IP
-.EX
-\&.tr ab
-\&.di x
-\&\[rs]!.tm a
-\&.di
-\&.x
-.EE
-.RE
-.
-.
-.IP
-prints\~\c
-.BR b ;
-if
-.B trnt
-is used instead of
-.B tr
-it prints\~\c
-.BR a .
 .
 .
 .TP
@@ -4131,21 +4004,6 @@ and\~0 otherwise.
 This facility allows the reliable modification of requests.
 .
 Using this register outside of a macro definition makes no sense.
-.
-.
-.RS
-.IP
-.ne 6v+\n(.Vu
-.EX
-\&.als bp*orig bp
-\&.de bp
-\&.tm before bp
-\&.ie \[rs]\[rs]n[.br] .bp*orig
-\&.el \[aq]bp*orig
-\&.tm after bp
-\&..
-.EE
-.RE
 .
 .
 .TP
@@ -4911,17 +4769,6 @@ GNU
 .I troff \" GNU
 permits tabs and spaces after the first dot on a control line that ends
 a macro definition.
-.
-.RS
-.ne 5v+\n(.Vu
-.EX
-\&.if t \[rs]{\[rs]
-\&.\&  de bar
-\&.\&    nop Hello, I\[aq]m \[aq]bar\[aq].
-\&.\&  .
-\&.\[rs]}
-.EE
-.RS
 .
 .
 .\" ====================================================================
@@ -5721,22 +5568,6 @@ or properties of the environment
 (the rest)
 and therefore do not create output nodes.
 .
-For example,
-this code produces bold output in both cases,
-but the text differs,
-.
-.RS
-.EX
-\&.de xx \[aq]
-Hello!
-\&..
-\&\[rs]fB.xx\[rs]fP
-.EE
-.RE
-.
-formatting \[lq].xx\[rq] normally and \[lq]Hello!\[rq] in compatibility
-mode.
-.
 .
 .P
 GNU
@@ -5968,38 +5799,6 @@ A glyph node does not behave like a character node when it is processed
 by a macro:
 it does not inherit any of the special properties that the character
 from which it was constructed might have had.
-.
-For example,
-the input
-.
-.br
-.ne 5v
-.RS
-.EX
-\&.di x
-\[rs]\[rs]\[rs]\[rs]
-\&.br
-\&.di
-\&.x
-.EE
-.RE
-.
-produces
-.RB \[lq]\^ \[rs]\[rs] \[rq]
-in GNU
-.IR troff . \" GNU
-Each pair of backslashes becomes one backslash
-.I glyph;
-the resulting backslashes are thus not interpreted as escape
-.I characters
-when they are interpolated as the diversion is output.
-.
-AT&T
-.I troff \" AT&T
-.I would
-interpret them as escape characters when interpolating them and end up
-printing one
-.RB \[lq] \[rs] \[rq].
 .
 .
 .P

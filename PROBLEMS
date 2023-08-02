@@ -330,13 +330,10 @@ and recompile groff:
 
 [groff 1.06]
 
-* groff can't handle my troff document.  It works fine with AT&T
-  troff.
+* groff can't handle my troff document.  It works fine with AT&T troff.
 
-Read the section on incompatibilities in groff_diff(7).  Try using the
--C option.  Alternatively there's the sed script `tmac/fixmacros.sed'
-which attempts to edit a file of macros so that it can be used with
-groff without the -C flag.
+Read section "Implementation differences" in groff_diff(7) (or that of
+groff's Texinfo manual), and try groff's '-C' command-line option.
 
 ----------------------------------------------------------------------
 

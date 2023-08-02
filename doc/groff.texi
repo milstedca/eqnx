@@ -661,9 +661,9 @@ embedding of hyperlinks, images, document metadata, and other inclusions
 @cindex macro package, introduction
 @cindex package, macro, introduction
 
-Elemental typesetting functions can be be challenging to use directly
-with complex documents.  A @dfn{macro} facility specifies how certain
-routine operations, such as starting paragraphs, or printing headers and
+Elemental typesetting functions can be be laborious to use directly with
+complex documents.  A @dfn{macro} facility specifies how certain routine
+operations, such as starting paragraphs, or printing headers and
 footers, should be performed in terms of those low-level instructions.
 Macros can be specific to one document or collected together into a
 @dfn{macro package} for use by many.  Several macro packages available;
@@ -942,8 +942,8 @@ gtroff [-abcCEiRUz] [-f @var{font-family}] [-F @var{font-directory}]
 @endExample
 
 Options that don't take arguments can be clustered after a
-single@tie{}@option{-}.  A filename of@tie{}@file{-} denotes the
-standard input stream.
+single@tie{}@option{-}.  A @var{file} argument of @tie{}@file{-} denotes
+the standard input stream.
 
 All @code{groff} commands accept a @option{--help} option, which
 summarizes usage similarly to the foregoing, and @option{--version},

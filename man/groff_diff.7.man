@@ -1259,7 +1259,7 @@ in the diversion.
 .I anything
 is read in copy mode.
 .
-When the diversion is reread,
+When the diversion is interpolated,
 .I anything
 is interpreted.
 .I anything
@@ -1538,7 +1538,7 @@ that were formatted in the diversion
 .I div
 are treated like ordinary input characters when
 .I div
-is reread.
+is interpolated.
 .
 Doing so can be useful in conjunction with the
 .B writem
@@ -4000,7 +4000,7 @@ is read in copy mode.
 .BI .cf\~ file
 In a diversion,
 embed an object which,
-when reread,
+when interpolated,
 will cause the contents of
 .I file
 to be copied verbatim to the output.
@@ -5992,12 +5992,12 @@ Each pair of backslashes becomes one backslash
 .I glyph;
 the resulting backslashes are thus not interpreted as escape
 .I characters
-when they are reread as the diversion is output.
+when they are interpolated as the diversion is output.
 .
 AT&T
 .I troff \" AT&T
 .I would
-interpret them as escape characters when rereading them and end up
+interpret them as escape characters when interpolating them and end up
 printing one
 .RB \[lq] \[rs] \[rq].
 .
@@ -6043,7 +6043,7 @@ as of its 060716 release (July 2006).]
 .
 .P
 To store an escape sequence in a diversion that is interpreted when the
-diversion is reread,
+diversion is interpolated,
 either use the traditional
 .B \[rs]!\&
 transparent output facility,

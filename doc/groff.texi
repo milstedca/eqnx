@@ -15388,9 +15388,9 @@ the output device, filtering out @var{contents} again.
 Latin (@acronym{ASCII}) characters, characters translated with the
 @code{trin} request, space characters, and some escape sequences, that
 were formatted and diverted into @var{div} are treated like ordinary
-input characters when @var{div} is reread.  Doing so can be useful in
-conjunction with the @code{writem} request.  @code{asciify} can be also
-used for gross hacks; for example, the following sets
+input characters when @var{div} is interpolated.  Doing so can be useful
+in conjunction with the @code{writem} request.  @code{asciify} can be
+also used for gross hacks; for example, the following sets
 register@tie{}@code{n} to@tie{}1.
 
 @Example
@@ -15928,8 +15928,8 @@ subject to copy mode interpretation.  If the file does not end with a
 newline, @code{trf} adds one.  Both requests cause a break.
 
 When used in a diversion, these requests embed a node (@pxref{Gtroff
-Internals}) in it that, when reread, causes the contents of @var{file}
-to be transparently copied to the output.  In @acronym{AT&T}
+Internals}) in it that, when interpolated, causes the contents of
+@var{file} to be transparently copied to the output.  In @acronym{AT&T}
 @code{troff}, the contents of @var{file} are immediately copied to the
 output regardless of whether there is a current diversion; this
 behaviour is so anomalous that it must be considered a bug.
@@ -16574,8 +16574,8 @@ Elements 1, 7, and@tie{}8 are inserted by @code{gtroff}; the latter two
 (which are always present) specify the vertical extent of the last line,
 possibly modified by @code{\x}.  The @code{br} request finishes the
 pending output line, inserting a newline input token, which is
-subsequently converted to a space when the diversion is reread.  Note
-that the word space node has a fixed width that isn't adjustable
+subsequently converted to a space when the diversion is interpolated.
+Note that the word space node has a fixed width that isn't adjustable
 anymore.  To convert horizontal space nodes back to input tokens, use
 the @code{unformat} request.
 
@@ -17428,10 +17428,10 @@ the input
 @noindent
 produces @samp{\\} in GNU @code{troff}.  Each pair of backslashes
 becomes one backslash @emph{glyph}; the resulting backslashes are thus
-not interpreted as escape @emph{characters} when they are reread as the
-diversion is output.  @acronym{AT&T} @code{troff} @emph{would} interpret
-them as escape characters when rereading them and end up printing one
-@samp{\}.
+not interpreted as escape @emph{characters} when they are interpolated
+as the diversion is output.  @acronym{AT&T} @code{troff} @emph{would}
+interpret them as escape characters when interpolating them and end up
+printing one @samp{\}.
 
 @cindex printing backslash (@code{\\}, @code{\e}, @code{\E}, @code{\[rs]})
 @cindex backslash, printing (@code{\\}, @code{\e}, @code{\E}, @code{\[rs]})
@@ -17459,9 +17459,10 @@ in those of its lineal descendant, Heirloom Doctools @code{troff}, as of
 the latter's 060716 release (July 2006).}
 
 To store an escape sequence in a diversion that is interpreted when the
-diversion is reread, either use the traditional @code{\!} transparent
-output facility, or, if this is unsuitable, the new @code{\?} escape
-sequence.  @xref{Diversions} and @ref{Gtroff Internals}.
+diversion is interpolated, either use the traditional @code{\!}
+transparent output facility, or, if this is unsuitable, the new
+@code{\?} escape sequence.  @xref{Diversions} and @ref{Gtroff
+Internals}.
 
 In the somewhat pathological case where a diversion exists containing a
 partially collected line and a partially collected line at the top-level

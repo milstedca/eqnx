@@ -2509,7 +2509,7 @@ o The `asciify' request has been extended to `unformat' space characters
   unbreakable space character.
 
 o The new `unformat' request is similar to `asciify' but only handles
-  space characters and tabs specially if the diversion is reread,
+  space characters and tabs specially if the diversion is interpolated,
   retaining font information.  This makes it possible to reformat
   diversions; for example the following
 
@@ -3569,7 +3569,7 @@ vertical position trap to be sprung.
 
 The `cf' request now behaves sensibly in a diversion.  If used in a
 diversion, it now arranges for the file to be copied to the output when
-the diversion is reread.
+the diversion is interpolated.
 
 There is a new request `trf' (transparent file) similar to `cf', but
 more like `\!'.

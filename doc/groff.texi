@@ -1163,8 +1163,8 @@ identifier.
 
 @item -R
 Run @command{grefer} preprocessor.  No mechanism is provided for passing
-arguments to @command{grefer} because most @command{grefer} options have
-equivalent language elements that can be specified within the document.
+arguments to it; most @command{grefer} options have equivalent language
+elements that can be specified within the document.
 
 @pindex troffrc
 @pindex troffrc-end

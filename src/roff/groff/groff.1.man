@@ -413,9 +413,8 @@ Run
 .MR @g@refer @MAN1EXT@
 preprocessor.
 .
-No mechanism is provided for passing arguments to
-.I @g@refer
-because most
+No mechanism is provided for passing arguments to it;
+most
 .I @g@refer
 options have equivalent language elements that can be specified within
 the document.

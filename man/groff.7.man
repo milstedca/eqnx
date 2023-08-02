@@ -4537,16 +4537,14 @@ are interpreted even in copy mode.
 .
 .TP
 .ESC \[dq]
-Comment.
-.
-Everything up to the end of the line is ignored.
+Comment;
+ignore everything up to the next newline.
 .
 .
 .TP
 .ESC #
-Comment.
-.
-Everything up to and including the next newline is ignored.
+Comment;
+ignore everything up to and including the next newline.
 .
 .
 .\" ========= strings =========

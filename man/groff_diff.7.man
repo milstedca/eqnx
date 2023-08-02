@@ -521,7 +521,7 @@ were accessed with the
 .B ft
 request
 (that is,
-abstract styles and font translation are applied),
+abstract styles are resolved and font translations applied),
 but
 .I fnt
 cannot be a mounting position,
@@ -544,11 +544,11 @@ is defined.
 .
 .TP
 .BI S\~ sty
-True if a style
+True if an abstract style
 .I sty
 is registered.
 .
-Font translation applies.
+Font translations apply.
 .
 .
 .TP
@@ -754,7 +754,7 @@ Select
 which may be a mounting position,
 abstract style,
 or font name,
-to choose the typeface.
+as the typeface.
 .
 .B \[rs]f[]
 and
@@ -1253,9 +1253,10 @@ so the remainder of the word is subject to hyphenation as normal.
 .TP
 .BI \[rs]? anything \[rs]?
 When used in a diversion,
-this transparently embeds
+transparently embed
 .I anything
-in the diversion.
+in it.
+.
 .I anything
 is read in copy mode.
 .

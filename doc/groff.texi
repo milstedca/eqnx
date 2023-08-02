@@ -1712,88 +1712,89 @@ consists of text, or words to be printed, and embedded commands
 (@slanted{requests} and @slanted{escape sequences}), which tell GNU
 @code{troff} how to format the output.  @xref{Formatter Instructions}.
 
-The word @slanted{argument} is used in this chapter to mean a word or
-number that appears on the same line as a request, and which modifies
-the meaning of that request.  For example, the request
+The primary function of GNU @code{troff} is to collect words from input
+lines, fill output lines with those words, break the line at the
+right-hand (possibly by hyphenating a word), adjust the line to the
+margin by widening spaces, and output the result.
 
 @Example
-.sp
+@c .ll 42n
+In fact, we know full well today that it is futile to
+speak of liberty as long as economic slavery exists.
+(Kropotkin)
+  @result{} In  fact,  we know full well today that it
+  @result{} is futile to speak of liberty as  long  as
+  @result{} economic slavery exists.  (Kropotkin)
+@endExample
+
+@cindex break (introduction)
+@cindex line break (introduction)
+Sometimes a new output line should start even though the current line is
+not yet full---for example, at the end of a paragraph.  Command a break
+with the @code{br} request.  Some requests cause a break automatically,
+as do (normally) blank input lines and input lines beginning with a
+space or tab.
+
+Not all input lines are @slanted{text lines} containing words to be
+formatted.  @slanted{Control lines} start with a dot (@samp{.}) or an
+apostrophe (@samp{'}) as the first character, and are followed by a
+request or macro name that tells a macro package (or GNU @code{troff}
+directly) how to format the text.
+
+For example, as implied above, the control line
+
+@Example
+.br
 @endExample
 
 @noindent
-spaces one line, but
+will break the output line.
+
+Manu requests and macro calls accept @slanted{arguments} that influence
+their behavior.  The @code{sp} request, without an argument, breaks and
+puts a blank line on the output.  But
 
 @Example
 .sp 4
 @endExample
 
 @noindent
-spaces four lines.  The number@tie{}4 is an argument to the @code{sp}
-request, which says to space four lines instead of one.  Arguments are
-separated from the request and from each other by spaces (@emph{not}
-tabs).  @xref{Invoking Requests}.
+spaces four lines instead.  Arguments are separated from the request and
+from each other by spaces (@emph{not} tabs).  @xref{Invoking Requests}.
 
-The primary function of GNU @code{troff} is to collect words from input
-lines, fill output lines with those words, adjust the line to the
-right-hand margin by widening spaces, and output the result.  For
-example, the input:
-
-@Example
-Now is the time
-for all good men
-to come to the aid
-of their party.
-Four score and seven
-years ago, etc.
-@endExample
-
-@noindent
-is read, packed onto output lines, and justified to produce:
-
-@Example
-  @result{} Now is the time for all good men to come to the aid of
-  @result{} their party.  Four score and seven years ago, etc.
-@endExample
-
-Sometimes a new output line should be started even though the current
-line is not yet full---for example, at the end of a paragraph.  To do
-this it is possible to force a @slanted{break}, starting a new output
-line.  Some requests cause a break automatically, as do (normally) blank
-input lines and input lines beginning with a space or tab.
-
-Not all input lines are @slanted{text lines}---words to be formatted.
-Some are @slanted{control lines} that tell a macro package (or GNU
-@code{troff} directly) how to format the text.  Control lines start with
-a dot (@samp{.}) or an apostrophe (@samp{'}) as the first character, and
-can be followed by a @slanted{macro call}.
-
-The formatter also does more complex things, such as automatically
-numbering pages, skipping over page boundaries, putting footnotes in the
-correct place, and so forth.
+A @slanted{macro} bundles text and/or control lines into a named
+collection that can be called like a request, or set to ``go off''
+automatically at certain places on the page.  Thus, while requests
+perform primitive operations, macro packages handle complex ones, like
+altering the page numbering scheme, collecting and writing out
+footnotes, or managing page headers and footers.
 
 Here are a few hints for preparing text for input to GNU @code{troff}.
 
 @itemize @bullet
 @item
 First, keep the input lines short.  Short input lines are easier to
-edit, and GNU @code{troff} packs words onto longer lines anyhow.
+edit, and, when filling, GNU @code{troff} packs words onto longer lines
+anyhow.
 
 @item
-In keeping with this, it is helpful to begin a new line after every
-comma or phrase, since common corrections are to add or delete sentences
-or phrases.
+Second, it is helpful to begin a new line after every sentence,
+comma, semicolon, colon, since common revisions are to add, delete, or
+replace sentences, clauses, phrases, or members of lists.
 
 @item
-End each sentence with two spaces---or better, start each sentence on a
-new line.  GNU @code{troff} recognizes characters that usually end a
+If you don't start a sentence on a new line, put two spaces after the
+previous one.  GNU @code{troff} recognizes characters that usually end a
 sentence, and inserts inter-sentence space accordingly.
 
-@item
-Do not hyphenate words at the end of lines---GNU @code{troff} is smart
-enough to hyphenate words as needed, but is not smart enough to take
-hyphens out and join a word back together.  Also, words such as
-``mother-in-law'' should not be broken over a line, since then a space
-can occur where not wanted, such as ``@w{mother- in}-law''.
+@c I don't think anyone does the following anymore, since it's a
+@c typewriter-era practice. --GBR
+@c @item
+@c Do not hyphenate words at the end of lines---GNU @code{troff} is
+@c smart enough to hyphenate words as needed, but is not smart enough to
+@c take hyphens out and join a word back together.  Also, words such as
+@c ``mother-in-law'' should not be broken over a line, since then a
+@c space can occur where not wanted, such as ``@w{mother- in}-law''.
 @end itemize
 
 We offer further advice in @ref{Input Conventions}.
@@ -1815,10 +1816,8 @@ operations.  The macro packages for writing man pages, @file{man} and
 @file{mdoc}, don't encourage explicit use of these requests at all.
 
 @cindex spacing (introduction)
-The request @w{@samp{.sp @var{N}}} leaves @var{N}@tie{}lines of blank
-space.  @var{N}@tie{}can be omitted (skipping a single line) or can
-be of the form @var{N}i (for @var{N}@tie{}inches) or @var{N}c (for
-@var{N}@tie{}centimeters).  For example, the input:
+Arguments to requests and macro calls can often be
+@slanted{measurements} rather than simple integers.  For instance,
 
 @Example
 .sp 1.5i
@@ -1827,7 +1826,7 @@ My thoughts on the subject
 @endExample
 
 @noindent
-leaves one and a half inches of space, followed by the line ``My
+outputs one and a half inches of space, followed by the line ``My
 thoughts on the subject'', followed by a single blank line (more
 measurement units are available; see @ref{Measurements}).
 
@@ -1867,14 +1866,12 @@ epigraphs.
 
 @cindex page break (introduction)
 @cindex break, page (introduction)
-The @code{bp} request starts a new page; this necessarily implies an
-ordinary (line) break.
+The @code{bp} request starts a new page.
 
 @cindex break (introduction)
 @cindex line break (introduction)
 All of these requests cause a break; that is, they always start a new
-line.  To start a new line without performing any other action, use
-@code{br}.  If you invoke them with the apostrophe @samp{'}, the
+line.  If you invoke them with the apostrophe @samp{'}, the
 @slanted{no-break control character}, the (initial) break they normally
 perform is suppressed.  @samp{'br} does nothing.
 
@@ -1936,6 +1933,7 @@ Separation can be configured for other paragraph types as well.
   @result{} Some  men  look  at constitutions with sanctimonious
   @result{} reverence,  and  deem  them  like  the  ark  of  the
   @result{} covenant, too sacred to be touched.
+@c Jefferson
 @endExample
 
 @cindex tags, paragraph

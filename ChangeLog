@@ -1,3 +1,10 @@
+2023-08-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/node.cpp (zoom_font): Validate arguments more.
+	Invalid inputs could have bizarre consequences.
+
+	Fixes <https://savannah.gnu.org/bugs/?64505>.
+
 2023-08-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Drop tmac/fixmacros.sed.  We hadn't ever actually installed it;

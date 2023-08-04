@@ -885,7 +885,7 @@ of its range.
 Move the column up one half-line,
 \[lq]staggering\[rq] the rows.
 .
-This is a GNU extension.
+This is a Tenth Edition Research Unix extension.
 .
 .
 .TP

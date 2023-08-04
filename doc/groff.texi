@@ -1687,9 +1687,8 @@ are equivalent.
 @node Tutorial for Macro Users, Major Macro Packages, Invoking groff, Top
 @chapter Tutorial for Macro Users
 @cindex tutorial for macro users
-@cindex macros, tutorial for users
-@cindex user's tutorial for macros
-@cindex user's macro tutorial
+@cindex macros, tutorial for users of
+@cindex user's tutorial
 
 Most users of the @code{roff} language employ a macro package to format
 their documents.  Successful macro packages ease the composition
@@ -12507,7 +12506,6 @@ index@tie{}@minus{}2, and so on.
 @cindex case-transforming a string (@code{stringdown}, @code{stringup})
 @cindex uppercasing a string (@code{stringup})
 @cindex lowercasing a string (@code{stringdown})
-@cindex up-casing a string (@code{stringup})
 @cindex down-casing a string (@code{stringdown})
 Alter the string named @var{str} by replacing each of its bytes with its
 lowercase (@code{stringdown}) or uppercase (@code{stringup}) version (if
@@ -17514,8 +17512,9 @@ inhibit postprocessing such that the produced intermediate output is
 sent to standard output just as it is when calling GNU @code{troff}
 directly.
 
-@cindex @code{troff} output
-@cindex output, @code{troff}
+@cindex @code{troff} output format
+@cindex output format, @code{troff}
+@cindex format, @code{troff} output
 @cindex intermediate output
 @cindex output, intermediate
 Here, the term @dfn{troff output} describes what is output by

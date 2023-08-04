@@ -1,3 +1,32 @@
+2023-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Deprecate `SB` macro.  It is a SunOS 4.0 (1988) extension
+	that in most contexts, does nothing you can't achieve with `SM`
+	and `B` together (in either order).
+
+	Study of the SunOS 4 man page corpus suggests a reason for its
+	introduction of this macro: use of `SB` immediately after `TP`
+	was common (610 out of 2,111 occurrences).  The problem with
+	`TP` and the mechanism suggested above is that input traps in
+	troff normally ignore the `\c` escape sequence, the use of which
+	would be necessary to get the desired effect.  In groff since
+	1.22.4, the man(7) `TP` macro uses GNU troff's `itc` request,
+	which _does_ respect `\c`.  (mandoc(1) behaves compatibly with
+	groff man >= 1.22.4.)  Solaris 11 switched to groff as its troff
+	implementation, so there is no reason for newly written or
+	currently maintained man pages to employ `SB`.
+
+	* tmac/an.tmac (SB): Throw deprecation warning.
+
+	* tmac/groff_man.7.man.in (Description): Move macro from table
+	to deprecation list.
+	(Font style macros): Move description from here...
+	(Deprecated features): ...to here.
+	(Portability): Drop mention, since we don't encourage people to
+	use it at all.
+
+	Fixes <https://savannah.gnu.org/bugs/?64515>.
+
 2023-08-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp (zoom_font): Validate arguments more.

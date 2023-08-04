@@ -751,9 +751,24 @@ contains unsupported escape sequence
 .  if \\n[.$] \&\\$*
 ..
 .
-.\" Set arguments (or next input line producing written or drawn output
-.\" if none) in bold style at smaller type size.
+.\" Deprecated: Set arguments (or next input line producing written or
+.\" drawn output if none) in bold style at smaller type size.
+.\"
+.\" This is a SunOS 4.0 extension.
+.\"
+.\" Instead of
+.\"   .SB whatever
+.\" say
+.\"   .SM
+.\"   .B whatever
+.\" or
+.\"   .B
+.\"   .SM whatever
+.\" to portably get an identical effect.
+.\"
+.\" .SB [text]
 .de1 SB
+.  nop \\*[an-deprecation-warn]\\
 .  it 1 an-input-trap
 .  ps -1
 .  ft B

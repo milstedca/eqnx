@@ -180,7 +180,6 @@ _
 \&.RE	Relative inset end	Document structure macros
 \&.RI	Roman, italic alternating	Font style macros
 \&.RS	Relative inset start	Document structure macros
-\&.SB	Small bold	Font style macros
 \&.SH	Section heading	Document structure macros
 \&.SM	Small	Font style macros
 \&.SS	Subsection heading	Document structure macros
@@ -201,6 +200,7 @@ We discuss other macros
 .BR .HP ,
 .BR .OP ,
 .BR .PD ,
+.BR .SB ,
 and
 .BR .UC )
 in subsection \(lqDeprecated features\(rq below.
@@ -1568,13 +1568,8 @@ Italic text is usually set underscored instead on terminal devices.
 .
 The
 .B .SM
-and
-.B .SB
-macros set text in roman or bold,
-respectively,
-at a smaller type size;
-these differ visually from regular-sized roman or bold text only on
-typesetting devices.
+macro sets text at a smaller type size;
+it differs visually from regular-sized text only on typesetting devices.
 .
 It is often necessary to set text in different styles without
 intervening space.
@@ -1723,39 +1718,6 @@ at normal size instead.
 Do not rely upon
 .B .SM
 to communicate semantic information distinct from using roman style at
-normal size;
-it will be hidden from readers using such devices.
-.
-.
-_endif()dnl
-.TP
-.BR .SB \~[\c
-.IR text ]
-Set
-.I text
-in bold and
-(on typesetting devices)
-one point smaller than the default type size.
-.
-If no argument is given,
-a one-line input trap is planted;
-text on the next line,
-which can be further formatted with a macro,
-is set smaller and in bold.
-.
-This macro is an extension introduced in SunOS\~4.0.
-.
-.
-_ifstyle()dnl
-.IP
-.I Note:
-terminals will render
-.I text
-in bold at the normal size instead.
-.
-Do not rely upon
-.B .SB
-to communicate semantic information distinct from using bold style at
 normal size;
 it will be hidden from readers using such devices.
 .
@@ -2388,11 +2350,10 @@ The macros we have described as extensions
 .BR .TQ ,
 .BR .UR / .UE ,
 .BR .MT / .ME ,
-.BR .MR ,
 and
-.BR .SB )
+.BR .MR )
 should be used with caution,
-as they may not be built in to some viewer that is important to your
+as they may not be supported by a formatter that is important to your
 audience.
 .
 See
@@ -3150,6 +3111,55 @@ information or distinctions that you use
 to express are likely to be lost.
 .
 .
+.TP
+.BR .SB \~[\c
+.IR text ]
+Set
+.I text
+in bold and
+(on typesetting devices)
+one point smaller than the default type size.
+.
+If no argument is given,
+a one-line input trap is planted;
+text on the next line,
+which can be further formatted with a macro,
+is set smaller and in bold.
+.
+Use of this macro,
+an extension originating in SunOS\~4.0
+.IR troff ,\" SunOS
+.\" ..and which Clark included in groff man(7) from 1.01 or earlier...
+is deprecated.
+.
+.B .SM
+without an argument,
+followed immediately by
+.RB \(lq .B
+.IR text \(rq,
+produces the same output more portably.
+.
+The macros' order is interchangable;
+put
+.I text
+with the latter.
+.
+.
+_ifstyle()dnl
+.IP
+.I Note:
+terminals will render
+.I text
+in bold at the normal size instead.
+.
+Do not rely upon
+.B .SB
+to communicate semantic information distinct from using bold style at
+normal size;
+it will be hidden from readers using such devices.
+.
+.
+_endif()dnl
 .TP
 .BR .UC " ["\c
 .IR version ]

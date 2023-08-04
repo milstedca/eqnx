@@ -3315,6 +3315,11 @@ Later,
 and
 .BR .UR / .UE .
 .\" ...along with implementations of OP, EX, and EE.
+.\"
+.\" It's not clear exactly when `OP` showed up in DWB troff.  It wasn't
+.\" in 1.0 (1984), but was by the time of the 3.3 release (1992).  Scans
+.\" of DWB manuals online suggest that AT&T did not bother to document
+.\" DWB's man(7) implementation in printed matter (nor its ms(7)).
 .
 Plan\~9 from User Space's
 .I troff \" plan9port

@@ -262,7 +262,7 @@
 .  \}
 .
 .  \" The previous document rendered in a batch may have been in a
-.  \" different language.  If this one is in English, (re-)init strings.
+.  \" different language.
 .  if '\\*[locale]'english' .an*localize-strings
 .
 .  ps \\n[PS]u
@@ -990,6 +990,11 @@ contains unsupported escape sequence
 .
 .\" Deprecated: Style an option with an argument (mandatory if
 .\" specified) for a command synopsis.
+.\"
+.\" This is a Documenter's Workbench troff extension.  It is not
+.\" flexible enough to handle GNU-style options like
+.\" `--input=file-name`.  Use font alternation macros instead.
+.\"
 .\" .OP flag [option-parameter]
 .de1 OP
 .  nop \\*[an-deprecation-warn]\\

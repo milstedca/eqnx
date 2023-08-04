@@ -1740,29 +1740,32 @@ speak of liberty as long as economic slavery exists.
 @endExample
 
 @cindex break (introduction)
-@cindex line break (introduction)
+@cindex line break, output (introduction)
+@cindex output line break (introduction)
 Sometimes a new output line should start even though the current line is
-not yet full---for example, at the end of a paragraph.  Command a break
-with the @code{br} request.  Some requests cause a break automatically,
-as do (normally) blank input lines and input lines beginning with a
-space or tab.
+not yet full---for example, at the end of a paragraph.  GNU @code{troff}
+will do this for us automatically at the end of input, but we often want
+a break sooner, and more frequently.  We want to @emph{instruct} the
+formatter.
 
-Not all input lines are @slanted{text lines} containing words to be
-formatted.  @slanted{Control lines} start with a dot (@samp{.}) or an
-apostrophe (@samp{'}) as the first character, and are followed by a
-request or macro name that tells a macro package (or GNU @code{troff}
-directly) how to format the text.
+To that end, not all input lines are @slanted{text lines} containing
+words to be formatted.  @slanted{Control lines} start with a dot
+(@samp{.}) or an apostrophe (@samp{'}) as the first character, and are
+followed by a request or macro name that tells a macro package (or GNU
+@code{troff} directly) how to format the text.
 
-For example, as implied above, the control line
+We can command a break with the @code{br} request.  Some requests cause
+a break automatically, as do (normally) blank input lines and input
+lines beginning with a space or tab.
 
-@Example
-.br
-@endExample
+A @slanted{macro} bundles text and/or control lines into a named
+collection that can be called like a request, or set to ``go off''
+automatically at certain places on the page.  Thus, while requests
+perform primitive operations, macro packages handle complex ones, like
+arranging the output into columns, collecting and writing out footnotes,
+or managing page headers and footers.
 
-@noindent
-will break the output line.
-
-Manu requests and macro calls accept @slanted{arguments} that influence
+Many requests and macro calls accept @slanted{arguments} that influence
 their behavior.  The @code{sp} request, without an argument, breaks and
 puts a blank line on the output.  But
 
@@ -1773,13 +1776,6 @@ puts a blank line on the output.  But
 @noindent
 spaces four lines instead.  Arguments are separated from the request and
 from each other by spaces (@emph{not} tabs).  @xref{Invoking Requests}.
-
-A @slanted{macro} bundles text and/or control lines into a named
-collection that can be called like a request, or set to ``go off''
-automatically at certain places on the page.  Thus, while requests
-perform primitive operations, macro packages handle complex ones, like
-altering the page numbering scheme, collecting and writing out
-footnotes, or managing page headers and footers.
 
 Here are a few hints for preparing text for input to GNU @code{troff}.
 

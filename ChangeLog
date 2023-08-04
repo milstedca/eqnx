@@ -1,5 +1,13 @@
 2023-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Regression-test Debian #1038391.
+
+	* src/preproc/tbl/tests/\
+	align-staggered-text-blocks-correctly.sh: Do it.
+	* src/preproc/tbl/tbl.am (tbl_TESTS): Run test.
+
+2023-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[man]: Deprecate `SB` macro.  It is a SunOS 4.0 (1988) extension
 	that in most contexts, does nothing you can't achieve with `SM`
 	and `B` together (in either order).

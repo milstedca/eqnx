@@ -464,7 +464,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0+Git
-@subtitle July 2023
+@subtitle August 2023
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -10405,7 +10405,7 @@ is undone.
 @c styles?
 @endDefreq
 
-@DefreqList {fzoom, f [@Var{zoom}]}
+@DefreqList {fzoom, font [@Var{zoom}]}
 @DefregListEndx {.zoom}
 @cindex magnification of a font (@code{fzoom})
 @cindex font, magnification (@code{fzoom})
@@ -10415,28 +10415,31 @@ is undone.
 @cindex optical size of a font
 @cindex font, optical size
 @cindex size, optical, of a font
-Set magnification of font@tie{}@var{f} to factor @var{zoom}, which must
-be a non-negative integer, a multiplier of the current type size in
-thousandths.  @code{fzoom} adjusts the apparent size of a font in
-relation to others.  In the example below, font @code{CR} is magnified
-by 10% (the zoom factor is thus 1.1).
+Set magnification of mounted @var{font} to factor @var{zoom}, a
+multiplier applied to the type size in thousandths.  @var{zoom} must be
+non-negative.  @code{fzoom} applies to glyphs when they are formatted,
+altering a font's apparent size in relation to others.  A missing or
+zero @var{zoom} is treated as @samp{1000}---no magnification.
+@var{font} must be a resolved font name, not an abstract style.
+
+Font magnification is transparent to GNU @code{troff}; a change of the
+zoom factor affects scaling of glyph sizes, inter-word and
+inter-sentence spaces, and kerning adjustments on the output device.  It
+is not reflected in registers that report the requested or current type
+size, or the measurements reported by the @code{\w} escape sequence.
+
+@code{fzoom} can harmonize the apparent cap-heights of fonts from
+different families when formatted on the same baseline.
 
 @Example
-.fam P
-.fzoom CR 1100
-.ps 12
-Palatino and \f[CR]Courier\f[]
+.fzoom HR 900
+.fzoom CR 1150
+.fzoom PR 950
+Times, \F[H]Helvetica\F[], \F[C]Courier\F[],
+and \F[P]Palatino\F[].
+.sp
+M\F[H]M\F[C]M\F[P]M
 @endExample
-
-A missing or zero value of @var{zoom} is treated as @samp{1000}, meaning
-no magnification.  @var{f}@tie{}must be a resolved font name, not an
-abstract style.
-@c XXX: What about a mounting position?  It's not rejected...
-
-The magnification of a font is transparent to GNU @code{troff}; a change
-of the zoom factor doesn't cause any effect except that the dimensions
-of glyphs, (word) spaces, kerns, etc., of the affected font are adjusted
-accordingly.
 
 The zoom factor of the current font is available in the read-only
 register @samp{.zoom}.  It interpolates zero if there is no

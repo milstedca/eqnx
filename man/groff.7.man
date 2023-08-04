@@ -3204,12 +3204,13 @@ Stop magnifying
 .IR font .
 .
 .TPx
-.REQ .fzoom "font z"
-Set zoom factor for
+.REQ .fzoom "font zoom"
+Set magnification of mounted
 .I font
-.RI to\~ z
-(in thousandths;
-default:
+to
+.IR zoom ,
+a multiplier of the current type size in thousandths
+(default:
 1000).
 .
 .TPx

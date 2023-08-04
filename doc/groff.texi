@@ -10259,12 +10259,12 @@ monospaced family @samp{C} (``Courier'').  Historical inertia has driven
 names, as with @samp{TR}, @samp{TI}, @samp{TB}, @samp{TBI}, and a
 special font @samp{S}.
 
-The default family used with abstract styles can be changed at any time;
-initially, it is @samp{T}.  Typically, abstract styles are arranged in
-the first four mounting positions in the order shown above.  The default
-mounting position, and therefore style, is always @samp{1} (@samp{R}).
-By issuing appropriate formatter instructions, you can override these
-defaults before your document writes its first glyph.
+The default family used with abstract styles is initially @samp{T}.
+Typically, abstract styles are arranged in the first four mounting
+positions in the order shown above.  The default mounting position, and
+therefore style, is always @samp{1} (@samp{R}).  By issuing appropriate
+formatter instructions, you can override these defaults before your
+document writes its first glyph.
 
 @cindex graphic renditions
 @cindex renditions, graphic
@@ -10297,8 +10297,9 @@ attributes).
 @cindex font, selection
 
 We use @dfn{font} to refer to any of several means of identifying a
-font: by mounting position (@samp{3}), by abstract style (@samp{B}), or
-by its identifier (@samp{TB}).
+typeface: by its mounting position (@samp{3}), by its identifier
+(@samp{TB}), by an abstract style (@samp{B}) combined with a default
+family.
 
 @DefreqList {ft, [@Var{font}]}
 @DefescItemx {\\f, , f, }
@@ -10518,7 +10519,6 @@ a single character as an argument) to change the font family on the fly.
 @endExample
 @endDefreq
 
-@need 1000
 @DefreqList {sty, n style}
 @DefregListEndx {.sty}
 @cindex setting up an abstract font style (@code{sty})
@@ -11806,16 +11806,15 @@ And a third.
 @cindex spacing, vertical
 These concepts were introduced in @ref{Page Geometry}.  The height of a
 font's tallest glyph is one em, which is equal to the type size in
-points.@footnote{In text fonts, the tallest glyphs are typically
-parentheses.  Unfortunately, in many cases the actual dimensions of the
-glyphs in a font do not closely match its declared type size!  For
-example, in the standard PostScript font families, 10-point Times sets
-better with 9-point Helvetica and 11-point Courier than if all three
-were used at 10@tie{}points.}  A vertical spacing of less than 120% of
-the type size can make a document hard to read.  Larger proportions can
-be useful to spread the text for annotations or proofreader's marks.  By
-default, GNU @code{troff} uses 10@tie{}point type on 12@tie{}point
-spacing.
+points.@footnote{In text fonts, parentheses are often the tallest
+glyphs, but a font's glyphs may not match the nominal type size!  In the
+standard PostScript font families, 10-point Times sets better with
+9-point Helvetica and 11-point Courier than if all were used at
+10@tie{}points.  Recall the @code{fzoom} request in @ref{Selecting
+Fonts} for a remedy.}  A vertical spacing of less than 120% of the type
+size can make a document hard to read.  Larger proportions can be useful
+to spread the text for annotations or proofreader's marks.  By default,
+GNU @code{troff} uses 10@tie{}point type on 12@tie{}point spacing.
 @cindex leading
 Typographers call the difference between type size and vertical spacing
 @dfn{leading}.@footnote{Rhyme with ``sledding''; mechanical typography
@@ -11840,14 +11839,12 @@ used lead metal (Latin @emph{plumbum}).}
 @cindex changing type sizes (@code{ps}, @code{\s})
 @cindex type sizes, changing (@code{ps}, @code{\s})
 @cindex point sizes, changing (@code{ps}, @code{\s})
-Use the @code{ps} request or the @code{\s} escape sequence to change
-(increase, decrease) the type size (in scaled points).  Specify
-@var{size} as either an absolute type size, or as a relative change from
-the current size.  @code{ps} with no argument restores the previous
-size.  The @code{ps} request's default scaling unit is @samp{z}.  The
-requested size is rounded to the nearest valid size (with ties rounding
-down) within the limits supported by the device.  If the requested size
-is non-positive, it is treated as 1@dmn{u}.
+Set (increase, decrease) the type size to (by) @var{size} scaled points.
+@code{ps} with no argument restores the previous size.  The @code{ps}
+request's default scaling unit is @samp{z}.  The requested size is
+rounded to the nearest valid size (with ties rounding down) within the
+limits supported by the device.  If the requested size is non-positive,
+it is treated as 1@dmn{u}.
 
 @cindex CSTR@tie{}#54 errata
 @cindex CSTR@tie{}#54 erratum, @code{ps} request
@@ -11950,6 +11947,7 @@ The read-only register @code{.v} contains the vertical spacing; it is
 associated with the environment (@pxref{Environments}).
 @endDefreq
 
+@need 200
 @cindex vertical line spacing, effective value
 @noindent
 When a break occurs, GNU @code{troff} performs the following procedure.

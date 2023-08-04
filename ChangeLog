@@ -1,5 +1,27 @@
 2023-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tbl]: Fix staggering of text block cells.
+
+	* src/preproc/tbl/table.cpp: Add C preprocessor macro storing a
+	"text block staggering macro".
+	(block_entry::position_vertically): Call it in generated output
+	with a negative half-vee motion.
+	(block_entry::position_vertically, left_block_entry::print)
+	(right_block_entry::print, center_block_entry::print)
+	(alphabetic_block_entry::print): Call it in generated output
+	with a positive half-vee motion.
+	(table::init_output): Write out its definition in generated
+	output.  It wraps the `sp` request.  If we're in a diversion,
+	use the `\!` technique to recursively call ourselves and bubble
+	up the spacing request a diversion level (spacing requests of
+	anything other than 1v are ignored in diversions).  Otherwise,
+	invoke the request.
+
+	Fixes <https://savannah.gnu.org/bugs/?64454> a.k.a. Debian
+	#1038391.  Thanks to наб for the report and a good test case.
+
+2023-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Regression-test Debian #1038391.
 
 	* src/preproc/tbl/tests/\

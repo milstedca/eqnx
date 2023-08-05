@@ -1,5 +1,13 @@
 2023-08-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Add paranoia to `token::description()`.
+
+	* src/roff/troff/input.cpp (token::description): Clear static
+	buffer on entry to function to avoid another problem like
+	Savannah #62813.
+
+2023-08-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor (`define_color`).
 
 	* src/roff/troff/input.cpp (define_color): Throw more helpful

@@ -2505,6 +2505,7 @@ const char *token::description()
 {
   const size_t bufsz = strlen("character 'x'") + 1;
   static char buf[bufsz];
+  (void) memset(buf, 0, bufsz);
   switch (type) {
   case TOKEN_BACKSPACE:
     return "a backspace character";

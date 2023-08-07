@@ -1,3 +1,10 @@
+2023-08-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[src]: Add template function for obtaining the length of an
+	array.
+
+	* src/include/lib.h (array_size) [__cplusplus]: Do it.
+
 2023-08-22  Dave Kemper <saint.snit@gmail.com>
 
 	* doc/pic.ms: Document `PY` macro, new to groff 1.23.0.

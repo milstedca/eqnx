@@ -1552,7 +1552,7 @@ language input to the formatter,
 which in turn generates a document in a page description language that
 is then interpreted by a postprocessor for viewing,
 printing,
-or further processing.
+or further handling.
 .
 .
 .P

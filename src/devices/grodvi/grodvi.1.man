@@ -500,7 +500,7 @@ show version information;
 all exit afterward.
 .
 .
-.TP
+.TP 8n
 .B \-d
 Do not use
 .I tpic

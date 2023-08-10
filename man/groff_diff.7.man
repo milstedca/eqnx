@@ -437,7 +437,7 @@ permits spaces in a numeric expression within parentheses,
 and offers three new operators.
 .
 .
-.TP
+.TP 8n \" "e1>?e2" +2n
 .IB e1 >? e2
 Interpolate the greater of
 .I e1
@@ -633,7 +633,7 @@ and then by symbol roughly in Unicode code point order.
 .\" order more agreeable to the development of a topic.
 .
 .
-.TP 7.5 \" sinfully obtain better pagination on typesetters
+.TP 8n \" "\s+'n'" + 2n
 .BI \[rs]A\[aq] anything \[aq]
 Interpolate 1 if
 .I anything
@@ -1342,7 +1342,7 @@ and
 .SS "New requests"
 .\" ====================================================================
 .
-.TP
+.TP 8n \" ".break" + 2n
 .BI .aln\~ "new old"
 Create alias
 .I new
@@ -2252,7 +2252,7 @@ except for the following data.
 .
 .
 .RS
-.IP \[bu] 2n
+.IP \[bu] 3n
 a partially collected line,
 if present;
 .
@@ -2586,7 +2586,7 @@ The following scanning rules are implemented.
 .
 .
 .RS
-.IP \[bu] 2n
+.IP \[bu] 3n
 A percent sign starts a comment
 (up to the end of the line)
 even if preceded by a backslash.
@@ -3827,7 +3827,7 @@ exposes more formatter state via many new read-only registers.
 Their names often correspond to the requests that affect them.
 .
 .
-.TP 12n
+.TP 13n \" "\n[.height]" + 2n
 .B \[rs]n[.br]
 Within a macro call,
 interpolate\~1
@@ -4776,7 +4776,7 @@ escape sequences employing these extensions if its
 option is given.
 .
 .
-.TP
+.TP 8n \" "DE h v" + 2n
 .BI Df\~ n
 Set the shade of gray used to fill geometric objects to
 .IR n ,
@@ -5692,7 +5692,7 @@ problem reports and patches are welcome.
 The following incompatibilities are known.
 .
 .
-.IP \[bu] 2n
+.IP \[bu] 3n
 The drawing position after rendering polygons is inconsistent with AT&T
 .I troff \" AT&T
 practice.

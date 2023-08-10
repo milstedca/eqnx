@@ -960,7 +960,7 @@ are
 .
 .RS \" Invisibly move left margin to current .IP indentation.
 .RS 4n \" Now indent further, visibly.
-.IP (1) 4n
+.IP (1) 5n \" "(1)" + 3n
 to start a new paragraph with the same indentation as an immediately
 preceding
 .B .IP
@@ -1197,7 +1197,7 @@ produces the following output.
 Several features of the above example are of note.
 .
 .
-.IP \(bu 2n
+.IP \(bu 3n
 The empty request (.),
 which does nothing,
 is used to vertically space the input file for readability by the
@@ -3366,7 +3366,7 @@ reader preferences,
 man pages should never manipulate them.
 .
 .
-.TP
+.TP 8n \" "-rcR=1" + 2n
 .BI \-dAD= adjustment-mode
 Set line adjustment to
 .I adjustment-mode,

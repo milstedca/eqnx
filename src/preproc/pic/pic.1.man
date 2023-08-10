@@ -208,7 +208,7 @@ show version information;
 all exit afterward.
 .
 .
-.TP
+.TP 8n \" "-T dev" + 2n
 .B \-c
 Be more compatible with
 .IR tpic ;
@@ -317,6 +317,7 @@ Draw all lines using the \[rs]D escape sequence.
 GNU
 .I pic \" GNU
 always does this.
+.
 .
 .TP
 .BI \-T\~ dev

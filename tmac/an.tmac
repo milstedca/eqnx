@@ -170,7 +170,7 @@
 .
 .de an-reset-margin-and-inset-level
 .  nr an-inset-level 1
-.  nr an-margin \\n[IN]
+.  nr an-margin \\n[BP]
 .  nr an-saved-margin1 \\n[IN]
 .  nr an-prevailing-indent \\n[IN]
 .  nr an-saved-prevailing-indent1 \\n[IN]
@@ -681,7 +681,7 @@ contains unsupported escape sequence
 .  an-break-paragraph
 .  an-reset-margin-and-inset-level
 .  fi
-.  in \\n[an-margin]u
+.  in \\n[BP]u
 .  ti 0
 .  nr an-devtag-needs-end-of-heading 1
 .  DEVTAG-SH 1
@@ -708,7 +708,7 @@ contains unsupported escape sequence
 .  an-break-paragraph
 .  an-reset-margin-and-inset-level
 .  fi
-.  in \\n[IN]u
+.  in \\n[BP]u
 .  ti \\n[SN]u
 .  nr an-devtag-needs-end-of-heading 1
 .  DEVTAG-SH 2
@@ -1343,6 +1343,10 @@ contains unsupported escape sequence
 .  if !r PDFOUTLINE.FOLDLEVEL .nr PDFOUTLINE.FOLDLEVEL 1
 .  if !r PDFHREF.VIEW.LEADING .nr PDFHREF.VIEW.LEADING 10p
 .\}
+.
+.\" base paragraph indentation
+.if !r BP \
+.  nr BP 5n
 .
 .\" continuous rendering (one long page)
 .if !r cR \{\

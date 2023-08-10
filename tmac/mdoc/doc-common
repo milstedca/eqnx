@@ -1483,7 +1483,7 @@
 .    if t \
 .      ss \n[doc-reg-Sh] \n[doc-reg-Sh1]
 .
-.    in \n[IN]u
+.    in \n[BP]u
 .    ns
 .
 .    doc-check-depth

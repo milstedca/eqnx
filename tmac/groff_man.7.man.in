@@ -582,10 +582,8 @@ use of an italic style in
 .I heading-text
 is mapped to the bold-italic style if available in the font family.
 .
-The inset level is reset to 1,
-setting the left margin to the value of the
-.B IN \" TODO: future: BP or BI register ("base paragraph indentation")
-register.
+The inset level is reset to 1;
+see subsection \(lqHorizontal and vertical spacing\(rq below.
 .
 Text after
 .I heading-text
@@ -653,10 +651,8 @@ use of an italic style in
 .I subheading-text
 is mapped to the bold-italic style if available in the font family.
 .
-The inset level is reset to 1,
-setting the left margin to the value of the
-.B IN \" TODO: future: BP or BI register ("base paragraph indentation")
-register.
+The inset level is reset to 1;
+see subsection \(lqHorizontal and vertical spacing\(rq below.
 .
 Text after
 .I subheading-text
@@ -768,7 +764,7 @@ calls is\~1.
 .IR level ]
 End a relative inset.
 .
-The left margin corresponding to inset level
+The inset amount corresponding to inset level
 .I level
 is restored.
 .
@@ -3388,6 +3384,15 @@ for less-common choices.
 .
 .
 .TP
+.BI \-rBP= base-paragraph-indentation
+Set the indentation amount for ordinary paragraphs not within an
+.BR .RS / .RE
+inset.
+.
+The default is 5n.
+.
+.
+.TP
 .B \-rcR=1
 Enable continuous rendering.
 .
@@ -3494,10 +3499,7 @@ see section \[lq]Localization\[lq] of
 .
 .TP
 .BI \-rIN= standard-indentation
-Set the amount of indentation used for ordinary paragraphs
-.RB ( .P
-and its synonyms)
-and the default indentation amount used by
+Set the default indentation amount used by
 .BR .IP ,
 .BR .RS ,
 .BR .TP ,
@@ -4228,6 +4230,7 @@ implemented the
 and
 .B MF
 strings;
+.BR BP , \" 1.24
 .BR CS ,
 .BR CT ,
 and
@@ -4235,7 +4238,7 @@ and
 registers;
 and the
 .B MR
-macro. \" all 1.23
+macro. \" all 1.23 except where noted
 .
 .
 Except for

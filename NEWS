@@ -49,6 +49,16 @@ o Hyperlink support is now enabled by default on non-HTML devices that
   Instructions and commented code for disabling it remain in the
   "man.local" file.
 
+o The an (man) and doc (mdoc) macro packages now support a `BP` register
+  to configure the ("base") paragraph indentation amount; that is the
+  amount used by man(7) for paragraphs not within an `RS`/`RE` relative
+  inset, and in mdoc(7) for all paragraphs.  Formerly, the `IN` register
+  configured this amount with other indentation and inset amount
+  parameters used by man(7).  (In mdoc(7), it had no other purpose.)
+  The base paragraph indentation default is now 5n, corresponding to
+  that used by historical man(7) and mdoc(7) implementations going back
+  to Unix Version 7 and 4.3BSD-Reno, respectively.
+
 o The an (man) and doc (mdoc) macro packages now support a `PO` register
   to configure the page offset used by the formatter.
 

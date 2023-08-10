@@ -5088,17 +5088,16 @@ register to zero.
 .Pp
 The paragraph and subsection heading indentation amounts can be changed
 by setting the registers
-.Ql IN
+.Ql BP
 and
 .Ql SN .
 .
-.Dl groff \-Tutf8 \-rIN=5n \-rSN=2n \-mdoc foo.man | less \-R
+.Dl groff \-Tutf8 \-rBP=4n \-rSN=2n \-mdoc foo.man | less \-R
 .
-The default paragraph indentation is 7.2n on typesetters and 7n on
-terminals.
+The default paragraph and subsection heading indentation amounts are 5n
+and 3n, respectively.
 .
-The default subsection heading indentation amount is 3n;
-section headings are set with an indentation of zero.
+Section headings are set with an indentation of zero.
 .
 .
 .Pp

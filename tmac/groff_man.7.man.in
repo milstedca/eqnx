@@ -714,7 +714,7 @@ before the spaces.
 _endif()dnl
 .IP
 .\" Also see subsection "History" below...
-These macros are extensions introduced in Research Ninth Edition Unix.
+These macros are extensions introduced in Ninth Edition Unix.
 .
 Systems running that
 .IR troff , \" AT&T Research Unix
@@ -3302,7 +3302,7 @@ and
 .
 .\" Per Doug McIlroy in
 .\" <https://lists.gnu.org/archive/html/groff/2019-07/msg00038.html>...
-Research Ninth Edition Unix (1986) introduced
+Ninth Edition Unix (1986) introduced
 .B .EX
 and
 .BR .EE .

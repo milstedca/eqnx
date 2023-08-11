@@ -566,7 +566,7 @@ Use the special character escape sequence
 .Ql \[rs](dq
 to format it.
 .\" That's NOT a groffism, but showed up in the "post" and "Latin1"
-.\" devices of Tenth Edition Research Unix.
+.\" devices of Documenter's Workbench (DWB) 3.3 troff.
 .
 Further,
 this glyph should not be used for conventional quotation;

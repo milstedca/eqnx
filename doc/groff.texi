@@ -12866,7 +12866,7 @@ a macro as a string to interpose a wrapper around the macro @samp{MAC}
 
 @c ---------------------------------------------------------------------
 
-@node if-else, while, Operators in Conditionals, Conditionals and Loops
+@node if-else, Conditional Blocks, if-then, Conditionals and Loops
 @subsection if-else
 @cindex if-else
 
@@ -12909,7 +12909,7 @@ To conveniently nest conditionals, keep reading.
 
 @c ---------------------------------------------------------------------
 
-@node Conditional Blocks, while, Operators in Conditionals, Conditionals and Loops
+@node Conditional Blocks, while, if-else, Conditionals and Loops
 @subsection Conditional Blocks
 @cindex conditional blocks
 @cindex blocks, conditional
@@ -14020,7 +14020,7 @@ an actual emergency!
 
 @c =====================================================================
 
-@node Drawing Geometric Objects, Traps, Page Motions, GNU troff Reference
+@node Drawing Geometric Objects, Deferring Output, Page Motions, GNU troff Reference
 @section Drawing Geometric Objects
 @cindex drawing requests
 @cindex requests for drawing
@@ -15757,7 +15757,7 @@ line emitted in the environment.
 
 @c =====================================================================
 
-@node Suppressing Output, Colors, Environments, GNU troff Reference
+@node Suppressing Output, I/O, Environments, GNU troff Reference
 @section Suppressing Output
 
 @Defesc {\\O, [, num, ]}

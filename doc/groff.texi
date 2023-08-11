@@ -523,7 +523,7 @@ extensively for over thirty years.
 @menu
 * Background::
 * What Is @code{groff}?::
-* @code{groff} Capabilities::
+* GNU @command{troff} Capabilities::
 * Macro Package Intro::
 * Preprocessor Intro::
 * Output Device Intro::
@@ -570,13 +570,13 @@ ever undertaken.
 @end quotation
 @c https://minnie.tuhs.org/pipermail/tuhs/2022-March/025535.html
 
-A history relating @code{groff} to its predecessors @code{roff},
+A history relating @code{groff} to its forerunners @code{roff},
 @code{nroff}, and @code{troff} is available in @cite{roff@r{(7)}}.
 
 
 @c =====================================================================
 
-@node What Is @code{groff}?, @code{groff} Capabilities, Background, Introduction
+@node What Is @code{groff}?, GNU @command{troff} Capabilities, Background, Introduction
 @section What Is @code{groff}?
 @cindex what is @code{groff}?
 @cindex @code{groff}---what is it?
@@ -602,20 +602,33 @@ resources.
 @c END Keep parallel with groff(1), section "Description" (after the
 @c first sentence).
 
+@c BEGIN Keep parallel with groff(1), section "Usage" (introduction).
+The architecture of the GNU @code{roff} system follows that of other
+device-independent @code{roff} implementations, comprising
+preprocessors, macro packages, output drivers (or ``postprocessors''),
+and a suite of utilities, with the formatter program @command{troff} at
+its heart.
+
+The @command{groff} front end program makes the GNU @code{roff} system
+easier to use than traditional @code{roff}s that required the
+construction of pipelines or use of temporary files to carry a source
+document from maintainable form to device-ready output.
+@c END Keep parallel with groff(1), section "Usage" (introduction).
+
 
 @c =====================================================================
 
-@node @code{groff} Capabilities, Macro Package Intro, What Is @code{groff}?, Introduction
-@section @code{groff} Capabilities
-@cindex @code{groff} capabilities
-@cindex capabilities of @code{groff}
+@node GNU @command{troff} Capabilities, Macro Package Intro, What Is @code{groff}?, Introduction
+@section GNU @command{troff} Capabilities
+@cindex GNU @command{troff} capabilities
+@cindex capabilities of GNU @command{troff}
 
-GNU @code{troff} is a typesetting document formatter; it provides a wide
-range of low-level text and page operations within the framework of a
-programming language.  These operations compose to generate footnotes,
-tables of contents, mathematical equations, diagrams, multi-column text,
-and other elements of typeset works.  Here is a survey of formatter
-features; all are under precise user control.
+GNU @command{troff} is a typesetting document formatting program; it
+provides a wide range of low-level text and page operations within the
+framework of a programming language.  These operations compose to
+generate footnotes, tables of contents, mathematical equations,
+diagrams, multi-column text, and other elements of typeset works.  Here
+is a survey of formatter features; all are under precise user control.
 
 @itemize @bullet
 @item
@@ -656,7 +669,7 @@ embedding of hyperlinks, images, document metadata, and other inclusions
 
 @c =====================================================================
 
-@node Macro Package Intro, Preprocessor Intro, @code{groff} Capabilities, Introduction
+@node Macro Package Intro, Preprocessor Intro, GNU @command{troff} Capabilities, Introduction
 @section Macro Packages
 @cindex macro package, introduction
 @cindex package, macro, introduction
@@ -683,9 +696,9 @@ constructing tables, setting mathematics, or drawing diagrams, lies in
 preprocessing.  A @dfn{preprocessor} employs a domian-specific language
 to ease the generation of tables, equations, and so forth in terms that
 are convenient for human entry.  Each preprocessor reads a document and
-translates the parts of it that apply to it into GNU @code{troff} input.
-Command-line options to @command{groff} tell it which preprocessors to
-use.
+translates the parts of it that apply to it into GNU @command{troff}
+input.  Command-line options to @command{groff} tell it which
+preprocessors to use.
 
 @code{groff} provides preprocessors for laying out tables
 (@command{gtbl}), typesetting equations (@command{geqn}), drawing
@@ -699,7 +712,7 @@ not used on all systems; see @ref{Invoking groff}.}
 graphs.  A free implementation of it can be obtained separately.
 
 Unique to @code{groff} is the @code{preconv} preprocessor that enables
-@code{groff} to handle documents in a variety of input encodings.
+GNU @command{troff} to handle documents in a variety of input encodings.
 
 Other preprocessors exist, but no free implementations
 are known.  An example is @command{ideal}, which draws diagrams using a
@@ -714,7 +727,7 @@ mathematical constraint language.
 @cindex output devices
 @cindex devices for output
 
-GNU @code{troff}'s output is in a device-independent page description
+GNU @command{troff}'s output is in a device-independent page description
 language, which is then read by an @dfn{output driver} that translates
 this language into a file format or byte stream that a piece of
 (possibly emulated) hardware understands.  @code{groff} features output
@@ -747,10 +760,10 @@ system, and the command of that name.  In the first sense, @code{groff}
 is an extended dialect of the @code{roff} language, for which many
 similar implementations exist.
 
-The @code{roff} language features several major categories for which
-many items are predefined.  Presentations of these items feature the
-form in which the item is most commonly used on the left, and, aligned
-to the right margin, the name of the category in brackets.
+The @code{roff} language features several major syntactical categories
+for which many items are predefined.  Presentations of these items
+feature the form in which the item is most commonly used on the left,
+and, aligned to the right margin, the name of the category in brackets.
 
 @deffn Register \n[example]
 The register @samp{example} is one that that @code{groff} @emph{doesn't}
@@ -761,11 +774,11 @@ Registers}.
 To make this document useful as a reference and not merely amiable
 bedtime reading, we tend to present these syntax items in exhaustive
 detail when they arise.  References to topics discussed later in the
-text are frequent; skip material you don't understand yet.
+text are frequent; skim material you haven't mastered yet.
 
 We use Texinfo's ``result'' (@result{}) and @error{} notations to
 present output written to the standard output and standard error
-streams, respectively.  Diagnostic messages from the GNU @code{troff}
+streams, respectively.  Diagnostic messages from the GNU @command{troff}
 formatter and other programs are examples of the latter, but the
 formatter can also be directed to write user-specified messages to the
 standard error stream.  The notation then serves to identify the
@@ -838,27 +851,28 @@ contributed much of the material on the @file{ms} macro package.
 @c =====================================================================
 
 @node Invoking groff, Tutorial for Macro Users, Introduction, Top
-@chapter Invoking @code{groff}
-@cindex invoking @code{groff}
-@cindex @code{groff} invocation
+@chapter Invoking @command{groff}
+@cindex invoking @command{groff}
+@cindex @command{groff} invocation
 
-This chapter focuses on how to invoke the @code{groff} front end.  This
-front end takes care of the details of constructing the pipeline among
-the preprocessors, @code{gtroff} and the postprocessor.
+This chapter focuses on how to invoke the @command{groff} front end,
+which constructs a pipeline connecting desired preprocessors,
+the formatter program @command{gtroff}, and a postprocessor.
 
-It has become a tradition that GNU programs get the prefix @samp{g} to
-distinguish them from their original counterparts provided by the host
-(@pxref{Environment}).  Thus, for example, @code{geqn} is GNU
-@code{eqn}.  On operating systems like GNU/Linux or the Hurd, which
-don't contain proprietary versions of @code{troff}, and on
+A tradition has arisen that GNU programs' names bear a prefix @samp{g}
+where necessary to distinguish them from other implementations on the
+host system (@pxref{Environment}).  Thus, for example, @code{geqn} is
+GNU @code{eqn}.  On operating systems that don't contain proprietary
+versions of @code{troff} (like GNU/Linux and the Hurd), and on
 MS-DOS/MS-Windows, where @code{troff} and associated programs are not
-available at all, this prefix is omitted since GNU @code{troff} is the
-only incarnation of @code{troff} used.  Exception: @samp{groff} is never
-replaced by @samp{roff}.
+available at all, this prefix is omitted since GNU @command{troff} is
+the only incarnation of @code{troff} used.  Exception: @samp{groff} is
+never replaced by @samp{roff}.
 
-In this document, we consequently say @samp{gtroff} when talking about
-the GNU @code{troff} program.  @c XXX: Not for much longer... -- GBR
-All other implementations of @code{troff} are called @acronym{AT&T}
+In this document, we consequently sometimes say @samp{gtroff} when
+talking about the GNU @command{troff} command.
+@c XXX: Not for much longer... -- GBR
+Most other implementations of @code{troff} are called @acronym{AT&T}
 @code{troff}, which is the common origin of almost all @code{troff}
 implementations@footnote{Besides @code{groff}, @code{neatroff} is an
 exception.} (with more or less compatible changes).  Similarly, we say
@@ -891,22 +905,23 @@ exception.} (with more or less compatible changes).  Similarly, we say
 @pindex grefer
 @pindex gsoelim
 @pindex preconv
-@code{groff} normally runs the @code{gtroff} program and a
+@command{groff} normally runs the @command{gtroff} program and a
 postprocessor appropriate for the selected device.  The default device
 is @samp{ps} (but it can be changed at @code{groff}'s build-time
 configuration).  It can optionally preprocess input with any of
 @code{gpic}, @code{geqn}, @code{gtbl}, @code{ggrn}, @code{grap},
 @code{gchem}, @code{grefer}, @code{gsoelim}, or @code{preconv}.
 
-This section documents only options to the @code{groff} front end.  Many
-of the arguments to @code{groff} are passed on to @code{gtroff};
-therefore, those are also included.  Arguments to preprocessors and
-output drivers can be found in the man pages @cite{gpic@r{(1)}},
-@cite{geqn@r{(1)}}, @cite{gtbl@r{(1)}}, @cite{ggrn@r{(1)}},
-@cite{grefer@r{(1)}}, @cite{gchem@r{(1)}}, @cite{gsoelim@r{(1)}},
-@cite{preconv@r{(1)}}, @cite{grotty@r{(1)}}, @cite{grops@r{(1)}},
-@cite{gropdf@r{(1)}}, @cite{grohtml@r{(1)}}, @cite{grodvi@r{(1)}},
-@cite{grolj4@r{(1)}}, @cite{grolbp@r{(1)}}, and @cite{gxditview@r{(1)}}.
+This section documents only options to the @command{groff} front end.
+Many of the arguments to @command{groff} are passed on to
+@command{gtroff}; therefore, those are also included.  Arguments to
+preprocessors and output drivers can be found in the man pages
+@cite{gpic@r{(1)}}, @cite{geqn@r{(1)}}, @cite{gtbl@r{(1)}},
+@cite{ggrn@r{(1)}}, @cite{grefer@r{(1)}}, @cite{gchem@r{(1)}},
+@cite{gsoelim@r{(1)}}, @cite{preconv@r{(1)}}, @cite{grotty@r{(1)}},
+@cite{grops@r{(1)}}, @cite{gropdf@r{(1)}}, @cite{grohtml@r{(1)}},
+@cite{grodvi@r{(1)}}, @cite{grolj4@r{(1)}}, @cite{grolbp@r{(1)}}, and
+@cite{gxditview@r{(1)}}.
 
 A summary of @command{groff}'s usage is as follows.
 
@@ -926,7 +941,7 @@ groff [-abcCeEgGijklNpRsStUVXzZ] [-d @var{c}@var{s}]@
       [@var{file} @dots{}]
 @endExample
 
-@code{gtroff} shares much of this interface; @command{groff} passes
+@command{gtroff} shares much of this interface; @command{groff} passes
 relevant options and operands to it.
 
 @Example
@@ -1275,14 +1290,14 @@ This driver consists of two parts, a preprocessor
 
 @cindex output device name string (@code{.T})
 @cindex output device usage register (@code{.T})
-The predefined GNU @code{troff} string @code{.T} contains the name of
+The predefined GNU @command{troff} string @code{.T} contains the name of
 the output device; the read-only register @code{.T} is set to@tie{}1 if
 this option is used (which is always true if @command{groff} is used to
 call GNU @command{troff}).  @xref{Built-in Registers}.
 
 The postprocessor to be used for a device is specified by the
 @code{postpro} command in the device description file.  (@xref{Device
-and Font Description Files}.)  This can be overridden with the
+and Font Description Files}.)  This selection can be overridden with the
 @option{-X} option.
 
 @item -U
@@ -1340,14 +1355,15 @@ standard output stream (unless suppressed with @option{-z}; see
 @cindex environment variables
 @cindex variables in environment
 
-There are also several environment variables (of the operating system,
-not within @code{gtroff}) that can modify the behavior of @code{groff}.
+Several environment variables (of the operating system, unrelated to GNU
+@command{troff}'s @slanted{environments}) that can modify the behavior
+of @command{groff}.
 
 @table @code
 @item GROFF_BIN_PATH
 @tindex GROFF_BIN_PATH@r{, environment variable}
 This search path, followed by @code{PATH}, is used for commands executed
-by @code{groff}.
+by @command{groff}.
 
 @item GROFF_COMMAND_PREFIX
 @tindex GROFF_COMMAND_PREFIX@r{, environment variable}
@@ -1369,15 +1385,16 @@ used, none otherwise.
 @tindex GROFF_ENCODING@r{, environment variable}
 The value of this variable is passed to the @code{preconv}
 preprocessor's @option{-e} option to select the character encoding of
-input files.  This variable's existence implies the @code{groff} option
-@option{-k}.  If set but empty, @code{groff} calls @code{preconv}
-without an @option{-e} option.  @code{groff}'s @option{-K} option
-overrides @env{GROFF_ENCODING}.  See @cite{preconv@r{(7)}}.
+input files.  This variable's existence implies the @command{groff}
+option @option{-k}.  If set but empty, @command{groff} calls
+@code{preconv} without an @option{-e} option.  @command{groff}'s
+@option{-K} option overrides @env{GROFF_ENCODING}.  See
+@cite{preconv@r{(7)}}.
 
 @item GROFF_FONT_PATH
 @tindex GROFF_FONT_PATH@r{, environment variable}
 A list of directories in which to seek the selected output device's
-directory of device and font description files.  GNU @code{troff}
+directory of device and font description files.  GNU @command{troff}
 will search directories given as arguments to any specified @option{-F}
 options before these, and a built-in list of directories after them.
 @xref{Font Directories} and the @cite{troff@r{(1)}} or
@@ -1385,7 +1402,7 @@ options before these, and a built-in list of directories after them.
 
 @item GROFF_TMAC_PATH
 @tindex GROFF_TMAC_PATH@r{, environment variable}
-A list of directories in which to seek macro files.  GNU @code{troff}
+A list of directories in which to seek macro files.  GNU @command{troff}
 will search directories given as arguments to any specified @option{-M}
 options before these, and a built-in list of directories after them.
 @xref{Macro Directories} and the @cite{troff@r{(1)}} or
@@ -1394,8 +1411,8 @@ options before these, and a built-in list of directories after them.
 @item GROFF_TMPDIR
 @tindex GROFF_TMPDIR@r{, environment variable}
 @tindex TMPDIR@r{, environment variable}
-The directory in which @code{groff} creates temporary files.  If this is
-not set and @env{TMPDIR} is set, temporary files are created in that
+The directory in which @command{groff} creates temporary files.  If this
+is not set and @env{TMPDIR} is set, temporary files are created in that
 directory.  Otherwise temporary files are created in a system-dependent
 default directory (on Unix and GNU/Linux systems, this is usually
 @file{/tmp}).  @code{grops}, @code{grefer}, @code{pre-grohtml}, and
@@ -1456,7 +1473,7 @@ file is found or the list is exhausted.
 
 @itemize @bullet
 @item
-Directories specified with GNU @code{troff}'s or @code{groff}'s
+Directories specified with GNU @command{troff}'s or @command{groff}'s
 @option{-M} command-line option.
 
 @item
@@ -1533,7 +1550,7 @@ the desired font description file is found or the list is exhausted.
 
 @itemize @bullet
 @item
-Directories specified with GNU @code{troff}'s or @code{groff}'s
+Directories specified with GNU @command{troff}'s or @command{groff}'s
 @option{-f} command-line option.  All output drivers (and some
 preprocessors) support this option as well, because they require
 information about the glyphs to be rendered in the document.
@@ -1574,10 +1591,10 @@ fine-tune these locations during the source configuration process.
 @cindex orientation, landscape
 @cindex page orientation, landscape
 
-In @code{groff}, the page dimensions for the formatter GNU @code{troff}
-and for output devices are handled separately.  @xref{Page Layout}, for
-vertical manipulation of the page size, and @ref{Line Layout}, for
-horizontal changes.
+In @code{groff}, the page dimensions for the formatter GNU
+@command{troff} and for output devices are handled separately.
+@xref{Page Layout}, for vertical manipulation of the page size, and
+@ref{Line Layout}, for horizontal changes.
 @pindex papersize.tmac
 @pindex troffrc
 The @file{papersize} macro package, normally loaded by @file{troffrc} at
@@ -1599,9 +1616,9 @@ a description of the @code{papersize} keyword, which takes an argument
 of the same form as @option{-p}.  The output driver's man page, such as
 @cite{grops@r{(1)}}, may also be helpful.
 
-@code{groff} uses the command-line option @option{-P} to pass options to
-postprocessors; for example, use the following for PostScript output on
-A4 paper in landscape orientation.
+@command{groff} uses the command-line option @option{-P} to pass options
+to postprocessors; for example, use the following for PostScript output
+on A4 paper in landscape orientation.
 
 @Example
 groff -Tps -dpaper=a4l -P-pa4 -P-l -ms foo.ms > foo.ps
@@ -1618,7 +1635,7 @@ groff -Tps -dpaper=a4l -P-pa4 -P-l -ms foo.ms > foo.ps
 
 @code{roff} systems are best known for formatting man pages.  Once a
 @command{man} librarian program has located a man page, it may execute
-a @code{groff} command much like the following.
+a @command{groff} command much like the following.
 
 @Example
 groff -t -man -Tutf8 /usr/share/man/man1/groff.1

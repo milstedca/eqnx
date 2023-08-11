@@ -111,7 +111,7 @@ and behavior of AT&T Unix Version\~7
 .
 Many extensions from 4.2BSD (Berkeley)
 .\" Few changes were made in 4.3, Reno, Tahoe, or 4.4.
-and Tenth Edition Research Unix have been recreated.
+and Research Tenth Edition Unix have been recreated.
 .
 .
 .\" ====================================================================
@@ -665,7 +665,7 @@ is equivalent to using the
 .B nh
 request.
 .
-This is a Tenth Edition Research Unix extension.
+This is a Research Tenth Edition Unix extension.
 .
 .
 .\" ====================================================================
@@ -1116,7 +1116,7 @@ As
 .BR .B ,
 but use a bold italic or bold oblique style instead of upright bold.
 .
-This is a Tenth Edition Research Unix extension.
+This is a Research Tenth Edition Unix extension.
 .\" possibly 9th, but definitely not Berkeley
 .
 .
@@ -1127,7 +1127,7 @@ As
 .BR .B ,
 but use a constant-width (monospaced) roman typeface instead of bold.
 .
-This is a Tenth Edition Research Unix extension.
+This is a Research Tenth Edition Unix extension.
 .\" possibly 9th, but definitely not Berkeley
 .
 .
@@ -2318,8 +2318,8 @@ they cannot be used with AT&T
 .IR troff .
 .
 .I groff ms
-supports features described above as Berkeley and Tenth Edition Research
-Unix extensions,
+supports features described above as Berkeley and
+Research Tenth Edition Unix extensions,
 and adds several of its own.
 .
 .
@@ -2355,8 +2355,8 @@ rather than to ignore them silently.
 .
 .
 .IP \[bu]
-Tenth Edition \" possibly 9th
-Research Unix supported
+Research Tenth Edition \" possibly 9th
+Unix supported
 .BR P1 / P2
 macros to bracket code examples;
 .I groff ms

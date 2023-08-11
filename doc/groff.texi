@@ -2502,7 +2502,7 @@ implementation is mostly compatible with the documented interface and
 behavior of AT&T Unix Version@tie{}7 @file{ms}.  Many extensions from
 4.2BSD (Berkeley)
 @c Few changes were made in 4.3, Tahoe, Reno, or 4.4.
-and Tenth Edition Research Unix have been recreated.
+and Research Tenth Edition Unix have been recreated.
 
 @menu
 * ms Introduction::
@@ -2865,7 +2865,7 @@ Default: 12@dmn{p}.
 @Defmpreg {HY, ms}
 Defines the automatic hyphenation mode used with the @code{hy} request.
 Setting @code{HY} to@tie{}0 is equivalent to using the @code{nh}
-request.  This is a Tenth Edition Research Unix extension.
+request.  This is a Research Tenth Edition Unix extension.
 @c possibly 9th, but definitely not Berkeley
 
 Effective: next paragraph.
@@ -3261,7 +3261,7 @@ available output devices and their drivers.
 
 The hyphenation mode (as used by the @code{hy} request) is set from the
 @code{HY} register.  Setting @code{HY} to @samp{0} is equivalent to
-using the @code{nh} request.  This is a Tenth Edition Research Unix
+using the @code{nh} request.  This is a Research Tenth Edition Unix
 extension.
 
 @c ---------------------------------------------------------------------
@@ -3553,13 +3553,13 @@ As @code{B}, but use an @i{italic} or oblique style instead of bold.
 
 @Defmac {BI, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
 As @code{B}, but use a bold italic or bold oblique style instead of
-upright bold.  This is a Tenth Edition Research Unix extension.
+upright bold.  This is a Research Tenth Edition Unix extension.
 @c possibly 9th, but definitely not Berkeley
 @endDefmac
 
 @Defmac {CW, [@Var{text} [@Var{post} [@Var{pre}]]], ms}
 As @code{B}, but use a @t{constant-width} (monospaced) roman typeface
-instead of bold.  This is a Tenth Edition Research Unix extension.
+instead of bold.  This is a Research Tenth Edition Unix extension.
 @c possibly 9th, but definitely not Berkeley
 @endDefmac
 
@@ -4545,7 +4545,7 @@ The @code{groff} @file{ms} macros are an independent reimplementation,
 using no @acronym{AT&T} code.  Since they take advantage of the extended
 features of @code{groff}, they cannot be used with @acronym{AT&T}
 @code{troff}.  @code{groff} @file{ms} supports features described above
-as Berkeley and Tenth Edition Research Unix extensions, and adds several
+as Berkeley and Research Tenth Edition Unix extensions, and adds several
 of its own.
 
 @itemize @bullet
@@ -4565,8 +4565,8 @@ The error-handling policy of @code{groff} @file{ms} is to detect and
 report errors, rather than to ignore them silently.
 
 @item
-Tenth Edition @c possibly 9th
-Research Unix supported @code{P1}/@code{P2} macros to bracket code
+Research Tenth Edition @c possibly 9th
+Unix supported @code{P1}/@code{P2} macros to bracket code
 examples; @code{groff} @file{ms} does not.
 
 @item

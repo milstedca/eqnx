@@ -12303,7 +12303,7 @@ Otherwise, GNU @code{troff} stores @var{contents} in copy
 mode.@footnote{@xref{Copy Mode}.}
 
 The @code{\*} escape sequence interpolates a previously defined string
-variable @var{name} (one-character name@tie{}@var{n}, two-character name
+@var{name} (one-character name@tie{}@var{n}, two-character name
 @var{nm}).  The bracketed interpolation form accepts arguments that are
 handled as macro arguments are; recall @ref{Calling Macros}.  In
 contrast to macro calls, however, if a closing bracket @samp{]} occurs
@@ -12405,7 +12405,7 @@ suppress AT&T @code{troff} compatibility mode when used; see
 @ref{Writing Macros} and @ref{Compatibility Mode}.  The @code{ds1}
 request defines a string such that compatibility mode is off when the
 string is later interpolated.  To be more precise, a @dfn{compatibility
-save} input token is inserted at the beginning of the string, and a
+save} input token is inserted at the beginning of @var{contents}, and a
 @dfn{compatibility restore} input token at the end.
 
 @Example
@@ -12437,11 +12437,9 @@ the string).
 .as salutation " with shallots, onions and garlic,\"
 @endExample
 
-The @code{as1} request is similar to @code{as}, but compatibility mode
-is switched off when the appended portion of the string is later
-interpolated.  To be more precise, a @dfn{compatibility save} input
-token is inserted at the beginning of the appended string, and a
-@dfn{compatibility restore} input token at the end.
+The @code{as1} request works as does @code{as}, but like @code{ds1}, it
+brackets @var{contents} with @slanted{compatibility save} and
+@slanted{restore} tokens.
 @endDefreq
 
 Several requests exist to perform rudimentary string operations.
@@ -12574,6 +12572,7 @@ the object pool, adds its name to the name pool, and creates a link
 between them.  When @code{als} creates an alias, it adds a new name to
 the name pool that gets linked to the same object as the old name.
 
+@need 200
 Now consider this example.
 
 @Example

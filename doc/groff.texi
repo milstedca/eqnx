@@ -13671,8 +13671,7 @@ sequence for the minus sign glyph.
 @cindex motions, page
 
 @xref{Manipulating Spacing}, for a discussion of the most commonly used
-request for vertical motion, @code{sp}, which spaces downward by one
-vee.
+request for vertical motion, @code{sp}.
 
 @DefreqList {mk, [@Var{reg}]}
 @DefreqListEndx {rt, [@Var{dist}]}
@@ -13700,6 +13699,9 @@ If a page break occurs between a @code{mk} request and its matching
 @code{rt} request, the @code{rt} request is silently ignored.
 
 A simple implementation of a macro to set text in two columns follows.
+This example also defines a macro to be called when a trap is
+sprung;@footnote{@xref{Page Location Traps}.} this trap macro performs
+the motion to the next column.
 
 @Example
 .nr column-length 1.5i

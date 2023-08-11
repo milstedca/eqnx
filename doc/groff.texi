@@ -1726,8 +1726,8 @@ consists of text, or words to be printed, and embedded commands
 
 The primary function of GNU @code{troff} is to collect words from input
 lines, fill output lines with those words, break the line at the
-right-hand (possibly by hyphenating a word), adjust the line to the
-margin by widening spaces, and output the result.
+right-hand margin (possibly by hyphenating a word), adjust the line to
+that margin by widening spaces, and output the result.
 
 @Example
 @c .ll 42n

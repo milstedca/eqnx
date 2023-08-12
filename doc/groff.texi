@@ -3322,10 +3322,10 @@ Paragraphing macros @dfn{break}, or terminate, any pending output line
 so that a new paragraph can begin.  Several paragraph types are
 available, differing in how indentation applies to them: to left, right,
 or both margins; to the first output line of the paragraph, all output
-lines, or all but the first.  All paragraphing macro calls cause the
-insertion of vertical space in the amount stored in the @code{PD}
-register, except at page or column breaks.  Alternatively, a blank input
-line breaks the output line and vertically spaces by one vee.
+lines, or all but the first.  These calls insert vertical space in the
+amount stored in the @code{PD} register, except at page or column
+breaks.  Alternatively, a blank input line breaks the output line and
+vertically spaces by one vee.
 
 @Defmac {LP, , ms}
 Set a paragraph without any (additional) indentation.
@@ -3827,9 +3827,9 @@ money
 @node Indented regions in ms, ms keeps and displays, Lists in ms, ms Body Text
 @subsubsection Indented regions
 
-You may need to indent a region of text while otherwise formatting it
-normally.  Indented regions can be nested; you can change @code{\n[PI]}
-before each call to vary the amount of inset.
+You can indent a region of text while otherwise formatting it normally.
+Such indented regions can be nested; change @code{\n[PI]} before each
+call to vary the amount of inset.
 
 @Defmac {RS, , ms}
 Begin a region where headings, paragraphs, and displays are indented
@@ -3891,13 +3891,12 @@ figure adjacent to the item it discusses.  @file{ms} provides the
 @code{KS} and @code{KE} macros for this purpose.
 
 You can alternatively specify a @dfn{floating keep}:@: if a keep cannot
-fit on the current page, @file{ms} holds its contents and
-allows material following the keep (in the source document) to fill the
-remainder of the current page.  When the page breaks, whether by
-reaching the end or @code{bp} request, @file{ms} puts the floating keep
-at the beginning of the next page.  This is useful for placing large
-graphics or tables that do not need to appear exactly where they occur
-in the source document.
+fit on the current page, @file{ms} holds it, allowing material following
+the keep (in the source document) to fill the remainder of the current
+page.  When the page breaks by reaching its bottom or by @code{bp}
+request, @file{ms} puts the floating keep at the beginning of the next
+page.  Use floating keeps to house large graphics or tables that do not
+need to appear exactly where they occur in the source document.
 
 @DefmacList {KS, , ms}
 @DefmacItemx {KF, , ms}
@@ -3940,9 +3939,8 @@ speeds.
 .B2
 @endCartoucheExample
 
-If you want a boxed keep to float, you will need to enclose the
-@code{B1} and @code{B2} calls within a pair of @code{KF} and @code{KE}
-calls.
+If you want a boxed keep to float, enclose the @code{B1} and @code{B2}
+calls within a pair of @code{KF} and @code{KE} calls.
 
 @cindex displays [@file{ms}]
 @dfn{Displays} turn off filling; lines of verse or program code are

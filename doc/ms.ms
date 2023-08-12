@@ -1042,8 +1042,7 @@ to the first output line of the paragraph,
 all output lines,
 or all but the first.
 .
-All paragraphing macro calls cause the insertion of vertical space in
-the amount stored in the
+These calls insert vertical space in the amount stored in the
 .CW PD
 register,
 except at page or column breaks.
@@ -2146,11 +2145,10 @@ Indented regions
 .
 .
 .LP
-You may need to indent a region of text while otherwise formatting it
-normally.
+You can indent a region of text while otherwise formatting it normally.
 .
-Indented regions can be nested;
-you can change
+Such indented regions can be nested;
+change
 .CW \[rs]n[PI]
 before each call to vary the amount of inset.
 .
@@ -2264,19 +2262,19 @@ You can alternatively specify a
 .I "floating keep:"
 if a keep cannot fit on the current page,
 .I ms
-holds its contents and allows material following the keep
+holds it,
+allowing material following the keep
 (in the source document)
 to fill the remainder of the current page.
 .
-When the page breaks,
-whether by reaching the end or
+When the page breaks by reaching its bottom or by
 .CW bp
 request,
 .I ms
 puts the floating keep at the beginning of the next page.
 .
-This is useful for placing large graphics or tables that do not need to
-appear exactly where they occur in the source document.
+Use floating keeps to house large graphics or tables that do not
+need to appear exactly where they occur in the source document.
 .
 .
 .TS
@@ -2358,7 +2356,7 @@ Happy Fun Ball may suddenly accelerate to dangerous speeds.
 .
 .LP
 If you want a boxed keep to float,
-you will need to enclose the
+enclose the
 .CW .B1
 and
 .CW .B2
@@ -2645,7 +2643,7 @@ Attempting to place a multi-page table inside a keep can lead to
 unpleasant results,
 particularly if the
 .I tbl
-.CW allbox
+.CW \%allbox
 option is used.
 .KE
 .

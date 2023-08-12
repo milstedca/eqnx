@@ -1,5 +1,18 @@
 2023-08-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	Our "Makefile.am" defines an `RM` macro if make(1) itself does
+	not, and our Automake files employ it extensively; sweep up the
+	stragglers.
+
+	* font/devpdf/devpdf.am (mostlyclean_devpdf_extra)
+	(uninstall_devpdf):
+	* src/libs/libgroff/libgroff.am (install_charset_data):
+	* src/roff/nroff/nroff.am (nroff):
+	* src/utils/indxbib/indxbib.am (install_indxbib):
+	(uninstall_indxbib): Do it.
+
+2023-08-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/utils/indxbib/indxbib.am (install_indxbib): Use `$(LN_S)`,
 	not `ln -s`.
 

@@ -1,3 +1,8 @@
+2023-08-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/utils/indxbib/indxbib.am (install_indxbib): Use `$(LN_S)`,
+	not `ln -s`.
+
 2023-08-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[eqn]: Trivially refactor.

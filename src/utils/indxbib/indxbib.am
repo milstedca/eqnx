@@ -37,7 +37,7 @@ install_indxbib: $(indxbib_srcdir)/eign
 	  || $(mkinstalldirs) $(DESTDIR)$(datasubdir)
 	if test -f /usr/lib/eign; then \
 	  rm -f $(DESTDIR)$(common_words_file); \
-	  ln -s /usr/lib/eign $(DESTDIR)$(common_words_file) 2>/dev/null \
+	  $(LN_S) /usr/lib/eign $(DESTDIR)$(common_words_file) 2>/dev/null \
 	    || ln /usr/lib/eign $(DESTDIR)$(common_words_file) 2>/dev/null \
 	    || cp /usr/lib/eign $(DESTDIR)$(common_words_file); \
 	else \

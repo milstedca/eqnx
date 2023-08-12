@@ -401,7 +401,7 @@ or during page ejection before starting a subsequent one.
 .IP
 .I Caution:
 the ordering of dimensions differs from that used by
-.I paper.tmac
+.I papersize.tmac
 and
 .MR @g@troff @MAN1EXT@ 's
 .RB \[lq] "\-d paper" \[rq]

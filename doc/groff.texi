@@ -3158,7 +3158,7 @@ the date).  Normally, @code{RP} sets the page number following the cover
 page to@tie{}1.  Specifying the optional @code{no-renumber} argument
 suppresses this alteration.  Optional arguments can occur in any order.
 @code{no} is recognized as a synonym of @code{no-repeat-info} for
-@code{AT&T} compatibility.
+@acronym{AT&T} compatibility.
 @endDefmac
 
 @Defmac {TL, , ms}

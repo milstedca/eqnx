@@ -484,7 +484,7 @@ Documentation License''.
 @menu
 * Introduction::
 * Invoking groff::
-* Tutorial for Macro Users::
+* Tutorial for Macro Package Users::
 * Major Macro Packages::
 * GNU troff Reference::
 * File Formats::
@@ -850,7 +850,7 @@ contributed much of the material on the @file{ms} macro package.
 @c =====================================================================
 @c =====================================================================
 
-@node Invoking groff, Tutorial for Macro Users, Introduction, Top
+@node Invoking groff, Tutorial for Macro Package Users, Introduction, Top
 @chapter Invoking @command{groff}
 @cindex invoking @command{groff}
 @cindex @command{groff} invocation
@@ -1701,20 +1701,21 @@ are equivalent.
 @c =====================================================================
 @c =====================================================================
 
-@node Tutorial for Macro Users, Major Macro Packages, Invoking groff, Top
-@chapter Tutorial for Macro Users
-@cindex tutorial for macro users
-@cindex macros, tutorial for users of
+@node Tutorial for Macro Package Users, Major Macro Packages, Invoking groff, Top
+@chapter Tutorial for Macro Package Users
+@cindex tutorial for macro package users
+@cindex macros packages, tutorial for users of
+@cindex packages, macro, tutorial for users of
 @cindex user's tutorial
 
 Most users of the @code{roff} language employ a macro package to format
 their documents.  Successful macro packages ease the composition
-process; their users need not have mastered the full formatting
-language, nor understand features like diversions, traps, and
-environments.  This chapter aims to familiarize you with basic concepts
-and mechanisms common to many macro packages (like ``displays'').  If
-you prefer a meticulous and comprehensive presentation of the language
-and its formatter, peruse @ref{GNU troff Reference} instead.
+process; their users need not master the full formatting language, nor
+understand features like diversions, traps, and environments.  This
+chapter aims to familiarize you with basic concepts and mechanisms
+common to many macro packages (like ``displays'').  If you prefer a
+meticulous and comprehensive presentation of the language and its
+formatter, peruse @ref{GNU troff Reference} instead.
 
 @menu
 * Basics::
@@ -1724,7 +1725,7 @@ and its formatter, peruse @ref{GNU troff Reference} instead.
 
 @c =====================================================================
 
-@node Basics, Common Features, Tutorial for Macro Users, Tutorial for Macro Users
+@node Basics, Common Features, Tutorial for Macro Package Users, Tutorial for Macro Package Users
 @section Basics
 @cindex basics of macro package usage
 @cindex macro package usage, basics of
@@ -1735,16 +1736,21 @@ fruitfully.@footnote{The remainder of this chapter is based on
 which is distributed with @code{groff} as @file{meintro.me}.}
 References are made throughout to more detailed information.
 
-GNU @code{troff} reads an input file prepared by the user and outputs a
-formatted document suitable for publication or framing.  The input
+GNU @command{troff} reads an input file prepared by the user and outputs
+a formatted document suitable for publication or framing.  The input
 consists of text, or words to be printed, and embedded commands
 (@slanted{requests} and @slanted{escape sequences}), which tell GNU
 @code{troff} how to format the output.  @xref{Formatter Instructions}.
 
-The primary function of GNU @code{troff} is to collect words from input
-lines, fill output lines with those words, break the line at the
-right-hand margin (possibly by hyphenating a word), adjust the line to
-that margin by widening spaces, and output the result.
+@cindex break (introduction)
+@cindex line break (introduction)
+@cindex filling (introduction)
+@cindex adjustment (introduction)
+The primary function of GNU @command{troff} is to collect words from
+input lines, @slanted{fill} output lines with those words,
+@slanted{break} the line at the right-hand margin (possibly by
+hyphenating a word), @slanted{adjust} the line to that margin by
+widening spaces, and output the result.
 
 @Example
 @c .ll 42n
@@ -1760,62 +1766,64 @@ speak of liberty as long as economic slavery exists.
 @cindex line break, output (introduction)
 @cindex output line break (introduction)
 Sometimes a new output line should start even though the current line is
-not yet full---for example, at the end of a paragraph.  GNU @code{troff}
-will do this for us automatically at the end of input, but we often want
-a break sooner, and more frequently.  We want to @emph{instruct} the
-formatter.
+not yet full---for example, at the end of a paragraph.  GNU
+@command{troff} will do this for us automatically at the end of input,
+but we often want a break sooner, and more frequently.  We wish to
+@emph{instruct} the formatter.
 
 To that end, not all input lines are @slanted{text lines} containing
 words to be formatted.  @slanted{Control lines} start with a dot
 (@samp{.}) or an apostrophe (@samp{'}) as the first character, and are
 followed by a request or macro name that tells a macro package (or GNU
-@code{troff} directly) how to format the text.
+@command{troff} directly) how to format the text.
 
 We can command a break with the @code{br} request.  Some requests cause
 a break automatically, as do (normally) blank input lines and input
 lines beginning with a space or tab.
 
 A @slanted{macro} bundles text and/or control lines into a named
-collection that can be called like a request, or set to ``go off''
-automatically at certain places on the page.  Thus, while requests
-perform primitive operations, macro packages handle complex ones, like
-arranging the output into columns, collecting and writing out footnotes,
-or managing page headers and footers.
+collection that can be called like a request.  A macro can also be
+called by a @slanted{trap} that is set to ``go off'' automatically at
+certain places on the page.  Thus, while requests perform primitive
+operations, macro packages handle complex ones, like arranging the
+output into columns, collecting and writing out footnotes, or managing
+page headers and footers.
 
-Many requests and macro calls accept @slanted{arguments} that influence
-their behavior.  The @code{sp} request, without an argument, breaks and
-puts a blank line on the output.  But
+Many requests and macros accept @slanted{arguments} that influence their
+behavior.  A ``plain'' @code{sp} request breaks and puts a blank line on
+the output.  But
 
 @Example
 .sp 4
 @endExample
 
 @noindent
-spaces four lines instead.  Arguments are separated from the request and
-from each other by spaces (@emph{not} tabs).  @xref{Invoking Requests}.
+spaces four lines instead.  Spaces (but @emph{not} tabs) separate
+arguments from the request or macro name and from each other.
 
-Here are a few hints for preparing text for input to GNU @code{troff}.
+Here are a few hints for preparing text for input to GNU
+@command{troff}.
 
 @itemize @bullet
 @item
 First, keep the input lines short.  Short input lines are easier to
-edit, and, when filling, GNU @code{troff} packs words onto longer lines
-anyhow.
+edit, and, when filling, GNU @command{troff} packs words onto longer
+lines anyhow.
 
 @item
 Second, it is helpful to begin a new line after every sentence,
-comma, semicolon, colon, since common revisions are to add, delete, or
-replace sentences, clauses, phrases, or members of lists.
+comma, semicolon, or colon, since common revisions are to add, delete,
+or replace sentences, clauses, phrases, or members of lists.
 
 @item
-If you don't start a sentence on a new line, put two spaces after the
-previous one.  GNU @code{troff} recognizes characters that usually end a
-sentence, and inserts inter-sentence space accordingly.
+If you @emph{don't} start a sentence on a new line, put two spaces after
+the previous sentence.  GNU @command{troff} then recognizes punctuation
+that ends a sentence, and inserts inter-sentence space accordingly.
 
 @c I don't think anyone does the following anymore, since it's a
 @c typewriter-era practice. --GBR
 @c @item
-@c Do not hyphenate words at the end of lines---GNU @code{troff} is
+@c Do not hyphenate words at the end of lines---GNU @command{troff} is
 @c smart enough to hyphenate words as needed, but is not smart enough to
 @c take hyphens out and join a word back together.  Also, words such as
 @c ``mother-in-law'' should not be broken over a line, since then a
@@ -1826,17 +1834,17 @@ We offer further advice in @ref{Input Conventions}.
 
 @cindex vertical spacing (introduction)
 @cindex spacing, vertical (introduction)
-GNU @code{troff} permits alteration of the distance between lines of
-text.  This is termed @slanted{vertical spacing} and is expressed in the
-same units as the type size---the point.  The default is 10-point type
-on 12-point spacing.  To get @slanted{double-spaced} text you would set
-the vertical spacing to 24 points.  Some, but not all, macro packages
-expose a macro or register to configure the vertical spacing.
+@slanted{Vertical spacing} is the distance between lines of
+text; it is expressed in the same units as the type size---the point.
+The default is 10-point type on 12-point spacing.  To get
+@slanted{double-spaced} text you would set the vertical spacing to 24
+points.  Some, but not all, macro packages expose a macro or register to
+configure the vertical spacing.
 
 A number of requests allow you to change the way the output is arranged
-on the page, sometimes called the @slanted{layout} of the output page.
-Most macro packages don't supply macros for performing these (at least
-not without performing other actions besides), as they are such basic
+on the page, sometimes called the @slanted{layout} of the page.  Most
+macro packages don't supply macros for performing these (at least not
+without performing other actions besides), as they are such basic
 operations.  The macro packages for writing man pages, @file{man} and
 @file{mdoc}, don't encourage explicit use of these requests at all.
 
@@ -1851,9 +1859,12 @@ My thoughts on the subject
 @endExample
 
 @noindent
-outputs one and a half inches of space, followed by the line ``My
-thoughts on the subject'', followed by a single blank line (more
-measurement units are available; see @ref{Measurements}).
+outputs one and a half inches of vertical space, followed by the line
+``My thoughts on the subject'', followed by a single blank line (more
+measurement units are available; see @ref{Measurements}).  Excess
+vertical space is normally discarded at page or column breaks.  If the
+above example appears one inch from the page bottom, the half inch
+of space ``left over'' does not appear at the top of the next.
 
 If you seek precision in spacing, be advised when using a macro package
 that it might not honor @code{sp} requests as you expect; it can use a
@@ -1878,14 +1889,14 @@ lines to center
 @endExample
 
 @noindent
-The @w{@samp{.ce 0}} request tells GNU @code{troff} to center zero more
-lines---in other words, to stop centering.
+The @w{@samp{.ce 0}} request tells GNU @command{troff} to center zero
+more lines---in other words, to stop centering.
 
 @cindex right-aligning lines (introduction)
 @cindex lines, right-aligning (introduction)
 @cindex right-justifying lines (introduction)
 @cindex lines, right-justifying (introduction)
-GNU @code{troff} also offers the @code{rj} request for right-aligning
+GNU @command{troff} also offers the @code{rj} request for right-aligning
 text.  It works analogously to @code{ce} and is convenient for setting
 epigraphs.
 
@@ -1893,22 +1904,20 @@ epigraphs.
 @cindex break, page (introduction)
 The @code{bp} request starts a new page.
 
-@cindex break (introduction)
-@cindex line break (introduction)
-All of these requests cause a break; that is, they always start a new
-line.  If you invoke them with the apostrophe @samp{'}, the
-@slanted{no-break control character}, the (initial) break they normally
-perform is suppressed.  @samp{'br} does nothing.
+All of these requests cause a break, starting a new line.  If you invoke
+them with the apostrophe @samp{'}, the @slanted{no-break control
+character}, the (initial) break they normally perform is suppressed.
+@samp{'br} does nothing.
 
 
 @c =====================================================================
 
-@node Common Features,  , Basics, Tutorial for Macro Users
+@node Common Features,  , Basics, Tutorial for Macro Package Users
 @section Common Features
 @cindex common features
 @cindex features, common
 
-GNU @code{troff} provides low-level operations for formatting a
+GNU @command{troff} provides low-level operations for formatting a
 document.  Many routine operations are undertaken in nearly all
 documents that require a series of such primitive operations to be
 performed.  These common tasks are grouped into @slanted{macros}, which
@@ -2006,7 +2015,7 @@ Often, use of the same macro without a tag continues such a discussion.
 @node Sections and Chapters, Headers and Footers, Paragraphs, Common Features
 @subsection Sections and Chapters
 
-The simplest kind of section heading is unnumbered, set in a bold or
+A simple kind of section heading is unnumbered, set in a bold or
 italic style, and occupies a line by itself.  Others possess
 automatically numbered multi-level headings and/or different typeface
 styles or sizes at different levels.  More sophisticated macro packages
@@ -2104,7 +2113,7 @@ known, upon request.  A row of dots (a @slanted{leader}) bridges the
 text on the left with its location on the right.  Other collections
 might work in this manner, providing lists of figures or tables.
 
-A table of contents is often found at the end of a GNU @code{troff}
+A table of contents is often found at the end of a GNU @command{troff}
 document because the formatter processes the document in a single pass.
 The @command{gropdf} output driver supports a PDF feature that relocates
 pages at the time the document is rendered; see @cite{gropdf@r{(1)}}.
@@ -2148,9 +2157,9 @@ formatting offer a facility for setting multiple columns on the page.
 @subsection Font and Size Changes
 
 The formatter's requests and escape sequences for setting the typeface
-and size are not always intuitive, so all macro packages provide macros
-to make these operations simpler.  They also make it more convenient to
-change typefaces in the middle of a word and can handle italic
+and size are not always intuitive in their behavior, so all packages
+provide macros to simplify input of these operations.  They can also
+make mid-word font style changes more convenient, and can handle italic
 corrections automatically.  @xref{Italic Corrections}.
 
 @c ---------------------------------------------------------------------
@@ -2190,7 +2199,7 @@ headings.
 @c =====================================================================
 @c =====================================================================
 
-@node Major Macro Packages, GNU troff Reference, Tutorial for Macro Users, Top
+@node Major Macro Packages, GNU troff Reference, Tutorial for Macro Package Users, Top
 @chapter Macro Packages
 @cindex major macro package
 @cindex package, macro, major

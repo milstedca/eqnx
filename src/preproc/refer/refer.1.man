@@ -1843,8 +1843,7 @@ command instead of in the normal way.
 .
 .TP
 .I REFER
-If set,
-overrides the default database.
+Assign this variable a file name to override the default database.
 .
 .
 .\" ====================================================================

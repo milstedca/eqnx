@@ -62,7 +62,7 @@
 	[tbl]: Fix staggering of text block cells.
 
 	* src/preproc/tbl/table.cpp: Add C preprocessor macro storing a
-	"text block staggering macro".
+	"text block staggering macro" name.
 	(block_entry::position_vertically): Call it in generated output
 	with a negative half-vee motion.
 	(block_entry::position_vertically, left_block_entry::print)

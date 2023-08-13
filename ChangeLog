@@ -28,7 +28,7 @@
 
 	[man]: Add new `TS` register to configure required separation
 	between a (`IP`, `TP`) paragraph's tag and its body, and change
-	the default amount used for this purpose from 1n ro 2n.  Retire
+	the default amount used for this purpose from 1n to 2n.  Retire
 	private register `an-tag-separation` in favor of `TS`.
 
 	* tmac/an.tmac: Assign `TS` value of 2n if not already defined.

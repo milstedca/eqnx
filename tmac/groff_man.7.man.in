@@ -311,8 +311,7 @@ unless escaped
 (see subsection \(lqPortability\(rq below),
 marks the end of the macro call.
 .
-An input line consisting of a dot followed by a newline
-is called the
+A control line with no macro name on it is called an
 .I empty request;
 it does nothing.
 .
@@ -786,7 +785,8 @@ is set with all output lines indented the same amount.
 .
 In man pages and other technical literature,
 definition lists are frequently encountered;
-these can be set as \(lqtagged paragraphs\(rq,
+these can be set as
+.I "tagged paragraphs,"
 which have one
 .RB ( .TP )
 or more
@@ -870,14 +870,13 @@ and by the amount of the
 .B IN
 register otherwise.
 .
-If the tag is not as wide as the indentation,
-the paragraph starts on the same line as the tag,
-at the applicable indentation,
-and continues on the following lines.
-.
-Otherwise,
-the descriptive part of the paragraph begins on the line following the
-tag.
+If the tag,
+plus the required \(lqtag spacing\(rq stored in the
+.B TS
+register
+(see section \(lqOptions\(rq below)
+is wider than the indentation,
+the line is broken after the tag.
 _ifstyle()dnl
 .
 .
@@ -931,9 +930,9 @@ _endif()dnl
 .
 .
 .TP
-.BR .IP " ["\c
-.IR tag "] "\c
-.RI [ indentation ]
+.BR .IP\~ [\c
+.IR tag \~\c
+.RI [ indentation ]]
 Set an indented paragraph with an optional tag.
 .
 The
@@ -1023,11 +1022,8 @@ in section \(lqFiles\(rq below.
 .BI .SY " command"
 Begin synopsis.
 .
-A new paragraph begins at the current inset amount
-_ifstyle()dnl
-(as with
-.BR .P )
-_endif()dnl
+A new paragraph begins as with
+.BR .P ,
 unless
 .B .SY
 has already been called without a corresponding
@@ -1242,7 +1238,7 @@ a space precedes the ellipsis.
 .IP \(bu
 The non-breaking adjustable space escape sequence
 .B \e\(ti
-is used to prevent the output line from being broken within the option
+is used to prevent the output line from breaking within the option
 brackets;
 see subsection \(lqPortability\(rq below.
 .
@@ -1762,7 +1758,7 @@ escape sequences in subsection \(lqPortability\(rq below.
 _endif()dnl
 _ifnotstyle()dnl
 .br
-.ne 2c
+.ne 2v
 _endif()dnl
 .P
 Unlike the above font style macros,
@@ -1804,7 +1800,7 @@ _ifstyle()dnl
 .IP
 .\" from src/roff/troff/troff.1.man
 .EX
-\&.BI \-r\~ register = numeric-expression
+\&.BI \-r\e\(ti register = numeric-expression
 .EE
 .RE
 .
@@ -1870,6 +1866,8 @@ command to change the name of the vbox.
 .RE
 .
 .
+.br
+.ne 8v
 _endif()dnl
 .TP
 .BI .RB " roman-text bold-text "\c
@@ -1966,10 +1964,9 @@ the
 _ifstyle()dnl
 package assumes \(lqn\(rq;
 that is,
-the width of a letter \(lqn\(rq in the font current when the macro is
-called
-(see section \(lqMeasurements\(rq in
-.MR groff @MAN7EXT@ ).
+roughly the width of a letter \(lqn\(rq in the font current when the
+macro is called\(emsee section \(lqMeasurements\(rq in
+.MR groff @MAN7EXT@ .
 _endif()dnl
 _ifnotstyle()dnl
 package assumes \(lqn\(rq.
@@ -2164,7 +2161,7 @@ where 1v is the distance between adjacent text baselines in a
 single-spaced document).
 _endif()dnl
 _ifnotstyle()dnl
-and 0.4v for typesetters devices.
+and 0.4v for typesetters.
 _endif()dnl
 .
 (The deprecated macro
@@ -2319,33 +2316,46 @@ with these lower-level elements where necessary.
 .ne 2v
 .P
 However,
-using raw
-.I groff
+use of
+.I roff
 requests
 (apart from the empty request
 .RB \(lq . \(rq)\&
-is likely to make your page render poorly when processed by other tools;
-many of these attempt to interpret page sources directly for conversion
-to HTML.
+risks poor rendering when your page is processed by tools other than
+.I roff
+formatters that attempt to interpret page sources.
 .
-Some requests make implicit assumptions about things like character
-and page sizes that may not hold in an HTML environment;
-also,
-many of these viewers don't interpret the full
+(Historically,
+this was commonly attempted for HTML conversion.)
+.
+For instance,
+requests may make assumptions about line length that do not hold in an
+HTML environment.
+.
+Many of these programs don't interpret the full
+.I roff
+language
+(let alone
 .I groff
-vocabulary,
-a problem that can lead to portions of your text being omitted
-or presented incomprehensibly.
+extensions):
+they may be incapable of handling numeric expressions,
+control structures,
+or register,
+string,
+and macro definitions.
+.
+Such limitations can lead to portions of a document being presented
+incomprehensibly or omitted altogether.
 .
 .
 .P
-For portability to modern viewers,
+For portability to a wide variety of viewers,
 it is best to write your page solely with the macros described in this
 page
 (except for the ones identified as deprecated,
-which should be avoided).
+which you should avoid).
 .
-The macros we have described as extensions
+Employ the macros we have described as extensions
 .RB ( .EX / .EE ,
 .BR .SY / .YS ,
 .BR .TQ ,
@@ -2353,7 +2363,7 @@ The macros we have described as extensions
 .BR .MT / .ME ,
 and
 .BR .MR )
-should be used with caution,
+with caution,
 as they may not be supported by a formatter that is important to your
 audience.
 .
@@ -2389,7 +2399,8 @@ tilde).
 .
 .br
 .ne 2v
-.TP
+.if n .TP 10n \" "\newline" + 2n
+.if t .TP 9n \" we can get away with less on typesetters
 .B \e\(dq
 Comment.
 .
@@ -2452,9 +2463,8 @@ See subsection \[lq]Hyperlink macros\[rq] above for an example.
 .
 .
 .IP
-This escape sequence is a
-.I groff
-extension also supported by Heirloom Doctools
+This escape sequence is a GNU extension also supported by Heirloom
+Doctools
 .I troff \" Heirloom
 050915 (September 2005),
 .I mandoc
@@ -2489,12 +2499,12 @@ CSTR\e\(ti#8 documents the B\e\(tilanguage.
 .RE
 .
 .
+.IP
+.B \e\(ti
+is a GNU extension
 .\" BEGIN Keep in sync with groff.texi node "Other Differences" and
 .\" groff_diff(7).
-.IP
-This escape sequence is a
-.I groff
-extension also supported by Heirloom Doctools
+also supported by Heirloom Doctools
 .I troff \" Heirloom
 050915 (September 2005),
 .I mandoc
@@ -2559,7 +2569,7 @@ an output line
 break there
 (if it does not,
 .I @g@troff
-inserts an adjustable space;
+inserts an adjustable space);
 if filling is disabled,
 the line
 .I will
@@ -2697,6 +2707,7 @@ previous
 escape sequence only if no
 sectioning,
 paragraph,
+example,
 or style macro calls have intervened.
 .
 .
@@ -2736,6 +2747,19 @@ can be made to support them by defining them in font description files,
 making them aliases of existing glyphs if necessary;
 see
 .MR groff_font @MAN5EXT@ .
+.
+.IR groff 's
+extended notation for special characters,
+.BI \e[ xx ]\c
+,
+is also supported by
+.MR mandoc 1 ,
+Heirloom Doctools
+.IR troff , \" Heirloom Doctools
+and
+.IR neatroff ,
+but not Plan\~9 or Solaris
+.I troff. \" Plan 9, Solaris
 .
 .
 .TP
@@ -2783,7 +2807,7 @@ Basic Latin quotation mark
 Use in macro calls to prevent
 .\" This page prefers double quotes, but not here because they are more
 .\" confusing to the eye when another double quote is what is quoted!
-.RB \(oq\| \(dq \|\(rq
+.RB \(oq\| \(dq \|\(cq
 .\" AT&T: .RB ` """'
 from being interpreted as beginning a quoted argument,
 or simply for readability.
@@ -2879,8 +2903,8 @@ or similar.
 .
 .P
 For maximum portability,
-escape sequences and special characters not listed above are better
-avoided in man pages.
+avoid escape sequences
+(including special characters) not listed above.
 _endif()dnl
 .
 .
@@ -3312,10 +3336,8 @@ SunOS\~4.0 (1988) added
 .
 .
 .P
-The foregoing features were what James Clark implemented in early
-versions of
-.IR groff .
-.
+James Clark implemented the foregoing features in early versions of
+.I groff.
 .
 Later,
 .I groff
@@ -3655,6 +3677,9 @@ and so on.
 _endif()dnl
 .
 .
+.br
+.if n .ne 3v
+.if t .ne 4v \" section headings are taller on typesetters
 .\" ====================================================================
 .SH Files
 .\" ====================================================================
@@ -3705,9 +3730,8 @@ reloads each macro package as necessary.
 .
 .TP
 .I @MACRODIR@/\:\%an\-ext\:.tmac
-Except for
-.BR .SB ,
-definitions of macros described above as extensions
+Definitions of macros described above as extensions
+(and not deprecated)
 are contained in this file;
 in some cases,
 they are simpler versions of definitions appearing in
@@ -3741,16 +3765,16 @@ file.
 If you use your own implementations of these macros,
 they must be defined after
 .B .TH
-is called to have any effect.
+is called to have effect.
 .
 Furthermore,
 it is wise to `define' such page-local macros
 (if at all)
 after the \(lqName\(rq section to accommodate timid
-.I makewhatis
+.MR makewhatis 8
 or
-.I mandb
-implementations that may give up their scan for indexing material early.
+.MR mandb 8
+implementations that give up scans for indexing material early.
 .
 .
 .TP
@@ -3775,14 +3799,10 @@ _ifstyle()dnl
 .RS
 .P
 .EX
-\&.\e" Use narrower indentation on terminals and similar.
-\&.if n .nr IN 4n
 \&.\e" Put only one space after the end of a sentence.
 \&.ss 12 0 \e" See groff(@MAN7EXT@).
 \&.\e" Keep pages narrow even on wide terminals.
-\&.if n .if \(rsn[LL]>78n .nr LL 78n
-\&.\e" Ensure hyperlinks are enabled for terminals.
-\&.nr U 1
+\&.if n .if \en[LL]>78n .nr LL 78n
 .EE
 .RE
 .RE
@@ -3970,7 +3990,7 @@ the position at which an
 paragraph
 .RB ( .P
 and its synonyms)
-will be set,
+will be set;
 the value of the
 .B IN
 register determines its default amount.
@@ -3989,12 +4009,9 @@ repeatedly until an acceptable indentation is achieved,
 or give
 .B .RS
 an indentation argument that is at least as much as the paragraph's
-indentation amount relative to an adjacent
-.B .P
+indentation amount relative to an adjacent ordinary
+.RB ( .P )
 paragraph.
-.
-See subsection \(lqHorizontal and vertical spacing\(rq above for the
-values.
 .
 .
 .IP
@@ -4162,7 +4179,7 @@ they may crowd the dots into a half-width character cell,
 and will not render at all if the output device doesn't have the glyph.
 .
 In syntax synopses,
-missing ellipses can cause great confusion.
+missing ellipses can mislead the reader.
 .
 Dots and space are universally supported.
 .\" XXX: Does an unconditional _preceding_ dummy character cause
@@ -4232,9 +4249,9 @@ and the
 macro. \" all 1.23 except where noted
 .
 .
-Except for
-.BR SB , \" Clark, as noted above
-the extension macros were written by
+Extension macros since
+.I groff
+1.20 were written by
 Lemberg,
 .MT esr@\:thyrsus\:.com
 Eric S.\& Raymond

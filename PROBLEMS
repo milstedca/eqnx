@@ -755,7 +755,7 @@ To get PostScript output from `man -t', you also need to create a
 * I'm having problems formatting HP-UX 9.0 man pages with groff -man.
 
 Copy HP's tmac.an into /usr/local/share/groff/site-tmac/an.tmac, and
-either put `.cp 1' at the beginning.
+put `.cp 1' at the beginning.
 
 ----------------------------------------------------------------------
 

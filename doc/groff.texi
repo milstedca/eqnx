@@ -1591,37 +1591,39 @@ fine-tune these locations during the source configuration process.
 @cindex orientation, landscape
 @cindex page orientation, landscape
 
-In @code{groff}, the page dimensions for the formatter GNU
-@command{troff} and for output devices are handled separately.
-@xref{Page Layout}, for vertical manipulation of the page size, and
-@ref{Line Layout}, for horizontal changes.
-@pindex papersize.tmac
-@pindex troffrc
-The @file{papersize} macro package, normally loaded by @file{troffrc} at
-startup, provides an interface for configuring page dimensions by
-convenient names, like @samp{letter} or @samp{a4}; see
-@cite{groff_tmac@r{(5)}}.  The default used by the formatter depends on
-its build configuration, but is usually one of the foregoing, as
-geographically appropriate.
-@c groff(1), being generated, says what the default is.
+GNU @command{troff} reads the device description file
+@file{DESC}@footnote{@xref{Device and Font Description Files}.} for the
+selected output device when it starts; page dimensions declared there
+are used if present.  @code{groff}'s build process configures a default
+page format and writes it to typesetters' @file{DESC} files.  This
+installation's default is documented in @cite{gtroff@r{(1)}}.  If the
+@file{DESC} file lacks this information, the formatter and output driver
+use a page length of @code{11i} (inches) for compatibility with
+@acronym{AT&T} @code{troff}.
 
-It is up to each macro package to respect the page dimensions configured
-in this way.
+In the formatter, the @code{pl} request changes the page length, but
+macro packages often do not support alteration of the paper format
+within a document.  One might, for instance, want to switch between
+portrait and landscape orientations.  Macro packages lack a consistent
+approach to configuration of parameters dependent on the paper format;
+some, like @file{ms}, benefit from a preamble in the document prior to
+the first macro call, while others, like @file{mm}, instead require the
+specification of registers on the command line to configure page
+dimensions.
 
-For each output device, the size of the output medium can be set in its
-@file{DESC} file.  Most output drivers also recognize a command-line
-option @option{-p} to override the default dimensions and an option
-@option{-l} to use landscape orientation.  @xref{DESC File Format}, for
-a description of the @code{papersize} keyword, which takes an argument
-of the same form as @option{-p}.  The output driver's man page, such as
-@cite{grops@r{(1)}}, may also be helpful.
+Output drivers for typesetters also recognize command-line options
+@option{-p} to override the default page dimensions and @option{-l}
+to use landscape orientation.  The output driver's man page, such as
+@cite{grops@r{(1)}}, may be helpful.
 
-@command{groff} uses the command-line option @option{-P} to pass options
-to postprocessors; for example, use the following for PostScript output
+@command{groff}'s @code{-d paper} command-line option is a convenient
+means of setting the paper format; see @cite{groff_tmac@r{(5)}}.
+Combine it with appropriate @option{-P} options for the output driver,
+overriding its defaults.  The following command formats for PostScript
 on A4 paper in landscape orientation.
 
 @Example
-groff -Tps -dpaper=a4l -P-pa4 -P-l -ms foo.ms > foo.ps
+$ groff -T ps -d paper=a4l -P -pa4 -P -l -ms foo.ms > foo.ps
 @endExample
 
 

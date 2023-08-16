@@ -2,6 +2,17 @@
 
 	* configure.ac: Include paper format in configuration report.
 
+	* m4/groff.m4 (GROFF_PAGE): Slightly refactor, and help users to
+	figure out how the "configure" script decided upon the paper
+	format it did by supplementing the `AC_MSG_RESULT` message.  If
+	not falling back to the "letter" default or honoring a
+	command-line setting (e.g., "./configure PAGE=a4"), report which
+	file or command was used to infer the paper locale.  Apply DRY
+	principle by using shell variables more.
+
+	Prompted by discussion with Damian McGuckin on the groff list.
+	<https://lists.gnu.org/archive/html/groff/2023-07/msg00072.html>
+
 2023-08-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Our "Makefile.am" defines an `RM` macro if make(1) itself does

@@ -404,7 +404,7 @@ the ordering of dimensions differs from that used by
 .I papersize.tmac
 and
 .MR @g@troff @MAN1EXT@ 's
-.RB \[lq] "\-d paper" \[rq]
+.RB \[lq] "\-d \%paper" \[rq]
 option.
 .
 .

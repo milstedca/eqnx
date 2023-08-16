@@ -1763,7 +1763,7 @@ show version information;
 all exit afterward.
 .
 .
-.TP 8n \" "-M dir" + 2n
+.TP 8.125n \" "-M dir" + 2n + hand-tuned for PDF
 .B \-C
 Recognize
 .B .EQ
@@ -2132,8 +2132,9 @@ delim off
 .
 .
 .P
-The quadratic formula illustrates use of fractions and radicals,
-and affords an opportunity to use the full space token
+The quadratic formula affords an opportunity to use fractions,
+radicals,
+and the full space token
 .BR \[ti] .
 .
 .

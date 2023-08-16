@@ -907,23 +907,20 @@ groff \-Tps \-dpaper=a4l \-P\-pa4 \-P\-l \-ms foo.ms > foo.ps
 .
 The
 .I groff
-program is a wrapper around the
-.MR @g@troff @MAN1EXT@
-program.
+program wraps
+.MR @g@troff @MAN1EXT@ ,
+allowing one to specify preprocessors via command-line options and
+running the appropriate output driver for the selected output device.
 .
-It allows one to specify preprocessors via command-line options and
-automatically runs the appropriate postprocessor for the selected
-output device.
-.
-Doing so,
+This convenience avoids
 the manual construction of pipelines or management of temporary files
 required of users of traditional
 .MR roff @MAN7EXT@
-systems can be avoided.
+systems.
 .
-Use the
+Use
 .MR grog @MAN1EXT@
-program to infer an appropriate
+to infer an appropriate
 .I groff
 command line to format a document.
 .
@@ -956,7 +953,7 @@ can be found in
 GNU
 .I roff
 extensions to the AT&T
-.I troff
+.I troff \" AT&T
 language,
 a common subset of
 .I roff
@@ -1253,7 +1250,7 @@ It can be specified on the command line as
 .
 A
 .MR man 1
-librarian program \" such as man-db, since 2001
+librarian \" such as man-db, since 2001
 may use this macro file to delegate loading of the correct macro
 package;
 it is thus unnecessary for
@@ -1902,7 +1899,7 @@ systems are best known for formatting man pages.
 .
 Once a
 .MR man 1
-librarian program has located a man page,
+librarian has located a man page,
 it may execute a
 .I groff
 command much like the following.

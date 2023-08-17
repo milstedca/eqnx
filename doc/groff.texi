@@ -10447,11 +10447,16 @@ altering a font's apparent size in relation to others.  A missing or
 zero @var{zoom} is treated as @samp{1000}---no magnification.
 @var{font} must be a resolved font name, not an abstract style.
 
-Font magnification is transparent to GNU @code{troff}; a change of the
-zoom factor affects scaling of glyph sizes, inter-word and
-inter-sentence spaces, and kerning adjustments on the output device.  It
-is not reflected in registers that report the requested or current type
-size, or the measurements reported by the @code{\w} escape sequence.
+Font magnification is transparent to some aspects of GNU @code{troff}.
+A change of the zoom factor affects scaling of glyph sizes, inter-word
+and inter-sentence spaces, and kerning adjustments on the output device,
+but @emph{not} vertical spacing.  It is not reflected in registers that
+report the requested or current type size, or the minimum inter-word and
+additional inter-sentence space sizes.  It @emph{is} reflected in
+measurements of formatted output:@: the horizontal drawing position
+register, interpolation of the @code{\w} escape sequence, and the
+registers updated by that escape sequence or the formatting of a glyph
+in the environment.  @xref{Environments}.
 
 @code{fzoom} can harmonize the apparent cap-heights of fonts from
 different families when formatted on the same baseline.
@@ -10466,8 +10471,8 @@ and \F[P]Palatino\F[].
 M\F[H]M\F[C]M\F[P]M
 @endExample
 
-The zoom factor of the current font is available in the read-only
-register @samp{.zoom}.  It interpolates zero if there is no
+The zoom factor of the currently selected font is available in the
+read-only register @samp{.zoom}.  It interpolates zero if there is no
 magnification.
 @endDefreq
 

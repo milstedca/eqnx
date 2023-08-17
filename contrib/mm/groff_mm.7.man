@@ -2636,8 +2636,8 @@ Semi-blocked:
 as
 .BR BL ,
 but the first line of each paragraph is indented by
-.BR 5m .
-.\" XXX: https://savannah.gnu.org/bugs/?64315
+.B \[rs]n[Pi]
+ens.
 T}
 FB@T{
 Fully blocked:
@@ -5225,9 +5225,7 @@ see
 .SH Internals
 .\" ====================================================================
 .
-The
-.B LT
-letter macros call further macros depending on the letter type,
+The letter macros call further macros depending on the letter type,
 with which they are suffixed.
 .
 It is therefore possible to define additional letter types,
@@ -5239,19 +5237,23 @@ sets the registers
 .B Pt
 and
 .B Pi
-to 0 and\~5, \" XXX: ...but doesn't use Pi for indentation...
+to 0 and\~5,
 respectively.
-.\" XXX: and why aren't both of these actions the responsibility of
-.\" let@init_type as described below?
 .
-The following macros must be defined to support a new letter type.
+(DWB
+.I mm
+used a value of 3 for
+.BR Pi .)
+.
+It then calls an initialization macro corresponding to the type.
+.
+Define the following macros to support a new letter type.
 .
 .
 .TP
 .BI let@init_ type
-.B LT
-calls this macro to initialize any registers and other data needed by
-the letter type.
+initializes
+any registers and other data needed by the letter type.
 .
 .
 .TP

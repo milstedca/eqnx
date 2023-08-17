@@ -647,7 +647,7 @@ each having members in each of these styles.
 .
 .
 .RS
-.TP
+.TP 8n \" BMBI + 2n + hand-tuned for PDF
 .B AR
 .FT AR
 AvantGarde-Book
@@ -848,7 +848,7 @@ Another text font is not a member of a family.
 .
 .
 .RS
-.TP
+.TP 8n \" BMBI (above) + 2n + hand-tuned for PDF
 .B ZCMI
 .FT ZCMI
 ZapfChancery-MediumItalic

@@ -292,13 +292,9 @@ There is therefore no need to filter its output through
 .\" ====================================================================
 .
 .I grotty
-supports one device control function,
-accessed with the
-.I groff
-request
-.B device
-or
-.I roff
+supports a device control command accessed with the
+.RB \%\[lq] device \[rq]
+request or
 .B \[rs]X
 escape sequence.
 .

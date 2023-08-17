@@ -2961,7 +2961,7 @@ to select a default paragraph indentation style.
 .
 The register
 .B Ps
-controls the vertical spacing between paragraphs.
+determines the amount of vertical space between paragraphs.
 .
 .
 .TP

@@ -10227,23 +10227,23 @@ one.
 @cindex font, unstyled
 In digital typography, a @dfn{font} is a collection of characters in a
 specific typeface that a device can render as glyphs at a desired
-size.@footnote{Terminals and some output devices have fonts that render
-at only one or two sizes.  As examples of the latter, take the
-@code{groff} @code{lj4} device's Lineprinter, and @code{lbp}'s Courier
-and Elite faces.}  A @code{roff} formatter can change typefaces at any
-point in the text.  The basic faces are a set of @dfn{styles} combining
-upright and slanted shapes with normal and heavy stroke weights:
-@samp{R}, @samp{I}, @samp{B}, and @samp{BI}---these stand for
-@slanted{roman}, @slanted{italic}, @slanted{bold}, and
-@slanted{bold-italic}.  For linguistic text, GNU @code{troff} groups
-typefaces into @dfn{families} containing each of these
-styles.@footnote{Font designers prepare families such that the styles
-share esthetic properties.}  A @dfn{text font} is thus often a family
-combined with a style, but it need not be:@: consider the @code{ps} and
-@code{pdf} devices' @code{ZCMI} (Zapf Chancery Medium italic)---often,
-no other style of Zapf Chancery Medium is provided.  On typesetting
-devices, at least one @dfn{special font} is available, comprising
-@dfn{unstyled} glyphs for mathematical operators and other purposes.
+size.@footnote{Terminals and some typesetters have fonts that render at
+only one or two sizes.  As examples of the latter, take the @code{groff}
+@code{lj4} device's Lineprinter, and @code{lbp}'s Courier and Elite
+faces.}  A @code{roff} formatter can change typefaces at any point in
+the text.  The basic faces are a set of @dfn{styles} combining upright
+and slanted shapes with normal and heavy stroke weights: @samp{R},
+@samp{I}, @samp{B}, and @samp{BI}---these stand for @slanted{roman},
+@slanted{italic}, @slanted{bold}, and @slanted{bold-italic}.  For
+linguistic text, GNU @code{troff} groups typefaces into @dfn{families}
+containing each of these styles.@footnote{Font designers prepare
+families such that the styles share esthetic properties.}  A @dfn{text
+font} is thus often a family combined with a style, but it need not
+be:@: consider the @code{ps} and @code{pdf} devices' @code{ZCMI} (Zapf
+Chancery Medium italic)---often, no other style of Zapf Chancery Medium
+is provided.  On typesetters, at least one @dfn{special font} is
+available, comprising @dfn{unstyled} glyphs for mathematical operators
+and other purposes.
 
 @cindex font description file
 @cindex description file, font
@@ -10271,7 +10271,8 @@ So that a document need not be strongly coupled to a specific font
 family, in GNU @code{troff} an output device can associate a style in
 the abstract sense with a mounting position.  Thus the default family
 can be combined with a style dynamically, producing a @dfn{resolved font
-name}.
+name}.  A user-specified font name that combines family and style (or
+refers to a font that is not a member of a family) is also ``resolved''.
 
 Fonts often have trademarked names, and even Free Software fonts can
 require renaming upon modification.  @code{groff} maintains a
@@ -10294,8 +10295,8 @@ document writes its first glyph.
 @cindex character cell attributes
 @cindex attributes, character cell
 @cindex cell, character, attributes
-Terminal output devices cannot change font families and lack special
-fonts.  They support style changes by overstriking, or by altering
+Terminals cannot change font families and lack special fonts.  They
+support style changes by overstriking, or by altering
 ISO@tie{}6429/ECMA-48 @dfn{graphic renditions} (character cell
 attributes).
 @c END Keep (roughly) parallel with section "Using fonts" of groff(7).
@@ -10351,8 +10352,8 @@ mounting position is not a style and no font is mounted there, GNU
 request.
 
 If @var{font} matches a style name, it is combined with the default
-family to make a resolved font name.  Otherwise, @var{font} is assumed
-to already be a resolved font name.
+family to make a resolved font name.  If not, @var{font} is assumed
+to be resolved already.
 
 @cindex automatic font mounting
 @cindex font mounting, automatic
@@ -10368,9 +10369,9 @@ If a font description file for the resolved font name is not found, GNU
 @code{troff} emits a warning in category @samp{font} and ignores the
 request.
 
-The @code{\f} escape sequence is similar, using one-character name (or
-mounting position) @var{f}, two-character name @var{fn}, or a name
-@var{font} of arbitrary length.
+The @code{\f} escape sequence is similar, accepting names or mounting
+positions of one character @var{f}, two characters @var{fn}, or
+arbitrary length @var{font}.
 @cindex previous font, selecting (@code{\f[]}, @code{\fP})
 @cindex font, previous, selecting (@code{\f[]}, @code{\fP})
 @samp{\f[]} selects the previous font.  The syntax form @samp{\fP} is
@@ -10388,7 +10389,7 @@ eggs, bacon, \fIspam,\fP and sausage.
     @result{} eggs, bacon, @slanted{spam,} and sausage.
 @endExample
 
-The current and previously selected fonts are properties of the
+The currently and previously selected fonts are properties of the
 environment (@pxref{Environments}).
 
 The read-only string-valued register @code{.fn} contains the resolved
@@ -10603,7 +10604,7 @@ a list of font @dfn{positions} at which fonts required by a document are
 typically configures a set of pre-mounted fonts; see @ref{Device and
 Font Description Files}.  A font need not be explicitly mounted before
 it is selected; GNU @code{troff} will search @env{GROFF_FONT_PATH} for
-it by name and mount it at the first free mounting position on demand.
+it by name and mount it at the first free position on demand.
 
 @need 500
 @DefreqList {fp, pos id [@Var{font-description-file-name}]}

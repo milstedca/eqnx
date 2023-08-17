@@ -11028,14 +11028,14 @@ Assign properties encoded by the number @var{n} to characters @var{c1},
 
 Input characters, including special characters introduced by an escape,
 have certain properties associated with them.@footnote{Output glyphs
-don't---to GNU @code{troff}, a glyph is simply a box with an index into
-a font, a given height above and depth below the baseline, and a width.}
-These properties can be modified with this request.  The first argument
-is the sum of the desired flags and the remaining arguments are the
-characters to be assigned those properties.  Spaces between the @var{cn}
-arguments are optional.  Any argument @var{cn} can be a character class
-defined with the @code{class} request rather than an individual
-character.  @xref{Character Classes}.
+have different properties.  The only ones known to GNU @code{troff} are
+those in its font's description file.  Recall @ref{Using Fonts}.}  These
+properties can be modified with this request.  The first argument is the
+sum of the desired flags and the remaining arguments are the characters
+to be assigned those properties.  Spaces between the @var{cn} arguments
+are optional.  Any argument @var{cn} can be a character class defined
+with the @code{class} request rather than an individual character.
+@xref{Character Classes}.
 
 The non-negative integer @var{n} is the sum of any of the following.
 Some combinations are nonsensical, such as @samp{33} (1 + 32).

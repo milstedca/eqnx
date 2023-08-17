@@ -6322,7 +6322,7 @@ Vertical position traps are enabled (Boolean-valued).
 .
 .TP
 .REG .w
-Width of previous glyph formatted in the environment.
+Width of last glyph formatted in the environment.
 .
 .TP
 .REG .warn

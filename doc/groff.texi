@@ -13376,6 +13376,8 @@ one level higher.  This is used to define a wrapper macro for
 @subsection Parameters
 @cindex parameters
 
+@c BEGIN Keep (roughly) parallel with subsection "Parameters" of
+@c groff(7).
 Macro calls and string interpolations optionally accept a list of
 arguments; recall @ref{Calling Macros}.  At the time such an
 interpolation takes place, these @dfn{parameters} can be examined using
@@ -13411,6 +13413,8 @@ to@tie{}@var{n} are no longer available.  Shifting by a non-positive
 amount performs no operation.  The register @code{.$} is adjusted
 accordingly.
 @endDefreq
+@c END Keep (roughly) parallel with subsection "Parameters" of
+@c groff(7).
 
 @cindex copy mode, and macro parameters
 @cindex mode, copy, and macro parameters
@@ -14143,7 +14147,7 @@ The @code{\D} escape sequence provides @dfn{drawing commands} that
 direct the output device to render geometrical objects rather than
 glyphs.  Specific devices may support only a subset, or may feature
 additional ones; consult the man page for the output driver in use.
-Terminal devices in particular implement almost none.  @xref{Graphics
+Terminals in particular implement almost none.  @xref{Graphics
 Commands}.
 
 Rendering starts at the drawing position; when finished, the drawing

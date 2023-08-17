@@ -115,6 +115,15 @@
 
 2023-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* man/groff_diff.7.man: Drop displayed examples.  Man pages'
+	honor as references, not tutorials, has been vigorously
+	championed on the groff mailing list.  Accordingly, drop
+	displayed examples from this page; all are available in groff's
+	Texinfo manual.
+	* NEWS: Add item in case people wonder where they've gone.
+
+2023-08-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tbl]: Fix staggering of text block entries.
 
 	* src/preproc/tbl/table.cpp: Add C preprocessor macro storing a

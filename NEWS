@@ -104,6 +104,8 @@ o If groff programs have their current time overridden by the
   1.23.0, so it is easier to defend time-zone-invariant output to them.
   In all other cases, the current time remains displayed in local time.
 
+o The groff_diff(7) man page no longer contains examples.  They remain
+  in groff's Texinfo manual.
 
 VERSION 1.23.0
 ==============

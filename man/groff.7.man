@@ -3828,7 +3828,7 @@ Next page number
 .
 .TPx
 .REQ .pnr
-Write the names and contents of all defined registers to the standard
+Report the names and contents of all defined registers to the standard
 error stream.
 .
 .TPx

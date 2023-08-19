@@ -1,3 +1,12 @@
+2023-08-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/node.cpp (class tfont_spec): Stop declaring
+	copy constructor.  The implicitly defined one suffices.
+	Resolves "-Wdeprecated-copy" warning from GCC.
+
+	Fixes <https://savannah.gnu.org/bugs/?57515>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
 2023-08-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* configure.ac: Include paper format in configuration report.

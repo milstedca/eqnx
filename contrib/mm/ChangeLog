@@ -1,3 +1,10 @@
+2023-08-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Regression-test Savannah #64336.
+
+	* tests/flush-long-displays-at-end-of-input.sh: Do it.
+	* mm.am (mm_TESTS): Run test.
+
 2023-08-16 G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* groff_mm.7.man: Document difference from DWB in paragraph

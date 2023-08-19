@@ -113,7 +113,7 @@ embedded in
 or \*[tx] input files into the language understood by \*[tx] or
 .IR @g@troff .
 .
-It each
+It copies each
 .IR file 's
 contents to the standard output stream,
 except for lines between

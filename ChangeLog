@@ -72,7 +72,9 @@
 
 	* tmac/an.tmac: Introduce new interface register, `BP`, to
 	control the base paragraph indentation amount.  Formerly, `IN`
-	determined it _and_ the default relative inset amount.
+	determined it, the default relative inset amount, and the
+	default amount of additional indentation used by `IP`, `TP`, and
+	the deprecated `HP`.
 	(an-reset-margin-and-inset-level, SH, SS): Use it.
 
 	* tmac/doc.tmac: Introduce `BP` register, replacing `IN`.
@@ -217,12 +219,12 @@
 
 2023-07-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	* src/libs/libgroff/fontfile.cpp (font::open_file): Do more
-	parameter validation.  Don't construct a file name for opening
-	from components that are null pointers.  Also `assert()` this
-	since it should be an invariant.  Migrate from `sprintf()` to
-	`snprintf()`; we have the size of the destination buffer handy.
-	Update `#include`s.
+	* src/libs/libgroff/fontfile.cpp: Update `#include`s.
+	(font::open_file): Do more parameter validation.  Don't
+	construct a file name for opening from components that are null
+	pointers.  Also `assert()` this since it should be an invariant.
+	Migrate from `sprintf()` to `snprintf()`; we have the size of
+	the destination buffer handy.
 
 	Fixes <https://savannah.gnu.org/bugs/?64485>.  Thanks to Bjarni
 	Ingi Gislason for the report.

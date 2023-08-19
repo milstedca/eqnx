@@ -1,5 +1,18 @@
 2023-08-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* m.tmac: Flush displays at end of input even if they cause page
+	breaks.  Inspection of source code suggests that the problem
+	dates back to the introduction of the package in groff 1.04,
+	1991-11-17.  Our mm stumbled into a pitfall of AT&T
+	compatibility.  Our Texinfo manual (which did not exist yet in
+	1991) says: "For historical reasons (compatibility with AT&T
+	'troff'), the end-of-input macro exits as soon as it causes a
+	page break if no partially collected line remains. ..."
+
+	Fixes <https://savannah.gnu.org/bugs/?64336>.
+
+2023-08-19  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	Regression-test Savannah #64336.
 
 	* tests/flush-long-displays-at-end-of-input.sh: Do it.

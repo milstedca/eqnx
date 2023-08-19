@@ -1243,6 +1243,7 @@ numeric; got '\\$1'
 .nr pg*cols-per-page 1
 .nr pg*cur-po \n[@po]
 .nr pg*head-mark 0
+.nr pg*at-end-of-input 0
 .\"
 .nr pg*ps \n[@ps]
 .nr pg*vs \n[@vs]
@@ -1296,6 +1297,7 @@ numeric; got '\\$1'
 .de pg@next-page
 .\".debug next-page
 .br
+.if \\n[pg*at-end-of-input] \c
 .ne 999i		\" activate trap
 .\" .pg@footer
 ..
@@ -1544,6 +1546,7 @@ numeric; got '\\$1'
 .\"-------------------------
 .\" print out all pending text
 .de pg@end-of-text
+.nr pg*at-end-of-input 1
 .if \\n[D]>2 .tm ---------- End of text processing ----------------
 .df@eot-print
 .ref@eot-print

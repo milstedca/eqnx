@@ -101,7 +101,6 @@ is invoked by
 when the latter is given one of the
 .RB \[lq] \-T\~ascii \[rq],
 .RB \[lq] \-T\~latin1 \[rq],
-.BR \-Tlatin1 ,
 or
 .RB \[lq] \-T\~utf8 \[rq]
 options on systems using ISO character encoding standards,

@@ -81,10 +81,11 @@ o The m (mm) macro package's `IND` macro (a GNU extension), now calls
 
 o The s (ms) macro package now sets the vertical spacing register
   defaults for normal (`VS`) and footnote (`FVS`) text to 120% of the
-  existing type size rather than 2 points larger to comport with
-  generally accepted typesetting principles.  Thus, when formatting a
-  document with a type size of 20 points, the vertical spacing now
-  defaults to 24 points rather than 22.
+  type size configured in the `PS` and `FPS` registers, respectively,
+  rather than 2 points larger to comport with generally accepted
+  typesetting principles.  Thus, when formatting a document with a type
+  size of 20 points, the vertical spacing now defaults to 24 points
+  rather than 22.
 
 Miscellaneous
 -------------

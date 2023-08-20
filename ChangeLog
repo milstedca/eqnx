@@ -1,5 +1,11 @@
 2023-08-22  Dave Kemper <saint.snit@gmail.com>
 
+	* doc/pic.ms: Document `PY` macro, new to groff 1.23.0.
+
+	Fixes <https://savannah.gnu.org/bugs/?64575>.
+
+2023-08-22  Dave Kemper <saint.snit@gmail.com>
+
 	* tmac/pic.tmac (PY): Call `PF` rather than duplicating its
 	{three bytes of} code.  This is almost too trivial to DRY, but
 	{1} the new form is a cue to the human reader that .PY is meant

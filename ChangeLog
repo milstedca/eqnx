@@ -1,3 +1,12 @@
+2023-08-22  Dave Kemper <saint.snit@gmail.com>
+
+	* tmac/pic.tmac (PY): Call `PF` rather than duplicating its
+	{three bytes of} code.  This is almost too trivial to DRY, but
+	{1} the new form is a cue to the human reader that .PY is meant
+	to be an alias of .PF; and {2} .PE was already defined as a
+	variant of .PF with an explicit call to it, so this makes the
+	.PY definition conform to that precedent.
+
 2023-08-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac: Stop setting `an*can-hyperlink` if formatting

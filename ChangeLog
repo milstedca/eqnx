@@ -1,5 +1,13 @@
 2023-08-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/doc.am (PROCESSEDFILES_DEPS_HTML): Depend on
+	tmac/html{,-end}.tmac.
+	(PROCESSEDFILES_DEPS_PDF): Depend on tmac/pdf.tmac.
+	(PROCESSEDFILES_DEPS_PS): Depend on tmac/ps.tmac.
+	(PROCESSEDFILES_DEPS_TXT): Depend on tmac/tty.tmac.
+
+2023-08-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/devices/grops/ps.cpp (ps_printer::define_encoding):
 	* src/devices/grops/psrm.cpp (resource_manager::output_prolog)
 	(resource_manager::supply_resource): Report more intelligible

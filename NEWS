@@ -624,6 +624,15 @@ o On output devices using the Latin-1 character encoding ("groff -T
   sequences like `this' in the input (character remapping with 'char'
   requests and similar notwithstanding).
 
+o The grops driver (which produces PostScript), like the `fp` request
+  in the troff formatter (see above), no longer no longer accepts file
+  names with slashes in them as a document prologue, encoding file, or
+  resource (such as a font to be downloaded).  All such files must be
+  accessible within the directory of the output device for which they
+  were prepared.  Use the GROFF_FONT_PATH environment variable or
+  groff's "-F" command-line option to specify additional directories in
+  which such files should be sought.
+
 gropdf
 ------
 

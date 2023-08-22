@@ -1,3 +1,12 @@
+2023-08-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/an.tmac: Stop setting `an*can-hyperlink` if formatting
+	for PDF; we don't yet have support for this implemented, leading
+	to vanishing text when the `U` register is true and, for
+	instance, `UR`/`UE` are called with no link text.
+
+	Fixes <https://savannah.gnu.org/bugs/?64572>.
+
 2023-08-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (PROCESSEDFILES_DEPS_HTML): Depend on

@@ -1,3 +1,17 @@
+2023-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Validate reference system state and user input.
+
+	* m.tmac (qrf*validate-identifier): New macro tests argument for
+	validity as roff identifier, since user input is applied to this
+	purpose.
+	(INITR): Throw error if mandatory argument omitted; keeps us
+	from creating a (likely unwanted) dotfile, ".qrf".
+	(SETR, GETST, GETHN, GETPN, GETR): Throw error if reference
+	system macros used without initialization.
+	(SETR, GETST, GETHN, GETPN): Validate arguments to be used as
+	string identifiers.
+
 2023-08-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac: Flush displays at end of input even if they cause page

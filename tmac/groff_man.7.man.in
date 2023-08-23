@@ -3621,30 +3621,37 @@ Set indentation of subsection headings to
 The default is 3n.
 .
 .
+.TP
+.BI \-rTS= separation
+Require the given
+.I separation
+between an
+.B IP
+or
+.B TP
+paragraph's tag and its body.
+.
+The default is\~2n.
+.
+.
 .br
 .ne 4v
 .TP
-.B \-rU1
-Enable generation of URI hyperlinks in the
-.I grohtml
-and
-.I grotty
-output drivers.
-.
-.I grohtml
-enables them by default;
-.I grotty
-does not,
-pending more widespread pager support for OSC\~8 escape sequences.
-.
-Use
 .B \-rU0
-to disable hyperlinks;
-this will make the arguments to
+Disable generation of URI hyperlinks in output drivers capable of them,
+making the arguments to
 .B MT
 and
 .B UR
-calls visible in the document text produced by link-capable drivers.
+calls visible as formatted text.
+.
+.MR grohtml @MAN1EXT@
+and
+.MR grotty @MAN1EXT@
+enable hyperlinks by default
+(the latter only if not in legacy output mode);
+.MR gropdf @MAN1EXT@
+does not (yet).
 .
 .
 .TP

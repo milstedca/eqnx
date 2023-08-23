@@ -1929,8 +1929,8 @@ performed.  These common tasks are grouped into @slanted{macros}, which
 are then collected into a @slanted{macro package}.
 
 Macro packages come in two varieties:@: ``major'' or ``full-service''
-ones that manage page layout, and ``minor'' or ``auxiliary'' ones that
-do not, instead fulfilling narrow, specific tasks.  Find a list in
+ones that manage page layout with traps, and ``minor'' or ``auxiliary''
+ones that do not, but fulfill narrower purposes.  Find a list in
 @cite{groff_tmac@r{(5)}}.
 
 We present several capabilities of full-service macro packages below.
@@ -2133,8 +2133,8 @@ pages at the time the document is rendered; see @cite{gropdf@r{(1)}}.
 An index is similar to a table of contents, in that entry labels and
 locations must be collected, but poses a greater challenge because it
 needs to be sorted before it is output.  Here, processing the document
-in multiple passes is inescapable, and tools like the @code{makeindex}
-program are necessary.
+in multiple passes is inescapable, and tools like the
+@cite{makeindex@r{(1)}} program are necessary.
 
 @c ---------------------------------------------------------------------
 
@@ -2162,10 +2162,10 @@ formatting offer a facility for setting multiple columns on the page.
 @subsection Font and Size Changes
 
 The formatter's requests and escape sequences for setting the typeface
-and size are not always intuitive in their behavior, so all packages
-provide macros to simplify input of these operations.  They can also
-make mid-word font style changes more convenient, and can handle italic
-corrections automatically.  @xref{Italic Corrections}.
+and size are not always intuitive in their behavior, so all full-service
+packages provide macros to simplify input of these operations.  They can
+also make mid-word font style changes more convenient, and can handle
+italic corrections automatically.  @xref{Italic Corrections}.
 
 @c ---------------------------------------------------------------------
 
@@ -2181,10 +2181,10 @@ the date, or to perform operations like super- and subscripting.
 @subsection Preprocessor Support
 
 All macro packages provide support for various preprocessors and may
-extend their functionality by defining macros to set their contents in
-displays.  Examples include @code{TS} and @code{TE} for @command{gtbl},
-@code{EQ} and @code{EN} for @command{geqn}, and @code{PS} and @code{PE}
-for @command{gpic}.
+extend their functionality by defining macros to caption them and/or set
+their contents in displays.  Examples include @code{TS} and @code{TE}
+for @command{gtbl}, @code{EQ} and @code{EN} for @command{geqn}, and
+@code{PS} and @code{PE} for @command{gpic}.
 
 @c ---------------------------------------------------------------------
 

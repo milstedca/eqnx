@@ -3947,7 +3947,7 @@ localizable text.
 These are presented in quotation marks.
 .
 .
-.TP 8n \" "Apptxt" + 2n
+.TP 9.5n \" "Letnsdef" + 2n + hand-tuned for PDF
 .B App
 \[lq]APPENDIX\[rq]
 .
@@ -4348,7 +4348,7 @@ disabled)
 otherwise.
 .
 .
-.TP
+.TP 9n \" "Letwam" + 2n + hand-tuned for PDF
 .B .mgm
 indicates that
 .I groff mm
@@ -4592,7 +4592,11 @@ see
 .
 .
 .TP
-.BR H1 \|.\|.\|.\| H14
+.B H1
+.TQ
+\&.\|.\|.
+.TQ
+.B H14
 are auto-incrementing counters corresponding to each heading level;
 see
 .BR H .
@@ -4646,6 +4650,8 @@ see
 .RB ( 0 ).
 .
 .
+.br
+.ne 7v
 .TP
 .B Hi
 configures the indentation of text after headings.
@@ -4924,6 +4930,8 @@ Value 5 is a GNU extension
 .RB ( 0 ).
 .
 .
+.br
+.ne 3v
 .IP
 .TS
 tab(@);

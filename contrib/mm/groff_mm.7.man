@@ -3383,13 +3383,15 @@ See
 .BR 1 ]]
 Write a signature line.
 .
-Authors' name(s) are placed after the formal closing;
+Authors' names are placed after the formal closing;
 see
 .B LT
+(one author only)
 and
 .BR MT .
 .
-Reference data
+For memoranda,
+reference data
 (the location,
 department,
 and initials specified in an
@@ -3399,13 +3401,9 @@ followed by any
 .IR arg ,
 are written at the left margin preceding the last author's name,
 or preceding the first if a second argument is present and the
-memorandum or letter type supports it.
+memorandum type supports it.
 .
 See section \[lq]Internals\[rq] below.
-.
-No reference data are written for author(s) specified by
-.BR WA / WE .
-.\" XXX: This has tension with our advice to use only WA/WE with LT.
 .
 .
 .TP

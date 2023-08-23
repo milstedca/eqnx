@@ -18937,7 +18937,7 @@ for@tie{}@var{n}.
 
 Request names appear without a leading control character; the defaults
 are @code{.} for the regular control character and @code{'} for the
-no-break control character.
+no-break control character.  @xref{Invoking Requests}.
 
 @printindex rq
 
@@ -18952,10 +18952,10 @@ no-break control character.
 The escape character, @code{\} by default, is always followed by at
 least one more input character, making an escape @emph{sequence}.  Any
 input token @code{\@var{X}} with @var{X} not in the list below emits a
-warning and interpolates glyph @var{X}.  Note the entries for @code{\.},
-which may be obscured by the leader dots, and for @code{\@key{RET}} and
-@code{\@key{SP}}, which are sorted alphabetically, not by code point
-order.
+warning and interpolates character @var{X}.  Note the entries for
+@code{\.}, which may be obscured by the leader dots, and for
+@code{\@key{RET}} and @code{\@key{SP}}, which are sorted alphabetically,
+not by code point order.  @xref{Using Escape Sequences}.
 
 @printindex es
 
@@ -18967,6 +18967,8 @@ order.
 @node Operator Index, Register Index, Escape Sequence Index, Top
 @appendix Operator Index
 
+@xref{Numeric Expressions}.
+
 @printindex op
 
 
@@ -18977,13 +18979,12 @@ order.
 @node Register Index, Macro Index, Operator Index, Top
 @appendix Register Index
 
-The macro package or program a specific register belongs to is appended
-in brackets.
+Where not used by the formatter itself, a register's associated macro
+package or program appears in brackets after the register's name.
 
-A register name@tie{}@code{x} consisting of exactly one character can be
-accessed as @samp{\nx}.  A register name @code{xx} consisting of exactly
-two characters can be accessed as @samp{\n(xx}.  Register names
-@code{xxx} of any length can be accessed as @samp{\n[xxx]}.
+Interpolate a register name of exactly one character@tie{}@code{x} with
+@samp{\nx}; of exactly two characters @code{xx} with @samp{\n(xx}; or of
+any length @code{xxx} with @samp{\n[xxx]}.  @xref{Registers}.
 
 @printindex vr
 
@@ -18995,8 +18996,9 @@ two characters can be accessed as @samp{\n(xx}.  Register names
 @node Macro Index, String Index, Register Index, Top
 @appendix Macro Index
 
-The macro package a specific macro belongs to is appended in brackets.
-They appear without the leading control character (normally @samp{.}).
+The package or program with which a macro is associated appears in
+brackets after the macro's name.  They appear without a leading control
+character (normally @samp{.}).  @xref{Calling Macros}.
 
 @printindex ma
 
@@ -19008,9 +19010,13 @@ They appear without the leading control character (normally @samp{.}).
 @node String Index, File Keyword Index, Macro Index, Top
 @appendix String Index
 
-The macro package or program a that defines or uses each string is
-appended in brackets. (Only one string, @code{.T}, is defined by the
-@code{troff} formatter itself.)  @xref{Strings}.
+The macro package or program with which a string is associated appears
+in brackets after the strings's name.  The formatter itself defines only
+one string, @code{.T}.
+
+Interpolate a string name of exactly one character@tie{}@code{x} with
+@samp{\*x}; of exactly two characters @code{xx} with @samp{\*(xx}; or of
+any length @code{xxx} with @samp{\*[xxx]}.  @xref{Strings}.
 
 
 @printindex st
@@ -19022,6 +19028,8 @@ appended in brackets. (Only one string, @code{.T}, is defined by the
 
 @node File Keyword Index, Program and File Index, String Index, Top
 @appendix File Keyword Index
+
+@xref{Device and Font Description Files}.
 
 @printindex ky
 

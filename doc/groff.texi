@@ -5816,8 +5816,9 @@ its resolution and page dimensions (@pxref{DESC File Format}).
 A @dfn{page} is a two-dimensional structure upon which a @code{roff}
 system imposes a rectangular coordinate system with its upper left
 corner as the origin.  Coordinate values are in basic units and increase
-down and to the right.  Useful ones are therefore always positive and
-within numeric ranges corresponding to the page boundaries.
+down and to the right.  Useful ones are typically positive and within
+numeric ranges corresponding to the page boundaries.
+@c You could draw an arc of a circle whose center is off the page.
 
 @cindex drawing position
 @cindex position, drawing

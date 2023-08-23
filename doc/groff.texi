@@ -840,7 +840,7 @@ you make the most of this resource.
 @cindex credits
 
 We adapted portions of this manual from existing documents.  James
-Clark's man pages were an essential resource; we have updated them in
+Clark's man pages were an invaluable foundation; we have updated them in
 parallel with the development of this manual.  We based the tutorial for
 macro users on Eric Allman's introduction to his @file{me} macro package
 (which we also provide, little altered from 4.4BSD).  Larry Kollar
@@ -1514,8 +1514,8 @@ follows.
 
 @noindent
 The foregoing assumes that the version of @code{groff} is 1.23.0, and
-that the installation prefix was @file{/usr/local}.  It is possible to
-fine-tune these locations during the source configuration process.
+that the installation prefix was @file{/usr/local}.  These locations can
+be customized as part of the build-time configuration process.
 @end itemize
 
 
@@ -1529,13 +1529,13 @@ fine-tune these locations during the source configuration process.
 @cindex fonts, searching
 
 @code{groff} enforces few restrictions on how font description files are
-named.  For its family/style mechanism to work (@pxref{Font Families}),
-the names of fonts within a family should start with the family name,
-followed by the style.  For example, the Times family uses @samp{T} for
-the family name and @samp{R}, @samp{B}, @samp{I}, and @samp{BI} to
-indicate the styles `roman', `bold', `italic', and `bold italic',
-respectively.  Thus the final font names are @samp{TR}, @samp{TB},
-@samp{TI}, and @samp{TBI}.
+named.  For its family/style mechanism to work, the names of fonts
+within a family should start with the family name, followed by the
+style.  For example, the Times family uses @samp{T} for the family name
+and @samp{R}, @samp{B}, @samp{I}, and @samp{BI} to indicate the styles
+`roman', `bold', `italic', and `bold italic', respectively.  Their
+resolved font names are thus @samp{TR}, @samp{TB}, @samp{TI}, and
+@samp{TBI}.  @xref{Using Fonts}.
 
 @cindex font path
 @cindex path, for font files
@@ -1574,8 +1574,8 @@ they are as follows.
 
 @noindent
 The foregoing assumes that the version of @code{groff} is 1.23.0, and
-that the installation prefix was @file{/usr/local}.  It is possible to
-fine-tune these locations during the source configuration process.
+that the installation prefix was @file{/usr/local}.  These locations can
+be customized as part of the build-time configuration process.
 @end itemize
 
 
@@ -1591,6 +1591,7 @@ fine-tune these locations during the source configuration process.
 @cindex orientation, landscape
 @cindex page orientation, landscape
 
+@c BEGIN Keep parallel with groff(1), subsection "Paper format".
 GNU @command{troff} reads the device description file
 @file{DESC}@footnote{@xref{Device and Font Description Files}.} for the
 selected output device when it starts; page dimensions declared there
@@ -1623,8 +1624,10 @@ overriding its defaults.  The following command formats for PostScript
 on A4 paper in landscape orientation.
 
 @Example
-$ groff -T ps -d paper=a4l -P -pa4 -P -l -ms foo.ms > foo.ps
+@c The next line is right at the 59n limit.
+$ groff -T ps -d paper=a4l -P -pa4 -P -l -ms foo.ms >foo.ps
 @endExample
+@c END Keep parallel with groff(1), subsection "Paper format".
 
 
 @c =====================================================================
@@ -1635,9 +1638,9 @@ $ groff -T ps -d paper=a4l -P -pa4 -P -l -ms foo.ms > foo.ps
 @cindex invocation examples
 @cindex examples of invocation
 
-@code{roff} systems are best known for formatting man pages.  Once a
-@command{man} librarian program has located a man page, it may execute
-a @command{groff} command much like the following.
+@code{roff} systems are best known for formatting man pages.  A
+@command{man} librarian program, having located a page, may render it
+with a @command{groff} command.
 
 @Example
 groff -t -man -Tutf8 /usr/share/man/man1/groff.1

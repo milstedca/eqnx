@@ -5184,8 +5184,8 @@ escape sequences whose purpose is to obtain glyphs that are not easily
 typed at the keyboard, or which have special meaning to GNU @code{troff}
 (like @code{\} itself).@footnote{The mnemonics for the special
 characters shown here are ``dagger'', ``double dagger'', ``right
-(double) quote'', and ``closing (single) quote''.  See the
-@cite{groff_char@r{(7)}} man page.}
+(double) quote'', and ``closing (single) quote''.  See
+@cite{groff_char@r{(7)}}.}
 
 @Example
 \[lq]The idea that the poor should have leisure has always
@@ -5589,7 +5589,7 @@ character set is also a valid ISO @w{Latin-1} document; the standards
 are interchangeable in their first 128 code points.@footnote{The
 @emph{semantics} of certain punctuation code points have gotten stricter
 with the successive standards, a cause of some frustration among man
-page writers; see the @cite{groff_char@r{(7)}} man page.}
+page writers; see @cite{groff_char@r{(7)}}.}
 
 Other encodings are supported by means of macro packages.
 
@@ -5608,8 +5608,8 @@ localization file @file{ru.tmac} takes care of this automatically; see
 character codings natively; see @ref{Identifiers}.  This should be no
 impediment to practical documents, as these KOI8-R code points do not
 encode letters, but box-drawing symbols and characters that are better
-obtained via special character escape sequences; see the
-@cite{groff_char@r{(7)}} man page.}
+obtained via special character escape sequences; see
+@cite{groff_char@r{(7)}}.}
 
 @item latin2
 @cindex encoding, input, @w{Latin-2} (ISO @w{8859-2})
@@ -12111,8 +12111,8 @@ scaling units.
 @cindex type size registers, last-requested (@code{.psr}, @code{.sr})
 @cindex last-requested point size registers (@code{.psr}, @code{.sr})
 @cindex point size registers, last-requested (@code{.psr}, @code{.sr})
-@cindex @code{.ps} register, in comparison with @code{.psr}
-@cindex @code{.s} register, in comparison with @code{.sr}
+@cindex @code{.ps} register, compared to @code{.psr}
+@cindex @code{.s} register, compared to @code{.sr}
 Output devices may be limited in the type sizes they can employ.  The
 @code{.s} and @code{.ps} registers represent the type size selected by
 the output driver as it understands a device's capability.  The last

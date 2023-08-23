@@ -3984,20 +3984,21 @@ and so on.
 .
 .TP
 .B DT
-The date;
-set by the
-.B ND
-macro
-(defaults to the date the document is formatted).
+stores the date or other identifier set by
+.BR ND ,
+if called,
+and otherwise one constructed using
+the formatter's date registers;
+see
+.MR groff @MAN1EXT@ .
 .
-The format is the conventional one for the
+The
 .I groff
-locale,
-but see the
+locale determines its format,
+but see
 .B ISODATE
-macro and
-.B Iso
-register.
+and register
+.BR Iso .
 .
 .
 .TP
@@ -4024,13 +4025,18 @@ it is surrounded by square brackets.
 .
 .TP
 .B H1txt
-Updated by
-.B .H
+stores the text of the current heading;
+.B H
 and
-.B .HU
-to the current heading text.
-.
-Also updated in table of contents & friends.
+.B HU
+update it,
+as does
+.B TC
+when processing table of contents entries and captions of displayed
+figures,
+tables,
+equations,
+and exhibits.
 .
 .
 .TP
@@ -4166,9 +4172,9 @@ NS code@String@Contents
 .
 .TP
 .B Letnsdef
-Select the notation format used by
+selects the notation format when
 .B NS
-when it is given no argument.
+is given no argument.
 .
 The default is
 .RB \[lq] 0 \[rq].
@@ -4236,7 +4242,11 @@ The default is
 .
 .
 .TP
-.BR MO1 \|.\|.\|.\| MO12
+.B MO1
+.TQ
+\&.\|.\|.
+.TQ
+.B MO12
 \[lq]January\[rq] through \[lq]December\[rq]
 .
 .
@@ -5398,17 +5408,34 @@ implements memorandum type 5.
 performs any (further) desired necessary localization if present.
 .
 .
+.br
+.ne 5v \" 4v plus bigger type size for heading
 .\" ====================================================================
 .SH Authors
 .\" ====================================================================
 .
-The GNU version of the
-.I mm
-macro package was written by
 .MT jh@\:axis\:.se
 J\[:o]rgen H\[:a]gg
 .ME
-of Lund, Sweden.
+of Lund, Sweden,
+wrote the GNU version of the
+.I mm
+macro package
+based on an early version of
+.I "groff ms"
+by
+.MT jjc@\:jclark\:.com
+James Clark
+.ME .
+.
+.MT wl@\:gnu\:.org
+Werner Lemberg
+.ME
+and
+.MT g.branden\:.robinson@\:gmail\:.com
+G.\& Branden Robinson
+.ME
+revised and updated it.
 .
 .
 .\" ====================================================================

@@ -1529,7 +1529,12 @@ Output the string
 .BR Letfc ,
 or the specified
 .I closing-text,
-as the formal closing of a letter.
+as the formal closing of a letter or memorandum.
+.
+See
+.B LT
+and
+.BR MT .
 .
 .
 .TP
@@ -2355,7 +2360,7 @@ register
 Each item's mark is indented by
 .I mark-indent;
 the default is
-.BR 0n .
+.BR 0 .
 .
 The mark is normally left-aligned.
 .
@@ -3377,25 +3382,34 @@ See
 .BR INITR .
 .
 .TP
-.BI SG\  \fR[\fParg\  \fR[\fP1\fR]]\fP
-Signature line.
+.BR SG\~ [\c
+.IR arg \~[\c
+.BR 1 ]]
+Write a signature line.
 .
-Prints the authors name(s) after the formal closing.
+Authors' name(s) are placed after the formal closing;
+see
+.B LT
+and
+.BR MT .
 .
-The argument is appended to the reference data, printed at either the
-first or last author.
-.
-The reference data is the location, department, and initials specified
-with
-.BR AU .
-.
-It is printed at the first author if the second argument is given,
-otherwise at the last.
-.
-No reference data is printed if the author(s) is specified through
-.BR WA / WE .
+Reference data
+(the location,
+department,
+and initials specified in an
+.B AU
+call),
+followed by any
+.IR arg ,
+are written at the left margin preceding the last author's name,
+or preceding the first if a second argument is present and the
+memorandum or letter type supports it.
 .
 See section \[lq]Internals\[rq] below.
+.
+No reference data are written for author(s) specified by
+.BR WA / WE .
+.\" XXX: This has tension with our advice to use only WA/WE with LT.
 .
 .
 .TP
@@ -5373,8 +5387,7 @@ implements memorandum type 5.
 .
 .TP
 .I @TMAC_MDIR@/locale
-performs any (further) desired necessary localization;
-empty by default.
+performs any (further) desired necessary localization if present.
 .
 .
 .\" ====================================================================

@@ -2344,36 +2344,31 @@ purpose.
 .
 .
 .br
-.ne 5v
+.ne 3v
 .IP
-The nesting level of lists is tracked by
-.I mm;
-the outermost level is\~0.
+.I mm
+tracks the nesting level of lists;
+the outermost is\~0.
 .
-The text of each list item is indented by
-.I text-indent;
-the default is taken from the
-.B Li
-register
-(in ens).
-.
-Each item's mark is indented by
-.I mark-indent;
-the default is
-.BR 0 .
+Each list item is indented by
+.I text-indent,
+and its mark
+by
+.I mark-indent.
 .
 The mark is normally left-aligned.
 .
 If
 .I pad
 is greater than zero,
+it overrides
 .I mark-indent
-is overridden such that
+such that
 .I pad
 ens of space follow the mark.
 .
 .I type
-selects one of six possible ways to display the mark.
+determines the mark's format.
 .
 .
 .IP
@@ -2397,7 +2392,8 @@ If
 is\~0 and
 .I mark
 is unspecified,
-the items are set with a hanging indent.
+.I mm
+sets items with a hanging indent.
 .
 Otherwise,
 .I mark
@@ -2406,7 +2402,7 @@ is interpreted as a string defining the mark.
 If
 .I type
 is greater than zero,
-items are automatically numbered;
+items are automatically numbered and
 .I mark
 is interpreted as a register format.
 .

@@ -3021,7 +3021,7 @@ the bottom of a column or page.  This is a Berkeley extension.
 @table @code
 @item 0
 Set an automatic number@footnote{defined in @ref{ms Footnotes}} as a
-superscript (on typesetter devices) or surrounded by square brackets (on
+superscript (on typesetters) or surrounded by square brackets (on
 terminals).  The footnote paragraph is indented as with @code{PP} if
 there is an @code{FS} argument or an automatic number, and as with
 @code{LP} otherwise.  This is the default.
@@ -3276,9 +3276,9 @@ The @code{FAM} string, a GNU extension, sets the font family for body
 text; the default is @samp{T}.  The @code{PS} and @code{VS} registers
 set the type size and vertical spacing (distance between text
 baselines), respectively.  The font family and type size are ignored on
-terminal devices.  Setting these parameters before the first call of a
-heading, paragraphing, or (non-date) document description macro also
-applies them to headers, footers, and (for @code{FAM}) footnotes.
+terminals.  Set these parameters before the first call of a heading,
+paragraphing, or (non-date) document description macro to apply them to
+headers, footers, and (for @code{FAM}) footnotes.
 
 Which font families are available depends on the output device; as a
 convention, @code{T} selects a serif family (``Times''), @code{H} a
@@ -3592,15 +3592,15 @@ instead of bold.  This is a Research Tenth Edition Unix extension.
 @endDefmac
 
 @Defmac {BX, [@Var{text}], ms}
-Typeset @var{text} and draw a box around it.  On terminal devices,
-reverse video is used instead.  If you want @var{text} to contain space,
-use unbreakable space or horizontal motion escape sequences (@code{\~},
+Typeset @var{text} and draw a box around it.  On terminals, reverse
+video is used instead.  If you want @var{text} to contain space, use
+unbreakable space or horizontal motion escape sequences (@code{\~},
 @code{\@key{SP}}, @code{\^}, @code{\|}, @code{\0} or @code{\h}).
 @endDefmac
 
 @Defmac {UL, [@Var{text} [@Var{post}]], ms}
-Typeset @var{text} with an underline.  On terminal devices, @var{text}
-is bracketed with underscores `_'.  @var{post}, if present, is set after
+Typeset @var{text} with an underline.  On terminals, @var{text} is
+bracketed with underscores `_'.  @var{post}, if present, is set after
 @var{text} with no intervening space.
 @endDefmac
 
@@ -4616,9 +4616,9 @@ Many @code{groff} @file{ms} macros, including those for paragraphs,
 headings, and displays, cause a reset of paragraph rendering parameters,
 and may change the indentation; they do so not by incrementing or
 decrementing it, but by setting it absolutely.  This can cause problems
-for documents that define additional macros of their own that try to
-manipulate indentation.  Use the @file{ms} @code{RS} and @code{RE}
-macros instead of the @code{in} request.
+for documents that define additional macros of their own that manipulate
+indentation.  Use the @file{ms} @code{RS} and @code{RE} macros instead
+of the @code{in} request.
 
 @item
 @cindex fractional type sizes in @file{ms} macros

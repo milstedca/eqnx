@@ -165,7 +165,7 @@ Put a macro call on a line by itself.
 .
 Use
 .CW .PP
-if you want your paragraph's first line to be indented,
+if you want your paragraph's first line indented,
 or
 .CW .LP
 if you don't.
@@ -1704,13 +1704,13 @@ type size,
 paragraphing,
 or heading macro call.
 .
-You can
+Call
 .LG
-specify this macro
+the macro
 .LG
 multiple times
 .NL
-to enlarge the type size as needed.
+to enlarge the type size further.
 T}
 _
 \&.SM	T{
@@ -1724,13 +1724,13 @@ type size,
 paragraphing,
 or heading macro call.
 .
-You can
+Call
 .SM
-specify this macro
+the macro
 .SM
 multiple times
 .NL
-to reduce the type size as needed.
+to reduce the type size further.
 T}
 _
 \&.NL	T{

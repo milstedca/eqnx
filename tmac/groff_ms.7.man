@@ -1184,8 +1184,7 @@ type size,
 paragraphing,
 or heading macro call.
 .
-You can specify this macro multiple times to enlarge the type size as
-needed.
+Call the macro multiple times to enlarge the type size further.
 .
 .
 .TP
@@ -1197,8 +1196,7 @@ type size,
 paragraphing,
 or heading macro call.
 .
-You can specify this macro multiple times to reduce the type size as
-needed.
+Call the macro multiple times to reduce the type size further.
 .
 .
 .TP
@@ -1369,6 +1367,8 @@ and
 calls.
 .
 .
+.br
+.ne 2v
 .P
 .I Displays
 turn off filling;

@@ -89,9 +89,9 @@ implementation.
 .
 .P
 Below we present
-typographical concepts that form the background of all
+typographical concepts foundational to understanding any
 .I roff
-implementations,
+implementation,
 narrate the development history of some
 .I roff
 systems,
@@ -353,8 +353,9 @@ formatter translates horizontal tab characters,
 also called simply \[lq]tabs\[rq],
 in the input into movements to the next tab stop.
 .
-These tab stops are by default located every half inch measured from the
-current position on the input line.
+Tab stops are by default located every half inch measured from the
+drawing position corresponding to the beginning of the input line;
+see subsection \[lq]Page geometry\[rq] below.
 .
 With them,
 simple tables can be made.

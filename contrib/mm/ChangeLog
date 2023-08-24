@@ -1,3 +1,15 @@
+2023-08-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* mmroff.pl: Fix code style nits; resolve Perl warnings.
+	Initialize scalars `max_height` and `max_width` before using
+	them.  Add to `cur` hash instead of reinitializing it when
+	reading "PIC id" comment from input.
+	(ps_calc): Return early if bounding box keys in `cur` hash not
+	populated.
+	(psbb): Use `return` instead of `next` to exit early from
+	non-loop.  Improve diagnostic message: identify who is speaking,
+	what operation failed, and end with newline.
+
 2023-08-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	Validate reference system state and user input.

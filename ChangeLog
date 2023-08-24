@@ -1,5 +1,11 @@
 2023-08-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/eqn/box.cpp (set_param): Migrate iteration style
+	to use new `array_size()` instead of null pointer guards at the
+	end of an array of structs.
+
+2023-08-24  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[src]: Add template function for obtaining the length of an
 	array.
 

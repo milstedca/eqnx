@@ -4246,8 +4246,8 @@ The default is
 .
 .TP
 .B Qrf
-\[lq]See chapter \[rs]\[rs]*[Qrfh],
-page \[rs]\[rs]n[Qrfp].\[rq]
+\[lq]See chapter \[rs]E*[Qrfh],
+page \[rs]En[Qrfp].\[rq]
 .
 .
 .TP

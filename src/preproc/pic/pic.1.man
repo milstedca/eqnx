@@ -1052,8 +1052,8 @@ an expression of the form
 .BI sprintf(\[dq] format \[dq],\~ arg ,\fR\~.\|.\|.\fB)
 .
 .
-.LP
-be used instead;
+.P
+can be used instead;
 this will produce the arguments per the
 .IR format ,
 which should be a string as described in

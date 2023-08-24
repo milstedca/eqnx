@@ -141,7 +141,7 @@ is \[lq]\-\[rq],
 .I grolbp
 reads the standard input stream.
 .
-Output is written to the standard output stream.
+It writes to the standard output stream.
 .
 .
 .\" ====================================================================

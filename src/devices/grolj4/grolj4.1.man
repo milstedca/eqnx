@@ -125,8 +125,7 @@ is \[lq]\-\[rq],
 .I grolj4
 reads the standard input stream.
 .
-.I grolj4
-writes to the standard output stream.
+It writes to the standard output stream.
 .
 .
 .\" ====================================================================

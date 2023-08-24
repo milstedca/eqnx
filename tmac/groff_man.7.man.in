@@ -3781,14 +3781,16 @@ implementations that give up scans for indexing material early.
 .
 .TP
 .I @MACRODIR@/\:man\:.tmac
-This is a wrapper that loads
-.IR an.tmac .
+is a wrapper enabling the package to be loaded with the option
+.RB \[lq] "\-m man" \[rq].
 .
 .
 .TP
 .I @MACRODIR@/\:\%mandoc\:.tmac
-This is a wrapper that loads
-.IR \%andoc.tmac .
+is a wrapper enabling
+.I \&andoc.tmac
+to be loaded with the option
+.RB \[lq] "\-m mandoc" \[rq].
 .
 .
 .TP

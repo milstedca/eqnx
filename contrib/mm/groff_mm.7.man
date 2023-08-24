@@ -5335,8 +5335,8 @@ implementation of the memorandum macros.
 .
 .TP
 .I @MACRODIR@/mm.tmac
-is wrapper to load
-.IR m.tmac .
+is a wrapper enabling the package to be loaded with the option
+.RB \[lq] "\-m mm" \[rq].
 .
 .
 .TP

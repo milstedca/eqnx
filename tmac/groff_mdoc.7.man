@@ -5206,8 +5206,8 @@ subdirectory.
 .
 .
 .It Pa @MACRODIR@/\:mdoc\:.tmac
-is a wrapper that loads
-.Pa doc.tmac .
+is a wrapper enabling the package to be loaded with the option
+.Dq Li "\-m mdoc" .
 .
 .
 .It Pa @MACRODIR@/\:mdoc/\:doc\-common

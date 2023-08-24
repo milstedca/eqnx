@@ -326,29 +326,22 @@ special fonts
 They are are not mounted by default.
 .
 .
-.br
-.ne 2v
 .P
-The
-.I @g@troff
-option
-.B \-mec
-loads the
+You can load the
 .I ec.tmac
-macro file,
-employing the EC and TC fonts instead of CM.
+macro file to employ the EC and TC fonts instead of CM,
+which they resemble.
 .
-These are designed similarly to the Computer Modern fonts;
-further,
-they provide Euro
+They also provide Euro
 .B \[rs][Eu]
 and per mille
 .B \[rs][%0]
 glyphs.
 .
+Do so before loading localization macro files,
+because
 .I ec.tmac
-must be loaded before any language-specific macro files because it does
-not set up the codes necessary for automatic hyphenation.
+does not set up automatic hyphenation codes.
 .
 .
 .\" ====================================================================

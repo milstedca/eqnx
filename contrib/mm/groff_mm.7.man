@@ -1285,10 +1285,10 @@ to\~0 to suppress these.
 .
 .TP
 .BR EC \~\c
-.RI [ title \~[ override \~[ flag \~[  refname ]]]]
+.RI [ title \~[ override \~[ flag \~[ ref-name ]]]]
 Caption an equation.
 .
-The caption consists of the string
+A caption comprises the string
 .B Liec
 followed by an automatically incrementing counter stored in the register
 .BR Ec ,
@@ -1343,14 +1343,14 @@ enclosing display.
 .
 .
 .IP
-.I refname
-stores the equation number using
-.BR SETR ;
-it can be retreived with
-.RB \[lq] .GETST
-.IR refname \[rq].
+Specifying
+.I ref-name
+stores the equation number as if by
+.RB \[lq] .SETR
+.I ref-name
+.BR \[rs]n[Ec] \[rq].
 .
-This argument is a GNU extension.
+Recognition of this argument is a GNU extension.
 .
 .
 .IP
@@ -1490,7 +1490,7 @@ is used.
 .
 .TP
 .BR EX \~\c
-.RI [ title \~[ override \~[ flag \~[  refname ]]]]
+.RI [ title \~[ override \~[ flag \~[ ref-name ]]]]
 Caption an exhibit.
 .
 Arguments are handled analogously to
@@ -1606,7 +1606,7 @@ see
 .
 .TP
 .BR FG \~\c
-.RI [ title \~[ override \~[ flag \~[  refname ]]]]
+.RI [ title \~[ override \~[ flag \~[ ref-name ]]]]
 Caption a figure.
 .
 Arguments are handled analogously to
@@ -1681,87 +1681,60 @@ the footnote marker in the body text must be explicitly written.
 .
 .
 .TP
-.BI GETHN\  "refname \fR[\fPvarname\fR]\fP"
-Include the heading number where the corresponding
-.RB \[lq] .SETR
-.IR refname \[rq]
-was placed.
-.
-This is displayed as \[lq]X.X.X.\[rq] in pass\~1.
-.
-See
-.BR INITR .
-.
-If
-.I varname
-is used,
-.B GETHN
-sets the string
-.I varname
-to the heading number.
-.
-.TP
-.BI GETPN\  "refname \fR[\fPvarname\fR]\fP"
-Include the page number where the corresponding
-.RB \[lq] .SETR
-.IR refname \[rq]
-was placed.
-.
-This is displayed as \[lq]9999\[rq] in pass\~1.
+.BI GETHN\~ ref-name\~\c
+.RI [ string ]
+Interpolate
+.IR ref-name 's
+heading number,
+or,
+if
+.I string
+is specified,
+store it there.
 .
 See
 .BR INITR .
 .
-If
-.I varname
-is used,
-.B GETPN
-sets the string
-.I varname
-to the page number.
 .
 .TP
-.BI GETR\  refname
-Combine
-.B GETHN
-and
-.B GETPN
-with the text \[lq]chapter\[rq] and \[lq],\~page\[rq].
+.BI GETPN\~ ref-name\~\c
+.RI [ string ]
+Interpolate
+.IR ref-name 's
+page number,
+or,
+if
+.I string
+is specified,
+store it there.
 .
-The string
-.B Qrf
-contains the text for the cross reference:
+See
+.BR INITR .
 .
-.RS
-.IP
-\&.ds Qrf See chapter \[rs]\[rs]*[Qrfh], page \[rs]\[rs]*[Qrfp].
-.RE
-.
-.IP
-.B Qrf
-may be changed to support other languages.
-.
-Strings
-.B Qrfh
-and
-.B Qrfp
-are set by
-.B GETR
-and contain the page and heading number,
-respectively.
 .
 .TP
-.BI GETST\  "refname \fR[\fPvarname\fR]\fP"
-Include the string saved with the second argument to
-.BR .SETR .
+.BI GETR\~ ref-name
+Retrieve location data for reference
+.I ref-name
+and interpolate string
+.B Qrf
+as a cross reference to it.
 .
-This is a dummy string in pass\~1.
+See
+.BR INITR .
 .
-If
-.I varname
-is used,
-.B GETST
-sets it to the saved string.
+.
+.TP
+.BI GETST\~ ref-name\~\c
+.RI [ string ]
+Interpolate
+.IR ref-name 's
+auxiliary reference datum,
+or,
+if
+.I string
+is specified,
+store it there.
 .
 See
 .BR INITR .
@@ -2257,12 +2230,12 @@ with the arguments given to
 .
 .
 .TP
-.BI INITR\~ id
+.BI INITR\~ file-name-prefix
 Initialize the cross reference macros.
 .
 Cross references are written to the standard error stream,
 which should be redirected into a file named
-.RI id .qrf .
+.RI file-name-prefix .qrf .
 .
 .MR mmroff @MAN1EXT@
 handles this and the two formatting passes it requires.
@@ -2272,8 +2245,8 @@ handles this and the two formatting passes it requires.
 .\"by default deactivates the unsafe operations that are required by
 .\".BR INITR .
 .
-The first pass identifies cross references,
-and the second one includes them.
+The first pass identifies cross references;
+the second includes them.
 .\"
 .\".B INITR
 .\"can be used several times,
@@ -2281,13 +2254,12 @@ and the second one includes them.
 .\".B INITR
 .\"that is active.
 .
-.
-.IP
 See
 .BR SETR ,
+.BR GETHN ,
 .BR GETPN ,
 and
-.BR GETHN .
+.BR GETST .
 .
 .
 .TP
@@ -3360,22 +3332,22 @@ the default adjustment is restored.
 .
 .
 .TP
-.BI SETR\  "refname \fR[\fPstring\fR]\fP"
-Remember the current heading and page numbers as
-.IR refname .
+.BI SETR\~ ref-name\~\c
+.RI [ string ]
+Create reference
+.IR ref-name ,
+storing its heading and page numbers.
 .
-Saves
+If
 .I string
-if
-.I string
-is defined.
-.
-.I string
-is retrieved with
+is present,
+.I "groff mm"
+saves it as an auxiliary datum for retrieval by
 .BR GETST .
 .
 See
 .BR INITR .
+.
 .
 .TP
 .BR SG\~ [\c
@@ -3474,7 +3446,7 @@ Reset tab stops to every 5\~ens.
 .ne 4v
 .TP
 .BR TB \~\c
-.RI [ title \~[ override \~[ flag \~[  refname ]]]]
+.RI [ title \~[ override \~[ flag \~[ ref-name ]]]]
 Caption a table.
 .
 Arguments are handled analogously to

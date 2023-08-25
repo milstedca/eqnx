@@ -10259,17 +10259,17 @@ and other purposes.
 @cindex mounting position
 @cindex mounting position
 @cindex position, mounting
-Like @acronym{AT&T} @code{troff}, GNU @code{troff} does not itself load
-or manipulate a digital font file;@footnote{Historically, the fonts
-@code{troff}s dealt with were not Free Software or, as with the Graphic
-Systems C/A/T, did not even exist in the digital domain.} instead it
-works with a @dfn{font description file} that characterizes it,
-including its glyph repertoire and the @dfn{metrics} (dimensions) of
-each glyph.@footnote{@xref{Font Description File Format}.}  This
-information permits the formatter to accurately place glyphs with
-respect to each other.  Before using a font description, the formatter
-associates it with a @dfn{mounting position}, a place in an ordered list
-of available typefaces.
+Like the @acronym{AT&T} @code{troff} formatter, GNU @code{troff} does
+not itself load or manipulate a digital font
+file;@footnote{Historically, the fonts @code{troff}s dealt with were not
+Free Software or, as with the Graphic Systems C/A/T, did not even exist
+in the digital domain.} instead it works with a @dfn{font description
+file} that characterizes it, including its glyph repertoire and the
+@dfn{metrics} (dimensions) of each glyph.@footnote{@xref{Font
+Description File Format}.}  This information permits the formatter to
+accurately place glyphs with respect to each other.  Before using a font
+description, the formatter associates it with a @dfn{mounting position},
+a place in an ordered list of available typefaces.
 @cindex abstract font style
 @cindex font style, abstract
 @cindex style, font, abstract
@@ -10328,8 +10328,8 @@ attributes).
 
 We use @dfn{font} to refer to any of several means of identifying a
 typeface: by its mounting position (@samp{3}), by its identifier
-(@samp{TB}), by an abstract style (@samp{B}) combined with a default
-family.
+(@samp{TB}), or by an abstract style (@samp{B}) to be combined with the
+default family.
 
 @DefreqList {ft, [@Var{font}]}
 @DefescItemx {\\f, , f, }
@@ -10349,7 +10349,7 @@ family.
 @cindex font, previous, slecting (@code{ft})
 The @code{ft} request selects the typeface @var{font}.  If the argument
 is absent or @samp{P}, it selects the previously chosen font.  If
-@var{font} is a non-negative integer, it is interpreted as mounting
+@var{font} is a non-negative integer, it is interpreted as a mounting
 position; the font mounted there is selected.  If that position refers
 to an abstract style, it is combined with the default family (see
 @code{fam} and @code{\F} below) to make a resolved font name.  If the
@@ -10399,7 +10399,14 @@ The currently and previously selected fonts are properties of the
 environment (@pxref{Environments}).
 
 The read-only string-valued register @code{.fn} contains the resolved
-font name of the selected font.
+font name of the selected font.  Copy its value to a string to save it
+for later use.
+
+@Example
+.nr saved-font \n[.fn]
+@r{@dots{} @i{text involving many font changes} @dots{}}
+.ft \*[saved-font]
+@endExample
 
 @code{\f} doesn't produce an input token in GNU @code{troff}; it thus
 can be used in requests that expect a single-character argument.  We can
@@ -10460,12 +10467,13 @@ but @emph{not} vertical spacing.  It is not reflected in registers that
 report the requested or current type size, or the minimum inter-word and
 additional inter-sentence space sizes.  It @emph{is} reflected in
 measurements of formatted output:@: the horizontal drawing position
-register, interpolation of the @code{\w} escape sequence, and the
-registers updated by that escape sequence or the formatting of a glyph
-in the environment.  @xref{Environments}.
+register @code{hp}, interpolation of the @code{\w} escape sequence, and
+the registers updated by that escape sequence or the formatting of a
+glyph in the environment.  @xref{Environments}.
 
 @code{fzoom} can harmonize the apparent cap-heights of fonts from
-different families when formatted on the same baseline.
+different families when formatted on the same baseline at the same type
+size.
 
 @Example
 .fzoom HR 900
@@ -10500,12 +10508,7 @@ font family.
 You can thus compose a document using abstract styles exclusively for
 its body or running text, selecting a specific family only for titles or
 examples, for instance, and change the default family on the command
-line (recall @ref{Groff Options}).
-
-Fonts for the devices @code{ps}, @code{pdf}, @code{dvi}, @code{lj4},
-@code{lbp}, and the X11 devices support this mechanism.  By default,
-GNU @code{troff} uses the Times family with the four styles @samp{R},
-@samp{I}, @samp{B}, and @samp{BI}.
+line.
 
 @DefreqList {fam, [@Var{family}]}
 @DefregItemx {.fam}
@@ -10666,13 +10669,13 @@ The position of the currently selected font (or abstract style) is
 available in the read-only register @samp{.f}.  It is associated with
 the environment (@pxref{Environments}).
 
-You can copy the value of @code{.f} to another register to save it for
-later use.
+Copy the value of @code{.f} to another register to save it for later
+use.
 
 @Example
-.nr saved-font \n[.f]
+.nr sF \n(.f
 @r{@dots{} @i{text involving many font changes} @dots{}}
-.ft \n[saved-font]
+.ft \n(sF
 @endExample
 
 @cindex next free font position register (@code{.fp})

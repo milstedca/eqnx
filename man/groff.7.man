@@ -6660,8 +6660,9 @@ glyphs for mathematical operators and other purposes.
 .
 .
 .P
-Like AT&T
-.I troff, \" AT&T
+Like the AT&T
+.I troff \" AT&T
+formatter,
 GNU
 .I troff \" GNU
 does not itself load or manipulate a digital font file;

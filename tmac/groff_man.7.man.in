@@ -536,7 +536,7 @@ A valid
 .I man
 document calls
 .B .TH
-once,
+only once,
 early in the file,
 prior to any other macro calls.
 _ifstyle()dnl

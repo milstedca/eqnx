@@ -23635,7 +23635,8 @@ No room to start \\*[MN-pos] margin note #\\n[MN-curr] on page \\n[#P].
 \#   <image file> <width> <height> are required.
 \#
 .MAC PDF_IMAGE END
-.    br
+.    ie \\n[#PP]=0 .PP
+.    el .br
 .    if !'\\n[.z]'FLOAT*DIV' \{\
 .       nr pdf-img:float 1
 .       FLOAT
@@ -23868,7 +23869,7 @@ No room to start \\*[MN-pos] margin note #\\n[MN-curr] on page \\n[#P].
 .       nr pdf-img*label-lead-diff \\n[lead-pre-label]-\\n[.v]
 .       sp -.5+\\*[$CAP_HEIGHT]+\\n[pdf-img*label-lead-diff]u
 .       if !'\\*[pdf-img*label-space]'' .sp \\*[pdf-img*label-space]
-.       if \\n[pdfbx-running] \{\
+.       if r pdfbx-running \{\
 .          in -(\\*[wt\\n[stack]])+\\*[gap\\n[stack]]u
 .          ll -(\\*[wt\\n[stack]])+\\*[gap\\n[stack]]u
 .       \}

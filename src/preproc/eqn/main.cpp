@@ -1,4 +1,4 @@
-/* Copyright (C) 1989-2020 Free Software Foundation, Inc.
+/* Copyright (C) 1989-2023 Free Software Foundation, Inc.
      Written by James Clark (jjc@jclark.com)
 
 This file is part of groff.
@@ -424,6 +424,8 @@ int main(int argc, char **argv)
     }
   init_table(device);
   init_char_table();
+  init_param_table();
+  std::atexit(free_param_table);
   printf(".do if !dEQ .ds EQ\n"
 	 ".do if !dEN .ds EN\n");
   if (output_format == troff) {

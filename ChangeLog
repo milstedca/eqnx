@@ -55,6 +55,10 @@
 	* src/preproc/eqn/sqrt.cpp (sqrt_box::compute_metrics): Migrate
 	from lvalue access to `get_param()` for parameter retrieval.
 
+	* src/preproc/eqn/eqn.1.man (Customization): Document it.
+
+	* NEWS: Add item.
+
 	Fixes <https://savannah.gnu.org/bugs/?62692>.
 
 2023-08-24  G. Branden Robinson <g.branden.robinson@gmail.com>

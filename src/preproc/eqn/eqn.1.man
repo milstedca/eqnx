@@ -1101,7 +1101,9 @@ which delegates typesetting to a MathML rendering engine.
 .
 Configure these parameters with the
 .B set
-primitive.
+and
+.B reset
+primitives.
 .
 .
 .TP 9n \" "set p n" + 2n
@@ -1125,6 +1127,12 @@ says that
 .I @g@eqn
 should assume that the font's x-height is 0.45\~ems.
 .RE
+.
+.
+.TP
+.BI reset\~ p
+restores the default value of
+.RI parameter\~ p.
 .
 .
 .P

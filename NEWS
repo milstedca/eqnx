@@ -41,6 +41,8 @@ o New parameters tunable with the GNU eqn "set" primitive, "half_space"
   their widths were determined by the "thin_space" and "thick_space"
   parameters used to tune GNU eqn's automatic spacing computations.
 
+o The new "reset" primitive restores a named parameter to its default.
+
 Macro packages
 --------------
 

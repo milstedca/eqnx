@@ -57,6 +57,10 @@
 
 	* src/preproc/eqn/eqn.1.man (Customization): Document it.
 
+	* src/preproc/eqn/tests/parameters-can-be-set-and-reset.sh: Test
+	it.
+	* src/preproc/eqn/eqn.am (eqn_TESTS): Run test.
+
 	* NEWS: Add item.
 
 	Fixes <https://savannah.gnu.org/bugs/?62692>.

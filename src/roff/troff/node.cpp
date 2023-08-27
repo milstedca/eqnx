@@ -6035,14 +6035,30 @@ static bool is_nonnegative_integer(const char *str)
 
 static void translate_font()
 {
-  symbol from = get_name(true /* required */);
-  if (!from.is_null()) {
-    symbol to = get_name();
-    if (to.is_null() || from == to)
-      font_translation_dictionary.remove(from);
-    else
-      (void)font_translation_dictionary.lookup(from, (void *)to.contents());
+  if (!(has_arg())) {
+    warning(WARN_MISSING, "one or two font names expected in font"
+	    " translation request");
+    skip_line();
+    return;
   }
+  symbol from = get_name(true /* required */);
+  assert(!from.is_null()); // has_arg() should ensure this
+  if (is_nonnegative_integer(from.contents())) {
+    error("cannot translate a font mounting position");
+    skip_line();
+    return;
+  }
+  symbol to = get_name();
+  if ((!to.is_null()) && is_nonnegative_integer(to.contents())) {
+    error("cannot translate to a font mounting position");
+    skip_line();
+    return;
+  }
+  if (to.is_null() || from == to)
+    font_translation_dictionary.remove(from);
+  else
+    (void) font_translation_dictionary.lookup(from,
+					      (void *)to.contents());
   skip_line();
 }
 

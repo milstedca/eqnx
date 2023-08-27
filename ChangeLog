@@ -1,5 +1,9 @@
 2023-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (translate_font): Validate arguments.
+
+2023-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor; add utility function.
 
 	* src/roff/troff/node.cpp (is_nonnegative_integer): New function

@@ -1,3 +1,8 @@
+2023-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/preproc/eqn/main.cpp (main): Trivially refactor; demote
+	`int` `load_startup_file` to Boolean `want_startup_file`.
+
 2023-08-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[eqn]: Implement "reset" keyword.

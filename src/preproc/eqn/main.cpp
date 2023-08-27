@@ -322,7 +322,7 @@ int main(int argc, char **argv)
   static char stderr_buf[BUFSIZ];
   setbuf(stderr, stderr_buf);
   int opt;
-  int load_startup_file = 1;
+  bool want_startup_file = true;
   static const struct option long_options[] = {
     { "help", no_argument, 0, CHAR_MAX + 1 },
     { "version", no_argument, 0, 'v' },
@@ -336,7 +336,7 @@ int main(int argc, char **argv)
       compatible_flag = 1;
       break;
     case 'R':			// don't load eqnrc
-      load_startup_file = 0;
+      want_startup_file = true;
       break;
     case 'M':
       config_macro_path.command_line_dir(optarg);
@@ -370,12 +370,12 @@ int main(int argc, char **argv)
       }
       else if (strcmp(device, "MathML") == 0) {
 	output_format = mathml;
-	load_startup_file = 0;
+	want_startup_file = false;
       }
       else if (strcmp(device, "mathml:xhtml") == 0) {
 	device = "MathML";
 	output_format = mathml;
-	load_startup_file = 0;
+	want_startup_file = false;
 	xhtml = 1;
       }
       break;
@@ -442,7 +442,7 @@ int main(int argc, char **argv)
 	   ".if !'%s'ps' .tm1 (consider invoking 'groff -Thtml -e')\n",
 	   device);
   }
-  if (load_startup_file) {
+  if (want_startup_file) {
     char *path;
     FILE *fp = config_macro_path.open_file(STARTUP_FILE, &path);
     if (fp) {

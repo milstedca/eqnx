@@ -2210,6 +2210,16 @@ they end the predicate and the conditional evaluates true.
 .
 (This bizarre behavior maintains compatibility with AT&T
 .IR troff .)
+.
+.
+.P
+Conditional operators do not create
+.I roff
+language objects as interpolations with
+.B \[rs]n
+and
+.B \[rs]*
+escape sequences do.
 .\" END Keep (roughly) parallel with groff.texi node "Operators in
 .\" Conditionals".
 .
@@ -5765,6 +5775,8 @@ and aliasing
 .request .als).
 .
 .
+.br
+.ne 2v
 .P
 When a request,
 macro,
@@ -6844,6 +6856,8 @@ localization macro files loaded by
 and macro packages often override it.
 .
 .
+.br
+.ne 3v
 .TP
 .B 0
 disables hyphenation.

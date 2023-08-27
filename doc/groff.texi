@@ -12853,6 +12853,9 @@ true.@footnote{This bizarre behavior maintains compatibility with
 The unexpected @samp{r x} in the output is a clue that our conditional
 was not interpreted as we planned, but matters may not always be so
 obvious.
+
+Conditional operators do not create @code{roff} language objects as
+interpolations with @code{\n} and @code{\*} escape sequences do.
 @c END Keep (roughly) parallel with subsection "Conditional expressions"
 @c of groff(7).
 

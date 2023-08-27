@@ -6027,6 +6027,12 @@ bool mount_style(int n, symbol name)
   return true;
 }
 
+// True for valid (not necessarily used) font mounting positions.
+static bool is_nonnegative_integer(const char *str)
+{
+  return strspn(str, "0123456789") == strlen(str);
+}
+
 static void translate_font()
 {
   symbol from = get_name(true /* required */);
@@ -6317,9 +6323,7 @@ static void zoom_font()
   }
   symbol font_name = get_name();
   assert(font_name != 0 /* nullptr */); // has_arg() should ensure this
-  // XXX: What other requests demand an argument with this constraint?
-  if (strspn(font_name.contents(), "0123456789")
-      == strlen(font_name.contents())) {
+  if (is_nonnegative_integer(font_name.contents())) {
     warning(WARN_FONT, "cannot set zoom factor of a font mounting"
 	    " position");
     skip_line();

@@ -1,5 +1,13 @@
 2023-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor; add utility function.
+
+	* src/roff/troff/node.cpp (is_nonnegative_integer): New function
+	tests C-style string for validity as such; promoted from open
+	code because I just spotted a second place we can use it.
+
+2023-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor; demote `int`-returning functions to
 	Boolean-returning ones and rename.
 	- check_font -> is_font_name

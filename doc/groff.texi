@@ -13116,17 +13116,17 @@ instead write a recursive macro.  It will be parsed only
 once.@footnote{unless you redefine it}
 
 @Example
-.de yyy
-.  if (\\n[num] > 0) \@{\
+.de yy
+.  if (\\n(nm > 0) \@{\
 .    \" many lines of code
-.    nr num -1
-.    yyy
+.    nr nm -1
+.    yy
 .  \@}
 ..
 .
-.de xxx
-.  nr num 10
-.  yyy
+.de xx
+.  nr nm 10
+.  yy
 ..
 @endExample
 
@@ -14053,13 +14053,13 @@ and leaders in the argument are ignored with an error diagnostic.
 We might implement a strike-through macro thus.
 
 @Example
-.de ST
+.de strikeout
 .nr width \w'\\$1'
 \Z@@\v'-.25m'\l'\\n[width]u'@@\\$1
 ..
 .
 This is
-.ST "a test"
+.strikeout "a test"
 an actual emergency!
 @endExample
 @endDefesc

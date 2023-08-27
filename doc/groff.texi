@@ -10234,12 +10234,12 @@ one.
 In digital typography, a @dfn{font} is a collection of characters in a
 specific typeface that a device can render as glyphs at a desired
 size.@footnote{Terminals and some typesetters have fonts that render at
-only one or two sizes.  As examples of the latter, take the @code{groff}
-@code{lj4} device's Lineprinter, and @code{lbp}'s Courier and Elite
-faces.}  A @code{roff} formatter can change typefaces at any point in
-the text.  The basic faces are a set of @dfn{styles} combining upright
-and slanted shapes with normal and heavy stroke weights: @samp{R},
-@samp{I}, @samp{B}, and @samp{BI}---these stand for @slanted{roman},
+only one or two sizes.  As examples, take the @code{groff} @code{lj4}
+device's Lineprinter, and @code{lbp}'s Courier and Elite faces.}  A
+@code{roff} formatter can change typefaces at any point in the text.
+The basic faces are a set of @dfn{styles} combining upright and slanted
+shapes with normal and heavy stroke weights: @samp{R}, @samp{I},
+@samp{B}, and @samp{BI}---these stand for @slanted{roman},
 @slanted{italic}, @slanted{bold}, and @slanted{bold-italic}.  For
 linguistic text, GNU @code{troff} groups typefaces into @dfn{families}
 containing each of these styles.@footnote{Font designers prepare
@@ -10432,15 +10432,13 @@ assign a font to a margin character as follows (@pxref{Miscellaneous}).
 @cindex @code{if} request, and font translations
 @cindex @code{ie} request, and font translations
 @cindex @code{while} request, and font translations
-Translate font@tie{}@var{f} to font@tie{}@var{g}.  Whenever a font
-named@tie{}@var{f} is referred to in a @code{\f} escape sequence, in the
-@code{F} and @code{S} conditional operators, or in the @code{ft},
-@code{ul}, @code{bd}, @code{cs}, @code{tkf}, @code{special},
-@code{fspecial}, @code{fp}, or @code{sty} requests, font@tie{}@var{g} is
-used.  If @var{g} is missing or equal to@tie{}@var{f}, the translation
-is undone.
-@c XXX: Do font translations work on mounting positions?  Abstract
-@c styles?
+Translate font name@tie{}@var{f} to@tie{}@var{g}.  Where the @code{\f}
+escape sequence, the @code{F} and @code{S} conditional operators, and
+the @code{ft}, @code{ul}, @code{bd}, @code{cs}, @code{tkf},
+@code{special}, @code{fspecial}, @code{fp}, or @code{sty} requests refer
+to@tie{}@var{f}, GNU @command{troff} uses @var{g} instead.  Omit @var{g}
+or repeat @var{f} as@tie{}@var{g} to untranslate @var{f}.  @var{f} and
+@var{g} need not be mounted fonts.
 @endDefreq
 
 @DefreqList {fzoom, font [@Var{zoom}]}

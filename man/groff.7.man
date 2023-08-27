@@ -3205,11 +3205,16 @@ cannot be
 .BR P .
 .
 .TPx
-.REQ .ftr "font1 font2"
-Translate
-.I font1
+.REQ .ftr f
+Remove transalation of font named
+.IR f .
+.
+.TPx
+.REQ .ftr "f1 f2"
+Translate font name
+.I f1
 to
-.IR font2 .
+.IR f2 .
 .
 .TPx
 .REQ .fzoom font
@@ -6607,7 +6612,7 @@ render as glyphs at a desired size.
 (Terminals and some typesetters have fonts that render at only one or
 two sizes.
 .
-As examples of the latter,
+As examples,
 take the
 .I groff
 .B lj4
@@ -6792,9 +6797,9 @@ escape sequence set the default font family.
 .
 The
 .B ftr
-request remaps a (resolved) font name;
+request translates one font name to another;
 .B fzoom
-magnifies one.
+magnifies a resolved one.
 .
 .B sty
 and

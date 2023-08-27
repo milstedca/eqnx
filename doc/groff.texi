@@ -12762,7 +12762,7 @@ True if formatting the comparands @var{xxx} and @var{yyy} produces the
 same output commands.  The delimiter need not be a neutral apostrophe:
 the output comparison operator accepts the same delimiters as most
 escape sequences; see @ref{Delimiters}.  This @dfn{output comparison
-operator} formats @var{xxx} and @var{yyy} in separate environments;
+operator} formats @var{xxx} and @var{yyy} in separate scratch buffers;
 after the comparison, the resulting data are discarded.
 
 @Example
@@ -12958,7 +12958,7 @@ To conveniently nest conditionals, keep reading.
 @cindex blocks, conditional
 
 It is frequently desirable for a control structure to govern more than
-one request, macro call, text line, or a combination of the foregoing.
+one request, macro call, text line, or combination of the foregoing.
 The opening and closing brace escape sequences @code{\@{} and @code{\@}}
 define such groups.  These @dfn{conditional blocks} can furthermore be
 nested.
@@ -14016,7 +14016,7 @@ beginning of a string for highlighting or other decoration.
 @cindex input line, horizontal position, register (@code{hp})
 @cindex position, horizontal, in input line, register (@code{hp})
 @cindex line, input, horizontal position, register (@code{hp})
-The current horizontal position at the input line.
+The horizontal position relative to that at the start of the input line.
 @endDefreg
 
 @Defreg {.k}

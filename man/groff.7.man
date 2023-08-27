@@ -1967,7 +1967,7 @@ It is frequently desirable for a control structure to govern more than
 one request,
 macro call,
 or text line,
-or a combination of the foregoing.
+or combination of the foregoing.
 .
 The opening and closing brace escape sequences
 .esc {
@@ -2141,7 +2141,7 @@ formats
 .I s1
 and
 .I s2
-in separate environments;
+in separate scratch buffers;
 after the comparison,
 the resulting data are discarded.
 .

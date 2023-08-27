@@ -533,7 +533,6 @@ documents.
 .\" TODO:
 .\"   a4
 .\"   devtag
-.\"   doc-old
 .\"   europs
 .\"   psatk
 .\"   psfig

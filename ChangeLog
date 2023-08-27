@@ -1,5 +1,18 @@
 2023-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor; demote `int`-returning functions to
+	Boolean-returning ones and rename.
+	- check_font -> is_font_name
+	- check_style -> is_abstract_style
+
+	* src/roff/troff/node.h:
+	* src/roff/troff/node.cpp: Do it.
+
+	* src/roff/troff/env.cpp (is_family_valid):
+	* src/roff/troff/input.cpp (do_if_request): Update call sites.
+
+2023-08-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/eqn/main.cpp (main): Trivially refactor; demote
 	`int` `load_startup_file` to Boolean `want_startup_file`.
 

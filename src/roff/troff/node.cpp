@@ -5994,14 +5994,16 @@ bool mount_font(int n, symbol name, symbol external_name)
   return mount_font_no_translate(n, name, external_name);
 }
 
-int check_font(symbol fam, symbol name)
+// True for abstract styles and resolved font names.
+bool is_font_name(symbol fam, symbol name)
 {
-  if (check_style(name))
+  if (is_abstract_style(name))
     name = concat(fam, name);
   return mount_font_no_translate(0, name, name, true /* check only */);
 }
 
-int check_style(symbol s)
+// True for abstract styles.
+bool is_abstract_style(symbol s)
 {
   int i = symbol_fontno(s);
   return i < 0 ? 0 : font_table[i]->is_style();

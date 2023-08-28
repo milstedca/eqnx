@@ -1,5 +1,15 @@
 2023-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/include/lib.h (array_size): Rename to...
+	(array_length): ...this.
+
+	* src/preproc/eqn/box.cpp (set_param, reset_param, get_param)
+	(init_param_table, free_param_table): Migrate call sites.
+
+	Thanks to Alex Colomar for the discussion.
+
+2023-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* Makefile.am (EXTRA_DIST): Ship ancient groff ChangeLog files
 	split off from ChangeLog.115 (.old, .111, .112, .113, .114).
 

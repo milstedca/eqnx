@@ -3983,7 +3983,7 @@ Interpolate indentation amount applicable to the pending output line.
 .
 .TP
 .B \[rs]n[.int]
-Interpolate\~1 if the previous output line was interrupted
+Interpolate\~1 if the most recently formatted text was interrupted
 (ended with
 .BR \[rs]c ),
 0\~otherwise.

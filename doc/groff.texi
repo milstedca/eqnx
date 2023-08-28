@@ -18445,9 +18445,9 @@ a font description file is called@tie{}@file{@var{f}}, where
 For example, the @code{ps} (PostScript) device has @code{groff} font
 description files for Times roman (@file{TR}) and Zapf Chancery Medium
 italic (@file{ZCMI}), among many others, while the @code{utf8} device
-(for terminal emulators) has only font descriptions for the roman,
-italic, bold, and bold-italic styles (@file{R}, @file{I}, @file{B}, and
-@file{BI}, respectively).
+(for terminals) has only font descriptions for the roman, italic, bold,
+and bold-italic styles (@file{R}, @file{I}, @file{B}, and @file{BI},
+respectively).
 
 Device and font description files are read both by the formatter, GNU
 @code{troff}, and by output drivers.  The programs delegate these files'
@@ -18704,8 +18704,8 @@ throughout.
 The name of the font is@tie{}@var{f}.  @samp{DESC} is an invalid font
 name.  Simple integers are valid, but their use is
 discouraged.@footnote{@code{groff} requests and escape sequences
-interpret non-negative font names as mounting positions instead.
-Further, a font named @samp{0} cannot be automatically mounted by the
+interpret non-negative integers as mounting positions instead.  Further,
+a font named @samp{0} cannot be automatically mounted by the
 @code{fonts} directive of a @file{DESC} file.}
 
 @item spacewidth @var{n}
@@ -18751,11 +18751,10 @@ is optional.
 
 @kindex charset
 The directive @code{charset} starts the character set
-subsection.@footnote{For typesetter devices, this directive is misnamed
-since it starts a list of glyphs, not characters.}  It precedes a series
-of glyph descriptions, one per line.  Each such glyph description
-comprises a set of fields separated by spaces or tabs and organized as
-follows.
+subsection.@footnote{On typesetters, this directive is misnamed since it
+starts a list of glyphs, not characters.}  It precedes a series of glyph
+descriptions, one per line.  Each such glyph description comprises a set
+of fields separated by spaces or tabs and organized as follows.
 
 @quotation
 @var{name} @var{metrics} @var{type} @var{code} [@var{entity-name}]
@@ -18848,13 +18847,13 @@ upright glyph.  The @var{subscript-correction} is the amount of space
 that should be added after an oblique glyph to be followed by a
 subscript; it should be less than the italic correction.
 
-For fonts used with typesetting devices, the @var{type} field gives a
-featural description of the glyph: it is a bit mask recording whether
-the glyph is an ascender, descender, both, or neither.  When a @code{\w}
-escape sequence is interpolated, these values are bitwise or-ed
-together for each glyph and stored in the @code{nr} register.  In font
-descriptions for terminal devices, all glyphs might have a type of zero,
-regardless of their appearance.
+For fonts used with typesetters, the @var{type} field gives a featural
+description of the glyph: it is a bit mask recording whether the glyph
+is an ascender, descender, both, or neither.  When a @code{\w} escape
+sequence is interpolated, these values are bitwise or-ed together for
+each glyph and stored in the @code{nr} register.  In font descriptions
+for terminals, all glyphs might have a type of zero, regardless of their
+appearance.
 
 @table @code
 @item 0

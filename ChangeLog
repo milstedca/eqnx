@@ -1,5 +1,19 @@
 2023-08-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[tmac]: Improve robustness of mm translations.
+
+	* tmac/cs.tmac (\*[locale]-qrf):
+	* tmac/de.tmac (\*[locale]-qrf):
+	* tmac/es.tmac (\*[locale]-qrf):
+	* tmac/fr.tmac (\*[locale]-qrf):
+	* tmac/it.tmac (\*[locale]-qrf):
+	* tmac/ru.tmac (\*[locale]-qrf):
+	* tmac/sv.tmac (\*[locale]-qrf): Define string contents using
+	`\E` instead of `\\`, for better robustness.  See our Texinfo
+	manual, node/section "Copy mode".
+
+2023-08-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tmac]: Rename test file for consistency.
 
 	* tmac/tests/doc_synopsis_is_not_adjusted.sh: Rename this...

@@ -1,3 +1,12 @@
+2023-08-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[libdriver, grohtml]: Revise diagnostics.
+
+	* src/devices/grohtml/post-html.cpp
+	(html_printer::set_number_reg):
+	* src/libs/libdriver/printer.cpp (printer::set_numbered_char):
+	Use wording consistent with our documentation if \N'xxx' fails.
+
 2023-08-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/include/lib.h (array_size): Rename to...

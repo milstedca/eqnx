@@ -6002,7 +6002,6 @@ bool is_font_name(symbol fam, symbol name)
   return mount_font_no_translate(0, name, name, true /* check only */);
 }
 
-// True for abstract styles.
 bool is_abstract_style(symbol s)
 {
   int i = symbol_fontno(s);

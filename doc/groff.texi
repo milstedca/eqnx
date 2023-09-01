@@ -587,10 +587,10 @@ A history relating @code{groff} to its forerunners @code{roff},
 @c and on the groff home page.
 @code{groff} (GNU @code{roff}) is a typesetting system that reads plain
 text input files that include formatting commands to produce output in
-PostScript, PDF, HTML, DVI, or other formats, or for display to a
-terminal.  Formatting commands can be low-level typesetting primitives,
-macros from a supplied package, or user-defined macros.  All three
-approaches can be combined.
+PostScript, PDF, HTML, or other formats, or for display to a terminal.
+Formatting commands can be low-level typesetting primitives, macros from
+a supplied package, or user-defined macros.  All three approaches can be
+combined.
 
 A reimplementation and extension of the typesetter from @acronym{AT&T}
 Unix, @code{groff} is present on most @acronym{POSIX} systems owing to
@@ -696,9 +696,9 @@ constructing tables, setting mathematics, or drawing diagrams, lies in
 preprocessing.  A @dfn{preprocessor} employs a domian-specific language
 to ease the generation of tables, equations, and so forth in terms that
 are convenient for human entry.  Each preprocessor reads a document and
-translates the parts of it that apply to it into GNU @command{troff}
-input.  Command-line options to @command{groff} tell it which
-preprocessors to use.
+translates relevant portions of it into GNU @command{troff} input.
+Command-line options to @command{groff} tell it which preprocessors to
+use.
 
 @code{groff} provides preprocessors for laying out tables
 (@command{gtbl}), typesetting equations (@command{geqn}), drawing
@@ -709,7 +709,9 @@ with preprocessors is @command{gsoelim}.@footnote{The @samp{g} prefix is
 not used on all systems; see @ref{Invoking groff}.}
 
 @code{groff} also supports @code{grap}, a preprocessor for drawing
-graphs.  A free implementation of it can be obtained separately.
+graphs.  A free implementation of it can be obtained
+separately.@footnote{@
+@uref{https://www.lunabase.org/~faber/Vault/software/grap/}}
 
 Unique to @code{groff} is the @code{preconv} preprocessor that enables
 GNU @command{troff} to handle documents in a variety of input encodings.
@@ -984,17 +986,17 @@ Page breaks are marked by a phrase in angle brackets; for example,
 Lines are broken where they would be in the formatted output.
 
 @item
+Vertical motion, apart from that implied by a break, is not represented.
+
+@item
 A horizontal motion of any size is represented as one space.  Adjacent
 horizontal motions are not combined.  Inter-sentence space nodes (those
 arising from the second argument to the @code{ss} request) are not
 represented.
 
 @item
-Vertical motions are not represented.
-
-@item
 Special characters are rendered in angle brackets; for example, the
-default soft hyphen character appears as @samp{<hy>}.
+hyphen character appears as @samp{<hy>}.
 @end itemize
 
 The above description should not be considered a specification; the
@@ -1058,7 +1060,7 @@ Run @command{grap} preprocessor; implies @option{-p}.
 Display a usage message and exit.
 
 @item -i
-Read the standard input after all the named input files have been
+Read the standard input stream after all the named input files have been
 processed.
 
 @item -I@var{dir}
@@ -1343,7 +1345,7 @@ Suppress formatted output from @command{gtroff}.
 
 @item -Z
 Disable postprocessing.  @command{gtroff} output will appear on the
-standard output stream (unless suppressed with @option{-z}; see
+standard output stream (unless suppressed with @option{-z}); see
 @ref{gtroff Output} for a description of this format.
 @end table
 
@@ -1356,8 +1358,8 @@ standard output stream (unless suppressed with @option{-z}; see
 @cindex variables in environment
 
 Several environment variables (of the operating system, unrelated to GNU
-@command{troff}'s @slanted{environments}) that can modify the behavior
-of @command{groff}.
+@command{troff}'s @slanted{environments}) can modify the behavior of
+@command{groff}.
 
 @table @code
 @item GROFF_BIN_PATH
@@ -1493,18 +1495,18 @@ The current working directory (only if in unsafe mode using the
 @item
 @cindex home directory
 @cindex directory, home
-The user's home directory, @env{HOME}.
+The user's home directory, found in the @env{HOME} environment variable.
 
 @item
 @cindex site-local directory
 @cindex directory, site-local
 @cindex platform-specific directory
 @cindex directory, platform-specific
-A platform-dependent directory, a site-local (platform-independent)
-directory, and the main @slanted{tmac} directory.  The locations
-corresponding to your installation are listed in section ``Environment''
-of @cite{gtroff@r{(1)}}.  If not otherwise configured, they are as
-follows.
+A site-local platform-dependent directory, a site-local
+platform-independent directory, and the stock @slanted{tmac} directory.
+The locations corresponding to your installation are listed in section
+``Environment'' of @cite{gtroff@r{(1)}}.  If not otherwise configured,
+they are as follows.
 
 @Example
 /usr/local/lib/groff/site-tmac

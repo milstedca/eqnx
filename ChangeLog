@@ -1,5 +1,10 @@
 2023-09-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/devices/grotty/tests/osc8_works.sh: Port test to newer
+	conventions.
+
+2023-09-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[grog]: Drop `--ligatures`, `-run` support.
 
 	Simulate the former (which was specific to the "pdf" output

@@ -1,3 +1,18 @@
+2023-08-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	Rename test scripts for consistency.
+
+	* tests/LT_SP_AU_without_AT_works.sh:
+	* tests/LT_SP_multi-word_LO_SJ_works.sh:
+	* tests/MT_5_includes_AT_in_SG.sh:
+	* tests/ms_cover_sheet_robust_to_missing_AF.sh: Rename these...
+	* tests/LT-SP-AU-without-AT-works.sh:
+	* tests/LT-SP-multi-word-LO-SJ-works.sh:
+	* tests/MT-5-includes-AT-in-SG.sh:
+	* tests/ms-cover-sheet-robust-to-missing-AF.sh: ...to these.
+
+	* mm.am (mm_TESTS): Reflect renames.
+
 2023-08-24  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* m.tmac (Qrf): Define string contents using `\E` instead of

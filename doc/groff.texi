@@ -1641,7 +1641,7 @@ $ groff -T ps -d paper=a4l -P -pa4 -P -l -ms foo.ms >foo.ps
 @cindex examples of invocation
 
 @code{roff} systems are best known for formatting man pages.  A
-@command{man} librarian program, having located a page, may render it
+@command{man} librarian program, having located a page, might render it
 with a @command{groff} command.
 
 @Example
@@ -1649,9 +1649,9 @@ groff -t -man -Tutf8 /usr/share/man/man1/groff.1
 @endExample
 
 The librarian will also pipe the output through a pager, which might not
-interpret the SGR terminal escape sequences @command{groff} emits for
-boldface, underlining, or italics; see the @cite{grotty@r{(1)}} man page
-for a discussion.
+interpret terminal escape sequences @command{groff} emits for boldface,
+underlining, italics, or hyperlining; see the @cite{grotty@r{(1)}} man
+page for a discussion.
 
 To process a @code{roff} input file using the preprocessors
 @command{gtbl} and @command{gpic} and the @file{me} macro package in the
@@ -1662,8 +1662,7 @@ script) a pipeline.
 gpic foo.me | gtbl | gtroff -me -Tutf8 | grotty
 @endExample
 
-Using @command{groff}, this pipe can be shortened to an equivalent
-command.
+Shorten this pipeline to an equivalent command using @command{groff}.
 
 @Example
 groff -p -t -me -T utf8 foo.me

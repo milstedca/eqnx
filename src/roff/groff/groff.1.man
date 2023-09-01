@@ -1902,15 +1902,17 @@ is used, it is always converted to human-readable form using UTC.
 .SH Examples
 .\" ====================================================================
 .
+.\" BEGIN Keep parallel with groff.texi node "Invocation Examples".
 .I roff
 systems are best known for formatting man pages.
 .
-Once a
+A
 .MR man 1
-librarian has located a man page,
-it may execute a
+librarian program,
+having located a page,
+might render it with a
 .I groff
-command much like the following.
+command.
 .
 .RS
 .EX
@@ -1919,11 +1921,12 @@ groff \-t \-man \-Tutf8 /usr/share/man/man1/groff.1
 .RE
 .
 The librarian will also pipe the output through a pager,
-which might not interpret the SGR terminal escape sequences
+which might not interpret terminal escape sequences
 .I groff
 emits for boldface,
 underlining,
-or italics;
+italics,
+or hyperlinking;
 see section \[lq]Limitations\[rq] below.
 .
 .
@@ -1951,9 +1954,9 @@ a pipeline.
 .
 .
 .P
-Using
-.IR groff ,
-this pipe can be shortened to an equivalent command.
+Shorten this pipeline to an equivalent command using
+.IR groff .
+.
 .
 .IP
 .EX
@@ -1981,6 +1984,7 @@ required leading dashes
 .\" --help or --version.
 .\"or
 .\".RB \[lq] \-\- \[rq]
+.\" XXX: grolbp does.
 because
 .I groff
 passes the arguments as-is to the postprocessor;
@@ -2007,6 +2011,7 @@ groff \-X \-Z mydoc.t | gxditview \-title \[aq]trial run\[aq] \-
 .RE
 .
 are equivalent.
+.\" END Keep parallel with groff.texi node "Invocation Examples".
 .
 .
 .\" ====================================================================

@@ -182,7 +182,7 @@
 
 2023-02-17  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[mm]: Add `--help` option support to mmroff.
+	Add `--help` option support to mmroff.
 
 	* mmroff.pl: Recognize `--help` option.
 	* mmroff.1.man (Synopsis, Options): Document.
@@ -483,7 +483,7 @@
 
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[mm]: Add `--version` option support to mmroff.
+	Add `--version` option support to mmroff.
 
 	* mm.am (mmroff): Replace `@VERSION@` token in script.
 	* mmroff.pl: Recognize `--version` option.
@@ -504,7 +504,7 @@
 
 2022-10-09  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[mm]: Refactor generation of "mmroff" script.
+	Refactor generation of "mmroff" script.
 
 	* mmroff.pl: Replace absolute filespec with `@PERL@` replacement
 	token.  This is documentary; the filespec was getting replaced
@@ -796,9 +796,7 @@
 
 2021-05-30  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[mm]: Cease warning level manipulation.
-
-	Stop mm macro package from manipulating warnings.
+	Cease warning level manipulation.
 
 	* m.tmac: Remove code that attempted to enable all warnings if
 	none were given on the command line.  It did this by simply

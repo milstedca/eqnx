@@ -534,7 +534,7 @@ o The "ptx.tmac" macro file, a counterpart to the GNU coreutils ptx(1)
   long been part of the source distribution.
 
 o The s (ms) macro package now enables the formatter's "no-space mode"
-  after ending displays (`DE`), equations (`EN`), tables (`TS`), and
+  after ending displays (`DE`), equations (`EN`), tables (`TE`), and
   pictures without flyback (`PE`).  This means that display distance
   spacing (the `DD` register) overrides the spacing that may follow in a
   subsequent paragraph, section heading, or display instead of
@@ -708,8 +708,8 @@ o Building groff from its distribution archive no longer requires byacc
   (or GNU Bison) to be installed.
 
 o m4 is now required to build.  Any m4 that implements the features
-  documented in the Unix Version 7 m4(1) man page, and the `-D` option,
-  should suffice.
+  documented in the Seventh Edition Unix m4(1) man page, and the `-D`
+  option, should suffice.
 
 o New 'configure' options '--{en,dis}able-groff-allocator' control
   whether groff uses its own malloc/free-wrapping allocator to implement

@@ -1,3 +1,9 @@
+2023-08-31  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/es.tmac: Correct hyphenation mode used when suppressing
+	hyphenation before traps.  A "base" mode of 1 should map to 2,
+	not to 6, as (possibly) copied-and-pasted from "fr.tmac".
+
 2023-08-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[tmac]: Improve robustness of mm translations.

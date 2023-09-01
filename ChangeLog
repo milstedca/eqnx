@@ -1,5 +1,19 @@
 2023-09-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[grog]: Drop `--ligatures`, `-run` support.
+
+	Simulate the former (which was specific to the "pdf" output
+	device) with the option sequence "-P -U -P y", and the latter by
+	using the command substitution feature of your shell; see
+	section "Examples" of groff(1).
+
+	* src/utils/grog/grog.pl: Do it.
+	* src/utils/grog/grog.1.man: De-document them.
+
+	* NEWS: Add item.
+
+2023-09-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[tmac]: Drop AT&T troff font aliases/remappings.  Now that we
 	have working diagnostics for font selection problems, users will
 	be made aware of portability issues and can address them where

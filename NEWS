@@ -127,6 +127,12 @@ o If groff programs have their current time overridden by the
   1.23.0, so it is easier to defend time-zone-invariant output to them.
   In all other cases, the current time remains displayed in local time.
 
+o grog(1) no longer supports the `--ligatures` and `--run` options.
+  Simulate the former (which was specific to the "pdf" output device)
+  with the option sequence "-P -U -P y", and the latter by using the
+  command substitution feature of your shell; see section "Examples" of
+  groff(1).
+
 o The groff_diff(7) man page no longer contains examples.  They remain
   in groff's Texinfo manual.
 

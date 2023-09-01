@@ -600,26 +600,27 @@ treats these flags as
 .I keywords,
 but ignores them since they are non-alphanumeric.
 .
-The following flags are recognized.
+The following flags direct
+.IR @g@refer .
 .
 .
 .TP
 .B #
 Use the label specified by the
 .B \%short\-label
-command,
-instead of that specified by the
+command instead of that specified by the
 .B \%label
 command.
 .
 If no short label has been specified,
 the normal label will be used.
 .
-Typically the short label is used with author-date labels and consists
-of only the date and possibly a disambiguating letter;
+Typically,
+the short label is used with author-date labels and consists of only the
+date and possibly a disambiguating letter;
 the
 .RB \[lq] # \[rq]
-is supposed to be suggestive of a numeric type of label.
+is meant to suggest a (quasi-)numeric label.
 .
 .
 .TP
@@ -641,7 +642,7 @@ command.
 .
 .
 .LP
-An advantage of using the
+One advantage of using the
 .B [
 and
 .B ]
@@ -649,9 +650,7 @@ flags rather than including the brackets in
 .I opening-text
 and
 .I closing-text
-is that
-.
-you can change the style of bracket used in the document just by
+is that you can change the style of bracket used in the document just by
 changing the
 .B \%bracket\-label
 command.
@@ -819,7 +818,7 @@ Abbreviate the first names of
 .
 An initial letter will be separated from another initial letter by
 .IR string1 ,
-from the last name by
+from the surname by
 .IR string2 ,
 and from anything else
 (such as \[lq]von\[rq] or \[lq]de\[rq])
@@ -958,7 +957,7 @@ The default behavior is as follows.
 .RS \" RS twice to get inboard of the tagged paragraph indentation.
 .RS
 .EX
-.B bracket\-label \e*([. \e*(.] \[dq], \[dq]
+bracket\-label \e*([. \e*(.] \[dq], \[dq]
 .EE
 .RE
 .RE
@@ -1068,17 +1067,17 @@ are
 .
 .TP
 .BI et\-al\*n\~ "string m n"
-Control use of
-.B et al.\&
+Configure use of
+.RB \[lq] "et al" \[rq]
 in the evaluation of
 .B @
 expressions in label expressions.
 .
-If the number of authors needed to make the author sequence unambiguous
-is
+If
 .I u
+is the number of authors needed to make the author sequence unambiguous
 and the total number of authors is
-.I t
+.I t,
 then the last
 .IR t \|\-\| u
 authors will be replaced by
@@ -1307,7 +1306,7 @@ or if the label expression contains a
 .B <>
 expression.
 .
-This will have no effect unless references are being accumulated.
+This has no effect unless references are being accumulated.
 .
 .
 .\" ====================================================================
@@ -1343,11 +1342,9 @@ except where otherwise specified.
 .
 .
 .TP 8n \" "expr-n" + 2n
-.I field
-.TQ
-.I field\~n
-The
-.IR n -th
+.IR field\~ [ n ]
+is the
+.IR n th
 part of
 .IR field .
 .
@@ -1366,37 +1363,42 @@ literally.
 .
 .TP
 .B @
-All the authors joined as specified by the
+All authors joined as specified by the
 .B \%join\-authors
 command.
 .
-The whole of each author's name will be used.
+The whole of each author's name is used.
 .
 However,
 if the references are sorted by author
 (that is,
 the sort specification starts with
 .RB \[lq] A+ \[rq]),
-then authors' last names will be used instead,
+then authors' surnames will be used instead,
 provided that this does not introduce ambiguity,
 and also an initial subsequence of the authors may be used instead of
 all the authors,
 again provided that this does not introduce ambiguity.
 .
-The use of only the last name for the
-.IR i -th
-author of some reference
-is considered to be ambiguous if
-there is some other reference,
-such that the first
-.IR i \|\-\|1
-authors of the references are the same,
+Given any two referenced works with
+.I n
+authors,
+the use of only the surname for the
+.IR n th
+author of a reference
+is regarded as ambiguous if
+the other reference
+shares the first
+.IR n \|\-\|1
+authors,
 the
-.IR i -th
-authors are not the same,
+.IR n th
+authors of each reference are not identical,
 but the
-.IR i -th
-authors last names are the same.
+.IR n th
+authors' surnames
+.I are
+the same.
 .
 A proper initial subsequence of the sequence of authors for some
 reference is considered to be ambiguous if there is a reference with
@@ -1412,8 +1414,8 @@ met before an initial subsequence can be used.
 .
 .B @
 tentatively evaluates to a canonical representation of the authors,
-such that authors that compare equally for sorting purpose will have
-the same representation.
+such that authors that compare equally for sorting purposes have the
+same representation.
 .
 .
 .TP
@@ -1487,7 +1489,7 @@ converted to caps and small caps.
 .TP
 .IB expr .r
 .I expr
-reversed so that the last name is first.
+reversed so that the surname is first.
 .
 .
 .TP
@@ -1533,7 +1535,7 @@ does not contain a year.
 .
 .TP
 .IB expr .n
-The last name part of
+The surname part of
 .IR expr .
 .
 .

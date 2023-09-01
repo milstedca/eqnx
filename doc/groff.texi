@@ -2005,7 +2005,8 @@ respectively.  These are frequently used to construct lists.
 @Example
   @result{} o    This  list  item  starts with a bullet.  When
   @result{}      producing output for a device using the ASCII
-  @result{}      character set, an 'o' is formatted instead.
+  @result{}      character set, an @quoteleft{}o@quoteright{} is @
+formatted instead.
 @endExample
 
 @noindent
@@ -2014,7 +2015,8 @@ Often, use of the same macro without a tag continues such a discussion.
 @Example
   @result{} -xyz  This option is recognized but ignored.
   @result{}
-  @result{}       It had a security hole that we don't discuss.
+  @result{}       It had a security hole that we don@quoteright{}t @
+discuss.
 @endExample
 
 @c ---------------------------------------------------------------------
@@ -8308,10 +8310,12 @@ between the `.ce' and the `.ad c' requests.
 .FR
     @result{} This is a small text fragment that shows
     @result{}              the differences
-    @result{} between the @quoteleft{}.ce@quoteright{} and the @quoteleft{}.ad c@quoteright{} requests.
+    @result{} between the @quoteleft{}.ce@quoteright{} and the @
+@quoteleft{}.ad c@quoteright{} requests.
     @result{}
     @result{} This is a small text fragment that shows
-    @result{}  the differences between the @quoteleft{}.ce@quoteright{} and
+    @result{}  the differences between the @
+@quoteleft{}.ce@quoteright{} and
     @result{}         the @quoteleft{}.ad c@quoteright{} requests.
 @endExample
 

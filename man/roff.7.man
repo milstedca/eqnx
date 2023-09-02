@@ -357,6 +357,8 @@ Tab stops are by default located every half inch measured from the
 drawing position corresponding to the beginning of the input line;
 see subsection \[lq]Page geometry\[rq] below.
 .
+(Terminals generally set tab stops every eight character cells.)
+.
 With them,
 simple tables can be made.
 .

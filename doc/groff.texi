@@ -5332,10 +5332,11 @@ GNU @code{troff} translates input horizontal tab characters (``tabs'')
 and @key{Control+A} characters (``leaders'') into movements to the next
 tab stop.  Tabs simply move to the next tab stop; leaders place enough
 periods to fill the space.  Tab stops are by default located every half
-inch measured from the drawing position corresponding to the beginning
-of the input line; see @ref{Page Geometry}.   Tabs and leaders do not
-cause breaks and therefore do not interrupt filling.  Below, we use
-arrows @arrow{} and bullets @bullet{} to indicate input tabs and
+inch@footnote{Terminals generally set tab stops every eight character
+cells.} measured from the drawing position corresponding to the
+beginning of the input line; see @ref{Page Geometry}.   Tabs and leaders
+do not cause breaks and therefore do not interrupt filling.  Below, we
+use arrows @arrow{} and bullets @bullet{} to indicate input tabs and
 leaders, respectively.
 
 @Example
@@ -5346,12 +5347,12 @@ leaders, respectively.
 @endExample
 
 Tabs and leaders lend themselves to table construction.@footnote{``Tab''
-is short for ``tabulation'', revealing the term's origin as a spacing
-mechanism for table arrangement.} The tab and leader glyphs can be
-configured, and further facilities for sophisticated table composition
-are available; see @ref{Tabs and Fields}.  There are many details to
-track when using such low-level features, so most users turn to the
-@cite{tbl@r{(1)}} preprocessor to lay out tables.
+abbreviates ``tabulation'', suggesting table arrangement mechanism.} The
+tab and leader glyphs can be configured, and further facilities for
+sophisticated table composition are available; see @ref{Tabs and
+Fields}.  There are many details to track when using such low-level
+features, so most users turn to the @cite{tbl@r{(1)}} preprocessor to
+lay out tables.
 
 @c ---------------------------------------------------------------------
 

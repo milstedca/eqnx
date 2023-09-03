@@ -1736,9 +1736,12 @@ formatter, peruse @ref{GNU troff Reference} instead.
 @cindex basics of macro package usage
 @cindex macro package usage, basics of
 
+@c Texinfo's @cite command conceives only of citations of long-form
+@c works, like books, and forces italics.  Article citations are
+@c typically placed in quotation marks instead.
 Let us first survey some basic concepts necessary to use a macro package
 fruitfully.@footnote{The remainder of this chapter is based on
-@cite{Writing Papers with nroff using -me} by Eric@tie{}P.@: Allman,
+``Writing Papers with NROFF using -me'' by Eric@tie{}P.@: Allman,
 which is distributed with @code{groff} as @file{meintro.me}.}
 References are made throughout to more detailed information.
 

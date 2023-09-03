@@ -859,17 +859,15 @@ contributed much of the material on the @file{ms} macro package.
 
 This chapter focuses on how to invoke the @command{groff} front end,
 which constructs a pipeline connecting desired preprocessors,
-the formatter program @command{gtroff}, and a postprocessor.
+the GNU @command{troff} formatter program, and a postprocessor.
 
 A tradition has arisen that GNU programs' names bear a prefix @samp{g}
 where necessary to distinguish them from other implementations on the
 host system (@pxref{Environment}).  Thus, for example, @code{geqn} is
-GNU @code{eqn}.  On operating systems that don't contain proprietary
-versions of @code{troff} (like GNU/Linux and the Hurd), and on
-MS-DOS/MS-Windows, where @code{troff} and associated programs are not
-available at all, this prefix is omitted since GNU @command{troff} is
-the only incarnation of @code{troff} used.  Exception: @samp{groff} is
-never replaced by @samp{roff}.
+GNU @code{eqn}.  On operating systems that lack a @code{troff} of
+different provenance, this prefix is omitted; GNU @command{troff} is the
+only @code{troff} available.  Exceptionally, @samp{groff} always retains
+its leading @samp{g}.
 
 In this document, we consequently sometimes say @samp{gtroff} when
 talking about the GNU @command{troff} command.
@@ -915,15 +913,14 @@ configuration).  It can optionally preprocess input with any of
 @code{gchem}, @code{grefer}, @code{gsoelim}, or @code{preconv}.
 
 This section documents only options to the @command{groff} front end.
-Many of the arguments to @command{groff} are passed on to
-@command{gtroff}; therefore, those are also included.  Arguments to
-preprocessors and output drivers can be found in the man pages
-@cite{gpic@r{(1)}}, @cite{geqn@r{(1)}}, @cite{gtbl@r{(1)}},
-@cite{ggrn@r{(1)}}, @cite{grefer@r{(1)}}, @cite{gchem@r{(1)}},
-@cite{gsoelim@r{(1)}}, @cite{preconv@r{(1)}}, @cite{grotty@r{(1)}},
-@cite{grops@r{(1)}}, @cite{gropdf@r{(1)}}, @cite{grohtml@r{(1)}},
-@cite{grodvi@r{(1)}}, @cite{grolj4@r{(1)}}, @cite{grolbp@r{(1)}}, and
-@cite{gxditview@r{(1)}}.
+Since it passes many of its arguments to @command{gtroff}, we describe
+many of the latter's options here.  Arguments to preprocessors and
+output drivers can be found in the man pages @cite{gpic@r{(1)}},
+@cite{geqn@r{(1)}}, @cite{gtbl@r{(1)}}, @cite{ggrn@r{(1)}},
+@cite{grefer@r{(1)}}, @cite{gchem@r{(1)}}, @cite{gsoelim@r{(1)}},
+@cite{preconv@r{(1)}}, @cite{grotty@r{(1)}}, @cite{grops@r{(1)}},
+@cite{gropdf@r{(1)}}, @cite{grohtml@r{(1)}}, @cite{grodvi@r{(1)}},
+@cite{grolj4@r{(1)}}, @cite{grolbp@r{(1)}}, and @cite{gxditview@r{(1)}}.
 
 A summary of @command{groff}'s usage is as follows.
 
@@ -959,7 +956,7 @@ gtroff [-abcCEiRUz] [-f @var{font-family}] [-F @var{font-directory}]
 @endExample
 
 Options that don't take arguments can be clustered after a
-single@tie{}@option{-}.  A @var{file} argument of @tie{}@file{-} denotes
+single@tie{}@option{-}.  A @var{file} operand of @tie{}@file{-} denotes
 the standard input stream.
 
 All @code{groff} commands accept a @option{--help} option, which
@@ -1019,17 +1016,17 @@ Enable AT&T @command{troff} compatibility mode; implies @option{-c}.
 @xref{Implementation Differences}, for the list of incompatibilities
 between @command{groff} and @acronym{AT&T} @command{troff}.
 
-@item -d@var{c}@var{text}
-@itemx -d@var{string}=@var{text}
+@item -d @var{c}@var{text}
+@itemx -d @var{string}=@var{text}
 Define @code{roff} string @var{c} or @var{string} as@tie{}@var{t} or
 @var{text}.  @var{c}@tie{}must be one character; @var{string} can be
-of arbitrary length.  Such string assignments happen before any macro
-file is loaded, including the startup file.  Due to
-@cite{getopt_long@r{(3)}} limitations, @var{c}@tie{}cannot be, and
-@var{string} cannot contain, an equals sign, even though that is a valid
-character in a @code{roff} identifier.
+of arbitrary length.  Such assignments happen before any macro file is
+loaded, including the startup file.  Due to @cite{getopt_long@r{(3)}}
+limitations, @var{c}@tie{}cannot be, and @var{string} cannot contain, an
+equals sign, even though that is a valid character in a @code{roff}
+identifier.
 
-@item -D@var{enc}
+@item -D @var{enc}
 Set fallback input encoding used by @command{preconv} to @var{enc};
 implies @option{-k}.
 
@@ -1041,10 +1038,10 @@ Inhibit @command{gtroff} error messages.  This option does @emph{not}
 suppress messages sent to the standard error stream by documents or
 macro packages using @code{tm} or related requests.
 
-@item -f@var{fam}
+@item -f @var{fam}
 Use @var{fam} as the default font family.  @xref{Font Families}.
 
-@item -F@var{dir}
+@item -F @var{dir}
 Search in directory @file{@var{dir}} for the selected output device's
 directory of device and font description files.  See the description of
 @env{GROFF_FONT_PATH} in @ref{Environment} below for the default search
@@ -1063,7 +1060,7 @@ Display a usage message and exit.
 Read the standard input stream after all the named input files have been
 processed.
 
-@item -I@var{dir}
+@item -I @var{dir}
 Search the directory @var{dir} for files named in several contexts;
 implies @option{-g} and @option{-s}.
 
@@ -1091,9 +1088,9 @@ current working directory is otherwise searched last.  @option{-I} works
 similarly to, and is named for, the ``include'' option of Unix C
 compilers.
 
-@option{-I} options are passed to @command{gsoelim}, @command{gtroff},
-and output drivers; with the flag letter changed to @option{-M}, they
-are also passed to @command{ggrn}.
+@command{groff} passes @option{-I} options and their arguments to
+@command{gsoelim}, @command{gtroff}, and output drivers; with the option
+changed to @option{-M}, the same arguments are passed to @command{ggrn}.
 
 @item -j
 Run @command{gchem} preprocessor.  Implies @option{-p}.
@@ -1103,7 +1100,7 @@ Run @command{preconv} preprocessor.  Refer to its man page for its
 behavior if neither of @command{groff}'s @option{-K} or @option{-D}
 options is also specified.
 
-@item -K@var{enc}
+@item -K @var{enc}
 Set input encoding used by @command{preconv} to @var{enc}; implies
 @option{-k}.
 
@@ -1122,34 +1119,35 @@ see @ref{Device and Font Description Files}.
 @c .\}
 See options @option{-L} and @option{-X}.
 
-@item -L@var{arg}
-Pass @var{arg} to the print spooler program.  If multiple @var{arg}s are
+@item -L @var{arg}
+Pass @var{arg} to the print spooler.  If multiple @var{arg}s are
 required, pass each with a separate @option{-L} option.  @command{groff}
 does not prefix an option dash to @var{arg} before passing it to the
-spooler program.
+spooler.
 
-@item -m@var{name}
-Process the file @file{@var{name}.tmac} prior to any input files.
-If not found, @file{tmac.@var{name}} is attempted.  @var{name}
-(in both arrangements) is presumed to be a macro file; see the
-description of @env{GROFF_TMAC_PATH} in @ref{Environment} below for the
-default search locations and ordering.  This option and its argument are
-also passed to @command{geqn}, @command{grap}, and @command{ggrn}.
+@item -m @var{mac}
+Search for the macro package @file{@var{mac}.tmac} and read it prior to
+any input files.  If not found, @file{tmac.@var{mac}} is attempted.
+See the description of @env{GROFF_TMAC_PATH} in @ref{Environment} below
+for the default search locations and ordering.  @command{groff} passes
+@option{-m} options and their arguments to to @command{geqn},
+@command{grap}, and @command{ggrn}.
 
-@item -M@var{dir}
-Search directory @file{@var{dir}} for macro files;  see the description
+@item -M @var{dir}
+Search directory @file{@var{dir}} for macro files; see the description
 of @env{GROFF_TMAC_PATH} in @ref{Environment} below for the default
-search locations and ordering.  This option and its argument are also
-passed to @command{geqn}, @command{grap}, and @command{ggrn}.
+search locations and ordering.  @command{groff} passes @option{-M}
+options and their arguments to to @command{geqn}, @command{grap}, and
+@command{ggrn}.
 
-@item -n@var{num}
-Number the first page @var{num}.
+@item -n @var{num}
+Begin numbering pages at @var{num}.  The default is @samp{1}.
 
 @item -N
 Prohibit newlines between @code{eqn} delimiters:@: pass @option{-N} to
 @command{geqn}.
 
-@item -o@var{list}
+@item -o @var{list}
 @cindex print current page register (@code{.P})
 Output only pages in @var{list}, which is a comma-separated list of page
 ranges; @samp{@var{n}} means page@tie{}@var{n}, @samp{@var{m}-@var{n}}
@@ -1161,19 +1159,19 @@ formatting the last page enumerated in @var{list}.
 @item -p
 Run @command{gpic} preprocessor.
 
-@item -P@var{arg}
+@item -P @var{arg}
 Pass @var{arg} to the postprocessor.  If multiple @var{arg}s are
 required, pass each with a separate @option{-P} option.  @command{groff}
 does not prefix an option dash to @var{arg} before passing it to the
 postprocessor.
 
-@item -r@var{c}@var{numeric-expression}
-@itemx -r@var{register}=@var{expr}
-Set @code{roff} register@tie{}@var{c} or @var{register} to the value
+@item -r @var{c}@var{numeric-expression}
+@itemx -r @var{register}=@var{expr}
+Define @code{roff} register@tie{}@var{c} or @var{register} as
 @var{numeric-expression} (@pxref{Numeric Expressions}).
 @var{c}@tie{}must be one character; @var{register} can be of arbitrary
-length.  Such register assignments happen before any macro file is
-loaded, including the startup file.  Due to @cite{getopt_long@r{(3)}}
+length.  Such assignments happen before any macro file is loaded,
+including the startup file.  Due to @cite{getopt_long@r{(3)}}
 limitations, @var{c}@tie{}cannot be, and @var{register} cannot contain,
 an equals sign, even though that is a valid character in a @code{roff}
 identifier.
@@ -1206,9 +1204,10 @@ security reasons, safer mode is enabled by default.
 @item -t
 Run @command{gtbl} preprocessor.
 
-@item -T@var{dev}
-Direct @command{gtroff} to format the input for the output device
-@var{dev}.  @command{groff} then calls an output driver to convert
+@item -T @var{dev}
+Prepare output for device @var{dev}.  @command{groff} passes the
+@option{-T} option and its argument to @command{gtroff}, then (unless
+the @option{-Z} option is used) calls an output driver to convert
 @command{gtroff}'s output to a form appropriate for @var{dev}.  The
 following output devices are available.
 
@@ -1310,8 +1309,8 @@ Operate in @dfn{unsafe mode}, which enables the @code{open},
 requests are disabled by default because they allow an untrusted input
 document to write to arbitrary file names and run arbitrary commands.
 This option also adds the current directory to the macro package search
-path; see the @option{-m} option above.  @option{-U} is passed to
-@command{gpic} and @command{gtroff}.
+path; see the @option{-m} option above.  @command{groff} passes
+@option{-U} to @command{gpic} and @command{gtroff}.
 
 @item -v
 Write version information for @command{groff} and all programs run by it
@@ -1320,25 +1319,21 @@ processed in the usual way, passing @option{-v} to the formatter and any
 pre- or postprocessors invoked.
 
 @item -V
-Output the pipeline that would be run by @command{groff}
-(as a wrapper program) to the standard output stream, but do not execute
-it.  If given more than once, the pipeline is both written to the
-standard error stream and run.
+Output the pipeline that @command{groff} would run to the standard
+output stream and exit.  If given more than once, @command{groff} both
+writes the pipeline to the standard error stream and runs it.
 
-@item -w@var{category}
-Enable warnings in @var{category}.  Categories are listed in
-@ref{Warnings}.
-
-@item -W@var{category}
-Inhibit warnings in @var{category}.  Categories are listed in
-@ref{Warnings}.
+@item -w @var{cat}
+@itemx -W @var{cat}
+Enable and inhibit, respectively, warnings in category @var{cat}.
+@xref{Warnings}.
 
 @item -X
 Use @command{gxditview} instead of the usual postprocessor to (pre)view
 a document on an X11 display.  Combining this option with
-@option{-Tps} uses the font metrics of the PostScript device, whereas
-the @option{-TX75} and @option{-TX100} options use the metrics of X11
-fonts.
+@option{-T ps} uses the font metrics of the PostScript device, whereas
+the @option{-T X75}, @option{-T X75-12}, @option{-T X100}, and
+@option{-T X100-12} options use the metrics of X11 fonts.
 
 @item -z
 Suppress formatted output from @command{gtroff}.
@@ -1357,93 +1352,91 @@ standard output stream (unless suppressed with @option{-z}); see
 @cindex environment variables
 @cindex variables in environment
 
-Several environment variables (of the operating system, unrelated to GNU
-@command{troff}'s @slanted{environments}) can modify the behavior of
-@command{groff}.
+Environment variables in the host system affect the behavior of programs
+supplied by @code{groff} as follows.  Normally, the path separator in
+environment variables ending with @samp{PATH} is the colon; this may
+vary depending on the operating system.  For example, Windows uses a
+semicolon instead.
 
 @table @code
 @item GROFF_BIN_PATH
 @tindex GROFF_BIN_PATH@r{, environment variable}
-This search path, followed by @code{PATH}, is used for commands executed
-by @command{groff}.
+Search the listed directories, followed by @env{PATH}, to locate
+commands.  If not set, the installation directory of GNU @code{roff}
+executables, documented in @cite{groff@r{(1)}}, is searched before
+@env{PATH}.
 
 @item GROFF_COMMAND_PREFIX
 @tindex GROFF_COMMAND_PREFIX@r{, environment variable}
 @cindex command prefix
 @cindex prefix, for commands
-If this is set to@tie{}@var{X}, then @command{groff} runs
-@command{@var{X}troff} instead of @command{gtroff}.  This also applies
-to @command{tbl}, @command{pic}, @command{eqn}, @command{grn},
-@command{chem}, @command{refer}, and @command{soelim}.  It does not
-apply to @command{grops}, @command{grodvi}, @command{grotty},
-@command{pre-grohtml}, @command{post-grohtml}, @command{preconv},
-@command{grolj4}, @command{gropdf}, and @command{gxditview}.
+Apply a prefix to certain GNU @code{roff} commands.
+@code{groff} can be configured at compile time to apply a prefix to
+the names of programs it provides that had counterparts in
+@acronym{AT&T} @code{troff}, so that name collisions are avoided at run
+time.  The default prefix is empty.
 
-The default command prefix is determined during the installation
-process.  If a non-GNU @code{troff} system is found, prefix @samp{g} is
-used, none otherwise.
+When used, this prefix is conventionally the letter @samp{g}.
+For example, GNU @command{troff} would be installed as @command{gtroff}.
+Besides @command{troff}, the prefix applies to the formatter wrapper
+@command{nroff}; the preprocessors @command{eqn}, @command{grn},
+@command{pic}, @command{refer}, @command{tbl}, and @command{soelim}; and
+the utilities @command{indxbib} and @command{lookbib}.
 
 @item GROFF_ENCODING
 @tindex GROFF_ENCODING@r{, environment variable}
-The value of this variable is passed to the @code{preconv}
-preprocessor's @option{-e} option to select the character encoding of
-input files.  This variable's existence implies the @command{groff}
-option @option{-k}.  If set but empty, @command{groff} calls
-@code{preconv} without an @option{-e} option.  @command{groff}'s
+Specify the assumed character encoding of input files.  @command{groff}
+passes its value as an argument to the @command{preconv} preprocessor's
+@option{-e} option.  This variable's existence implies the
+@command{groff} option @option{-k}.  If set but empty, @command{groff}
+calls @code{preconv} without an @option{-e} option.  @command{groff}'s
 @option{-K} option overrides @env{GROFF_ENCODING}.  See
 @cite{preconv@r{(7)}}.
 
 @item GROFF_FONT_PATH
 @tindex GROFF_FONT_PATH@r{, environment variable}
-A list of directories in which to seek the selected output device's
-directory of device and font description files.  GNU @command{troff}
-will search directories given as arguments to any specified @option{-F}
-options before these, and a built-in list of directories after them.
-@xref{Font Directories} and the @cite{troff@r{(1)}} or
-@cite{gtroff@r{(1)}} man pages.
+Seek the selected output device's directory of device and font
+description files in this list of directories.  @xref{Font Directories},
+@cite{gtroff@r{(1)}}, and @cite{groff_font@r{(5)}}.
 
 @item GROFF_TMAC_PATH
 @tindex GROFF_TMAC_PATH@r{, environment variable}
-A list of directories in which to seek macro files.  GNU @command{troff}
-will search directories given as arguments to any specified @option{-M}
-options before these, and a built-in list of directories after them.
-@xref{Macro Directories} and the @cite{troff@r{(1)}} or
-@cite{gtroff@r{(1)}} man pages.
+Seek macro packages in this list of directories.  @xref{Macro
+Directories}, @cite{gtroff@r{(1)}}, and @cite{groff_tmac@r{(5)}}.
 
 @item GROFF_TMPDIR
 @tindex GROFF_TMPDIR@r{, environment variable}
 @tindex TMPDIR@r{, environment variable}
-The directory in which @command{groff} creates temporary files.  If this
-is not set and @env{TMPDIR} is set, temporary files are created in that
-directory.  Otherwise temporary files are created in a system-dependent
-default directory (on Unix and GNU/Linux systems, this is usually
-@file{/tmp}).  @code{grops}, @code{grefer}, @code{pre-grohtml}, and
-@code{post-grohtml} can create temporary files in this directory.
+Create temporary files in this directory.  If not set, but @env{TMPDIR}
+is, the latter is used instead.  On Windows systems, if neither of the
+foregoing are set, the environment variables @env{TMP} and @env{TEMP}
+(in that order) are checked also.  Otherwise, temporary files are
+created in a system-dependent default directory (on Unix and GNU/Linux
+systems, usually @file{/tmp}).  The @command{grefer}, @command{grohtml},
+and @command{grops} commands use temporary files.
 
 @item GROFF_TYPESETTER
 @tindex GROFF_TYPESETTER@r{, environment variable}
-Sets the default output device.  If empty or not set, a build-time
-default (often @code{ps}) is used.  The @option{-T@var{dev}} option
-overrides @env{GROFF_TYPESETTER}.
+Set the default output device.  The @option{-T @var{dev}} option
+overrides it.  If empty or unset, a default configured at build time,
+and documented in @cite{groff@r{(1)}}, is used.
 
 @item SOURCE_DATE_EPOCH
 @tindex SOURCE_DATE_EPOCH@r{, environment variable}
-A timestamp (expressed as seconds since the Unix epoch) to use as the
-output creation timestamp in place of the current time.  The time is
-converted to human-readable form using @cite{gmtime@r{(3)}} and
+Declare a time stamp (expressed as seconds since the Unix epoch) to use
+as the output creation time stamp in place of the current time.  The
+time is converted to human-readable form using @cite{gmtime@r{(3)}} and
 @cite{asctime@r{(3)}} when the formatter starts up and stored in
 registers usable by documents and macro packages (@pxref{Built-in
 Registers}).
 
 @item TZ
 @tindex TZ@r{, environment variable}
-The time zone to use when converting the current time to human-readable
-form; see @cite{tzset@r{(3)}}.  If @env{SOURCE_DATE_EPOCH} is used, it
-is always converted to human-readable form using UTC.
+Declare the time zone to use when converting the current time to
+human-readable form; see @cite{tzset@r{(3)}}.  If
+@env{SOURCE_DATE_EPOCH} is used, it is always converted to
+human-readable form using UTC.
 @end table
-
-MS-DOS and MS-Windows ports of @code{groff} use semicolons, rather than
-colons, to separate the directories in the lists described above.
 
 
 @c =====================================================================
@@ -1457,7 +1450,7 @@ colons, to separate the directories in the lists described above.
 
 A macro file must have a name in the form @code{@var{name}.tmac} or
 @code{tmac.@var{name}} and be placed in a @dfn{tmac directory} to be
-found by the @option{-m@var{name}} command-line option.@footnote{The
+found by the @option{-m @var{mac}} command-line option.@footnote{The
 @code{mso} request does not have these limitations.  @xref{I/O}.}
 @cindex tmac, directory
 @cindex directory, for tmac files
@@ -1469,14 +1462,15 @@ found by the @option{-m@var{name}} command-line option.@footnote{The
 @cindex locating macro packages
 @cindex macro package search path
 @cindex package, macro, search path
-Together, these directories constitute the @dfn{tmac path}.  Each
-directory is searched in the following order until the desired macro
-file is found or the list is exhausted.
+Such naming and placement makes a macro file a @slanted{macro package};
+when requested, these are sought in several directories.  Together,
+these locations constitute the @dfn{tmac path}.  Each directory is
+searched in the following order until the desired macro file is found or
+the list is exhausted.
 
 @itemize @bullet
 @item
-Directories specified with GNU @command{troff}'s or @command{groff}'s
-@option{-M} command-line option.
+Directories specified with the @option{-M} command-line option.
 
 @item
 @tindex GROFF_TMAC_PATH@r{, environment variable}
@@ -1503,10 +1497,10 @@ The user's home directory, found in the @env{HOME} environment variable.
 @cindex platform-specific directory
 @cindex directory, platform-specific
 A site-local platform-dependent directory, a site-local
-platform-independent directory, and the stock @slanted{tmac} directory.
-The locations corresponding to your installation are listed in section
-``Environment'' of @cite{gtroff@r{(1)}}.  If not otherwise configured,
-they are as follows.
+platform-independent directory, and a stock directory.  Locations
+corresponding to your installation are listed in section ``Environment''
+of @cite{gtroff@r{(1)}}.  If not otherwise configured, they are as
+follows.
 
 @Example
 /usr/local/lib/groff/site-tmac
@@ -1523,39 +1517,46 @@ be customized as part of the build-time configuration process.
 
 @c =====================================================================
 
+@need 1000
 @node Font Directories, Paper Format, Macro Directories, Invoking groff
 @section Font Directories
-@cindex font directories
-@cindex directories for fonts
-@cindex searching fonts
-@cindex fonts, searching
 
-@code{groff} enforces few restrictions on how font description files are
-named.  For its family/style mechanism to work, the names of fonts
-within a family should start with the family name, followed by the
-style.  For example, the Times family uses @samp{T} for the family name
-and @samp{R}, @samp{B}, @samp{I}, and @samp{BI} to indicate the styles
-`roman', `bold', `italic', and `bold italic', respectively.  Their
-resolved font names are thus @samp{TR}, @samp{TB}, @samp{TI}, and
-@samp{TBI}.  @xref{Using Fonts}.
+@cindex device description file, introduced
+@cindex description file, device, introduced
+@cindex file, device description, introduced
+@cindex font description file, introduced
+@cindex description file, font, introduced
+@cindex file, font description, introduced
+The GNU @command{troff} formatter and @code{groff}'s output drivers read
+@slanted{device} and @slanted{font description files} that detail the
+output device and the typefaces available to it, including their glyph
+repertoires and the @slanted{metrics} (dimensions) of each glyph.  This
+information permits the formatter to accurately place glyphs with
+respect to each other.  The device description file is always named
+@file{DESC}; fonts are typically described in files with short names
+like @file{TR}, @file{CR}, @file{HBI}, or @file{S}.
 
+@cindex font directory
+@cindex directory, device and font description
+@cindex search path, font
+@cindex fonts, searching for
 @cindex font path
 @cindex path, for font files
-Font description files are kept in @dfn{font directories}, which
-together constitute the @dfn{font path}.  The search procedure
+Device and font description files are kept in @dfn{font directories},
+which together constitute the @dfn{font path}.  The search procedure
 always appends the directory @code{dev}@var{name}, where @var{name} is
 the name of the output device.  Assuming @TeX{} DVI output, and
-@file{/foo/bar} as a font directory, the font description files for
-@command{grodvi} must be in @file{/foo/bar/devdvi}.
-Each directory in the font path is searched in the following order until
-the desired font description file is found or the list is exhausted.
+@file{/foo/bar} as a font directory, the description files for
+@command{grodvi} must be in @file{/foo/bar/devdvi}.  Each directory in
+the font path is searched in the following order until the desired
+description file is found or the list is exhausted.
 
 @itemize @bullet
 @item
-Directories specified with GNU @command{troff}'s or @command{groff}'s
-@option{-f} command-line option.  All output drivers (and some
-preprocessors) support this option as well, because they require
-information about the glyphs to be rendered in the document.
+Directories specified with the @option{-f} command-line option.  All
+output drivers (and some preprocessors) support this option as well,
+because they require information about glyphs to be rendered in the
+document.
 
 @item
 @tindex GROFF_FONT_PATH@r{, environment variable}
@@ -1564,10 +1565,9 @@ Directories listed in the @env{GROFF_FONT_PATH} environment variable.
 @item
 @cindex site-local directory
 @cindex directory, site-local
-A site-local directory and the main font description directory.
-The locations corresponding to your installation are listed in section
-``Environment'' of @cite{gtroff@r{(1)}}.  If not otherwise configured,
-they are as follows.
+A site-local directory and a stock directory.  Locations corresponding
+to your installation are listed in section ``Environment'' of
+@cite{gtroff@r{(1)}}.  If not otherwise configured, they are as follows.
 
 @Example
 /usr/local/share/groff/site-font
@@ -1601,7 +1601,7 @@ are used if present.  @code{groff}'s build process configures a default
 page format and writes it to typesetters' @file{DESC} files.  This
 installation's default is documented in @cite{gtroff@r{(1)}}.  If the
 @file{DESC} file lacks this information, the formatter and output driver
-use a page length of @code{11i} (inches) for compatibility with
+use a page length of @samp{11i} (eleven inches) for compatibility with
 @acronym{AT&T} @code{troff}.
 
 In the formatter, the @code{pl} request changes the page length, but
@@ -8738,7 +8738,7 @@ remembered.
 @cindex patterns for hyphenation (@code{hpf})
 Read hyphenation patterns from @var{pattern-file}, which is sought
 in the same way that macro files are with the @code{mso} request or the
-@option{-m@var{name}} command-line option to @code{groff}.  The
+@option{-m @var{mac}} command-line option to @code{groff}.  The
 @var{pattern-file} should have the same format as (simple) @TeX{}
 pattern files.  More specifically, the following scanning rules are
 implemented.

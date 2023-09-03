@@ -791,7 +791,7 @@ standard output and standard error streams @emph{because} of
 @uref{https://minnie.tuhs.org/pipermail/tuhs/2013-December/006113.html}.}
 
 @Example
-$ echo "Twelve o'clock and" | groff -Tascii | sed '/^$/d'
+$ echo "Twelve o'clock and" | groff -T ascii | sed '/^$/d'
     @result{} Twelve o'clock and
 $ echo '.tm all is well.' | groff > /dev/null
     @error{} all is well.
@@ -1627,7 +1627,7 @@ on A4 paper in landscape orientation.
 
 @Example
 @c The next line is right at the 59n limit.
-$ groff -T ps -d paper=a4l -P -pa4 -P -l -ms foo.ms >foo.ps
+$ groff -T ps -d paper=a4l -P -pa4 -P -l -m s foo.ms >foo.ps
 @endExample
 @c END Keep parallel with groff(1), subsection "Paper format".
 
@@ -1645,7 +1645,7 @@ $ groff -T ps -d paper=a4l -P -pa4 -P -l -ms foo.ms >foo.ps
 with a @command{groff} command.
 
 @Example
-groff -t -man -Tutf8 /usr/share/man/man1/groff.1
+groff -t -m an -T utf8 /usr/share/man/man1/groff.1
 @endExample
 
 The librarian will also pipe the output through a pager, which might not
@@ -1659,13 +1659,13 @@ way to which AT&T @code{troff} users were accustomed, one would type (or
 script) a pipeline.
 
 @Example
-gpic foo.me | gtbl | gtroff -me -Tutf8 | grotty
+gpic foo.me | gtbl | gtroff -m e -T utf8 | grotty
 @endExample
 
 Shorten this pipeline to an equivalent command using @command{groff}.
 
 @Example
-groff -p -t -me -T utf8 foo.me
+groff -p -t -m e -T utf8 foo.me
 @endExample
 
 An even easier way to do this is to use @command{grog} to guess the
@@ -1673,7 +1673,7 @@ preprocessor and macro options and execute the result by using the
 command substitution feature of the shell.
 
 @Example
-$(grog -Tutf8 foo.me)
+$(grog -T utf8 foo.me)
 @endExample
 
 Each command-line option to a postprocessor must be specified with any
@@ -5610,7 +5610,7 @@ Other encodings are supported by means of macro packages.
 @pindex koi8-r.tmac
 To use @w{KOI8-R}, an encoding for the Russian language, either place
 @w{@samp{.mso koi8-r.tmac}} at the very beginning of your document or
-supply @samp{-mkoi8-r} as a command-line argument to @code{groff}.  The
+supply @samp{-m koi8-r} as a command-line argument to @code{groff}.  The
 localization file @file{ru.tmac} takes care of this automatically; see
 @ref{Manipulating Hyphenation}.@footnote{KOI8-R code points in the range
 @code{0x80}--@code{0x9F} are not valid input on systems using ISO
@@ -5628,7 +5628,7 @@ obtained via special character escape sequences; see
 @pindex latin2.tmac
 To use ISO @w{Latin-2}, an encoding for Central and Eastern European
 languages, invoke @w{@samp{.mso latin2.tmac}} at the beginning of your
-document or supply @samp{-mlatin2} as a command-line argument to
+document or supply @samp{-m latin2} as a command-line argument to
 @code{groff}.
 
 @item latin5
@@ -5639,7 +5639,7 @@ document or supply @samp{-mlatin2} as a command-line argument to
 @pindex latin5.tmac
 To use ISO @w{Latin-5}, an encoding for the Turkish language, invoke
 @w{@samp{.mso latin5.tmac}} at the beginning of your document or
-supply @samp{-mlatin5} as a command-line argument to @code{groff}.
+supply @samp{-m latin5} as a command-line argument to @code{groff}.
 
 @item latin9
 @cindex encoding, input, @w{Latin-9} (ISO @w{8859-15})
@@ -5650,7 +5650,7 @@ supply @samp{-mlatin5} as a command-line argument to @code{groff}.
 ISO @w{Latin-9} succeeds @w{Latin-1}; it includes a Euro sign and better
 glyph coverage for French.  To use this encoding, invoke @w{@samp{.mso
 latin9.tmac}} at the beginning of your document or supply
-@samp{-mlatin9} as a command-line argument to @code{groff}.
+@samp{-m latin9} as a command-line argument to @code{groff}.
 @end table
 
 Some characters from an input encoding may not be available with a
@@ -5672,7 +5672,7 @@ devices as @code{groff} ships, while @w{Latin-2} is not.
 Unicode supports characters from all other input encodings; the
 @option{utf8} output driver for terminals therefore does as well.  The
 DVI output driver supports the @w{Latin-2} and @w{Latin-9} encodings if
-the command-line option @option{-mec} is used as well.  @footnote{The
+the command-line option @option{-m ec} is used as well.  @footnote{The
 DVI output device defaults to using the Computer Modern (CM) fonts;
 @file{ec.tmac} loads the EC fonts instead, which provide Euro
 @samp{\[Eu]} and per mille @samp{\[%0]} glyphs.}
@@ -7012,7 +7012,7 @@ a diagnostic of the @samp{escape} warning category, which is not enabled
 by default) and the following character is processed normally.
 
 @Example
-$ groff -Tps -ww
+$ groff -T ps -ww
 .nr N 12
 .ds co white
 .ds animal elephant
@@ -7289,7 +7289,7 @@ that result from interpolation. Typically, @code{'} works fine.
 @xref{Implementation Differences}.
 
 @Example
-$ groff -Tps
+$ groff -T ps
 .de Mw
 .  nr wd \w'\\$1'
 .  tm "\\$1" is \\n(wd units wide.
@@ -7477,8 +7477,8 @@ aaa bbb ccc ddd eee fff ggg hhh\h'0'\R':k \n[.k]'
     @result{} :k == 15000
 @endExample
 
-If you process this with the PostScript device (@code{-Tps}), there will
-be a line break eventually after @code{ggg} in both input lines.
+If you process this with the PostScript device (@code{-T ps}), there
+will be a line break eventually after @code{ggg} in both input lines.
 However, after processing the space after @code{ggg}, the partially
 collected line is not overfull yet, so GNU @code{troff} continues to
 collect input until it sees the space (or in this case, the newline)
@@ -10816,7 +10816,7 @@ predefined special character names, but the availability of any as a
 glyph is device- and font-dependent.  For example, say
 
 @Example
-man -Tdvi groff_char > groff_char.dvi
+man -T dvi groff_char > groff_char.dvi
 @endExample
 
 @noindent
@@ -10827,7 +10827,7 @@ alternative.}  If you want to use an additional macro package to change
 the fonts used, @code{groff} (or @command{gtroff}) must be run directly.
 
 @Example
-groff -Tdvi -mec -man groff_char.7 > groff_char.dvi
+groff -T dvi -m ec -m an groff_char.7 > groff_char.dvi
 @endExample
 
 @cindex composite glyph names
@@ -11407,7 +11407,7 @@ Default scaling unit is @samp{z}.
 The read-only register @code{.height} contains the font height as set by
 @code{\H}.
 
-Currently, only the @option{-Tps} and @option{-Tpdf} devices support
+Currently, only the @option{-T ps} and @option{-T pdf} devices support
 this feature.
 
 @code{\H} doesn't produce an input token in GNU @code{troff}.  As a
@@ -11444,7 +11444,7 @@ the right.  Only integer values are possible.
 The read-only register @code{.slant} contains the font slant as set by
 @code{\S}.
 
-Currently, only the @option{-Tps} and @option{-Tpdf} devices support
+Currently, only the @option{-T ps} and @option{-T pdf} devices support
 this feature.
 
 @code{\S} doesn't produce an input token in GNU @code{troff}.  As a
@@ -14954,11 +14954,11 @@ the end of the text line from causing a word break, which, like an
 ordinary space character, counts as written output.
 
 @Example
-$ groff -Tascii input-trap-example.groff
+$ groff -T ascii input-trap-example.groff
     @result{} foo bar TRAP SPRUNG baz
     @result{}
     @result{} qux TRAP SPRUNG      jat TRAP SPRUNG
-$ groff -Tascii -ra1 input-trap-example.groff
+$ groff -T ascii -r a1 input-trap-example.groff
     @result{} foo _____ TRAP SPRUNG bar baz
     @result{}
     @result{} qux TRAP SPRUNG      jat TRAP SPRUNG

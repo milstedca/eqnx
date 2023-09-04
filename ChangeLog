@@ -1,3 +1,13 @@
+2023-09-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[ms]: Doug McIlroy pointed out a hazard of the Berkeley DD
+	display distance feature when footnotes end with displays; offer
+	advice.
+
+	* doc/ms.ms: Document caveat with display usage in footnotes.
+
+	Fixes <https://savannah.gnu.org/bugs/?64531>.
+
 2023-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/doc.tmac (doc-str-Ar-default, Ar): Stop setting ellipsis

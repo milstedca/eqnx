@@ -2448,6 +2448,30 @@ and to equations set with
 Changes to either register take effect at the next display boundary.
 .
 .
+.PP
+The display distance applies even in footnotes
+(discussed below),
+which may cause a footnote to \[lq]emptily\[rq] spill to the next page.
+.
+Consider the following tactic to compensate.
+.
+.
+.TS
+box center;
+lf(CR).
+\&.FS
+Recall the ideal gas law.
+\&.nr DD-saved \[rs]n[DD] \[rs]" stash display distance
+\&.nr DD 0            \[rs]" eliminate automatic space around display
+\&.sp \[rs]n[DD-saved]u   \[rs]" manually put space before it
+\&.EQ
+P V = n R T
+\&.EN
+\&.FE
+\&.nr DD \[rs]n[DD-saved] \[rs]" restore previous setting
+.TE
+.
+.
 .KS
 .NH 2
 Tables, figures, equations, and references

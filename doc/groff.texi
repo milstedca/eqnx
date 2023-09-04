@@ -4007,6 +4007,25 @@ arguments, to @samp{.DS I} without an indentation argument, and to
 indented equations set with @samp{.EQ}.  Changes to either register take
 effect at the next display boundary.
 
+The display distance applies even in footnotes (discussed below), which
+may cause a footnote to ``emptily'' spill to the next page.  Consider
+the following tactic to compensate.
+
+@c Wrap example at 58 columns.
+@CartoucheExample
+.FS
+Recall the ideal gas law.
+.nr DD-saved \n[DD] \" stash display distance
+@c We have to drag the comment below inboard for Texinfo.
+.nr DD 0       \" eliminate automatic space around display
+.sp \n[DD-saved]u   \" manually put space before it
+.EQ
+P V = n R T
+.EN
+.FE
+.nr DD \n[DD-saved] \" restore previous setting
+@endCartoucheExample
+
 @c ---------------------------------------------------------------------
 
 @node ms Insertions, ms Footnotes, ms keeps and displays, ms Body Text

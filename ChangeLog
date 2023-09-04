@@ -1,3 +1,10 @@
+2023-09-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/doc.tmac (doc-str-Ar-default, Ar): Stop setting ellipsis
+	in italics.
+	* tmac/groff_mdoc.7.man (Arguments): De-document apology for
+	former behavior.
+
 2023-09-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/devices/grotty/tests/osc8_works.sh: Port test to newer

@@ -4448,7 +4448,7 @@ to its desired location by physically rearranging the pages of a printed
 document, or as part of post-processing---with a @cite{sed@r{(1)}}
 script to reorder the pages in @command{troff}'s output, with
 @cite{pdfjam@r{(1)}}, or with @cite{gropdf@r{(1)}}'s
-@samp{.pdfswitchtopage} feature, for example.
+@code{pdfswitchtopage} macro, for example.
 
 Define an entry to appear in the table of contents by bracketing its
 text between calls to the @code{XS} and @code{XE} macros.  A typical

@@ -3542,8 +3542,8 @@ with
 .I pdfjam (1),
 or with
 .I gropdf (1)'s
-.B .pdfswitchtopage
-feature,
+.CW pdfswitchtopage
+macro,
 for example.
 .
 .

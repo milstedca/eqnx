@@ -36,8 +36,8 @@
 .nr TC-MARGIN \w'00' \" expect 2-digit page numbers at most
 .ie t .nr PI 3.5n
 .el   .nr PI 4n
-.ND July 2023
-.EH '%''July 2023'
+.ND September 2023
+.EH '%''September 2023'
 .EF ''''
 .OH 'Using \f[I]groff\f[] with the \f[I]ms\f[] macros''%'
 .OF ''''
@@ -2326,19 +2326,21 @@ _
 .KS
 .LP
 Boxed keep macros cause breaks;
-if you need to box a word or phrase within a line,
-see the
-.CW BX
-macro in section \[lq]Typeface and decoration\[rq] above.
+to box words within a line,
+recall
+.CW .BX
+in section \[lq]Typeface and decoration\[rq] above.
 .
 Box lines are drawn as close as possible to the text they enclose so
 that they are usable within paragraphs.
 .
-If you wish to place one or more paragraphs in a boxed keep,
+When boxing entire paragraphs thus,
 you may improve their appearance by calling
 .CW .B1
 after the first paragraphing macro,
-and by adding a small amount of vertical space before calling
+and invoking the
+.CW sp
+request before calling
 .CW .B2 .
 .
 .
@@ -2420,14 +2422,13 @@ cf(CR) s | lx .
 .
 .
 .PP
-The distance stored in
+.I "groff ms"
+inserts the distance stored in
 .CW \[rs]n[DD]
-is inserted before and after each pair of display macros;
+before and after each pair of display macros;
 this is a Berkeley extension.
 .
-In
-.I "groff ms" ,
-this distance replaces any adjacent inter-paragraph distance
+This distance replaces any adjacent inter-paragraph distance
 or subsequent spacing prior to a section heading.
 .
 The

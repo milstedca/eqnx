@@ -3932,13 +3932,13 @@ A @dfn{boxed keep} has a frame drawn around it.
 boxed keep.
 @endDefmac
 
-Boxed keep macros cause breaks; if you need to box a word or phrase
-within a line, see the @code{BX} macro in @ref{Typeface and decoration}.
-Box lines are drawn as close as possible to the text they enclose so
-that they are usable within paragraphs.  If you wish to box one or more
-paragraphs, you may improve the appearance by calling @code{B1} after
-the first paragraphing macro, and by adding a small amount of vertical
-space before calling @code{B2}.
+Boxed keep macros cause breaks; to box words within a line, recall
+@code{BX} in @ref{Typeface and decoration}.  Box lines are drawn as
+close as possible to the text they enclose so that they are usable
+within paragraphs.  When boxing entire paragraphs thus, you may
+improve their appearance by calling @code{B1} after the first
+paragraphing macro, and invoking the @code{sp} request before calling
+@code{B2}.
 
 @c Wrap example at 58 columns.
 @CartoucheExample
@@ -3997,15 +3997,15 @@ extension.
 End any display.
 @endDefmac
 
-The distance stored in the @code{DD} register is inserted before and
-after each pair of display macros; this is a Berkeley extension.  In
-@code{groff} @file{ms}, this distance replaces any adjacent
-inter-paragraph distance or subsequent spacing prior to a section
-heading.  The @code{DI} register is a GNU extension; its value is an
-indentation applied to displays created with @samp{.DS} and @samp{.ID}
-without arguments, to @samp{.DS I} without an indentation argument, and
-to indented equations set with @samp{.EQ}.  Changes to either register
-take effect at the next display boundary.
+@code{groff} @file{ms} inserts the distance stored in the @code{DD}
+register before and after each pair of display macros; this is a
+Berkeley extension.  This distance replaces any adjacent inter-paragraph
+distance or subsequent spacing prior to a section heading.  The
+@code{DI} register is a GNU extension; its value is an indentation
+applied to displays created with @samp{.DS} and @samp{.ID} without
+arguments, to @samp{.DS I} without an indentation argument, and to
+indented equations set with @samp{.EQ}.  Changes to either register take
+effect at the next display boundary.
 
 @c ---------------------------------------------------------------------
 

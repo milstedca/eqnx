@@ -980,7 +980,7 @@ Page breaks are marked by a phrase in angle brackets; for example,
 @samp{<beginning of page>}.
 
 @item
-Lines are broken where they would be in the formatted output.
+Lines are broken where they would be in formatted output.
 
 @item
 Vertical motion, apart from that implied by a break, is not represented.
@@ -992,8 +992,8 @@ arising from the second argument to the @code{ss} request) are not
 represented.
 
 @item
-Special characters are rendered in angle brackets; for example, the
-hyphen character appears as @samp{<hy>}.
+A special character is rendered as its identifier between angle
+brackets; for example, a hyphen appears as @samp{<hy>}.
 @end itemize
 
 The above description should not be considered a specification; the

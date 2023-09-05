@@ -1,5 +1,13 @@
 2023-09-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Regression-test Savannah #64421.
+
+	* src/roff/groff/tests/detect-evil-link-time-optimizer.sh: Do
+	it.
+	* src/roff/groff/groff.am (groff_TESTS): Run test.
+
+2023-09-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* tmac/e.tmac (np, bu): Throw diagnostic if given arguments; we
 	document these as being "like" `ip`, but it isn't with respect
 	to argument handling.

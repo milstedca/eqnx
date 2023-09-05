@@ -66,7 +66,7 @@ Berkeley, California 94720
 .sp 2
 .i "Modifié pour \fR\*(UG\fP par James Clark*"
 .(f
-* Ce document a été
+*Ce document a été
 .i \*(UG\fRé \" defeat italic correction
 le 27 octobre 2001 et s'applique à la version des macros \-me
 inclus dans la version \*(MO de \*G.
@@ -74,7 +74,7 @@ inclus dans la version \*(MO de \*G.
 .sp 2
 .i "Adapté au français par Grégoire Babey\(dg"
 .(f
-\(dg La traduction française a été
+\(dgLa traduction française a été
 .i \*(UG\fRée \" defeat italic correction
 le 20 octobre 2013,
 toutes les commandes ont été testées sur la version 1.21 de \*G.

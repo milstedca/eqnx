@@ -1024,7 +1024,7 @@ of arbitrary length.  Such assignments happen before any macro file is
 loaded, including the startup file.  Due to @cite{getopt_long@r{(3)}}
 limitations, @var{c}@tie{}cannot be, and @var{string} cannot contain, an
 equals sign, even though that is a valid character in a @code{roff}
-identifier.
+identifier.  @xref{Strings}.
 
 @item -D @var{enc}
 Set fallback input encoding used by @command{preconv} to @var{enc};
@@ -1043,9 +1043,8 @@ Use @var{fam} as the default font family.  @xref{Font Families}.
 
 @item -F @var{dir}
 Search in directory @file{@var{dir}} for the selected output device's
-directory of device and font description files.  See the description of
-@env{GROFF_FONT_PATH} in @ref{Environment} below for the default search
-locations and ordering.
+directory of device and font description files.  @xref{Font
+Directories}.
 
 @item -g
 Run @command{ggrn} preprocessor.
@@ -1128,17 +1127,14 @@ spooler.
 @item -m @var{mac}
 Search for the macro package @file{@var{mac}.tmac} and read it prior to
 any input files.  If not found, @file{tmac.@var{mac}} is attempted.
-See the description of @env{GROFF_TMAC_PATH} in @ref{Environment} below
-for the default search locations and ordering.  @command{groff} passes
-@option{-m} options and their arguments to to @command{geqn},
-@command{grap}, and @command{ggrn}.
+@xref{Macro Directories}.  @command{groff} passes @option{-m} options
+and their arguments to to @command{geqn}, @command{grap}, and
+@command{ggrn}.
 
 @item -M @var{dir}
-Search directory @file{@var{dir}} for macro files; see the description
-of @env{GROFF_TMAC_PATH} in @ref{Environment} below for the default
-search locations and ordering.  @command{groff} passes @option{-M}
-options and their arguments to to @command{geqn}, @command{grap}, and
-@command{ggrn}.
+Search directory @file{@var{dir}} for macro files.  @xref{Macro
+Directories}.  @command{groff} passes @option{-M} options and their
+arguments to to @command{geqn}, @command{grap}, and @command{ggrn}.
 
 @item -n @var{num}
 Begin numbering pages at @var{num}.  The default is @samp{1}.
@@ -1174,7 +1170,7 @@ length.  Such assignments happen before any macro file is loaded,
 including the startup file.  Due to @cite{getopt_long@r{(3)}}
 limitations, @var{c}@tie{}cannot be, and @var{register} cannot contain,
 an equals sign, even though that is a valid character in a @code{roff}
-identifier.
+identifier.  @xref{Registers}.
 
 @item -R
 Run @command{grefer} preprocessor.  No mechanism is provided for passing

@@ -963,7 +963,7 @@
 
 	* src/roff/troff/env.h (read_hyphen_file): Drop relic prototype
 	for undeclared function.  Should have been disposed of on
-	1992-09-21, per ChangeLog.115.
+	1992-09-21, per ChangeLog.old (né ChangeLog.115).
 
 2023-05-23  G. Branden Robinson <g.branden.robinson@gmail.com>
 
@@ -1159,12 +1159,12 @@
 	getters defined above in environment object since the relevant
 	fields are now private.
 	(assign_control_character): New function assumes the former
-	responsibilities of env.cpp:control_char and rejects the request
-	if the desired character is already the escape or no-break
-	control character.
+	responsibilities of `env.cpp::control_char()` and rejects the
+	request if the desired character is already the escape or
+	no-break control character.
 	(assign_no_break_control_character): New function assumes the
-	former responsibilities of env.cpp:no_break_control_char and
-	rejects the request if the desired character is already the
+	former responsibilities of `env.cpp::no_break_control_char()`
+	and rejects the request if the desired character is already the
 	escape or control character.
 	(process_input_stack): Reorder comparisons to avoid inadvertent
 	lvalue assignment.  Add parentheses to assignment with complex

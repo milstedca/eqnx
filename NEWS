@@ -53,15 +53,16 @@ o The device-specific macro files loaded by "troffrc" automatically on
   troff, the font repertoire, like the special character repertoire, was
   device-dependent.  Since groff 1.23.0, our diagnostic messages report
   problems with attempts to use nonexistent font names.  We recommend
-  addressing such portability issues wherever suits you; in a document,
-  perhaps by using `ie` and `el` requests and the `.g` register to test
-  for groff extensions, then `ie` and `el` again with the `F` groff
-  conditional expression operator to check for font availability, and
-  perform font remappings with the groff `ftr` request as desired; doing
-  so in your "troffrc" file; or by modifying these macro files
-  similarly.  Users of the "dvi" and "lbp" output devices should be
-  aware that these devices don't supply full families of monospaced
-  fonts (and never have).  See grodvi(1) and grolbp(1).
+  addressing such portability issues wherever suits you: (1) in a
+  document, perhaps by using `ie` and `el` requests and the `.g`
+  register to test for groff extensions, then `ie` and `el` again with
+  the `F` groff conditional expression operator to check for font
+  availability, and performing font remappings with the groff `ftr`
+  request as desired; (2) doing so in your "troffrc" file; or (3) by
+  modifying these macro files similarly.  Users of the "dvi" and "lbp"
+  output devices should be aware that these devices don't supply full
+  families of monospaced fonts (and never have).  See grodvi(1) and
+  grolbp(1).
 
 o Hyperlink support is now enabled by default on non-HTML devices that
   support it (PDF and terminal devices) for an (man) documents.

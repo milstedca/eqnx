@@ -1,5 +1,25 @@
 2023-09-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[libgroff]: Explicitly construct `default_color`.
+
+	Without explicit construction, link-time optimization feels free
+	to send this object into the twilight zone, subtly changing the
+	semantics of the current and previous stroke and fill colors,
+	making them interpolate "default" instead of an empty string.
+
+	* src/libs/libgroff/color.cpp: Construct `default_color` with
+	empty string instead of leaving uninitalized.  Problem appears
+	to date back to commit ea5a42d080, 2002-01-24.
+
+	Fixes <https://savannah.gnu.org/bugs/?64421>.  Thanks to Günther
+	Noack for the report, a good reproducer, identification of
+	`-flto=auto` as the free variable in our experiments, and
+	artifact production beyond the call of duty; Peter Schaffter for
+	ruling out macro programming goofs; and Deri James for shrewd
+	pointers in the right direction (twice!).
+
+2023-09-05  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Regression-test Savannah #64421.
 
 	* src/roff/groff/tests/detect-evil-link-time-optimizer.sh: Do

@@ -4235,9 +4235,9 @@ footnote line length is required, recall that arithmetic expressions in
 @code{roff} input are evaluated strictly from left to right, with no
 operator precedence (parentheses are honored).
 
-@Example
+@CartoucheExample
 .ds FR 0+3i \" Set footnote line length to 3 inches.
-@endExample
+@endCartoucheExample
 
 @c ---------------------------------------------------------------------
 
@@ -4260,6 +4260,7 @@ desired localization macro package after @file{ms}; see
 $ groff -ms -mfr bienvenue.ms
 @endCartoucheExample
 
+@need 250
 The following strings are available.
 
 @Defmpstr {REFERENCES, ms}
@@ -4464,6 +4465,7 @@ document, call @code{TC} or @code{PX} to emit the table of contents;
 @code{TC} resets the page number to @samp{i} (Roman numeral one), and
 then calls @code{PX}.  All of these macros are Berkeley extensions.
 
+@need 250
 @DefmacList {XS, [@Var{page-number}], ms}
 @DefmacItemx {XA, [@Var{page-number} [@Var{indentation}]], ms}
 @DefmacListEndx {XE, , ms}
@@ -4603,13 +4605,16 @@ of its own.
 
 @itemize @bullet
 @item
+@c Texinfo's @cite command conceives only of citations of long-form
+@c works, like books, and forces italics.  Article citations are
+@c typically placed in quotation marks instead.
 The internals of @code{groff} @file{ms} differ from the internals of
 @acronym{AT&T} @file{ms}.  Documents that depend upon implementation
 details of @acronym{AT&T} @file{ms} may not format properly with
 @code{groff} @file{ms}.  Such details include macros whose function was
 not documented in the @acronym{AT&T} @file{ms}
-manual.@footnote{@cite{Typing Documents on the UNIX System: Using the
--ms Macros with Troff and Nroff}, M.@tie{}E.@: Lesk, Bell Laboratories,
+manual.@footnote{``Typing Documents on the UNIX System: Using the
+-ms Macros with Troff and Nroff'', M.@tie{}E.@: Lesk, Bell Laboratories,
 1978}
 @c XXX: We support RT anyway; maybe we should stop?
 

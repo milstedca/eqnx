@@ -1,3 +1,9 @@
+2023-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/groff_me.7.man: Fix error in summary of "safe" groff
+	requests; `ce`, `rj`, and `ul` count (productive) _input_
+	lines, not output lines.
+
 2023-09-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[libgroff]: Explicitly construct `default_color`.

@@ -1659,8 +1659,7 @@ and draw a
 around it.
 .
 On terminals,
-reverse video is used instead
-(see the implementation note below).
+reverse video or another means of highlighting is used instead.
 .
 If you want
 .I text
@@ -1860,57 +1859,6 @@ _
 \[rs]*>	End subscripting.
 .TE
 .KE
-.
-.
-.nr PS -2
-.nr VS -2
-.LP
-.B1
-.hy 0
-.I "Implementation note:"
-In
-.CW nroff
-mode,
-the
-.CW BX
-macro \[lq]boxes\[rq] its argument by bracketing it with
-.I groff
-extension escape sequences to set the foreground color to black and the
-background to white and then reset them to their previous values;
-the terminal output driver,
-.I grotty (1),
-converts these to ISO\~6429 color escape sequences,
-which may be ignored or mishandled by some terminals,
-or may be disabled by
-.I grotty 's
-.CW \-c
-option.
-.
-Further,
-if the terminal is set up to use these colors in those roles already,
-.CW .BX
-will cause no visible effect in the output.
-.
-Surmounting these challenges would require adding features to
-.I grotty ,
-for instance to provide a mechanism to request ISO\~6429's
-\[lq]standout\[rq] mode \" That's "smso" and "rmso" in terminfo.
-(often supported on monochrome terminals),
-or to replace the presumed support of the terminal for ISO\~6429 escape
-sequences with the use of a library that can query the capabilities of
-the terminal and adapt the output sent to the device accordingly.
-.
-(Practically,
-this likely means adding a dependency on
-.CW libtinfo .)
-.
-Contact the
-.I groff
-development mailing list if you'd like to contribute.
-.sp \n[PD]/2
-.B2
-.nr PS +2
-.nr VS +2
 .
 .
 .NH 2
@@ -2451,7 +2399,8 @@ Changes to either register take effect at the next display boundary.
 .PP
 The display distance applies even in footnotes
 (discussed below),
-which may cause a footnote to \[lq]emptily\[rq] spill to the next page.
+which may cause a footnote with a display at its end to
+\[lq]emptily\[rq] spill to the next page.
 .
 Consider the following tactic to compensate.
 .

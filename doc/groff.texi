@@ -3598,9 +3598,10 @@ instead of bold.  This is a Research Tenth Edition Unix extension.
 
 @Defmac {BX, [@Var{text}], ms}
 Typeset @var{text} and draw a box around it.  On terminals, reverse
-video is used instead.  If you want @var{text} to contain space, use
-unbreakable space or horizontal motion escape sequences (@code{\~},
-@code{\@key{SP}}, @code{\^}, @code{\|}, @code{\0} or @code{\h}).
+video or another means of highlighting is used instead.  If you want
+@var{text} to contain space, use unbreakable space or horizontal motion
+escape sequences (@code{\~}, @code{\@key{SP}}, @code{\^}, @code{\|},
+@code{\0} or @code{\h}).
 @endDefmac
 
 @Defmac {UL, [@Var{text} [@Var{post}]], ms}
@@ -4004,8 +4005,8 @@ indented equations set with @samp{.EQ}.  Changes to either register take
 effect at the next display boundary.
 
 The display distance applies even in footnotes (discussed below), which
-may cause a footnote to ``emptily'' spill to the next page.  Consider
-the following tactic to compensate.
+may cause a footnote with a display at its end to ``emptily'' spill to
+the next page.  Consider the following tactic to compensate.
 
 @c Wrap example at 58 columns.
 @CartoucheExample

@@ -542,9 +542,9 @@ to obtain section depth-dependent spacing.
 .ds TP \(aq\,\fIL\/\fP\(aq\,\fIM\/\fP\(aq\,\fIR\/\fP\(aq
 .pp
 Headers and footers
-are known as
-.i "three-part titles"
-for their left,
+are together known as
+.i titles ;
+they have left,
 middle,
 and right-hand components
 .i L,
@@ -577,7 +577,7 @@ if it contains more than two adjacent spaces
 or more than eight spaces total.
 .pp
 The placement
-of headers and footers
+of titles
 is controlled by four registers
 initialized to values scaled
 with respect to the default type size and vertical spacing.
@@ -687,7 +687,7 @@ of every odd-numbered page.
 .TL
 .b .hx
 .DE
-Suppress headers and footers
+Suppress titles
 on the next page.
 .TL
 .b .$h
@@ -1299,7 +1299,7 @@ bibliographic reference.
 .b .]
 .DE
 End
-.i \%@g@refer (1)
+.i \%@g@refer
 bibliographic reference.
 .TL
 .b .EQ
@@ -1589,18 +1589,15 @@ etc.\&)
 should be preceded by a
 .b .+c
 call.
-It is easier when using
-\*T to put the front matter
-at the end of the paper,
-so that the table of contents
-can be collected and put out;
-this material can then be resequenced
-by the
+Because \*T formats the document
+in a single pass,
+a table of contents can be automatically produced only
+at the end of the paper.
+You can resequence this material with the
 .b pdfswitchtopage
-macro (for PDF output),
-by a tool that processes the output format,
-or physically moved
-to the beginning of the printed document.
+macro (for PDF output)
+or a tool that processes \*T output,
+or physically recollate the pages of a printed document.
 .TL
 .b .+c
 .i T
@@ -1749,14 +1746,12 @@ the text from a figure.
 .TL
 .b .ep
 .DE
-End this page,
-but do not begin the next page.
-.\" Useful for forcing out footnotes,
-.\" but other than
-.\" that hardly ever used.
-Follow it with a
-.b .bp
-request or the end of input.
+End the page,
+flushing pending footnotes.
+A document should then end
+or call
+.b .bp .
+.br
 .\" dead-tree pagination
 .br
 .ne 6v
@@ -1868,7 +1863,7 @@ otherwise continue with the number modified by
 .b .sk
 .DE
 Leave the next output page blank
-except for headers and footers.
+except for titles.
 This can reserve space
 for a full-page diagram
 produced externally
@@ -2169,7 +2164,7 @@ for a \*T built-in function
 .b \e ).
 .pp
 The type code can carry a variety of annotations.
-A section sign \(sc indicates features interpreted by \*T
+A section sign \(sc indicates features implemented by \*T
 rather than the \*(ME package.
 The dagger \(dg and double dagger \(dd identify user-definable macros.
 Those marked with

@@ -581,8 +581,6 @@ drawing position corresponding to the beginning of the input line;
 see section \[lq]Page geometry\[rq] of
 .MR roff 7 .
 .
-(Terminals generally set tab stops every eight character cells.)
-.
 Tabs and leaders do not cause breaks and therefore do not interrupt
 filling.
 .

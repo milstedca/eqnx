@@ -5356,11 +5356,10 @@ GNU @code{troff} translates input horizontal tab characters (``tabs'')
 and @key{Control+A} characters (``leaders'') into movements to the next
 tab stop.  Tabs simply move to the next tab stop; leaders place enough
 periods to fill the space.  Tab stops are by default located every half
-inch@footnote{Terminals generally set tab stops every eight character
-cells.} measured from the drawing position corresponding to the
-beginning of the input line; see @ref{Page Geometry}.   Tabs and leaders
-do not cause breaks and therefore do not interrupt filling.  Below, we
-use arrows @arrow{} and bullets @bullet{} to indicate input tabs and
+inch measured from the drawing position corresponding to the beginning
+of the input line; see @ref{Page Geometry}.   Tabs and leaders do not
+cause breaks and therefore do not interrupt filling.  Below, we use
+arrows @arrow{} and bullets @bullet{} to indicate input tabs and
 leaders, respectively.
 
 @Example

@@ -1,3 +1,8 @@
+2023-09-12  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/doc.tmac (doc-str-Ar-default): Use unbreakable space
+	between "file" and ellipsis.
+
 2023-09-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/groff_me.7.man: Fix error in summary of "safe" groff

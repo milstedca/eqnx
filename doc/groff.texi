@@ -1790,9 +1790,9 @@ A @slanted{macro} bundles text and/or control lines into a named
 collection that can be called like a request.  A macro can also be
 called by a @slanted{trap} that is set to ``go off'' automatically at
 certain places on the page.  Thus, while requests perform primitive
-operations, macro packages handle complex ones, like arranging the
-output into columns, collecting and writing out footnotes, or managing
-page headers and footers.
+operations, macros handle complex ones, like arranging the output into
+columns, collecting and writing out footnotes, or managing page headers
+and footers.
 
 Many requests and macros accept @slanted{arguments} that influence their
 behavior.  A ``plain'' @code{sp} request breaks and puts a blank line on
@@ -1851,7 +1851,7 @@ on the page, sometimes called the @slanted{layout} of the page.  Most
 macro packages don't supply macros for performing these (at least not
 without performing other actions besides), as they are such basic
 operations.  The macro packages for writing man pages, @file{man} and
-@file{mdoc}, don't encourage explicit use of these requests at all.
+@file{mdoc}, discourage explicit use of these requests altogether.
 
 @cindex spacing (introduction)
 Arguments to requests and macro calls can often be
@@ -1868,8 +1868,8 @@ outputs one and a half inches of vertical space, followed by the line
 ``My thoughts on the subject'', followed by a single blank line (more
 measurement units are available; see @ref{Measurements}).  Excess
 vertical space is normally discarded at page or column breaks.  If the
-above example appears one inch from the page bottom, the half inch
-of space ``left over'' does not appear at the top of the next.
+above example appears one inch from the bottom of the page, the half
+inch of space ``left over'' does not appear at the top of the next.
 
 If you seek precision in spacing, be advised when using a macro package
 that it might not honor @code{sp} requests as you expect; it can use a
@@ -1885,11 +1885,11 @@ Text lines can be centered by using the @code{ce} request.  The line
 after @code{ce} is centered (horizontally) on the page.  To center more
 than one line, use @w{@samp{.ce @var{N}}} (where @var{N} is the number
 of lines to center), followed by the @var{N}@tie{}lines.  To center many
-lines without counting them, type:
+lines without counting them, try the following technique.
 
 @Example
 .ce 1000
-lines to center
+@slanted{many lines of input}
 .ce 0
 @endExample
 
@@ -2055,10 +2055,9 @@ page number.  @xref{Page Layout}.
 
 Most macro packages let the user specify the size of the page margins.
 The top and bottom margins are typically handled differently than the
-left and right margins; the latter two are derived from the
-@slanted{page offset}, @slanted{indentation}, and @slanted{line length}.
-@xref{Line Layout}.  Commonly, packages support registers to tune these
-values.
+left and right margins; the latter are derived from the @slanted{page
+offset}, @slanted{indentation}, and @slanted{line length}.  @xref{Line
+Layout}.  Commonly, packages support registers to tune these values.
 
 @c ---------------------------------------------------------------------
 
@@ -2113,7 +2112,7 @@ automatically numbering either type of annotation.
 @cindex contents, table of
 
 A package may handle a @slanted{table of contents} by directing section
-heading macros to save section heading text and the page number where it
+heading macros to save the heading's text and the page number where it
 occurs for use in a later @slanted{entry} for a table of contents.  It
 writes the collected entries at the end of the document, once all are
 known, upon request.  A row of dots (a @slanted{leader}) bridges the
@@ -2136,7 +2135,7 @@ An index is similar to a table of contents, in that entry labels and
 locations must be collected, but poses a greater challenge because it
 needs to be sorted before it is output.  Here, processing the document
 in multiple passes is inescapable, and tools like the
-@cite{makeindex@r{(1)}} program are necessary.
+@cite{makeindex@r{(1)}} program become necessary.
 
 @c ---------------------------------------------------------------------
 
@@ -2197,6 +2196,10 @@ Each package provides means of customizing details of its behavior.
 Often, this is achieved with register and string definitions.  Such
 parameters include the default type size and the appearance of section
 headings.
+
+@c TODO: Add a section here that (after waving off man page authors)
+@c discusses simple register, register format, macro, and string usage.
+@c Some existing material can be relocated here, e.g., from groff_mm(7).
 
 @codequotebacktick off
 @codequoteundirected off

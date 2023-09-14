@@ -1,5 +1,11 @@
 2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Trivially refactor.  Rename
+	`begin_level` to `suppression_level`.
+	(do_suppress, init_input_requests): Do it.
+
+2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (input_stack::get, token::next)
 	(process_input_stack, do_width, do_suppress, do_if_request)
 	(charinfo_to_node_list, read_color_draw_node): Trivially

@@ -102,7 +102,7 @@ static int do_old_compatible_flag = -1;	// for .do request
 int ascii_output_flag = 0;
 int suppress_output_flag = 0;
 int is_html = 0;
-int begin_level = 0;		// number of nested \O escapes
+int suppression_level = 0;	// depth of nested \O escapes
 
 // Keep track of whether \f, \F, \D'F...', \H, \m, \M, \O[345], \R, \s,
 // or \S has been processed in token::next().
@@ -5706,26 +5706,26 @@ static node *do_suppress(symbol nm)
   const char *s = nm.contents();
   switch (*s) {
   case '0':
-    if (begin_level == 0)
+    if (suppression_level == 0)
       // suppress generation of glyphs
       return new suppress_node(0, 0);
     break;
   case '1':
-    if (begin_level == 0)
+    if (suppression_level == 0)
       // enable generation of glyphs
       return new suppress_node(1, 0);
     break;
   case '2':
-    if (begin_level == 0)
+    if (suppression_level == 0)
       return new suppress_node(1, 1);
     break;
   case '3':
     have_formattable_input = true;
-    begin_level++;
+    suppression_level++;
     break;
   case '4':
     have_formattable_input = true;
-    begin_level--;
+    suppression_level--;
     break;
   case '5':
     {
@@ -5751,7 +5751,7 @@ static node *do_suppress(symbol nm)
 	return 0;
       }
       image_no++;
-      if (begin_level == 0)
+      if (suppression_level == 0)
 	return new suppress_node(symbol(s), position, image_no);
       else
 	have_formattable_input = true;
@@ -8567,7 +8567,7 @@ void init_input_requests()
   register_dictionary.define(".br", new break_flag_reg);
   register_dictionary.define(".C", new readonly_register(&compatible_flag));
   register_dictionary.define(".cp", new readonly_register(&do_old_compatible_flag));
-  register_dictionary.define(".O", new variable_reg(&begin_level));
+  register_dictionary.define(".O", new variable_reg(&suppression_level));
   register_dictionary.define(".c", new lineno_reg);
   register_dictionary.define(".color", new readonly_register(&color_flag));
   register_dictionary.define(".F", new filename_reg);

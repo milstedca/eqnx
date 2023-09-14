@@ -7923,32 +7923,32 @@ static void parse_output_page_list(char *p)
   }
 }
 
-static FILE *open_mac_file(const char *mac, char **path)
+static FILE *open_macro_package(const char *mac, char **path)
 {
   // Try `mac`.tmac first, then tmac.`mac`.  Expect ENOENT errors.
-  char *s1 = new char[strlen(mac)+strlen(MACRO_POSTFIX)+1];
+  char *s1 = new char[strlen(mac) + strlen(MACRO_POSTFIX) + 1];
   strcpy(s1, mac);
   strcat(s1, MACRO_POSTFIX);
   FILE *fp = mac_path->open_file(s1, path);
   if (!fp && ENOENT != errno)
-    error("can't open macro file '%1': %2", s1, strerror(errno));
+    error("unable to open macro file '%1': %2", s1, strerror(errno));
   delete[] s1;
   if (!fp) {
-    char *s2 = new char[strlen(mac)+strlen(MACRO_PREFIX)+1];
+    char *s2 = new char[strlen(mac) + strlen(MACRO_PREFIX) + 1];
     strcpy(s2, MACRO_PREFIX);
     strcat(s2, mac);
     fp = mac_path->open_file(s2, path);
-  if (!fp && ENOENT != errno)
-      error("can't open macro file '%1': %2", s2, strerror(errno));
+    if (!fp && ENOENT != errno)
+      error("unable to open macro file '%1': %2", s2, strerror(errno));
     delete[] s2;
   }
   return fp;
 }
 
-static void process_macro_file(const char *mac)
+static void process_macro_package_argument(const char *mac)
 {
   char *path;
-  FILE *fp = open_mac_file(mac, &path);
+  FILE *fp = open_macro_package(mac, &path);
   if (!fp)
     fatal("unable to open macro file for -m argument '%1'", mac);
   const char *s = symbol(path).contents();
@@ -8378,7 +8378,7 @@ int main(int argc, char **argv)
   if (!no_rc)
     process_startup_file(INITIAL_STARTUP_FILE);
   while (macros) {
-    process_macro_file(macros->s);
+    process_macro_package_argument(macros->s);
     string_list *tem = macros;
     macros = macros->next;
     delete tem;

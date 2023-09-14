@@ -1,5 +1,19 @@
 2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Trivially refactor.  Rename some
+	functions and recast diagnostic messages.
+	(open_mac_file):
+	(process_macro_file): Rename these...
+	(open_macro_package):
+	(process_macro_package_argument): ...to these.
+
+	As our documentation now makes more clear, "macro packages" are
+	a subset of "macro files", and have additional rules regarding
+	their handling (where they are sought and how their names are
+	rewritten).
+
+2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename
 	`begin_level` to `suppression_level`.
 	(do_suppress, init_input_requests): Do it.

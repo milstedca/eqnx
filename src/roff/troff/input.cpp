@@ -117,7 +117,7 @@ double spread_limit = -3.0 - 1.0;	// negative means deactivated
 
 double warn_scale;
 char warn_scaling_unit;
-int debug_state = 0;		// turns on debugging of the html troff state
+bool want_html_debugging = true;	// enable more diagnostics
 
 search_path *mac_path = &safer_macro_path;
 
@@ -603,7 +603,7 @@ int input_stack::finish_get(node **np)
     input_iterator *tem = top;
     check_end_diversion(tem);
 #if defined(DEBUGGING)
-    if (debug_state)
+    if (want_html_debugging)
       if (tem->is_diversion)
 	fprintf(stderr,
 		"in diversion level = %d\n", input_stack::get_div_level());
@@ -692,14 +692,14 @@ void input_stack::push(input_iterator *in)
     in->diversion_state = diversion_state;
     diversion_state = curenv->construct_state(0);
 #if defined(DEBUGGING)
-    if (debug_state) {
+    if (want_html_debugging) {
       curenv->dump_troff_state();
       fflush(stderr);
     }
 #endif
   }
 #if defined(DEBUGGING)
-  if (debug_state)
+  if (want_html_debugging)
     if (top->is_diversion) {
       fprintf(stderr,
 	      "in diversion level = %d\n", input_stack::get_div_level());
@@ -2960,7 +2960,7 @@ void process_input_stack()
 	  } while (tok.is_white_space());
 	  symbol nm = get_name();
 #if defined(DEBUGGING)
-	  if (debug_state) {
+	  if (want_html_debugging) {
 	    if (! nm.is_null()) {
 	      if (strcmp(nm.contents(), "test") == 0) {
 		fprintf(stderr, "found it!\n");
@@ -2980,7 +2980,7 @@ void process_input_stack()
 	  else {
 	    interpolate_macro(nm);
 #if defined(DEBUGGING)
-	    if (debug_state) {
+	    if (want_html_debugging) {
 	      fprintf(stderr, "finished interpreting [%s] and environment state is\n", nm.contents());
 	      curenv->dump_troff_state();
 	    }
@@ -2994,7 +2994,7 @@ void process_input_stack()
 	  else {
 	    for (;;) {
 #if defined(DEBUGGING)
-	      if (debug_state) {
+	      if (want_html_debugging) {
 		fprintf(stderr, "found [%c]\n", ch); fflush(stderr);
 	      }
 #endif
@@ -8287,7 +8287,7 @@ int main(int argc, char **argv)
       break;
 #if defined(DEBUGGING)
     case 'D':
-      debug_state = 1;
+      want_html_debugging = true;
       break;
 #endif
     case CHAR_MAX + 1: // --help
@@ -9147,7 +9147,7 @@ void charinfo::get_flags()
     assert(!s.is_null());
     if (ci->contains(get_unicode_code())) {
 #if defined(DEBUGGING)
-      if (debug_state)
+      if (want_html_debugging)
 	fprintf(stderr, "charinfo::get_flags %p %s %d\n",
 			(void *)ci, ci->nm.contents(), ci->flags);
 #endif
@@ -9213,7 +9213,7 @@ bool charinfo::contains(int c, bool already_called)
   while (ranges_iter != ranges.end()) {
     if (c >= ranges_iter->first && c <= ranges_iter->second) {
 #if defined(DEBUGGING)
-      if (debug_state)
+      if (want_html_debugging)
 	fprintf(stderr, "charinfo::contains(%d)\n", c);
 #endif
       return true;

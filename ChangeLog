@@ -1,5 +1,19 @@
 2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename `debug_state` symbol to
+	`want_html_debugging` and demote its type from `int` to `bool`.
+
+	* src/roff/troff/input.cpp:
+	* src/roff/troff/mtsm.cpp: Do it (declarations).
+
+	* src/roff/troff/input.cpp (input_stack::finish_get)
+	(input_stack::push, process_input_stack, main)
+	(charinfo::get_flags, charinfo::contains): Do it.
+
+	* src/roff/troff/node.cpp: Drop unused declaration.
+
+2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.  Rename `break_flag` symbol to
 	`want_break` and demote its type from `int` to `bool`.
 

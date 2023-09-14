@@ -1,5 +1,15 @@
 2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (input_stack::get, token::next)
+	(process_input_stack, do_width, do_suppress, do_if_request)
+	(charinfo_to_node_list, read_color_draw_node): Trivially
+	refactor.  Rename symbols and demote their types from `int` to
+	`bool`.
+	- `have_input` -> `have_formattable_input`
+	- `old_have_input` -> `old_have_formattable_input`
+
+2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.  Rename `debug_state` symbol to
 	`want_html_debugging` and demote its type from `int` to `bool`.
 

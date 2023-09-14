@@ -104,10 +104,17 @@ int suppress_output_flag = 0;
 int is_html = 0;
 int begin_level = 0;		// number of nested \O escapes
 
-int have_input = 0;		// whether \f, \F, \D'F...', \H, \m, \M,
-				// \O[345], \R, \s, or \S has been processed
-				// in token::next()
-int old_have_input = 0;		// value of have_input right before \n
+// Keep track of whether \f, \F, \D'F...', \H, \m, \M, \O[345], \R, \s,
+// or \S has been processed in token::next().
+bool have_formattable_input = false;
+// `have_formattable_input` is reset immediately upon reading a new
+// input line, but we need more state information because the input line
+// might have been continued/interrupted with `\c`.
+// Consider:
+//   \f[TB]\m[red]hello\c
+//   \f[]\m[]
+bool old_have_formattable_input = false;
+
 bool device_has_tcommand = false;	// 't' output command supported
 int unsafe_flag = 0;		// safer by default
 
@@ -586,8 +593,8 @@ inline int input_stack::get(node **np)
 {
   int res = (top->ptr < top->eptr) ? *top->ptr++ : finish_get(np);
   if (res == '\n') {
-    old_have_input = have_input;
-    have_input = 0;
+    old_have_formattable_input = have_formattable_input;
+    have_formattable_input = false;
   }
   return res;
 }
@@ -1943,7 +1950,7 @@ void token::next()
 			      curenv->get_fill_color());
 	return;
       case ESCAPE_NEWLINE:
-	have_input = 0;
+	have_formattable_input = false;
 	break;
       case ESCAPE_LEFT_BRACE:
       ESCAPE_LEFT_BRACE:
@@ -2178,7 +2185,7 @@ void token::next()
 	  else
 	    (void) curenv->set_font(atoi(s.contents()));
 	  if (!compatible_flag)
-	    have_input = 1;
+	    have_formattable_input = true;
 	  break;
 	}
       case 'F':
@@ -2187,7 +2194,7 @@ void token::next()
 	  if (s.is_null())
 	    break;
 	  curenv->set_family(s);
-	  have_input = 1;
+	  have_formattable_input = true;
 	  break;
 	}
       case 'g':
@@ -2215,7 +2222,7 @@ void token::next()
 	    curenv->set_char_height(x);
 	}
 	if (!compatible_flag)
-	  have_input = 1;
+	  have_formattable_input = true;
 	break;
       case 'k':
 	nm = read_escape_parameter();
@@ -2242,12 +2249,12 @@ void token::next()
       case 'm':
 	do_glyph_color(read_escape_parameter(ALLOW_EMPTY));
 	if (!compatible_flag)
-	  have_input = 1;
+	  have_formattable_input = true;
 	break;
       case 'M':
 	do_fill_color(read_escape_parameter(ALLOW_EMPTY));
 	if (!compatible_flag)
-	  have_input = 1;
+	  have_formattable_input = true;
 	break;
       case 'n':
 	{
@@ -2286,19 +2293,19 @@ void token::next()
       case 'R':
 	do_register();
 	if (!compatible_flag)
-	  have_input = 1;
+	  have_formattable_input = true;
 	break;
       case 's':
 	if (read_size(&x))
 	  curenv->set_size(x);
 	if (!compatible_flag)
-	  have_input = 1;
+	  have_formattable_input = true;
 	break;
       case 'S':
 	if (get_delim_number(&x, 0))
 	  curenv->set_char_slant(x);
 	if (!compatible_flag)
-	  have_input = 1;
+	  have_formattable_input = true;
 	break;
       case 't':
 	type = TOKEN_NODE;
@@ -2950,7 +2957,7 @@ void process_input_stack()
     case token::TOKEN_CHAR:
       {
 	unsigned char ch = tok.c;
-	if (bol && !have_input
+	if (bol && !have_formattable_input
 	    && (curenv->get_control_character() == ch
 		|| curenv->get_no_break_control_character() == ch)) {
 	  want_break = (curenv->get_control_character() == ch);
@@ -3035,7 +3042,7 @@ void process_input_stack()
       }
     case token::TOKEN_NEWLINE:
       {
-	if (bol && !old_have_input
+	if (bol && !old_have_formattable_input
 	    && !curenv->get_prev_line_interrupted())
 	  trapping_blank_line();
 	else {
@@ -3135,7 +3142,7 @@ void process_input_stack()
       {
 	trap_bol_stack.push(bol);
 	bol = 1;
-	have_input = 0;
+	have_formattable_input = false;
 	break;
       }
     case token::TOKEN_END_TRAP:
@@ -3144,7 +3151,7 @@ void process_input_stack()
 	  error("spurious end trap token detected!");
 	else
 	  bol = trap_bol_stack.pop();
-	have_input = 0;
+	have_formattable_input = false;
 
 	/* I'm not totally happy about this.  But I can't think of any other
 	  way to do it.  Doing an output_pending_lines() whenever a
@@ -5409,7 +5416,7 @@ static void do_width()
   input_stack::push(make_temp_iterator(i_to_a(x)));
   env.width_registers();
   curenv = oldenv;
-  have_input = 0;
+  have_formattable_input = false;
 }
 
 charinfo *page_character;
@@ -5713,11 +5720,11 @@ static node *do_suppress(symbol nm)
       return new suppress_node(1, 1);
     break;
   case '3':
-    have_input = 1;
+    have_formattable_input = true;
     begin_level++;
     break;
   case '4':
-    have_input = 1;
+    have_formattable_input = true;
     begin_level--;
     break;
   case '5':
@@ -5747,7 +5754,7 @@ static node *do_suppress(symbol nm)
       if (begin_level == 0)
 	return new suppress_node(symbol(s), position, image_no);
       else
-	have_input = 1;
+	have_formattable_input = true;
     }
     break;
   default:
@@ -5989,7 +5996,7 @@ int do_if_request()
     delete_node_list(n1);
     delete_node_list(n2);
     curenv = oldenv;
-    have_input = 0;
+    have_formattable_input = false;
     suppress_push = 0;
     tok.next();
   }
@@ -8655,7 +8662,7 @@ node *charinfo_to_node_list(charinfo *ci, const environment *envp)
   curenv = oldenv;
   compatible_flag = old_compatible_flag;
   escape_char = old_escape_char;
-  have_input = 0;
+  have_formattable_input = false;
   return n;
 }
 
@@ -8815,7 +8822,7 @@ static void read_color_draw_node(token &start)
     }
     tok.next();
   }
-  have_input = 1;
+  have_formattable_input = true;
 }
 
 static struct {

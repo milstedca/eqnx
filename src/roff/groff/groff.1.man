@@ -927,7 +927,7 @@ orientation.
 .RS
 .EX
 $ \c
-.B "groff \-T ps \-d paper=a4l \-P \-pa4 \-P \-l \-ms foo.ms >foo.ps"
+.B "groff \-T ps \-d paper=a4l \-P \-pa4 \-P \-l \-ms my.ms >my.ps"
 .EE
 .RE
 .\" END Keep parallel with groff.texi node "Paper Format".

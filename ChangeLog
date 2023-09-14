@@ -11,7 +11,8 @@
 	Without explicit construction, link-time optimization feels free
 	to send this object into the twilight zone, subtly changing the
 	semantics of the current and previous stroke and fill colors,
-	making them interpolate "default" instead of an empty string.
+	making their registers interpolate "default" instead of empty
+	strings.
 
 	* src/libs/libgroff/color.cpp: Construct `default_color` with
 	empty string instead of leaving uninitalized.  Problem appears
@@ -35,8 +36,8 @@
 2023-09-05  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/e.tmac (np, bu): Throw diagnostic if given arguments; we
-	document these as being "like" `ip`, but it isn't with respect
-	to argument handling.
+	document these as being "like" `ip`, but they aren't with
+	respect to argument handling.
 	(sk): Genericize existing diagnostic to use `\$0` to report its
 	own name.
 

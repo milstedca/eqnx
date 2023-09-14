@@ -26,6 +26,10 @@ Version 2.5_d
 PDF_IMAGE: captions not being attached to labels when MLA enabled.
 ---Fixed---
 
+Very long heading entries overprinting TOC page numbers instead of
+breaking to a new line.
+---Fixed---
+
 Version 2.5_c
 =============
 

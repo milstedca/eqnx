@@ -5,6 +5,11 @@
     are permitted in any medium without royalty provided the copyright
     notice and this notice are preserved.
 
+Release 2.6
+-----------
+Refinements to Table of Contents to allow for multi-line heading
+entries.  Colour management has also been slightly refactored.
+
 Release 2.5
 -----------
 Addition of shaded backgrounds, frames, and page colour.

@@ -1,3 +1,19 @@
+2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Trivially refactor.  Rename `break_flag` symbol to
+	`want_break` and demote its type from `int` to `bool`.
+
+	* src/roff/troff/env.h:
+	* src/roff/troff/input.cpp: Do it (declarations).
+
+	* src/roff/troff/div.cpp (begin_page, space_request)
+	(flush_output):
+	* src/roff/troff/env.cpp (fill, no_fill, center, right_justify)
+	(indent, temporary_indent, do_break_request):
+	* src/roff/troff/input.cpp (process_input_stack)
+	(macro_iterator::macro_iterator, copy_file, transparent_file):
+	Do it.
+
 2023-09-12  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/doc.tmac (doc-str-Ar-default): Use unbreakable space

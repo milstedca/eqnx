@@ -78,7 +78,7 @@ void vjustify();
 void transparent_file();
 
 token tok;
-int break_flag = 0;
+bool want_break = false;
 int class_flag = 0;
 int color_flag = 1;		// colors are on by default
 static int backtrace_flag = 0;
@@ -2953,7 +2953,7 @@ void process_input_stack()
 	if (bol && !have_input
 	    && (curenv->get_control_character() == ch
 		|| curenv->get_no_break_control_character() == ch)) {
-	  break_flag = (curenv->get_control_character() == ch);
+	  want_break = (curenv->get_control_character() == ch);
 	  // skip tabs as well as spaces here
 	  do {
 	    tok.next();
@@ -4071,7 +4071,7 @@ int macro::empty()
 
 macro_iterator::macro_iterator(symbol s, macro &m, const char *how_called,
 			       int init_args)
-: string_iterator(m, how_called, s), args(0), argc(0), with_break(break_flag)
+: string_iterator(m, how_called, s), args(0), argc(0), with_break(want_break)
 {
   if (init_args) {
     arg_list *al = input_stack::get_arg_list();
@@ -4082,7 +4082,7 @@ macro_iterator::macro_iterator(symbol s, macro &m, const char *how_called,
   }
 }
 
-macro_iterator::macro_iterator() : args(0), argc(0), with_break(break_flag)
+macro_iterator::macro_iterator() : args(0), argc(0), with_break(want_break)
 {
 }
 
@@ -7784,7 +7784,7 @@ void copy_file()
   symbol filename = get_long_name(true /* required */);
   while (!tok.is_newline() && !tok.is_eof())
     tok.next();
-  if (break_flag)
+  if (want_break)
     curenv->do_break();
   if (!filename.is_null())
     curdiv->copy_file(filename.contents());
@@ -7816,7 +7816,7 @@ void transparent_file()
   symbol filename = get_long_name(true /* required */);
   while (!tok.is_newline() && !tok.is_eof())
     tok.next();
-  if (break_flag)
+  if (want_break)
     curenv->do_break();
   if (!filename.is_null()) {
     errno = 0;

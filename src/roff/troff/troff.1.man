@@ -114,12 +114,13 @@ document formatting system.
 .
 If no
 .I file
-operands are given on the command line,
+operands are present,
 or if
 .I file
 is
 .RB \[lq] \- \[rq],
-the standard input stream is read.
+.I @g@troff
+reads the standard input stream.
 .
 .
 .P

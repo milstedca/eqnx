@@ -8636,7 +8636,7 @@ node *charinfo_to_node_list(charinfo *ci, const environment *envp)
   // Don't interpret character definitions in compatible mode.
   int old_compatible_flag = compatible_flag;
   compatible_flag = 0;
-  int old_escape_char = escape_char;
+  int previous_escape_char = escape_char;
   escape_char = '\\';
   macro *mac = ci->set_macro(0);
   assert(mac != 0);
@@ -8670,7 +8670,7 @@ node *charinfo_to_node_list(charinfo *ci, const environment *envp)
   tok = old_tok;
   curenv = oldenv;
   compatible_flag = old_compatible_flag;
-  escape_char = old_escape_char;
+  escape_char = previous_escape_char;
   have_formattable_input = false;
   return n;
 }

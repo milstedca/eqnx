@@ -7683,6 +7683,15 @@ const char *readonly_register::get_string()
   return i_to_a(*p);
 }
 
+readonly_boolean_register::readonly_boolean_register(bool *q): p(q)
+{
+}
+
+const char *readonly_boolean_register::get_string()
+{
+  return i_to_a(*p);
+}
+
 void abort_request()
 {
   int c;

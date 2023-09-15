@@ -1,5 +1,17 @@
 2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Add class for Boolean-valued read-only registers.
+	Their values have been stored variously in `readonly_register`,
+	which has full `int` range, and in normal string registers, as
+	with `.A`.
+
+	* src/roff/troff/reg.h (class readonly_boolean_register): Add.
+	* src/roff/troff/input.cpp
+	(readonly_boolean_register::readonly_boolean_register)
+	(readonly_boolean_register::get_string): Define.
+
+2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename some
 	functions and recast diagnostic messages.
 	(open_mac_file):

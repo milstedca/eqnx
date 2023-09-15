@@ -116,7 +116,7 @@ bool have_formattable_input = false;
 bool old_have_formattable_input = false;
 
 bool device_has_tcommand = false;	// 't' output command supported
-int unsafe_flag = 0;		// safer by default
+bool want_unsafe_requests = false;	// be safer by default
 
 bool have_multiple_params = false;	// e.g., \[e aa], \*[foo bar]
 
@@ -6172,7 +6172,7 @@ void source_quietly()
 
 void pipe_source()
 {
-  if (!unsafe_flag) {
+  if (!want_unsafe_requests) {
     error("'pso' request is not allowed in safer mode");
     skip_line();
   }
@@ -6927,7 +6927,7 @@ void do_open(int append)
 
 void open_request()
 {
-  if (!unsafe_flag) {
+  if (!want_unsafe_requests) {
     error("'open' request is not allowed in safer mode");
     skip_line();
   }
@@ -6937,7 +6937,7 @@ void open_request()
 
 void opena_request()
 {
-  if (!unsafe_flag) {
+  if (!want_unsafe_requests) {
     error("'opena' request is not allowed in safer mode");
     skip_line();
   }
@@ -7744,7 +7744,7 @@ char *read_string()
 
 void pipe_output()
 {
-  if (!unsafe_flag) {
+  if (!want_unsafe_requests) {
     error("'pi' request is not allowed in safer mode");
     skip_line();
   }
@@ -7776,7 +7776,7 @@ static int system_status;
 
 void system_request()
 {
-  if (!unsafe_flag) {
+  if (!want_unsafe_requests) {
     error("'sy' request is not allowed in safer mode");
     skip_line();
   }
@@ -8299,7 +8299,7 @@ int main(int argc, char **argv)
       // silently ignore these
       break;
     case 'U':
-      unsafe_flag = 1;	// unsafe behaviour
+      want_unsafe_requests = true;
       break;
 #if defined(DEBUGGING)
     case 'D':
@@ -8317,7 +8317,7 @@ int main(int argc, char **argv)
     default:
       assert(0);
     }
-  if (unsafe_flag)
+  if (want_unsafe_requests)
     mac_path = &macro_path;
   set_string(".T", device);
   init_charset_table();
@@ -8583,7 +8583,7 @@ void init_input_requests()
   register_dictionary.define(".g", new readonly_text_register("1"));
   register_dictionary.define(".H", new readonly_register(&hresolution));
   register_dictionary.define(".R", new readonly_text_register("10000"));
-  register_dictionary.define(".U", new readonly_register(&unsafe_flag));
+  register_dictionary.define(".U", new readonly_boolean_register(&want_unsafe_requests));
   register_dictionary.define(".V", new readonly_register(&vresolution));
   register_dictionary.define(".warn", new readonly_register(&warning_mask));
   extern const char *major_version;

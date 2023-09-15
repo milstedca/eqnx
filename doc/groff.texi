@@ -1356,8 +1356,8 @@ semicolon instead.
 @table @code
 @item GROFF_BIN_PATH
 @tindex GROFF_BIN_PATH@r{, environment variable}
-Search the listed directories, followed by @env{PATH}, to locate
-commands.  If not set, the installation directory of GNU @code{roff}
+Locate @code{groff} commands in these directories, followed by those in
+@env{PATH}.  If not set, the installation directory of GNU @code{roff}
 executables, documented in @cite{groff@r{(1)}}, is searched before
 @env{PATH}.
 

@@ -1,5 +1,14 @@
 2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename `ascii_output_flag` to
+	`want_abstract_output`.
+
+	* src/roff/troff/input.cpp (main, init_registers):
+	* src/roff/troff/node.cpp (init_output):
+	* src/roff/troff/troff.h: Do it.
+
+2023-09-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp: Trivially refactor.  Rename
 	`unsafe_flag` to `want_unsafe_requests`.
 	(pipe_source, open_request, opena_request, pipe_output):

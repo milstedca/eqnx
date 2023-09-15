@@ -99,7 +99,7 @@ static symbol blank_line_macro_name;
 static symbol leading_spaces_macro_name;
 static int compatible_flag = 0;
 static int do_old_compatible_flag = -1;	// for .do request
-int ascii_output_flag = 0;
+bool want_abstract_output = false;
 int suppress_output_flag = 0;
 int is_html = 0;
 int suppression_level = 0;	// depth of nested \O escapes
@@ -8257,7 +8257,7 @@ int main(int argc, char **argv)
       backtrace_flag = 1;
       break;
     case 'a':
-      ascii_output_flag = 1;
+      want_abstract_output = true;
       break;
     case 'z':
       suppress_output_flag = 1;
@@ -8430,7 +8430,7 @@ static void init_registers()
   set_register("yr", int(t->tm_year));
   set_register("$$", getpid());
   register_dictionary.define(".A",
-      new readonly_text_register(ascii_output_flag ? "1" : "0"));
+      new readonly_text_register(want_abstract_output ? "1" : "0"));
 }
 
 /*

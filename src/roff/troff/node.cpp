@@ -6648,7 +6648,7 @@ void init_output()
 {
   if (suppress_output_flag)
     the_output = new suppress_output_file;
-  else if (ascii_output_flag)
+  else if (want_abstract_output)
     the_output = new ascii_output_file;
   else
     the_output = new troff_output_file;

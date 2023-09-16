@@ -1,3 +1,13 @@
+2023-09-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/doc.am (doc/webpage.ps, doc/webpage.html): Update and
+	parallelize target dependencies.  Resolve race by requiring
+	"grn" and "soelim" to be built first.  Also add dependency on
+	`$(TMAC_PACKAGE_MS)`.
+
+	Fixes <https://savannah.gnu.org/bugs/?64681>.  Thanks to
+	Alexander Kanavin for the report.
+
 2023-09-15  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (charinfo_to_node_list): Trivially

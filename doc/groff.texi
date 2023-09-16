@@ -17398,9 +17398,9 @@ request); GNU @code{troff} has no such restriction.
 GNU @code{troff} predefines a string @code{.T} containing the argument
 given to the @option{-T} command-line option, namely the current output
 device (for example, @samp{pdf} or @samp{utf8}).  The existence of this
-string is a common feature of post-CSTR@tie{}#54
+string is a common feature of device-independent
 @code{troff}s@footnote{DWB@tie{}3.3, Solaris, Heirloom Doctools, and
-Plan@tie{}9 @code{troff} all support it.} but valid values are specific
+Plan@tie{}9 @code{troff}s all support it.} but valid values are specific
 to each implementation.
 
 @cindex removal of read-only registers, incompatibility with @acronym{AT&T} @code{troff}

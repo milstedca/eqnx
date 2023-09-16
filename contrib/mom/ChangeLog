@@ -2,6 +2,8 @@
 
 	* Version 2.6 released
 
+	Fixes <https://savannah.gnu.org/bugs/?64421>.
+
 2023-08-26
 
 	* om.tmac (PDF_IMAGE): Fix captions not attaching to PDF_IMAGE

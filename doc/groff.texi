@@ -16575,9 +16575,6 @@ The search path for @var{file} can be controlled with the @option{-I}
 command-line option.
 @endDefreq
 
-@codequotebacktick off
-@codequoteundirected off
-
 
 @c =====================================================================
 
@@ -16719,9 +16716,6 @@ restore tokens are removed.
 
 
 @c =====================================================================
-
-@codequotebacktick on
-@codequoteundirected on
 
 @need 1000
 @c BEGIN Keep parallel with section "Debugging" of groff(7).

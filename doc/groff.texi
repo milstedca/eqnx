@@ -729,13 +729,13 @@ mathematical constraint language.
 @cindex devices for output
 
 GNU @command{troff}'s output is in a device-independent page description
-language, which is then read by an @dfn{output driver} that translates
-this language into a file format or byte stream that a piece of
-(possibly emulated) hardware understands.  @code{groff} features output
-drivers for PostScript devices, terminal emulators (and other simple
-typewriter-like machines), X11 (for previewing), @TeX{} DVI, HP
-LaserJet@tie{}4/PCL5 and Canon LBP printers (which use @acronym{CaPSL}),
-@acronym{HTML}, @acronym{XHTML}, and @acronym{PDF}.
+language.  An @dfn{output driver} translates this language into a file
+format or byte stream that a piece of (possibly emulated) hardware
+understands.  @code{groff} features output drivers for PostScript
+devices, terminal emulators (and other simple typewriter-like machines),
+X11 (for previewing), @TeX{} DVI, HP LaserJet@tie{}4/PCL5 and Canon LBP
+printers (which use @acronym{CaPSL}), @acronym{HTML}, @acronym{XHTML},
+and @acronym{PDF}.
 
 
 @c =====================================================================
@@ -843,9 +843,9 @@ you make the most of this resource.
 We adapted portions of this manual from existing documents.  James
 Clark's man pages were an invaluable foundation; we have updated them in
 parallel with the development of this manual.  We based the tutorial for
-macro users on Eric Allman's introduction to his @file{me} macro package
-(which we also provide, little altered from 4.4BSD).  Larry Kollar
-contributed much of the material on the @file{ms} macro package.
+macro package users on Eric Allman's introduction to his @file{me} macro
+package (which we also provide, little altered from 4.4BSD).  Larry
+Kollar contributed much of the material on the @file{ms} macro package.
 
 
 @c =====================================================================
@@ -871,8 +871,8 @@ its leading @samp{g}.
 In this document, we consequently sometimes say @samp{gtroff} when
 talking about the GNU @command{troff} command.
 @c XXX: Not for much longer... -- GBR
-Most other implementations of @code{troff} are called @acronym{AT&T}
-@code{troff}, which is the common origin of almost all @code{troff}
+We call other @code{troff} systems @acronym{AT&T} @code{troff} because
+that is the common origin of almost all @code{troff}
 implementations@footnote{Besides @code{groff}, @code{neatroff} is an
 exception.} (with more or less compatible changes).  Similarly, we say
 @samp{gpic}, @samp{geqn}, and so on.
@@ -1649,8 +1649,8 @@ page for a discussion.
 
 To process a @code{roff} input file using the preprocessors
 @command{gtbl} and @command{gpic} and the @file{me} macro package in the
-way to which AT&T @code{troff} users were accustomed, one would type (or
-script) a pipeline.
+way to which @acronym{AT&T} @code{troff} users were accustomed, one
+would type (or script) a pipeline.
 
 @Example
 $ gpic foo.me | gtbl | gtroff -m e -T utf8 | grotty
@@ -1751,8 +1751,8 @@ consists of text, or words to be printed, and embedded commands
 The primary function of GNU @command{troff} is to collect words from
 input lines, @slanted{fill} output lines with those words,
 @slanted{break} the line at the right-hand margin (possibly by
-hyphenating a word), @slanted{adjust} the line to that margin by
-widening spaces, and output the result.
+hyphenating a word), @slanted{adjust} the line to reach that margin (if
+necessary) by widening spaces between words, and output the result.
 
 @Example
 @c .ll 42n
@@ -1868,13 +1868,12 @@ vertical space is normally discarded at page or column breaks.  If the
 above example appears one inch from the bottom of the page, the half
 inch of space ``left over'' does not appear at the top of the next.
 
-If you seek precision in spacing, be advised when using a macro package
-that it might not honor @code{sp} requests as you expect; it can use a
-formatter feature called @slanted{no-space mode} to prevent excess space
-from accumulating.  Macro packages typically offer registers to control
-spacing between paragraphs, before section headings, and around displays
-(discussed below); use these facilities preferentially.
-@xref{Manipulating Spacing}.
+If you desire precise spacing control when using a macro package, be
+advised that it might not honor @code{sp} requests as you expect; it can
+use a formatter feature called @slanted{no-space mode} to prevent excess
+space from accumulating.  Use the facilities the package offers to
+control spacing between paragraphs, before section headings, and around
+displays (discussed below).  @xref{Manipulating Spacing}.
 
 @cindex centering lines (introduction)
 @cindex lines, centering (introduction)
@@ -2079,12 +2078,12 @@ man pages support example displays but not keeps.
 @cindex floating keep
 @slanted{Floating keeps} can move, or ``float'', relative to the text
 around them in the input.  They are useful for displays that are
-captioned and referred to by name, as with ``See figure@tie{}3''.
-Depending on the package, a floating keep appears at the bottom of the
-current page if it fits, and at the top of the next otherwise.
-Alternatively, floating keeps might be deferred to the end of a section.
-Using a floating keep can avoid the large vertical spaces that may
-precede a tall keep of the ordinary sort when it won't fit on the page.
+captioned and referred to by name, as with ``See figure@tie{}3''.  A
+floating keep might appear at the bottom of the current page if it fits,
+and at the top of the next otherwise.  Alternatively, it might be
+deferred to the end of a section.  Use of a floating keep can prevent
+a large vertical space from appearing before a tall keep of the ordinary
+sort when it won't fit on the page.
 
 @c ---------------------------------------------------------------------
 
@@ -2179,10 +2178,12 @@ the date, or to perform operations like super- and subscripting.
 @subsection Preprocessor Support
 
 All macro packages provide support for various preprocessors and may
-extend their functionality by defining macros to caption them and/or set
-their contents in displays.  Examples include @code{TS} and @code{TE}
+extend their functionality by defining macros to caption their output
+and/or set it in a display.  Examples include @code{TS} and @code{TE}
 for @command{gtbl}, @code{EQ} and @code{EN} for @command{geqn}, and
-@code{PS} and @code{PE} for @command{gpic}.
+@code{PS} and @code{PE} for @command{gpic}.  Another preprocessor,
+@command{grefer}, facilitates the inclusion of bibliographic citations
+in a consistent format.
 
 @c ---------------------------------------------------------------------
 

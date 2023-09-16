@@ -15981,9 +15981,9 @@ for @code{pso} also.
 Identical to the @code{so} and @code{soquiet} requests, respectively,
 except that @command{gtroff} searches for the specified @var{file} in
 the same directories as macro files for the @option{-m} command-line
-option.  If the file name to be included has the form
-@file{@var{name}.tmac} and it isn't found, these requests try to include
-@file{tmac.@var{name}} and vice versa.
+option.  Unlike that option, @var{file} must be the file name as it
+appears in the file system; these requests do not add a @file{.tmac}
+suffix or @file{tmac.} prefix to locate @var{file}.
 @endDefreq
 
 @DefreqList {trf, file}

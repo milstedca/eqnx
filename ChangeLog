@@ -1,5 +1,12 @@
 2023-09-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/groff.texi (I/O) <mso, msoquiet>: Fix error.  These
+	requests do _not_ alter the argument in an attempt to locate
+	a file corresponding to it.  (That is, one says "groff -m trace"
+	but ".mso trace.tmac".)
+
+2023-09-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/doc.am (doc/webpage.ps, doc/webpage.html): Update and
 	parallelize target dependencies.  Resolve race by requiring
 	"grn" and "soelim" to be built first.  Also add dependency on

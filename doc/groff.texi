@@ -10308,7 +10308,8 @@ family, in GNU @code{troff} an output device can associate a style in
 the abstract sense with a mounting position.  Thus the default family
 can be combined with a style dynamically, producing a @dfn{resolved font
 name}.  A user-specified font name that combines family and style (or
-refers to a font that is not a member of a family) is also ``resolved''.
+refers to a font that is not a member of a family) is already
+``resolved''.
 
 Fonts often have trademarked names, and even Free Software fonts can
 require renaming upon modification.  @code{groff} maintains a
@@ -12088,7 +12089,7 @@ Combined with integer arithmetic, this design choice made it impossible
 to support, for instance, ten and a half-point type.  In GNU
 @code{troff}, an output device can select a scaling factor that
 subdivides a point into ``scaled points''.  A type size expressed in
-scaled points can thus represent a non-integral type size.
+scaled points can thus represent a non-integral size in points.
 
 @cindex @code{s} scaling unit
 @cindex unit, scaling, @code{s}

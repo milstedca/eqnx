@@ -6715,7 +6715,7 @@ producing a
 .
 A user-specified font name that combines family and style
 (or refers to a font that is not a member of a family)
-is also \[lq]resolved\[rq].
+is already \[lq]resolved\[rq].
 .
 .
 .P

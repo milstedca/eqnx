@@ -11582,12 +11582,12 @@ command in font files or with the @code{fspecial} request).
 @cindex mode, constant glyph spacing (@code{cs})
 @cindex glyph mode, constant spacing (@code{cs})
 @cindex @code{ps} request, and constant glyph spacing mode
-Switch to and from @dfn{constant glyph space mode}.  If activated, the
+Switch to and from @dfn{constant glyph spacing mode}.  If activated, the
 width of every glyph is @math{@var{width}/36} ems.  The em size is given
 absolutely by @var{em-size}; if this argument is missing, the em value
 is taken from the current font size (as set with the @code{ps} request)
 when the font is effectively in use.  Without second and third argument,
-constant glyph space mode is deactivated.
+constant glyph spacing mode is deactivated.
 
 Default scaling unit for @var{em-size} is @samp{z}; @var{width} is an
 integer.

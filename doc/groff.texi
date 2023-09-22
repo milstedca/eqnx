@@ -16807,12 +16807,12 @@ with a failure status.
 @Defreq {ex, }
 @cindex @code{ex} request, use in debugging
 @cindex exiting (@code{ex})
-Exit GNU @code{troff}; that is, stop processing and terminate with a
-successful status.  To stop processing only the current file, use the
+Exit GNU @code{troff}; that is, stop processing and terminate
+successfully.  To stop processing only the current file, use the
 @code{nx} request; see @ref{I/O}.
 @endDefreq
 
-When doing something involved, it is useful to leave the debugging
+When doing something complicated, it is useful to leave the debugging
 statements in the code and have them turned on by a command-line flag.
 
 @Example
@@ -16827,9 +16827,9 @@ register.
 groff -rDB=1 @slanted{file}
 @endExample
 
-If it is known in advance that there are many errors and no useful
-output, GNU @code{troff} can be forced to suppress formatted output with
-the @option{-z} option.
+If you know in advance that there are many errors and no useful output,
+or are interested @emph{only} in diagnostic output, you can suppress GNU
+@code{troff}'s formatted output with its @option{-z} option.
 
 @Defreq {pev, }
 @cindex dumping environments (@code{pev})

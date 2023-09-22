@@ -1,3 +1,12 @@
+2023-09-22  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/doc.am (doc/meintro_fr.ps): Depend on tbl, resolving race
+	in sufficiently parallelized builds.  Overlooked in commit
+	92349ae223, 2022-05-30.
+
+	Fixes <https://savannah.gnu.org/bugs/?64695>.  Thanks to
+	Alexander Kanavin for the report.
+
 2023-09-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/groff.texi (I/O) <mso, msoquiet>: Fix error.  These

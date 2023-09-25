@@ -1,5 +1,19 @@
 2023-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[man]: Add bespoke handling of `lbp` device.
+
+	* tmac/an.tmac (EX): Refactor, using new register
+	`an*unmap-fonts` to keep track of whether we're remapping fonts
+	instead of switching families.  Like TeX DVI, the LBP output
+	device lacks a (complete) monospaced font family.  In EX/EE
+	examples on that device, remap the bold-italic face to italics.
+	(EE): Revert remappings and remove `an*unmap-fonts` register.
+
+	Prompted by discussion with pandoc developers at
+	<https://github.com/jgm/pandoc/issues/9020>.
+
+2023-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[eqn]: Make synopsis, usage message more helpful.
 
 	* src/preproc/eqn/eqn.1.man (Synopsis): Use descriptive phrases

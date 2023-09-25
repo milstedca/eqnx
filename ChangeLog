@@ -1,5 +1,13 @@
 2023-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[eqn]: Make synopsis, usage message more helpful.
+
+	* src/preproc/eqn/eqn.1.man (Synopsis): Use descriptive phrases
+	as metasyntactic variables.
+	* src/preproc/eqn/main.cpp (usage): Sync with the foregoing.
+
+2023-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/preproc/pic/troff.cpp (strsame): Add utility function for
 	comparing two C strings for identical content, handling null
 	pointer arguments as `strcmp()` does not.

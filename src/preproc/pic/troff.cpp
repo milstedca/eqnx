@@ -271,6 +271,9 @@ inline position troff_output::transform(const position &pos)
 // If this register is defined, geqn won't produce '\x's.
 #define EQN_NO_EXTRA_SPACE_REG "0x"
 
+#define SAVED_STROKE_COLOR_STR "gpic*saved-stroke-color"
+#define SAVED_FILL_COLOR_STR "gpic*saved-fill-color"
+
 void troff_output::start_picture(double sc,
 				 const position &ll, const position &ur)
 {
@@ -291,6 +294,10 @@ void troff_output::start_picture(double sc,
   // This guarantees that if the picture is used in a diversion it will
   // have the right width.
   printf("\\h'%.3fi'\n.sp -1\n", width);
+  (void) puts(".ds " SAVED_STROKE_COLOR_STR " default");
+  (void) puts(".ds " SAVED_FILL_COLOR_STR " default");
+  (void) puts(".if !'\\n[.m]'' .ds " SAVED_STROKE_COLOR_STR " \\n[.m]");
+  (void) puts(".if !'\\n[.M]'' .ds " SAVED_FILL_COLOR_STR " \\n[.M]");
 }
 
 void troff_output::finish_picture()
@@ -303,6 +310,8 @@ void troff_output::finish_picture()
   printf(".if \\n(" FILL_REG " .fi\n");
   printf(".br\n");
   printf(".nr " EQN_NO_EXTRA_SPACE_REG " 0\n");
+  (void) puts(".gcolor \\*[" SAVED_STROKE_COLOR_STR "]");
+  (void) puts(".fcolor \\*[" SAVED_FILL_COLOR_STR "]");
   // this is a little gross
   set_location(current_filename, current_lineno);
   if (want_flyback)

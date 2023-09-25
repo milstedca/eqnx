@@ -1,3 +1,16 @@
+2023-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[pic]: Save and restore stroke and fill colors when entering and
+	leaving, respectively, preprocessed regions.
+
+	* src/preproc/pic/troff.cpp: Define C/C++ preprocessor macros to
+	house names of *roff strings storing this information.
+	(troff_output::start_picture): Save stroke and fill colors.
+	(troff_output::finish_picture): Restore stroke and fill colors.
+
+	Fixes <https://savannah.gnu.org/bugs/?64624>.  Thanks to Dave
+	Kemper for the report and testing this code change.
+
 2023-09-22  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/doc.am (doc/meintro_fr.ps): Depend on tbl, resolving race

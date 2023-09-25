@@ -1,5 +1,19 @@
 2023-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/pic/troff.cpp (strsame): Add utility function for
+	comparing two C strings for identical content, handling null
+	pointer arguments as `strcmp()` does not.
+	(troff_output::set_location): Refactor; write the two-argument
+	form of the `lf` request if the current and last seen file names
+	_don't_ match.  Problem introduced by me in commit 705be31107,
+	29 July.  Also fix heap memory leak when repeatedly updating
+	`troff_output::last_filename` member variable.
+
+	Fixes <https://savannah.gnu.org/bugs/?64628>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
+2023-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[pic]: Save and restore stroke and fill colors when entering and
 	leaving, respectively, preprocessed regions.
 

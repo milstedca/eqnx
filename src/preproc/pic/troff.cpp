@@ -568,17 +568,32 @@ void troff_output::dot(const position &cent, const line_type &lt)
   }
 }
 
+// We might consider putting this in libgroff.  We treat null pointers
+// like NaNs: they are incommensurable even with themselves.
+bool strsame(const char *s, const char *t)
+{
+  if ((s == 0 /* nullptr */) || (t == 0 /* nullptr */))
+    return false;
+  return (strcmp(s, t) == 0);
+}
+
 void troff_output::set_location(const char *s, int n)
 {
   assert(s != 0 /* nullptr */);
-  if ((s != 0 /* nullptr */) && (last_filename != 0 /* nullptr */)
-      && strcmp(s, last_filename) == 0) {
-    printf(".lf %d %s\n", n, s);
-    char *lfn = strdup(s);
-    if (0 /* nullptr */ == lfn)
-      fatal("memory allocation failure while copying file name");
-    last_filename = lfn;
+  bool update_file_name = false;
+  if (s != 0 /* nullptr */) {
+    if (!strsame(s, last_filename)) {
+      char *lfn = strdup(s);
+      if (0 /* nullptr */ == lfn)
+	fatal("memory allocation failure while copying file name");
+      if (last_filename != 0 /* nullptr */)
+	free(const_cast<char *>(last_filename));
+      last_filename = lfn;
+      update_file_name = true;
+    }
   }
+  if (update_file_name)
+    printf(".lf %d %s\n", n, s);
   else
     printf(".lf %d\n", n);
 }

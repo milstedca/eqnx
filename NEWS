@@ -47,7 +47,7 @@ Macro packages
 --------------
 
 o mom version 2.6 is distributed with this release.  It supports
-  multi-line headings.
+  multi-line headings.  Thanks to Peter Schaffter.
 
 o The device-specific macro files loaded by "troffrc" automatically on
   startup, such as "ps.tmac" and "html.tmac", no longer perform font

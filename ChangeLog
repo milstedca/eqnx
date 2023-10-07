@@ -1,5 +1,16 @@
 2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp (font_change): Trivially refactor,
+	renaming this function...
+	(select_font): ...to this.  Doing so aligns with other use of
+	the term "select" in groff font documentation.  Further, when
+	formatting for typesetters, fonts can be "changed" in a
+	different sense by altering height, slant, (constancy of)
+	spacing, and magnification.  Also mark function as "static"; it
+	needs no visibility outside this translation unit.
+
+2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Throw error diagnostic on attempt to select a font
 	named "DESC".  That will never work.
 

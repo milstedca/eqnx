@@ -1231,7 +1231,7 @@ void glyph_color_change()
 
 static symbol P_symbol("P");
 
-void font_change()
+static void select_font()
 {
   symbol s = get_name();
   bool is_number = true;
@@ -3460,7 +3460,7 @@ void init_env_requests()
   init_request("fc", field_characters);
   init_request("fi", fill);
   init_request("fcolor", fill_color_change);
-  init_request("ft", font_change);
+  init_request("ft", select_font);
   init_request("gcolor", glyph_color_change);
   init_request("hc", hyphen_char);
   init_request("hlm", hyphen_line_max_request);

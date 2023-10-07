@@ -1,5 +1,22 @@
 2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename Boolean-valued member
+	function to read like a logical predicate.
+
+	* src/roff/troff/token.h (token::usable_as_delimiter): Rename...
+	(token::is_usable_as_delimiter): ...declaration to this.
+	* src/roff/troff/input.cpp (token::usable_as_delimiter):
+	(token::is_usable_as_delimiter): ...same for implementation.
+
+	* src/roff/troff/env.cpp (number_lines):
+	* src/roff/troff/input.cpp (do_expr_test, get_delim_number)
+	(get_line_arg, read_size, do_register, do_if_request)
+	(read_draw_node):
+	* src/roff/troff/node.cpp (has_font, embolden_font): Update call
+	sites.
+
+2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::next, device_macro_request):
 	Recast language of one of groff's more notorious diagnostics,
 	eliminating the much-abused word "transparently".  Also name the

@@ -1645,7 +1645,7 @@ static int do_expr_test()
   token start;
   start.next();
   int start_level = input_stack::get_level();
-  if (!start.usable_as_delimiter(true /* report error */))
+  if (!start.is_usable_as_delimiter(true /* report error */))
     return 0;
   tok.next();
   // disable all warning and error messages temporarily
@@ -2458,7 +2458,7 @@ int token::operator!=(const token &t)
 
 // is token a suitable delimiter (like ')?
 
-bool token::usable_as_delimiter(bool report_error)
+bool token::is_usable_as_delimiter(bool report_error)
 {
   switch(type) {
   case TOKEN_CHAR:
@@ -5131,7 +5131,7 @@ static int get_delim_number(units *n, unsigned char si, int prev_value)
 {
   token start;
   start.next();
-  if (start.usable_as_delimiter(true /* report error */)) {
+  if (start.is_usable_as_delimiter(true /* report error */)) {
     tok.next();
     if (get_number(n, si, prev_value)) {
       if (start != tok)
@@ -5146,7 +5146,7 @@ static int get_delim_number(units *n, unsigned char si)
 {
   token start;
   start.next();
-  if (start.usable_as_delimiter(true /* report error */)) {
+  if (start.is_usable_as_delimiter(true /* report error */)) {
     tok.next();
     if (get_number(n, si)) {
       if (start != tok)
@@ -5162,7 +5162,7 @@ static int get_line_arg(units *n, unsigned char si, charinfo **cp)
   token start;
   start.next();
   int start_level = input_stack::get_level();
-  if (!start.usable_as_delimiter(true /* report error */))
+  if (!start.is_usable_as_delimiter(true /* report error */))
     return 0;
   tok.next();
   if (get_number(n, si)) {
@@ -5243,7 +5243,7 @@ static bool read_size(int *x)
     }
     val *= sizescale;
   }
-  else if (!tok.usable_as_delimiter(true /* report error */))
+  else if (!tok.is_usable_as_delimiter(true /* report error */))
     return false;
   else {
     token start(tok);
@@ -5366,7 +5366,7 @@ static void do_register()
 {
   token start;
   start.next();
-  if (!start.usable_as_delimiter(true /* report error */))
+  if (!start.is_usable_as_delimiter(true /* report error */))
     return;
   tok.next();
   symbol nm = get_long_name(true /* required */);
@@ -5970,7 +5970,7 @@ int do_if_request()
   }
   else if (tok.is_space())
     result = 0;
-  else if (tok.usable_as_delimiter()) {
+  else if (tok.is_usable_as_delimiter()) {
     token delim = tok;
     int delim_level = input_stack::get_level();
     environment env1(curenv);
@@ -8684,7 +8684,7 @@ static node *read_draw_node()
 {
   token start;
   start.next();
-  if (!start.usable_as_delimiter(true /* report error */)){
+  if (!start.is_usable_as_delimiter(true /* report error */)){
     do {
       tok.next();
     } while (tok != start && !tok.is_newline() && !tok.is_eof());

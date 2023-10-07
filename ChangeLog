@@ -1,5 +1,21 @@
 2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename and boolify some file-local
+	functions.
+
+	* src/roff/troff/input.cpp (get_delim_number): Rename this...
+	(read_delimited_number): ...to this, and boolify it.  The idea
+	behind "read" instead of "get" is that the latter more strongly
+	implies (to me) that the value being "got" is returned by the
+	function.  But for `read_delimited_number`, the number is stored
+	{after possible unit conversion} in one of the function
+	parameters.
+	(get_delim_name): Rename this...
+	(get_delimited_name): ...to this.
+	(token::next): Update call sites.
+
+2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.  Rename local `start` variables to
 	`start_token` for better code readability.
 

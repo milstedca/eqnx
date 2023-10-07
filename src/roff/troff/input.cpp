@@ -149,12 +149,12 @@ static void interpolate_environment_variable(symbol);
 static symbol composite_glyph_name(symbol);
 static void interpolate_arg(symbol);
 static request_or_macro *lookup_request(symbol);
-static int get_delim_number(units *, unsigned char);
-static int get_delim_number(units *, unsigned char, units);
+static bool read_delimited_number(units *, unsigned char);
+static bool read_delimited_number(units *, unsigned char, units);
 static symbol do_get_long_name(bool, char);
 static int get_line_arg(units *res, unsigned char si, charinfo **cp);
 static bool read_size(int *);
-static symbol get_delim_name();
+static symbol get_delimited_name();
 static void init_registers();
 static void trapping_blank_line();
 
@@ -2145,7 +2145,7 @@ void token::next()
       case 'c':
 	goto ESCAPE_c;
       case 'C':
-	nm = get_delim_name();
+	nm = get_delimited_name();
 	if (nm.is_null())
 	  break;
 	type = TOKEN_SPECIAL;
@@ -2207,7 +2207,7 @@ void token::next()
 	  break;
 	}
       case 'h':
-	if (!get_delim_number(&x, 'm'))
+	if (!read_delimited_number(&x, 'm'))
 	  break;
 	type = TOKEN_HORIZONTAL_SPACE;
 	nd = new hmotion_node(x, curenv->get_fill_color());
@@ -2216,11 +2216,12 @@ void token::next()
 	// don't take height increments relative to previous height if
 	// in compatibility mode
 	if (!compatible_flag && curenv->get_char_height()) {
-	  if (get_delim_number(&x, 'z', curenv->get_char_height()))
+	  if (read_delimited_number(&x, 'z', curenv->get_char_height()))
 	    curenv->set_char_height(x);
 	}
 	else {
-	  if (get_delim_number(&x, 'z', curenv->get_requested_point_size()))
+	  if (read_delimited_number(&x, 'z',
+	      curenv->get_requested_point_size()))
 	    curenv->set_char_height(x);
 	}
 	if (!compatible_flag)
@@ -2267,7 +2268,7 @@ void token::next()
 	  break;
 	}
       case 'N':
-	if (!get_delim_number(&val, 0))
+	if (!read_delimited_number(&val, 0))
 	  break;
 	if (val < 0) {
 	  warning(WARN_CHAR, "invalid numbered character %1", val);
@@ -2304,7 +2305,7 @@ void token::next()
 	  have_formattable_input = true;
 	break;
       case 'S':
-	if (get_delim_number(&x, 0))
+	if (read_delimited_number(&x, 0))
 	  curenv->set_char_slant(x);
 	if (!compatible_flag)
 	  have_formattable_input = true;
@@ -2319,7 +2320,7 @@ void token::next()
 			      curenv->get_fill_color());
 	return;
       case 'v':
-	if (!get_delim_number(&x, 'v'))
+	if (!read_delimited_number(&x, 'v'))
 	  break;
 	type = TOKEN_NODE;
 	nd = new vmotion_node(x, curenv->get_fill_color());
@@ -2335,7 +2336,7 @@ void token::next()
 	do_width();
 	break;
       case 'x':
-	if (!get_delim_number(&x, 'v'))
+	if (!read_delimited_number(&x, 'v'))
 	  break;
 	type = TOKEN_NODE;
 	nd = new extra_size_node(x);
@@ -5127,7 +5128,9 @@ static void interpolate_number_format(symbol nm)
     input_stack::push(make_temp_iterator(r->get_format()));
 }
 
-static int get_delim_number(units *n, unsigned char si, int prev_value)
+static bool read_delimited_number(units *n,
+				  unsigned char si,
+				  int prev_value)
 {
   token start_token;
   start_token.next();
@@ -5136,13 +5139,13 @@ static int get_delim_number(units *n, unsigned char si, int prev_value)
     if (get_number(n, si, prev_value)) {
       if (start_token != tok)
 	warning(WARN_DELIM, "closing delimiter does not match");
-      return 1;
+      return true;
     }
   }
-  return 0;
+  return false;
 }
 
-static int get_delim_number(units *n, unsigned char si)
+static bool read_delimited_number(units *n, unsigned char si)
 {
   token start_token;
   start_token.next();
@@ -5151,10 +5154,10 @@ static int get_delim_number(units *n, unsigned char si)
     if (get_number(n, si)) {
       if (start_token != tok)
 	warning(WARN_DELIM, "closing delimiter does not match");
-      return 1;
+      return true;
     }
   }
-  return 0;
+  return false;
 }
 
 static int get_line_arg(units *n, unsigned char si, charinfo **cp)
@@ -5302,7 +5305,7 @@ static bool read_size(int *x)
   }
 }
 
-static symbol get_delim_name()
+static symbol get_delimited_name()
 {
   token start_token;
   start_token.next();

@@ -1,3 +1,11 @@
+2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Throw error diagnostic on attempt to select a font
+	named "DESC".  That will never work.
+
+	* src/roff/troff/env.cpp (font_change):
+	* src/roff/troff/input.cpp (token::next): Do it.
+
 2023-09-25  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[man]: Add bespoke handling of `lbp` device.

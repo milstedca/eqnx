@@ -1250,9 +1250,12 @@ void font_change()
   // requested.  We must warn here if a bogus font name is selected.
   if (is_number)
     (void) curenv->set_font(atoi(s.contents()));
-  else
-    if (!curenv->set_font(s))
+  else {
+    if (s == "DESC")
+      error("'%1' is not a valid font name", s.contents());
+    else if (!curenv->set_font(s))
       warning(WARN_FONT, "cannot select font '%1'", s.contents());
+  }
   skip_line();
 }
 

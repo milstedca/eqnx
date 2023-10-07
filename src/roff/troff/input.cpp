@@ -2178,7 +2178,9 @@ void token::next()
 	  // requested.  We must warn here if a bogus font name is
 	  // selected.
 	  if (*p != '\0' || s.is_empty()) {
-	    if (!curenv->set_font(s))
+	    if (s == "DESC")
+	      error("'%1' is not a valid font name", s.contents());
+	    else if (!curenv->set_font(s))
 	      warning(WARN_FONT, "cannot select font '%1'",
 		      s.contents());
 	  }

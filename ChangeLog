@@ -1,5 +1,14 @@
 2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::next, device_macro_request):
+	Recast language of one of groff's more notorious diagnostics,
+	eliminating the much-abused word "transparently".  Also name the
+	offending token.  It is difficult to overstate how unhelpful
+	diagnostic messages are when they know precisely what is wrong
+	but refuse to tell the user.
+
+2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (token::next): Tweak language of
 	diagnostic message when encountering unsupported escape
 	sequence.

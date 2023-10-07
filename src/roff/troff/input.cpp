@@ -2354,7 +2354,9 @@ void token::next()
 	  request_or_macro *p = lookup_request(s);
 	  macro *m = p->to_macro();
 	  if (!m) {
-	    error("can't transparently throughput a request");
+	    error("cannot interpolate '%1' to device-independent"
+		  " output; it is a request, not a macro",
+		  s.contents());
 	    break;
 	  }
 	  nd = new special_node(*m);
@@ -5672,7 +5674,8 @@ void device_macro_request()
     if (m)
       curenv->add_node(new special_node(*m));
     else
-      error("can't transparently throughput a request");
+      error("cannot interpolate '%1' to device-independent output;"
+	    " it is a request, not a macro", s.contents());
   }
   skip_line();
 }

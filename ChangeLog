@@ -1,5 +1,16 @@
 2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Trivially refactor.  Rename local `start` variables to
+	`start_token` for better code readability.
+
+	* src/roff/troff/input.cpp (do_overstrike, do_bracket)
+	(do_name_test, do_expr_test, do_zero_width, get_delim_number)
+	(get_line_arg, get_delim_name, do_register, do_width)
+	(do_special, read_draw_node):
+	* src/roff/troff/reg.cpp (inline_define_register): Do it.
+
+2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.  Rename Boolean-valued member
 	function to read like a logical predicate.
 

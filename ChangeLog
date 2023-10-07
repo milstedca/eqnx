@@ -1,5 +1,13 @@
 2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (token::next): Tweak language of
+	diagnostic message when encountering unsupported escape
+	sequence.
+	* doc/groff.texi (Using Escape Sequences): Update example
+	accordingly.
+
+2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp (font_change): Trivially refactor,
 	renaming this function...
 	(select_font): ...to this.  Doing so aligns with other use of

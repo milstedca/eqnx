@@ -464,7 +464,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0+Git
-@subtitle September 2023
+@subtitle October 2023
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -7046,7 +7046,7 @@ $ groff -T ps -ww
 .ds animal elephant
 I have \fI\nN \*(co \*[animal]s,\f[]
 said \P.\&\~Pseudo Pachyderm.
-    @error{} warning: escape character ignored before 'P'
+    @error{} warning: ignoring escape character before 'P'
     @result{} I have @slanted{12 white elephants,} said P. Pseudo Pachyderm.
 @endExample
 

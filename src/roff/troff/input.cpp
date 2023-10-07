@@ -2425,7 +2425,7 @@ void token::next()
 	goto handle_ordinary_char;
       default:
 	if (cc != escape_char && cc != '.')
-	  warning(WARN_ESCAPE, "escape character ignored before %1",
+	  warning(WARN_ESCAPE, "ignoring escape character before %1",
 		  input_char_description(cc));
 	goto handle_ordinary_char;
       }

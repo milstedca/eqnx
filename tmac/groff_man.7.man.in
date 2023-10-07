@@ -720,7 +720,10 @@ or those from
 Documenter's Workbench,
 Heirloom Doctools,
 or Plan\~9
-.I troff
+.IR troff ,
+and
+.I mandoc
+(since 1.12.2)
 support them.
 .\" Solaris 10 troff does not support .EX/.EE.  Neatroff doesn't ship
 .\" (m)an macros.
@@ -903,7 +906,10 @@ An input trap is planted as with
 .
 .
 .IP
-This macro is a GNU extension not defined on systems running
+This macro is a GNU extension supported by
+.I mandoc
+(since 1.14.5)
+but not defined on systems running
 AT&T,
 Plan\~9,
 or
@@ -1006,7 +1012,10 @@ These macros break the output line.
 .B .SY
 and
 .B .YS
-are GNU extensions not defined on systems running
+are GNU extensions supported by
+.I mandoc
+(since 1.14.5)
+but not defined on systems running
 AT&T,
 Plan\~9,
 or
@@ -1313,6 +1322,18 @@ Solaris
 see
 .I \%an\-ext.tmac
 in section \(lqFiles\(rq below.
+.
+.I mandoc
+supports
+.B .UR
+and
+.B .UE
+since 1.12.3,
+and
+.B .MT
+and
+.B .ME
+since 1.14.2.
 .
 Plan\~9 from User Space's
 .I troff \" plan9port

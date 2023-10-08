@@ -6118,7 +6118,7 @@ void while_request()
 void while_break_request()
 {
   if (!while_depth) {
-    error("no while loop");
+    error("cannot 'break' when not in a 'while' loop");
     skip_line();
   }
   else {
@@ -6132,7 +6132,7 @@ void while_break_request()
 void while_continue_request()
 {
   if (!while_depth) {
-    error("no while loop");
+    error("cannot 'continue' when not in a 'while' loop");
     skip_line();
   }
   else {

@@ -1,5 +1,10 @@
 2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (while_break_request)
+	(while_continue_request): Clarify diagnostic messages.
+
+2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor.  Rename and boolify some file-local
 	functions.
 

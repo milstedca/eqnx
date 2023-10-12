@@ -1,3 +1,14 @@
+2023-10-11  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* font/devps/generate/Makefile (zapfdr.afm): Fix typo in
+	dependency name.  Problem introduced by me in commit 2566b64e0b,
+	13 March 2022, which claimed "[s]hould not cause regressions
+	because the Make targets invoked are never called during a build
+	{they are isolates that you have to manually name on the command
+	line}."  Thus was fortune's hostage claimed.  Apparently
+	OpenSUSE uses this Makefile as part of its "ghostscript-fonts-
+	grops" package build.  (Fair enough--we _do_ ship it.)
+
 2023-10-07  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (while_break_request)

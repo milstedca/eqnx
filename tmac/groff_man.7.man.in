@@ -733,12 +733,15 @@ does not.
 .\" Solaris 10 troff does not support .EX/.EE.  Neatroff doesn't ship
 .\" (m)an macros.
 .
-To be certain your page will be portable to systems that do not,
-copy their definitions from the
-.I \%an\-ext.tmac
-file of a
-.I groff
-installation.
+See subsection \(lqUse of extensions\(rq
+_ifstyle()dnl
+below
+_endif()dnl
+_ifnotstyle()dnl
+in
+.MR groff_man_style @MAN7EXT@
+_endif()dnl
+for suggestions.
 .
 .
 .TP
@@ -918,10 +921,17 @@ Documenter's Workbench,
 Plan\~9,
 or
 Solaris
-.IR troff s; \" DWB, Plan 9, Solaris
-see
-.I \%an\-ext.tmac
-in section \(lqFiles\(rq below.
+.IR troff s. \" DWB, Plan 9, Solaris
+.
+See subsection \(lqUse of extensions\(rq
+_ifstyle()dnl
+below
+_endif()dnl
+_ifnotstyle()dnl
+in
+.MR groff_man_style @MAN7EXT@
+_endif()dnl
+for suggestions.
 _ifstyle()dnl
 .
 .
@@ -1028,9 +1038,16 @@ Plan\~9,
 or
 Solaris
 .IR troff s; \" DWB, Plan 9, Solaris
-see
-.I \%an\-ext.tmac
-in section \(lqFiles\(rq below.
+.
+See subsection \(lqUse of extensions\(rq
+_ifstyle()dnl
+below
+_endif()dnl
+_ifnotstyle()dnl
+in
+.MR groff_man_style @MAN7EXT@
+_endif()dnl
+for suggestions.
 .
 .
 .TP
@@ -1332,15 +1349,22 @@ Documenter's Workbench,
 Plan\~9,
 or
 Solaris
-.IR troff s; \" DWB, Plan 9, Solaris
-see
-.I \%an\-ext.tmac
-in section \(lqFiles\(rq below.
+.IR troff s. \" DWB, Plan 9, Solaris
 .
 Plan\~9 from User Space's
 .I troff \" plan9port
 implements
 .BR .MR .
+.
+See subsection \(lqUse of extensions\(rq
+_ifstyle()dnl
+below
+_endif()dnl
+_ifnotstyle()dnl
+in
+.MR groff_man_style @MAN7EXT@
+_endif()dnl
+for suggestions.
 .
 .
 .P
@@ -2280,21 +2304,162 @@ and
 .B \(rs(tm \" Heirloom Doctools, mandoc, neatmkfn, Plan 9
 special character escape sequences directly.
 .
-Unless a man page author is aiming for a pathological level of
-portability,
-such as the composition of pages for consumption on simulators of 1980s
-Unix systems
+Unless you are aiming for a pathological level of portability\(emperhaps
+composing a man page for consumption on simulators of 1980s Unix systems
 (or Solaris
 .IR troff ,
 though even it supports
-.BR \(rs(rg ),
-the above strings should be avoided.
+.BR \(rs(rg )\(em\c
+avoid using the above strings.
+.
+.
+.\" ====================================================================
+.SS "Use of extensions"
+.\" ====================================================================
+.
+To ensure that your man page formats reliably on a wide variety of
+viewers,
+write it solely with the macros described in this page
+(except for the ones identified as deprecated,
+which you should avoid).
+.
+The macros we have described as extensions might not be supported by a
+formatter that is important to your audience.
+.
+Nevertheless,
+.IR groff 's
+extensions are present because they perform tasks that are otherwise
+difficult or tedious to achieve portably.
+.
+If you require an extension but also expect your man page to be rendered
+on a system that doesn't support it,
+consider writing a configuration test that measures a property of the
+system,
+and use
+.MR m4 1 ,
+.MR sed 1 ,
+or a similar tool to generate a
+.I .man
+file from a
+.I .man.in
+file,
+defining page-local versions of extension macros only where necessary.
+.
+You can copy extension macro definitions from
+.IR groff ;
+see
+.I \%an\-ext.tmac
+in section \(lqFiles\(rq below.
+.
+.
+.P
+For example,
+we might put a line
+.
+.RS
+.EX
+@DEFINE_MR@
+.EE
+.RE
+.
+in our
+.I man
+document at the end of the \(lqName\(rq section,
+test a system for the availability of the
+.I "groff man"
+.B .MR
+macro,
+remove the line if the macro is present,
+and \(lqinline\(rq a definition otherwise,
+as follows.
+.
+(This version is slightly simplified and does not attempt to disable
+hyphenation when setting arguments to
+.BR .MR .)
+.
+.RS
+.EX
+have_MR=$(echo .pm | troff \-man 2>&1 | grep MR)
+if [ \-n "$have_MR" ]
+then
+  sed \-i \-e \(aq/@DEFINE_MR@/d\(aq myprog.man.in > myprog.man
+else
+  sed \-i \-e \(aqs/@DEFINE_MR@/.de MR\e
+\&.  ie \e\e\e\en(.$=1 .I \e\e\e\e$1\e
+\&.  el .IR \e\e\e\e$1 (\e\e\e\e$2)\e\e\e\e$3\e
+\&../\(aq myprog.man.in > myprog.man
+fi
+.EE
+.RE
+.
+(The profusion of backslashes is due to its status as an escape
+character in both
+.I roff
+and
+.IR sed .)
+.
+.
+.\" XXX: too preachy?
+.P
+If the foregoing method is too much trouble,
+you could apply the radical technique of reading your man page using
+every formatter of interest,
+confirming satisfactory output from each.
+.
+Test documentation for syntactic validity and semantic correctness,
+just as you would test code.
 .
 .
 .\" ====================================================================
 .SS Portability
 .\" ====================================================================
 .
+The two major language features that control formatting in the
+.I roff
+language are requests and escape sequences.
+.
+Since the
+.I man
+macros are implemented in terms of these,
+one can,
+in principle,
+supplement the functionality of
+.I man
+with these lower-level elements where necessary.
+.
+.
+.P
+However,
+use of
+.I roff
+requests
+(apart from the empty request
+.RB \(lq . \(rq)\&
+risks poor rendering when your page is processed by tools other than
+.I roff
+formatters that attempt to interpret page sources.
+.
+(Historically,
+this was commonly attempted for HTML conversion.)
+.
+Requests might make assumptions about line length that do not hold in an
+HTML environment.
+.
+Many of these programs don't interpret the full
+.I roff
+language
+(let alone extensions):
+they may be incapable of handling numeric expressions,
+control structures,
+or register,
+string,
+and macro definitions.
+.
+Such limitations can lead to portions of a document being presented
+incomprehensibly or omitted altogether.
+.
+.
+.P
 It is wise to quote multi-word section and subsection headings;
 the
 .B .SH
@@ -2313,88 +2478,13 @@ and font style alternation macros.
 .
 .
 .P
-The two major syntactical categories for formatting control in the
-.I roff
-language are requests and escape sequences.
-.
-Since the
-.I man
-macros are implemented in terms of
-.I groff
-requests and escape sequences,
-one can,
-in principle,
-supplement the functionality of
-.I man
-with these lower-level elements where necessary.
-.
-.
-.br
-.ne 2v
-.P
-However,
-use of
-.I roff
-requests
-(apart from the empty request
-.RB \(lq . \(rq)\&
-risks poor rendering when your page is processed by tools other than
-.I roff
-formatters that attempt to interpret page sources.
-.
-(Historically,
-this was commonly attempted for HTML conversion.)
-.
-For instance,
-requests may make assumptions about line length that do not hold in an
-HTML environment.
-.
-Many of these programs don't interpret the full
-.I roff
-language
-(let alone
-.I groff
-extensions):
-they may be incapable of handling numeric expressions,
-control structures,
-or register,
-string,
-and macro definitions.
-.
-Such limitations can lead to portions of a document being presented
-incomprehensibly or omitted altogether.
-.
-.
-.P
-For portability to a wide variety of viewers,
-it is best to write your page solely with the macros described in this
-page
-(except for the ones identified as deprecated,
-which you should avoid).
-.
-Employ the macros we have described as extensions
-.RB ( .EX / .EE ,
-.BR .SY / .YS ,
-.BR .TQ ,
-.BR .UR / .UE ,
-.BR .MT / .ME ,
-and
-.BR .MR )
-with caution,
-as they may not be supported by a formatter that is important to your
-audience.
-.
-See
-.I \%an\-ext.tmac
-in section \(lqFiles\(rq below.
-.
-.
-.P
 Similar caveats apply to escape sequences.
 .
 Some escape sequences are however required for correct typesetting
 even in man pages and usually do not cause portability problems.
 .
+.
+.P
 Several of these render glyphs corresponding to punctuation code points
 in the Unicode basic Latin range
 (U+0000\(enU+007F)
@@ -2466,7 +2556,8 @@ Insert a non-printing break point.
 A word can break at such a point,
 but a hyphen glyph is not written to the output if it does.
 .
-This escape sequence is an input word boundary,
+.B \e:
+is an input word boundary,
 so the remainder of the word is subject to hyphenation as normal.
 .
 You can use
@@ -2480,8 +2571,8 @@ See subsection \[lq]Hyperlink macros\[rq] above for an example.
 .
 .
 .IP
-This escape sequence is a GNU extension also supported by Heirloom
-Doctools
+.B \e:
+is a GNU extension also supported by Heirloom Doctools
 .I troff \" Heirloom
 050915 (September 2005),
 .I mandoc
@@ -2783,8 +2874,8 @@ but not Plan\~9 or Solaris
 .B \e\-
 Minus sign or basic Latin hyphen-minus.
 .
-This escape sequence produces the Unix command-line option dash in the
-output.
+.B \e\-
+produces the Unix command-line option dash in the output.
 .
 .RB \(lq \- \(rq
 is a hyphen in the

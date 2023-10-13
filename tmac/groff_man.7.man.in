@@ -712,19 +712,24 @@ before the spaces.
 _endif()dnl
 .IP
 .\" Also see subsection "History" below...
-These macros are extensions introduced in Ninth Edition Unix.
+.B .EX
+and
+.B .EE
+are extensions introduced in Ninth Edition Unix.
 .
-Systems running that
-.IR troff , \" AT&T Research Unix
-or those from
 Documenter's Workbench,
 Heirloom Doctools,
-or Plan\~9
-.IR troff ,
+and
+Plan\~9
+.IR troff s, \" DWB, Heirloom, Plan 9
 and
 .I mandoc
 (since 1.12.2)
-support them.
+also support them.
+.
+Solaris
+.I troff \" Solaris
+does not.
 .\" Solaris 10 troff does not support .EX/.EE.  Neatroff doesn't ship
 .\" (m)an macros.
 .
@@ -901,15 +906,19 @@ An input trap is planted as with
 .
 .
 .IP
-This macro is a GNU extension supported by
+.B .TQ
+is a GNU extension supported by
+Heirloom Doctools
+.I troff \" Heirloom
+and
 .I mandoc
 (since 1.14.5)
-but not defined on systems running
-AT&T,
+but not by
+Documenter's Workbench,
 Plan\~9,
 or
 Solaris
-.IR troff ;
+.IR troff s; \" DWB, Plan 9, Solaris
 see
 .I \%an\-ext.tmac
 in section \(lqFiles\(rq below.
@@ -1008,14 +1017,17 @@ These macros break the output line.
 and
 .B .YS
 are GNU extensions supported by
+Heirloom Doctools
+.I troff \" Heirloom
+and
 .I mandoc
 (since 1.14.5)
-but not defined on systems running
-AT&T,
+but not by
+Documenter's Workbench,
 Plan\~9,
 or
 Solaris
-.IR troff ;
+.IR troff s; \" DWB, Plan 9, Solaris
 see
 .I \%an\-ext.tmac
 in section \(lqFiles\(rq below.
@@ -1308,27 +1320,22 @@ URIs are rendered between angle brackets after the linked text.
 .BR .UR ,
 and
 .B .UE
-are GNU extensions not defined on systems running
-AT&T,
+are GNU extensions supported by
+Heirloom Doctools and
+.I mandoc
+.RB ( .UR / .UE
+since 1.12.3;
+.BR .MT / .ME
+since 1.14.2)
+but not by
+Documenter's Workbench,
 Plan\~9,
 or
 Solaris
-.IR troff ; \" Solaris
+.IR troff s; \" DWB, Plan 9, Solaris
 see
 .I \%an\-ext.tmac
 in section \(lqFiles\(rq below.
-.
-.I mandoc
-supports
-.B .UR
-and
-.B .UE
-since 1.12.3,
-and
-.B .MT
-and
-.B .ME
-since 1.14.2.
 .
 Plan\~9 from User Space's
 .I troff \" plan9port

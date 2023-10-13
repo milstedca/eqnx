@@ -2374,9 +2374,9 @@ hyphenation when setting arguments to
 have_MR=$(echo .pm | troff \-man 2>&1 | grep MR)
 if [ \-n "$have_MR" ]
 then
-  sed \-i \-e \(aq/@DEFINE_MR@/d\(aq myprog.man.in > myprog.man
+  sed \(aq/@DEFINE_MR@/d\(aq myprog.man.in > myprog.man
 else
-  sed \-i \-e \(aqs/@DEFINE_MR@/.de MR\e
+  sed \(aqs/@DEFINE_MR@/.de MR\e
 \&.  ie \e\e\e\en(.$=1 .I \e\e\e\e$1\e
 \&.  el .IR \e\e\e\e$1 (\e\e\e\e$2)\e\e\e\e$3\e
 \&../\(aq myprog.man.in > myprog.man

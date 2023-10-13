@@ -610,14 +610,6 @@ and must contain only text of the form
 .I summary-description
 .RE \" Move left margin back to .IP indentation.
 for a man page to be properly indexed.
-.
-See
-_ifnotstyle()dnl
-.MR groff_man_style @MAN7EXT@
-for suggestions and
-_endif()dnl
-.MR man 7
-for the conventions prevailing on your system.
 .RE \" Move left margin back to standard position.
 .
 .

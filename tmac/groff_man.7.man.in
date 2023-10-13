@@ -1105,14 +1105,14 @@ of synopsis syntax one is likely to encounter.
 .\" from src/roff/groff/groff.1.man
 .EX
 \&.SY groff
-\&.RB [ \e-abcCeEgGijklNpRsStUVXzZ ]
-\&.RB [ \e-d\e\(ti\ec
-\&.IR cs ]
-\&.RB [ \e-d\e\(ti\ec
-\&.IB name =\ec
-\&.IR string ]
-\&.RB [ \e-D\e\(ti\ec
-\&.IR enc ]
+\&.RB [ \e\-abcCeEgGijklNpRsStUVXzZ ]
+\&.RB [ \e\-d\e\(ti\ec
+\&.IR ctext ]
+\&.RB [ \e\-d\e\(ti\ec
+\&.IB string =\ec
+\&.IR text ]
+\&.RB [ \e\-D\e\(ti\ec
+\&.IR fallback\-encoding ]
 .EE
 .
 .I (and so on similarly)
@@ -1151,43 +1151,43 @@ produces the following output.
 .SY groff
 .RB [ \-abcCeEgGijklNpRsStUVXzZ ]
 .RB [ \-d\~\c
-.IR cs ]
+.IR ctext ]
 .RB [ \-d\~\c
-.IB name =\c
-.IR string ]
+.IB string =\c
+.IR text ]
 .RB [ \-D\~\c
-.IR enc ]
+.IR fallback-encoding ]
 .RB [ \-f\~\c
-.IR fam ]
+.IR font-family ]
 .RB [ \-F\~\c
-.IR dir ]
+.IR font-directory ]
 .RB [ \-I\~\c
-.IR dir ]
+.IR inclusion-directory ]
 .RB [ \-K\~\c
-.IR enc ]
+.IR input-encoding ]
 .RB [ \-L\~\c
-.IR arg ]
+.IR spooler-argument ]
 .RB [ \-m\~\c
-.IR name ]
+.IR macro-package ]
 .RB [ \-M\~\c
-.IR dir ]
+.IR macro-directory ]
 .RB [ \-n\~\c
-.IR num ]
+.IR page-number ]
 .RB [ \-o\~\c
-.IR list ]
+.IR page-list ]
 .RB [ \-P\~\c
-.IR arg ]
+.IR postprocessor-argument ]
 .RB [ \-r\~\c
-.IR cn ]
+.IR cnumeric-expression ]
 .RB [ \-r\~\c
-.IB reg =\c
-.IR expr ]
+.IB register =\c
+.IR numeric-expression ]
 .RB [ \-T\~\c
-.IR dev ]
+.IR output-device ]
 .RB [ \-w\~\c
-.IR name ]
+.IR warning-category ]
 .RB [ \-W\~\c
-.IR name ]
+.IR warning-category ]
 .RI [ file\~ .\|.\|.]
 .YS
 .

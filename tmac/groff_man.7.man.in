@@ -783,10 +783,9 @@ An ordinary paragraph
 _ifstyle()dnl
 like this one
 _endif()dnl
-is set with all output lines indented the same amount.
+indents all output lines by the same amount.
 .
-In man pages and other technical literature,
-definition lists are frequently encountered;
+Definition lists frequently occur in man pages;
 these can be set as
 .I "tagged paragraphs,"
 which have one
@@ -855,15 +854,11 @@ is not.
 Set a paragraph with a leading tag,
 and the remainder of the paragraph indented.
 .
-A one-line input trap is planted;
-text on the next line,
-which can be formatted with a macro,
-becomes the tag,
-which is set without indentation.
-.
-The tag can be extended with the
+A one-line input trap that honors the
 .B \(rsc
-escape sequence.
+escape sequence is planted;
+text on the next line becomes the tag,
+set without indentation.
 .
 Subsequent text is indented by
 .I indentation,
@@ -873,7 +868,7 @@ and by the amount of the
 register otherwise.
 .
 If the tag,
-plus the required \(lqtag spacing\(rq stored in the
+plus the \(lqtag spacing\(rq stored in the
 .B TS
 register
 (see section \(lqOptions\(rq below)

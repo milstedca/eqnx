@@ -763,11 +763,11 @@ calls is\~1.
 .
 .TP
 .BR .RE " ["\c
-.IR level ]
+.IR inset-level ]
 End a relative inset.
 .
-The inset amount corresponding to inset level
-.I level
+The inset amount corresponding to
+.I inset-level
 is restored.
 .
 If no argument is given,
@@ -860,7 +860,7 @@ escape sequence is planted;
 text on the next line becomes the tag,
 set without indentation.
 .
-Subsequent text is indented by
+Text on subsequent lines is indented by
 .I indentation,
 if specified,
 and by the amount of the
@@ -1252,7 +1252,7 @@ to cue the user that they must be replaced with appropriate text.
 Symbols that are neither to be typed literally nor replaced at the
 user's discretion appear in the roman style;
 brackets surround optional arguments,
-and an ellipsis indicates that the previous syntactical element may be
+and an ellipsis indicates that the previous syntactic element may be
 repeated arbitrarily.
 .
 Where whitespace separates optional arguments,
@@ -3147,9 +3147,7 @@ instead.
 .IR indentation ]
 Set up a paragraph with a hanging left indentation.
 .
-The
-.I indentation
-argument,
+.I indentation,
 if present,
 is handled as with
 .BR .TP .
@@ -3597,7 +3595,7 @@ The default is\~\-0.5i.
 .
 .TP
 .BI \-dHF= heading-font
-Set the font used for section and subsection headings;
+Select the font used for section and subsection headings;
 the default is
 .RB \(lq B \(rq
 (bold style of the default family).
@@ -3628,11 +3626,12 @@ see section \[lq]Localization\[lq] of
 .BI \-rIN= standard-indentation
 Set the default indentation amount used by
 .BR .IP ,
-.BR .RS ,
 .BR .TP ,
 .\" .TQ inherits its indentation from the preceding .TP.
 and the deprecated
-.BR .HP .
+.BR .HP ,
+and the inset amount used by
+.BR .RS .
 .
 The default is 7n on terminals and 7.2n on typesetters.
 .
@@ -3666,7 +3665,7 @@ above).
 .
 .TP
 .BI \-dMF= man-page-topic-font
-Set the font used for man page topics named in
+Select the font used for man page topics named in
 .B .TH
 and
 .B .MR
@@ -3908,8 +3907,10 @@ _ifstyle()dnl
 .RS
 .P
 .EX
+.ne 2v
 \&.\e" Put only one space after the end of a sentence.
 \&.ss 12 0 \e" See groff(@MAN7EXT@).
+.ne 2v
 \&.\e" Keep pages narrow even on wide terminals.
 \&.if n .if \en[LL]>78n .nr LL 78n
 .EE

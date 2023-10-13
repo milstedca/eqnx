@@ -4351,6 +4351,8 @@ strings;
 .BR BP , \" 1.24
 .BR CS ,
 .BR CT ,
+.BR PO , \" 1.24
+.BR TS , \" 1.24
 and
 .B U
 registers;

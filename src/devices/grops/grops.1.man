@@ -607,7 +607,7 @@ should be used.
 .
 .
 .P
-The default stroke color and fill color is black.
+The default stroke and fill colors are black.
 .
 For colors defined in the \[lq]rgb\[rq] color space,
 .B setrgbcolor

@@ -941,7 +941,7 @@ Often,
 such glyphs lack bold or italic style forms or have metrics that look
 incongruous in ordinary prose.
 .
-A few which are not uncommon in running text have \[lq]text
+A few that are not uncommon in running text have \[lq]text
 variants\[rq],
 which should work better in that context.
 .

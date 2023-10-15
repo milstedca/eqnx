@@ -444,7 +444,7 @@ if you find it helps the clarity of the source document).
 (Another minus sign,
 for use in mathematical expressions,
 is available as
-.BR \[rs][mi] ).
+.BR \[rs](mi .)
 .
 AT&T
 .I troff

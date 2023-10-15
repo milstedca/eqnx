@@ -1319,10 +1319,9 @@ parentheses:
 .P
 Not all devices supply bracket pieces that can be piled up with
 .B \[rs]b
-due to the restrictions of the escape's piling algorithm.
+due to the restrictions of the formatter's piling algorithm.
 .
-A general solution to build brackets out of pieces is the following
-macro:
+The following macro offers a more general bracket-building solution.
 .
 .
 .RS
@@ -1357,15 +1356,15 @@ macro:
 .
 .
 .P
-Another complication is the fact that some glyphs which represent
-bracket pieces in AT&T
+Further complicating matters is that some glyphs representing bracket
+pieces in AT&T
 .I troff
-can be used for other mathematical symbols as well,
-for example
+can be used for other mathematical symbols as well;
+for example,
 .B \[rs](lf
 and
-.BR \[rs](rf ,
-which provide the floor operator.
+.B \[rs](rf
+provide the floor operator.
 .
 Some output devices,
 such as

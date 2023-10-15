@@ -403,9 +403,9 @@ _
 \[aq]	\[cq] closing single quote	\f[CR]\[rs][aq]\f[] neutral apostrophe
 \-	- hyphen	\f[CR]\[rs]\-\f[] or \f[CR]\[rs][\-]\f[] minus sign/Unix dash
 \[rs]	(escape character)	\f[CR]\[rs]e\f[] or \f[CR]\[rs][rs]\f[] reverse solidus
-\[ha]	\[u02C6] modifier circumflex	\f[CR]\[rs](ha\f[] circumflex/caret/\[lq]hat\[rq]
+\[ha]	\[u02C6] modifier circumflex	\f[CR]\[rs][ha]\f[] circumflex/caret/\[lq]hat\[rq]
 \[ga]	\[oq] opening single quote	\f[CR]\[rs](ga\f[] grave accent
-\[ti]	\[u02DC] modifier tilde	\f[CR]\[rs](ti\f[] tilde
+\[ti]	\[u02DC] modifier tilde	\f[CR]\[rs][ti]\f[] tilde
 .TE
 .
 .

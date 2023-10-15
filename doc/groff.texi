@@ -10194,7 +10194,7 @@ parameters for widow and orphan management.
 @DefreqListEndx {os, }
 @cindex @code{ne} request, comparison with @code{sv}
 @code{sv} requires vertical space as @code{ne} does, but also
-@slanted{save} it for later output by the @code{os} request.  If
+@slanted{saves} it for later output by the @code{os} request.  If
 @var{space} is available before the next page location trap, it is
 output immediately.  Both requests ignore a partially collected line,
 taking effect at the next break.

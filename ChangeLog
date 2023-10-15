@@ -1,3 +1,10 @@
+2023-10-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/mdoc/doc-ditroff (doc-Ev-font):
+	* tmac/mdoc/doc-nroff (doc-Ev-font): Change typeface for
+	environment variable identifiers from (Courier) roman to italic,
+	for consistency with man(7).
+
 2023-10-11  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* font/devps/generate/Makefile (zapfdr.afm): Fix typo in

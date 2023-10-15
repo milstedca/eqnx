@@ -1085,18 +1085,20 @@ L Lf(CR) L Lx.
 .\" ====================================================================
 .
 Normally,
-the formatting of a special character advances the drawing position as
-an ordinary character does.
+the formatter advances the drawing position after setting a special
+character,
+as it does for ordinary ones.
 .
 .IR groff 's
 .B composite
-request designates a special character as combining.
+request designates a special character as combining,
+suppressing advancement.
 .
 The
-.I composite.tmac
+.I \%composite.tmac
 macro file,
 loaded automatically by the default
-.IR troffrc ,
+.IR \%troffrc ,
 maps the following special characters to the combining characters shown
 below.
 .

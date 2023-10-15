@@ -2006,8 +2006,8 @@ and bold styles available,
 several ASCII characters were not present at all,
 nor was most of the Teletype's extended character set.
 .
-AT&T commissioned a \[lq]special\[rq] font to ensure no loss of
-repertoire.
+AT&T commissioned a \[lq]special\[rq] font to retain their accustomed
+glyph repertoire.
 .
 .
 .br

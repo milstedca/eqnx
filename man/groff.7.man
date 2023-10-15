@@ -2878,12 +2878,6 @@ interpreted using a default scaling unit
 which multiplies its value by 65,536
 (but clamps it at 65,535).
 .
-Each output device has a color named
-.RB \[lq] default \[rq],
-which cannot be redefined.
-.
-A device's default stroke and fill colors are not necessarily the same.
-.
 .
 .TPx
 .REQ .dei "macro"

@@ -442,7 +442,7 @@ in
 if you find it helps the clarity of the source document).
 .
 (Another minus sign,
-for use in mathematical equations,
+for use in mathematical expressions,
 is available as
 .BR \[rs][mi] ).
 .
@@ -947,7 +947,7 @@ which should work better in that context.
 .
 Conversely,
 a handful of glyphs that are normally drawn from a text font may be
-required in mathematical equations.
+required in mathematical expressions.
 .
 Both sets of exceptions are noted in the tables where they appear
 (\[lq]Logical symbols\[rq] and \[lq]Mathematical symbols\[rq]).

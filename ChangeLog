@@ -1,3 +1,20 @@
+2023-10-16  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/refer.tmac (ref*add-J, ref*add-D, ref*add-E, ref*add-G)
+	(ref*add-B, ref*add-O, ref*add-A, ref*add-V, ref*add-N)
+	(ref*add-dflt): Fix thinko in `ie` predicates.  The true
+	branches of the conditionals were never taken because the
+	condition was consistently misspelled, testing for the existence
+	of, for example, a register named "ef*spec!J:\\$1" (where `\\$1`
+	_would_ be interpolated, but not improve chances of success).
+	Fix by using the `d` conditional operator as obviously intended.
+	This enables some refer(1) formatting customization that was
+	unfortunately inoperative.  Problem appears to date back to
+	commit 3bab8e6fe5, 2011-01-28.
+
+	Fixes <https://savannah.gnu.org/bugs/?64779>.  Thanks to an
+	anonymous bug submitter for the report and the patch.
+
 2023-10-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/mdoc/doc-ditroff (doc-Ev-font):

@@ -221,6 +221,9 @@ Man pages should be encoded using Unicode basic Latin code points
 exclusively,
 and employ the Unix line-ending convention
 (U+000A only).
+Some basic Latin characters have special meaning to
+.I roff;
+see subsection \(lqPortability\(rq below.
 .\" What about rare English words that require diacritics, and
 .\" proper names that require more than basic Latin?
 .\"
@@ -2864,18 +2867,17 @@ but not Plan\~9 or Solaris
 .
 .TP
 .B \e\-
-Minus sign or basic Latin hyphen-minus.
+Minus sign.
 .
 .B \e\-
-produces the Unix command-line option dash in the output.
+produces the basic Latin hyphen-minus (U+002D) specifying Unix
+command-line options and frequently used in file names.
 .
 .RB \(lq \- \(rq
-is a hyphen in the
-.I roff
-language;
-some output devices replace it with U+2010
-(hyphen)
-or similar.
+is a hyphen in
+.IR roff ;
+some output devices format it as U+2010
+(hyphen).
 .
 .
 .TP
@@ -2971,8 +2973,7 @@ Basic Latin circumflex accent
 Some output devices format
 .RB \(lq \(ha \(rq
 as U+02C6
-(modifier letter circumflex accent)
-or similar.
+(modifier letter circumflex accent).
 .
 .
 .TP
@@ -2997,8 +2998,7 @@ Basic Latin tilde.
 Some output devices format
 .RB \(lq \(ti \(rq
 as U+02DC
-(small tilde)
-or similar.
+(small tilde).
 .
 .
 .P

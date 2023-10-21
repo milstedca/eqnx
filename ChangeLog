@@ -50,7 +50,7 @@
 	13 March 2022, which claimed "[s]hould not cause regressions
 	because the Make targets invoked are never called during a build
 	{they are isolates that you have to manually name on the command
-	line}."  Thus was fortune's hostage claimed.  Apparently
+	line}."  Thus was fortune's hostage seized.  Apparently
 	OpenSUSE uses this Makefile as part of its "ghostscript-fonts-
 	grops" package build.  (Fair enough--we _do_ ship it.)
 

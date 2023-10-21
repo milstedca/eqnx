@@ -410,7 +410,7 @@ Lf(CR) Lf(CR) Lw(1i) Lf(CR) Lf(CR).
 .I Macros
 permit primitives,
 components,
-and other macros to be collected and referred to by a single token.
+and other macros to be collected and used together as a single token.
 .
 Predefined macros make convenient the preparation of
 .I eqn

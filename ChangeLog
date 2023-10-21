@@ -1,3 +1,24 @@
+2023-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* tmac/an.tmac (TH):
+	* tmac/mdoc/doc-common (doc-set-up-titles): Update default
+	footer trap location to leave a half-inch margin below the
+	footer, not 1/2 inch minus one vee.
+	* tmac/an.tmac (PT):
+	* tmac/mdoc/doc-common (doc-header): Adjust vertical spacing at
+	page top to leave a half-inch above the header, and 1 inch
+	distance from the page top to the top of the running text (in
+	practice, the "Name" section heading).
+
+	* tmac/groff_man.7.man.in (Options) <-rFT>:
+	* tmac/groff_mdoc.7.man (Options) <-rFT>: Document new default.
+
+	* tmac/tests/an_P-register-works.sh:
+	* tmac/tests/andoc_P-register-works.sh:
+	* tmac/tests/doc_P-register-works.sh: Update test expectations.
+
+	* NEWS: Add item.
+
 2023-10-16  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/refer.tmac (ref*add-J, ref*add-D, ref*add-E, ref*add-G)

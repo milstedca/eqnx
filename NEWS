@@ -91,6 +91,14 @@ o The an (man) macro package now supports a `TS` register to configure
   paragraph indentation, the line is broken after the tag.)  This
   parameter, formerly hard-coded as `1n`, now defaults to `2n`.
 
+o The an (man) and doc (mdoc) macro packages now use slightly different
+  vertical margins when formatting for typesetters, to align more
+  closely with the traditional ones.  Per man(7) in the AT&T Unix System
+  III manual (June 1980), the text area was 6.5 by 10 inches.  When
+  formatting for terminals with continuous rendering disabled (by
+  default, it is enabled), the page footer now sets 1 line higher than
+  before.
+
 o The new macro file "koi8-r.tmac" supports the KOI8-R character
   encoding, which supports the new Russian locale for groff.
 

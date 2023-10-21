@@ -3590,7 +3590,7 @@ the page text is broken before writing the footer.
 .
 Ignored if continuous rendering is enabled.
 .
-The default is\~\-0.5i.
+The default is \(lq\-0.5i\~\-\~1v\(rq.
 .
 .
 .TP

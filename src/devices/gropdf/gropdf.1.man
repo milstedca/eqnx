@@ -87,7 +87,7 @@ output driver for Portable Document Format
 .B \-v
 .
 .SY gropdf
-.B \-\-version
+.B \%\-\-version
 .YS
 .
 .
@@ -146,7 +146,7 @@ displays a usage message,
 while
 .B \-v
 and
-.B \-\-version
+.B \%\-\-version
 show version information;
 all exit afterward.
 .

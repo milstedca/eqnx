@@ -7081,6 +7081,8 @@ change it.
 @cindex escape character, formatting (@code{\e})
 @Defesc {\\e, , , }
 Interpolate the escape character.
+@cindex @code{\e}, interpretation in copy mode
+@code{\e} is interpreted even in copy mode (@pxref{Copy Mode}).
 @endDefesc
 
 @cindex formatting a backslash glyph (@code{\[rs]})
@@ -7351,6 +7353,9 @@ comment.@footnote{This claim may be more aspirational than descriptive.}
 
 @Defesc {\\", , , }
 Start a comment.  Everything up to the next newline is ignored.
+@cindex @code{\"}, interpretation in copy mode
+@code{\"} is interpreted even in copy mode, to disard the comment
+(@pxref{Copy Mode}).
 
 This may sound simple, but it can be tricky to keep the comments from
 interfering with the appearance of the output.
@@ -7397,6 +7402,9 @@ macro (namely @samp{''}).
 Start a comment; everything up to and including the next newline is
 ignored.  This @code{groff} extension was introduced to avoid the
 problems described above.
+@cindex @code{\#}, interpretation in copy mode
+@code{\#} is interpreted even in copy mode, to disard the comment
+(@pxref{Copy Mode}).
 
 @Example
 Test
@@ -7620,12 +7628,13 @@ Register contents are interpolated with the @code{\n} escape sequence.
 @cindex indirect assignments
 @cindex assignments, indirect
 Interpolate register with name @var{ident} (one-character
-name@tie{}@var{i}, two-character name @var{id}).  @code{\n} is
-interpreted even in copy mode (@pxref{Copy Mode}).  If the register is
+name@tie{}@var{i}, two-character name @var{id}).  If the register is
 undefined, it is created and assigned a value of@tie{}@samp{0}, that
 value is interpolated, and a warning in category @samp{reg} is emitted.
 @xref{Warnings}, for information about the enablement and suppression of
 warnings.
+@cindex @code{\n}, interpretation in copy mode
+@code{\n} is interpreted even in copy mode (@pxref{Copy Mode}).
 
 @Example
 .nr a 5
@@ -7801,8 +7810,9 @@ register.
 Interpolate the format of the register @var{reg} (one-character
 name@tie{}@var{r}, two-character name @var{rg}).  Zeroes represent
 Arabic formats.  If @var{reg} is not defined, @var{reg} is not created
-and nothing is interpolated.  @code{\g} is interpreted even in copy mode
-(@pxref{Copy Mode}).
+and nothing is interpolated.
+@cindex @code{\g}, interpretation in copy mode
+@code{\g} is interpreted even in copy mode (@pxref{Copy Mode}).
 @endDefesc
 
 @cindex register format, in expressions
@@ -9889,6 +9899,9 @@ Input line continuation is invisible to the formatter, with two
 exceptions: the @code{|} operator recognizes the new input line
 (@pxref{Numeric Expressions}), and the input line counter register
 @code{.c} is incremented.
+@cindex @code{\@key{RET}}, interpretation in copy mode
+@code{\RET} is interpreted even in copy mode.@footnote{@xref{Copy
+Mode}.}
 
 @c Wrap example at 56 columns (on the _output_).  We use 50n in the
 @c groff input to avoid line adjustment.
@@ -12381,7 +12394,10 @@ Define a string called @var{name} with contents @var{contents}.  If
 redefined; see @code{als} and @code{rm} below.  If @code{ds} is called
 with only one argument, @var{name} is defined as an empty string.
 Otherwise, GNU @code{troff} stores @var{contents} in copy
-mode.@footnote{@xref{Copy Mode}.}
+mode.
+@cindex @code{\*}, interpretation in copy mode
+@code{\*} is itself interpreted even in copy mode.@footnote{@xref{Copy
+Mode}.}
 
 The @code{\*} escape sequence interpolates a previously defined string
 @var{name} (one-character name@tie{}@var{n}, two-character name
@@ -13453,6 +13469,8 @@ first form expects only a single digit (1@leq{}@var{n}@leq{}9)), the
 second two digits (01@leq{}@var{nn}@leq{}99)), and the third any
 positive integer @var{nnn}.  Macros and strings accept an unlimited
 number of parameters.
+@cindex @code{\$}, interpretation in copy mode
+@code{\$} is interpreted even in copy mode.@footnote{@xref{Copy Mode}.}
 @endDefesc
 
 @Defreq {shift, [@Var{n}]}
@@ -13564,10 +13582,6 @@ Applying string interpolation to a macro does not change this name.
 @cindex mode, copy
 @cindex mode, copy
 
-@cindex @code{\n}, when reading text for a macro
-@cindex @code{\$}, when reading text for a macro
-@cindex @code{\*}, when reading text for a macro
-@cindex \@key{RET}, when reading text for a macro
 When GNU @code{troff} processes certain requests, most importantly those
 which define or append to a macro or string, it does so in @dfn{copy
 mode}: it copies the characters of the definition into a dedicated
@@ -13587,6 +13601,7 @@ processed immediately upon recognition, can be termed
 @dfn{interpretation mode}.
 
 @Defesc {\\\\, , , }
+@cindex @code{\\}, interpretation in copy mode
 The escape character, @code{\} by default, can escape itself.  This
 enables you to control whether a given @code{\n}, @code{\g}, @code{\$},
 @code{\*}, @code{\V}, or @code{\?} escape sequence is interpreted at the
@@ -13615,7 +13630,7 @@ a warning in category @samp{escape}, with two exceptions---@samp{\\} is
 the first.
 @endDefesc
 
-@cindex @code{\\}, when reading text for a macro
+@cindex @code{\.}, interpretation in copy mode
 @Defesc {\\., , , }
 @code{\.} escapes the control character.  It is similar to @code{\\} in
 that it isn't a true escape sequence.  It is used to permit nested macro
@@ -15396,6 +15411,9 @@ them from taking effect until the diverted text is actually output.  The
 @code{\!} escape sequence transparently embeds input up to and including
 the end of the line.  The @code{\?} escape sequence transparently embeds
 input until its own next occurrence.
+@cindex @code{\?}, interpretation in copy mode
+Unlike @code{\!}, @code{\?} is interpreted even in copy mode
+(@pxref{Copy Mode}).
 
 @cindex @code{\?}, and copy mode
 @cindex copy mode, and @code{\?}
@@ -16291,8 +16309,9 @@ Here a simple macro to write an index entry.
 @cindex mode, copy, and @code{\V}
 Interpolate the contents of the specified environment variable @var{env}
 (one-character name@tie{}@var{e}, two-character name @var{ev}) as
-returned by the function @cite{getenv@r{(3)}}.  @code{\V} is interpreted
-even in copy mode (@pxref{Copy Mode}).
+returned by the function @cite{getenv@r{(3)}}.
+@cindex @code{\V}, interpretation in copy mode
+@code{\V} is interpreted even in copy mode (@pxref{Copy Mode}).
 @endDefesc
 
 

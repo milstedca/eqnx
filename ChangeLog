@@ -7,8 +7,7 @@
 	* tmac/an.tmac (PT):
 	* tmac/mdoc/doc-common (doc-header): Adjust vertical spacing at
 	page top to leave a half-inch above the header, and 1 inch
-	distance from the page top to the top of the running text (in
-	practice, the "Name" section heading).
+	distance from the page top to the top of the running text.
 
 	* tmac/groff_man.7.man.in (Options) <-rFT>:
 	* tmac/groff_mdoc.7.man (Options) <-rFT>: Document new default.

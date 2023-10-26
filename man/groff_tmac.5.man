@@ -137,7 +137,7 @@ Macro packages come in two varieties;
 those which assume responsibility for page layout and other critical
 functions
 (\[lq]major\[rq] or \[lq]full-service\[rq])
-and those which do not
+and those that do not
 (\[lq]supplemental\[rq] or \[lq]auxiliary\[rq]).
 .
 GNU
@@ -866,7 +866,7 @@ is used if the box is
 .
 .IP
 .B \%INDENT
-precedes a value which leaves a gap between the border and the contents
+precedes a value that leaves a gap between the border and the contents
 inside the box.
 .
 .

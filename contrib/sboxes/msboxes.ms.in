@@ -72,7 +72,7 @@ is the command, which can be any of
 in combination.
 Thus,
 .Qq pagefill
-would draw a rectangle which covers the whole current page size (in
+would draw a rectangle that covers the whole current page size (in
 which case the rest of the parameters can be omitted because the box
 dimensions are taken from the current media size).
 .Qq boxfill ,
@@ -184,7 +184,7 @@ is used if the box is
 .Lt OUTLINED .
 .LP
 .Lt INDENT
-precedes a value which leaves a gap between the border and the contents
+precedes a value that leaves a gap between the border and the contents
 inside the box.
 .LP
 Each

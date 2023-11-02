@@ -13041,13 +13041,13 @@ an @code{if}, @code{ie}, or @code{while}
 request,@footnote{@xref{while}.} or as the argument to an @code{el}
 request.
 
-@code{\@}} ends a condition block and should appear on a line with other
-occurrences of itself as necessary to match @code{\@{} sequences.  It
-can be preceded by a control character, spaces, and tabs.  Input after
-any quantity of @code{\@}} sequences on the same line is processed only
-if all of the preceding conditions to which they correspond are true.
-Furthermore, a @code{\@}} closing the body of a @code{while} request
-must be the last such escape sequence on an input line.
+@code{\@}} ends a conditional block and should appear on a line with
+other occurrences of itself as necessary to match @code{\@{} sequences.
+It can be preceded by a control character, spaces, and tabs.  Input
+after any quantity of @code{\@}} sequences on the same line is processed
+only if all of the preceding conditions to which they correspond are
+true.  Furthermore, a @code{\@}} closing the body of a @code{while}
+request must be the last such escape sequence on an input line.
 
 Brace escape sequences outside of control structures have no meaning and
 produce no output.

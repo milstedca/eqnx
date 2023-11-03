@@ -3596,9 +3596,14 @@ struct hyphenation_language {
 dictionary language_dictionary(5);
 hyphenation_language *current_language = 0;
 
-static void set_hyphenation_language()
+static void select_hyphenation_language()
 {
-  symbol nm = get_name(true /* required */);
+  if (!has_arg()) {
+    error("hyphenation language selection request requires argument");
+    skip_line();
+    return;
+  }
+  symbol nm = get_name();
   if (!nm.is_null()) {
     current_language = (hyphenation_language *)language_dictionary.lookup(nm);
     if (!current_language) {
@@ -4153,7 +4158,7 @@ const char *hyphenation_language_reg::get_string()
 void init_hyphen_requests()
 {
   init_request("hw", hyphen_word);
-  init_request("hla", set_hyphenation_language);
+  init_request("hla", select_hyphenation_language);
   init_request("hpf", hyphenation_patterns_file);
   init_request("hpfa", hyphenation_patterns_file_append);
   register_dictionary.define(".hla", new hyphenation_language_reg);

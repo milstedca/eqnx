@@ -1,5 +1,16 @@
 2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Add diagnostic and trivially refactor.
+	(set_hyphenation_language): Rename this...
+	(select_hyphenation_language): ...to this.
+	(init_hyphen_requests): Update call site.
+
+	(select_hyphenation_language): Throw more helpful diagnostic
+	when not given an argument; promote "missing identifier" warning
+	to a context-rich error.
+
+2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/groff.texi (Line Continuation): Drop concept index entry
 	regarding use of `\R` escape sequence after `\c` on an input
 	line.  There is no longer anything special to say; `\R` works as

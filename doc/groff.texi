@@ -2605,17 +2605,17 @@ manual.
 Format the document with the @command{groff} command.  @command{nroff}
 can be useful for previewing.
 
-@CartoucheExample
+@Example
 $ editor radical.ms # vim, emacs, @dots{}
 $ nroff -ww -z -ms radical.ms # check for errors
 $ nroff -ms radical.ms | less -R
 $ groff -T ps -ms radical.ms > radical.ps
 $ see radical.ps # or your favorite PDF viewer
-@endCartoucheExample
+@endExample
 
 Our @file{radical.ms} document might look like this.
 
-@CartoucheExample
+@Example
 .LP
 Radical novelties are so disturbing that they tend to be
 suppressed or ignored, to the extent that even the
@@ -2623,7 +2623,7 @@ possibility of their existence in general is more often
 denied than admitted.
 
 @arrow{}That's what Dijkstra said, anyway.
-@endCartoucheExample
+@endExample
 
 @need 750
 @file{ms} exposes many aspects of document layout to user control via
@@ -2662,10 +2662,10 @@ rather than the macro package.  We'll discuss a few as applicable.  It
 is wise to specify a scaling unit when setting any register that
 represents a length, size, or distance.
 
-@CartoucheExample
+@Example
 .nr PS 10.5p \" Use 10.5-point type.
 .ds FAM P    \" Use Palatino font family.
-@endCartoucheExample
+@endExample
 
 @noindent
 In the foregoing, we see that @code{\"} begins a comment.  This is an
@@ -2711,10 +2711,10 @@ Prefix any words that start with a dot @samp{.} or neutral apostrophe
 interpreted as macro calls or requests.  Suffix @samp{.}, @samp{?}, and
 @samp{!} with @code{\&} when needed to cancel end-of-sentence detection.
 
-@CartoucheExample
+@Example
 My exposure was \&.5 to \&.6 Sv of neutrons, said Dr.\&
 Wallace after the criticality incident.
-@endCartoucheExample
+@endExample
 
 @c ---------------------------------------------------------------------
 
@@ -3234,7 +3234,7 @@ An example document description, using a cover page, follows.
 @cindex cover page in [@file{ms}], example markup
 @cindex example markup, cover page in [@file{ms}]
 
-@CartoucheExample
+@Example
 .RP
 .TL
 The Inevitability of Code Bloat
@@ -3259,9 +3259,8 @@ commercial offerings,
 free software tends to have fewer serious bugs and the
 added features are more in line with user demand.
 .AE
-
 @r{@dots{}the rest of the paper@dots{}}
-@endCartoucheExample
+@endExample
 
 @c ---------------------------------------------------------------------
 
@@ -3391,7 +3390,7 @@ first (also known as a hanging indent).  This is a Berkeley extension.
 
 The following example illustrates the use of paragraphing macros.
 
-@CartoucheExample
+@Example
 .NH 2
 Cases used in the 2001 study
 .LP
@@ -3421,7 +3420,7 @@ Underground Press, March 2002.
 A definitive work that answers all questions and
 criticisms about the quality and usability of free
 software.
-@endCartoucheExample
+@endExample
 
 @c ---------------------------------------------------------------------
 
@@ -3463,7 +3462,7 @@ This feature is a Berkeley extension.
 
 An example may be illustrative.
 
-@CartoucheExample
+@Example
 .NH 1
 Animalia
 .NH 2
@@ -3476,19 +3475,19 @@ Chordata
 Daimonia
 .NH 1
 Plantae
-@endCartoucheExample
+@endExample
 
 The above results in numbering as follows; the vertical space that
 normally precedes each heading is omitted.
 
-@Example
+@CartoucheExample
 1.  Animalia
 1.1.  Arthropoda
 1.1.1.  Crustacea
 1.2.  Chordata
 6.6.6.  Daimonia
 7.  Plantae
-@endExample
+@endCartoucheExample
 
 @DefmpstrList {SN-STYLE, ms}
 @DefmpstrItemx {SN-DOT, ms}
@@ -3539,7 +3538,7 @@ should be employed when assigning a value specified in points.
 @need 1000
 The input
 
-@CartoucheExample
+@Example
 .nr PS 10
 .nr GROWPS 3
 .nr PSINCR 1.5p
@@ -3551,7 +3550,7 @@ Felinae
 Felis catus
 .SH 2
 Machairodontinae
-@endCartoucheExample
+@endExample
 
 @noindent
 causes ``1. Carnivora'' to be printed in 13-point text, followed by
@@ -3653,11 +3652,11 @@ a hyphenation control escape sequence @code{\%} that would ordinarily
 start @var{text} must start @var{pre} instead to have the desired
 effect.
 
-@CartoucheExample
+@Example
 The CS course's students found one C language keyword
 .CW static ) \%(
 most troublesome.
-@endCartoucheExample
+@endExample
 
 @need 1000
 The foregoing example produces output as follows.
@@ -3671,12 +3670,12 @@ You can use the output line continuation escape sequence @code{\c} to
 achieve the same result (@pxref{Line Continuation}).  It is also
 portable to older @file{ms} implementations.
 
-@CartoucheExample
+@Example
 The CS course's students found one C language keyword
 \%(\c
 .CW \%static )
 most troublesome.
-@endCartoucheExample
+@endExample
 
 @code{groff} @file{ms} also offers strings to begin and end super- and
 subscripting.  These are GNU extensions.
@@ -3720,7 +3719,7 @@ The following is an example of a bulleted list.
 @cindex example markup, bulleted list [@file{ms}]
 @cindex bulleted list, example markup [@file{ms}]
 
-@CartoucheExample
+@Example
 .nr PI 2n
 A bulleted list:
 .IP \[bu]
@@ -3729,9 +3728,9 @@ lawyers
 guns
 .IP \[bu]
 money
-@endCartoucheExample
+@endExample
 
-@Example
+@CartoucheExample
 A bulleted list:
 
 @bullet{} lawyers
@@ -3739,13 +3738,13 @@ A bulleted list:
 @bullet{} guns
 
 @bullet{} money
-@endExample
+@endCartoucheExample
 
 The following is an example of a numbered list.
 @cindex example markup, numbered list [@file{ms}]
 @cindex numbered list, example markup [@file{ms}]
 
-@CartoucheExample
+@Example
 .nr step 0 1
 .nr PI 3n
 A numbered list:
@@ -3755,9 +3754,9 @@ lawyers
 guns
 .IP \n+[step]
 money
-@endCartoucheExample
+@endExample
 
-@Example
+@CartoucheExample
 A numbered list:
 
 1. lawyers
@@ -3765,7 +3764,7 @@ A numbered list:
 2. guns
 
 3. money
-@endExample
+@endCartoucheExample
 
 Here we have employed the @code{nr} request to create a register of our
 own, @samp{step}.  We initialized it to zero and assigned it an
@@ -3780,7 +3779,7 @@ The next example illustrates a glossary-style list.
 @cindex example markup, glossary-style list [@file{ms}]
 @cindex glossary-style list, example markup [@file{ms}]
 
-@CartoucheExample
+@Example
 A glossary-style list:
 .IP lawyers 0.4i
 Two or more attorneys.
@@ -3790,9 +3789,9 @@ preferably large-caliber.
 .IP money
 Gotta pay for those
 lawyers and guns!
-@endCartoucheExample
+@endExample
 
-@Example
+@CartoucheExample
 A glossary-style list:
 
 lawyers
@@ -3802,7 +3801,7 @@ guns  Firearms, preferably large-caliber.
 
 money
       Gotta pay for those lawyers and guns!
-@endExample
+@endCartoucheExample
 
 In the previous example, observe how the @code{IP} macro places the
 definition on the same line as the term if it has enough space.  If this
@@ -3810,35 +3809,35 @@ is not what you want, there are a few workarounds we will illustrate by
 modifying the example.  First, you can use a @code{br} request to force
 a break after printing the term or label.
 
-@CartoucheExample
+@Example
 .IP guns
 .br
 Firearms,
-@endCartoucheExample
+@endExample
 
 Second, you could apply the @code{\p} escape sequence to force a break.
 The space following the escape sequence is important; if you omit it,
 @code{groff} prints the first word of the paragraph text on the same
 line as the term or label (if it fits) @emph{then} breaks the line.
 
-@CartoucheExample
+@Example
 .IP guns
 \p Firearms,
-@endCartoucheExample
+@endExample
 
 Finally, you may append a horizontal motion to the marker with the
 @code{\h} escape sequence; using the same amount as the indentation will
 ensure that the marker is too wide for @code{groff} to treat it as
 ``fitting'' on the same line as the paragraph text.
 
-@CartoucheExample
+@Example
 .IP guns\h'0.4i'
 Firearms,
-@endCartoucheExample
+@endExample
 
 In each case, the result is the same.
 
-@Example
+@CartoucheExample
 A glossary-style list:
 
 lawyers
@@ -3849,7 +3848,7 @@ guns
 
 money
       Gotta pay for those lawyers and guns!
-@endExample
+@endCartoucheExample
 
 @c ---------------------------------------------------------------------
 
@@ -3876,7 +3875,7 @@ indented paragraphs.
 @cindex nested lists [@file{ms}]
 For example, you may wish to structure lists hierarchically.
 
-@CartoucheExample
+@Example
 .IP \[bu] 2
 Lawyers:
 .RS
@@ -3890,9 +3889,9 @@ and Howe.
 .RE
 .IP \[bu]
 Guns
-@endCartoucheExample
+@endExample
 
-@Example
+@CartoucheExample
 @bullet{} Lawyers:
 
   @bullet{}  Dewey,
@@ -3902,7 +3901,7 @@ Guns
   @bullet{}  Howe.
 
 @bullet{} Guns
-@endExample
+@endCartoucheExample
 
 @c ---------------------------------------------------------------------
 
@@ -3960,7 +3959,7 @@ paragraphing macro, and invoking the @code{sp} request before calling
 @code{B2}.
 
 @c Wrap example at 58 columns.
-@CartoucheExample
+@Example
 .LP
 .B1
 .I Warning:
@@ -3968,7 +3967,7 @@ Happy Fun Ball may suddenly accelerate to dangerous
 speeds.
 .sp \n[PD]/2 \" space by half the inter-paragraph distance
 .B2
-@endCartoucheExample
+@endExample
 
 If you want a boxed keep to float, enclose the @code{B1} and @code{B2}
 calls within a pair of @code{KF} and @code{KE} calls.
@@ -4031,7 +4030,7 @@ may cause a footnote with a display at its end to ``emptily'' spill to
 the next page.  Consider the following tactic to compensate.
 
 @c Wrap example at 58 columns.
-@CartoucheExample
+@Example
 .FS
 Recall the ideal gas law.
 .nr DD-saved \n[DD] \" stash display distance
@@ -4043,7 +4042,7 @@ P V = n R T
 .EN
 .FE
 .nr DD \n[DD-saved] \" restore previous setting
-@endCartoucheExample
+@endExample
 
 @c ---------------------------------------------------------------------
 
@@ -4116,7 +4115,7 @@ an unnumbered heading (@code{SH}).
 The following is an example of how to set up a table that may print
 across two or more pages.
 
-@CartoucheExample
+@Example
 .TS H
 allbox;
 Cb | Cb .
@@ -4127,7 +4126,7 @@ _
 GH-1978@arrow{}Fribulating gonkulator
 @r{@dots{}the rest of the table follows@dots{}}
 .TE
-@endCartoucheExample
+@endExample
 
 @noindent
 Attempting to place a multi-page table inside a keep can lead to
@@ -4138,11 +4137,11 @@ is used.
 Mathematics can be typeset using the language of the @code{eqn}
 preprocessor.
 
-@CartoucheExample
+@Example
 .EQ C (\*[SN-NO-DOT]a)
 p ~ = ~ q sqrt @{ ( 1 + ~ ( x / q sup 2 ) @}
 .EN
-@endCartoucheExample
+@endExample
 
 @noindent
 This input formats a labelled equation.  We used the @code{SN-NO-DOT}
@@ -4152,7 +4151,7 @@ us more flexibility to reorganize the document.
 @need 200
 Create diagrams with @command{gpic}.
 
-@CartoucheExample
+@Example
 .PS
 circle "input";
 arrow;
@@ -4160,7 +4159,7 @@ box width 1.5i "\f[CR]groff -Rept -ms\f[]";
 arrow;
 circle "output";
 .PE
-@endCartoucheExample
+@endExample
 
 @command{groff} options run preprocessors on the input:@: @option{-e}
 for @command{geqn}, @option{-p} for @command{gpic}, @option{-R} for
@@ -4258,9 +4257,9 @@ footnote line length is required, recall that arithmetic expressions in
 @code{roff} input are evaluated strictly from left to right, with no
 operator precedence (parentheses are honored).
 
-@CartoucheExample
+@Example
 .ds FR 0+3i \" Set footnote line length to 3 inches.
-@endCartoucheExample
+@endExample
 
 @c ---------------------------------------------------------------------
 
@@ -4279,9 +4278,9 @@ Czech, German, Spanish, French, Italian, Russian, and Swedish.  Load the
 desired localization macro package after @file{ms}; see
 @cite{groff_tmac@r{(5)}}.
 
-@CartoucheExample
+@Example
 $ groff -ms -mfr bienvenue.ms
-@endCartoucheExample
+@endExample
 
 @need 250
 The following strings are available.
@@ -4519,7 +4518,7 @@ Here's an example of typical @file{ms} table of contents preparation.
 We employ horizontal escape sequences @code{\h} to indent the entries by
 sectioning depth.
 
-@CartoucheExample
+@Example
 .NH 1
 Introduction
 .XS
@@ -4542,7 +4541,7 @@ Findings
 .XE
 @r{@dots{}}
 .TC
-@endCartoucheExample
+@endExample
 
 The remaining features in this subsubsection are GNU extensions.
 @code{groff} @file{ms} obviates the need to repeat heading text after
@@ -4579,7 +4578,7 @@ We could therefore produce a table of contents similar to that in the
 previous example with fewer macro calls.  (The difference is that this
 input follows the ``Approach'' entries with leaders and page numbers.)
 
-@CartoucheExample
+@Example
 .NH 1
 .XN Introduction
 @r{@dots{}}
@@ -4591,20 +4590,20 @@ input follows the ``Approach'' entries with leaders and page numbers.)
 .NH 1
 .XN Findings
 @r{@dots{}}
-@endCartoucheExample
+@endExample
 
 To get the section number of the numbered headings into the table of
 contents entries, we might define @code{XN-REPLACEMENT} as follows.
 (We obtain the heading depth from @code{groff} @file{ms}'s internal
 register @code{nh*hl}.)
 
-@CartoucheExample
+@Example
 .de XN-REPLACEMENT
 .XN-INIT
 .XH-UPDATE-TOC \\n[nh*hl] \\$@@
 \&\\*[SN] \\$*
 ..
-@endCartoucheExample
+@endExample
 
 You can change the style of the leader that bridges each table of
 contents entry with its page number; define the @code{TC-LEADER} special
@@ -4793,10 +4792,10 @@ macro, and you want to redefine the aliased name, not its target.}  For
 informal purposes, a simple definition of @code{UX} should maintain the
 readability of the document's substance.
 
-@CartoucheExample
+@Example
 .rm UX
 .ds UX Unix\"
-@endCartoucheExample
+@endExample
 
 @c ---------------------------------------------------------------------
 

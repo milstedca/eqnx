@@ -1336,7 +1336,10 @@ and
 .CW SN\-NO\-DOT
 (with the terminating period omitted).
 .
-These are GNU extensions.
+These,
+and
+.CW SN\-STYLE ,
+are GNU extensions.
 .
 .
 .PP

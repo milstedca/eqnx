@@ -464,7 +464,7 @@ Documentation License''.
 @title groff
 @subtitle The GNU implementation of @code{troff}
 @subtitle Edition 1.23.0+Git
-@subtitle October 2023
+@subtitle November 2023
 @author Trent@tie{}A.@: Fisher
 @author Werner Lemberg
 @author G.@tie{}Branden Robinson
@@ -536,6 +536,7 @@ extensively for over thirty years.
 @c =====================================================================
 
 @node Background, What Is @code{groff}?, Introduction, Introduction
+@anchor{History} @c 1.22.4
 @section Background
 @cindex background
 
@@ -577,6 +578,7 @@ A history relating @code{groff} to its forerunners @code{roff},
 @c =====================================================================
 
 @node What Is @code{groff}?, GNU @command{troff} Capabilities, Background, Introduction
+@anchor{What Is groff?} @c 1.22.4
 @section What Is @code{groff}?
 @cindex what is @code{groff}?
 @cindex @code{groff}---what is it?
@@ -619,6 +621,7 @@ document from maintainable form to device-ready output.
 @c =====================================================================
 
 @node GNU @command{troff} Capabilities, Macro Package Intro, What Is @code{groff}?, Introduction
+@anchor{groff Capabilities} @c 1.22.4
 @section GNU @command{troff} Capabilities
 @cindex GNU @command{troff} capabilities
 @cindex capabilities of GNU @command{troff}
@@ -723,6 +726,7 @@ mathematical constraint language.
 @c =====================================================================
 
 @node Output Device Intro, Installation, Preprocessor Intro, Introduction
+@anchor{Output device intro} @c 1.22.4
 @section Output Devices
 @cindex postprocessors
 @cindex output devices
@@ -912,6 +916,7 @@ configuration).  It can optionally preprocess input with any of
 @code{gpic}, @code{geqn}, @code{gtbl}, @code{ggrn}, @code{grap},
 @code{gchem}, @code{grefer}, @code{gsoelim}, or @code{preconv}.
 
+@anchor{Output Devices} @c 1.22.4
 This section documents only options to the @command{groff} front end.
 Since it passes many of its arguments to @command{gtroff}, we describe
 many of the latter's options here.  Arguments to preprocessors and
@@ -1073,6 +1078,8 @@ file name arguments.
 line and as arguments to @code{psbb}, @code{so}, and @code{soquiet}
 requests.
 
+@anchor{Embedding PDF} @c 1.22.4
+@anchor{Embedding PostScript} @c 1.22.4
 @item
 Output drivers may search for files; for instance, @command{grops} looks
 for files named in @samp{\X'ps: import @r{@dots{}}'}, @samp{\X'ps: file
@@ -1580,6 +1587,8 @@ be customized as part of the build-time configuration process.
 @c =====================================================================
 
 @node Paper Format, Invocation Examples, Font Directories, Invoking groff
+@anchor{Paper Formats} @c 1.22.4
+@anchor{Paper Size} @c 1.22.4
 @section Paper Format
 @cindex paper format
 @cindex format, paper
@@ -1702,6 +1711,7 @@ are equivalent.
 @c =====================================================================
 
 @node Tutorial for Macro Package Users, Major Macro Packages, Invoking groff, Top
+@anchor{Tutorial for Macro Users} @c 1.22.4
 @chapter Tutorial for Macro Package Users
 @cindex tutorial for macro package users
 @cindex macros packages, tutorial for users of
@@ -2057,6 +2067,7 @@ Layout}.  Commonly, packages support registers to tune these values.
 @c ---------------------------------------------------------------------
 
 @node Displays and Keeps, Footnotes and Endnotes, Page Layout Adjustment, Common Features
+@anchor{Displays} @c 1.22.4
 @subsection Displays and Keeps
 @cindex displays
 
@@ -2087,6 +2098,7 @@ sort when it won't fit on the page.
 @c ---------------------------------------------------------------------
 
 @node Footnotes and Endnotes, Table of Contents, Displays and Keeps, Common Features
+@anchor{Footnotes and Annotations} @c 1.22.4
 @subsection Footnotes and Endnotes
 @cindex footnotes
 @cindex endnotes
@@ -2122,6 +2134,7 @@ pages at the time the document is rendered; see @cite{gropdf@r{(1)}}.
 @c ---------------------------------------------------------------------
 
 @node Indexing, Document Formats, Table of Contents, Common Features
+@anchor{Indices} @c 1.22.4
 @subsection Indexing
 @cindex index, in macro package
 
@@ -2147,6 +2160,7 @@ preference to the formatter requests presented earlier, where possible.
 @c ---------------------------------------------------------------------
 
 @node Columnation, Font and Size Changes, Document Formats, Common Features
+@anchor{Multiple Columns} @c 1.22.4
 @subsection Columnation
 
 Macro packages apart from @file{man} and @file{mdoc} for man page
@@ -2166,6 +2180,7 @@ italic corrections automatically.  @xref{Italic Corrections}.
 @c ---------------------------------------------------------------------
 
 @node Predefined Text, Preprocessor Support, Font and Size Changes, Common Features
+@anchor{Predefined Strings} @c 1.22.4
 @subsection Predefined Text
 
 Most macro packages supply predefined strings to set prepared text like
@@ -2553,6 +2568,7 @@ and Research Tenth Edition Unix have been recreated.
 @c ---------------------------------------------------------------------
 
 @node ms Introduction, ms Document Structure, ms, ms
+@anchor{ms Intro} @c 1.22.4
 @subsection Introduction
 
 The @file{ms} macros are the oldest surviving package for @code{roff}
@@ -2705,6 +2721,7 @@ Wallace after the criticality incident.
 @c ---------------------------------------------------------------------
 
 @node ms Document Structure, ms Document Control Settings, ms Introduction, ms
+@anchor{General ms Structure} @c 1.22.4
 @subsection Document Structure
 @cindex @file{ms} macros, general structure
 
@@ -2756,6 +2773,7 @@ collection, its preparation requires separate processing.
 @c ---------------------------------------------------------------------
 
 @node ms Document Control Settings, ms Document Description Macros, ms Document Structure, ms
+@anchor{ms Document Control Registers} @c 1.22.4
 @subsection Document Control Settings
 @cindex @file{ms} macros, document control settings
 
@@ -3135,6 +3153,7 @@ Default: @code{\w'000'}
 @c ---------------------------------------------------------------------
 
 @node ms Document Description Macros, ms Body Text, ms Document Control Settings, ms
+@anchor{ms Cover Page Macros} @c 1.22.4
 @subsection Document Description Macros
 @cindex @file{ms} macros, document description
 @cindex document description macros, [@file{ms}]
@@ -3300,6 +3319,7 @@ extension.
 @c ---------------------------------------------------------------------
 
 @node Typographical symbols in ms, Paragraphs in ms, Text settings in ms, ms Body Text
+@anchor{ms Strings and Special Characters} @c 1.22.4
 @subsubsection Typographical symbols
 @cindex @file{ms} macros, obtaining typographical symbols
 
@@ -3556,6 +3576,7 @@ and displays} and @ref{ms Insertions}.
 @c ---------------------------------------------------------------------
 
 @node Typeface and decoration, Lists in ms, Headings in ms, ms Body Text
+@anchor{Highlighting in ms} @c 1.22.4
 @subsubsection Typeface and decoration
 
 The @file{ms} macros provide a variety of ways to style text.
@@ -3835,6 +3856,7 @@ money
 @c ---------------------------------------------------------------------
 
 @node Indented regions in ms, ms keeps and displays, Lists in ms, ms Body Text
+@anchor{Indentation values in ms} @c 1.22.4
 @subsubsection Indented regions
 
 You can indent a region of text while otherwise formatting it normally.
@@ -3887,6 +3909,7 @@ Guns
 @c ---------------------------------------------------------------------
 
 @node ms keeps and displays, ms Insertions, Indented regions in ms, ms Body Text
+@anchor{ms Displays and Keeps} @c 1.22.4
 @subsubsection Keeps, boxed keeps, and displays
 @cindex @file{ms} macros, displays
 @cindex @file{ms} macros, keeps
@@ -4089,6 +4112,7 @@ When @code{refer} emits collected references (as might be done on a
 ``Works Cited'' page), it interpolates the @code{REFERENCES} string as
 an unnumbered heading (@code{SH}).
 
+@anchor{Example multi-page table} @c 1.22.4
 @cindex table, multi-page, example [@file{ms}]
 @cindex multi-page table example [@file{ms}]
 The following is an example of how to set up a table that may print
@@ -4378,6 +4402,7 @@ first numbered pages.
 @c ---------------------------------------------------------------------
 
 @node Tab Stops in ms, ms Margins, ms Headers and Footers, ms Page Layout
+@anchor{Tabstops in ms} @c 1.22.4
 @subsubsection Tab stops
 
 Use the @code{ta} request to define tab stops as needed.  @xref{Tabs and
@@ -4593,6 +4618,8 @@ spread the dots.  The width of the page number field is stored in the
 @c ---------------------------------------------------------------------
 
 @node Differences from AT&T ms, ms Naming Conventions, ms Page Layout, ms
+@anchor{Additional ms Macros} @c 1.22.4
+@anchor{Missing ms Macros} @c 1.22.4
 @subsection Differences from @acronym{AT&T} @file{ms}
 @cindex @file{ms} macros, @code{groff} differences from @acronym{AT&T}
 @cindex @acronym{AT&T} @file{ms}, macro package differences
@@ -4931,6 +4958,7 @@ Interpolate capital OE ligature.
 @c ---------------------------------------------------------------------
 
 @node ms Naming Conventions,  , ms Legacy Features, ms
+@anchor{Naming Conventions} @c 1.22.4
 @subsection Naming Conventions
 @cindex @file{ms} macros, naming conventions
 @cindex naming conventions, @file{ms} macros
@@ -4979,6 +5007,7 @@ Names containing only uppercase letters and digits.
 @c =====================================================================
 
 @node GNU troff Reference, File Formats, Major Macro Packages, Top
+@anchor{gtroff Reference} @c 1.22.4
 @chapter GNU @code{troff} Reference
 @cindex reference, @command{gtroff}
 @cindex @command{gtroff}, reference
@@ -5071,6 +5100,7 @@ inter-sentence space.
 @c ---------------------------------------------------------------------
 
 @node Filling, Sentences, Text, Text
+@anchor{Filling and Adjusting} @c 1.22.4
 @subsection Filling
 
 When GNU @code{troff} starts up, it obtains information about the device
@@ -5265,6 +5295,7 @@ several parameters that can prevent it in certain circumstances.
 @c ---------------------------------------------------------------------
 
 @node Breaking, Adjustment, Hyphenation, Text
+@anchor{Implicit Line Breaks} @c 1.22.4
 @subsection Breaking
 @cindex break
 @cindex implicit line break
@@ -5344,6 +5375,7 @@ Filling and Adjustment}.
 @c ---------------------------------------------------------------------
 
 @node Tabs and Leaders, Input Conventions, Adjustment, Text
+@anchor{Tab Stops} @c 1.22.4
 @subsection Tabs and Leaders
 
 @cindex horizontal tab character
@@ -5381,6 +5413,7 @@ lay out tables.
 @c ---------------------------------------------------------------------
 
 @node Requests and Macros, Macro Packages, Tabs and Leaders, Text
+@anchor{Requests} @c 1.22.4
 @subsection Requests and Macros
 
 We have now encountered almost all of the syntax there is in the
@@ -5425,6 +5458,7 @@ define macros.  Macros are invoked like requests, enabling the request
 repertoire to be extended or overridden.@footnote{Argument handling in
 macros is more flexible but also more complex.  @xref{Calling Macros}.}
 
+@anchor{Macros} @c 1.22.4
 @cindex macro
 @cindex calling a macro
 @cindex interpolation
@@ -6143,6 +6177,7 @@ scaling unit.
 @c BEGIN Keep (roughly) parallel with section "Numeric expressions" of
 @c groff(7).
 @node Numeric Expressions, Identifiers, Measurements, GNU troff Reference
+@anchor{Expressions} @c 1.22.4
 @section Numeric Expressions
 @cindex numeric expressions
 @cindex expressions, numeric
@@ -6674,6 +6709,8 @@ emitted, and the previous contents of @samp{xxx} are lost.
 @c =====================================================================
 
 @node Formatter Instructions, Registers, Identifiers, GNU troff Reference
+@anchor{Embedded Commands} @c 1.22.4
+@anchor{Escapes} @c 1.22.4
 @section Formatter Instructions
 @cindex formatter instructions
 @cindex instructing the formatter
@@ -6883,6 +6920,7 @@ definitions (or any input lines) with blank lines.
 
 @need 1000
 @node Calling Macros, Using Escape Sequences, Invoking Requests, Formatter Instructions
+@anchor{Request and Macro Arguments} @c 1.22.4
 @subsection Calling Macros
 @cindex calling macros
 @cindex macro arguments
@@ -7721,6 +7759,7 @@ disable auto-incrementation of the register.
 @c ---------------------------------------------------------------------
 
 @node Assigning Register Formats, Built-in Registers, Auto-increment, Registers
+@anchor{Assigning Formats} @c 1.22.4
 @subsection Assigning Register Formats
 @cindex assign number format to register (@code{af})
 @cindex number format, assigning to register (@code{af})
@@ -8044,6 +8083,7 @@ This document was formatted in \n(y4.
 @c =====================================================================
 
 @node Manipulating Filling and Adjustment, Manipulating Hyphenation, Registers, GNU troff Reference
+@anchor{Manipulating Filling and Adjusting} @c 1.22.4
 @section Manipulating Filling and Adjustment
 @cindex manipulating filling and adjustment
 @cindex filling and adjustment, manipulating
@@ -9624,6 +9664,7 @@ instead of @code{tr} it prints @samp{a}.
 @c =====================================================================
 
 @node @code{troff} and @code{nroff} Modes, Line Layout, Character Translations, GNU troff Reference
+@anchor{Troff and Nroff mode} @c 1.22.4
 @section @code{troff} and @code{nroff} Modes
 @cindex @code{troff} mode
 @cindex mode, @code{troff}
@@ -9874,6 +9915,7 @@ collected line still uses the old line length value.
 @c =====================================================================
 
 @node Line Continuation, Page Layout, Line Layout, GNU troff Reference
+@anchor{Line Control} @c 1.22.4
 @section Line Continuation
 @cindex line control
 @cindex control, line
@@ -10269,6 +10311,7 @@ one.
 
 @c BEGIN Keep (roughly) parallel with section "Using fonts" of groff(7).
 @node Using Fonts, Manipulating Type Size and Vertical Spacing, Page Control, GNU troff Reference
+@anchor{Fonts and Symbols} @c 1.22.4
 @section Using Fonts
 @cindex font
 
@@ -10376,6 +10419,7 @@ attributes).
 @c ---------------------------------------------------------------------
 
 @node Selecting Fonts, Font Families, Using Fonts, Using Fonts
+@anchor{Changing Fonts} @c 1.22.4
 @subsection Selecting Fonts
 @cindex font, selection
 
@@ -10743,6 +10787,7 @@ followed, although GNU @code{troff} does not enforce this strictly.
 @c ---------------------------------------------------------------------
 
 @node Using Symbols, Character Classes, Font Positions, Using Fonts
+@anchor{Special Characters} @c 1.22.4
 @subsection Using Symbols
 @cindex using symbols
 @cindex symbols, using
@@ -11884,6 +11929,7 @@ And a third.
 
 @need 2000
 @node Manipulating Type Size and Vertical Spacing, Colors, Using Fonts, GNU troff Reference
+@anchor{Sizes} @c 1.22.4
 @section Manipulating Type Size and Vertical Spacing
 @cindex manipulating type size and vertical spacing
 
@@ -11918,6 +11964,7 @@ used lead metal (Latin @emph{plumbum}).}
 @c ---------------------------------------------------------------------
 
 @node Changing the Type Size, Changing the Vertical Spacing, Manipulating Type Size and Vertical Spacing, Manipulating Type Size and Vertical Spacing
+@anchor{Changing Type Sizes} @c 1.22.4
 @subsection Changing the Type Size
 
 @DefreqList {ps, [@Var{size}]}
@@ -12099,6 +12146,7 @@ it is associated with the environment (@pxref{Environments}).
 @c BEGIN Keep (roughly) parallel with subsection "Fractional type sizes
 @c and new scaling units" of groff_diff(7).
 @node Using Fractional Type Sizes,  , Changing the Type Size, Manipulating Type Size and Vertical Spacing
+@anchor{Fractional Type Sizes} @c 1.22.4
 @subsection Using Fractional Type Sizes
 @cindex fractional type sizes
 @cindex fractional point sizes
@@ -13576,6 +13624,7 @@ Applying string interpolation to a macro does not change this name.
 @c ---------------------------------------------------------------------
 
 @node Copy Mode, , Parameters, Writing Macros
+@anchor{Copy-in Mode} @c 1.22.4
 @subsection Copy Mode
 @cindex copy mode
 @cindex copy mode
@@ -14123,6 +14172,7 @@ an actual emergency!
 @c =====================================================================
 
 @node Drawing Geometric Objects, Deferring Output, Page Motions, GNU troff Reference
+@anchor{Drawing Requests} @c 1.22.4
 @section Drawing Geometric Objects
 @cindex drawing requests
 @cindex requests for drawing
@@ -15035,6 +15085,7 @@ supplied, the default blank line behavior is (re-)established.
 @c ---------------------------------------------------------------------
 
 @node Leading Space Traps, End-of-input Traps, Blank Line Traps, Traps
+@anchor{Leading Spaces Traps} @c 1.22.4
 @subsection Leading Space Traps
 @cindex leading space traps
 @cindex traps, leading space
@@ -15863,6 +15914,7 @@ line emitted in the environment.
 @c =====================================================================
 
 @node Suppressing Output, I/O, Environments, GNU troff Reference
+@anchor{Suppressing output} @c 1.22.4
 @section Suppressing Output
 
 @Defesc {\\O, [, num, ]}
@@ -17576,6 +17628,7 @@ partially collected line at the end of input; GNU @code{troff} will not.
 @c =====================================================================
 
 @node File Formats, Copying This Manual, GNU troff Reference, Top
+@anchor{File formats} @c 1.22.4
 @chapter File Formats
 @cindex file formats
 @cindex formats, file
@@ -18481,6 +18534,7 @@ follow quite naturally.
 
 @c BEGIN Keep parallel with groff_font(5).
 @node Device and Font Description Files,  , gtroff Output, File Formats
+@anchor{Font Files} @c 1.22.4
 @section Device and Font Description Files
 @cindex font files
 @cindex files, font
@@ -18716,6 +18770,7 @@ information about the device.
 @c ---------------------------------------------------------------------
 
 @node Font Description File Format,  , DESC File Format, Device and Font Description Files
+@anchor{Font File Format} @c 1.22.4
 @subsection Font Description File Format
 @cindex font file, format
 @cindex font description file, format
@@ -19005,6 +19060,7 @@ no-break control character.  @xref{Invoking Requests}.
 @c =====================================================================
 
 @node Escape Sequence Index, Operator Index, Request Index, Top
+@anchor{Escape Index} @c 1.22.4
 @appendix Escape Sequence Index
 
 The escape character, @code{\} by default, is always followed by at
@@ -19085,6 +19141,7 @@ any length @code{xxx} with @samp{\*[xxx]}.  @xref{Strings}.
 @c =====================================================================
 
 @node File Keyword Index, Program and File Index, String Index, Top
+@anchor{Font File Keyword Index} @c 1.22.4
 @appendix File Keyword Index
 
 @xref{Device and Font Description Files}.

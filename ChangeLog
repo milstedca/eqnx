@@ -1,3 +1,18 @@
+2023-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* doc/groff.texi: Add numerous @anchor commands to aid
+	resolution of hyperlinks into this manual based on the node
+	names used in groff 1.22.4 (and for several years previous, as
+	the document saw little change for a while).  Some node names, I
+	did not add anchors for; they correspond either to material that
+	we've dropped altogether from our Texinfo manual (mainly a
+	history that can now be found [much updated] in roff(7), and a
+	somewhat stale duplicate of groff_man(7), which no GNU Info
+	partisan would read anyway) or were empty stubs anyway.  An HTTP
+	404 response is therefore honest in such cases.  Thanks to Gavin
+	Smith and Thérèse Godefroy for this and other useful
+	suggestions.
+
 2023-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (TH):

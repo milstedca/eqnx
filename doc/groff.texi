@@ -711,8 +711,7 @@ not used on all systems; see @ref{Invoking groff}.}
 
 @code{groff} also supports @code{grap}, a preprocessor for drawing
 graphs.  A free implementation of it can be obtained
-separately.@footnote{@
-@uref{https://www.lunabase.org/~faber/Vault/software/grap/}}
+separately.@footnote{@uref{https://www.lunabase.org/~faber/Vault/software/grap/}}
 
 Unique to @code{groff} is the @code{preconv} preprocessor that enables
 GNU @command{troff} to handle documents in a variety of input encodings.
@@ -1653,7 +1652,7 @@ $ groff -t -m an -T utf8 /usr/share/man/man1/groff.1
 
 The librarian will also pipe the output through a pager, which might not
 interpret terminal escape sequences @command{groff} emits for boldface,
-underlining, italics, or hyperlining; see the @cite{grotty@r{(1)}} man
+underlining, italics, or hyperlinking; see the @cite{grotty@r{(1)}} man
 page for a discussion.
 
 To process a @code{roff} input file using the preprocessors
@@ -1881,9 +1880,9 @@ inch of space ``left over'' does not appear at the top of the next.
 If you desire precise spacing control when using a macro package, be
 advised that it might not honor @code{sp} requests as you expect; it can
 use a formatter feature called @slanted{no-space mode} to prevent excess
-space from accumulating.  Use the facilities the package offers to
-control spacing between paragraphs, before section headings, and around
-displays (discussed below).  @xref{Manipulating Spacing}.
+space from accumulating.  @xref{Manipulating Spacing}.  Use the
+facilities the package offers to control spacing between paragraphs,
+before section headings, and around displays (discussed below).
 
 @cindex centering lines (introduction)
 @cindex lines, centering (introduction)
@@ -2007,7 +2006,7 @@ respectively.  These are frequently used to construct lists.
 @Example
   @result{} o    This  list  item  starts with a bullet.  When
   @result{}      producing output for a device using the ASCII
-  @result{}      character set, an @quoteleft{}o@quoteright{} is @
+  @result{}      character set, an @quoteleft{}o@quoteright{} is@
 formatted instead.
 @endExample
 
@@ -2017,7 +2016,7 @@ Often, use of the same macro without a tag continues such a discussion.
 @Example
   @result{} -xyz  This option is recognized but ignored.
   @result{}
-  @result{}       It had a security hole that we don@quoteright{}t @
+  @result{}       It had a security hole that we don@quoteright{}t@
 discuss.
 @endExample
 
@@ -8391,11 +8390,11 @@ between the `.ce' and the `.ad c' requests.
 .FR
     @result{} This is a small text fragment that shows
     @result{}              the differences
-    @result{} between the @quoteleft{}.ce@quoteright{} and the @
+    @result{} between the @quoteleft{}.ce@quoteright{} and the@
 @quoteleft{}.ad c@quoteright{} requests.
     @result{}
     @result{} This is a small text fragment that shows
-    @result{}  the differences between the @
+    @result{}  the differences between the@
 @quoteleft{}.ce@quoteright{} and
     @result{}         the @quoteleft{}.ad c@quoteright{} requests.
 @endExample
@@ -9214,7 +9213,7 @@ any.
 Interpolate a tab in copy mode; see @ref{Copy Mode}.
 @endDefesc
 
-@DefreqList {ta, [[@Var{n1} @Var{n2} @dots{} @Var{nn} ]@t{T} @Var{r1} @
+@DefreqList {ta, [[@Var{n1} @Var{n2} @dots{} @Var{nn} ]@t{T} @Var{r1}@
  @Var{r2} @dots{} @Var{rn}]}
 @DefregListEndx {.tabs}
 Change tab stop positions.  This request takes a series of tab
@@ -14975,7 +14974,7 @@ face
 .ST I 1
 oblique\c
 face
-    @result{} @i{oblique} face @i{oblique}face @
+    @result{} @i{oblique} face @i{oblique}face@
 @r{(second ``face'' upright)}
 @endExample
 
@@ -14992,7 +14991,7 @@ change the previous example to use @code{itc} instead.
 @r{@dots{}}
 .  itc \\$2 ES
 @r{@dots{}}
-    @result{} @i{oblique} face @i{obliqueface} @
+    @result{} @i{oblique} face @i{obliqueface}@
 @r{(second ``face'' oblique)}
 @endExample
 

@@ -31,6 +31,10 @@
 	Smith and Thérèse Godefroy for this and other useful
 	suggestions.
 
+	Fixes <https://savannah.gnu.org/bugs/?64758>.  Thanks to Ingo
+	Schwarze for the report and Gavin Smith for proposing a
+	resolution technique.
+
 2023-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* tmac/an.tmac (TH):

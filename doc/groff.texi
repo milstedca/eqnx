@@ -11693,14 +11693,13 @@ ffl).
 @endDefreq
 
 @dfn{Pairwise kerning} is another subtle typesetting mechanism that
-modifies the distance between a glyph pair to improve readability.  In
-most cases (but not always) the distance is decreased.
+modifies the distance between adjacent glyphs in a pair to improve
+readability.  In most cases (but not always) the distance is decreased.
 @iftex
 For example, compare the combination of the letters `V' and `A'.  With
 kerning, `VA' is printed.  Without kerning it appears as `V@w{}A'.
 @end iftex
-Typewriter-like fonts and fonts for terminals where all glyphs have the
-same width don't use kerning.
+Monospaced (typewriter-like) fonts and terminals don't use kerning.
 
 @DefreqList {kern, [@Var{flag}]}
 @DefregListEndx {.kern}

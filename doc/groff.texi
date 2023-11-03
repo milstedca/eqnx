@@ -3199,11 +3199,11 @@ Call it repeatedly to specify multiple authors.
 @endDefmac
 
 @Defmac {AI, , ms}
-Specify the preceding author's institution.  An @code{AU} call is
-usefully followed by at most one @code{AI} call; if there are more, the
-last @code{AI} call controls.  @file{ms} collects text on input lines
-following this call into the author's institution until reaching
-@code{AU}, @code{AB}, or a heading or paragraphing macro call.
+Specify the preceding author's institutional affiliation.  An @code{AU}
+call is usefully followed by at most one @code{AI} call; if there are
+more, the last @code{AI} call controls.  @file{ms} collects text on
+input lines following this call into the author's institution until
+reaching @code{AU}, @code{AB}, or a heading or paragraphing macro call.
 @endDefmac
 
 @Defmac {DA, [@Var{x} @dots{}], ms}

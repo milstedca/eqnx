@@ -542,7 +542,7 @@ Call it repeatedly to specify multiple authors.
 .
 .TP
 .B .AI
-Specify the preceding author's institution.
+Specify the preceding author's institutional affiliation.
 .
 An
 .B .AU

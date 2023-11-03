@@ -767,7 +767,7 @@ Call it repeatedly to specify multiple authors.
 T}
 _
 \&.AI	T{
-Specify the preceding author's institution.
+Specify the preceding author's institutional affiliation.
 .
 An
 .CW .AU

@@ -763,6 +763,10 @@ system, and the command of that name.  In the first sense, @code{groff}
 is an extended dialect of the @code{roff} language, for which many
 similar implementations exist.
 
+This manual employs Emacs names for non-graphic keycap engravings on the
+alphabetic section of the keyboard.  ``@key{RET}'' is Return or Enter,
+and ``@key{SPC}'' is the space bar.
+
 The @code{roff} language features several major syntactical categories
 for which many items are predefined.  Presentations of these items
 feature the form in which the item is most commonly used on the left,
@@ -3620,7 +3624,7 @@ instead of bold.  This is a Research Tenth Edition Unix extension.
 Typeset @var{text} and draw a box around it.  On terminals, reverse
 video or another means of highlighting is used instead.  If you want
 @var{text} to contain space, use unbreakable space or horizontal motion
-escape sequences (@code{\~}, @code{\@key{SP}}, @code{\^}, @code{\|},
+escape sequences (@code{\~}, @code{\@key{SPC}}, @code{\^}, @code{\|},
 @code{\0} or @code{\h}).
 @endDefmac
 
@@ -6943,15 +6947,15 @@ Consider calls to a hypothetical section heading macro @samp{uh}.
 .uh The\ Mouse\ Problem
 @endExample
 
-@cindex @code{\~}, difference from @code{\@key{SP}}
-@cindex @code{\@key{SP}}, difference from @code{\~}
+@cindex @code{\~}, difference from @code{\@key{SPC}}
+@cindex @code{\@key{SPC}}, difference from @code{\~}
 @noindent
 The first line calls @code{uh} with three arguments: @samp{The},
 @samp{Mouse}, and @samp{Problem}.  The remainder call the @code{uh}
 macro with one argument, @samp{The Mouse Problem}.  The last solution,
 using escaped spaces, can be found in documents prepared for
 @acronym{AT&T} @code{troff}.  It can cause surprise when text is
-adjusted, because @code{\@key{SP}} inserts a @emph{fixed-width},
+adjusted, because @code{\@key{SPC}} inserts a @emph{fixed-width},
 non-breaking space.  GNU @code{troff}'s @code{\~} escape sequence
 inserts an adjustable, non-breaking space.@footnote{@code{\~} is fairly
 portable; see @ref{Other Differences}.}
@@ -7213,7 +7217,7 @@ in numeric expressions; see below.
 @endExample
 
 @cindex @code{\%}, as delimiter
-@cindex @code{\@key{SP}}, as delimiter
+@cindex @code{\@key{SPC}}, as delimiter
 @cindex @code{\|}, as delimiter
 @cindex @code{\^}, as delimiter
 @cindex @code{\@{}, as delimiter
@@ -7242,7 +7246,7 @@ in numeric expressions; see below.
 @cindex @code{\u}, as delimiter
 The following escape sequences don't take arguments and thus are allowed
 as delimiters:
-@code{\@key{SP}}, @code{\%}, @code{\|}, @code{\^}, @code{\@{},
+@code{\@key{SPC}}, @code{\%}, @code{\|}, @code{\^}, @code{\@{},
 @code{\@}}, @code{\'}, @code{\`}, @code{\-}, @code{\_}, @code{\!},
 @code{\?}, @code{\)}, @code{\/}, @code{\,}, @code{\&}, @code{\:},
 @code{\~}, @code{\0}, @code{\a}, @code{\c}, @code{\d}, @code{\e},
@@ -9531,7 +9535,7 @@ Internals}, for more on this process).
 Translate character @var{a} to glyph@tie{}@var{b}, character @var{c} to
 glyph@tie{}@var{d}, and so on.  If there is an odd number of characters
 in the argument, the last one is translated to a fixed-width space (the
-same one obtained by the @code{\@key{SP}} escape sequence).
+same one obtained by the @code{\@key{SPC}} escape sequence).
 
 The @code{trin} request is identical to @code{tr}, but when you unformat
 a diversion with @code{asciify} it ignores the translation.
@@ -13985,10 +13989,10 @@ logo.@footnote{@xref{Strings}, for an explanation of the trailing
 There are a number of special-case escape sequences for horizontal
 motion.
 
-@Defesc {\\@key{SP}, , , }
-@cindex space, unbreakable and unadjustable (@code{\@key{SP}})
-@cindex unbreakable and unadjustable space (@code{\@key{SP}})
-@cindex unadjustable and unbreakable space (@code{\@key{SP}})
+@Defesc {\\@key{SPC}, , , }
+@cindex space, unbreakable and unadjustable (@code{\@key{SPC}})
+@cindex unbreakable and unadjustable space (@code{\@key{SPC}})
+@cindex unadjustable and unbreakable space (@code{\@key{SPC}})
 @c We use the following notation in our man pages; Texinfo is bound to
 @c the GNU Emacs dialect.
 @esindex \@slanted{space}
@@ -16404,7 +16408,7 @@ is stripped to allow embedding of leading spaces.
 @cindex @code{\@r{<colon>}}, in @code{\X}
 @end ifinfo
 By contrast, within @code{\X} arguments, the escape sequences @code{\&},
-@code{\)}, @code{\%}, and @code{\:} are ignored; @code{\@key{SP}} and
+@code{\)}, @code{\%}, and @code{\:} are ignored; @code{\@key{SPC}} and
 @code{\~} are converted to single space characters; and @code{\\} has
 its escape character stripped.  So that the basic Latin subset of the
 Unicode character set@footnote{that is, ISO@tie{}646:1991-IRV or,
@@ -17442,7 +17446,7 @@ Workbench @code{troff}s.
 @cindex @code{\&}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\@{}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\@}}, incompatibilities with @acronym{AT&T} @code{troff}
-@cindex @code{\@key{SP}}, incompatibilities with @acronym{AT&T} @code{troff}
+@cindex @code{\@key{SPC}}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\'}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\`}, incompatibilities with @acronym{AT&T} @code{troff}
 @cindex @code{\-}, incompatibilities with @acronym{AT&T} @code{troff}
@@ -17452,7 +17456,7 @@ Workbench @code{troff}s.
 @cindex @code{\c}, incompatibilities with @acronym{AT&T} @code{troff}
 GNU @code{troff} does not allow the use of the escape sequences
 @code{\|}, @code{\^}, @code{\&}, @code{\@{}, @code{\@}},
-@code{\@key{SP}}, @code{\'}, @code{\`}, @code{\-}, @code{\_}, @code{\!},
+@code{\@key{SPC}}, @code{\'}, @code{\`}, @code{\-}, @code{\_}, @code{\!},
 @code{\%}, and @code{\c} in identifiers; @acronym{AT&T} @code{troff}
 does.  The @code{\A} escape sequence (@pxref{Identifiers}) may be
 helpful in avoiding use of these escape sequences in names.
@@ -19067,8 +19071,8 @@ least one more input character, making an escape @emph{sequence}.  Any
 input token @code{\@var{X}} with @var{X} not in the list below emits a
 warning and interpolates character @var{X}.  Note the entries for
 @code{\.}, which may be obscured by the leader dots, and for
-@code{\@key{RET}} and @code{\@key{SP}}, which are sorted alphabetically,
-not by code point order.  @xref{Using Escape Sequences}.
+@code{\@key{RET}} and @code{\@key{SPC}}, which are sorted
+alphabetically, not by code point order.  @xref{Using Escape Sequences}.
 
 @printindex es
 

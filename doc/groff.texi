@@ -578,7 +578,6 @@ A history relating @code{groff} to its forerunners @code{roff},
 @c =====================================================================
 
 @node What Is @code{groff}?, GNU @command{troff} Capabilities, Background, Introduction
-@anchor{What Is groff?} @c 1.22.4
 @section What Is @code{groff}?
 @cindex what is @code{groff}?
 @cindex @code{groff}---what is it?

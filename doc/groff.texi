@@ -3554,9 +3554,9 @@ Machairodontinae
 @endExample
 
 @noindent
-causes ``1. Carnivora'' to be printed in 13-point text, followed by
-``1.1. Felinae'' in 11.5-point text, while ``1.1.1. Felis catus'' and
-all more deeply nested heading levels remains in the 10-point text
+causes ``1. Carnivora'' to be printed in 13-point type, followed by
+``1.1. Felinae'' in 11.5-point type, while ``1.1.1. Felis catus'' and
+all more deeply nested heading levels remains in the 10-point type
 specified by the @code{PS} register.  ``Machairodontinae'' is printed at
 11.5 points, since it corresponds to heading level@tie{}2.
 

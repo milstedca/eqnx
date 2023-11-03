@@ -8540,6 +8540,7 @@ even possible is an unsolved problem in computer science:@:
 unusual words found in technical literature.  We can instruct GNU
 @code{troff} how to hyphenate specific words if the need arises.
 
+@c TODO: Add requests `phw`, `rhw`?
 @cindex hyphenation exceptions
 @Defreq {hw, word @dots{}}
 Define each @dfn{hyphenation exception} @var{word} with each hyphen `-'
@@ -10427,6 +10428,7 @@ typeface: by its mounting position (@samp{3}), by its identifier
 (@samp{TB}), or by an abstract style (@samp{B}) to be combined with the
 default family.
 
+@c TODO: Add requests `pft`, `rft`?
 @DefreqList {ft, [@Var{font}]}
 @DefescItemx {\\f, , f, }
 @DefescItem {\\f, (, fn, }
@@ -11459,6 +11461,7 @@ this list is empty.
 @code{fspecial} designates each font as special only when
 font@tie{}@var{f} is selected.  Initially, this list is empty.
 
+@c TODO: Add requests `pspecial`, `pfspecial`?
 Invoking @code{special} or @code{fspecial} again overwrites the previous
 list; without arguments, the relevant list is made empty.  Special fonts
 are searched in the order they appear as arguments.  Each font @var{s}n

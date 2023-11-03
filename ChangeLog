@@ -1,5 +1,17 @@
 2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* doc/groff.texi (Line Continuation): Drop concept index entry
+	regarding use of `\R` escape sequence after `\c` on an input
+	line.  There is no longer anything special to say; `\R` works as
+	otherwise documented.  Formerly (pre-1.23.0), our Texinfo manual
+	suggested that nothing on an input line after `\c` was
+	interpreted, which was false.  Nothing after it is _formatted_.
+
+	Fixes <https://savannah.gnu.org/bugs/?64844>.  Thanks to Bjarni
+	Ingi Gislason for the report.
+
+2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/node.cpp (set_font_specific_special_fonts)
 	(set_special_fonts): Throw error when invoked with insufficient
 	arguments.

@@ -9978,7 +9978,6 @@ and ends on line \n[.c].
 @cindex continuation, output line (@code{\c})
 @cindex interrupted line
 @cindex line, interrupted
-@cindex @code{\R}, after @code{\c}
 @code{\c} continues an output line.  Nothing after it on the input line
 is formatted.  In contrast to @code{\@key{RET}}, a line after @code{\c}
 remains a new input line, so a control character is recognized at its

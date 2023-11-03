@@ -3617,10 +3617,11 @@ static void select_hyphenation_language()
 const int WORD_MAX = 256;	// we use unsigned char for offsets in
 				// hyphenation exceptions
 
-static void hyphen_word()
+static void add_hyphenation_exceptions()
 {
   if (!current_language) {
-    error("no current hyphenation language");
+    error("cannot add hyphenation exceptions when no hyphenation"
+	  " language is set");
     skip_line();
     return;
   }
@@ -4157,7 +4158,7 @@ const char *hyphenation_language_reg::get_string()
 
 void init_hyphen_requests()
 {
-  init_request("hw", hyphen_word);
+  init_request("hw", add_hyphenation_exceptions);
   init_request("hla", select_hyphenation_language);
   init_request("hpf", hyphenation_patterns_file);
   init_request("hpfa", hyphenation_patterns_file_append);

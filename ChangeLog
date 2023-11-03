@@ -1,5 +1,16 @@
 2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Clarify diagnostic and trivially
+	refactor.
+	(hyphen_word): Rename this...
+	(add_hyphenation_exceptions): ...to this.
+	(init_hyphen_requests): Update call site.
+
+	(add_hyphenation_exceptions): Make error diagnostic more
+	helpful.
+
+2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Add diagnostic and trivially refactor.
 	(set_hyphenation_language): Rename this...
 	(select_hyphenation_language): ...to this.

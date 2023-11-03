@@ -2474,7 +2474,7 @@ The request is ignored if given no arguments.
 .
 .
 .IP
-For hyphenation to work,
+For automatic hyphenation to work,
 hyphenation codes must be set up.
 .
 At startup,

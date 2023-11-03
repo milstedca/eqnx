@@ -8910,7 +8910,7 @@ Set the hyphenation code of character @var{c1} to @var{code1}, that of
 ordinary character (not a special character escape sequence) other than
 a digit or a space.  The request is ignored if given no arguments.
 
-For hyphenation to work, hyphenation codes must be set up.  At
+For automatic hyphenation to work, hyphenation codes must be set up.  At
 startup, GNU @code{troff} assigns hyphenation codes to the letters
 @samp{a}--@samp{z} (mapped to themselves), to the letters
 @samp{A}--@samp{Z} (mapped to @samp{a}--@samp{z}), and zero to all other

@@ -2358,32 +2358,30 @@ is searched but before those declared with the
 request.
 .
 .TP
-.BI .fspecial\~ "f s1 s2\~"\c
-\&.\|.\|.
+.BI .fspecial\~ f\~\c
+.RI [ s\~ .\|.\|.]
 When
 .RI font\~ f
 is selected,
-fonts
-.IR s1 ,
-.IR s2 ,
-\&.\|.\|.\&
-are treated as special;
+treat each font
+.I s
+as special;
 that is,
-they are searched for glyphs not found in
+search it for any glyph not found in
 .IR f .
 .
-Any fonts specified in the
+Fonts specified by the
 .RB \%\[lq] special \[rq]
-request are searched after
-.IR s1 ,
-.IR s2 ,
-and so on.
+request are searched after those
+listed in the
+.B fspecial
+request.
 .
 Without
 .I s
 arguments,
 .B \%fspecial
-clears the list of fonts treated as special when
+empties the list of fonts treated as special when
 .I f
 is selected.
 .
@@ -3287,15 +3285,16 @@ does not exist.
 .
 .
 .TP
-.BI .special\~ f\~\c
-\&.\|.\|.
+.BR .special\~ [\c
+.IR s\~ .\|.\|.]
 Declare each font
-.I f
+.I s
 as special,
 searching it for glyphs not found in the selected font.
 .
 Without arguments,
-this list of special fonts is made empty.
+.RB \[lq] \%special \[dq]
+empties this list of special fonts.
 .
 .
 .TP

@@ -11438,34 +11438,32 @@ See the @code{cflags} request in @ref{Using Symbols}, for more details.
 @cindex special fonts
 @cindex fonts, special
 
-Special fonts are those that @command{gtroff} searches when it cannot
-find the requested glyph in the current font.  The Symbol font is
-usually a special font.
+Special fonts are those that GNU @command{troff} searches when it cannot
+find a requested glyph in the selected font.  Typically, special fonts
+contain unstyled glyphs and are declared as such in their description
+files; see @ref{Font Description File Format}.  The ``Symbol'' and
+``Zapf Dingbats'' fonts of the PostScript and PDF standards are
+examples.  Ordinarily, only typesetters have special fonts.
 
-@command{gtroff} provides the following two requests to add more special
-fonts.  @xref{Using Symbols}, for a detailed description of the glyph
-searching mechanism in @command{gtroff}.
-
-Usually, only non-TTY devices have special fonts.
+GNU @command{troff}'s @code{special} and @code{fspecial} requests permit
+a document to supplement the set of fonts searched for glyphs.
+@xref{Using Symbols}.
 
 @DefreqList {special, [@Var{s1} @Var{s2} @dots{}]}
 @DefreqListEndx {fspecial, f [@Var{s1} @Var{s2} @dots{}]}
 @kindex fonts
 @pindex DESC
-Use the @code{special} request to define special fonts.  Initially, this
-list is empty.
+@code{special} designates each font @var{s}n as special.  Initially,
+this list is empty.
 
-Use the @code{fspecial} request to designate special fonts only when
-font@tie{}@var{f} is active.  Initially, this list is empty.
+@code{fspecial} designates each font as special only when
+font@tie{}@var{f} is selected.  Initially, this list is empty.
 
-Previous calls to @code{special} or @code{fspecial} are overwritten;
-without arguments, the particular list of special fonts is set to empty.
-Special fonts are searched in the order they appear as arguments.
-
-All fonts that appear in a call to @code{special} or @code{fspecial}
-are loaded.
-
-@xref{Using Symbols}, for the exact search order of glyphs.
+Invoking @code{special} or @code{fspecial} again overwrites the previous
+list; without arguments, the relevant list is made empty.  Special fonts
+are searched in the order they appear as arguments.  Each font @var{s}n
+is mounted, and not automatically unmounted if superseded by a
+subsequent @code{special} or @code{fspecial} request.
 @endDefreq
 
 @c ---------------------------------------------------------------------

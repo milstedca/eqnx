@@ -1,3 +1,9 @@
+2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/node.cpp (set_font_specific_special_fonts)
+	(set_special_fonts): Throw error when invoked with insufficient
+	arguments.
+
 2023-11-02  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/groff.texi: Add numerous @anchor commands to aid

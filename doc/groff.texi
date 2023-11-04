@@ -9266,11 +9266,9 @@ on.
 For example, @samp{4c +6c T 3c 5c 2c} is equivalent to @samp{4c 10c 13c
 18c 20c 23c 28c 30c @dots{}}.
 
-Text written to a tab column (i.e., between two tab stops, or between a
-tab stop and an output line boundary) may be aligned to the right or
-left, or centered in the column.  This alignment is determined by
-appending @samp{R}, @samp{L}, or @samp{C} to the tab specifier.  The
-default is @samp{L}.
+Text between two tab stops may be aligned to the right or left, or
+centered.  This alignment is determined by appending @samp{R}, @samp{L},
+or @samp{C} to the tab specifier.  The default is @samp{L}.
 
 @Example
 .ta 1i 2iC 3iR
@@ -9295,8 +9293,9 @@ cannot be adjusted.
 
 @noindent
 The above creates a single output line that is a bit longer than two
-inches (we use a string to show exactly where the tab stops are).
-Now consider the following.
+inches.@footnote{We define a string and use the copy-mode tab escape
+sequence to make the input tab locations visible; see @ref{Strings} and
+@ref{Copy Mode}.}  Now consider the following.
 
 @Example
 .ll 2i
@@ -9318,26 +9317,31 @@ stop---are ignored except for the first, which delimits the characters
 belonging to the last tab stop for right-alignment or centering.
 
 @Example
-.ds Z   foo\tbar\tbaz
-.ds ZZ  foo\tbar\tbazqux
-.ds ZZZ foo\tbar\tbaz\tqux
+.ds 1Z foo\tbar
+.ds 2Z foo\tbar\tbaz
+.ds 3Z foo\tbar\tbazqux
+.ds 4Z foo\tbar\tbaz\tqux
+.nf
+\l'4i\&-'
 .ta 2i 4iR
-\*[Z]
-.br
-\*[ZZ]
-.br
-\*[ZZZ]
-.br
+\*[1Z]
+\*[2Z]
+\*[3Z]
+\*[4Z]
+    @result{} ----------------------------------------
+    @result{} foo                 bar
     @result{} foo                 bar              baz
     @result{} foo                 bar           bazqux
     @result{} foo                 bar              bazqux
 @endExample
 
 @noindent
-The first line right-aligns ``baz'' within the second tab stop.  The
-second line right-aligns ``bazqux'' within it.  The third line
-right-aligns only ``baz'' because of the additional tab character, which
-marks the end of the text occupying the last tab stop defined.
+We see that ``bar'' is between the first and second tab stops, not the
+second and (nonexistent) third.  The first ``baz'' is right-aligned
+within the second tab stop.  The second is catenated with right-aligned
+with ``qux'' within it.  The third ``baz'' is aligned like the first due
+to the tab character after it determining the right boundary of the tab
+stop.
 
 Tab stops are associated with the environment (@pxref{Environments}).
 

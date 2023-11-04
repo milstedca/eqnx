@@ -6311,12 +6311,12 @@ static void read_special_fonts(special_font_list **sp)
 
 static void set_font_specific_special_fonts()
 {
-  font_lookup_info finfo;
   if (!has_arg()) {
     error("fspecial request requires at least one font argument");
     skip_line();
     return;
   }
+  font_lookup_info finfo;
   if (!has_font(&finfo))
     font_lookup_error(finfo, "to mark other fonts as special"
 			     " contingently upon it"); // a mouthful :-/

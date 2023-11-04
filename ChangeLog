@@ -1,5 +1,10 @@
 2023-11-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/node.cpp (set_font_specific_special_fonts):
+	Declare automatic variable closer to its first point of use.
+
+2023-11-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Trivially refactor dictionary implementation.
 
 	* src/roff/troff/dictionary.h (class dictionary_iterator):

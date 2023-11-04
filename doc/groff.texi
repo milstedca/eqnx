@@ -9424,7 +9424,7 @@ but also use tab stops normally on the same output line.  An example is
 a table of contents entry that uses dots to bridge the entry name with
 its page number, which is itself aligned between tab stops.  The
 @code{roff} language provides @dfn{leaders} for this
-purpose.@footnote{This is pronounced to rhyme with ``feeder'', and
+purpose.@footnote{Pronounce ``leader'' to rhyme with ``feeder''; it
 refers to how the glyphs ``lead'' the eye across the page to the
 corresponding page number or other datum.}
 
@@ -9684,9 +9684,9 @@ the former for terminal output, the latter for typesetters.  GNU
 GNU @command{nroff} program is available for convenience; it calls GNU
 @code{troff} to perform the formatting.} that sends its output to a
 device driver (@code{grotty} for terminal devices, @code{grops} for
-PostScript, and so on) which interprets this intermediate output format.
-When discussing @acronym{AT&T} @code{troff}, it makes sense to talk
-about @dfn{@code{nroff} mode} and @dfn{@code{troff} mode} since the
+PostScript, and so on) that interprets its output.  When discussing
+@acronym{AT&T} @code{troff}, it makes sense to talk about
+@dfn{@code{nroff} mode} and @dfn{@code{troff} mode} since the
 differences are hard-coded.  GNU @code{troff} takes information from
 device and font description files without handling requests specially if
 a terminal output device is used, so such a strong distinction is
@@ -12818,9 +12818,9 @@ True if a string, macro, diversion, or request called @var{name} exists.
 True if the current page is even-numbered.
 
 @item F @var{font}
-True if @var{font} exists.  @var{font} is handled as if it were opened
-with the @code{ft} request (that is, font translation and styles are
-applied), without actually mounting it.
+True if @var{font} exists.  @var{font} is handled as if it were an
+argument to the @code{ft} request (that is, font translation and styles
+are applied), but it is not mounted.
 
 @item m @var{color}
 True if @var{color} is defined.

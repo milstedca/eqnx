@@ -418,10 +418,10 @@ to inset a region within a (sub)section.
 .
 .
 .TP
-.BI .TH " topic section"\c
-.RI " [" footer-middle ]\c
-.RI " [" footer-inside ]\c
-.RI " [" header-middle ]
+.BI .TH " topic section"\~\c
+.RI [ footer-middle \~\c
+.RI [ footer-inside \~\c
+.RI [ header-middle ]]]
 Determine the contents of the page header and footer.
 _ifstyle()dnl
 .
@@ -1234,7 +1234,7 @@ or text file.
 Option arguments and command operands are presented in
 .I italics
 (but see subsection \(lqFont style macros\(rq below regarding terminals)
-to cue the user that they must be replaced with appropriate text.
+to cue the user that they must be replaced with appropriate input.
 .
 .
 .IP \(bu
@@ -1296,7 +1296,7 @@ Text may be hyperlinked to email addresses with
 or other URIs with
 .BR .UR / .UE .
 .
-Hyperlinked text is not supported on all output devices;
+Not all output devices support hyperlinking of text;
 terminals and pager programs must support ECMA-48 OSC\~8 escape
 sequences
 (see
@@ -1905,13 +1905,13 @@ alternately.
 _ifstyle()dnl
 .RS
 .IP
-.\" from src/preproc/pic/pic.1.man
+.\" from src/roff/groff/groff.1.man
 .EX
-if
 \&.I file
 is
-\&.RB \[rs][lq] \[rs]\- \[rs][rq],
-the standard input stream is read.
+\&.RB \[rs][lq] \- \[rs][rq],
+\&.I groff
+reads the standard input stream.
 .RE
 .EE
 .
@@ -2070,8 +2070,7 @@ Now we have created a relative inset with
 and started another ordinary paragraph with
 .BR .P .
 .
-If the paragraph is lengthy,
-we can tell that every line of it is inset;
+We observe that all of its lines are inset and indented the same;
 contrast with a first-line indentation.
 .
 .

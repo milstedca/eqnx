@@ -1,5 +1,10 @@
 2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/env.cpp: Drop parameter names from prototypes,
+	in keeping with the Stroustrup-style C++ used in most of groff.
+
+2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/env.cpp: Clarify diagnostic and trivially
 	refactor.
 	(hyphen_word): Rename this...

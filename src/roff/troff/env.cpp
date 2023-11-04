@@ -3559,7 +3559,7 @@ struct trie_node;
 
 class trie {
   trie_node *tp;
-  virtual void do_match(int len, void *val) = 0;
+  virtual void do_match(int, void *) = 0;
   virtual void do_delete(void *) = 0;
   void delete_trie_node(trie_node *);
 public:
@@ -3567,7 +3567,7 @@ public:
   virtual ~trie();		// virtual to shut up g++
   void insert(const char *, int, void *);
   // find calls do_match for each match it finds
-  void find(const char *pat, int patlen);
+  void find(const char *, int);
   void clear();
 };
 
@@ -3575,14 +3575,14 @@ class hyphen_trie : private trie {
   int *h;
   void do_match(int i, void *v);
   void do_delete(void *v);
-  void insert_pattern(const char *pat, int patlen, int *num);
-  void insert_hyphenation(dictionary *ex, const char *pat, int patlen);
+  void insert_pattern(const char *, int, int *);
+  void insert_hyphenation(dictionary *, const char *, int);
   int hpf_getc(FILE *f);
 public:
   hyphen_trie() {}
   ~hyphen_trie() {}
-  void hyphenate(const char *word, int len, int *hyphens);
-  void read_patterns_file(const char *name, int append, dictionary *ex);
+  void hyphenate(const char *, int, int *);
+  void read_patterns_file(const char *, int, dictionary *);
 };
 
 struct hyphenation_language {

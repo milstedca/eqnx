@@ -3961,8 +3961,11 @@ If
 stop right-aligning.
 .
 .TPx
-.REQ .rm "name"
-Remove request, macro, diversion, or string
+.REQ .rm "name \f[R].\|.\|."
+Remove each request,
+macro,
+diversion,
+or string
 .IR name .
 .
 .TPx
@@ -3981,9 +3984,9 @@ to
 .
 .
 .TPx
-.REQ .rr ident
-Remove register
-.IR ident .
+.REQ .rr "reg \f[R].\|.\|."
+Remove each register
+.IR reg .
 .
 .
 .TPx

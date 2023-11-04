@@ -7616,13 +7616,18 @@ If a register's prior value does not exist (the register was undefined),
 an increment or decrement is applied as if to@tie{}0.
 @endDefreq
 
-@Defreq {rr, ident}
+@cindex CSTR@tie{}#54 errata
+@cindex CSTR@tie{}#54 erratum, @code{rr} request
+@Defreq {rr, reg @dots{}}
 @cindex removing a register (@code{rr})
 @cindex register, removing (@code{rr})
-Remove register @var{ident}.  If @var{ident} doesn't exist, the request
+Remove each register @var{reg}.  If @var{reg} doesn't exist, the request
 is ignored.  Technically, only the name is removed; the register's
 contents are still accessible under aliases created with @code{aln}, if
 any.
+
+This request is incorrectly documented in the @acronym{AT&T}
+@code{troff} manual accepting only one argument.
 @endDefreq
 
 @Defreq {rnn, ident1 ident2}
@@ -12684,7 +12689,9 @@ source document maintenance.)
 Rename the request, macro, diversion, or string @var{old} to @var{new}.
 @endDefreq
 
-@Defreq {rm, name}
+@cindex CSTR@tie{}#54 errata
+@cindex CSTR@tie{}#54 erratum, @code{rm} request
+@Defreq {rm, name @dots{}}
 @cindex removing request (@code{rm})
 @cindex request, removing (@code{rm})
 @cindex removing macro (@code{rm})
@@ -12693,9 +12700,12 @@ Rename the request, macro, diversion, or string @var{old} to @var{new}.
 @cindex string, removing (@code{rm})
 @cindex removing diversion (@code{rm})
 @cindex diversion, removing (@code{rm})
-Remove the request, macro, diversion, or string @var{name}.  GNU
+Remove each request, macro, diversion, or string @var{name}.  GNU
 @code{troff} treats subsequent invocations as if the name had never
 been defined.
+
+This request is incorrectly documented in the @acronym{AT&T}
+@code{troff} manual accepting only one argument.
 @endDefreq
 
 @anchor{als}

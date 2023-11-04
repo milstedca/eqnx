@@ -7627,7 +7627,7 @@ contents are still accessible under aliases created with @code{aln}, if
 any.
 
 This request is incorrectly documented in the @acronym{AT&T}
-@code{troff} manual accepting only one argument.
+@code{troff} manual as accepting only one argument.
 @endDefreq
 
 @Defreq {rnn, ident1 ident2}
@@ -12708,7 +12708,7 @@ Remove each request, macro, diversion, or string @var{name}.  GNU
 been defined.
 
 This request is incorrectly documented in the @acronym{AT&T}
-@code{troff} manual accepting only one argument.
+@code{troff} manual as accepting only one argument.
 @endDefreq
 
 @anchor{als}

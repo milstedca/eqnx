@@ -8548,7 +8548,7 @@ even possible is an unsolved problem in computer science:@:
 unusual words found in technical literature.  We can instruct GNU
 @code{troff} how to hyphenate specific words if the need arises.
 
-@c TODO: Add requests `phw`, `rhw`?
+@c TODO: Add request `rhw`?
 @cindex hyphenation exceptions
 @Defreq {hw, word @dots{}}
 Define each @dfn{hyphenation exception} @var{word} with each hyphen `-'
@@ -8579,6 +8579,9 @@ below) and environment (@pxref{Environments}); invoking the @code{hw}
 request in the absence of a hyphenation language is an error.
 
 The request is ignored if there are no parameters.
+
+You can obtain a report of hyphenation exceptions on the standard error
+stream with the @code{phw} request.  @xref{Debugging}.
 @endDefreq
 
 These are known as hyphenation @slanted{exceptions} in the expectation
@@ -16922,6 +16925,18 @@ or are interested @emph{only} in diagnostic output, you can suppress GNU
 @cindex environments, dumping (@code{pev})
 Report the state of the current environment followed by that of all
 other environments to the standard error stream.
+@endDefreq
+
+@Defreq {phw, }
+@cindex dumping hyphenation exceptions (@code{phw})
+@cindex hyphenation exceptions, dumping (@code{phw})
+@cindex exceptions, hyphenation, dumping (@code{phw})
+Report, to the standard error stream, the list of hyphenation
+exceptions.  Each hyphenation point is marked with @samp{-}.  Words that
+will not be hyphenated at all are prefixed with @samp{-}.  Those to
+which the hyphenation mode applies (meaning those defined in a
+hyphenation pattern file rather than with the @code{hw} request) are
+suffixed with a tab and asterisk (@code{*}).
 @endDefreq
 
 @Defreq {pm, }

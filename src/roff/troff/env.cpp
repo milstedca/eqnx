@@ -3666,6 +3666,42 @@ static void add_hyphenation_exceptions()
   skip_line();
 }
 
+static void print_hyphenation_exceptions()
+{
+  dictionary_iterator iter(current_language->exceptions);
+  symbol entry;
+  unsigned char *hypoint;
+  // Pathologically, we could have a hyphenation point after every
+  // character in a word except the last.  The word may have a trailing
+  // space; see `hyphen_trie::read_patterns_file()`.
+  const size_t bufsz = WORD_MAX * 2;
+  char wordbuf[bufsz];
+  while(iter.get(&entry, reinterpret_cast<void **>(&hypoint))) {
+    assert(!entry.is_null());
+    assert(hypoint != 0 /* nullptr */);
+    string word = entry.contents();
+    (void) memset(wordbuf, '\0', bufsz);
+    size_t i = 0, j = 0, len = word.length();
+    bool is_mode_independent = false;
+    while (i < len) {
+      if ((hypoint != 0 /* nullptr */) && (*hypoint == i)) {
+	wordbuf[j++] = '-';
+	hypoint++;
+      }
+      if (word[i] == ' ') {
+	assert(i == (len - 1));
+	is_mode_independent = true;
+      }
+      wordbuf[j++] = word[i++];
+    }
+    errprint("%1", wordbuf);
+    if (is_mode_independent)
+      errprint("\t*");
+    errprint("\n");
+  }
+  skip_line();
+}
+
 struct trie_node {
   char c;
   trie_node *down;
@@ -4159,6 +4195,7 @@ const char *hyphenation_language_reg::get_string()
 void init_hyphen_requests()
 {
   init_request("hw", add_hyphenation_exceptions);
+  init_request("phw", print_hyphenation_exceptions);
   init_request("hla", select_hyphenation_language);
   init_request("hpf", hyphenation_patterns_file);
   init_request("hpfa", hyphenation_patterns_file_append);

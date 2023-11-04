@@ -3796,6 +3796,26 @@ Report the state of the current environment followed by that of all
 other environments to the standard error stream.
 .
 .TPx
+.REQ .phw
+Report,
+to the standard error stream,
+the list of hyphenation exceptions.
+.
+Each hyphenation point is marked with
+.RB \[lq] \- \[rq].
+.
+Words that will not be hyphenated at all are prefixed with
+.RB \[lq] \- \[rq].
+.
+Those to which the hyphenation mode applies
+(meaning those defined in a hyphenation pattern file rather than with
+the
+.B hw
+request)
+are suffixed with a tab and asterisk
+.RB ( * ).
+.
+.TPx
 .REQ .pi "program"
 Pipe output to
 .I program

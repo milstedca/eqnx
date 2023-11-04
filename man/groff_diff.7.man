@@ -3027,6 +3027,27 @@ other environments to the standard error stream.
 .
 .
 .TP
+.B .phw
+Report,
+to the standard error stream,
+the list of hyphenation exceptions.
+.
+Each hyphenation point is marked with
+.RB \[lq] \- \[rq].
+.
+Words that will not be hyphenated at all are prefixed with
+.RB \[lq] \- \[rq].
+.
+Those to which the hyphenation mode applies
+(meaning those defined in a hyphenation pattern file rather than with
+the
+.B hw
+request)
+are suffixed with a tab and asterisk
+.RB ( * ).
+.
+.
+.TP
 .B .pnr
 Write the names and values of all currently defined registers to the
 standard error stream.

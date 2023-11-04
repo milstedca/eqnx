@@ -1,5 +1,28 @@
 2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Implement new `phw` request.
+
+	* src/roff/troff/env.cpp (print_hyphenation_exceptions): Add.
+	(init_hyphen_requests): Wire up `phw` request name to
+	`print_hyphenation_exceptions()`.
+
+	* doc/groff.texi (Manipulating Hyphenation, Debugging):
+	* man/groff.7.man (Request short reference):
+	* man/groff_diff.7.man (New requests):
+	* NEWS: Document it.
+
+	Inspired by a debugging process (that ultimately involved
+	input character encoding confusion) on the groff mailing list,
+	raised by Walter Alejandro Iglesias.  See
+	<https://lists.gnu.org/archive/html/groff/2023-09/\
+	msg00032.html> and
+	<https://lists.gnu.org/archive/html/groff/2023-10/\
+	msg00008.html> and follow-ups.  It my opinion it should have
+	been easier to ask the formatter where it thought a hyphenation
+	exception's hyphenation points were.
+
+2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/reg.cpp (alter_format): Slightly refactor.
 	Push more diagnostic work to `tok.description()`, since it is
 	capable of describing any token.

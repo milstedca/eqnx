@@ -1,5 +1,11 @@
 2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/reg.cpp (alter_format): Slightly refactor.
+	Push more diagnostic work to `tok.description()`, since it is
+	capable of describing any token.
+
+2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/groff.texi (Setting Registers, Strings):
 	* man/groff.7.man (Request short reference): Fix errors; the
 	`rm` and `rr` requests take an arbitrary number of arguments.

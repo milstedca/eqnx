@@ -3715,6 +3715,8 @@ is being written to;
 this behavior is so anomalous that it must be considered a bug.
 .
 .
+.br
+.ne 6v
 .TP
 .BI .de\~ name\~\c
 .RI [ end-name ]
@@ -3886,7 +3888,7 @@ Interpolate skew of last glyph added to the environment.
 The
 .I skew
 of a glyph is how far to the right of the center of a glyph the center
-of an accent over that glyph should be placed.
+of an accent over that glyph is to be placed.
 .
 .
 .TP
@@ -4308,8 +4310,9 @@ as doing.
 .
 .TP
 .B \[rs]n[ssc]
-The amount of horizontal space (possibly negative) that should be
-added to the last glyph before a subscript.
+The amount of
+(possibly negative)
+horizontal space to add to the last glyph before a subscript.
 .
 .
 .TP
@@ -4317,8 +4320,7 @@ added to the last glyph before a subscript.
 How far to right of the center of the last glyph in the
 .B \[rs]w
 argument,
-the center of an accent from a roman font should be placed
-over that glyph.
+to place the center of an accent from a roman font over that glyph.
 .
 .
 .P

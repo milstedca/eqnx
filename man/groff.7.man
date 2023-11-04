@@ -4272,11 +4272,11 @@ and
 .RB \[lq] R \[rq]
 for right-aligned.
 .
-.br
-.ne 4v \" XXX: should need only 2v
 .TPx
 .REQ .tag
-.TQ
+Reserved for internal use.
+.
+.TPx
 .REQ .taga
 Reserved for internal use.
 .

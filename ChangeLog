@@ -1,3 +1,23 @@
+2023-11-04  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Trivially refactor dictionary implementation.
+
+	* src/roff/troff/dictionary.h (class dictionary_iterator):
+	(class object_dictionary_iterator):
+	(object_dictionary_iterator::get): Demote return type of `get()`
+	from `int` to `bool`.
+	(class object_dictionary): Demote return type of `alias()` from
+	`int` to `bool`.
+	(class object): Rename member variable `rcount` to `refcount`.
+	* src/roff/troff/dictionary.cpp (is_good_size):
+	(dictionary_iterator::get):
+	(object_dictionary::alias): Demote return type from `int` to
+	`bool`.  Update return value literals.
+	(object::object):
+	(object::add_reference):
+	(object::remove_reference): Rename member variable `rcount` to
+	`refcount`.
+
 2023-11-03  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Implement new `phw` request.

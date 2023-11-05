@@ -11672,21 +11672,23 @@ integer.
 @cindex ligatures and kerning
 @cindex kerning and ligatures
 
-Ligatures are groups of characters that are run together, i.e, producing
-a single glyph.  For example, the letters `f' and `i' can form a
-ligature `fi' as in the word `file'.  This produces a cleaner look
-(albeit subtle) to the printed output.  Usually, ligatures are not
-available in fonts for TTY output devices.
+Proportional fonts commonly employ two techniques to improve the
+esthetics of typeset text.  @dfn{Ligatures} are sequences of glyphs that
+are visually connected or ``tied'', overlapping them and slightly
+altering their shapes.  @dfn{Kerning} is the adjustment of horizontal
+spacing between glyphs.  Neither is employed on terminals.@footnote{A
+monospaced font may possess glyphs for ligatures, but they are
+nevertheless seldom used to set text.}
 
-Most PostScript fonts support the fi and fl ligatures.  The C/A/T
-typesetter that was the target of @acronym{AT&T} @code{troff} also
-supported `ff', `ffi', and `ffl' ligatures.  Advanced typesetters or
-`expert' fonts may include ligatures for `ft' and `ct', although GNU
-@code{troff} does not support these (yet).
+Most typesetters support ligatures for the sequences `fi', `fl', `ff',
+`ffi', and `ffl', and @code{troff} does likewise.  Some fonts may
+include `ft' and `ct' ligatures; they are archaic and GNU @code{troff}
+does not (yet) support them.
 
-Only the current font is checked for ligatures and kerns; neither
-special fonts nor special charcters defined with the @code{char} request
-(and its siblings) are taken into account.
+The formatter checks only the current font for ligatures and kerning
+adjustments; neither glyphs from special fonts nor special charcters
+defined with the @code{char} request (and its siblings) are considered
+for these processes.
 
 @DefreqList {lg, [@Var{flag}]}
 @DefregListEndx {.lg}

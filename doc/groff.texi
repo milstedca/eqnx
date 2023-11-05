@@ -9346,10 +9346,10 @@ belonging to the last tab stop for right-alignment or centering.
 @noindent
 We see that ``bar'' is between the first and second tab stops, not the
 second and (nonexistent) third.  The first ``baz'' is right-aligned
-within the second tab stop.  The second is catenated with right-aligned
-with ``qux'' within it.  The third ``baz'' is aligned like the first due
-to the tab character after it determining the right boundary of the tab
-stop.
+within the second tab stop.  The second is catenated with ``qux'' and
+right-aligned within it.  The third ``baz'' is aligned like the first
+because the tab character after it determines the right boundary of the
+tab stop.
 
 Tab stops are associated with the environment (@pxref{Environments}).
 

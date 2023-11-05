@@ -12341,8 +12341,9 @@ necessarily the same.  For the @code{dvi}, @code{html}, @code{pdf},
 @code{ps}, and @code{xhtml} output devices, GNU @code{troff}
 automatically loads a macro file defining many color names at startup.
 By the same mechanism, the devices supported by @code{grotty} recognize
-the eight standard ISO@tie{}6429/EMCA-48 color names.@footnote{also
-known vulgarly as ``ANSI colors''}
+the eight standard ISO@tie{}6429/EMCA-48 color names.@footnote{These
+are known vulgarly as ``ANSI'' colors, after its X3.64 standard, now
+withdrawn.}
 
 @DefreqList {gcolor, [@Var{color}]}
 @DefescItemx {\\m, , c, }

@@ -1,3 +1,14 @@
+2023-11-06  Pim <pimh@kth.se>
+
+	* src/preproc/eqn/lex.cpp: Update internal macro definitions
+	used to construct tilde and under-tilde ("utilde") accents to
+	set them in the roman face, like other accent marks in eqn.
+	* src/preproc/eqn/eqn.1.man (New primitives): Update example.
+
+	Fixes <https://savannah.gnu.org/bugs/?64860>.  Thanks to Damian
+	McGuckin for reporting this problem on the groff mailing list.
+	<https://lists.gnu.org/archive/html/groff/2023-06/msg00143.html>
+
 2023-11-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp (embolden_font): Do nothing if in

@@ -11840,6 +11840,7 @@ Test.
     @result{} Test. Test.
 @endExample
 
+@need 1000
 @item
 Prevent recognition of a control character.
 
@@ -11874,6 +11875,17 @@ Translate a character to ``nothing''.
 Post universitum, alea jacta est, OK?
     @result{} Post vniversitvm, alea iacta est, O?
 @endExample
+
+@item
+Stop the interpretation of a numerical expression.
+
+@Example
+\l'4i-'
+    @error{} warning: expected numeric expression,
+    @error{} got character "'"
+\l'4i\&-'
+    @result{} ----------------------------------------
+@endExample
 @end itemize
 
 The dummy character escape sequence sees use in macro definitions as a
@@ -11903,6 +11915,7 @@ you want in its place.
 @c it seems to be special pleading for that package's unique approach to
 @c macro argument reprocessing, which also involves an idiosyncratic
 @c approach to punctuation characters in macro argument lists.
+@need 1000
 @Defesc {\\), , , }
 @cindex transparent dummy character (@code{\)})
 @cindex character, transparent dummy (@code{\)})

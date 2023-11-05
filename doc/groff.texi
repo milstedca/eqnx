@@ -7645,8 +7645,8 @@ otherwise alter its properties.
 Create an alias @var{new} for an existing register @var{old}, causing
 the names to refer to the same stored object.  If @var{old} is
 undefined, a warning in category @samp{reg} is produced and the request
-is ignored.  @xref{Warnings}, for information about the enablement and
-suppression of warnings.
+is ignored.  @xref{Warnings}, regarding the enablement and suppression
+of warnings.
 
 @cindex alias, register, removing (@code{rr})
 @cindex removing alias of register (@code{rr})
@@ -7676,8 +7676,7 @@ Interpolate register with name @var{ident} (one-character
 name@tie{}@var{i}, two-character name @var{id}).  If the register is
 undefined, it is created and assigned a value of@tie{}@samp{0}, that
 value is interpolated, and a warning in category @samp{reg} is emitted.
-@xref{Warnings}, for information about the enablement and suppression of
-warnings.
+@xref{Warnings}, regarding the enablement and suppression of warnings.
 @cindex @code{\n}, interpretation in copy mode
 @code{\n} is interpreted even in copy mode (@pxref{Copy Mode}).
 
@@ -7808,8 +7807,8 @@ Lowercase letters: 0, a, b, c, @dots{},@tie{}z, aa, ab,@tie{}@enddots{}
 @end table
 
 Omitting @var{fmt} causes a warning in category @samp{missing}.
-@xref{Warnings}, for information about the enablement and suppression of
-warnings.  Specifying an unrecognized format is an error.
+@xref{Warnings}, regarding the enablement and suppression of warnings.
+Specifying an unrecognized format is an error.
 
 Zero values are interpolated as @samp{0} in non-Arabic formats.
 Negative quantities are prefixed with @samp{-} irrespective of format.
@@ -12482,7 +12481,8 @@ handled as macro arguments are; recall @ref{Calling Macros}.  In
 contrast to macro calls, however, if a closing bracket @samp{]} occurs
 in a string argument, that argument must be enclosed in double quotes.
 When defining strings, argument interpolations must be escaped if they
-are to reference parameters from the calling context; @xref{Parameters}.
+are to reference parameters from the calling context; see
+@ref{Parameters}.
 
 @Example
 .ds cite (\\$1, \\$2)
@@ -12741,8 +12741,7 @@ diversion object named @var{old}, causing the names to refer to the same
 stored object.  If @var{new} already exists, its contents are lost
 unless already aliased.  If @var{old} is undefined, a warning in
 category @samp{mac} is produced, and the request is ignored.
-@xref{Warnings}, for information about the enablement and suppression of
-warnings.
+@xref{Warnings}, regarding the enablement and suppression of warnings.
 
 To understand how the @code{als} request works, consider two different
 storage pools:@: one for objects (macros, strings, etc.), and another
@@ -15316,11 +15315,11 @@ output is being ``diverted'' immediately to the output device).
 
 Dereferencing an undefined diversion will create an empty one of that
 name and cause a warning in category @samp{mac} to be emitted.
-@xref{Warnings}, for information about the enablement and suppression of
-warnings.  A diversion does not exist for the purpose of testing with
-the @code{d} conditional operator until its initial definition ends
-(@pxref{Operators in Conditionals}).  The following requests are used to
-create and alter diversions.
+@xref{Warnings}, regarding the enablement and suppression of warnings.
+A diversion does not exist for the purpose of testing with the @code{d}
+conditional operator until its initial definition ends (@pxref{Operators
+in Conditionals}).  The following requests are used to create and alter
+diversions.
 @c END Keep (roughly) parallel with subsection "Diversions" of groff(7).
 
 @DefreqList {di, [@Var{name}]}
@@ -15344,8 +15343,7 @@ Invoking @code{di} or @code{da} without an argument stops diverting
 output to the diversion named by the most recent corresponding request.
 If @code{di} or @code{da} is called without an argument when there is no
 current diversion, a warning in category @samp{di} is produced.
-@xref{Warnings}, for information about the enablement and suppression
-of warnings.
+@xref{Warnings}, regarding the enablement and suppression of warnings.
 
 @Example
 Before the diversion.

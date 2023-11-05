@@ -2425,6 +2425,11 @@ macro,
 or diversion
 .IR old .
 .
+If
+.I new
+already exists,
+its contents are lost unless already aliased.
+.
 .TPx
 .REQ .am "macro"
 Append to
@@ -5686,9 +5691,6 @@ if a closing bracket
 occurs in a string argument,
 that argument must be enclosed in double quotes.
 .
-.B \[rs]*
-is interpreted even in copy mode.
-.
 When defining strings,
 argument interpolations must be escaped if they are to reference
 parameters from the calling context;
@@ -5696,9 +5698,9 @@ see section \[lq]Parameters\[rq] below.
 .
 .
 .P
-An initial neutral double quote
+The formatter removes an initial neutral double quote
 .B \[dq]
-in the string contents is stripped to allow embedding of leading spaces.
+in the string contents to permit the embedding of leading spaces.
 .
 Any other
 .B \[dq]
@@ -5763,9 +5765,11 @@ string is later interpolated.
 .
 .P
 .B Caution:
-Unlike other requests,
-the second argument to these requests consumes the remainder of the
-input line,
+The
+.B ds
+request,
+unlike others,
+treats the remainder of the input line as its second argument,
 including trailing spaces.
 .
 Ending string definitions

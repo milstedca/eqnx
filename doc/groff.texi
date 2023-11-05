@@ -12436,8 +12436,7 @@ contents and the @code{\*} escape sequence dereferences its name,
 interpolating its contents.  If the string named by the @code{\*} escape
 sequence does not exist, it is defined as empty, nothing is
 interpolated, and a warning in category @samp{mac} is emitted.
-@xref{Warnings}, for information about the enablement and suppression of
-warnings.
+@xref{Warnings}, regarding the enablement and suppression of warnings.
 
 @DefreqList {ds, name [@Var{contents}]}
 @DefreqItemx {ds1, name [@Var{contents}]}
@@ -12469,9 +12468,8 @@ The @code{\*} escape sequence interpolates a previously defined string
 handled as macro arguments are; recall @ref{Calling Macros}.  In
 contrast to macro calls, however, if a closing bracket @samp{]} occurs
 in a string argument, that argument must be enclosed in double quotes.
-@code{\*} is interpreted even in copy mode.  When defining strings,
-argument interpolations must be escaped if they are to reference
-parameters from the calling context; @xref{Parameters}.
+When defining strings, argument interpolations must be escaped if they
+are to reference parameters from the calling context; @xref{Parameters}.
 
 @Example
 .ds cite (\\$1, \\$2)
@@ -12493,11 +12491,11 @@ Gray codes are explored in \*[cite Morgan 1998].
 @cindex trailing spaces in string definitions and appendments
 @cindex comments, with @code{ds}
 @cindex @code{ds} request, and comments
-@strong{Caution:@:} Unlike other requests, the second argument to the
-@code{ds} request consumes the remainder of the input line, including
-trailing spaces.  This means that comments on a line with such a request
-can introduce unwanted space into a string when they are set off from
-the material they annotate, as is conventional.
+@strong{Caution:@:} The @code{ds} request, unlike others, treats the
+remainder of the input line as its second argument, including trailing
+spaces.  This means that comments on a line with such a request can
+introduce unwanted space into a string when they are set off from the
+material they annotate, as is conventional.
 
 @Example
 .ds H2O H\v'+.3m'\s'-2'2\v'-.3m'\s0O \" water
@@ -12517,7 +12515,7 @@ document maintenance.
 
 @Example
 .ds author Alice Pleasance Liddell\"
-.ds empty \" might be appended to later with .as
+.ds friends \" empty; append to with .as
 @endExample
 
 @cindex trailing double quotes in strings
@@ -12526,11 +12524,11 @@ document maintenance.
 @cindex leading spaces with @code{ds}
 @cindex spaces with @code{ds}
 @cindex @code{ds} request, and leading spaces
-An initial neutral double quote @code{"} in @var{contents} is stripped
-to allow embedding of leading spaces.  Any other @code{"} is interpreted
-literally, but it is wise to use the special character escape sequence
-@code{\[dq]} instead if the string might be interpolated as part of a
-macro argument; see @ref{Calling Macros}.
+The formatter removes an initial neutral double quote @code{"} in
+@var{contents} to permit the embedding of leading spaces.  Any other
+@code{"} is interpreted literally, but it is wise to use the special
+character escape sequence @code{\[dq]} instead if the string might be
+interpolated as part of a macro argument; see @ref{Calling Macros}.
 
 @c Examples should be more accessible than Unix nerd stuff like this,
 @c but in general document authors shouldn't want to use "straight"
@@ -12727,9 +12725,11 @@ This request is incorrectly documented in the @acronym{AT&T}
 @cindex diversion, creating alias of (@code{als})
 Create an alias @var{new} for the existing request, string, macro, or
 diversion object named @var{old}, causing the names to refer to the same
-stored object.  If @var{old} is undefined, a warning in category
-@samp{mac} is produced, and the request is ignored.  @xref{Warnings},
-for information about the enablement and suppression of warnings.
+stored object.  If @var{new} already exists, its contents are lost
+unless already aliased.  If @var{old} is undefined, a warning in
+category @samp{mac} is produced, and the request is ignored.
+@xref{Warnings}, for information about the enablement and suppression of
+warnings.
 
 To understand how the @code{als} request works, consider two different
 storage pools:@: one for objects (macros, strings, etc.), and another

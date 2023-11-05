@@ -3682,7 +3682,7 @@ static void print_hyphenation_exceptions()
     string word = entry.contents();
     (void) memset(wordbuf, '\0', bufsz);
     size_t i = 0, j = 0, len = word.length();
-    bool is_mode_independent = false;
+    bool is_mode_dependent = false;
     while (i < len) {
       if ((hypoint != 0 /* nullptr */) && (*hypoint == i)) {
 	wordbuf[j++] = '-';
@@ -3690,12 +3690,12 @@ static void print_hyphenation_exceptions()
       }
       if (word[i] == ' ') {
 	assert(i == (len - 1));
-	is_mode_independent = true;
+	is_mode_dependent = true;
       }
       wordbuf[j++] = word[i++];
     }
     errprint("%1", wordbuf);
-    if (is_mode_independent)
+    if (is_mode_dependent)
       errprint("\t*");
     errprint("\n");
   }

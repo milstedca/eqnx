@@ -1,5 +1,12 @@
 2023-11-06  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp: Mark `suppression_level`,
+	`have_formattable_input`, `old_have_formattable_input`, and
+	`want_unsafe_requests` as `static` to give them internal
+	visibility only.
+
+2023-11-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Make `in_nroff_mode` visible to other translation
 	units, in preparation for Savannah #64866 fix.  Boolify it and
 	rename it from `nroff_mode`.  Relocate definition alongside

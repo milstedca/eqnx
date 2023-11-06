@@ -102,25 +102,25 @@ static int do_old_compatible_flag = -1;	// for .do request
 bool want_abstract_output = false;
 int suppress_output_flag = 0;
 int is_html = 0;
-int suppression_level = 0;	// depth of nested \O escapes
+static int suppression_level = 0;	// depth of nested \O escapes
 
 bool in_nroff_mode = false;
 
 // Keep track of whether \f, \F, \D'F...', \H, \m, \M, \O[345], \R, \s,
 // or \S has been processed in token::next().
-bool have_formattable_input = false;
+static bool have_formattable_input = false;
 // `have_formattable_input` is reset immediately upon reading a new
 // input line, but we need more state information because the input line
 // might have been continued/interrupted with `\c`.
 // Consider:
 //   \f[TB]\m[red]hello\c
 //   \f[]\m[]
-bool old_have_formattable_input = false;
+static bool old_have_formattable_input = false;
 
 bool device_has_tcommand = false;	// 't' output command supported
-bool want_unsafe_requests = false;	// be safer by default
+static bool want_unsafe_requests = false;	// be safer by default
 
-bool have_multiple_params = false;	// e.g., \[e aa], \*[foo bar]
+static bool have_multiple_params = false;	// \[e aa], \*[foo bar]
 
 double spread_limit = -3.0 - 1.0;	// negative means deactivated
 

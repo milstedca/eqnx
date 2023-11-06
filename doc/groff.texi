@@ -14239,8 +14239,15 @@ draw the line.  The default is the baseline rule special character,
 
 @cindex dummy character (@code{\&}), effect on @code{\l} escape sequence
 @cindex character, dummy (@code{\&}), effect on @code{\l} escape sequence
-If @var{c} is a valid scaling unit, put @code{\&} after @var{l} to
-disambiguate the input.
+If @var{c} is a numerical expression operator or valid scaling unit, put
+@code{\&} after @var{l} to disambiguate the input.
+
+@Example
+\l'4i\&-'
+    @result{} ----------------------------------------
+@endExample
+
+Let us see how to draw a box around a word using a macro.
 
 @Example
 .de textbox

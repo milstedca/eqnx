@@ -104,6 +104,8 @@ int suppress_output_flag = 0;
 int is_html = 0;
 int suppression_level = 0;	// depth of nested \O escapes
 
+bool in_nroff_mode = false;
+
 // Keep track of whether \f, \F, \D'F...', \H, \m, \M, \O[345], \R, \s,
 // or \S has been processed in token::next().
 bool have_formattable_input = false;
@@ -5807,17 +5809,15 @@ void line_file()
   skip_line();
 }
 
-static int nroff_mode = 0;
-
 static void nroff_request()
 {
-  nroff_mode = 1;
+  in_nroff_mode = true;
   skip_line();
 }
 
 static void troff_request()
 {
-  nroff_mode = 0;
+  in_nroff_mode = false;
   skip_line();
 }
 
@@ -5905,11 +5905,11 @@ int do_if_request()
     }
   if (c == 't') {
     tok.next();
-    result = !nroff_mode;
+    result = !in_nroff_mode;
   }
   else if (c == 'n') {
     tok.next();
-    result = nroff_mode;
+    result = in_nroff_mode;
   }
   else if (c == 'v') {
     tok.next();
@@ -8956,7 +8956,7 @@ static void do_error(error_type type,
     fputs("debug: ", stderr);
     break;
   case OUTPUT_WARNING:
-    if (nroff_mode) {
+    if (in_nroff_mode) {
       int fromtop = topdiv->get_vertical_position().to_units()
 		    / vresolution;
       fprintf(stderr, "warning [page %d, line %d",

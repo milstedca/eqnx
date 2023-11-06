@@ -1,3 +1,15 @@
+2023-11-06  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[troff]: Make `in_nroff_mode` visible to other translation
+	units, in preparation for Savannah #64866 fix.  Boolify it and
+	rename it from `nroff_mode`.  Relocate definition alongside
+	other externally visible symbols.
+
+	* src/roff/troff/troff.h: Declare it.
+	* src/roff/troff/input.cpp: Do it.
+	(nroff_request, troff_request, do_if_request, do_error): Update
+	references.
+
 2023-11-04  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/node.cpp (set_font_specific_special_fonts):

@@ -5405,8 +5405,8 @@ leaders, respectively.
 @endExample
 
 Tabs and leaders lend themselves to table construction.@footnote{``Tab''
-abbreviates ``tabulation'', suggesting table arrangement mechanism.} The
-tab and leader glyphs can be configured, and further facilities for
+abbreviates ``tabulation'', suggesting a table arrangement mechanism.}
+The tab and leader glyphs can be configured, and further facilities for
 sophisticated table composition are available; see @ref{Tabs and
 Fields}.  There are many details to track when using such low-level
 features, so most users turn to the @cite{tbl@r{(1)}} preprocessor to
@@ -5462,7 +5462,7 @@ macros is more flexible but also more complex.  @xref{Calling Macros}.}
 
 @anchor{Macros} @c 1.22.4
 @cindex macro
-@cindex calling a macro
+@cindex calling macros (introduction)
 @cindex interpolation
 A @dfn{macro} can be thought of as an abbreviation you can define for a
 collection of control and text lines.  When the macro is @dfn{called} by
@@ -9353,8 +9353,8 @@ tab stop.
 Tab stops are associated with the environment (@pxref{Environments}).
 
 @cindex tab stop settings register (@code{.tabs})
-@cindex @code{.S} register, Plan@tie{}9 alias for @code{.tabs}
-@cindex @code{.tabs} register, Plan@tie{}9 alias (@code{.S})
+@cindex @code{.S} register, Plan@tie{}9 name for @code{.tabs}
+@cindex @code{.tabs} register, Plan@tie{}9 name for (@code{.S})
 The read-only register @code{.tabs} contains a string
 representation of the current tab settings suitable for use as an
 argument to the @code{ta} request.@footnote{Plan@tie{}9 @code{troff}
@@ -10629,9 +10629,9 @@ line.
 Set the default font family, used in combination with abstract styles to
 construct a resolved font name, to @var{family} (one-character
 name@tie{}@var{f}, two-character name @var{fm}).  If no argument is
-given, GNU @code{troff} selects the previous font family; if there none,
-it falls back to the device's default@footnote{@xref{DESC File Format}.}
-or its own (@samp{T}).
+given, GNU @code{troff} selects the previous font family; if there are
+none, it falls back to the device's default@footnote{@xref{DESC File
+Format}.} or its own (@samp{T}).
 
 The @code{\F} escape sequence works similarly.  In disanalogy to
 @code{\f}, @samp{\FP} makes @samp{P} the default family.  Use
@@ -14254,9 +14254,9 @@ argument(s), and another box rule.  We employ the boundary-relative
 motion operator @samp{|}.  Finally, the line-drawing escape sequences
 draw a radical extender (a form of overline) and an underline from the
 drawing position to the position coresponding to beginning of the
-@emph{input} line.  The drawing position returns to just after the
-right-hand box rule because the lengths of the drawn lines are negative,
-as noted above.
+@emph{input} line.  The formatter leaves the drawing position at the
+right-hand box rule even though the line lengths are negative, as noted
+above.
 @endDefesc
 
 @DefescList {\\L, @code{'}, l, @code{'}}
@@ -14475,7 +14475,7 @@ default.
 
 In a hazy penumbra between text rendering and drawing commands we locate
 the bracket-building escape sequence, @code{\b}.  It can assemble
-apparently large glyphs by vertically stacking ordinary ones.
+glyphs that appear large by vertically stacking ordinary ones.
 
 @Defesc {\\b, @code{'}, contents, @code{'}}
 @cindex pile, glyph (@code{\b})
@@ -18913,8 +18913,6 @@ of fields separated by spaces or tabs and organized as follows.
 [@code{--} @var{comment}]
 @end quotation
 
-@cindex 8-bit input
-@cindex input, 8-bit
 @cindex accessing unnamed glyphs with @code{\N}
 @cindex unnamed glyphs, accessing with @code{\N}
 @cindex characters, unnamed, accessing with @code{\N}

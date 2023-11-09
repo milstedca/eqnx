@@ -1,3 +1,15 @@
+2023-11-09  Paul Eggert  <eggert@cs.ucla.edu>
+
+	[libbib]: Fix bogus size diagnostic.
+
+	* src/libs/libbib/index.cpp (index_search_item::check_header):
+	Fix size calculation typo that generated bogus diagnostic
+	"lookbib: error: corrupt header in index file".
+
+	{Fixes <https://savannah.gnu.org/bugs/?64879>.  Problem
+	introduced by me in commit 4fad0459bb, 2022-01-05.
+	-- GBR, 2023-11-10}
+
 2023-11-10  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* src/roff/troff/input.cpp (device_request, output_request):

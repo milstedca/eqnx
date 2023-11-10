@@ -2777,9 +2777,12 @@ comprising the characters or range expressions
 and so on.
 .
 .TPx
-.REQ .close "stream"
-Close the
-.IR stream .
+.REQ .close stream
+Close
+.IR stream ,
+making it unavailable for
+.request .write
+requests.
 .
 .
 .TPx
@@ -3799,18 +3802,21 @@ Stop formatting current file and begin reading
 .I file.
 .
 .TPx
-.REQ .open "stream file"
+.REQ .open "ident file"
 Open
 .I file
-for writing and associate the stream named
-.I stream
-with it.
+for writing and associate a stream named
+.I ident
+with it,
+making it available for
+.request .write
+requests.
 .
 Unsafe request;
 disabled by default.
 .
 .TPx
-.REQ .opena "stream file"
+.REQ .opena "ident file"
 As
 .request .open ,
 but append to
@@ -4584,7 +4590,7 @@ evaluates false.
 .REQ .write "stream anything"
 Write
 .I anything
-to the stream named
+to
 .IR stream .
 .
 .TPx
@@ -4594,10 +4600,10 @@ Similar to
 without emitting a final newline.
 .
 .TPx
-.REQ .writem "stream xx"
+.REQ .writem "stream name"
 Write contents of macro or string
-.I xx
-to the stream named
+.I name
+to
 .IR stream .
 .
 .LE

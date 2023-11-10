@@ -3147,16 +3147,25 @@ arguments.
 .
 .
 .TP
-.B .return
-Within a macro,
-return immediately.
-.
-If called with an argument,
-return twice,
-namely from the current macro and from the macro one level higher.
-.
-No effect otherwise.
+.BR .return\~ [
+.IR anything ]
 .\" XXX: useless request warning?
+Stop interpreting a macro,
+skipping to the end of its definition.
+.
+Do not confuse
+.RB \[lq] return \[rq]
+with
+.BR rt .
+.
+If called with an argument
+.I anything,
+the skip is performed twice\[em]once within the macro being interpreted
+and once in an enclosing macro.
+.
+.I trace.tmac
+uses this feature to define a wrapper macro for
+.RB \[lq] return \[rq].
 .
 .
 .TP

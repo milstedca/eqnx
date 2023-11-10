@@ -13497,10 +13497,11 @@ description of the @code{als} request}, for pitfalls when redefining a
 macro that is aliased.
 
 @Defreq {return, [@Var{anything}]}
-Exit a macro, immediately returning to the caller.  If called with an
-argument @var{anything}, exit twice---the current macro and the macro
-one level higher.  This is used to define a wrapper macro for
-@code{return} in @file{trace.tmac}.
+Stop interpreting a macro, skipping to the end of its definition.  Do
+not confuse @code{return} with @code{rt}.  If called with an argument
+@var{anything}, the skip is performed twice---once within the macro
+being interpreted and once in an enclosing macro.  @file{trace.tmac}
+uses this feature to define a wrapper macro for @code{return}.
 @endDefreq
 
 @menu

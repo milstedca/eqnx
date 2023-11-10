@@ -3978,9 +3978,10 @@ skipping the remainder of its definition.
 .
 .TPx
 .REQ .return anything
-Return twice,
-namely from the macro at the current level and from the macro one level
-higher.
+As
+.BR return ,
+but perform the skip twice\[em]once within the macro being interpreted
+and once in an enclosing macro.
 .
 .TPx
 .REQ .rfschar "f c1 c2 \fR\&.\|.\|.\&\fP"

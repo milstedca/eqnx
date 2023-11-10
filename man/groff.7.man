@@ -3968,7 +3968,7 @@ Remove the font-specific definitions of glyphs
 .RI font\~ f .
 .
 .TPx
-.REQ .rj npl
+.REQ .rj
 Break,
 right-align the output of the next productive input line without
 filling,

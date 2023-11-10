@@ -9231,7 +9231,7 @@ Change tab stop positions.  This request takes a series of tab
 specifiers as arguments (optionally divided into two groups with the
 letter @samp{T}) that indicate where each tab stop is to be, overriding
 any previous settings.  The default scaling unit is @samp{m}.  Invoking
-@code{ta} without an argument removes all tab stops.
+@code{ta} without arguments removes all tab stops.
 @cindex default tab stops
 @cindex tab stops, default
 GNU @code{troff}'s startup value is @w{@samp{T 0.5i}}.
@@ -9268,10 +9268,8 @@ Now we are ready to interpret the full syntax given above.  The
 @var{nn}, then at @var{nn}+@var{r1}, @var{nn}+@var{r2}, @dots{},
 @var{nn}+@var{rn}, then at @var{nn}+@var{rn}+@var{r1},
 @var{nn}+@var{rn}+@var{r2}, @dots{}, @var{nn}+@var{rn}+@var{rn}, and so
-on.
-
-For example, @samp{4c +6c T 3c 5c 2c} is equivalent to @samp{4c 10c 13c
-18c 20c 23c 28c 30c @dots{}}.
+on.  For example, @samp{4c +6c T 3c 5c 2c} is equivalent to @samp{4c 10c
+13c 18c 20c 23c 28c 30c @dots{}}.
 
 Text between two tab stops may be aligned to the right or left, or
 centered.  This alignment is determined by appending @samp{R}, @samp{L},
@@ -9291,8 +9289,8 @@ cannot be adjusted.
 
 @Example
 .ll 2i
-.ds foo a\tb\tc
 .ta T 1i
+a@arrow{}b@arrow{}c
 \*[foo]
     @error{} warning: cannot break line
     @result{} a         b         c
@@ -9300,15 +9298,12 @@ cannot be adjusted.
 
 @noindent
 The above creates a single output line that is a bit longer than two
-inches.@footnote{We define a string and use the copy-mode tab escape
-sequence to make the input tab locations visible; see @ref{Strings} and
-@ref{Copy Mode}.}  Now consider the following.
+inches.  Now consider the following.
 
 @Example
 .ll 2i
-.ds bar a\tb c\td
 .ta T 1i
-\*[bar]
+a@arrow{}b c@arrow{}d
     @error{} warning: cannot adjust line
     @result{} a         b
     @result{} c       d
@@ -9324,17 +9319,13 @@ stop---are ignored except for the first, which delimits the characters
 belonging to the last tab stop for right-alignment or centering.
 
 @Example
-.ds 1Z foo\tbar
-.ds 2Z foo\tbar\tbaz
-.ds 3Z foo\tbar\tbazqux
-.ds 4Z foo\tbar\tbaz\tqux
 .nf
-\l'4i\&-'
 .ta 2i 4iR
-\*[1Z]
-\*[2Z]
-\*[3Z]
-\*[4Z]
+\l'4i\&-'
+foo@arrow{}bar
+foo@arrow{}bar@arrow{}baz
+foo@arrow{}bar@arrow{}bazqux
+foo@arrow{}bar@arrow{}baz@arrow{}qux
     @result{} ----------------------------------------
     @result{} foo                 bar
     @result{} foo                 bar              baz

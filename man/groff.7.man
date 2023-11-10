@@ -3876,9 +3876,9 @@ The current page offset is available in register
 .
 .TPx
 .REQ .po "\[+-]N"
-Page offset
-.IR N .
-.
+Alter page offset
+(default scaling unit\~\c
+.scaleindicator m ).
 .
 .TPx
 .REQ .ps

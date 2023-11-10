@@ -2241,16 +2241,11 @@ A few denotations may require introduction.
 .RS
 .
 .TPx
-.I c
-denotes a single input character.
-.
-.TPx
-.I font
-a font either specified as a font name or a numeric mounting position.
-.
-.TPx
 .I anything
-all characters up to the end of the line,
+includes all characters up to the end of the input line
+(which may be continued with
+.BI \[rs] newline\c
+),
 to the ending delimiter for the escape sequence,
 or within
 .esc {
@@ -2258,8 +2253,42 @@ and
 .esc } .
 .
 Escape sequences may generally be used freely in
-.IR anything ,
+.I anything,
 except when it is read in copy mode.
+.
+Comments are ignored;
+trailing whitespace generally is not.
+.
+.TPx
+.I c
+denotes a single input character,
+ordinary or special.
+.
+.TPx
+.I div
+is a diversion.
+.
+.TPx
+.I env
+is an environment.
+.
+.TPx
+.I font
+is a typeface specified as a font name,
+an abstract style,
+or a mounting position.
+.
+.TPx
+.I ident
+is a valid
+.I groff
+identifier;
+its use often indicates that the operation creates an object of a type
+subsequently referred to as
+.I mac,
+.I reg,
+.I str,
+and so forth.
 .
 .TPx
 .I message
@@ -2272,6 +2301,18 @@ interpreted.
 .TPx
 .I n
 is a numeric expression that evaluates to a non-negative integer.
+.
+.TPx
+.I \[+-]N
+is a numeric expression with a meaning dependent on its sign;
+see below.
+.
+.TPx
+.I name
+is a macro,
+string,
+request,
+or diversion.
 .
 .TPx
 .I npl
@@ -2291,8 +2332,16 @@ Macro calls are not themselves productive,
 but their interpolated contents can be.
 .
 .TPx
-.I \[+-]N
-is a numeric expression with a meaning dependent on its sign.
+.I reg
+is a register.
+.
+.TPx
+.I str
+is a string.
+.
+.TPx
+.I stream
+is an output stream.
 .RE
 .LE
 .

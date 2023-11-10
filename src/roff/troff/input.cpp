@@ -5653,6 +5653,11 @@ static node *do_special()
 
 void device_request()
 {
+  if (!has_arg()) {
+    warning(WARN_MISSING, "device control request expects arguments");
+    skip_line();
+    return;
+  }
   if (!tok.is_newline() && !tok.is_eof()) {
     int c;
     macro mac;
@@ -5689,6 +5694,11 @@ void device_macro_request()
 
 void output_request()
 {
+  if (!has_arg()) {
+    warning(WARN_MISSING, "output request expects arguments");
+    skip_line();
+    return;
+  }
   if (!tok.is_newline() && !tok.is_eof()) {
     int c;
     for (;;) {

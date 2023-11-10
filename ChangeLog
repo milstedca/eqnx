@@ -1,3 +1,8 @@
+2023-11-10  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (device_request, output_request):
+	Throw warning diagnostic if no arguments given.
+
 2023-11-06  Pim <pimh@kth.se>
 
 	* src/preproc/eqn/lex.cpp: Update internal macro definitions

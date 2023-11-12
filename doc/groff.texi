@@ -9291,7 +9291,6 @@ cannot be adjusted.
 .ll 2i
 .ta T 1i
 a@arrow{}b@arrow{}c
-\*[foo]
     @error{} warning: cannot break line
     @result{} a         b         c
 @endExample

@@ -9383,18 +9383,15 @@ to compute tab distances relative to the start of the output line
 instead of the input line.
 
 @Example
-.de Tabs
-.  ds x a\t\c
-.  ds y b\t\c
-.  ds z c
-.  ta 1i 3i
-\\*x
-\\*y
-\\*z
-..
-.Tabs
+.ta 1i 3i
+a@arrow{}\c
+b@arrow{}\c
+c
 .br
 .linetabs
+a@arrow{}\c
+b@arrow{}\c
+c
 .Tabs
     @result{} a         b         c
     @result{} a         b                   c

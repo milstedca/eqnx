@@ -9380,7 +9380,8 @@ Only a single character of @var{c} is recognized; any excess is ignored.
 If @var{n} is missing or non-zero, activate @dfn{line-tabs}; deactivate
 it otherwise (the default).  Active line-tabs cause GNU @code{troff}
 to compute tab distances relative to the start of the output line
-instead of the input line.
+rather than relative to the horizontal drawing position corresponding to
+the start of the input line.
 
 @Example
 .ta 1i 3i

@@ -1,3 +1,8 @@
+2023-11-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/number.cpp (is_valid_expression): Boolify and
+	rename local variable from `overflow` to `had_overflow`.
+
 2023-11-09  Paul Eggert  <eggert@cs.ucla.edu>
 
 	[libbib]: Fix bogus size diagnostic.

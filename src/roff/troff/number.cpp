@@ -296,7 +296,7 @@ static bool is_valid_expression(units *v, int scaling_unit,
     if (!is_valid_term(&v2, scaling_unit, is_parenthesized,
 		       is_mandatory))
       return false;
-    int overflow = 0;
+    bool had_overflow = false;
     switch (op) {
     case '<':
       *v = *v < v2;
@@ -330,13 +330,13 @@ static bool is_valid_expression(units *v, int scaling_unit,
     case '+':
       if (v2 < 0) {
 	if (*v < INT_MIN - v2)
-	  overflow = 1;
+	  had_overflow = true;
       }
       else if (v2 > 0) {
 	if (*v > INT_MAX - v2)
-	  overflow = 1;
+	  had_overflow = true;
       }
-      if (overflow) {
+      if (had_overflow) {
 	error("addition overflow");
 	return false;
       }
@@ -345,13 +345,13 @@ static bool is_valid_expression(units *v, int scaling_unit,
     case '-':
       if (v2 < 0) {
 	if (*v > INT_MAX + v2)
-	  overflow = 1;
+	  had_overflow = true;
       }
       else if (v2 > 0) {
 	if (*v < INT_MIN + v2)
-	  overflow = 1;
+	  had_overflow = true;
       }
-      if (overflow) {
+      if (had_overflow) {
 	error("subtraction overflow");
 	return false;
       }
@@ -361,20 +361,20 @@ static bool is_valid_expression(units *v, int scaling_unit,
       if (v2 < 0) {
 	if (*v > 0) {
 	  if ((unsigned)*v > -(unsigned)INT_MIN / -(unsigned)v2)
-	    overflow = 1;
+	    had_overflow = true;
 	}
 	else if (-(unsigned)*v > INT_MAX / -(unsigned)v2)
-	  overflow = 1;
+	  had_overflow = true;
       }
       else if (v2 > 0) {
 	if (*v > 0) {
 	  if (*v > INT_MAX / v2)
-	    overflow = 1;
+	    had_overflow = true;
 	}
 	else if (-(unsigned)*v > -(unsigned)INT_MIN / v2)
-	  overflow = 1;
+	  had_overflow = true;
       }
-      if (overflow) {
+      if (had_overflow) {
 	error("multiplication overflow");
 	return false;
       }

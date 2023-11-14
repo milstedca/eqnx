@@ -1,5 +1,15 @@
 2023-11-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Boolify numeric expression-reading functions.
+
+	* src/roff/troff/hvunits.h (get_vunits, get_hunits):
+	* src/roff/troff/token.h (get_number_rigidly, get_number)
+	(get_integer):
+	* src/roff/troff/number.cpp (get_vunits, get_hunits)
+	(get_number_rigidly, get_number, get_integer): Do it.
+
+2023-11-13  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/number.cpp (is_valid_expression): Boolify and
 	rename local variable from `overflow` to `had_overflow`.
 

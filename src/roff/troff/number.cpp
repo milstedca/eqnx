@@ -106,7 +106,7 @@ bool get_integer(int *res)
     return false;
 }
 
-enum incr_number_result { BAD, ABSOLUTE, INCREMENT, DECREMENT };
+enum incr_number_result { INVALID, ASSIGN, INCREMENT, DECREMENT };
 
 static incr_number_result get_incr_number(units *res, unsigned char);
 
@@ -114,9 +114,9 @@ bool get_vunits(vunits *res, unsigned char si, vunits prev_value)
 {
   units v;
   switch (get_incr_number(&v, si)) {
-  case BAD:
+  case INVALID:
     return false;
-  case ABSOLUTE:
+  case ASSIGN:
     *res = v;
     break;
   case INCREMENT:
@@ -135,9 +135,9 @@ bool get_hunits(hunits *res, unsigned char si, hunits prev_value)
 {
   units v;
   switch (get_incr_number(&v, si)) {
-  case BAD:
+  case INVALID:
     return false;
-  case ABSOLUTE:
+  case ASSIGN:
     *res = v;
     break;
   case INCREMENT:
@@ -156,9 +156,9 @@ bool get_number(units *res, unsigned char si, units prev_value)
 {
   units v;
   switch (get_incr_number(&v, si)) {
-  case BAD:
+  case INVALID:
     return false;
-  case ABSOLUTE:
+  case ASSIGN:
     *res = v;
     break;
   case INCREMENT:
@@ -177,9 +177,9 @@ bool get_integer(int *res, int prev_value)
 {
   units v;
   switch (get_incr_number(&v, 0)) {
-  case BAD:
+  case INVALID:
     return false;
-  case ABSOLUTE:
+  case ASSIGN:
     *res = v;
     break;
   case INCREMENT:
@@ -198,8 +198,8 @@ bool get_integer(int *res, int prev_value)
 static incr_number_result get_incr_number(units *res, unsigned char si)
 {
   if (!is_valid_expression_start())
-    return BAD;
-  incr_number_result result = ABSOLUTE;
+    return INVALID;
+  incr_number_result result = ASSIGN;
   if (tok.ch() == '+') {
     tok.next();
     result = INCREMENT;
@@ -211,7 +211,7 @@ static incr_number_result get_incr_number(units *res, unsigned char si)
   if (is_valid_expression(res, si, false /* is_parenthesized */))
     return result;
   else
-    return BAD;
+    return INVALID;
 }
 
 static bool is_valid_expression_start()

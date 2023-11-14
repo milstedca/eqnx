@@ -1,3 +1,9 @@
+2023-11-14  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/number.cpp: Rename some enumeration constants.
+	- `BAD` -> `INVALID`
+	- `ABSOLUTE` -> `ASSIGN`
+
 2023-11-13  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[troff]: Boolify numeric expression-reading functions.

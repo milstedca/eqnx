@@ -763,6 +763,23 @@ system, and the command of that name.  In the first sense, @code{groff}
 is an extended dialect of the @code{roff} language, for which many
 similar implementations exist.
 
+A tradition has arisen that GNU programs' names bear a prefix @samp{g}
+where necessary to distinguish them from other implementations on the
+host system (@pxref{Environment}).  Thus, for example, @code{geqn} is
+GNU @code{eqn}.  On operating systems that lack a @code{troff} of
+different provenance, this prefix is omitted; GNU @command{troff} is the
+only @code{troff} available.  Exceptionally, @samp{groff} always retains
+its leading @samp{g}.
+
+In this document, we consequently sometimes say @samp{gtroff} when
+talking about the GNU @command{troff} command.
+@c XXX: Not for much longer... -- GBR
+We call other @code{troff} systems @acronym{AT&T} @code{troff} because
+that is the common origin of almost all @code{troff}
+implementations@footnote{Besides @code{groff}, @code{neatroff} is an
+exception.} (with more or less compatible changes).  Similarly, we say
+@samp{gpic}, @samp{geqn}, and so on.
+
 This manual employs Emacs names for non-graphic keycap engravings on the
 alphabetic section of the keyboard.  ``@key{RET}'' is Return or Enter,
 and ``@key{SPC}'' is the space bar.
@@ -866,23 +883,6 @@ Kollar contributed much of the material on the @file{ms} macro package.
 This chapter focuses on how to invoke the @command{groff} front end,
 which constructs a pipeline connecting desired preprocessors,
 the GNU @command{troff} formatter program, and a postprocessor.
-
-A tradition has arisen that GNU programs' names bear a prefix @samp{g}
-where necessary to distinguish them from other implementations on the
-host system (@pxref{Environment}).  Thus, for example, @code{geqn} is
-GNU @code{eqn}.  On operating systems that lack a @code{troff} of
-different provenance, this prefix is omitted; GNU @command{troff} is the
-only @code{troff} available.  Exceptionally, @samp{groff} always retains
-its leading @samp{g}.
-
-In this document, we consequently sometimes say @samp{gtroff} when
-talking about the GNU @command{troff} command.
-@c XXX: Not for much longer... -- GBR
-We call other @code{troff} systems @acronym{AT&T} @code{troff} because
-that is the common origin of almost all @code{troff}
-implementations@footnote{Besides @code{groff}, @code{neatroff} is an
-exception.} (with more or less compatible changes).  Similarly, we say
-@samp{gpic}, @samp{geqn}, and so on.
 
 @menu
 * Groff Options::

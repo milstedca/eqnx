@@ -735,9 +735,9 @@ language.  An @dfn{output driver} translates this language into a file
 format or byte stream that a piece of (possibly emulated) hardware
 understands.  @code{groff} features output drivers for PostScript
 devices, terminal emulators (and other simple typewriter-like machines),
-X11 (for previewing), @TeX{} DVI, HP LaserJet@tie{}4/PCL5 and Canon LBP
-printers (which use @acronym{CaPSL}), @acronym{HTML}, @acronym{XHTML},
-and @acronym{PDF}.
+X11 (for previewing), @TeX{} DVI, HP LaserJet@tie{}4/PCL5 printers,
+Canon LBP (@acronym{CaPSL}-using printers), @acronym{HTML},
+@acronym{XHTML}, and @acronym{PDF}.
 
 
 @c =====================================================================
@@ -780,12 +780,14 @@ implementations@footnote{Besides @code{groff}, @code{neatroff} is an
 exception.} (with more or less compatible changes).  Similarly, we say
 @samp{gpic}, @samp{geqn}, and so on.
 
+@cindex @key{RET}
+@cindex @key{SPC}
 This manual employs Emacs names for non-graphic keycap engravings on the
 alphabetic section of the keyboard.  ``@key{RET}'' is Return or Enter,
 and ``@key{SPC}'' is the space bar.
 
 The @code{roff} language features several major syntactical categories
-for which many items are predefined.  Presentations of these items
+within which many items are predefined.  Presentations of these items
 feature the form in which the item is most commonly used on the left,
 and, aligned to the right margin, the name of the category in brackets.
 
@@ -911,18 +913,18 @@ the GNU @command{troff} formatter program, and a postprocessor.
 @pindex grefer
 @pindex gsoelim
 @pindex preconv
-@command{groff} normally runs the @command{gtroff} program and a
-postprocessor appropriate for the selected device.  The default device
-is @samp{ps} (but it can be changed at @code{groff}'s build-time
-configuration).  It can optionally preprocess input with any of
-@code{gpic}, @code{geqn}, @code{gtbl}, @code{ggrn}, @code{grap},
-@code{gchem}, @code{grefer}, @code{gsoelim}, or @code{preconv}.
+@command{groff} runs the GNU @command{troff} program and, normally, a
+postprocessor appropriate to the selected device.  The default device is
+@samp{ps}, unless changed at @code{groff}'s build-time configuration).
+@command{groff} can preprocess input with any of @code{gpic},
+@code{geqn}, @code{gtbl}, @code{ggrn}, @code{grap}, @code{gchem},
+@code{grefer}, @code{gsoelim}, or @code{preconv}.
 
 @anchor{Output Devices} @c 1.22.4
 This section documents only options to the @command{groff} front end.
-Since it passes many of its arguments to @command{gtroff}, we describe
-many of the latter's options here.  Arguments to preprocessors and
-output drivers can be found in the man pages @cite{gpic@r{(1)}},
+Since it passes many of its arguments to GNU @command{troff}, we
+describe many of the latter's options here.  Arguments to preprocessors
+and output drivers can be found in the man pages @cite{gpic@r{(1)}},
 @cite{geqn@r{(1)}}, @cite{gtbl@r{(1)}}, @cite{ggrn@r{(1)}},
 @cite{grefer@r{(1)}}, @cite{gchem@r{(1)}}, @cite{gsoelim@r{(1)}},
 @cite{preconv@r{(1)}}, @cite{grotty@r{(1)}}, @cite{grops@r{(1)}},

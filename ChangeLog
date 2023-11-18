@@ -190,16 +190,14 @@
 	the document saw little change for a while).  Some node names, I
 	did not add anchors for; they correspond either to material that
 	we've dropped altogether from our Texinfo manual (mainly a
-	history that can now be found [much updated] in roff(7), and a
 	somewhat stale duplicate of groff_man(7), which no GNU Info
 	partisan would read anyway) or were empty stubs anyway.  An HTTP
-	404 response is therefore honest in such cases.  Thanks to Gavin
-	Smith and Thérèse Godefroy for this and other useful
-	suggestions.
+	404 response is therefore honest in such cases.
 
 	Fixes <https://savannah.gnu.org/bugs/?64758>.  Thanks to Ingo
-	Schwarze for the report and Gavin Smith for proposing a
-	resolution technique.
+	Schwarze for the report, Gavin Smith for proposing a
+	resolution technique, and Thérèse Godefroy for assistance
+	cleaning up our Texinfo manual's hyperlinks on the GNU web site.
 
 2023-10-21  G. Branden Robinson <g.branden.robinson@gmail.com>
 

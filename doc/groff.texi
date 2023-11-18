@@ -9679,11 +9679,11 @@ Historically, @code{nroff} and @code{troff} were two separate programs;
 the former for terminal output, the latter for typesetters.  GNU
 @code{troff} merges both functions into one executable@footnote{A
 GNU @command{nroff} program is available for convenience; it calls GNU
-@code{troff} to perform the formatting.} that sends its output to a
-device driver (@code{grotty} for terminal devices, @code{grops} for
-PostScript, and so on) that interprets its output.  When discussing
-@acronym{AT&T} @code{troff}, it makes sense to talk about
-@dfn{@code{nroff} mode} and @dfn{@code{troff} mode} since the
+@code{troff} to perform the formatting; see @cite{gnroff@r{(1)}}.} that
+sends its output to a device driver (@code{grotty} for terminal devices,
+@code{grops} for PostScript, and so on) that interprets its output.
+When discussing @acronym{AT&T} @code{troff}, it makes sense to talk
+about @dfn{@code{nroff} mode} and @dfn{@code{troff} mode} since the
 differences are hard-coded.  GNU @code{troff} takes information from
 device and font description files without handling requests specially if
 a terminal output device is used, so such a strong distinction is

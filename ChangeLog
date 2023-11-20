@@ -1,3 +1,23 @@
+2023-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[man]: Don't enforce tag separation on `IP`.
+
+	The tags to `IP` macros are often very short, as with bullets or
+	list enumerators (and in fact we encourage this practice in our
+	style advice, promoting `TP` for definition lists and similar).
+	We therefore don't want to enforce the `TS` tag separation for
+	them.  `.IP \[bu] 2n` is a perfectly cromulent usage pattern.
+
+	* tmac/an.tmac: Add new Boolean-valued register,
+	`an*enforce-tag-separation` to control this aspect of state.
+	Initialize it true.
+	(an-write-paragraph-tag): Multiply `TS` by this register to
+	apply enforcement (or not).
+	(IP): Temporarily clear register while setting paragraph.
+
+	* tmac/groff_man.7.man.in (Paragraphing macros, Options):
+	* NEWS: Update documentation.
+
 2023-11-19  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[build]: In source files that #include <assert.h>, ensure that

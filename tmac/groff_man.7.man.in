@@ -943,11 +943,14 @@ arguments,
 if present,
 are handled as with
 .BR .TP ,
-with the exception that the
+except that the
 .I tag
 argument to
 .B .IP
-cannot `include' a macro call.
+cannot `include' a macro call,
+and the tag separation amount stored in the
+.B TS
+register is not enforced.
 .
 .
 _ifstyle()dnl
@@ -3722,9 +3725,7 @@ The default is\~3n.
 .BI \-rTS= separation
 Require the given
 .I separation
-between an
-.B IP
-or
+between a
 .B TP
 paragraph's tag and its body.
 .

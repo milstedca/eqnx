@@ -89,10 +89,10 @@ o The an (man) and doc (mdoc) macro packages now support a `PO` register
   to configure the page offset used by the formatter.
 
 o The an (man) macro package now supports a `TS` register to configure
-  the minimum space required between a paragraph's tag and its body.
-  (If the width of the tag's formatted text plus this space exceeds the
-  paragraph indentation, the line is broken after the tag.)  This
-  parameter, formerly hard-coded as `1n`, now defaults to `2n`.
+  the minimum space required between the tag of a `TP` paragraph and its
+  body.  (If the width of the tag's formatted text plus this space
+  exceeds the paragraph indentation, the line is broken after the tag.)
+  This parameter, formerly hard-coded as `1n`, now defaults to `2n`.
 
 o The an (man) and doc (mdoc) macro packages now use slightly different
   vertical margins when formatting for typesetters, to align more

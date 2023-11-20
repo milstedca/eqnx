@@ -2,7 +2,7 @@
 
 	[build]: In source files that #include <assert.h>, ensure that
 	we #include <config.h> first (with a `HAVE_CONFIG_H` inclusion
-	guard).  This should prevent build failures on AIX a.k.a. z/OS.
+	guard).  This should prevent build failures on AIX.
 
 	* src/devices/grodvi/dvi.cpp:
 	* src/devices/grolbp/lbp.cpp:

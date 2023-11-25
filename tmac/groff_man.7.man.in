@@ -2220,7 +2220,7 @@ Others are supported for configuration of rendering parameters;
 see section \(lqOptions\(rq below.
 .
 .
-.TP
+.TP 8n \" accommodate "\e*(Tm", hand-tuned for PDF
 .B \e*R
 interpolates a special character escape sequence for the \(lqregistered
 sign\(rq glyph,

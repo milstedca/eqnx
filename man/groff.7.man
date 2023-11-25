@@ -2686,7 +2686,9 @@ adjust if applicable.
 .
 .TPx
 .REQ .break
-Break out of a while loop.
+Break out of a
+.request .while
+loop.
 .
 .TPx
 .REQ .c2
@@ -2815,7 +2817,9 @@ while constructing a composite glyph name.
 .
 .TPx
 .REQ .continue
-Finish the current iteration of a while loop.
+Finish the current iteration of a
+.request .while
+loop.
 .
 .TPx
 .REQ .cp

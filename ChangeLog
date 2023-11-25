@@ -2,18 +2,19 @@
 
 	[man]: Don't enforce tag separation on `IP`.
 
-	The tags to `IP` macros are often very short, as with bullets or
-	list enumerators (and in fact we encourage this practice in our
-	style advice, promoting `TP` for definition lists and similar).
-	We therefore don't want to enforce the `TS` tag separation for
-	them.  `.IP \[bu] 2n` is a perfectly cromulent usage pattern.
+	The marker argument to the `IP` macro is often very short, such
+	as a bullet or list enumerator (and in fact we encourage this
+	practice in our style advice, promoting `TP` instead for
+	definition lists and similar).  We therefore don't want to
+	enforce the `TS` tag separation for them.  `.IP \[bu] 2n` is a
+	perfectly cromulent usage pattern.
 
 	* tmac/an.tmac: Add new Boolean-valued register,
-	`an*enforce-tag-separation` to control this aspect of state.
+	`an*enforce-tag-separation`, to control this aspect of state.
 	Initialize it true.
 	(an-write-paragraph-tag): Multiply `TS` by this register to
 	apply enforcement (or not).
-	(IP): Temporarily clear register while setting paragraph.
+	(IP): Temporarily clear register while setting paragraph tag.
 
 	* tmac/groff_man.7.man.in (Paragraphing macros, Options):
 	* NEWS: Update documentation.
@@ -22,7 +23,7 @@
 
 	[build]: In source files that #include <assert.h>, ensure that
 	we #include <config.h> first (with a `HAVE_CONFIG_H` inclusion
-	guard).  This should prevent build failures on AIX.
+	guard).  This should prevent build failures on AIX with Clang++.
 
 	* src/devices/grodvi/dvi.cpp:
 	* src/devices/grolbp/lbp.cpp:
@@ -642,7 +643,7 @@
 
 2023-09-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
-	[grog]: Drop `--ligatures`, `-run` support.
+	[grog]: Drop `--ligatures`, `--run` support.
 
 	Simulate the former (which was specific to the "pdf" output
 	device) with the option sequence "-P -U -P y", and the latter by
@@ -774,9 +775,10 @@
 	`default_param_table`.
 	(get_param): New function accesses `param_table` entries via a C
 	string rather than integer lvalues.  Use `assert()` to dump
-	core; this function is never called by the parser, but only by
-	static logic.  Add `fatal()` under this same circumstance, in
-	case anyone `#define`s `NDEBUG`.
+	core if the parameter name is not recognized; this function is
+	never called by the parser, but only by static logic.  Add
+	`fatal()` under this same circumstance, in case anyone
+	`#define`s `NDEBUG`.
 	(init_param_table): New function populates the (mutable)
 	`param_table` from the (immutable) `default_param_table` using
 	heap storage.

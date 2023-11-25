@@ -716,13 +716,12 @@ does not.
 .
 See subsection \(lqUse of extensions\(rq
 _ifstyle()dnl
-below
+below.
 _endif()dnl
 _ifnotstyle()dnl
 in
-.MR groff_man_style @MAN7EXT@
+.MR groff_man_style @MAN7EXT@ .
 _endif()dnl
-for suggestions.
 .
 .
 .TP
@@ -906,13 +905,12 @@ Solaris
 .
 See subsection \(lqUse of extensions\(rq
 _ifstyle()dnl
-below
+below.
 _endif()dnl
 _ifnotstyle()dnl
 in
-.MR groff_man_style @MAN7EXT@
+.MR groff_man_style @MAN7EXT@ .
 _endif()dnl
-for suggestions.
 _ifstyle()dnl
 .
 .
@@ -1005,33 +1003,27 @@ These macros break the output line.
 .\" some tools are able to interpret these macros semantically and treat
 .\" them appropriately for localization and/or presentation.
 .
-.
-.P
-.B .SY
-and
-.B .YS
-are GNU extensions supported by
 Heirloom Doctools
 .I troff \" Heirloom
 and
 .I mandoc
 (since 1.14.5)
-but not by
+support these GNU extensions;
 Documenter's Workbench,
 Plan\~9,
-or
+and
 Solaris
-.IR troff s; \" DWB, Plan 9, Solaris
+.IR troff s \" DWB, Plan 9, Solaris
+do not.
 .
 See subsection \(lqUse of extensions\(rq
 _ifstyle()dnl
-below
+below.
 _endif()dnl
 _ifnotstyle()dnl
 in
-.MR groff_man_style @MAN7EXT@
+.MR groff_man_style @MAN7EXT@ .
 _endif()dnl
-for suggestions.
 .
 .
 .TP
@@ -1085,12 +1077,9 @@ can be repeated before
 to indicate synonymous ways of invoking a particular mode of operation.
 .
 .
-.br
-.ne 2v
 .P
 .IR groff 's
-own command-line interface serves to illustrate most of the specimens
-of synopsis syntax one is likely to encounter.
+own command-line interface illustrates most specimens one may encounter.
 .
 .
 .IP
@@ -1342,13 +1331,12 @@ implements
 .
 See subsection \(lqUse of extensions\(rq
 _ifstyle()dnl
-below
+below.
 _endif()dnl
 _ifnotstyle()dnl
 in
-.MR groff_man_style @MAN7EXT@
+.MR groff_man_style @MAN7EXT@ .
 _endif()dnl
-for suggestions.
 .
 .
 .P

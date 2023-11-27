@@ -1,3 +1,16 @@
+2023-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	[libgroff]: Trivially refactor `xtmpfile`.
+
+	* src/include/lib.h:
+	* src/libs/libgroff/tmpfile.cpp (xtmpfile): Boolify `int`
+	parameter and rename it from `do_unlink` to `want_unlink`.
+
+	* src/libs/libgroff/tmpfile.cpp (xtmpfile): Make null pointer
+	comparison explicit. Recast diagnostic to identify what
+	operation failed instead of cryptically uttering only the name
+	of a standard C library function.
+
 2023-11-20  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	[man]: Don't enforce tag separation on `IP`.

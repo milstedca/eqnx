@@ -1,5 +1,10 @@
 2023-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/preproc/html/pre-html.cpp (makeTempFiles): Stop explicitly
+	specifying parameters redundantly with their default values.
+
+2023-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[libgroff]: Trivially refactor `xtmpfile`.
 
 	* src/include/lib.h:

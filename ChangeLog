@@ -1,5 +1,14 @@
 2023-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Improve `hcode` request validation.
+
+	* src/roff/troff/input.cpp (set_hyphenation_codes): Throw
+	warning diagnostic if no arguments supplied.  Throw error
+	diagnostic if there are an odd number of arguments.  Check
+	second arguments of pairs for nonsense.
+
+2023-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (hyphenation_code): Rename to...
 	(set_hyphenation_codes): ...this.
 	(init_input_requests): Update call site.

@@ -7231,17 +7231,30 @@ static void set_character_flags()
 static void set_hyphenation_codes()
 {
   tok.skip();
+  if (tok.is_newline() || tok.is_eof()) {
+    warning(WARN_MISSING, "hyphenation code configuration request"
+	    " expects arguments");
+    skip_line();
+    return;
+  }
   while (!tok.is_newline() && !tok.is_eof()) {
     charinfo *ci = tok.get_char(true /* required */);
-    if (ci == 0)
+    // If we got back some nonsense like a non-character escape
+    // sequence, get_char() will have diagnosed it.
+    if (0 /* nullptr */ == ci)
       break;
     tok.next();
     tok.skip();
     unsigned char c = tok.ch();
-    if (c == 0) {
-      error("hyphenation code must be ordinary character");
+    if (tok.is_newline() || tok.is_eof()) {
+      error("hyphenation codes must be specified in pairs");
       break;
     }
+    charinfo *ci2 = tok.get_char(true /* required */);
+    // nonsense redux
+    if (0 /* nullptr */ == ci2)
+      break;
+    // TODO: What if you want to unset a hyphenation code?  Accept 0?
     if (csdigit(c)) {
       error("hyphenation code cannot be digit");
       break;

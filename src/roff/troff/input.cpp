@@ -4113,8 +4113,13 @@ dictionary composite_dictionary(17);
 
 void composite_request()
 {
-  symbol from = get_name(true /* required */);
-  if (!from.is_null()) {
+  symbol from = get_name();
+  if (from.is_null()) {
+    warning(WARN_MISSING, "composite character request expects"
+	    " arguments");
+    skip_line();
+    return;
+  }
     const char *from_gn = glyph_name_to_unicode(from.contents());
     if (!from_gn) {
       from_gn = check_unicode_name(from.contents());
@@ -4127,10 +4132,14 @@ void composite_request()
     const char *from_decomposed = decompose_unicode(from_gn);
     if (from_decomposed)
       from_gn = &from_decomposed[1];
-    symbol to = get_name(true /* required */);
-    if (to.is_null())
+    symbol to = get_name();
+    if (to.is_null()) {
       composite_dictionary.remove(symbol(from_gn));
-    else {
+      warning(WARN_MISSING, "composite character request expects two"
+	      " arguments");
+      skip_line();
+      return;
+    }
       const char *to_gn = glyph_name_to_unicode(to.contents());
       if (!to_gn) {
 	to_gn = check_unicode_name(to.contents());
@@ -4147,8 +4156,6 @@ void composite_request()
 	composite_dictionary.remove(symbol(from_gn));
       else
 	(void)composite_dictionary.lookup(symbol(from_gn), (void *)to_gn);
-    }
-  }
   skip_line();
 }
 

@@ -1,5 +1,15 @@
 2023-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (composite_request): Throw warning
+	diagnostic if either argument is absent; stop relying upon
+	`get_name()` to do so, which is a slight abuse since we
+	don't regard the arguments to this request as "identifiers"
+	{how they're described in its diagnostic messages}.  Instead
+	test retrieved symbol for nullity and throw a more contextful
+	message.
+
+2023-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (char_flags): Rename to...
 	(set_character_flags): ...this.
 	(init_input_requests): Update call site.

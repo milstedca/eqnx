@@ -1,3 +1,13 @@
+2023-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
+	* src/roff/troff/input.cpp (char_flags): Rename to...
+	(set_character_flags): ...this.
+	(init_input_requests): Update call site.
+
+	(set_character_flags): Declare as `static`; this function
+	doesn't need external visibility.  Throw warning diagnositc when
+	no character arguments are present.
+
 2023-11-27  G. Branden Robinson <g.branden.robinson@gmail.com>
 
 	* doc/groff.texi (Miscellaneous): Clarify behavior of `mc`.

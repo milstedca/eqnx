@@ -7197,10 +7197,16 @@ void translate_input()
   do_translate(1, 1);
 }
 
-void char_flags()
+static void set_character_flags()
 {
   int flags;
-  if (get_integer(&flags))
+  if (get_integer(&flags)) {
+    if (tok.is_newline() || tok.is_eof()) {
+      warning(WARN_MISSING, "character flags configuration request"
+	      " expects one or more characters to configure");
+      skip_line();
+      return;
+    }
     while (has_arg()) {
       charinfo *ci = tok.get_char(true /* required */);
       if (ci) {
@@ -7211,6 +7217,7 @@ void char_flags()
       }
       tok.next();
     }
+  }
   skip_line();
 }
 
@@ -8507,7 +8514,7 @@ void init_input_requests()
   init_request("cc", assign_control_character);
   init_request("c2", assign_no_break_control_character);
   init_request("cf", copy_file);
-  init_request("cflags", char_flags);
+  init_request("cflags", set_character_flags);
   init_request("char", define_character);
   init_request("chop", chop_macro);
   init_request("class", define_class);

@@ -7228,7 +7228,7 @@ static void set_character_flags()
   skip_line();
 }
 
-void hyphenation_code()
+static void set_hyphenation_codes()
 {
   tok.skip();
   while (!tok.is_newline() && !tok.is_eof()) {
@@ -8551,7 +8551,7 @@ void init_input_requests()
 #ifdef WIDOW_CONTROL
   init_request("fpl", flush_pending_lines);
 #endif /* WIDOW_CONTROL */
-  init_request("hcode", hyphenation_code);
+  init_request("hcode", set_hyphenation_codes);
   init_request("hpfcode", hyphenation_patterns_file_code);
   init_request("ie", if_else_request);
   init_request("if", if_request);

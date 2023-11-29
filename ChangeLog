@@ -1,5 +1,14 @@
 2023-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	* src/roff/troff/input.cpp (composite_request): Rename to...
+	(map_composite_character): ...this.
+	(init_input_requests): Update call site.
+
+	(map_composite_character): Declare as `static`; this function
+	doesn't need external visibility.
+
+2023-11-28  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* src/roff/troff/input.cpp (composite_request): Throw warning
 	diagnostic if either argument is absent; stop relying upon
 	`get_name()` to do so, which is a slight abuse since we

@@ -4111,7 +4111,7 @@ macro_iterator::~macro_iterator()
 
 dictionary composite_dictionary(17);
 
-void composite_request()
+static void map_composite_character()
 {
   symbol from = get_name();
   if (from.is_null()) {
@@ -8527,7 +8527,7 @@ void init_input_requests()
   init_request("class", define_class);
   init_request("close", close_request);
   init_request("color", activate_color);
-  init_request("composite", composite_request);
+  init_request("composite", map_composite_character);
   init_request("continue", while_continue_request);
   init_request("cp", compatible);
   init_request("de", define_macro);

@@ -3387,11 +3387,11 @@ use substrings and/or catenation.
 .
 .
 .TP
-.BI .sty\~ n\~s
+.BI .sty\~ "pos style"
 Associate abstract
-.RI style\~ s
-with font mounting
-.RI position\~ n .
+.I style
+with non-negative font mounting
+.RI position\~ pos .
 .
 .
 .TP

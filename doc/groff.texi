@@ -10656,7 +10656,7 @@ a single character as an argument) to change the font family on the fly.
 @endExample
 @endDefreq
 
-@DefreqList {sty, n style}
+@DefreqList {sty, pos style}
 @DefregListEndx {.sty}
 @cindex setting up an abstract font style (@code{sty})
 @cindex abstract font style, setting up (@code{sty})
@@ -10668,7 +10668,7 @@ a single character as an argument) to change the font family on the fly.
 @cindex @code{uf} request, and font styles
 @cindex @code{fspecial} request, and font styles
 Associate an abstract style @var{style} with mounting
-position@tie{}@var{n}, which must be a non-negative integer.  If the
+position@tie{}@var{pos}, which must be a non-negative integer.  If the
 requests @code{cs}, @code{bd}, @code{tkf}, @code{uf}, or @code{fspecial}
 are applied to an abstract style, they are instead applied to the member
 of the default family corresponding to that style.

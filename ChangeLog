@@ -1,5 +1,25 @@
 2023-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Improve font-related diagnostics.
+
+	* src/roff/troff/node.cpp (mount_font_at_position)
+	(associate_style_with_font_position, select_underline_font)
+	(define_font_specific_character, remove_font_specific_character)
+	(configure_track_kerning, (constantly_space_font): Throw warning
+	in category `missing` if given no arguments.
+
+	(set_font_specific_special_fonts, set_special_fonts): Demote
+	diagnostic when given no arguments to warning in category
+	`missing`.
+
+	(mount_font_at_position, associate_style_with_font_position):
+	Report invalid font mounting position in error diagostic.
+
+	(associate_style_with_font_position): Throw warning in category
+	`missing` if given only one argument.
+
+2023-11-29  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	[troff]: Improve `hcode` request validation.
 
 	* src/roff/troff/input.cpp (set_hyphenation_codes): Throw

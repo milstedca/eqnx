@@ -6195,9 +6195,9 @@ static void associate_style_with_font_position()
 	warning(WARN_MISSING, "abstract style configuration request"
 		" expects a second argument");
       else {
-      symbol internal_name = get_name(true /* required */);
-      if (!internal_name.is_null())
-	(void) mount_style(n, internal_name);
+	symbol internal_name = get_name(true /* required */);
+	if (!internal_name.is_null())
+	  (void) mount_style(n, internal_name);
       }
     }
   }

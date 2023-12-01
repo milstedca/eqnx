@@ -5660,27 +5660,33 @@ static node *do_special()
 
 void device_request()
 {
-  if (!has_arg()) {
+  // We can't use `has_arg()` here because we want to read in copy mode.
+  int c;
+  for (;;) {
+    c = input_stack::peek();
+    if (' ' == c)
+      (void) get_copy(0 /* nullptr */);
+    else
+      break;
+  }
+  if (('\n' == c) || (EOF == c)) {
     warning(WARN_MISSING, "device control request expects arguments");
     skip_line();
     return;
   }
-  if (!tok.is_newline() && !tok.is_eof()) {
-    int c;
-    macro mac;
-    for (;;) {
-      c = get_copy(0);
-      if (c == '"') {
-	c = get_copy(0);
-	break;
-      }
-      if (c != ' ' && c != '\t')
-	break;
+  macro mac;
+  for (;;) {
+    c = get_copy(0 /* nullptr */);
+    if ('"' == c) {
+      c = get_copy(0 /* nullptr */);
+      break;
     }
-    for (; c != '\n' && c != EOF; c = get_copy(0))
-      mac.append(c);
-    curenv->add_node(new special_node(mac));
+    if (c != ' ' && c != '\t')
+      break;
   }
+  for (; c != '\n' && c != EOF; c = get_copy(0 /* nullptr */))
+    mac.append(c);
+  curenv->add_node(new special_node(mac));
   tok.next();
 }
 
@@ -5701,26 +5707,32 @@ void device_macro_request()
 
 void output_request()
 {
-  if (!has_arg()) {
+  // We can't use `has_arg()` here because we want to read in copy mode.
+  int c;
+  for (;;) {
+    c = input_stack::peek();
+    if (' ' == c)
+      (void) get_copy(0 /* nullptr */);
+    else
+      break;
+  }
+  if (('\n' == c) || (EOF == c)) {
     warning(WARN_MISSING, "output request expects arguments");
     skip_line();
     return;
   }
-  if (!tok.is_newline() && !tok.is_eof()) {
-    int c;
-    for (;;) {
-      c = get_copy(0);
-      if (c == '"') {
-	c = get_copy(0);
-	break;
-      }
-      if (c != ' ' && c != '\t')
-	break;
+  for (;;) {
+    c = get_copy(0 /* nullptr */);
+    if ('"' == c) {
+      c = get_copy(0 /* nullptr */);
+      break;
     }
-    for (; c != '\n' && c != EOF; c = get_copy(0))
-      topdiv->transparent_output(c);
-    topdiv->transparent_output('\n');
+    if (c != ' ' && c != '\t')
+      break;
   }
+  for (; c != '\n' && c != EOF; c = get_copy(0 /* nullptr */))
+    topdiv->transparent_output(c);
+  topdiv->transparent_output('\n');
   tok.next();
 }
 

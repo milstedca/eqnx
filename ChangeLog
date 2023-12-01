@@ -1,5 +1,22 @@
 2023-12-01  G. Branden Robinson <g.branden.robinson@gmail.com>
 
+	[troff]: Fix Savannah #64957 (`device`, `output` broken).
+
+	The GNU troff(1) internal function `has_arg()` has a side effect
+	of advancing the token pointer (a sort of cursor into the input
+	stream).  So when I changed `device_request()` and
+	`output_request()` to use `has_arg()` in commit 429723c3ec (10
+	November), the first character of the argument got stripped,
+	making it unintelligible to the output driver.
+
+	* src/roff/troff/input.cpp (device_request, output_request):
+	Drop call of `has_arg()` in favor of `input_stack::peek()`.
+	Manually discard space characters until reaching something else;
+	if that is a newline or EOF, bail out of request processing.
+	Otherwise, proceed with warning diagnostic as before.
+
+2023-12-01  G. Branden Robinson <g.branden.robinson@gmail.com>
+
 	* doc/groff.texi: Fix typos.
 
 	Fixes <https://savannah.gnu.org/bugs/?64954>.  Thanks to Bjarni

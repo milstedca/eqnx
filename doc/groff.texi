@@ -1541,7 +1541,8 @@ repertoires and the @slanted{metrics} (dimensions) of each glyph.  This
 information permits the formatter to accurately place glyphs with
 respect to each other.  The device description file is always named
 @file{DESC}; fonts are typically described in files with short names
-like @file{TR}, @file{CR}, @file{HBI}, or @file{S}.
+like @file{TR}, @file{CR}, @file{HBI}, or
+@file{S}.@footnote{@xref{Device and Font Description Files}.}
 
 @cindex font directory
 @cindex directory, device and font description
@@ -1603,11 +1604,9 @@ be customized as part of the build-time configuration process.
 @cindex page orientation, landscape
 
 @c BEGIN Keep parallel with groff(1), subsection "Paper format".
-GNU @command{troff} reads the device description file
-@file{DESC}@footnote{@xref{Device and Font Description Files}.} for the
-selected output device when it starts; page dimensions declared there
-are used if present.  @code{groff}'s build process configures a default
-page format and writes it to typesetters' @file{DESC} files.  This
+A device's page dimensions in the aforementioned @file{DESC} are used if
+declared there.  @code{groff}'s build process configures a default page
+format and writes it to typesetters' @file{DESC} files.  This
 installation's default is documented in @cite{gtroff@r{(1)}}.  If the
 @file{DESC} file lacks this information, the formatter and output driver
 use a page length of @samp{11i} (eleven inches) for compatibility with
@@ -1764,10 +1763,10 @@ consists of text, or words to be printed, and embedded commands
 @cindex filling (introduction)
 @cindex adjustment (introduction)
 The primary function of GNU @command{troff} is to collect words from
-input lines, @slanted{fill} output lines with those words,
-@slanted{break} the line at the right-hand margin (possibly by
-hyphenating a word), @slanted{adjust} the line to reach that margin (if
-necessary) by widening spaces between words, and output the result.
+its input, @slanted{fill} output lines with those words, @slanted{break}
+the line at the right-hand margin (possibly by hyphenating a word),
+@slanted{adjust} the line to reach that margin (if necessary) by
+widening spaces between words, and output the result.
 
 @Example
 @c .ll 42n

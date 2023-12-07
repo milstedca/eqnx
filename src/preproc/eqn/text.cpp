@@ -75,6 +75,7 @@ struct map entity_table[] = {
   {"*t", "&tau;"},	// ISOgrk3
   {"*T", "&Tau;"},	// ISOgrk3
   {"*u", "&upsilon;"},	// ISOgrk3
+  {"*c", "&xi;"},	// CSM 12/2023
   {"*U", "&Upsilon;"},	// ISOgrk3
   {"*w", "&omega;"},	// ISOgrk3
   {"*W", "&Omega;"},	// ISOgrk3
@@ -147,6 +148,7 @@ struct map entity_table[] = {
   {"ua", "&uarr;"},	// ISOnum
   {"ul", "_"},
   {"~=", "&cong;"},	// ISOtech
+	{"|=", "&asymp;"}, // CSM 12/2023 for the approx operator
   // Extended specials supported by groff; see groff_char(7).
   // These are listed in the order they occur on that man page.
   {"-D", "&ETH;"},	// ISOlat: Icelandic uppercase eth
@@ -838,11 +840,11 @@ box *split_text(char *text)
 	      b = new special_char_box(buf);
 	    }
 	    else {
-	      lex_error("bad escape");
+	      lex_error("bad escape (too short)");
 	    }
 	  }
 	  else {
-	    lex_error("bad escape");
+	    lex_error("bad escape (way too short)");
 	  }
 	}
 	break;

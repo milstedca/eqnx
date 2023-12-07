@@ -234,7 +234,8 @@ static struct builtin_def common_defs[] = {
   { "<<", "type \"relation\" \\(<<" },
   { ">>", "type \"relation\" \\(>>" },
   { "prime", "'" },
-  { "approx", "type \"relation\" \"\\(~=\"" },
+  { "approx", "type \"relation\" \\(|=" }, // CSM: change ~= to |= 
+											// and got rid of quotes around macro
   { "grad", "\\(gr" },
   { "del", "\\(gr" },
   { "cdot", "type \"binary\" \\(md" },

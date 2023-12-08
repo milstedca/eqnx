@@ -1,5 +1,5 @@
 This project is a clone of the official GNU groff project. See the other README files for the
-copyrights and other legalize.
+copyrights and other legaleze.
 
 I have cloned this project in order to make updates to the eqn command. That's where you will find
 my changes. When in MathML mode the eqn keywords commands approx and xi failed. Once I dug into the

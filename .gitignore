@@ -1,3 +1,4 @@
+*.swp
 /build-aux
 # artifacts expected in a clean tree
 /.version

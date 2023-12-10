@@ -69,7 +69,7 @@ struct map entity_table[] = {
   {"*q", "&psi;"},	// ISOgrk3
   {"*Q", "&PSI;"},	// ISOgrk3
   {"*r", "&rho;"},	// ISOgrk3
-  {"*R", "R"},
+  {"*R", "P"}, // was R, which is incorrect. This should be Greek Rho
   {"*s", "&sigma;"},	// ISOgrk3
   {"*S", "&Sigma;"},	// ISOgrk3
   {"*t", "&tau;"},	// ISOgrk3

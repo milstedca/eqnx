@@ -27,16 +27,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "pbox.h"
 #include "ptable.h"
 
+// Moved to top so map can have a spacing_type. The reason for the move is to
+// know the difference between operators and identifiers for doing MathML
+enum spacing_type {
+  s_ordinary,
+  s_operator,
+  s_binary,
+  s_relation,
+  s_opening,
+  s_closing,
+  s_punctuation,
+  s_inner,
+  s_suppress
+};
+
 struct map {
   const char *from;
   const char *to;
+  spacing_type stype;
+	map() {
+		from = NULL;
+		to = NULL;
+		stype = s_ordinary;
+	}
+  map(const char *lfrom, const char *lto, spacing_type lstype);
+};
+
+
+map::map(const char *lfrom, const char *lto, spacing_type lstype = s_ordinary)  {
+	from = lfrom;
+	to = lto;
+	stype = lstype;
 };
 
 struct map entity_table[] = {
   // Classic troff special characters
   {"%", "&shy;"},	// ISOnum
   {"'", "&acute;"},	// ISOdia
-  {"!=", "&ne;"},	// ISOtech
+  {"!=", "&ne;", s_relation},	// ISOtech
   {"**", "&lowast;"},	// ISOtech
   {"*a", "&alpha;"},	// ISOgrk3
   {"*A", "A"},
@@ -85,13 +113,13 @@ struct map entity_table[] = {
   {"*Y", "&Eta;"},	// ISOgrk3
   {"*z", "&zeta;"},	// ISOgrk3
   {"*Z", "&Zeta;"},	// ISOgrk3
-  {"+-", "&plusmn;"},	// ISOnum
-  {"->", "&rarr;"},	// ISOnum
+  {"+-", "&plusmn;", s_operator},	// ISOnum
+  {"->", "&rarr;", s_operator},	// ISOnum
   {"12", "&frac12;"},	// ISOnum
   {"14", "&frac14;"},	// ISOnum
   {"34", "&frac34;"},	// ISOnum
-  {"<-", "&larr;"},	// ISOnum
-  {"==", "&equiv;"},	// ISOtech
+  {"<-", "&larr;", s_relation},	// ISOnum
+  {"==", "&equiv;", s_relation},	// ISOtech
   {"Fi", "&ffilig;"},	// ISOpub
   {"Fl", "&ffllig;"},	// ISOpub
   {"aa", "&acute;"},	// ISOdia
@@ -125,14 +153,14 @@ struct map entity_table[] = {
   {"if", "&infin;"},	// ISOtech
   {"ip", "&supe;"},	// ISOtech
   {"is", "&int;"},	// ISOtech
-  {"le", "&le;"},	// ISOtech
+  {"le", "&le;", s_operator},	// ISOtech
   // Some pile characters go here
-  {"mi", "&minus;"},	// ISOtech
-  {"mo", "&isin;"},	// ISOtech
-  {"mu", "&times;"},	// ISOnum
+  {"mi", "&minus;", s_operator},	// ISOtech
+  {"mo", "&isin;", s_operator},	// ISOtech
+  {"mu", "&times;", s_operator},	// ISOnum
   {"no", "&not;"},	// ISOnum
   {"or", "&verbar;"},	// ISOnum
-  {"pl", "&plus;"},	// ISOnum
+  {"pl", "&plus;", s_operator},	// ISOnum
   {"pt", "&prop;"},	// ISOtech
   {"rg", "&trade;"},	// ISOnum
   // More pile characters go here
@@ -148,7 +176,7 @@ struct map entity_table[] = {
   {"ua", "&uarr;"},	// ISOnum
   {"ul", "_"},
   {"~=", "&cong;"},	// ISOtech
-	{"|=", "&asymp;"}, // CSM 12/2023 for the approx operator
+	{"|=", "&asymp;", s_relation}, // CSM 12/2023 for the approx operator
   // Extended specials supported by groff; see groff_char(7).
   // These are listed in the order they occur on that man page.
   {"-D", "&ETH;"},	// ISOlat: Icelandic uppercase eth
@@ -248,21 +276,21 @@ struct map entity_table[] = {
   {"ha", "^"},		// ASCII circumflex, hat, caret
   {"ti", "~"},		// ASCII tilde, large tilde
   // Quotes
-  {"Bq", "&lsquor;"},	// ISOpub: low double comma quote
-  {"bq", "&ldquor;"},	// ISOpub: low single comma quote
-  {"lq", "&ldquo;"},	// ISOnum
-  {"rq", "&rdquo;"},	// ISOpub
-  {"oq", "&lsquo;"},	// ISOnum: single open quote
-  {"cq", "&rsquo;"},	// ISOnum: single closing quote (ASCII 39)
-  {"aq", "&zerosp;'"},	// apostrophe quote
-  {"dq", "\""},		// double quote (ASCII 34)
-  {"Fo", "&laquo;"},	// ISOnum
-  {"Fc", "&raquo;"},	// ISOnum
+  {"Bq", "&lsquor;", s_punctuation},	// ISOpub: low double comma quote
+  {"bq", "&ldquor;", s_punctuation},	// ISOpub: low single comma quote
+  {"lq", "&ldquo;", s_punctuation},	// ISOnum
+  {"rq", "&rdquo;", s_punctuation},	// ISOpub
+  {"oq", "&lsquo;", s_punctuation},	// ISOnum: single open quote
+  {"cq", "&rsquo;", s_punctuation},	// ISOnum: single closing quote (ASCII 39)
+  {"aq", "&zerosp;'", s_punctuation},	// apostrophe quote
+  {"dq", "\"", s_punctuation},		// double quote (ASCII 34)
+  {"Fo", "&laquo;", s_punctuation},	// ISOnum
+  {"Fc", "&raquo;", s_punctuation},	// ISOnum
   //{"fo", "&fo;"},
   //{"fc", "&fc;"},
   // Punctuation
-  {"r!", "&iexcl;"},	// ISOnum
-  {"r?", "&iquest;"},	// ISOnum
+  {"r!", "&iexcl;", s_punctuation},	// ISOnum
+  {"r?", "&iquest;", s_punctuation},	// ISOnum
   // Old troff \(em goes here
   {"en", "&ndash;"},	// ISOpub: en dash
   // Old troff \(hy goes here 
@@ -353,13 +381,13 @@ struct map entity_table[] = {
   {"tdi", "&divide;"},	// ISOnum
   {"f/", "&horbar;"},	// ISOnum: horizintal bar for fractions
   // Old troff \(** goes here
-  {"<=", "&le;"},	// ISOtech
-  {">=", "&ge;"},	// ISOtech
-  {"<<", "&Lt;"},	// ISOamsr
-  {">>", "&Gt;"},	// ISOamsr
-  {"!=", "&ne;"},	// ISOtech
+  {"<=", "&le;", s_relation},	// ISOtech
+  {">=", "&ge;", s_relation},	// ISOtech
+  {"<<", "&Lt;", s_relation},	// ISOamsr
+  {">>", "&Gt;", s_relation},	// ISOamsr
+  {"!=", "&ne;", s_relation},	// ISOtech
   // Old troff \(eq and \(== go here
-  {"=~", "&cong;"},	// ISOamsr
+  {"=~", "&cong;", s_relation},	// ISOamsr
   // Old troff \(ap goes here
   {"~~", "&ap;"},	// ISOtech
   // This appears to be an error in the groff table.  
@@ -396,17 +424,55 @@ struct map entity_table[] = {
   {"DI", "&diams;"},	// ISOpub: diamond suit
 };
 
-const char *special_to_entity(const char *sp)
+const map *special_to_entity(const char *sp)
 {
   struct map *mp;
+	// OUCH! This is a linear search over the table for every entity! SLOW!
   for (mp = entity_table; 
        mp < entity_table + sizeof(entity_table)/sizeof(entity_table[0]); 
        mp++) {
     if (strcmp(mp->from, sp) == 0)
-      return mp->to;
+      //return mp->to;
+		return mp;
   }
-  return NULL;
+
+	// OK, try to treat as a unicode code point. Could use more checking!
+	static map mret;
+	mret.from = sp;
+	static char ret[20];// assume entity gets used quickly
+	mret.to = ret;
+	mret.stype = s_ordinary;
+	int n = strlen(sp);
+	if (n < 2  || sp[0] != 'u') {
+		return NULL;
+	}
+	ret[0] = '&';
+	ret[1] = '#';
+	ret[2] = 'x';
+	for (int i = 1; i < n; i++) {
+		int j = i+2;
+		if (j >= 19) {
+			return NULL;
+		}
+		char c = sp[i];
+		if (c == ' ') {
+			break;
+		}
+		// not a hex number with caps if fails this test
+		if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F'))) {
+			return NULL;
+		}
+		ret[j] = sp[i];
+	}
+	int j = n+2;
+	if (j >= 20) {
+		return NULL;
+	}
+	ret[j] = '\0';
+	return &mret;
 }
+		
+		
 
 class char_box : public simple_box {
   unsigned char c;
@@ -434,17 +500,6 @@ public:
   void handle_char_type(int, int);
 };
 
-enum spacing_type {
-  s_ordinary,
-  s_operator,
-  s_binary,
-  s_relation,
-  s_opening,
-  s_closing,
-  s_punctuation,
-  s_inner,
-  s_suppress
-};
 
 const char *spacing_type_table[] = {
   "ordinary",
@@ -668,9 +723,13 @@ void special_char_box::output()
       printf("\\fP");
   }
   else if (output_format == mathml) {
-    const char *entity = special_to_entity(s);
+    const map *entity = special_to_entity(s);
     if (entity != NULL)
-      printf("<mo>%s</mo>", entity);
+      if (entity->stype == s_ordinary) {
+        printf("<mi>%s</mi>", entity->to);
+      } else {
+        printf("<mo>%s</mo>", entity->to);
+	}
     else
       printf("<merror>unknown eqn/troff special char %s</merror>", s);
   }

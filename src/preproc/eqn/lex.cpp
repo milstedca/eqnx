@@ -349,6 +349,14 @@ static struct builtin_def eqnchar_defs[] = {
   {"citimes", "{type \"operator\" \\[u]}" }
 };
 
+void addEqnMacro(const char *name, const char *action) {
+	definition *def = new definition[1];
+	def->is_macro = 1;
+	def->contents = strsave(action);
+	def->is_simple = 1;
+	macro_table.define(name, def);
+}
+
 void init_table(const char *device)
 {
   unsigned int i;

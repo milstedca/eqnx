@@ -26,9 +26,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "eqn.h"
 #include "pbox.h"
 #include "ptable.h"
+#include "eqnx.h"
 
 // Moved to top so map can have a spacing_type. The reason for the move is to
 // know the difference between operators and identifiers for doing MathML
+/* MOVED TO eqnx.h header
 enum spacing_type {
   s_ordinary,
   s_operator,
@@ -40,7 +42,9 @@ enum spacing_type {
   s_inner,
   s_suppress
 };
+*/
 
+/* Replace with EntityCell and EntityMap 
 struct map {
   const char *from;
   const char *to;
@@ -59,8 +63,9 @@ map::map(const char *lfrom, const char *lto, spacing_type lstype = s_ordinary)  
 	to = lto;
 	stype = lstype;
 };
+*/
 
-struct map entity_table[] = {
+EntityCell  entity_cells[] = {
   // Classic troff special characters
   {"%", "&shy;"},	// ISOnum
   {"'", "&acute;"},	// ISOdia
@@ -424,27 +429,31 @@ struct map entity_table[] = {
   {"DI", "&diams;"},	// ISOpub: diamond suit
 };
 
-const map *special_to_entity(const char *sp)
-{
-  struct map *mp;
-	// OUCH! This is a linear search over the table for every entity! SLOW!
-  for (mp = entity_table; 
-       mp < entity_table + sizeof(entity_table)/sizeof(entity_table[0]); 
-       mp++) {
-    if (strcmp(mp->from, sp) == 0)
-      //return mp->to;
-		return mp;
-  }
+static EntityMap s_entityMap;
+EntityMap &g_entityMap = s_entityMap;
 
-	// OK, try to treat as a unicode code point. Could use more checking!
-	static map mret;
-	mret.from = sp;
+void InitEntityMap() {
+	struct EntityCell *cell;
+	size_t n = sizeof(entity_cells)/sizeof(EntityCell);
+	for (size_t i = 0; i < n; i++) {
+		g_entityMap.Add(entity_cells[i]);
+	}
+}
+	
+
+const EntityCell &special_to_entity(const char *sp)
+{
+	EntityCell &ret1 = g_entityMap.Get(sp);
+	if (ret1.from != NULL) { // found a real cell
+		return ret1;
+	}
+
+	static EntityCell retNull, retU; // retU is volatile!
+
 	static char ret[20];// assume entity gets used quickly
-	mret.to = ret;
-	mret.stype = s_ordinary;
 	int n = strlen(sp);
 	if (n < 2  || sp[0] != 'u') {
-		return NULL;
+		return retNull;
 	}
 	ret[0] = '&';
 	ret[1] = '#';
@@ -452,7 +461,7 @@ const map *special_to_entity(const char *sp)
 	for (int i = 1; i < n; i++) {
 		int j = i+2;
 		if (j >= 19) {
-			return NULL;
+			return retNull;
 		}
 		char c = sp[i];
 		if (c == ' ') {
@@ -460,16 +469,17 @@ const map *special_to_entity(const char *sp)
 		}
 		// not a hex number with caps if fails this test
 		if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F'))) {
-			return NULL;
+			return retNull;
 		}
 		ret[j] = sp[i];
 	}
 	int j = n+2;
 	if (j >= 20) {
-		return NULL;
+		return retNull;
 	}
-	ret[j] = '\0';
-	return &mret;
+	retU.from = sp;
+	retU.to = ret;
+	return retU;
 }
 		
 		
@@ -723,12 +733,12 @@ void special_char_box::output()
       printf("\\fP");
   }
   else if (output_format == mathml) {
-    const map *entity = special_to_entity(s);
-    if (entity != NULL)
-      if (entity->stype == s_ordinary) {
-        printf("<mi>%s</mi>", entity->to);
+    EntityCell ecell  = special_to_entity(s);
+    if (ecell.from != NULL)
+      if (ecell.stype == s_ordinary) {
+        printf("<mi>%s</mi>", ecell.to);
       } else {
-        printf("<mo>%s</mo>", entity->to);
+        printf("<mo>%s</mo>", ecell.to);
 	}
     else
       printf("<merror>unknown eqn/troff special char %s</merror>", s);

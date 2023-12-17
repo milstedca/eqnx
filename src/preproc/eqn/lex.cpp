@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "eqn.hpp"
 #include "stringclass.h"
 #include "ptable.h"
-
+#include "eqnx.h"
 
 // declarations to avoid friend name injection problems
 int get_char();
@@ -390,6 +390,7 @@ void init_table(const char *device)
       def->is_simple = 1;
       macro_table.define(mathml_defs[i].name, def);
     }
+	AddTexMacros();
   }
   definition *def = new definition[1];
   def->is_macro = 1;

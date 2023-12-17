@@ -40,7 +40,10 @@ eqn_SOURCES = \
   src/preproc/eqn/eqn.ypp \
   src/preproc/eqn/box.h \
   src/preproc/eqn/pbox.h \
-  src/preproc/eqn/eqn.h
+  src/preproc/eqn/eqn.h \
+  src/preproc/eqn/eqnx.h \
+  src/preproc/eqn/texEntities.cpp \
+  src/preproc/eqn/texMacros.cpp
 
 PREFIXMAN1 += src/preproc/eqn/eqn.1 src/preproc/eqn/neqn.1
 EXTRA_DIST += \

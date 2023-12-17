@@ -3,7 +3,6 @@
 
 #include <map>
 #include <string>
-using namespace std;
 
 /*
 Move some declarations to a header file in order to keep most of the
@@ -52,7 +51,7 @@ struct EntityCell {
 class EntityMap {
 	// use a string in order to do proper comparisons
 	// the values are value types! Copying happens.
-	map<string,EntityCell> m_cells;
+	std::map<std::string,EntityCell> m_cells;
 
 public:
 	void Add(EntityCell &cell) {
@@ -69,7 +68,9 @@ public:
 
 extern EntityMap &g_entityMap;
 
+extern void AddTexMacros();
+extern void AddTexEntities();
+
+
 	
 #endif
-
-

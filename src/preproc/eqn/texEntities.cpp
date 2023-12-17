@@ -1,3 +1,6 @@
+#include "eqnx.h"
+
+void AddTexEntities() {
   g_entityMap->addCell("varepsilon","&#3B5;", cellType);
   g_entityMap->addCell("vartheta","&#3D1;", cellType);
   g_entityMap->addCell("varpi","&#3D6;", cellType);
@@ -146,3 +149,4 @@
   g_entityMap->addCell("diamondsuit","&#2662;", cellType);
   g_entityMap->addCell("heartsuit","&#2661;", cellType);
   g_entityMap->addCell("spadesuit","&#2660;", cellType);
+}

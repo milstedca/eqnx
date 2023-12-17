@@ -438,6 +438,8 @@ void InitEntityMap() {
 	for (size_t i = 0; i < n; i++) {
 		g_entityMap.Add(entity_cells[i]);
 	}
+
+	AddTexEntities();
 }
 	
 

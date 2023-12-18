@@ -46,6 +46,16 @@ struct EntityCell {
 		to = lto;
 		stype = lstype;
 	};
+	EntityCell(const EntityCell &that) {
+		from = that.from;
+		to = that.to;
+		stype = that.stype;
+	};
+	EntityCell &operator=(const EntityCell &that) {
+		from = that.from;
+		to = that.to;
+		stype = that.stype;
+	};
 };
 
 class EntityMap {
@@ -54,22 +64,26 @@ class EntityMap {
 	std::map<std::string,EntityCell> m_cells;
 
 public:
-	void Add(EntityCell &cell) {
+	void add(EntityCell &cell) {
 		m_cells[cell.from] = cell;
 	}
-	void Add(const char *lfrom, const char *lto, spacing_type lstype = s_ordinary) {
+	void add(const char *lfrom, const char *lto, spacing_type lstype = s_ordinary) {
 		EntityCell cell(lfrom, lto, lstype);
-		m_cells[cell.from] = cell;
+		m_cells[lfrom] = cell;
 	}
-	EntityCell &Get(const char *key) {
+	EntityCell &get(const char *key) {
 		return m_cells[key];
 	}
+
+
 };
 
 extern EntityMap &g_entityMap;
 
 extern void AddTexMacros();
 extern void AddTexEntities();
+extern void AddMoreMacros();
+extern void AddMoreEntities();
 
 
 	

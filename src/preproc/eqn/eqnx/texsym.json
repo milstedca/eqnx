@@ -2,5 +2,9 @@
 "TexInputFname" : "texSymbols.csv",
 "TexMacroFname" : "texMacros.cpp",
 "TexEntityFname" : "texEntities.cpp",
-"TexQtmlFname" : "texSymbols.qtml"
+"TexQtmlFname" : "texSymbols.qtml",
+"MyInputFname" : "moreSymbols.csv",
+"MyMacroFname" : "moreMacros.cpp",
+"MyEntityFname" : "moreEntities.cpp",
+"MyQtmlFname" : "moreSymbols.qtml"
 }

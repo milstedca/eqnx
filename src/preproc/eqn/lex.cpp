@@ -391,6 +391,7 @@ void init_table(const char *device)
       macro_table.define(mathml_defs[i].name, def);
     }
 	AddTexMacros();
+	AddMoreMacros();
   }
   definition *def = new definition[1];
   def->is_macro = 1;

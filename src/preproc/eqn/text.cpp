@@ -436,16 +436,18 @@ void InitEntityMap() {
 	struct EntityCell *cell;
 	size_t n = sizeof(entity_cells)/sizeof(EntityCell);
 	for (size_t i = 0; i < n; i++) {
-		g_entityMap.Add(entity_cells[i]);
+		EntityCell &cell = entity_cells[i];
+		g_entityMap.add(entity_cells[i]);
 	}
 
 	AddTexEntities();
+	AddMoreEntities();
 }
 	
 
 const EntityCell &special_to_entity(const char *sp)
 {
-	EntityCell &ret1 = g_entityMap.Get(sp);
+	EntityCell &ret1 = g_entityMap.get(sp);
 	if (ret1.from != NULL) { // found a real cell
 		return ret1;
 	}
@@ -457,12 +459,14 @@ const EntityCell &special_to_entity(const char *sp)
 	if (n < 2  || sp[0] != 'u') {
 		return retNull;
 	}
+
+	// TBD: skip over leading zeroes. Doens't work for entities
 	ret[0] = '&';
 	ret[1] = '#';
 	ret[2] = 'x';
 	for (int i = 1; i < n; i++) {
 		int j = i+2;
-		if (j >= 19) {
+		if (j >= 20) {
 			return retNull;
 		}
 		char c = sp[i];
@@ -475,10 +479,12 @@ const EntityCell &special_to_entity(const char *sp)
 		}
 		ret[j] = sp[i];
 	}
-	int j = n+2;
-	if (j >= 20) {
+	int j = n+1;
+	if (j >= 19) {
 		return retNull;
 	}
+	ret[j] = ';';
+	ret[j+1] = '\0';
 	retU.from = sp;
 	retU.to = ret;
 	return retU;
@@ -601,6 +607,8 @@ void init_char_table()
   for (int i = 0; i < 256; i++)
     if (csalpha(i))
       char_table[i].font_type = LETTER_TYPE;
+
+  InitEntityMap();
 }
 
 static int lookup_spacing_type(const char *type)

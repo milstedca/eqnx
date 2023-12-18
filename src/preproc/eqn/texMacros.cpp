@@ -1,6 +1,7 @@
 #include "eqnx.h"
 
 void AddTexMacros() {
+
   addEqnMacro("varepsilon","\\[u03B5]");
   addEqnMacro("vartheta","\\[u03D1]");
   addEqnMacro("varpi","\\[u03D6]");
@@ -23,7 +24,7 @@ void AddTexMacros() {
   addEqnMacro("div","\\[u00F7]");
   addEqnMacro("ast","\\[u2217]");
   addEqnMacro("star","\\[u22C6]");
-  addEqnMacro("circ","\\[u25CB]");
+  addEqnMacro("circ","\\[u2218]");
   addEqnMacro("bullet","\\[u2022]");
   addEqnMacro("cap","\\[u2229]");
   addEqnMacro("cup","\\[u222A]");
@@ -139,7 +140,7 @@ void AddTexMacros() {
   addEqnMacro("exists","\\[u2203]");
   addEqnMacro("neg","\\[u00AC]");
   addEqnMacro("flat","\\[u266D]");
-  addEqnMacro("natural","\\[u266D]");
+  addEqnMacro("natural","\\[u266E]");
   addEqnMacro("sharp","\\[u266F]");
   addEqnMacro("infty","\\[u221E]");
   addEqnMacro("Box","\\[u25A2]");

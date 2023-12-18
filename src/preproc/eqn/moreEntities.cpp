@@ -14,12 +14,12 @@ void AddMoreEntities() {
   g_entityMap.add("u232A", "&#x232A;", cellType);
   g_entityMap.add("u27E8", "&#x27E8;", cellType);
   g_entityMap.add("u27E9", "&#x27E9;", cellType);
-  g_entityMap.add("u2203", "&#x2203;", cellType);
+  g_entityMap.add("u2204", "&#x2204;", cellType);
   g_entityMap.add("u2209", "&#x2209;", cellType);
   g_entityMap.add("u220C", "&#x220C;", cellType);
   g_entityMap.add("u2218", "&#x2218;", cellType);
   g_entityMap.add("u00B0", "&#xB0;", cellType);
-  g_entityMap.add("u2220", "&#x2220;", cellType);
+  g_entityMap.add("u221F", "&#x221F;", cellType);
   g_entityMap.add("u00FE", "&#xFE;", cellType);
   g_entityMap.add("u00DE", "&#xDE;", cellType);
   g_entityMap.add("u00F0", "&#xF0;", cellType);

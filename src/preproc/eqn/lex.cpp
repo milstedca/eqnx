@@ -392,6 +392,9 @@ void init_table(const char *device)
     }
 	AddTexMacros();
 	AddMoreMacros();
+    AddDsMacros();
+    AddFrakturMacros();
+    AddScriptMacros();
   }
   definition *def = new definition[1];
   def->is_macro = 1;

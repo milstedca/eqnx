@@ -1,4 +1,5 @@
 # build artifacts
+*.o
 /.deps/
 /.dirstamp
 /eqn-box.o

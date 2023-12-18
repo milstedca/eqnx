@@ -442,6 +442,9 @@ void InitEntityMap() {
 
 	AddTexEntities();
 	AddMoreEntities();
+	AddDsEntities();
+	AddFrakturEntities();
+	AddScriptEntities();
 }
 	
 

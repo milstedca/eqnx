@@ -1,148 +1,148 @@
-  g_entityMap.add("u03B5", "&#x3B5;", cellType);
-  g_entityMap.add("u03D1", "&#x3D1;", cellType);
-  g_entityMap.add("u03D6", "&#x3D6;", cellType);
-  g_entityMap.add("u03F1", "&#x3F1;", cellType);
-  g_entityMap.add("u03C2", "&#x3C2;", cellType);
-  g_entityMap.add("u03C6", "&#x3C6;", cellType);
-  g_entityMap.add("u0393", "&#x393;", cellType);
-  g_entityMap.add("u0394", "&#x394;", cellType);
-  g_entityMap.add("u0398", "&#x398;", cellType);
-  g_entityMap.add("u039B", "&#x39B;", cellType);
-  g_entityMap.add("u039E", "&#x39E;", cellType);
-  g_entityMap.add("u03A0", "&#x3A0;", cellType);
-  g_entityMap.add("u03A3", "&#x3A3;", cellType);
-  g_entityMap.add("u03A5", "&#x3A5;", cellType);
-  g_entityMap.add("u03A6", "&#x3A6;", cellType);
-  g_entityMap.add("u03A8", "&#x3A8;", cellType);
-  g_entityMap.add("u03A9", "&#x3A9;", cellType);
-  g_entityMap.add("u00B1", "&#xB1;", cellType);
-  g_entityMap.add("u2213", "&#x2213;", cellType);
-  g_entityMap.add("u00F7", "&#xF7;", cellType);
-  g_entityMap.add("u2217", "&#x2217;", cellType);
-  g_entityMap.add("u22C6", "&#x22C6;", cellType);
-  g_entityMap.add("u2218", "&#x2218;", cellType);
-  g_entityMap.add("u2022", "&#x2022;", cellType);
-  g_entityMap.add("u2229", "&#x2229;", cellType);
-  g_entityMap.add("u222A", "&#x222A;", cellType);
-  g_entityMap.add("u228E", "&#x228E;", cellType);
-  g_entityMap.add("u2293", "&#x2293;", cellType);
-  g_entityMap.add("u2294", "&#x2294;", cellType);
-  g_entityMap.add("u2228", "&#x2228;", cellType);
-  g_entityMap.add("u2227", "&#x2227;", cellType);
-  g_entityMap.add("u29F5", "&#x29F5;", cellType);
-  g_entityMap.add("u2240", "&#x2240;", cellType);
-  g_entityMap.add("u2B28", "&#x2B28;", cellType);
-  g_entityMap.add("u25B3", "&#x25B3;", cellType);
-  g_entityMap.add("u25BD", "&#x25BD;", cellType);
-  g_entityMap.add("u25C3", "&#x25C3;", cellType);
-  g_entityMap.add("u25B9", "&#x25B9;", cellType);
-  g_entityMap.add("u25C1", "&#x25C1;", cellType);
-  g_entityMap.add("u25B7", "&#x25B7;", cellType);
-  g_entityMap.add("u22B4", "&#x22B4;", cellType);
-  g_entityMap.add("u22B5", "&#x22B5;", cellType);
-  g_entityMap.add("u2295", "&#x2295;", cellType);
-  g_entityMap.add("u2296", "&#x2296;", cellType);
-  g_entityMap.add("u2297", "&#x2297;", cellType);
-  g_entityMap.add("u2298", "&#x2298;", cellType);
-  g_entityMap.add("u2299", "&#x2299;", cellType);
-  g_entityMap.add("u25EF", "&#x25EF;", cellType);
-  g_entityMap.add("u2020", "&#x2020;", cellType);
-  g_entityMap.add("u2021", "&#x2021;", cellType);
-  g_entityMap.add("u2A3F", "&#x2A3F;", cellType);
-  g_entityMap.add("u2264", "&#x2264;", cellType);
-  g_entityMap.add("u227A", "&#x227A;", cellType);
-  g_entityMap.add("u2AAF", "&#x2AAF;", cellType);
-  g_entityMap.add("u226A", "&#x226A;", cellType);
-  g_entityMap.add("u2282", "&#x2282;", cellType);
-  g_entityMap.add("u2286", "&#x2286;", cellType);
-  g_entityMap.add("u228F", "&#x228F;", cellType);
-  g_entityMap.add("u2291", "&#x2291;", cellType);
-  g_entityMap.add("u2208", "&#x2208;", cellType);
-  g_entityMap.add("u22A2", "&#x22A2;", cellType);
-  g_entityMap.add("u2265", "&#x2265;", cellType);
-  g_entityMap.add("u227B", "&#x227B;", cellType);
-  g_entityMap.add("u2AB0", "&#x2AB0;", cellType);
-  g_entityMap.add("u226B", "&#x226B;", cellType);
-  g_entityMap.add("u2283", "&#x2283;", cellType);
-  g_entityMap.add("u2287", "&#x2287;", cellType);
-  g_entityMap.add("u2290", "&#x2290;", cellType);
-  g_entityMap.add("u2292", "&#x2292;", cellType);
-  g_entityMap.add("u220B", "&#x220B;", cellType);
-  g_entityMap.add("u22A3", "&#x22A3;", cellType);
-  g_entityMap.add("u2261", "&#x2261;", cellType);
-  g_entityMap.add("u223C", "&#x223C;", cellType);
-  g_entityMap.add("u2243", "&#x2243;", cellType);
-  g_entityMap.add("u224D", "&#x224D;", cellType);
-  g_entityMap.add("u2245", "&#x2245;", cellType);
-  g_entityMap.add("u2260", "&#x2260;", cellType);
-  g_entityMap.add("u2250", "&#x2250;", cellType);
-  g_entityMap.add("u221D", "&#x221D;", cellType);
-  g_entityMap.add("u22A7", "&#x22A7;", cellType);
-  g_entityMap.add("u27C2", "&#x27C2;", cellType);
-  g_entityMap.add("u2223", "&#x2223;", cellType);
-  g_entityMap.add("u2225", "&#x2225;", cellType);
-  g_entityMap.add("u22C8", "&#x22C8;", cellType);
-  g_entityMap.add("u2A1D", "&#x2A1D;", cellType);
-  g_entityMap.add("u2323", "&#x2323;", cellType);
-  g_entityMap.add("u2322", "&#x2322;", cellType);
-  g_entityMap.add("u2190", "&#x2190;", cellType);
-  g_entityMap.add("u21D0", "&#x21D0;", cellType);
-  g_entityMap.add("u2192", "&#x2192;", cellType);
-  g_entityMap.add("u2192", "&#x2192;", cellType);
-  g_entityMap.add("u21C6", "&#x21C6;", cellType);
-  g_entityMap.add("u21D4", "&#x21D4;", cellType);
-  g_entityMap.add("u21A6", "&#x21A6;", cellType);
-  g_entityMap.add("u21A9", "&#x21A9;", cellType);
-  g_entityMap.add("u21BC", "&#x21BC;", cellType);
-  g_entityMap.add("u21BD", "&#x21BD;", cellType);
-  g_entityMap.add("u21CC", "&#x21CC;", cellType);
-  g_entityMap.add("u27F5", "&#x27F5;", cellType);
-  g_entityMap.add("u27F8", "&#x27F8;", cellType);
-  g_entityMap.add("u27F6", "&#x27F6;", cellType);
-  g_entityMap.add("u27F9", "&#x27F9;", cellType);
-  g_entityMap.add("u27F7", "&#x27F7;", cellType);
-  g_entityMap.add("u27FA", "&#x27FA;", cellType);
-  g_entityMap.add("u27FC", "&#x27FC;", cellType);
-  g_entityMap.add("u21AA", "&#x21AA;", cellType);
-  g_entityMap.add("u21C0", "&#x21C0;", cellType);
-  g_entityMap.add("u21C1", "&#x21C1;", cellType);
-  g_entityMap.add("u219D", "&#x219D;", cellType);
-  g_entityMap.add("u2191", "&#x2191;", cellType);
-  g_entityMap.add("u21D1", "&#x21D1;", cellType);
-  g_entityMap.add("u2193", "&#x2193;", cellType);
-  g_entityMap.add("u21D3", "&#x21D3;", cellType);
-  g_entityMap.add("u2195", "&#x2195;", cellType);
-  g_entityMap.add("u21D5", "&#x21D5;", cellType);
-  g_entityMap.add("u2197", "&#x2197;", cellType);
-  g_entityMap.add("u2198", "&#x2198;", cellType);
-  g_entityMap.add("u2199", "&#x2199;", cellType);
-  g_entityMap.add("u2196", "&#x2196;", cellType);
-  g_entityMap.add("u2135", "&#x2135;", cellType);
-  g_entityMap.add("u210F", "&#x210F;", cellType);
-  g_entityMap.add("u1D6A4", "&#x1D6A4;", cellType);
-  g_entityMap.add("u1D6A5", "&#x1D6A5;", cellType);
-  g_entityMap.add("u2113", "&#x2113;", cellType);
-  g_entityMap.add("u2118", "&#x2118;", cellType);
-  g_entityMap.add("u211C", "&#x211C;", cellType);
-  g_entityMap.add("u2111", "&#x2111;", cellType);
-  g_entityMap.add("u2127", "&#x2127;", cellType);
-  g_entityMap.add("u2205", "&#x2205;", cellType);
-  g_entityMap.add("u2207", "&#x2207;", cellType);
-  g_entityMap.add("u221A", "&#x221A;", cellType);
-  g_entityMap.add("u22A4", "&#x22A4;", cellType);
-  g_entityMap.add("u22A5", "&#x22A5;", cellType);
-  g_entityMap.add("u2220", "&#x2220;", cellType);
-  g_entityMap.add("u2200", "&#x2200;", cellType);
-  g_entityMap.add("u2203", "&#x2203;", cellType);
-  g_entityMap.add("u00AC", "&#xAC;", cellType);
-  g_entityMap.add("u266D", "&#x266D;", cellType);
-  g_entityMap.add("u266E", "&#x266E;", cellType);
-  g_entityMap.add("u266F", "&#x266F;", cellType);
-  g_entityMap.add("u221E", "&#x221E;", cellType);
-  g_entityMap.add("u25A2", "&#x25A2;", cellType);
-  g_entityMap.add("u25C7", "&#x25C7;", cellType);
-  g_entityMap.add("u25B3", "&#x25B3;", cellType);
-  g_entityMap.add("u2663", "&#x2663;", cellType);
-  g_entityMap.add("u2662", "&#x2662;", cellType);
-  g_entityMap.add("u2661", "&#x2661;", cellType);
-  g_entityMap.add("u2660", "&#x2660;", cellType);
+  g_entityMap.add("u03B5", "&#x3B5;", cellType); // varepsilon
+  g_entityMap.add("u03D1", "&#x3D1;", cellType); // vartheta
+  g_entityMap.add("u03D6", "&#x3D6;", cellType); // varpi
+  g_entityMap.add("u03F1", "&#x3F1;", cellType); // varrho
+  g_entityMap.add("u03C2", "&#x3C2;", cellType); // varsigma
+  g_entityMap.add("u03C6", "&#x3C6;", cellType); // varphi
+  g_entityMap.add("u0393", "&#x393;", cellType); // Gamma
+  g_entityMap.add("u0394", "&#x394;", cellType); // Delta
+  g_entityMap.add("u0398", "&#x398;", cellType); // Theta
+  g_entityMap.add("u039B", "&#x39B;", cellType); // Lambda
+  g_entityMap.add("u039E", "&#x39E;", cellType); // Xi
+  g_entityMap.add("u03A0", "&#x3A0;", cellType); // Pi
+  g_entityMap.add("u03A3", "&#x3A3;", cellType); // Sigma
+  g_entityMap.add("u03A5", "&#x3A5;", cellType); // Upsilon
+  g_entityMap.add("u03A6", "&#x3A6;", cellType); // Phi
+  g_entityMap.add("u03A8", "&#x3A8;", cellType); // Psi
+  g_entityMap.add("u03A9", "&#x3A9;", cellType); // Omega
+  g_entityMap.add("u00B1", "&#xB1;", cellType); // pm
+  g_entityMap.add("u2213", "&#x2213;", cellType); // mp
+  g_entityMap.add("u00F7", "&#xF7;", cellType); // div
+  g_entityMap.add("u2217", "&#x2217;", cellType); // ast
+  g_entityMap.add("u22C6", "&#x22C6;", cellType); // star
+  g_entityMap.add("u2218", "&#x2218;", cellType); // circ
+  g_entityMap.add("u2022", "&#x2022;", cellType); // bullet
+  g_entityMap.add("u2229", "&#x2229;", cellType); // cap
+  g_entityMap.add("u222A", "&#x222A;", cellType); // cup
+  g_entityMap.add("u228E", "&#x228E;", cellType); // uplus
+  g_entityMap.add("u2293", "&#x2293;", cellType); // sqcap
+  g_entityMap.add("u2294", "&#x2294;", cellType); // sqcup
+  g_entityMap.add("u2228", "&#x2228;", cellType); // vee
+  g_entityMap.add("u2227", "&#x2227;", cellType); // wedge
+  g_entityMap.add("u29F5", "&#x29F5;", cellType); // setminus
+  g_entityMap.add("u2240", "&#x2240;", cellType); // wr
+  g_entityMap.add("u2B28", "&#x2B28;", cellType); // diamond
+  g_entityMap.add("u25B3", "&#x25B3;", cellType); // bigtriangleup
+  g_entityMap.add("u25BD", "&#x25BD;", cellType); // bigtriangledown
+  g_entityMap.add("u25C3", "&#x25C3;", cellType); // triangleleft
+  g_entityMap.add("u25B9", "&#x25B9;", cellType); // triangleright
+  g_entityMap.add("u25C1", "&#x25C1;", cellType); // lhd
+  g_entityMap.add("u25B7", "&#x25B7;", cellType); // rhd
+  g_entityMap.add("u22B4", "&#x22B4;", cellType); // unlhd
+  g_entityMap.add("u22B5", "&#x22B5;", cellType); // unrhd
+  g_entityMap.add("u2295", "&#x2295;", cellType); // oplus
+  g_entityMap.add("u2296", "&#x2296;", cellType); // ominus
+  g_entityMap.add("u2297", "&#x2297;", cellType); // otimes
+  g_entityMap.add("u2298", "&#x2298;", cellType); // oslash
+  g_entityMap.add("u2299", "&#x2299;", cellType); // odot
+  g_entityMap.add("u25EF", "&#x25EF;", cellType); // bigcirc
+  g_entityMap.add("u2020", "&#x2020;", cellType); // dagger
+  g_entityMap.add("u2021", "&#x2021;", cellType); // ddagger
+  g_entityMap.add("u2A3F", "&#x2A3F;", cellType); // amalg
+  g_entityMap.add("u2264", "&#x2264;", cellType); // leq
+  g_entityMap.add("u227A", "&#x227A;", cellType); // prec
+  g_entityMap.add("u2AAF", "&#x2AAF;", cellType); // preceq
+  g_entityMap.add("u226A", "&#x226A;", cellType); // ll
+  g_entityMap.add("u2282", "&#x2282;", cellType); // subset
+  g_entityMap.add("u2286", "&#x2286;", cellType); // subseteq
+  g_entityMap.add("u228F", "&#x228F;", cellType); // sqsubset
+  g_entityMap.add("u2291", "&#x2291;", cellType); // sqsubseteq
+  g_entityMap.add("u2208", "&#x2208;", cellType); // in
+  g_entityMap.add("u22A2", "&#x22A2;", cellType); // vdash
+  g_entityMap.add("u2265", "&#x2265;", cellType); // geq
+  g_entityMap.add("u227B", "&#x227B;", cellType); // succ
+  g_entityMap.add("u2AB0", "&#x2AB0;", cellType); // succeq
+  g_entityMap.add("u226B", "&#x226B;", cellType); // gg
+  g_entityMap.add("u2283", "&#x2283;", cellType); // supset
+  g_entityMap.add("u2287", "&#x2287;", cellType); // supseteq
+  g_entityMap.add("u2290", "&#x2290;", cellType); // sqsupset
+  g_entityMap.add("u2292", "&#x2292;", cellType); // sqsupseteq
+  g_entityMap.add("u220B", "&#x220B;", cellType); // ni
+  g_entityMap.add("u22A3", "&#x22A3;", cellType); // dashv
+  g_entityMap.add("u2261", "&#x2261;", cellType); // equiv
+  g_entityMap.add("u223C", "&#x223C;", cellType); // sim
+  g_entityMap.add("u2243", "&#x2243;", cellType); // simeq
+  g_entityMap.add("u224D", "&#x224D;", cellType); // asymp
+  g_entityMap.add("u2245", "&#x2245;", cellType); // cong
+  g_entityMap.add("u2260", "&#x2260;", cellType); // neq
+  g_entityMap.add("u2250", "&#x2250;", cellType); // doteq
+  g_entityMap.add("u221D", "&#x221D;", cellType); // propto
+  g_entityMap.add("u22A7", "&#x22A7;", cellType); // models
+  g_entityMap.add("u27C2", "&#x27C2;", cellType); // perp
+  g_entityMap.add("u2223", "&#x2223;", cellType); // mid
+  g_entityMap.add("u2225", "&#x2225;", cellType); // parallel
+  g_entityMap.add("u22C8", "&#x22C8;", cellType); // bowtie
+  g_entityMap.add("u2A1D", "&#x2A1D;", cellType); // Join
+  g_entityMap.add("u2323", "&#x2323;", cellType); // smile
+  g_entityMap.add("u2322", "&#x2322;", cellType); // frown
+  g_entityMap.add("u2190", "&#x2190;", cellType); // leftarrow
+  g_entityMap.add("u21D0", "&#x21D0;", cellType); // Leftarrow
+  g_entityMap.add("u2192", "&#x2192;", cellType); // rightarrow
+  g_entityMap.add("u2192", "&#x2192;", cellType); // Rightarrow
+  g_entityMap.add("u21C6", "&#x21C6;", cellType); // leftrightarrow
+  g_entityMap.add("u21D4", "&#x21D4;", cellType); // Leftrightarrow
+  g_entityMap.add("u21A6", "&#x21A6;", cellType); // mapsto
+  g_entityMap.add("u21A9", "&#x21A9;", cellType); // hookleftarrow
+  g_entityMap.add("u21BC", "&#x21BC;", cellType); // leftharpoonup
+  g_entityMap.add("u21BD", "&#x21BD;", cellType); // leftharpoondown
+  g_entityMap.add("u21CC", "&#x21CC;", cellType); // rightleftharpoons
+  g_entityMap.add("u27F5", "&#x27F5;", cellType); // longleftarrow
+  g_entityMap.add("u27F8", "&#x27F8;", cellType); // Longleftarrow
+  g_entityMap.add("u27F6", "&#x27F6;", cellType); // longrightarrow
+  g_entityMap.add("u27F9", "&#x27F9;", cellType); // Longrightarrow
+  g_entityMap.add("u27F7", "&#x27F7;", cellType); // longleftrightarrow
+  g_entityMap.add("u27FA", "&#x27FA;", cellType); // Longleftrightarrow
+  g_entityMap.add("u27FC", "&#x27FC;", cellType); // longmapsto
+  g_entityMap.add("u21AA", "&#x21AA;", cellType); // hookrightarrow
+  g_entityMap.add("u21C0", "&#x21C0;", cellType); // rightharpoonup
+  g_entityMap.add("u21C1", "&#x21C1;", cellType); // rightharpoondown
+  g_entityMap.add("u219D", "&#x219D;", cellType); // leadsto
+  g_entityMap.add("u2191", "&#x2191;", cellType); // uparrow
+  g_entityMap.add("u21D1", "&#x21D1;", cellType); // Uparrow
+  g_entityMap.add("u2193", "&#x2193;", cellType); // downarrow
+  g_entityMap.add("u21D3", "&#x21D3;", cellType); // Downarrow
+  g_entityMap.add("u2195", "&#x2195;", cellType); // updownarrow
+  g_entityMap.add("u21D5", "&#x21D5;", cellType); // Updownarrow
+  g_entityMap.add("u2197", "&#x2197;", cellType); // nearrow
+  g_entityMap.add("u2198", "&#x2198;", cellType); // swarrow
+  g_entityMap.add("u2199", "&#x2199;", cellType); // swarrow
+  g_entityMap.add("u2196", "&#x2196;", cellType); // nwarrow
+  g_entityMap.add("u2135", "&#x2135;", cellType); // aleph
+  g_entityMap.add("u210F", "&#x210F;", cellType); // hbar
+  g_entityMap.add("u1D6A4", "&#x1D6A4;", cellType); // imath
+  g_entityMap.add("u1D6A5", "&#x1D6A5;", cellType); // jmath
+  g_entityMap.add("u2113", "&#x2113;", cellType); // ell
+  g_entityMap.add("u2118", "&#x2118;", cellType); // wp
+  g_entityMap.add("u211C", "&#x211C;", cellType); // Re
+  g_entityMap.add("u2111", "&#x2111;", cellType); // Im
+  g_entityMap.add("u2127", "&#x2127;", cellType); // mho
+  g_entityMap.add("u2205", "&#x2205;", cellType); // emptyset
+  g_entityMap.add("u2207", "&#x2207;", cellType); // nabla
+  g_entityMap.add("u221A", "&#x221A;", cellType); // surd
+  g_entityMap.add("u22A4", "&#x22A4;", cellType); // top
+  g_entityMap.add("u22A5", "&#x22A5;", cellType); // bot
+  g_entityMap.add("u2220", "&#x2220;", cellType); // angle
+  g_entityMap.add("u2200", "&#x2200;", cellType); // forall
+  g_entityMap.add("u2203", "&#x2203;", cellType); // exists
+  g_entityMap.add("u00AC", "&#xAC;", cellType); // neg
+  g_entityMap.add("u266D", "&#x266D;", cellType); // flat
+  g_entityMap.add("u266E", "&#x266E;", cellType); // natural
+  g_entityMap.add("u266F", "&#x266F;", cellType); // sharp
+  g_entityMap.add("u221E", "&#x221E;", cellType); // infty
+  g_entityMap.add("u25A2", "&#x25A2;", cellType); // Box
+  g_entityMap.add("u25C7", "&#x25C7;", cellType); // Diamond
+  g_entityMap.add("u25B3", "&#x25B3;", cellType); // triangle
+  g_entityMap.add("u2663", "&#x2663;", cellType); // clubsuit
+  g_entityMap.add("u2662", "&#x2662;", cellType); // diamondsuit
+  g_entityMap.add("u2661", "&#x2661;", cellType); // heartsuit
+  g_entityMap.add("u2660", "&#x2660;", cellType); // spadesuit

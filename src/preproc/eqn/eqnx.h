@@ -84,6 +84,12 @@ extern void AddTexMacros();
 extern void AddTexEntities();
 extern void AddMoreMacros();
 extern void AddMoreEntities();
+extern void AddDsMacros();
+extern void AddDsEntities();
+extern void AddFrakturMacros();
+extern void AddFrakturEntities();
+extern void AddScriptMacros();
+extern void AddScriptEntities();
 
 
 	

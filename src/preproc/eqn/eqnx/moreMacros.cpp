@@ -10,12 +10,12 @@
   addEqnMacro("rangle","\\[u232A]");
   addEqnMacro("bra","\\[u27E8]");
   addEqnMacro("ket","\\[u27E9]");
-  addEqnMacro("nexists","\\[u2203]");
+  addEqnMacro("nexists","\\[u2204]");
   addEqnMacro("nin","\\[u2209]");
   addEqnMacro("nni","\\[u220C]");
   addEqnMacro("ring","\\[u2218]");
   addEqnMacro("deg","\\[u00B0]");
-  addEqnMacro("angrt","\\[u2220]");
+  addEqnMacro("anglert","\\[u221F]");
   addEqnMacro("thorn","\\[u00FE]");
   addEqnMacro("Thorn","\\[u00DE]");
   addEqnMacro("eth","\\[u00F0]");

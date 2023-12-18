@@ -43,7 +43,16 @@ eqn_SOURCES = \
   src/preproc/eqn/eqn.h \
   src/preproc/eqn/eqnx.h \
   src/preproc/eqn/texEntities.cpp \
-  src/preproc/eqn/texMacros.cpp
+  src/preproc/eqn/texMacros.cpp \
+  src/preproc/eqn/moreEntities.cpp \
+  src/preproc/eqn/moreMacros.cpp \
+  src/preproc/eqn/dsEntities.cpp \
+  src/preproc/eqn/dsMacros.cpp \
+  src/preproc/eqn/frakMacros.cpp \
+  src/preproc/eqn/frakEntities.cpp \
+  src/preproc/eqn/scriptMacros.cpp \
+  src/preproc/eqn/scriptEntities.cpp
+	
 
 PREFIXMAN1 += src/preproc/eqn/eqn.1 src/preproc/eqn/neqn.1
 EXTRA_DIST += \

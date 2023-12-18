@@ -28,30 +28,30 @@ void AddFrakturEntities() {
   g_entityMap.add("u1D51B", "&#x1D51B;", cellType); // frakX
   g_entityMap.add("u1D51C", "&#x1D51C;", cellType); // frakY
   g_entityMap.add("u2128", "&#x2128;", cellType); // frakZ
-  g_entityMap.add("u1D586", "&#x1D586;", cellType); // fraka
-  g_entityMap.add("u1D587", "&#x1D587;", cellType); // frakb
-  g_entityMap.add("u1D588", "&#x1D588;", cellType); // frakc
-  g_entityMap.add("u1D589", "&#x1D589;", cellType); // frakd
-  g_entityMap.add("u1D58A", "&#x1D58A;", cellType); // frake
-  g_entityMap.add("u1D58B", "&#x1D58B;", cellType); // frakf
-  g_entityMap.add("u1D58C", "&#x1D58C;", cellType); // frakg
-  g_entityMap.add("u1D58D", "&#x1D58D;", cellType); // frakh
-  g_entityMap.add("u1D58E", "&#x1D58E;", cellType); // fraki
-  g_entityMap.add("u1D58F", "&#x1D58F;", cellType); // frakj
-  g_entityMap.add("u1D590", "&#x1D590;", cellType); // frakk
-  g_entityMap.add("u1D591", "&#x1D591;", cellType); // frakl
-  g_entityMap.add("u1D592", "&#x1D592;", cellType); // frakm
-  g_entityMap.add("u1D593", "&#x1D593;", cellType); // frakn
-  g_entityMap.add("u1D594", "&#x1D594;", cellType); // frako
-  g_entityMap.add("u1D595", "&#x1D595;", cellType); // frakp
-  g_entityMap.add("u1D596", "&#x1D596;", cellType); // frakq
-  g_entityMap.add("u1D597", "&#x1D597;", cellType); // frakr
-  g_entityMap.add("u1D598", "&#x1D598;", cellType); // fraks
-  g_entityMap.add("u1D599", "&#x1D599;", cellType); // frakt
-  g_entityMap.add("u1D59A", "&#x1D59A;", cellType); // fraku
-  g_entityMap.add("u1D59B", "&#x1D59B;", cellType); // frakv
-  g_entityMap.add("u1D59C", "&#x1D59C;", cellType); // frakw
-  g_entityMap.add("u1D59D", "&#x1D59D;", cellType); // frakx
-  g_entityMap.add("u1D59E", "&#x1D59E;", cellType); // fraky
-  g_entityMap.add("u1D59F", "&#x1D59F;", cellType); // frakz
+  g_entityMap.add("u1D51E", "&#x1D51E;", cellType); // fraka
+  g_entityMap.add("u1D51F", "&#x1D51F;", cellType); // frakb
+  g_entityMap.add("u1D520", "&#x1D520;", cellType); // frakc
+  g_entityMap.add("u1D521", "&#x1D521;", cellType); // frakd
+  g_entityMap.add("u1D522", "&#x1D522;", cellType); // frake
+  g_entityMap.add("u1D523", "&#x1D523;", cellType); // frakf
+  g_entityMap.add("u1D524", "&#x1D524;", cellType); // frakg
+  g_entityMap.add("u1D525", "&#x1D525;", cellType); // frakh
+  g_entityMap.add("u1D526", "&#x1D526;", cellType); // fraki
+  g_entityMap.add("u1D527", "&#x1D527;", cellType); // frakj
+  g_entityMap.add("u1D528", "&#x1D528;", cellType); // frakk
+  g_entityMap.add("u1D529", "&#x1D529;", cellType); // frakl
+  g_entityMap.add("u1D52A", "&#x1D52A;", cellType); // frakm
+  g_entityMap.add("u1D52B", "&#x1D52B;", cellType); // frakn
+  g_entityMap.add("u1D52C", "&#x1D52C;", cellType); // frako
+  g_entityMap.add("u1D52D", "&#x1D52D;", cellType); // frakp
+  g_entityMap.add("u1D52E", "&#x1D52E;", cellType); // frakq
+  g_entityMap.add("u1D52F", "&#x1D52F;", cellType); // frakr
+  g_entityMap.add("u1D530", "&#x1D530;", cellType); // fraks
+  g_entityMap.add("u1D531", "&#x1D531;", cellType); // frakt
+  g_entityMap.add("u1D532", "&#x1D532;", cellType); // fraku
+  g_entityMap.add("u1D533", "&#x1D533;", cellType); // frakv
+  g_entityMap.add("u1D534", "&#x1D534;", cellType); // frakw
+  g_entityMap.add("u1D535", "&#x1D535;", cellType); // frakx
+  g_entityMap.add("u1D536", "&#x1D536;", cellType); // fraky
+  g_entityMap.add("u1D537", "&#x1D537;", cellType); // frakz
 }

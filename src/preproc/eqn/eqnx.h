@@ -90,6 +90,14 @@ extern void AddFrakturMacros();
 extern void AddFrakturEntities();
 extern void AddScriptMacros();
 extern void AddScriptEntities();
+extern void AddBoldFrakturMacros();
+extern void AddBoldFrakturEntities();
+extern void AddBoldScriptMacros();
+extern void AddBoldScriptEntities();
+extern void AddSansSerifMacros();
+extern void AddSansSerifEntities();
+extern void AddBoldSansSerifMacros();
+extern void AddBoldSansSerifEntities();
 
 
 	

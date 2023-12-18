@@ -445,6 +445,10 @@ void InitEntityMap() {
 	AddDsEntities();
 	AddFrakturEntities();
 	AddScriptEntities();
+	AddSansSerifEntities();
+	AddBoldFrakturEntities();
+	AddBoldScriptEntities();
+	AddBoldSansSerifEntities();
 }
 	
 

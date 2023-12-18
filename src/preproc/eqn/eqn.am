@@ -51,7 +51,15 @@ eqn_SOURCES = \
   src/preproc/eqn/frakMacros.cpp \
   src/preproc/eqn/frakEntities.cpp \
   src/preproc/eqn/scriptMacros.cpp \
-  src/preproc/eqn/scriptEntities.cpp
+  src/preproc/eqn/scriptEntities.cpp \
+  src/preproc/eqn/bfrakMacros.cpp \
+  src/preproc/eqn/bfrakEntities.cpp \
+  src/preproc/eqn/bscriptMacros.cpp \
+  src/preproc/eqn/bscriptEntities.cpp \
+  src/preproc/eqn/ssEntities.cpp \
+  src/preproc/eqn/ssMacros.cpp \
+  src/preproc/eqn/bssEntities.cpp \
+  src/preproc/eqn/bssMacros.cpp 
 	
 
 PREFIXMAN1 += src/preproc/eqn/eqn.1 src/preproc/eqn/neqn.1

@@ -15,7 +15,7 @@ Upsilon,3A5
 Phi,3A6
 Psi,3A8
 Omega,3A9
-pm,B1
+pm,B1,s_operator,break
 mp,2213
 div,F7
 ast,2217
@@ -49,7 +49,7 @@ bigcirc,25EF
 dagger,2020
 ddagger,2021
 amalg,02A3F
-leq,2264
+leq,2264,s_operator,break
 prec,227A
 preceq,2AAF
 ll,226A
@@ -85,7 +85,7 @@ bowtie,22C8
 Join,2A1D
 smile,2323
 frown,2322
-leftarrow,2190
+leftarrow,2190,s_operator,break
 Leftarrow,21D0
 rightarrow,2192
 Rightarrow,2192
@@ -117,7 +117,7 @@ nearrow,2197
 swarrow,2198
 swarrow,2199
 nwarrow,2196
-aleph,2135
+aleph,2135,s_ordinary,break
 hbar,210F
 imath,1D6A4
 jmath,1D6A5

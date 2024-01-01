@@ -1,3 +1,8 @@
+#include "eqnx.h"
+
+void AddTexEntities() {
+	spacing_type cellType = s_ordinary;
+
   g_entityMap.add("u03B5", "&#x3B5;", cellType); // varepsilon
   g_entityMap.add("u03D1", "&#x3D1;", cellType); // vartheta
   g_entityMap.add("u03D6", "&#x3D6;", cellType); // varpi
@@ -15,6 +20,7 @@
   g_entityMap.add("u03A6", "&#x3A6;", cellType); // Phi
   g_entityMap.add("u03A8", "&#x3A8;", cellType); // Psi
   g_entityMap.add("u03A9", "&#x3A9;", cellType); // Omega
+  cellType = s_operator;
   g_entityMap.add("u00B1", "&#xB1;", cellType); // pm
   g_entityMap.add("u2213", "&#x2213;", cellType); // mp
   g_entityMap.add("u00F7", "&#xF7;", cellType); // div
@@ -49,6 +55,7 @@
   g_entityMap.add("u2020", "&#x2020;", cellType); // dagger
   g_entityMap.add("u2021", "&#x2021;", cellType); // ddagger
   g_entityMap.add("u2A3F", "&#x2A3F;", cellType); // amalg
+  cellType = s_operator;
   g_entityMap.add("u2264", "&#x2264;", cellType); // leq
   g_entityMap.add("u227A", "&#x227A;", cellType); // prec
   g_entityMap.add("u2AAF", "&#x2AAF;", cellType); // preceq
@@ -85,6 +92,7 @@
   g_entityMap.add("u2A1D", "&#x2A1D;", cellType); // Join
   g_entityMap.add("u2323", "&#x2323;", cellType); // smile
   g_entityMap.add("u2322", "&#x2322;", cellType); // frown
+  cellType = s_operator;
   g_entityMap.add("u2190", "&#x2190;", cellType); // leftarrow
   g_entityMap.add("u21D0", "&#x21D0;", cellType); // Leftarrow
   g_entityMap.add("u2192", "&#x2192;", cellType); // rightarrow
@@ -117,6 +125,7 @@
   g_entityMap.add("u2198", "&#x2198;", cellType); // swarrow
   g_entityMap.add("u2199", "&#x2199;", cellType); // swarrow
   g_entityMap.add("u2196", "&#x2196;", cellType); // nwarrow
+  cellType = s_ordinary;
   g_entityMap.add("u2135", "&#x2135;", cellType); // aleph
   g_entityMap.add("u210F", "&#x210F;", cellType); // hbar
   g_entityMap.add("u1D6A4", "&#x1D6A4;", cellType); // imath
@@ -146,3 +155,4 @@
   g_entityMap.add("u2662", "&#x2662;", cellType); // diamondsuit
   g_entityMap.add("u2661", "&#x2661;", cellType); // heartsuit
   g_entityMap.add("u2660", "&#x2660;", cellType); // spadesuit
+}

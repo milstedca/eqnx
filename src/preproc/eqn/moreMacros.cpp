@@ -1,5 +1,7 @@
 #include "eqnx.h"
+
 void AddMoreMacros() {
+
   addEqnMacro("therefore","\\[u2234]");
   addEqnMacro("because","\\[u2235]");
   addEqnMacro("ratio","\\[u2236]");

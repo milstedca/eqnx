@@ -1,3 +1,7 @@
+#include "eqnx.h"
+
+void AddTexMacros() {
+
   addEqnMacro("varepsilon","\\[u03B5]");
   addEqnMacro("vartheta","\\[u03D1]");
   addEqnMacro("varpi","\\[u03D6]");
@@ -146,3 +150,4 @@
   addEqnMacro("diamondsuit","\\[u2662]");
   addEqnMacro("heartsuit","\\[u2661]");
   addEqnMacro("spadesuit","\\[u2660]");
+}

@@ -1,17 +1,17 @@
-.table
+.table nh
 .row
 varepsilon
 
 .eqni
 varepsilon
 ..eqni
-.row
+
 vartheta
 
 .eqni
 vartheta
 ..eqni
-.row
+
 varpi
 
 .eqni
@@ -23,13 +23,13 @@ varrho
 .eqni
 varrho
 ..eqni
-.row
+
 varsigma
 
 .eqni
 varsigma
 ..eqni
-.row
+
 varphi
 
 .eqni
@@ -41,13 +41,13 @@ Gamma
 .eqni
 Gamma
 ..eqni
-.row
+
 Delta
 
 .eqni
 Delta
 ..eqni
-.row
+
 Theta
 
 .eqni
@@ -59,13 +59,13 @@ Lambda
 .eqni
 Lambda
 ..eqni
-.row
+
 Xi
 
 .eqni
 Xi
 ..eqni
-.row
+
 Pi
 
 .eqni
@@ -77,13 +77,13 @@ Sigma
 .eqni
 Sigma
 ..eqni
-.row
+
 Upsilon
 
 .eqni
 Upsilon
 ..eqni
-.row
+
 Phi
 
 .eqni
@@ -95,25 +95,28 @@ Psi
 .eqni
 Psi
 ..eqni
-.row
+
 Omega
 
 .eqni
 Omega
 ..eqni
+..table
+
+.table nh
 .row
 pm
 
 .eqni
 pm
 ..eqni
-.row
+
 mp
 
 .eqni
 mp
 ..eqni
-.row
+
 div
 
 .eqni
@@ -125,13 +128,13 @@ ast
 .eqni
 ast
 ..eqni
-.row
+
 star
 
 .eqni
 star
 ..eqni
-.row
+
 circ
 
 .eqni
@@ -143,13 +146,13 @@ bullet
 .eqni
 bullet
 ..eqni
-.row
+
 cap
 
 .eqni
 cap
 ..eqni
-.row
+
 cup
 
 .eqni
@@ -161,13 +164,13 @@ uplus
 .eqni
 uplus
 ..eqni
-.row
+
 sqcap
 
 .eqni
 sqcap
 ..eqni
-.row
+
 sqcup
 
 .eqni
@@ -179,13 +182,13 @@ vee
 .eqni
 vee
 ..eqni
-.row
+
 wedge
 
 .eqni
 wedge
 ..eqni
-.row
+
 setminus
 
 .eqni
@@ -197,13 +200,13 @@ wr
 .eqni
 wr
 ..eqni
-.row
+
 diamond
 
 .eqni
 diamond
 ..eqni
-.row
+
 bigtriangleup
 
 .eqni
@@ -215,13 +218,13 @@ bigtriangledown
 .eqni
 bigtriangledown
 ..eqni
-.row
+
 triangleleft
 
 .eqni
 triangleleft
 ..eqni
-.row
+
 triangleright
 
 .eqni
@@ -233,13 +236,13 @@ lhd
 .eqni
 lhd
 ..eqni
-.row
+
 rhd
 
 .eqni
 rhd
 ..eqni
-.row
+
 unlhd
 
 .eqni
@@ -251,13 +254,13 @@ unrhd
 .eqni
 unrhd
 ..eqni
-.row
+
 oplus
 
 .eqni
 oplus
 ..eqni
-.row
+
 ominus
 
 .eqni
@@ -269,13 +272,13 @@ otimes
 .eqni
 otimes
 ..eqni
-.row
+
 oslash
 
 .eqni
 oslash
 ..eqni
-.row
+
 odot
 
 .eqni
@@ -287,13 +290,13 @@ bigcirc
 .eqni
 bigcirc
 ..eqni
-.row
+
 dagger
 
 .eqni
 dagger
 ..eqni
-.row
+
 ddagger
 
 .eqni
@@ -305,19 +308,22 @@ amalg
 .eqni
 amalg
 ..eqni
+..table
+
+.table nh
 .row
 leq
 
 .eqni
 leq
 ..eqni
-.row
+
 prec
 
 .eqni
 prec
 ..eqni
-.row
+
 preceq
 
 .eqni
@@ -329,13 +335,13 @@ ll
 .eqni
 ll
 ..eqni
-.row
+
 subset
 
 .eqni
 subset
 ..eqni
-.row
+
 subseteq
 
 .eqni
@@ -347,13 +353,13 @@ sqsubset
 .eqni
 sqsubset
 ..eqni
-.row
+
 sqsubseteq
 
 .eqni
 sqsubseteq
 ..eqni
-.row
+
 in
 
 .eqni
@@ -365,13 +371,13 @@ vdash
 .eqni
 vdash
 ..eqni
-.row
+
 geq
 
 .eqni
 geq
 ..eqni
-.row
+
 succ
 
 .eqni
@@ -383,13 +389,13 @@ succeq
 .eqni
 succeq
 ..eqni
-.row
+
 gg
 
 .eqni
 gg
 ..eqni
-.row
+
 supset
 
 .eqni
@@ -401,13 +407,13 @@ supseteq
 .eqni
 supseteq
 ..eqni
-.row
+
 sqsupset
 
 .eqni
 sqsupset
 ..eqni
-.row
+
 sqsupseteq
 
 .eqni
@@ -419,13 +425,13 @@ ni
 .eqni
 ni
 ..eqni
-.row
+
 dashv
 
 .eqni
 dashv
 ..eqni
-.row
+
 equiv
 
 .eqni
@@ -437,13 +443,13 @@ sim
 .eqni
 sim
 ..eqni
-.row
+
 simeq
 
 .eqni
 simeq
 ..eqni
-.row
+
 asymp
 
 .eqni
@@ -455,13 +461,13 @@ cong
 .eqni
 cong
 ..eqni
-.row
+
 neq
 
 .eqni
 neq
 ..eqni
-.row
+
 doteq
 
 .eqni
@@ -473,13 +479,13 @@ propto
 .eqni
 propto
 ..eqni
-.row
+
 models
 
 .eqni
 models
 ..eqni
-.row
+
 perp
 
 .eqni
@@ -491,13 +497,13 @@ mid
 .eqni
 mid
 ..eqni
-.row
+
 parallel
 
 .eqni
 parallel
 ..eqni
-.row
+
 bowtie
 
 .eqni
@@ -509,31 +515,34 @@ Join
 .eqni
 Join
 ..eqni
-.row
+
 smile
 
 .eqni
 smile
 ..eqni
-.row
+
 frown
 
 .eqni
 frown
 ..eqni
+..table
+
+.table nh
 .row
 leftarrow
 
 .eqni
 leftarrow
 ..eqni
-.row
+
 Leftarrow
 
 .eqni
 Leftarrow
 ..eqni
-.row
+
 rightarrow
 
 .eqni
@@ -545,13 +554,13 @@ Rightarrow
 .eqni
 Rightarrow
 ..eqni
-.row
+
 leftrightarrow
 
 .eqni
 leftrightarrow
 ..eqni
-.row
+
 Leftrightarrow
 
 .eqni
@@ -563,13 +572,13 @@ mapsto
 .eqni
 mapsto
 ..eqni
-.row
+
 hookleftarrow
 
 .eqni
 hookleftarrow
 ..eqni
-.row
+
 leftharpoonup
 
 .eqni
@@ -581,13 +590,13 @@ leftharpoondown
 .eqni
 leftharpoondown
 ..eqni
-.row
+
 rightleftharpoons
 
 .eqni
 rightleftharpoons
 ..eqni
-.row
+
 longleftarrow
 
 .eqni
@@ -599,13 +608,13 @@ Longleftarrow
 .eqni
 Longleftarrow
 ..eqni
-.row
+
 longrightarrow
 
 .eqni
 longrightarrow
 ..eqni
-.row
+
 Longrightarrow
 
 .eqni
@@ -617,13 +626,13 @@ longleftrightarrow
 .eqni
 longleftrightarrow
 ..eqni
-.row
+
 Longleftrightarrow
 
 .eqni
 Longleftrightarrow
 ..eqni
-.row
+
 longmapsto
 
 .eqni
@@ -635,13 +644,13 @@ hookrightarrow
 .eqni
 hookrightarrow
 ..eqni
-.row
+
 rightharpoonup
 
 .eqni
 rightharpoonup
 ..eqni
-.row
+
 rightharpoondown
 
 .eqni
@@ -653,13 +662,13 @@ leadsto
 .eqni
 leadsto
 ..eqni
-.row
+
 uparrow
 
 .eqni
 uparrow
 ..eqni
-.row
+
 Uparrow
 
 .eqni
@@ -671,13 +680,13 @@ downarrow
 .eqni
 downarrow
 ..eqni
-.row
+
 Downarrow
 
 .eqni
 Downarrow
 ..eqni
-.row
+
 updownarrow
 
 .eqni
@@ -689,13 +698,13 @@ Updownarrow
 .eqni
 Updownarrow
 ..eqni
-.row
+
 nearrow
 
 .eqni
 nearrow
 ..eqni
-.row
+
 swarrow
 
 .eqni
@@ -707,25 +716,28 @@ swarrow
 .eqni
 swarrow
 ..eqni
-.row
+
 nwarrow
 
 .eqni
 nwarrow
 ..eqni
+..table
+
+.table nh
 .row
 aleph
 
 .eqni
 aleph
 ..eqni
-.row
+
 hbar
 
 .eqni
 hbar
 ..eqni
-.row
+
 imath
 
 .eqni
@@ -737,13 +749,13 @@ jmath
 .eqni
 jmath
 ..eqni
-.row
+
 ell
 
 .eqni
 ell
 ..eqni
-.row
+
 wp
 
 .eqni
@@ -755,13 +767,13 @@ Re
 .eqni
 Re
 ..eqni
-.row
+
 Im
 
 .eqni
 Im
 ..eqni
-.row
+
 mho
 
 .eqni
@@ -773,13 +785,13 @@ emptyset
 .eqni
 emptyset
 ..eqni
-.row
+
 nabla
 
 .eqni
 nabla
 ..eqni
-.row
+
 surd
 
 .eqni
@@ -791,13 +803,13 @@ top
 .eqni
 top
 ..eqni
-.row
+
 bot
 
 .eqni
 bot
 ..eqni
-.row
+
 angle
 
 .eqni
@@ -809,13 +821,13 @@ forall
 .eqni
 forall
 ..eqni
-.row
+
 exists
 
 .eqni
 exists
 ..eqni
-.row
+
 neg
 
 .eqni
@@ -827,13 +839,13 @@ flat
 .eqni
 flat
 ..eqni
-.row
+
 natural
 
 .eqni
 natural
 ..eqni
-.row
+
 sharp
 
 .eqni
@@ -845,13 +857,13 @@ infty
 .eqni
 infty
 ..eqni
-.row
+
 Box
 
 .eqni
 Box
 ..eqni
-.row
+
 Diamond
 
 .eqni
@@ -863,13 +875,13 @@ triangle
 .eqni
 triangle
 ..eqni
-.row
+
 clubsuit
 
 .eqni
 clubsuit
 ..eqni
-.row
+
 diamondsuit
 
 .eqni
@@ -881,7 +893,7 @@ heartsuit
 .eqni
 heartsuit
 ..eqni
-.row
+
 spadesuit
 
 .eqni
